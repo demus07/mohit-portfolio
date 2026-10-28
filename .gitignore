@@ -48,3 +48,6 @@ next-env.d.ts
 
 # design inspector output
 /.taste-skill
+
+# scraped reference material
+/reference
