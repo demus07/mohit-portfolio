@@ -1,0 +1,680 @@
+<!-- Direction C: Window seat — the whole page is one ride in a Western Railway AC local: the skyline slides past the sealed window at morning or night, the path is the line itself with each role a stop, Wankhede blazes past near the end, and the train pulls into Churchgate. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#efe8da;--fg:#23262a;--soft:rgb(35 38 42 / .66);--acc:#2c6d8c;--wall:#ece3d1;--m:clamp(22px,5.4vw,96px);--ease:cubic-bezier(.22,1,.36,1)}
+:root[data-theme="night"]{--bg:#0d1a2b;--fg:#f3ecdf;--soft:rgb(243 236 223 / .66);--acc:#f2a145;--wall:#18232f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--fg);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{overflow-x:clip;transition:background-color .6s var(--ease)}
+a{color:inherit}
+h1,h2{font-family:Newsreader,Georgia,serif;font-weight:300;letter-spacing:-.02em;line-height:1;text-wrap:balance}
+p{text-wrap:pretty}
+.tlink{text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/100% 1.5px no-repeat;padding-bottom:2px;transition:background-size .45s var(--ease)}
+.tlink:hover{background-size:0 1.5px;background-position:100% 100%}
+.cta{display:inline-flex;gap:.5em;align-items:baseline;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:1.35rem;text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/100% 2px no-repeat;padding-bottom:.15em}
+.cta span{display:inline-block;transition:transform .45s var(--ease)}
+.cta:hover span{transform:translateX(6px)}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.theme{position:fixed;z-index:20;top:clamp(16px,3vh,28px);right:var(--m);font:500 15px "Hanken Grotesk",sans-serif;color:var(--fg);background:none;border:0;cursor:pointer;padding:6px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .45s var(--ease),color .6s}
+.theme:hover{background-size:100% 1px}
+
+/* the landing: we're in the coach, the city sliding past the glass */
+.hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden}
+.hero .zone{position:absolute;z-index:2;left:var(--m);top:clamp(64px,14vh,140px);width:min(30rem,36vw);display:grid;gap:1.1rem;justify-items:start}
+.hero h1{font-size:clamp(3rem,5.4vw,5.6rem)}
+.hero .line{font-size:clamp(1.02rem,1.15vw,1.15rem);line-height:1.5;max-width:23rem}
+.hero .note{font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.15rem,1.4vw,1.4rem);line-height:1.3;max-width:20rem;color:var(--soft);opacity:0;transform:translateY(10px);transition:opacity 1.4s var(--ease),transform 1.4s var(--ease)}
+.hero .note.in{opacity:1;transform:none}
+
+/* the path: the same coach, pinned, riding down the line as you scroll */
+.ride{position:relative;height:820vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;min-height:600px;overflow:hidden}
+.ride .zone{position:absolute;z-index:2;left:var(--m);top:clamp(64px,14vh,140px);width:min(29rem,35vw)}
+.ride h2{font-size:clamp(2.2rem,3.6vw,3.6rem)}
+.stops{position:relative;margin-top:clamp(1.4rem,4vh,2.6rem)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .9s var(--ease);pointer-events:none}
+.stop.on{opacity:1;transform:none;pointer-events:auto}
+.stop .co{font-family:Newsreader,Georgia,serif;font-weight:400;font-size:clamp(1.7rem,2.4vw,2.3rem);line-height:1.05}
+.stop .ti{margin-top:.35rem;font-size:1rem;line-height:1.45;color:var(--soft)}
+.stop ul{list-style:none;margin-top:1rem;display:grid;gap:.6rem;max-width:25rem}
+.stop li{font-size:.98rem;line-height:1.45;padding-left:1.1rem;position:relative}
+.stop li::before{content:"";position:absolute;left:0;top:.62em;width:.4rem;height:.4rem;border-radius:50%;background:var(--acc)}
+.stop .say{font-family:Newsreader,Georgia,serif;font-weight:300;font-size:clamp(1.35rem,1.8vw,1.75rem);line-height:1.25;max-width:22rem}
+.stop .say+.say{margin-top:.6rem;font-style:italic;color:var(--soft)}
+
+/* the end of the line */
+.foot{position:relative;padding:clamp(80px,16vh,160px) var(--m) clamp(28px,5vh,48px);display:grid;gap:2.4rem;overflow:hidden}
+.foot h2{font-size:clamp(2.6rem,5vw,5rem);max-width:12ch}
+.foot .line{margin-top:1rem;font-size:1.1rem;line-height:1.5;max-width:24rem}
+.foot .act{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline}
+.foot .mail{color:var(--soft);text-decoration:none}
+.foot .mail:hover{color:var(--fg)}
+.foot .belief{font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.8vw,1.7rem);line-height:1.3;max-width:26rem}
+.foot .reset{margin-top:.6rem;color:var(--soft);line-height:1.5;max-width:26rem}
+.foot .bar{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline;padding-top:2rem;font-size:.98rem}
+.foot .clock{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:1.12rem;margin-right:auto}
+.foot nav{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem}
+.foot .c{color:var(--soft)}
+.foot .glow{position:absolute;inset:auto -10% -40% 30%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgb(242 161 69 / .16),transparent);opacity:0;transition:opacity .8s}
+:root[data-theme="night"] .foot .glow{opacity:1}
+
+@media (max-width:760px){
+  .hero .zone,.ride .zone{left:22px;right:22px;width:auto;top:clamp(60px,9vh,84px)}
+  .hero .zone{gap:.8rem}
+  .hero h1{font-size:clamp(2.7rem,12.5vw,3.4rem)}
+  .hero .note{font-size:1.1rem}
+  .ride{height:640vh}
+  .ride .zone{right:46px}
+  .ride h2{font-size:clamp(1.9rem,8.4vw,2.3rem)}
+  .stops{margin-top:1rem}
+  .stop .co{font-size:1.6rem}
+  .stop .ti{font-size:.94rem}
+  .stop ul{margin-top:.7rem;gap:.4rem}
+  .stop li{font-size:.86rem;line-height:1.38}
+  .stop .say{font-size:1.25rem}
+  .foot{padding-top:72px}
+  .theme{right:22px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<!-- direction: C window seat -->
+<button class="theme" id="theme" type="button" aria-label="Switch between morning and night">Night</button>
+
+<header class="hero" id="hero">
+  <canvas id="cvHero" aria-label="Inside a Western Railway AC local: through the sealed window, the Mumbai skyline slides past." role="img"></canvas>
+  <div class="zone">
+    <h1>Mohit Bagri</h1>
+    <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+    <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+  </div>
+</header>
+
+<main>
+  <section class="ride" id="ride" aria-labelledby="rideTitle">
+    <div class="stage">
+      <canvas id="cvRide" aria-label="The view from the window as the train runs down the line, stopping at each place he has worked, past Wankhede to Churchgate." role="img"></canvas>
+      <div class="zone">
+        <h2 id="rideTitle">Every detour was part of the path</h2>
+        <div class="stops" id="stops"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="glow" aria-hidden="true"></div>
+  <div>
+    <h2>Got something to build?</h2>
+    <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+    <div class="act">
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+    </div>
+  </div>
+  <div>
+    <p class="belief">If you believe you can make it, you will. The rest is trusting God and doing the work.</p>
+    <p class="reset">Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+  </div>
+  <div class="bar">
+    <span class="clock" id="clock">It's — in Mumbai.</span>
+    <nav aria-label="Elsewhere">
+      <a class="tlink" href="https://github.com/Mohit-Bagri">GitHub</a>
+      <a class="tlink" href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+      <a class="tlink" href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+      <a class="tlink" href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+      <a class="tlink" href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+      <a class="tlink" href="mailto:mailmohitbagri@gmail.com">Email</a>
+    </nav>
+    <span class="c">© 2026 Mohit Bagri</span>
+  </div>
+</footer>
+
+<script>
+const TAU = Math.PI * 2;
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function rng(seed) { let s = seed >>> 0; return () => { s = (s + 0x6d2b79f5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/* ---------- the stops, oldest first, from his own copy ---------- */
+const STOPS = [
+  { board: "BRAHMANI GEMS", co: "Brahmani Gems", ti: "Web developer intern, Shopify", when: "Jul – Aug 2024", d: 0 },
+  { board: "MK EXIM INDIA", co: "MK Exim India", ti: "E-commerce, Amazon, TataCliQ and Sephora", when: "Mar – Sep 2025", d: 1 },
+  { board: "SYPHA AI", co: "Sypha AI", ti: "Software Engineer", when: "Dec 2025 – now", d: 2, li: [
+    "Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.",
+    "Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.",
+    "Turned trackers, MIS reports and PDFs into a 21-sheet P&L workbook. Days of reconciliation, one upload.",
+    "Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues."] },
+  { board: "AUCTIONXI", co: "AuctionXI", ti: "Founder", when: "Apr 2026 – now", d: 3 },
+  { board: "TEXAGENT", co: "TexAgent", ti: "Freelance developer", when: "Sep 2026 – now", d: 4 },
+  { board: "WANKHEDE", say: ["Love watching cricket, bad at playing it.", "Mumbai Indians fan. Wankhede is the dream seat."], d: 5 },
+  { board: "CHURCHGATE", d: 6 },
+];
+const stopsEl = document.getElementById("stops");
+stopsEl.innerHTML = STOPS.map((s) => {
+  if (s.say) return `<div class="stop">${s.say.map((x) => `<p class="say">${x}</p>`).join("")}</div>`;
+  if (!s.co) return `<div class="stop"></div>`;
+  return `<div class="stop"><p class="co">${s.co}</p><p class="ti">${s.ti} · ${s.when}</p>${s.li ? `<ul>${s.li.map((x) => `<li>${x}</li>`).join("")}</ul>` : ""}</div>`;
+}).join("");
+const stopEls = [...stopsEl.children];
+
+/* ---------- morning and night ---------- */
+const PAL = {
+  day: {
+    night: false,
+    sky: ["#6fa6d2", "#9cc2df", "#d3dccf", "#f3d5a2", "#f6c584"],
+    sun: "255, 226, 170",
+    haze: "246, 226, 190",
+    far: ["#a3b4c3", "#bcc4c4"], farLit: null,
+    mid: ["#dccfb8", "#c3b298", "#a99880"], midWin: "rgba(70, 82, 92, .55)", midLit: null,
+    near: "#6f6658", nearLit: null,
+    sea: ["#a9c8cf", "#7fb0c0"],
+    wall: ["#efe6d3", "#e3d6bd"], panel: "#e6dbc5", trim: "#cbbd9f",
+    frame: "#d9cfbc", gasket: "#3a3a38", seat: ["#3e6a92", "#2c5174"],
+    glass: "rgba(255, 244, 222, .10)",
+  },
+  night: {
+    night: true,
+    sky: ["#030b18", "#0a1f3a", "#173a5e", "#3c4766", "#a5583a"],
+    sun: "242, 161, 69",
+    haze: "120, 90, 110",
+    far: ["#16263b", "#1d2e44"], farLit: "255, 206, 140",
+    mid: ["#101c2b", "#0b1522", "#0e1a28"], midWin: null, midLit: "255, 200, 130",
+    near: "#05090f", nearLit: "242, 161, 69",
+    sea: ["#1b2c42", "#0d1a2b"],
+    wall: ["#1b2632", "#121b25"], panel: "#202c39", trim: "#2c3a48",
+    frame: "#2a3644", gasket: "#06090d", seat: ["#1f3a59", "#152a42"],
+    glass: "rgba(140, 180, 220, .06)",
+  },
+};
+const params = new URLSearchParams(location.search);
+let theme = params.get("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day");
+const themeBtn = document.getElementById("theme");
+function applyTheme() {
+  document.documentElement.dataset.theme = theme;
+  themeBtn.textContent = theme === "night" ? "Day" : "Night";
+  sprites.clear();
+  scenes.forEach((s) => s.draw(performance.now()));
+}
+themeBtn.addEventListener("click", () => { theme = theme === "night" ? "day" : "night"; applyTheme(); });
+
+/* ---------- brushes ---------- */
+function glow(c, x, y, r, rgb, a) {
+  if (r <= 0) return;
+  const g = c.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, `rgba(${rgb}, ${a})`);
+  g.addColorStop(1, `rgba(${rgb}, 0)`);
+  c.fillStyle = g;
+  c.fillRect(x - r, y - r, r * 2, r * 2);
+}
+function grad(c, y0, y1, stops) {
+  const g = c.createLinearGradient(0, y0, 0, y1);
+  stops.forEach((s, i) => g.addColorStop(i / (stops.length - 1), s));
+  return g;
+}
+// a soft wisp of cloud, shaded below and lit along the top
+function cloud(c, x, y, s, night, seed) {
+  const r = rng(seed);
+  const [lit, shade] = night ? ["176, 196, 220", "20, 34, 52"] : ["255, 252, 244", "200, 170, 150"];
+  const puffs = Array.from({ length: 9 }, (_, i) => { const u = i / 8 - 0.5; return { x: x + u * s * 3.2 + (r() - 0.5) * s * 0.3, y: y - (1 - Math.abs(u) * 1.7) * s * 0.2 - r() * s * 0.1, r: s * (0.3 + (0.5 - Math.abs(u)) * 0.45 + r() * 0.12) }; });
+  for (const p of puffs) { const g = c.createRadialGradient(p.x, p.y + p.r * 0.25, 0, p.x, p.y + p.r * 0.25, p.r * 1.2); g.addColorStop(0, `rgba(${shade}, ${night ? 0.35 : 0.22})`); g.addColorStop(1, `rgba(${shade}, 0)`); c.fillStyle = g; c.beginPath(); c.ellipse(p.x, p.y + p.r * 0.25, p.r * 1.6, p.r * 1.1, 0, 0, TAU); c.fill(); }
+  for (const p of puffs) { const ly = p.y - p.r * 0.3, g = c.createRadialGradient(p.x, ly, 0, p.x, ly, p.r); g.addColorStop(0, `rgba(${lit}, ${night ? 0.22 : 0.8})`); g.addColorStop(0.6, `rgba(${lit}, ${night ? 0.08 : 0.35})`); g.addColorStop(1, `rgba(${lit}, 0)`); c.fillStyle = g; c.beginPath(); c.ellipse(p.x, ly, p.r * 1.35, p.r * 0.9, 0, 0, TAU); c.fill(); }
+}
+
+/* ---------- buildings as sprites, painted once per theme ---------- */
+const sprites = new Map();
+function sprite(key, w, h, paint) {
+  const k = `${theme}:${key}:${Math.round(w)}:${Math.round(h)}`;
+  let s = sprites.get(k);
+  if (!s) {
+    const dpr = 1.5, pad = Math.ceil(h * 0.25);
+    const cv = document.createElement("canvas");
+    cv.width = Math.max(1, Math.ceil((w + pad * 2) * dpr)); cv.height = Math.max(1, Math.ceil((h + pad) * dpr));
+    const c = cv.getContext("2d"); c.scale(dpr, dpr); c.translate(pad, pad);
+    paint(c, w, h);
+    s = { cv, pad, w, h }; sprites.set(k, s);
+    if (sprites.size > 900) sprites.delete(sprites.keys().next().value);
+  }
+  return s;
+}
+function blit(c, s, x, base) { c.drawImage(s.cv, x - s.pad, base - s.h - s.pad, s.cv.width / 1.5, s.cv.height / 1.5); }
+
+// a mid-distance block: lit faces toward the morning sun, a grid of windows, lit ones at night
+function block(c, w, h, seed, kind, pal) {
+  const r = rng(seed);
+  const [face, side, roof] = pal.mid;
+  c.fillStyle = face; c.fillRect(0, 0, w, h);
+  c.fillStyle = side; c.fillRect(w * 0.72, 0, w * 0.28, h);
+  if (!pal.night) { c.fillStyle = "rgba(255, 228, 180, .25)"; c.fillRect(0, 0, w * 0.72, h * 0.5); }
+  const fl = kind === "glass" ? h / 9 : kind === "deco" ? h / 7 : h / 6.5;
+  const cols = Math.max(2, Math.round(w / (kind === "glass" ? 5 : 7)));
+  for (let y = fl * 0.6; y < h - fl * 0.4; y += fl) {
+    if (kind === "glass") {
+      if (pal.night) { c.fillStyle = `rgba(${r() < 0.55 ? "170, 205, 245" : pal.midLit}, ${0.12 + r() * 0.3})`; c.fillRect(1, y, w - 2, fl * 0.3); }
+      else { c.fillStyle = "rgba(110, 140, 160, .35)"; c.fillRect(1, y, w - 2, fl * 0.55); c.fillStyle = "rgba(255, 240, 210, .35)"; c.fillRect(1, y, w * 0.4, fl * 0.2); }
+      continue;
+    }
+    for (let i = 0; i < cols; i++) {
+      const x = (i + 0.25) * (w / cols), ww = (w / cols) * 0.5;
+      if (pal.night) { if (r() < 0.38) { c.fillStyle = `rgba(${pal.midLit}, ${0.5 + r() * 0.5})`; c.fillRect(x, y, ww, fl * 0.5); } }
+      else { c.fillStyle = pal.midWin; c.fillRect(x, y, ww, fl * 0.5); }
+    }
+    if (kind === "deco") { c.fillStyle = pal.night ? "rgba(0,0,0,.25)" : "rgba(255,250,240,.5)"; c.fillRect(0, y - 2, w, 1.6); }
+  }
+  c.fillStyle = roof;
+  if (kind === "deco") { c.fillRect(w * 0.35, -h * 0.08, w * 0.3, h * 0.08); c.beginPath(); c.arc(0 + w * 0.08, 0, w * 0.08, Math.PI, TAU); c.fill(); }
+  if (kind === "low") { c.fillRect(-1, -2, w + 2, 3); for (let x = 3; x < w - 3; x += 9) c.fillRect(x, -5, 4, 4); }
+  if (kind === "shed") { c.beginPath(); c.moveTo(0, 0); for (let x = 0; x < w; x += 10) { c.lineTo(x + 10, -6); c.lineTo(x + 10, 0); } c.lineTo(w, 0); c.fill(); }
+}
+// the far city: silhouettes against the haze, with the domed pair among them
+function farTower(c, w, h, seed, pal, crowned) {
+  const r = rng(seed);
+  const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, pal.far[0]); g.addColorStop(1, pal.far[1]);
+  c.fillStyle = g;
+  const set = !crowned && r() < 0.5;
+  if (set) { c.fillRect(0, h * 0.18, w, h * 0.82); c.fillRect(w * 0.18, 0, w * 0.64, h * 0.2); } else c.fillRect(0, 0, w, h);
+  c.fillStyle = pal.night ? "rgba(0, 0, 0, .25)" : "rgba(120, 130, 140, .18)"; c.fillRect(0, 0, w * 0.35, h);
+  if (!pal.night) { c.fillStyle = "rgba(255, 236, 200, .35)"; c.fillRect(w * 0.88, set ? h * 0.18 : 0, w * 0.12, h); }
+  if (crowned) {
+    c.beginPath(); c.moveTo(-w * 0.05, 0); c.quadraticCurveTo(w / 2, -w * 0.9, w * 1.05, 0); c.fill();
+    c.fillRect(w * 0.47, -w * 1.15, w * 0.06, w * 0.4);
+  }
+  if (pal.farLit) for (let y = 4; y < h - 2; y += 4) for (let x = 1.5; x < w - 1.5; x += 3) if (r() < 0.22) { c.fillStyle = `rgba(${pal.farLit}, ${0.3 + r() * 0.5})`; c.fillRect(x, y, 1.4, 1.6); }
+}
+// the domed twin towers, close: green-glass crowns lit gold at night
+function twin(c, w, h, pal) {
+  for (const [x0, hh] of [[0, h], [w * 0.56, h * 0.94]]) {
+    const tw = w * 0.44, top = h - hh;
+    const g = c.createLinearGradient(x0, 0, x0 + tw, 0);
+    if (pal.night) { g.addColorStop(0, "#1a2a3e"); g.addColorStop(0.5, "#24384f"); g.addColorStop(1, "#0d1826"); }
+    else { g.addColorStop(0, "#e8dcc4"); g.addColorStop(0.55, "#d4c6ac"); g.addColorStop(1, "#a99a82"); }
+    c.fillStyle = g; c.fillRect(x0, top + tw * 0.5, tw, hh - tw * 0.5);
+    // the crown: a drum, then an ogive dome rising to a needle
+    c.fillStyle = pal.night ? "#2c5b52" : "#6f9f8d"; c.fillRect(x0 + tw * 0.06, top + tw * 0.36, tw * 0.88, tw * 0.16);
+    c.fillStyle = pal.night ? "#3f7a6c" : "#86b5a2";
+    c.beginPath(); c.moveTo(x0 + tw * 0.06, top + tw * 0.38); c.bezierCurveTo(x0 + tw * 0.08, top - tw * 0.1, x0 + tw * 0.4, top - tw * 0.3, x0 + tw * 0.5, top - tw * 0.55); c.bezierCurveTo(x0 + tw * 0.6, top - tw * 0.3, x0 + tw * 0.92, top - tw * 0.1, x0 + tw * 0.94, top + tw * 0.38); c.fill();
+    c.fillStyle = pal.night ? "rgba(255, 220, 150, .45)" : "rgba(255, 255, 255, .5)";
+    c.beginPath(); c.moveTo(x0 + tw * 0.22, top + tw * 0.34); c.bezierCurveTo(x0 + tw * 0.25, top, x0 + tw * 0.4, top - tw * 0.22, x0 + tw * 0.48, top - tw * 0.45); c.lineTo(x0 + tw * 0.44, top + tw * 0.34); c.fill();
+    c.fillStyle = pal.night ? "#2b5a52" : "#5f8f80"; c.fillRect(x0 + tw * 0.485, top - tw * 0.95, tw * 0.03, tw * 0.45);
+    if (pal.night) { c.fillStyle = "rgba(255, 214, 150, .7)"; c.fillRect(x0 + tw * 0.06, top + tw * 0.5, tw * 0.88, 1.5); }
+    // floors
+    const r = rng(x0 ? 21 : 22);
+    for (let y = top + tw * 0.65; y < h - 4; y += 6) {
+      if (pal.night) { for (let x = x0 + 2; x < x0 + tw - 2; x += 4) if (r() < 0.6) { c.fillStyle = `rgba(255, ${190 + r() * 40 | 0}, 130, ${0.45 + r() * 0.5})`; c.fillRect(x, y, 2.6, 3); } }
+      else { c.fillStyle = "rgba(80, 96, 110, .28)"; c.fillRect(x0 + 2, y, tw - 4, 2.4); }
+    }
+  }
+}
+// Wankhede: the stands, the white sails of the roof, and the floodlight towers
+function stadium(c, w, h, pal) {
+  const base = h, sh = h * 0.42;
+  c.fillStyle = pal.night ? "#121e2d" : "#cdbfa6";
+  c.beginPath(); c.moveTo(0, base); c.lineTo(w * 0.06, base - sh); c.lineTo(w * 0.94, base - sh); c.lineTo(w, base); c.fill();
+  // tiers
+  for (let k = 0; k < 5; k++) { c.fillStyle = pal.night ? `rgba(40, 70, 110, ${0.7 - k * 0.1})` : ["#3f78b0", "#4c86bd", "#3a6e9f", "#5a92c4", "#3f78b0"][k]; c.fillRect(w * 0.07, base - sh + sh * (0.14 + k * 0.17), w * 0.86, sh * 0.1); }
+  c.fillStyle = pal.night ? "#0d1724" : "#b9a88d"; c.fillRect(0, base - sh * 0.16, w, sh * 0.16);
+  // the roof: a row of tensile sails
+  c.fillStyle = pal.night ? "#dfe8f0" : "#ffffff";
+  const n = 9;
+  for (let i = 0; i < n; i++) { const x0 = w * 0.04 + (i / n) * w * 0.92, x1 = x0 + (w * 0.92) / n, y0 = base - sh - h * 0.02; c.beginPath(); c.moveTo(x0, y0); c.quadraticCurveTo((x0 + x1) / 2, y0 - h * 0.12, x1, y0); c.lineTo(x1, y0 + h * 0.03); c.quadraticCurveTo((x0 + x1) / 2, y0 - h * 0.06, x0, y0 + h * 0.03); c.fill(); }
+  if (!pal.night) { c.fillStyle = "rgba(170, 150, 120, .35)"; for (let i = 0; i < n; i++) { const x0 = w * 0.04 + (i / n) * w * 0.92 + (w * 0.92) / n * 0.55; c.fillRect(x0, base - sh - h * 0.06, (w * 0.92) / n * 0.4, h * 0.05); } }
+  // floodlight towers
+  for (const fx of [0.02, 0.33, 0.67, 0.98]) {
+    const x = fx * w, top = h * 0.02;
+    c.fillStyle = pal.night ? "#0c1520" : "#8e8573";
+    c.beginPath(); c.moveTo(x - 3, base - sh * 0.4); c.lineTo(x - 1, top + h * 0.1); c.lineTo(x + 1, top + h * 0.1); c.lineTo(x + 3, base - sh * 0.4); c.fill();
+    c.fillStyle = pal.night ? "#fffbe8" : "#d8d0c0";
+    c.fillRect(x - h * 0.07, top, h * 0.14, h * 0.1);
+    if (!pal.night) { c.fillStyle = "rgba(90, 84, 70, .4)"; for (let k = 0; k < 3; k++) c.fillRect(x - h * 0.065, top + h * (0.012 + k * 0.03), h * 0.13, h * 0.012); }
+  }
+}
+
+/* ---------- the coach and the world beyond its window ---------- */
+const STEP = 260;            // world units between stops, on the near layer
+const MID = 0.42, FAR = 0.1; // parallax
+function world(c, W, X, t, u, pal, mode) {
+  // W: window width in px; window height is 100u. Horizon at 64u.
+  const H = 100 * u, hz = 64 * u, night = pal.night;
+  c.fillStyle = grad(c, 0, hz + 6 * u, pal.sky); c.fillRect(0, 0, W, hz + 6 * u);
+  if (night) {
+    const r = rng(3);
+    for (let i = 0; i < 70; i++) { const x = r() * W, y = Math.pow(r(), 1.6) * hz * 0.7; c.fillStyle = `rgba(235, 240, 250, ${(0.3 + 0.6 * Math.abs(Math.sin(t * (0.4 + r()) + r() * 6))) * 0.8})`; c.fillRect(x, y, 1.2, 1.2); }
+    glow(c, W * 0.7, hz, W * 0.7, "200, 100, 60", 0.22);
+  } else {
+    glow(c, W * 0.78, hz * 0.55, W * 0.8, pal.sun, 0.55);
+    glow(c, W * 0.78, hz * 0.55, 9 * u, "255, 250, 235", 0.95);
+  }
+  // clouds drifting, slower than the city
+  for (const k of [{ at: 0.1, y: 14, s: 6, seed: 4 }, { at: 0.45, y: 24, s: 8, seed: 9 }, { at: 0.8, y: 10, s: 5, seed: 13 }]) {
+    const span = W + k.s * u * 7, x = ((k.at * span - X * u * 0.03 + t * 3 * u * 0.2) % span + span) % span - k.s * u * 3.5;
+    cloud(c, x, k.y * u, k.s * u, night, k.seed);
+  }
+  // sea glimpses at the horizon
+  c.fillStyle = grad(c, hz - 2 * u, hz + 8 * u, pal.sea); c.fillRect(0, hz - 2 * u, W, 10 * u);
+  if (!night) glow(c, W * 0.78, hz, 24 * u, "255, 240, 210", 0.5);
+  else for (let i = 0; i < 26; i++) { const r = rng(40 + i); c.fillStyle = `rgba(242, 161, 69, ${0.25 * Math.max(0, Math.sin(t * 1.3 + i))})`; c.fillRect((r() * W + t * 4) % W, hz + r() * 6 * u, 3 + r() * 8, 1); }
+
+  // the far skyline
+  {
+    const off = X * FAR * u, cell = 11 * u;
+    const i0 = Math.floor(off / cell) - 2, i1 = Math.ceil((off + W) / cell) + 2;
+    for (let i = i0; i <= i1; i++) {
+      const r = rng(1000 + i), tw = (3.5 + r() * 5) * u, th = (6 + Math.pow(r(), 2.4) * 40) * u;
+      const crowned = ((i % 23) + 23) % 23 === 7 || ((i % 23) + 23) % 23 === 8;
+      if (!crowned && r() < 0.28) continue;
+      const x = i * cell - off + r() * 3 * u;
+      const s = sprite(`f${i % 64}${crowned ? "c" : ""}`, crowned ? 6 * u : tw, crowned ? 50 * u : th, (cc, w, h) => farTower(cc, w, h, 1000 + i, pal, crowned));
+      blit(c, s, x, hz);
+    }
+    c.fillStyle = grad(c, hz - 40 * u, hz + 2 * u, [`rgba(${pal.haze}, 0)`, `rgba(${pal.haze}, ${night ? 0.22 : 0.42})`]); c.fillRect(0, hz - 40 * u, W, 42 * u);
+  }
+
+  // the middle city, with the places he stopped
+  const off = X * MID * u;
+  const marks = [];
+  if (mode === "ride") {
+    const lm = (k) => k * STEP * MID * u + W / 2;
+    marks.push({ x: lm(3), span: 40 * u, draw: (cx) => { const s = sprite("twin", 30 * u, 62 * u, (cc, w, h) => twin(cc, w, h, pal)); blit(c, s, cx - 15 * u, hz + 10 * u); if (night) glow(c, cx, hz - 40 * u, 30 * u, "255, 210, 140", 0.12); } });
+    marks.push({ x: lm(5), span: 80 * u, draw: (cx) => {
+      if (night) { glow(c, cx, hz - 22 * u, 70 * u, "255, 250, 225", 0.28); for (const fx of [-0.48, -0.17, 0.17, 0.48]) { const lx = cx + fx * 120 * u; glow(c, lx, hz - 34 * u, 22 * u, "255, 252, 235", 0.6); c.fillStyle = "rgba(255, 252, 230, .08)"; c.beginPath(); c.moveTo(lx - 4 * u, hz - 32 * u); c.lineTo(cx - 30 * u, hz + 4 * u); c.lineTo(cx + 30 * u, hz + 4 * u); c.lineTo(lx + 4 * u, hz - 32 * u); c.fill(); } }
+      const s = sprite("stadium", 140 * u, 46 * u, (cc, w, h) => stadium(cc, w, h, pal)); blit(c, s, cx - 70 * u, hz + 12 * u);
+    } });
+  }
+  {
+    const cell = 13 * u;
+    const i0 = Math.floor(off / cell) - 3, i1 = Math.ceil((off + W) / cell) + 3;
+    for (let i = i0; i <= i1; i++) {
+      const wx = i * cell;
+      if (marks.some((m) => Math.abs(wx - m.x) < m.span)) continue;
+      // which stretch of the line we're on decides the city
+      const k = mode === "ride" ? clamp(Math.round(wx / (STEP * MID * u)), 0, 6) : 3;
+      const r = rng(5000 + i);
+      const kinds = [["low", "low", "deco"], ["shed", "shed", "low"], ["glass", "glass", "deco"], ["glass", "deco", "deco"], ["deco", "low", "low"], ["low", "deco", "low"], ["deco", "deco", "low"]][k];
+      const kind = kinds[Math.floor(r() * 3)];
+      const hr = { low: [7, 14], shed: [5, 8], glass: [18, 40], deco: [12, 24] }[kind];
+      const bw = (kind === "shed" ? 16 : 8 + r() * 7) * u, bh = (hr[0] + r() * (hr[1] - hr[0])) * u;
+      const s = sprite(`m${kind}${(5000 + i) % 97}`, bw, bh, (cc, w, h) => block(cc, w, h, 5000 + i, kind, pal));
+      blit(c, s, wx - off + r() * 3 * u, hz + 10 * u);
+    }
+    for (const m of marks) { const cx = m.x - off; if (cx > -m.span * 2 && cx < W + m.span * 2) m.draw(cx); }
+  }
+  // a low haze over the city in the morning
+  if (!night) { c.fillStyle = grad(c, hz - 10 * u, hz + 12 * u, ["rgba(250,232,200,0)", "rgba(250,232,200,.35)"]); c.fillRect(0, hz - 10 * u, W, 22 * u); }
+
+  // closer in: low roofs along the track, corrugated sheets and blue tarps weighed down with tyres
+  {
+    const rOff = X * 0.8 * u, cell = 11 * u;
+    const i0 = Math.floor(rOff / cell) - 2, i1 = Math.ceil((rOff + W) / cell) + 2;
+    const skip = mode === "ride" ? [5 * STEP * 0.8 * u + W / 2, 6 * STEP * 0.8 * u + W / 2] : [];
+    for (let i = i0; i <= i1; i++) {
+      const wx = i * cell;
+      if (skip.some((m) => Math.abs(wx - m) < 70 * u)) continue;
+      const r = rng(7000 + i), x = wx - rOff, rw = (9 + r() * 6) * u, rh = (4 + r() * 6) * u, top = 84 * u - rh;
+      c.fillStyle = night ? "#0b131d" : ["#c9b79a", "#b9a586", "#d4c4a6"][i & 1 ? 1 : (i % 3 ? 0 : 2)];
+      c.fillRect(x, top, rw, rh + 2);
+      const roof = r();
+      c.fillStyle = roof < 0.35 ? (night ? "#142a46" : "#3f78b0") : roof < 0.7 ? (night ? "#121a24" : "#8f8a80") : (night ? "#1a1612" : "#9b6e4f");
+      c.beginPath(); c.moveTo(x - u, top + 1.4 * u); c.lineTo(x + rw * 0.5, top - 1.6 * u); c.lineTo(x + rw + u, top + 1.4 * u); c.fill();
+      if (night && r() < 0.35) { c.fillStyle = "rgba(255, 196, 120, .8)"; c.fillRect(x + rw * 0.3, top + rh * 0.35, 1.6 * u, 1.8 * u); glow(c, x + rw * 0.3, top + rh * 0.45, 5 * u, "255, 190, 110", 0.25); }
+    }
+  }
+  // the near side of the track: wall, masts and lamps rushing by
+  const nOff = X * u;
+  c.fillStyle = night ? "#0a121b" : "#b8a98f";
+  c.fillRect(0, 86 * u, W, H - 86 * u);
+  c.fillStyle = night ? "#101b28" : "#cdbfa5"; c.fillRect(0, 86 * u, W, 1.6 * u);
+  {
+    const cell = 46 * u, i0 = Math.floor(nOff / cell) - 1, i1 = Math.ceil((nOff + W) / cell) + 1;
+    const plat = mode === "ride" ? 6 * STEP * u + W / 2 : null;
+    for (let i = i0; i <= i1; i++) {
+      const x = i * cell - nOff;
+      if (plat !== null && Math.abs(i * cell - plat) < 110 * u) continue;
+      // overhead mast with its cantilever
+      c.fillStyle = pal.near; c.fillRect(x, 14 * u, 1.6 * u, 72 * u);
+      c.fillRect(x, 20 * u, 14 * u, 0.7 * u); c.fillRect(x, 26 * u, 10 * u, 0.5 * u);
+      // a streetlamp beyond the wall every other bay
+      if (i % 2 === 0) {
+        const lx = x + 22 * u;
+        c.fillRect(lx, 52 * u, 0.9 * u, 32 * u); c.fillRect(lx - 3 * u, 52 * u, 3.5 * u, 0.8 * u);
+        if (night) { glow(c, lx - 2.5 * u, 53 * u, 16 * u, pal.nearLit, 0.5); glow(c, lx - 2.5 * u, 53 * u, 3 * u, "255, 230, 190", 0.9); }
+      }
+      // a rain tree now and then
+      const r = rng(9000 + i);
+      if (r() < 0.22 && !(plat !== null && Math.abs(i * cell - (5 * STEP * u + W / 2)) < 120 * u)) {
+        const tx = x + 30 * u, ty = 70 * u;
+        c.fillStyle = night ? "#060b11" : "#5d6b4c"; c.fillRect(tx - 0.6 * u, ty, 1.2 * u, 16 * u);
+        for (const [shade, dy, a] of night ? [["#070d14", 0, 1]] : [["#5f6e4d", 1.5, 1], ["#869566", -1, 0.9], ["#a9b47f", -2.4, 0.6]]) {
+          c.fillStyle = shade; c.globalAlpha = a;
+          const rr = rng(9100 + i);
+          for (let k = 0; k < 6; k++) { c.beginPath(); c.ellipse(tx + (rr() - 0.5) * 18 * u, ty + dy * u - rr() * 3 * u, (4 + rr() * 4) * u, (2 + rr() * 1.6) * u, 0, 0, TAU); c.fill(); }
+        }
+        c.globalAlpha = 1;
+      }
+    }
+    // the overhead wire
+    c.fillStyle = pal.near; c.fillRect(0, 20.5 * u, W, 0.35 * u);
+    // Churchgate: the platform slides in under its canopy
+    if (plat !== null) {
+      const px = plat - nOff;
+      if (px > -160 * u && px < W + 160 * u) platform(c, px, u, W, pal, t);
+    }
+  }
+}
+// Churchgate platform, seen from the train: green columns, the canopy, the yellow edge, the board
+function platform(c, cx, u, W, pal, t) {
+  const night = pal.night, x0 = cx - 140 * u, x1 = cx + 140 * u;
+  c.fillStyle = night ? "#121c27" : "#d8cdb6"; c.fillRect(x0, 70 * u, x1 - x0, 30 * u);
+  c.fillStyle = "#e1b33a"; c.fillRect(x0, 84 * u, x1 - x0, 2.2 * u);
+  c.fillStyle = night ? "#0c1620" : "#7a6a52"; c.fillRect(x0, 4 * u, x1 - x0, 6 * u);
+  c.fillStyle = night ? "#152231" : "#a58c66"; c.fillRect(x0, 10 * u, x1 - x0, 1.6 * u);
+  for (let x = x0 + 10 * u; x < x1; x += 34 * u) {
+    c.fillStyle = night ? "#1d3a2a" : "#3f6b4a"; c.fillRect(x, 11 * u, 2 * u, 73 * u);
+    c.fillRect(x - 5 * u, 11 * u, 12 * u, 1 * u);
+    if (night) glow(c, x + 17 * u, 14 * u, 20 * u, "255, 236, 200", 0.35);
+  }
+  if (night) glow(c, cx, 40 * u, 120 * u, "255, 236, 200", 0.12);
+  // the board: Marathi above English, black on yellow
+  const bw = 46 * u, bh = 16 * u, bx = cx - bw / 2, by = 24 * u;
+  c.fillStyle = night ? "#0c1620" : "#5c513f"; c.fillRect(cx - 12 * u, 11 * u, 0.8 * u, 13 * u); c.fillRect(cx + 11 * u, 11 * u, 0.8 * u, 13 * u);
+  c.fillStyle = "#f2c518"; c.beginPath(); c.roundRect(bx, by, bw, bh, 1.2 * u); c.fill();
+  c.fillStyle = "#141414"; c.textAlign = "center";
+  c.font = `${7 * u}px "Tiro Devanagari Marathi", serif`; c.fillText("चर्चगेट", cx, by + 7.4 * u);
+  c.font = `600 ${4.2 * u}px "Hanken Grotesk", sans-serif`; c.fillText("CHURCHGATE", cx, by + 13.2 * u);
+  c.textAlign = "left";
+}
+
+// an amber dot-matrix line, like the indicator over the coach door
+const dotCache = new Map();
+function dots(text, rows) {
+  const k = text + rows;
+  if (dotCache.has(k)) return dotCache.get(k);
+  const cv = document.createElement("canvas"), c = cv.getContext("2d");
+  c.font = `600 ${rows}px "Hanken Grotesk", sans-serif`;
+  const w = Math.ceil(c.measureText(text).width) + 2;
+  cv.width = w; cv.height = rows + 2;
+  c.font = `600 ${rows}px "Hanken Grotesk", sans-serif`; c.fillStyle = "#fff"; c.textBaseline = "top"; c.fillText(text, 1, 1);
+  const d = c.getImageData(0, 0, w, rows + 2).data, on = [];
+  for (let y = 0; y < rows + 2; y++) for (let x = 0; x < w; x++) on.push(d[(y * w + x) * 4 + 3] > 110 ? 1 : 0);
+  const out = { w, h: rows + 2, on }; dotCache.set(k, out); return out;
+}
+function board(c, x, y, bw, bh, text, alpha, t) {
+  c.save();
+  c.fillStyle = "#0b0b0c"; c.beginPath(); c.roundRect(x, y, bw, bh, bh * 0.14); c.fill();
+  c.globalAlpha = alpha;
+  const rows = 11, p = bh / (rows + 5), m = dots(text, rows);
+  const fit = (bw - p * 4) / p;
+  // a long name scrolls; a short one sits centred
+  const shift = m.w > fit ? ((t * 9) % (m.w + fit)) - fit : -(fit - m.w) / 2;
+  c.beginPath(); c.rect(x + p * 2, y, bw - p * 4, bh); c.clip();
+  for (let gy = 0; gy < m.h; gy++) for (let gx = 0; gx < fit; gx++) {
+    const sx = Math.floor(gx + shift), lit = sx >= 0 && sx < m.w && m.on[gy * m.w + sx];
+    c.fillStyle = lit ? "#ffb534" : "rgba(255, 170, 60, .07)";
+    c.beginPath(); c.arc(x + p * 2 + gx * p + p / 2, y + p * 2 + gy * p + p / 2, p * (lit ? 0.42 : 0.3), 0, TAU); c.fill();
+  }
+  c.restore();
+  if (alpha > 0.5) glow(c, x + bw / 2, y + bh / 2, bw * 0.6, "255, 170, 60", 0.08 * alpha);
+}
+
+// the coach: wall, rack and straps, the sealed window, the seats; the world painted into the glass
+function coach(c, w, h, X, t, mode, speed, boardText, boardA, route) {
+  const pal = PAL[theme], night = pal.night, narrow = w < 760;
+  // layout
+  let wx, wy, ww, wh;
+  if (narrow) { ww = w * 0.9; wx = (w - ww) / 2; wh = Math.min(h * (mode === "ride" ? 0.3 : 0.34), ww * 0.82); wy = mode === "ride" ? h - wh - h * 0.075 : h - wh - h * 0.15; }
+  else { wx = w * 0.43; ww = w * 0.52; wy = h * 0.21; wh = Math.min(h * 0.56, ww * 0.78); }
+  const u = wh / 100, rad = Math.min(ww, wh) * 0.07;
+
+  // the wall
+  c.fillStyle = grad(c, 0, h, pal.wall); c.fillRect(0, 0, w, h);
+  // the luggage rack and the tube light along it
+  const rackY = wy - (narrow ? h * 0.04 : h * 0.06);
+  if (night) { glow(c, w * 0.5, rackY - 6, w * 0.7, "200, 225, 245", 0.12); c.fillStyle = "rgba(230, 244, 255, .85)"; c.fillRect(narrow ? 0 : wx, rackY - 8, narrow ? w : ww, 3); }
+  const rx0 = narrow ? 0 : wx - u * 6;
+  c.fillStyle = pal.trim; c.fillRect(rx0, rackY, w - rx0, 4); c.fillStyle = pal.panel; c.fillRect(rx0, rackY + 4, w - rx0, 2);
+  // the window's light thrown across the wall in the morning
+  if (!night) {
+    c.save(); c.globalCompositeOperation = "multiply"; c.restore();
+    const g = c.createLinearGradient(wx - ww * 0.6, 0, wx + ww, 0); g.addColorStop(0, "rgba(255, 214, 150, 0)"); g.addColorStop(1, "rgba(255, 214, 150, .32)");
+    c.fillStyle = g; c.beginPath(); c.moveTo(wx - ww * 0.25, wy + wh * 0.2); c.lineTo(wx, wy); c.lineTo(wx, wy + wh); c.lineTo(wx - ww * 0.55, h); c.lineTo(wx - ww * 0.95, h); c.closePath(); c.fill();
+  }
+  // straps swaying from the rack
+  const sway = RM ? 0 : Math.sin(t * 1.4) * 0.05 + speed * 0.12;
+  for (let i = 0; i < 4; i++) {
+    const sx = wx + ww * (0.14 + i * 0.24);
+    c.save(); c.translate(sx, rackY + 4); c.rotate(sway * (1 + (i % 3) * 0.2));
+    c.fillStyle = night ? "#2d4b6a" : "#3f6c94"; c.fillRect(-2, 0, 4, h * 0.05);
+    c.strokeStyle = night ? "#c9d4de" : "#f4efe4"; c.lineWidth = 3.4; c.beginPath(); c.arc(0, h * 0.05 + 11, 10, 0, TAU); c.stroke();
+    c.restore();
+  }
+
+  // the view, painted into the glass
+  c.save(); c.beginPath(); c.roundRect(wx, wy, ww, wh, rad); c.clip(); c.translate(wx, wy);
+  world(c, ww, X, t, u, pal, mode);
+  // motion: a streak across the near layer when the train runs fast
+  if (speed > 0.15) { c.fillStyle = `rgba(${night ? "10,16,24" : "190,176,150"}, ${clamp(speed * 0.3, 0, 0.35)})`; c.fillRect(0, 70 * u, ww, 30 * u); }
+  // the glass: a tint, a reflection of the coach, and at night his reflection
+  c.fillStyle = pal.glass; c.fillRect(0, 0, ww, wh);
+  const gl = c.createLinearGradient(0, 0, ww, wh); gl.addColorStop(0.3, "rgba(255,255,255,0)"); gl.addColorStop(0.42, `rgba(255,255,255,${night ? 0.05 : 0.12})`); gl.addColorStop(0.5, "rgba(255,255,255,0)");
+  c.fillStyle = gl; c.fillRect(0, 0, ww, wh);
+  if (night) reflection(c, ww * (narrow ? 0.2 : 0.16), wh, u);
+  c.restore();
+  // frame and gasket
+  c.lineWidth = Math.max(5, u * 2.4); c.strokeStyle = pal.gasket; c.beginPath(); c.roundRect(wx, wy, ww, wh, rad); c.stroke();
+  c.lineWidth = Math.max(6, u * 3); c.strokeStyle = pal.frame; c.beginPath(); c.roundRect(wx - u * 2.6, wy - u * 2.6, ww + u * 5.2, wh + u * 5.2, rad + u * 2.6); c.stroke();
+  // the sill
+  c.fillStyle = pal.trim; c.fillRect(wx - u * 4, wy + wh + u * 2.6, ww + u * 8, u * 2.2);
+  if (!night) glow(c, wx + ww * 0.6, wy + wh + u * 3, ww * 0.5, "255, 220, 160", 0.25);
+
+  // the seat backs in front of us, over the bottom of the window
+  const sy = wy + wh + u * (narrow ? 8 : 10);
+  const sx0 = narrow ? w * 0.04 : wx - ww * 0.08, sx1 = narrow ? w * 0.96 : w * 0.99;
+  const sg = c.createLinearGradient(0, sy, 0, h); sg.addColorStop(0, pal.seat[0]); sg.addColorStop(1, pal.seat[1]);
+  c.fillStyle = sg; c.beginPath(); c.roundRect(sx0, sy, (sx1 - sx0) * 0.48, h - sy + 40, [18, 18, 0, 0]); c.fill();
+  c.beginPath(); c.roundRect(sx0 + (sx1 - sx0) * 0.52, sy, (sx1 - sx0) * 0.48, h - sy + 40, [18, 18, 0, 0]); c.fill();
+  c.fillStyle = night ? "rgba(255,255,255,.05)" : "rgba(255,255,255,.14)"; c.fillRect(sx0 + 10, sy + 6, (sx1 - sx0) * 0.48 - 20, 4); c.fillRect(sx0 + (sx1 - sx0) * 0.52 + 10, sy + 6, (sx1 - sx0) * 0.48 - 20, 4);
+  if (night) glow(c, w * 0.5, sy, w * 0.5, "200, 225, 245", 0.05);
+
+  // the indicator over the window
+  if (boardText) {
+    const bw = narrow ? ww * 0.7 : Math.min(ww * 0.5, 380), bh = bw * 0.15;
+    board(c, narrow ? wx + (ww - bw) / 2 : wx, rackY - bh - (narrow ? 10 : 16), bw, bh, boardText, boardA, t);
+  }
+  // the route: where on the line we are
+  if (route) {
+    const rx = narrow ? w - 22 : wx + ww + (w - wx - ww) / 2 + u * 1.5, ry0 = narrow ? h * 0.1 : wy, ry1 = narrow ? h * 0.44 : wy + wh;
+    c.strokeStyle = night ? "rgba(243,236,223,.25)" : "rgba(35,38,42,.22)"; c.lineWidth = 2; c.lineCap = "round";
+    c.beginPath(); c.moveTo(rx, ry0); c.lineTo(rx, ry1); c.stroke();
+    c.strokeStyle = night ? "#f2a145" : "#2c6d8c"; c.lineWidth = 2.6;
+    const py = lerp(ry0, ry1, route.p);
+    c.beginPath(); c.moveTo(rx, ry0); c.lineTo(rx, py); c.stroke();
+    for (let k = 0; k < route.n; k++) {
+      const y = lerp(ry0, ry1, k / (route.n - 1)), past = k / (route.n - 1) <= route.p + 0.001;
+      c.fillStyle = past ? (night ? "#f2a145" : "#2c6d8c") : (night ? "#18232f" : "#efe6d3");
+      c.strokeStyle = night ? "rgba(243,236,223,.4)" : "rgba(35,38,42,.35)"; c.lineWidth = 1.5;
+      c.beginPath(); c.arc(rx, y, 4, 0, TAU); c.fill(); if (!past) c.stroke();
+    }
+    glow(c, rx, py, 18, night ? "242, 161, 69" : "44, 109, 140", 0.35);
+    c.fillStyle = night ? "#f8d29a" : "#2c6d8c"; c.beginPath(); c.arc(rx, py, 5.5, 0, TAU); c.fill();
+  }
+}
+// his reflection in the dark glass: head on his fist, looking out
+function reflection(c, x, wh, u) {
+  c.save(); c.filter = `blur(${Math.max(2, u * 1.2)}px)`; c.globalAlpha = 0.09; c.fillStyle = "#cfe0f0";
+  const b = wh;
+  c.beginPath(); c.ellipse(x, b - 38 * u, 9 * u, 11 * u, -0.1, 0, TAU); c.fill(); // head
+  c.beginPath(); c.ellipse(x + 1 * u, b - 48 * u, 10 * u, 5 * u, -0.25, 0, TAU); c.fill(); // the quiff
+  c.beginPath(); c.moveTo(x - 26 * u, b); c.quadraticCurveTo(x - 24 * u, b - 22 * u, x - 4 * u, b - 24 * u); c.lineTo(x + 8 * u, b - 24 * u); c.quadraticCurveTo(x + 26 * u, b - 20 * u, x + 30 * u, b); c.fill(); // shoulders
+  c.beginPath(); c.ellipse(x + 2 * u, b - 26 * u, 4.5 * u, 4 * u, 0, 0, TAU); c.fill(); // the fist under his chin
+  c.fillRect(x + 1 * u, b - 24 * u, 5 * u, 24 * u); // forearm
+  c.globalAlpha = 0.22; c.strokeStyle = "#e9f2fa"; c.lineWidth = Math.max(1, u * 0.6);
+  c.beginPath(); c.moveTo(x - 8 * u, b - 41 * u); c.lineTo(x + 6 * u, b - 41 * u); c.stroke(); // glasses
+  c.restore();
+}
+
+/* ---------- canvases: draw on resize, on scroll, and about 30fps while on screen ---------- */
+const scenes = [];
+function scene(cv, paint) {
+  const c = cv.getContext("2d");
+  let w = 0, h = 0, dpr = 1, visible = false, last = -1e9, raf = 0;
+  const s = {
+    draw(now) { if (!w || !h) return; last = now; c.setTransform(dpr, 0, 0, dpr, 0, 0); paint(c, w, h, RM ? 0 : now / 1000); },
+    resize() { const r = cv.getBoundingClientRect(); w = r.width; h = r.height; dpr = Math.min(devicePixelRatio || 1, 1.5); cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); sprites.clear(); s.draw(performance.now()); },
+    get visible() { return visible; },
+  };
+  const loop = (now) => { raf = visible ? requestAnimationFrame(loop) : 0; if (now - last > 30) s.draw(now); };
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf && !RM) raf = requestAnimationFrame(loop); if (visible) s.draw(performance.now()); }).observe(cv);
+  new ResizeObserver(() => s.resize()).observe(cv);
+  scenes.push(s);
+  return s;
+}
+
+// the landing: an ordinary ride, the city going by
+scene(document.getElementById("cvHero"), (c, w, h, t) => {
+  coach(c, w, h, 40 + t * 9, t, "hero", 0.4, null, 0, null);
+});
+setTimeout(() => document.getElementById("note").classList.add("in"), RM ? 0 : 2600);
+
+// the path: scroll runs the train from stop to stop, pausing at each
+const ride = document.getElementById("ride");
+const N = STOPS.length;
+let shown = -1, lastX = 0, speed = 0;
+function rideState() {
+  const r = ride.getBoundingClientRect();
+  const p = clamp(-r.top / (r.height - innerHeight));
+  const s = p * (N - 1), k = Math.min(N - 2, Math.floor(s)), f = s - k;
+  const g = sstep(0.3, 0.8, f);
+  const pos = k + g;
+  const at = g < 0.5 ? k : k + 1;
+  const dwell = 1 - Math.min(1, Math.abs(pos - Math.round(pos)) * 4);
+  return { p, pos, at, dwell };
+}
+const rideScene = scene(document.getElementById("cvRide"), (c, w, h, t) => {
+  const st = rideState();
+  const X = st.pos * STEP + Math.sin(t * 0.7) * 0.4;
+  speed = lerp(speed, clamp(Math.abs(X - lastX) / 6), 0.3); lastX = X;
+  coach(c, w, h, X, t, "ride", speed, STOPS[st.at].board, 0.25 + 0.75 * st.dwell, { p: st.pos / (N - 1), n: N });
+  if (st.at !== shown) { shown = st.at; stopEls.forEach((e, i) => e.classList.toggle("on", i === shown)); }
+});
+addEventListener("scroll", () => { if (rideScene.visible) rideScene.draw(performance.now()); }, { passive: true });
+
+/* the clock */
+function tick() { const t = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true }).format(new Date()).toLowerCase(); document.getElementById("clock").textContent = `It's ${t} in Mumbai.`; }
+tick(); setInterval(tick, 15000);
+
+applyTheme();
+document.fonts && document.fonts.ready.then(() => { dotCache.clear(); scenes.forEach((s) => s.draw(performance.now())); });
+</script>
+</body>
+</html>

@@ -3,78 +3,81 @@
   z-index: 40;
   inset: 0 0 auto;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 24px;
-  padding: 18px var(--m);
-  color: var(--ink);
-  transition:
-    transform 0.6s var(--ease),
-    background-color 0.5s var(--ease);
-}
-.solid {
+  padding: 18px calc(var(--m) + 4.5rem) 18px var(--m);
   background: var(--bg);
   color: var(--fg);
-}
-.hidden {
   transform: translateY(-100%);
+  transition:
+    transform 0.6s var(--ease),
+    background-color 0.6s var(--ease);
+}
+.shown {
+  transform: none;
 }
 .mark {
   font-family: var(--serif);
-  font-size: 21px;
+  font-size: 1.4rem;
   letter-spacing: -0.01em;
+  text-decoration: none;
 }
 .links {
   display: flex;
-  align-items: center;
-  gap: 28px;
-  font-size: 15px;
+  align-items: baseline;
+  gap: 1.6rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
-.links a:not(.cta) {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
-  padding-bottom: 2px;
-  transition: background-size 0.45s var(--ease);
+.write {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-decoration: none;
 }
-.links a:not(.cta):hover {
-  background-size: 100% 1px;
+.write span {
+  display: inline-block;
+  transition: transform 0.45s var(--ease);
 }
-.cta {
-  display: inline-flex;
-  gap: 8px;
-  background: var(--cta-bg);
-  color: var(--cta-fg);
-  font-weight: 600;
-  padding: 9px 16px;
-  border-radius: 999px;
-  transition: background-color 0.4s var(--ease);
+.write:hover span {
+  transform: translateX(5px);
 }
-.cta:hover {
-  opacity: 0.86;
+
+/* morning or night, always within reach */
+.mode {
+  position: fixed;
+  z-index: 41;
+  top: 20px;
+  right: var(--m);
+  font: 500 1rem/1 var(--sans);
+  color: var(--fg);
+  background: linear-gradient(var(--acc), var(--acc)) 0 100% / 0% 2px no-repeat;
+  padding: 0 0 0.25em;
+  transition:
+    background-size 0.45s var(--ease),
+    color 0.6s;
 }
-/* over the opening the sky is always light, so the nav keeps ink there whatever the theme */
-.nav:not(.solid) .cta {
-  background: var(--ink);
-  color: var(--paper);
-}
-.theme {
-  font-size: 15px;
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
-  padding-bottom: 2px;
-  transition: background-size 0.45s var(--ease);
-}
-.theme:hover {
-  background-size: 100% 1px;
+.mode:hover,
+.mode:focus-visible {
+  background-size: 100% 2px;
 }
 
 @media (max-width: 759px) {
   .nav {
-    padding: 14px 20px;
+    padding: 14px calc(22px + 4rem) 14px 22px;
   }
   .links {
-    gap: 20px;
+    gap: 1.2rem;
   }
   .links a[href="#experience"],
-  .cta {
-    display: none !important;
+  .links a[target],
+  .write {
+    display: none;
+  }
+  .mode {
+    right: 22px;
+    top: 16px;
   }
 }

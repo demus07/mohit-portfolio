@@ -1,76 +1,55 @@
+@import "tailwindcss";
+
+/* Tailwind is here for his project pieces only, copied as they are from his site; they set their
+ * own type, so the theme hands them the faces they were built in. */
+@theme {
+  --font-sans: var(--font-schibsted), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* ───────── Tokens ─────────
- * The colours come from the light. Day is warm paper and sea blue; night is navy and sodium orange.
- * The station yellow belongs to the boards and nothing else.
+ * The colours come from the light. Morning is warm paper and sea blue; night is navy and sodium
+ * orange. The station yellow belongs to the boards and nothing else.
  */
 :root {
   --paper: #efe8da;
-  --paper-2: #e6ddca;
-  --ink: #23262a;
-  --ink-soft: rgb(35 38 42 / 0.68);
-  --ink-faint: rgb(35 38 42 / 0.42);
   --sea: #2c6d8c;
-  --sea-deep: #1d4f68;
-
   --navy: #0d1a2b;
-  --navy-2: #13243a;
   --sodium: #f2a145;
   --moon: #f3ecdf;
-  --moon-soft: rgb(243 236 223 / 0.72);
-
   --board: #f5c518;
-  --board-ink: #141414;
 
-  --serif: var(--font-serif), "Newsreader", Georgia, serif;
-  --sans: var(--font-sans), "Hanken Grotesk", system-ui, sans-serif;
-  --mono: var(--font-mono), ui-monospace, Menlo, monospace;
-
-  /* the surfaces between scenes: paper by day, navy by night */
   --bg: var(--paper);
-  --fg: var(--ink);
-  --fg-soft: var(--ink-soft);
-  --fg-faint: var(--ink-faint);
-  --cta-bg: var(--ink);
-  --cta-fg: var(--paper);
-  --media-ground: #e3dccd;
+  --fg: #1b2731;
+  --soft: rgb(27 39 49 / 0.7);
+  --acc: var(--sea);
 
-  --m: clamp(20px, 4.4vw, 72px);
+  --serif: var(--font-newsreader), "Newsreader", Georgia, serif;
+  --sans: var(--font-hanken), "Hanken Grotesk", system-ui, sans-serif;
+
+  --m: clamp(22px, 5vw, 88px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --t: 0.9s;
 }
-
-/* Night: the surfaces go navy and the lamps give the accent. The paintings keep their own light. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: var(--navy);
-    --fg: var(--moon);
-    --fg-soft: var(--moon-soft);
-    --fg-faint: rgb(243 236 223 / 0.45);
-    --cta-bg: var(--sodium);
-    --cta-fg: var(--navy);
-    --media-ground: #16253a;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
+:root[data-theme="night"] {
   --bg: var(--navy);
   --fg: var(--moon);
-  --fg-soft: var(--moon-soft);
-  --fg-faint: rgb(243 236 223 / 0.45);
-  --cta-bg: var(--sodium);
-  --cta-fg: var(--navy);
-  --media-ground: #16253a;
+  --soft: rgb(243 236 223 / 0.72);
+  --acc: var(--sodium);
   color-scheme: dark;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 html {
   background: var(--bg);
-  color: var(--fg);
-  font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 html.lenis,
 html.lenis body {
@@ -83,154 +62,114 @@ html.lenis body {
   overflow: clip;
 }
 body {
-  margin: 0;
   background: var(--bg);
-  font-size: 17px;
-  line-height: 1.55;
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  transition:
+    background-color 0.6s var(--ease),
+    color 0.6s var(--ease);
 }
 a {
   color: inherit;
-  text-decoration: none;
 }
 button {
   font: inherit;
   color: inherit;
   background: none;
   border: 0;
-  padding: 0;
   cursor: pointer;
 }
-img,
-video {
+canvas {
   display: block;
-  max-width: 100%;
-}
-h1,
-h2,
-h3,
-p,
-ol,
-ul,
-figure,
-blockquote {
-  margin: 0;
-  padding: 0;
-}
-ol,
-ul {
-  list-style: none;
 }
 ::selection {
-  background: var(--sea);
-  color: var(--paper);
+  background: var(--acc);
+  color: var(--bg);
 }
 :focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--acc);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
 /* ───────── Type ─────────
- * Two families, two jobs. Headlines run two lines at most and are balanced.
+ * The serif is his voice, the sans states facts. Headlines balance over two lines at most.
  */
-.h-voice {
+h1,
+h2,
+h3 {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2.1rem, 1.3rem + 3.1vw, 4.4rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-weight: 300;
+  letter-spacing: -0.022em;
+  line-height: 0.98;
   text-wrap: balance;
-  max-width: 14ch;
 }
-.h-voice em {
-  font-style: italic;
-}
-.line {
-  font-family: var(--sans);
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
-  line-height: 1.5;
-  max-width: 40ch;
+p,
+li {
   text-wrap: pretty;
 }
-.aside {
+
+/* The one action: an underline in the light's colour that fills up behind the words on hover. */
+.cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
-  line-height: 1.45;
-  max-width: 34ch;
+  font-size: 1.45rem;
+  text-decoration: none;
+  color: var(--fg);
+  background: linear-gradient(var(--acc), var(--acc)) 0 100% / 100% 2px no-repeat;
+  padding-bottom: 0.14em;
+  transition: background-size 0.45s var(--ease);
+}
+.cta:hover,
+.cta:focus-visible {
+  background-size: 100% 0.5em;
+}
+.cta span {
+  display: inline-block;
+  transition: transform 0.45s var(--ease);
+}
+.cta:hover span {
+  transform: translateX(6px);
 }
 
-/* The single text zone of a scene: top left, on the shared margin. */
-.zone {
-  position: absolute;
-  left: var(--m);
-  top: clamp(88px, 13vh, 150px);
-  z-index: 5;
-  display: grid;
-  gap: 18px;
-}
-
-/* Text links, underlined by a hairline that grows on hover. */
+/* A text link: a hairline that draws in on hover. */
 .tlink {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
-  padding-bottom: 2px;
-  transition: background-size 0.5s var(--ease);
+  text-decoration: none;
+  background: linear-gradient(var(--acc), var(--acc)) 0 100% / 0% 2px no-repeat;
+  padding-bottom: 0.15em;
+  transition: background-size 0.45s var(--ease);
 }
-.tlink:hover {
-  background-size: 0% 1px;
-  background-position: 100% 100%;
+.tlink:hover,
+.tlink:focus-visible {
+  background-size: 100% 2px;
 }
 
-/* Painted grain over everything: one tiny tile, never repainted. */
+/* Paper tooth over everything: one tile, never repainted. */
 .grain {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 30;
   pointer-events: none;
-  opacity: 0.11;
+  opacity: 0.09;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
-
-/* ───────── Entrances ─────────
- * Fade up from close by, once. Nothing pops.
- */
-.motion-on [data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity var(--t) var(--ease),
-    transform var(--t) var(--ease);
-  transition-delay: calc(var(--d, 0) * 110ms);
-}
-.motion-on [data-reveal][data-in] {
-  opacity: 1;
-  transform: none;
-}
-
-/* The first screen comes up softly, once. */
-.is-loading .open-in {
-  opacity: 0;
-}
-.motion-on.is-loaded .open-in {
-  animation: open-in 1.2s var(--ease) both;
-  animation-delay: calc(0.15s + var(--d, 0) * 0.14s);
-}
-@keyframes open-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
+:root[data-theme="night"] .grain {
+  mix-blend-mode: screen;
+  opacity: 0.05;
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -241,40 +180,4 @@ ul {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
-}
-
-/* ───────── Scenes ─────────
- * Desktop: the painting fills the screen and the text sits in its top-left zone.
- * Phone: the text comes first on the scene's own ground, the painting follows, subject centred.
- */
-.scene {
-  position: relative;
-  min-height: 100svh;
-  overflow: clip;
-}
-.scene-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-@media (max-width: 759px) {
-  .scene {
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .scene .zone {
-    position: relative;
-    left: auto;
-    top: auto;
-    padding: 96px 20px 28px;
-  }
-  .scene-art {
-    position: relative;
-    inset: auto;
-    height: 68svh;
-    flex: none;
-  }
 }

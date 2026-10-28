@@ -22,34 +22,18 @@
   overflow: visible;
 }
 .track {
-  stroke: var(--fg-faint);
+  stroke: var(--soft);
   stroke-width: 1.5;
   opacity: 0.4;
 }
 .run {
-  stroke: var(--sea);
+  stroke: var(--acc);
   stroke-width: 3;
   stroke-linecap: round;
 }
-.stop {
-  fill: var(--paper);
-  stroke: var(--fg-faint);
-  stroke-width: 1.5;
-  transition:
-    fill 0.3s var(--ease),
-    stroke 0.3s var(--ease);
-}
-.on {
-  fill: var(--sea);
-  stroke: var(--sea);
-}
-.label {
-  font-family: var(--sans);
-  font-size: 22px;
-  fill: var(--fg-soft);
-}
 .name {
   font-family: var(--serif);
+  font-weight: 300;
   font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
   letter-spacing: -0.02em;
 }
@@ -73,6 +57,7 @@
   font-family: var(--serif);
   font-size: clamp(3rem, 2rem + 4vw, 6rem);
   line-height: 1;
+  font-weight: 300;
   font-variant-numeric: tabular-nums;
   color: var(--fg);
 }

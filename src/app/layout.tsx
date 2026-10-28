@@ -1,28 +1,37 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Hanken_Grotesk, Schibsted_Grotesk, Geist_Mono } from "next/font/google";
 import { MotionLayer } from "@/components/MotionLayer";
 import "./globals.css";
 
-// The serif is Mohit's voice, the sans states facts, and the mono is only ever code.
+// The serif is Mohit's voice and the sans states facts.
 const serif = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "variable",
+  axes: ["opsz"],
   style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-newsreader",
   display: "swap",
 });
 
 const sans = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-hanken",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+// His project pieces keep the type they were built in on his own site.
+const productSans = Schibsted_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-mono",
+  weight: ["400", "500", "700", "800", "900"],
+  variable: "--font-schibsted",
+  display: "swap",
+});
+
+const productMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -46,12 +55,12 @@ export const viewport: Viewport = {
   ],
 };
 
-// A saved choice of day or night, applied before the first paint so nothing flashes.
-const THEME = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}`;
+// Morning or night before the first paint: a saved choice, else the system's.
+const THEME = `try{var t=localStorage.getItem("theme");if(t!=="day"&&t!=="night")t=matchMedia("(prefers-color-scheme: dark)").matches?"night":"day";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="day"}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${serif.variable} ${sans.variable} ${mono.variable} is-loading`}>
+    <html lang="en" suppressHydrationWarning className={`${serif.variable} ${sans.variable} ${productSans.variable} ${productMono.variable} is-loading`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME }} />
       </head>

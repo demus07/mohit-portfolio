@@ -1,0 +1,672 @@
+/* ───────── Scenes ─────────
+ * Each scene is a painted canvas behind one fixed text zone, top left. Pinned scenes hold a sticky
+ * stage while scrolling changes what is painted; the rest scroll by like the page.
+ */
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.stage canvas,
+.foot > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.line {
+  font-size: clamp(1.02rem, 0.95rem + 0.25vw, 1.16rem);
+  line-height: 1.5;
+  max-width: 40ch;
+}
+/* a soft pool of the page's own colour under the words, so they read over any painting */
+.lede {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 54% 50% at 0% 0%, color-mix(in srgb, var(--bg) 62%, transparent) 0, transparent 100%);
+}
+
+/* ───────── The opening: from the air down to the parapet ───────── */
+.open {
+  position: relative;
+  height: 320vh;
+}
+.open #bay {
+  opacity: 0;
+  transform: scale(1.1);
+  will-change: opacity, transform;
+}
+.open #city {
+  will-change: opacity;
+}
+.open .copy,
+.open .about {
+  position: absolute;
+  z-index: 3;
+  left: var(--m);
+  top: clamp(80px, 14vh, 150px);
+}
+.open .copy {
+  width: min(34rem, 40vw);
+  display: grid;
+  gap: 22px;
+  justify-items: start;
+}
+.open h1 {
+  font-size: clamp(3.2rem, 6.4vw, 6.6rem);
+}
+.about h2 {
+  font-size: clamp(2.3rem, 3.7vw, 4rem);
+  white-space: nowrap;
+}
+.about ul,
+.facts,
+.role ul {
+  list-style: none;
+  display: grid;
+}
+.about ul {
+  margin-top: 1.5rem;
+  gap: 0.55rem;
+}
+.about li {
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  line-height: 1.4;
+}
+.about li,
+.facts li,
+.role li {
+  position: relative;
+  padding-left: 1.3rem;
+}
+.about li::before,
+.facts li::before,
+.role li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 0.6rem;
+  height: 2px;
+  background: var(--acc);
+}
+.about [data-in],
+.open .aside {
+  opacity: 0;
+}
+/* his aside, written on the wall beside him */
+.open .aside {
+  position: absolute;
+  z-index: 3;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.45vw, 1.45rem);
+  line-height: 1.25;
+  color: var(--fg);
+}
+
+/* ───────── The work ───────── */
+.auction {
+  position: relative;
+  height: 240vh;
+}
+.auction .scene,
+.auction .cam {
+  position: absolute;
+  inset: 0;
+}
+.auction .cam,
+.auction #roomFront {
+  will-change: transform;
+}
+.auction #roomFront {
+  transform-origin: 86% 100%;
+}
+.screen {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #0a0e1a;
+}
+.auction .copy {
+  position: absolute;
+  z-index: 3;
+  left: var(--m);
+  top: clamp(80px, 14vh, 150px);
+  width: min(30rem, 35vw);
+}
+.auction .head,
+.auction .feat {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.auction .feat {
+  visibility: hidden;
+  opacity: 0;
+}
+.auction h2 {
+  font-size: clamp(2.6rem, 4.6vw, 4.8rem);
+}
+.auction .head .line {
+  margin-top: 1.2rem;
+}
+:root[data-theme="night"] .auction,
+.auction {
+  color: var(--fg);
+}
+.feat .meta {
+  font-size: 0.98rem;
+  color: var(--soft);
+}
+.feat .meta b {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--fg);
+  margin-bottom: 0.15rem;
+}
+.feat h3 {
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  line-height: 1.02;
+  margin: 0.6rem 0 1rem;
+}
+.feat .one {
+  font-size: 1.06rem;
+  line-height: 1.5;
+}
+.facts {
+  margin: 1.4rem 0;
+  gap: 0.8rem;
+}
+.facts li {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.tech {
+  font-size: 0.95rem;
+  color: var(--soft);
+  line-height: 1.5;
+}
+.links {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 1.4rem;
+  font-weight: 500;
+}
+.private {
+  color: var(--soft);
+  font-weight: 400;
+}
+
+.work {
+  width: min(1320px, 100% - 2 * var(--m));
+  margin: 0 auto;
+  padding: clamp(80px, 14vh, 150px) 0 clamp(80px, 14vh, 150px);
+}
+.shot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #0b0d0c;
+  aspect-ratio: 3 / 2;
+}
+.index {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: clamp(28px, 4vw, 72px);
+}
+.index h4 {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--soft);
+  margin-bottom: 0.6rem;
+}
+.rows {
+  list-style: none;
+}
+.row {
+  padding: 1.15rem 0 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent);
+  cursor: default;
+}
+.row .name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 2.8vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.012em;
+  display: inline-block;
+  transition:
+    transform 0.5s var(--ease),
+    color 0.4s;
+}
+.row[data-on] .name {
+  transform: translateX(10px);
+  color: var(--acc);
+}
+.row .kind {
+  font-size: 0.95rem;
+  color: var(--soft);
+  margin-left: 0.9rem;
+  white-space: nowrap;
+}
+.row .head {
+  font-size: 1.04rem;
+  line-height: 1.45;
+  margin-top: 0.35rem;
+  max-width: 30rem;
+}
+.row .sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--ease);
+}
+.row .sub > div {
+  overflow: hidden;
+}
+.row[data-on] .sub {
+  grid-template-rows: 1fr;
+}
+.row .sub p {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--soft);
+  max-width: 30rem;
+  padding-top: 0.35rem;
+}
+.row .sub .links {
+  margin-top: 0.6rem;
+  font-size: 0.96rem;
+}
+.row .thumb {
+  display: none;
+}
+.view {
+  position: sticky;
+  top: 16vh;
+  align-self: start;
+}
+.view .shot {
+  animation: shot-in 0.7s var(--ease) both;
+}
+@keyframes shot-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+.view .cap {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--soft);
+  min-height: 1.5em;
+}
+
+/* ───────── The line: the jobs as stations on the Western line ───────── */
+.path {
+  position: relative;
+  height: calc(var(--stops, 3) * 100svh + 60svh);
+}
+.path .col {
+  position: absolute;
+  left: 58%;
+  right: var(--m);
+  top: 0;
+  bottom: 0;
+}
+.path h2 {
+  position: absolute;
+  top: clamp(70px, 13vh, 130px);
+  left: 0;
+  font-size: clamp(2.6rem, 4.2vw, 4.4rem);
+  max-width: 12ch;
+}
+.journey {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44%;
+}
+.role {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 30rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.9s var(--ease);
+  pointer-events: none;
+}
+.role[data-on] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.role .co {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 2.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.role .ti {
+  margin-top: 0.55rem;
+  font-size: 1.06rem;
+  font-weight: 500;
+}
+.role .when {
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  color: var(--soft);
+}
+.role ul {
+  margin-top: 1.2rem;
+  gap: 0.75rem;
+}
+.role li {
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+/* ───────── The ground: Wankhede as the floodlights come on ───────── */
+.ground {
+  position: relative;
+  height: 210svh;
+}
+.ground .copy {
+  position: absolute;
+  z-index: 2;
+  left: var(--m);
+  top: clamp(70px, 12vh, 120px);
+  width: min(40rem, 46vw);
+}
+.ground h2 {
+  font-size: clamp(2.4rem, 3.7vw, 3.9rem);
+}
+.ground .seat {
+  margin-top: 1.2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 1.7vw, 1.6rem);
+  line-height: 1.3;
+  max-width: 22rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+.ground .seat[data-on] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ───────── The invitation, back up over the city ───────── */
+.foot {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(80px, 14vh, 150px) var(--m) clamp(24px, 4vh, 40px);
+}
+.foot::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  pointer-events: none;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--bg) 88%, transparent));
+}
+.foot .copy,
+.foot .bar {
+  position: relative;
+  z-index: 2;
+}
+.foot .copy {
+  width: min(34rem, 42vw);
+}
+.foot h2 {
+  font-size: clamp(2.8rem, 5vw, 5.4rem);
+}
+.foot .line {
+  margin-top: 1.2rem;
+}
+.foot .act {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  align-items: baseline;
+}
+.foot .mail {
+  color: var(--soft);
+  text-decoration: none;
+  font-size: 1.02rem;
+}
+.foot .mail:hover {
+  color: var(--fg);
+}
+.foot blockquote {
+  margin-top: clamp(36px, 7vh, 72px);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.3rem, 1.7vw, 1.6rem);
+  line-height: 1.3;
+  max-width: 26rem;
+}
+.foot .reset {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--soft);
+  max-width: 26rem;
+}
+.foot .bar {
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  align-items: baseline;
+  font-size: 1rem;
+}
+.foot .clock {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.12rem;
+}
+.foot nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin-right: auto;
+}
+.foot .c {
+  color: var(--soft);
+}
+
+@media (max-width: 759px) {
+  .lede {
+    background: linear-gradient(color-mix(in srgb, var(--bg) 66%, transparent) 0, transparent 46%);
+  }
+  .open {
+    height: 280vh;
+  }
+  .open .copy,
+  .open .about {
+    left: 20px;
+    right: 20px;
+    top: 72px;
+    width: auto;
+  }
+  .open .copy {
+    gap: 16px;
+  }
+  .open h1 {
+    font-size: clamp(2.9rem, 14vw, 3.6rem);
+  }
+  .about h2 {
+    white-space: normal;
+    font-size: clamp(2.1rem, 9.6vw, 2.6rem);
+  }
+  .about ul {
+    margin-top: 1rem;
+  }
+  .about li {
+    font-size: 1rem;
+  }
+  .open .aside {
+    font-size: 1.02rem;
+  }
+
+  .auction {
+    height: auto;
+  }
+  .auction .stage {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .auction .copy {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    padding: 88px 22px 24px;
+    order: -1;
+  }
+  .auction .head,
+  .auction .feat {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+  }
+  .auction .feat {
+    margin-top: 2.4rem;
+  }
+  .auction h2 {
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+  }
+  .auction .scene {
+    position: relative;
+    height: 74svh;
+  }
+
+  .index {
+    grid-template-columns: 1fr;
+  }
+  .view {
+    display: none;
+  }
+  .row .thumb {
+    display: block;
+    margin-top: 0.9rem;
+  }
+  .row .sub {
+    grid-template-rows: 1fr;
+  }
+
+  .path {
+    height: calc(var(--stops, 3) * 90svh + 50svh);
+  }
+  .path canvas {
+    top: 53%;
+    height: 47%;
+  }
+  .path .col {
+    left: 22px;
+    right: 22px;
+    top: 0;
+    bottom: auto;
+    height: 53%;
+  }
+  .path h2 {
+    top: 64px;
+    font-size: clamp(2.1rem, 9.4vw, 2.6rem);
+    max-width: none;
+  }
+  .journey {
+    top: calc(64px + 6.4rem);
+  }
+  .role .co {
+    font-size: 1.75rem;
+  }
+  .role .ti {
+    margin-top: 0.35rem;
+    font-size: 0.98rem;
+  }
+  .role .when {
+    font-size: 0.94rem;
+  }
+  .role ul {
+    margin-top: 0.7rem;
+    gap: 0.35rem;
+  }
+  .role li {
+    font-size: 0.9rem;
+    line-height: 1.38;
+  }
+
+  .ground {
+    height: 170svh;
+  }
+  .ground .copy {
+    left: 22px;
+    right: 22px;
+    top: 72px;
+    width: auto;
+  }
+  .ground h2 {
+    font-size: clamp(2.2rem, 10vw, 2.7rem);
+  }
+  .ground .seat {
+    font-size: 1.25rem;
+  }
+
+  .foot {
+    padding: 80px 22px 28px;
+  }
+  .foot .copy {
+    width: auto;
+  }
+  .foot h2 {
+    font-size: clamp(2.4rem, 11vw, 3rem);
+  }
+}
+
+/* The hall is dimmed for the auction in either light, so its words take the light of the board. */
+.auction {
+  --fg: #f3ecdf;
+  --soft: rgb(243 236 223 / 0.72);
+  --acc: #f2a145;
+  background: #0d1424;
+  color: var(--fg);
+}
+:root:not([data-theme="night"]) .auction {
+  background: #2b2019;
+}
+.open .aside span {
+  display: block;
+}
+.foot .lede {
+  background: radial-gradient(ellipse 62% 86% at 0% 0%, color-mix(in srgb, var(--bg) 84%, transparent) 0, color-mix(in srgb, var(--bg) 40%, transparent) 62%, transparent 100%);
+}
+@media (max-width: 759px) {
+  .foot .lede {
+    background: linear-gradient(color-mix(in srgb, var(--bg) 86%, transparent) 0, color-mix(in srgb, var(--bg) 60%, transparent) 62%, transparent 82%);
+  }
+}
