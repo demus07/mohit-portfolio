@@ -24,17 +24,50 @@
   --sans: var(--font-sans), "Hanken Grotesk", system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, Menlo, monospace;
 
+  /* the surfaces between scenes: paper by day, navy by night */
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fg-soft: var(--ink-soft);
+  --fg-faint: var(--ink-faint);
+  --cta-bg: var(--ink);
+  --cta-fg: var(--paper);
+  --media-ground: #e3dccd;
+
   --m: clamp(20px, 4.4vw, 72px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --t: 0.9s;
+}
+
+/* Night: the surfaces go navy and the lamps give the accent. The paintings keep their own light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--navy);
+    --fg: var(--moon);
+    --fg-soft: var(--moon-soft);
+    --fg-faint: rgb(243 236 223 / 0.45);
+    --cta-bg: var(--sodium);
+    --cta-fg: var(--navy);
+    --media-ground: #16253a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--navy);
+  --fg: var(--moon);
+  --fg-soft: var(--moon-soft);
+  --fg-faint: rgb(243 236 223 / 0.45);
+  --cta-bg: var(--sodium);
+  --cta-fg: var(--navy);
+  --media-ground: #16253a;
+  color-scheme: dark;
 }
 
 * {
   box-sizing: border-box;
 }
 html {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -51,7 +84,7 @@ html.lenis body {
 }
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--bg);
   font-size: 17px;
   line-height: 1.55;
   overflow-x: clip;

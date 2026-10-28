@@ -13,7 +13,8 @@
     background-color 0.5s var(--ease);
 }
 .solid {
-  background: var(--paper);
+  background: var(--bg);
+  color: var(--fg);
 }
 .hidden {
   transform: translateY(-100%);
@@ -40,15 +41,29 @@
 .cta {
   display: inline-flex;
   gap: 8px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--cta-bg);
+  color: var(--cta-fg);
   font-weight: 600;
   padding: 9px 16px;
   border-radius: 999px;
   transition: background-color 0.4s var(--ease);
 }
 .cta:hover {
-  background: var(--sea-deep);
+  opacity: 0.86;
+}
+/* over the opening the sky is always light, so the nav keeps ink there whatever the theme */
+.nav:not(.solid) .cta {
+  background: var(--ink);
+  color: var(--paper);
+}
+.theme {
+  font-size: 15px;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.45s var(--ease);
+}
+.theme:hover {
+  background-size: 100% 1px;
 }
 
 @media (max-width: 759px) {

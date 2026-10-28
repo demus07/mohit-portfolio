@@ -1,0 +1,221 @@
+<!-- Direction 02: Lamp posts frontal — an elevation of seven Marine Drive lamp posts against the sea at dusk; each stop warms one lamp from sodium red to full orange, and the lit ones behind you are the past. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk: Lamp Posts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--mute:#a9b0b8}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.dusk{position:relative;height:900vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#16263a}
+svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.2;mix-blend-mode:overlay}
+.copy{position:absolute;z-index:5;left:clamp(24px,5.6vw,104px);top:clamp(44px,11vh,128px);width:min(29rem,36vw)}
+h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(46px,4.6vw,76px);line-height:.98;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.stops{position:relative;margin-top:clamp(28px,5.5vh,56px)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;will-change:opacity,transform}
+.where{margin:0 0 .6rem;font-size:16px;font-weight:500;display:flex;gap:.55rem;align-items:baseline;color:#e9e3d6}
+.where .yr{color:var(--sodium)}
+.line{margin:0;font-family:"Instrument Serif",serif;font-size:clamp(23px,1.75vw,28px);line-height:1.26;max-width:20em;color:#f1ebdf}
+.roles{font-size:14.5px;line-height:1.45}
+.roles .r{display:flex;flex-wrap:wrap;gap:.1rem .5rem;align-items:baseline;margin:0;padding:.55rem 0}
+.roles .r b{font-weight:600}
+.roles .r span{color:var(--mute)}
+.roles .r em{font-style:normal;color:var(--sodium);margin-left:auto}
+.roles ul{list-style:none;margin:0 0 .45rem;padding:0;color:#d9d6cf;font-size:14px}
+.roles li{padding:.2rem 0 .2rem .95rem;position:relative}
+.roles li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:1px;background:var(--sodium)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;width:auto;top:36px}
+  h2{font-size:40px}
+  .stops{margin-top:20px}
+  .line{font-size:20px}
+  .where{font-size:14px}
+  .roles{font-size:12.5px}.roles ul{font-size:12px}.roles .r{padding:.32rem 0}
+}
+</style>
+</head>
+<body>
+<section class="dusk" id="dusk">
+  <div class="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#20405a"/><stop offset=".55" stop-color="#4f6c80"/><stop offset=".82" stop-color="#c78a7a"/><stop offset=".95" stop-color="#eaa36c"/><stop offset="1" stop-color="#f3b878"/>
+        </linearGradient>
+        <linearGradient id="gSkyB" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#07111f"/><stop offset=".6" stop-color="#0d1a2b"/><stop offset=".92" stop-color="#1d2c42"/><stop offset="1" stop-color="#2b3448"/>
+        </linearGradient>
+        <linearGradient id="seaA" x1="0" y1="520" x2="0" y2="700" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#cf927a"/><stop offset=".18" stop-color="#5f7486"/><stop offset="1" stop-color="#1d3346"/>
+        </linearGradient>
+        <linearGradient id="gSeaB" x1="0" y1="520" x2="0" y2="700" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#24304a"/><stop offset="1" stop-color="#08121f"/>
+        </linearGradient>
+        <linearGradient id="wall" x1="0" y1="690" x2="0" y2="742" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#a59e94"/><stop offset=".1" stop-color="#7d7a78"/><stop offset="1" stop-color="#55565d"/></linearGradient>
+        <linearGradient id="walk" x1="0" y1="740" x2="0" y2="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2a2c35"/><stop offset=".06" stop-color="#34363f"/><stop offset="1" stop-color="#1a1c25"/></linearGradient>
+        <radialGradient id="lglow"><stop offset="0" stop-color="#fff0c8"/><stop offset=".12" stop-color="#ffc56e" stop-opacity=".85"/><stop offset=".45" stop-color="#f2a145" stop-opacity=".22"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <radialGradient id="pool"><stop offset="0" stop-color="#ffbe68" stop-opacity=".75"/><stop offset=".6" stop-color="#f2a145" stop-opacity=".18"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc56e" stop-opacity=".32"/><stop offset="1" stop-color="#ffc56e" stop-opacity="0"/></linearGradient>
+        <filter id="tex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .16" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .8  0 0 0 1.7 -.95"/></filter>
+        <filter id="stone"><feTurbulence type="fractalNoise" baseFrequency=".9 .5" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 -.12"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
+        <clipPath id="seaC"><rect y="520" width="1440" height="172"/></clipPath>
+      </defs>
+      <rect width="1440" height="560" fill="url(#skyA)"/>
+      <rect id="skyB" width="1440" height="560" fill="url(#gSkyB)" opacity="0"/>
+      <!-- long stratus lit from below -->
+      <g id="clouds" filter="url(#blur3)">
+        <path d="M880 330 C980 318 1180 316 1330 326 C1250 336 1010 340 880 330Z" fill="#e2a58a" opacity=".55"/>
+        <path d="M640 402 C760 392 980 392 1100 400 C990 410 760 412 640 402Z" fill="#eab08b" opacity=".5"/>
+        <path d="M1040 452 C1140 446 1320 446 1460 452 C1330 460 1140 460 1040 452Z" fill="#f1b884" opacity=".55"/>
+        <path d="M-20 470 C120 462 330 462 470 470 C340 478 120 478 -20 470Z" fill="#f1b884" opacity=".45"/>
+      </g>
+      <g id="starsG" opacity="0"></g>
+      <!-- Malabar Hill headland to the north -->
+      <g id="hill" fill="#59647a"><path d="M1170 521 C1220 510 1268 497 1320 494 C1362 492 1404 499 1440 505 V521Z"/><rect x="1262" y="478" width="7" height="22"/><rect x="1288" y="470" width="9" height="27"/><rect x="1300" y="483" width="6" height="14"/><rect x="1336" y="474" width="8" height="22"/><rect x="1372" y="486" width="10" height="14"/><rect x="1404" y="481" width="6" height="22"/></g>
+      <g id="hillLights" opacity="0" fill="#ffd28d"></g>
+      <rect y="520" width="1440" height="172" fill="url(#seaA)"/>
+      <rect id="seaB" y="520" width="1440" height="172" fill="url(#gSeaB)" opacity="0"/>
+      <g clip-path="url(#seaC)"><rect id="seaTex" y="520" width="1500" height="172" filter="url(#tex)" opacity=".25"/><g id="glints"></g></g>
+      <!-- parapet -->
+      <rect y="690" width="1440" height="52" fill="url(#wall)"/><g id="joints" stroke="#3d3e45" stroke-width="1" opacity=".5"></g>
+            <rect id="wallShade" y="690" width="1440" height="50" fill="#0b1422" opacity="0"/>
+      <rect y="690" width="1440" height="3" fill="#b9b2a5" opacity=".55"/>
+      <!-- people on the wall -->
+      <g id="people" fill="#1a2232"></g>
+      <rect y="740" width="1440" height="160" fill="url(#walk)"/>
+      <rect id="walkShade" y="740" width="1440" height="160" fill="#060c16" opacity="0"/>
+      <g id="pools"></g>
+      <g id="posts"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+  </div>
+</section>
+<!-- direction: Dusk 02 · Lamp posts frontal -->
+<script>
+const STOPS=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const ROLES=`<div class="r"><b>Sypha AI</b><span>Software Engineer</span><em>Dec 2025 – now</em></div>
+<ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+<li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+<li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+<li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul>
+<div class="r"><b>AuctionXI</b><span>Founder</span><em>Apr 2026 – now</em></div>
+<div class="r"><b>TexAgent</b><span>Freelance developer</span><em>Sep 2026 – now</em></div>
+<div class="r"><b>MK Exim India</b><span>E-commerce, Amazon, TataCliQ and Sephora</span><em>Mar – Sep 2025</em></div>
+<div class="r"><b>Brahmani Gems</b><span>Web developer intern, Shopify</span><em>Jul – Aug 2024</em></div>`;
+const stopsEl=document.getElementById('stops');
+STOPS.forEach(([st,yr,l])=>{const a=document.createElement('article');a.className='stop';
+ a.innerHTML=`<p class="where"><span>${st}</span>${yr?`<span class="yr">${yr}</span>`:''}</p><p class="line">${l}</p>`;stopsEl.appendChild(a);});
+{const a=document.createElement('article');a.className='stop roles';a.innerHTML=ROLES;stopsEl.appendChild(a);}
+const stopEls=[...stopsEl.children];const N=stopEls.length;
+
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p&&p.appendChild(e);return e;};
+let seed=5;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const $=id=>document.getElementById(id);
+
+/* seven posts; desktop sits them right of the copy, phone spreads them across */
+const phone=()=>innerWidth<700;
+function postXs(){ if(phone()){ // the svg is sliced around the centre on a phone
+   const vw=900*innerWidth/innerHeight, x0=720-vw/2; return [...Array(7)].map((_,i)=>x0+vw*(.1+i*.8/6)); }
+  return [...Array(7)].map((_,i)=>660+i*118);}
+const posts=[];
+function buildPosts(){
+ $('posts').innerHTML='';$('pools').innerHTML='';$('glints').innerHTML='';posts.length=0;
+ const xs=postXs();const ph=phone();const k=ph?1.25:1;
+ xs.forEach((x,i)=>{
+  const g=mk('g',{},$('posts'));const base=812,top=ph?330:300;const arm=30*k;
+  // light cone and pool (behind the post)
+  const cone=mk('path',{d:`M${x-arm} ${top+16} L${x-arm-70} ${base} H${x+arm+70} L${x+arm} ${top+16}Z`,fill:'url(#cone)',opacity:0},$('pools'));
+  const pool=mk('g',{opacity:0},$('pools'));mk('ellipse',{cx:x,cy:base+6,rx:150,ry:26,fill:'url(#pool)'},pool);mk('ellipse',{cx:x,cy:712,rx:110,ry:22,fill:'url(#pool)',opacity:.55},pool);
+  // glint column on the sea under the lamp
+  const gl=mk('g',{opacity:0},$('glints'));
+  for(let j=0;j<34;j++){const f=j/34,y=526+f*160+rnd()*5,w=(3+f*26)*(.3+rnd()*.9);mk('rect',{x:x-w/2+(rnd()-.5)*(8+f*40),y,width:w,height:1+f*1.6,rx:1,fill:rnd()<.3?'#ffe2ad':'#f2a145',opacity:(.2+.55*rnd()*(1-f*.5)).toFixed(2)},gl);}
+  // post: plinth, fluted shaft, collar, T-arm with two lanterns
+  const ink='#141b28';
+  mk('path',{d:`M${x-13} ${base} h26 l-3 -26 h-20Z`,fill:ink},g);
+  mk('path',{d:`M${x-5} ${base-26} L${x-3.2} ${top+24} h6.4 L${x+5} ${base-26}Z`,fill:ink},g);
+  mk('rect',{x:x-6,y:top+40,width:12,height:5,rx:1,fill:ink},g);
+  mk('path',{d:`M${x} ${top+24} C${x-arm*.4} ${top+6} ${x-arm*.8} ${top+4} ${x-arm} ${top+12} M${x} ${top+24} C${x+arm*.4} ${top+6} ${x+arm*.8} ${top+4} ${x+arm} ${top+12}`,stroke:ink,'stroke-width':3,fill:'none'},g);
+  mk('path',{d:`M${x-2} ${top+24} V${top+2} h4 V${top+24}Z`,fill:ink},g);
+  mk('circle',{cx:x,cy:top,r:3,fill:ink},g);
+  const heads=[];
+  for(const sx of [-1,1]){const hx=x+sx*arm;
+    const glow=mk('circle',{cx:hx,cy:top+24,r:ph?70:90,fill:'url(#lglow)',opacity:0},g);
+    mk('path',{d:`M${hx-7} ${top+14} h14 l-2 -4 h-10Z`,fill:ink},g);
+    const lens=mk('path',{d:`M${hx-6.5} ${top+15} h13 l-2.2 13 h-8.6Z`,fill:'#2d3444'},g);
+    mk('path',{d:`M${hx-4.5} ${top+28} h9 l-1.5 3 h-6Z`,fill:ink},g);
+    heads.push({glow,lens});}
+  posts.push({cone,pool,gl,heads});
+ });
+ // people sitting on the parapet, backs to us, between posts 3-4 and 5-6
+ $('people').innerHTML='';
+ const seat=(x,s,lean)=>{const g=mk('g',{transform:`translate(${x} 690) scale(${s}) rotate(${lean})`},$('people'));
+   mk('path',{d:'M-10 2 C-11 -6 -12 -14 -13 -22 C-13.5 -27 -11 -30 -6 -31.5 C-3 -32.3 -2.4 -34 -2.6 -35.5 L2.6 -35.5 C2.4 -34 3 -32.3 6 -31.5 C11 -30 13.5 -27 13 -22 C12 -14 11 -6 10 2Z'},g);
+   mk('ellipse',{cx:0,cy:-41.5,rx:6.3,ry:7.2},g);mk('path',{d:'M-6.4 -43 C-6 -50 6 -50 6.4 -43 C4 -46 -4 -46 -6.4 -43Z'},g);};
+ const xs2=postXs();seat((xs2[2]+xs2[3])/2-11,1,-1);seat((xs2[2]+xs2[3])/2+12,.93,6);seat((xs2[4]+xs2[5])/2+4,1.02,0);
+ const J=$('joints');J.innerHTML='';for(let x=40;x<1440;x+=96)mk('path',{d:`M${x} 693 V742`},J);
+}
+buildPosts();
+/* stars and headland lights */
+for(let i=0;i<60;i++)mk('circle',{cx:rnd()*1440,cy:rnd()*300,r:rnd()<.15?1:.6,fill:'#f2ead8',opacity:.3+rnd()*.6},$('starsG'));
+for(let i=0;i<40;i++)mk('circle',{cx:1200+rnd()*240,cy:502+rnd()*17,r:.7,opacity:.5+rnd()*.5},$('hillLights'));
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sec=$('dusk');
+const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+const mix=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+let target=0,sm=0,last=-1;
+function read(){const r=sec.getBoundingClientRect();const span=sec.offsetHeight-innerHeight;target=Math.min(1,Math.max(0,-r.top/span))*N;}
+function frame(t){
+ sm=RM?target:sm+(target-sm)*.1;if(Math.abs(target-sm)<.0005)sm=target;
+ const s=Math.min(sm,N-.0001);
+ stopEls.forEach((el,i)=>{const a=i===0?1:ss(i-.02,i+.14,s),b=i===N-1?1:1-ss(i+.86,i+.98,s);const o=Math.min(a,b);
+   el.style.opacity=o.toFixed(3);el.style.transform=`translateY(${((1-a)*14-(1-b)*14).toFixed(1)}px)`;el.style.visibility=o<.01?'hidden':'visible';});
+ if(Math.abs(s-last)>.0005){last=s;
+   const n=ss(0,7.5,s);
+   $('skyB').setAttribute('opacity',n.toFixed(3));$('seaB').setAttribute('opacity',(n*.9).toFixed(3));
+   $('clouds').setAttribute('opacity',(1-ss(1,6,s)*.85).toFixed(3));
+   $('starsG').setAttribute('opacity',ss(4,7.6,s).toFixed(3));$('hillLights').setAttribute('opacity',ss(1.5,6,s).toFixed(3));
+   $('hill').setAttribute('fill',`rgb(${mix([89,100,122],[22,30,46],n)})`);
+   $('wallShade').setAttribute('opacity',(n*.6).toFixed(3));$('walkShade').setAttribute('opacity',(n*.55).toFixed(3));
+   posts.forEach((P,i)=>{
+     // warm-up: sodium lamps start a dull red and climb to orange
+     const w=Math.min(1,Math.max(0,(s-i)*1.4+.25)); const cur=Math.max(0,1-Math.abs(s-(i+.5))*1.1);
+     const k=w*(s>=7?.85:(.5+.5*cur));
+     const col=w<.5?mix([70,52,60],[196,82,58],w*2):mix([196,82,58],[255,214,150],(w-.5)*2);
+     P.heads.forEach(h=>{h.glow.setAttribute('opacity',(k*ss(.25,.9,w)).toFixed(3));h.lens.setAttribute('fill',`rgb(${col})`);});
+     P.cone.setAttribute('opacity',(k*k*ss(.5,1,w)*(.12+.16*n)).toFixed(3));P.pool.setAttribute('opacity',(k*ss(.4,1,w)).toFixed(3));
+     P.gl.setAttribute('opacity',(k*ss(.5,1,w)*(.35+.65*n)).toFixed(3));
+   });
+ }
+ if(!RM){
+   posts.forEach((P,i)=>P.gl.setAttribute('transform',`translate(0 ${(Math.sin(t/900+i)*1.5).toFixed(2)}) `));}
+ requestAnimationFrame(frame);
+}
+addEventListener('scroll',read,{passive:true});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{buildPosts();last=-1;read();},150);});
+read();sm=target;requestAnimationFrame(frame);
+</script>
+</body>
+</html>

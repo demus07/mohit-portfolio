@@ -1,0 +1,365 @@
+<!-- Direction 06: Chowpatty sand — one set of footprints walks up the wet sand of Girgaon Chowpatty at dusk, far to near, pausing at every detour while the tide keeps working behind. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk, Chowpatty sand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d1a2b; --sodium:#f2a145; --ink:#f3e9dc; --mute:#c9b8b4;
+    --serif:"Newsreader", Georgia, serif; --sans:"Hanken Grotesk", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy);color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .track{height:1000vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .dim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,26,43,.92) 0%,rgba(13,26,43,.6) 45%,rgba(13,26,43,0) 75%);opacity:0;pointer-events:none}
+
+  .copy{position:absolute;left:clamp(24px,7vw,128px);top:clamp(56px,12vh,120px);width:min(34rem,40vw)}
+  h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,3.9vw,64px);line-height:1.04;letter-spacing:-.015em;text-wrap:balance}
+  h2 em{font-style:italic;color:#f6c48a}
+  .stops{position:relative;margin-top:clamp(28px,5vh,52px);height:15rem}
+  .stop{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;will-change:opacity,transform}
+  .stop .st{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+  .stop .name{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(26px,2.2vw,34px);color:#fff4e6}
+  .stop .yr{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--sodium);letter-spacing:.01em}
+  .stop p{margin-top:.9rem;font-family:var(--serif);font-size:clamp(18px,1.35vw,21px);line-height:1.5;max-width:26rem;color:#e7dcd2;font-weight:350}
+
+  .roles{position:absolute;left:clamp(24px,7vw,128px);top:calc(clamp(56px,12vh,120px) + clamp(100px,10vw,150px));width:min(40rem,48vw);opacity:0;pointer-events:none}
+  .roles.on{pointer-events:auto}
+  .role{padding:.85rem 0}
+  .role + .role{margin-top:.1rem}
+  .role h3{font-family:var(--serif);font-weight:400;font-size:22px;color:#fff4e6;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+  .role h3 span{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--sodium)}
+  .role .what{font-family:var(--sans);font-size:15px;color:var(--mute);margin-top:.2rem}
+  .role ul{list-style:none;margin-top:.6rem;display:grid;gap:.45rem;max-width:34rem}
+  .role li{font-size:15px;line-height:1.5;color:#e2d6cd;padding-left:1.1rem;position:relative}
+  .role li::before{content:"";position:absolute;left:0;top:.68em;width:.45rem;height:1px;background:var(--sodium)}
+
+  @media (max-width:760px){
+    .copy{left:20px;right:20px;width:auto;top:56px}
+    h2{font-size:36px}
+    .stops{margin-top:22px}
+    .stop p{font-size:17px}
+    .roles{left:20px;right:20px;width:auto;top:150px}
+    .role{padding:.5rem 0}
+    .role h3{font-size:19px}
+    .role li,.role .what{font-size:13.5px}
+    .dim{background:rgba(13,26,43,.86)}
+  }
+  @media (prefers-reduced-motion:reduce){ .amb{animation:none!important} }
+  @keyframes wash{0%,100%{transform:translateY(0) scaleX(1);opacity:.75}50%{transform:translateY(9px) scaleX(1.02);opacity:.35}}
+  @keyframes wash2{0%,100%{transform:translateY(4px);opacity:.25}50%{transform:translateY(-3px);opacity:.6}}
+  @keyframes tw{0%,100%{opacity:.95}50%{opacity:.55}}
+  .foam{transform-box:fill-box;transform-origin:50% 0;animation:wash 9s ease-in-out infinite}
+  .foam2{animation:wash2 7s ease-in-out infinite}
+  .tw{animation:tw 4s ease-in-out infinite}
+</style>
+</head>
+<body>
+<!-- direction: 06 Chowpatty sand -->
+<section class="track" id="track">
+  <div class="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0d1a2b"/>
+          <stop offset=".38" stop-color="#26294a"/>
+          <stop offset=".62" stop-color="#5d4364"/>
+          <stop offset=".8" stop-color="#a8636a"/>
+          <stop offset=".93" stop-color="#e0875e"/>
+          <stop offset="1" stop-color="#f2a145"/>
+        </linearGradient>
+        <radialGradient id="afterglow" cx=".64" cy="1" r=".55">
+          <stop offset="0" stop-color="#ffc27a" stop-opacity=".75"/>
+          <stop offset=".45" stop-color="#e98a5c" stop-opacity=".25"/>
+          <stop offset="1" stop-color="#e98a5c" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a4762"/>
+          <stop offset=".25" stop-color="#2e3352"/>
+          <stop offset="1" stop-color="#1a2440"/>
+        </linearGradient>
+        <linearGradient id="glint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffb46a" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#ffb46a" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="glintR" cx=".5" cy="0" r=".5" gradientTransform="translate(0 0) scale(1 2)">
+          <stop offset="0" stop-color="#ffb46a" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#ffb46a" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="wet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#6a4f63"/>
+          <stop offset=".4" stop-color="#4b3c55"/>
+          <stop offset="1" stop-color="#352c40"/>
+        </linearGradient>
+        <linearGradient id="dry" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#4a3a48"/>
+          <stop offset=".5" stop-color="#352b3a"/>
+          <stop offset="1" stop-color="#211c2a"/>
+        </linearGradient>
+        <radialGradient id="sheen" cx=".62" cy="0" r=".7">
+          <stop offset="0" stop-color="#f2a96c" stop-opacity=".32"/>
+          <stop offset="1" stop-color="#f2a96c" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>
+        <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+        <filter id="cloud" x="-10%" y="-300%" width="120%" height="700%"><feGaussianBlur stdDeviation="6 3"/></filter>
+        <filter id="grain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" stitchTiles="stitch"/>
+          <feColorMatrix values="0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .45  0 0 0 .55 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <filter id="sandtex" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency=".012 .09" numOctaves="3" seed="9"/>
+          <feColorMatrix values="0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .12  0 0 0 .5 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <linearGradient id="printFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#140f1c" stop-opacity=".78"/>
+          <stop offset="1" stop-color="#2a2133" stop-opacity=".55"/>
+        </linearGradient>
+        <radialGradient id="pool"><stop offset="0" stop-color="#f2a145" stop-opacity=".38"/><stop offset=".6" stop-color="#f2a145" stop-opacity=".1"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <symbol id="foot" viewBox="-8 -16 16 37" overflow="visible">
+          <path d="M-.4-14C-4-13.6-5.4-9-5.2-4.6-5 0-6.2 3.6-5.6 7.6-5 12-2.4 14.6 1 14.4 4.6 14.1 6.2 10.8 5.6 6.8 5 3 3.8.2 3.7-3.8 3.6-8.6 3.2-14.2-.4-14Z"/>
+          <circle cx="-3.6" cy="17.4" r="1.7"/><circle cx="-.6" cy="18.5" r="1.45"/><circle cx="1.9" cy="18.3" r="1.25"/><circle cx="3.9" cy="17.2" r="1.05"/><circle cx="5.4" cy="15.6" r=".9"/>
+        </symbol>
+      </defs>
+
+      <!-- sky -->
+      <rect width="1440" height="470" fill="url(#sky)"/>
+      <rect width="1440" height="470" fill="url(#afterglow)"/>
+      <!-- a few early stars, high -->
+      <g fill="#fbe9d2" class="tw">
+        <circle cx="1210" cy="70" r="1.1"/><circle cx="980" cy="120" r=".8"/><circle cx="1340" cy="160" r=".9"/><circle cx="820" cy="54" r=".7"/>
+      </g>
+      <!-- thin cloud bars lit from below -->
+      <g fill="#e99a7a" opacity=".32" filter="url(#cloud)">
+        <path d="M640 330c80-6 220-8 330-2 40 2 40 8 0 9-120 4-260 4-330 1-28-2-26-7 0-8Z"/>
+        <path d="M1010 372c60-4 170-5 250 0 26 2 22 6-4 7-90 3-180 2-246-1-20-1-20-5 0-6Z"/>
+      </g>
+
+      <!-- Nariman Point skyline, far left across the bay -->
+      <g fill="#4a3c5c" opacity=".8">
+        <path d="M0 470v-22h18v-8h12v-12h14v20h10v-16h14v-14h16v30h10v-12h12v14h16v-8h18v-12h10v20h16v-6h14v-14h8v18h18v10h16v-6h12v8h18v-4h22v4h26v4h36v-2h56v2h40v8Z"/>
+      </g>
+      <!-- the Necklace: Marine Drive lamps sweeping round the bay toward us -->
+      <g id="necklace"></g>
+
+      <!-- Malabar Hill, right, close -->
+      <path d="M1040 470c40-12 90-34 140-44 30-6 50-22 80-24 40-3 70-20 110-22 30-1 50 6 70 10v80Z" fill="#2a2440"/>
+      <g fill="#231e37">
+        <rect x="1150" y="372" width="20" height="70"/><rect x="1174" y="350" width="26" height="90"/><rect x="1206" y="384" width="16" height="50"/>
+        <rect x="1238" y="330" width="28" height="100"/><rect x="1274" y="360" width="18" height="66"/><rect x="1300" y="318" width="30" height="104"/>
+        <rect x="1338" y="352" width="20" height="70"/><rect x="1366" y="336" width="26" height="86"/><rect x="1400" y="368" width="40" height="60"/>
+      </g>
+      <g id="hillwins" fill="#f6c27e"></g>
+
+      <!-- sea -->
+      <rect y="468" width="1440" height="120" fill="url(#sea)"/>
+      <clipPath id="below"><rect y="469" width="1440" height="200"/></clipPath><ellipse cx="990" cy="470" rx="170" ry="70" fill="url(#glintR)" clip-path="url(#below)"/>
+      <g stroke="#f5b878" stroke-linecap="round" opacity=".55">
+        <path d="M880 482h120M930 492h60M860 504h150M920 516h70M900 530h40" stroke-width="1.2"/>
+      </g>
+      <g stroke="#c9a6b6" stroke-linecap="round" opacity=".18" stroke-width="1">
+        <path d="M120 490h200M420 500h160M260 520h240M600 512h120M1180 494h160M1240 524h120"/>
+      </g>
+
+      <!-- shore: wet sand reflecting the sky, then dry sand -->
+      <path d="M0 586c160-14 380-22 620-20 260 2 520 12 820 24v310H0Z" fill="url(#wet)"/>
+      <path d="M0 586c160-14 380-22 620-20 260 2 520 12 820 24v310H0Z" fill="url(#sheen)"/>
+      <!-- foam lines: the tide, always working -->
+      <g class="amb foam">
+        <path d="M0 588c170-14 390-22 630-20 250 2 510 12 810 24" fill="none" stroke="#f4dfd4" stroke-width="2.4" opacity=".8"/>
+        <path d="M60 594c170-10 350-14 560-12 220 2 420 10 640 18" fill="none" stroke="#f4dfd4" stroke-width="1" opacity=".5"/>
+      </g>
+      <path class="amb foam2" d="M140 606c160-8 330-10 520-8 230 3 420 9 700 18" fill="none" stroke="#e8cbc6" stroke-width=".9"/>
+      <path d="M0 640c200-12 480-18 760-14 260 4 480 12 680 22v252H0Z" fill="url(#dry)"/>
+      <path d="M0 640c200-12 480-18 760-14 260 4 480 12 680 22v252H0Z" fill="#000" filter="url(#sandtex)"/>
+      <!-- the soft edge where the sand dries -->
+      <path d="M0 641c200-12 480-18 760-14 260 4 480 12 680 22" fill="none" stroke="#7d5a68" stroke-width="3" opacity=".5" filter="url(#soft)"/>
+
+      <!-- footprints -->
+      <g id="prints"></g>
+
+      <!-- grain over everything -->
+      <rect width="1440" height="900" fill="#fff" filter="url(#grain)" opacity=".11"/>
+    </svg>
+    <div class="dim" id="dim"></div>
+
+    <div class="copy">
+      <h2>Every detour was <em>part of the path</em></h2>
+      <div class="stops" id="stops"></div>
+    </div>
+
+    <div class="roles" id="roles">
+      <div class="role">
+        <h3>Sypha AI <span>Software Engineer, Dec 2025 – now</span></h3>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+      <div class="role"><h3>AuctionXI <span>Founder, Apr 2026 – now</span></h3></div>
+      <div class="role"><h3>TexAgent <span>Freelance developer, Sep 2026 – now</span></h3></div>
+      <div class="role"><h3>MK Exim India <span>Mar – Sep 2025</span></h3><div class="what">E-commerce, Amazon, TataCliQ and Sephora</div></div>
+      <div class="role"><h3>Brahmani Gems <span>Jul – Aug 2024</span></h3><div class="what">Web developer intern, Shopify</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const STOPS = [
+  ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+  ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+  ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+  ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+  ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+  ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const NS = "http://www.w3.org/2000/svg";
+const $ = s => document.querySelector(s);
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
+const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+
+// stop copy
+const stopsEl = $("#stops");
+const stopEls = STOPS.map(([n,y,l]) => {
+  const d = document.createElement("div"); d.className = "stop";
+  d.innerHTML = `<div class="st"><span class="name">${n}</span>${y ? `<span class="yr">${y}</span>` : ""}</div><p>${l}</p>`;
+  stopsEl.appendChild(d); return d;
+});
+
+// necklace lamps round the bay (far left, curving toward the beach)
+(() => {
+  const g = $("#necklace");
+  for (let i = 0; i < 46; i++) {
+    const t = i / 45;
+    const x = 30 + t * 760, y = 466 + Math.pow(t, 2.2) * 14 - Math.sin(t * Math.PI) * 2;
+    const r = 1.2 + t * 1.6;
+    mk("circle", {cx:x, cy:y, r:r*3.2, fill:"#f2a145", opacity:.35, filter:"url(#glow)"}, g);
+    mk("circle", {cx:x, cy:y, r:r, fill:"#ffd39a"}, g);
+    // reflection
+    mk("rect", {x:x-r*.5, y:y+4, width:r, height:10+t*16, fill:"#f2a145", opacity:.22}, g);
+  }
+  const w = $("#hillwins"); let s = 7;
+  const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  [[1150,372,20,70],[1174,350,26,90],[1238,330,28,100],[1300,318,30,104],[1366,336,26,86],[1338,352,20,70]].forEach(([x,y,ww,h]) => {
+    for (let yy = y + 6; yy < y + h - 8; yy += 9) for (let xx = x + 4; xx < x + ww - 4; xx += 7)
+      if (rnd() < .3) mk("rect", {x:xx, y:yy, width:2.6, height:3.4, opacity:.5 + rnd() * .5}, w);
+  });
+})();
+
+// footprints, laid out against the part of the viewBox that is actually visible
+const printsG = $("#prints");
+let marks = [], stopSets = [], poolEl;
+function layout() {
+  printsG.innerHTML = ""; marks = []; stopSets = [];
+  poolEl = mk("ellipse", {cx:0, cy:0, rx:1, ry:1, fill:"url(#pool)", opacity:0}, printsG);
+  const W = innerWidth, H = innerHeight;
+  const sc = Math.max(W / 1440, H / 900);
+  const vw = W / sc, vh = H / sc, vx = (1440 - vw) / 2, vy = (900 - vh) / 2;
+  const phone = W < 760;
+  const H0 = 664, H1 = vy + vh + 40;               // far edge of dry sand → just below frame
+  const xFar = vx + vw * (phone ? .62 : .74), xNear = vx + vw * (phone ? .42 : .55);
+  // param u: 0 far .. 1 near; position with perspective
+  const P = u => {
+    const e = Math.pow(u, 1.3);
+    const y = H0 + (H1 - H0) * e;
+    const k = clamp((y - H0) / (H1 - H0));            // 0 far .. 1 near
+    const x = xFar + (xNear - xFar) * u + Math.sin(u * 7.5) * 60 * (.2 + k) * (phone ? .6 : 1);
+    return {x, y, k};
+  };
+  // pauses along the walk, chronological from far to near
+  const PU = [.04, .17, .3, .44, .58, .73, .89];
+  const footAt = (u, side, ang, f, isStop, idx) => {
+    const a = P(u), b = P(Math.min(1, u + .004));
+    const dir = Math.atan2(b.y - a.y, (b.x - a.x));
+    const s = (.75 + 2.7 * Math.pow(a.k, 1.2)) * (phone ? .8 : 1);
+    const nx = -Math.sin(dir), ny = Math.cos(dir);
+    const off = side * 6.5 * s;
+    const x = a.x + nx * off, y = a.y + ny * off * .4;
+    const rot = ang !== null ? ang : (dir * 180 / Math.PI - 90);
+    const g = mk("g", {transform:`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(3)} ${(s*.42).toFixed(3)}) rotate(${rot.toFixed(1)}) scale(${side < 0 ? -1 : 1} 1)`}, printsG);
+    // lit lip (sky behind, so the near rim of each depression catches it), then the hollow
+    mk("use", {href:"#foot", x:-8, y:-16, width:16, height:37, fill:"#c58a80", opacity:.45, transform:"translate(0 1.6)"}, g);
+    mk("use", {href:"#foot", x:-8, y:-16, width:16, height:37, fill:"url(#printFill)"}, g);
+    let wet = null;
+    if (isStop) wet = mk("use", {href:"#foot", x:-8, y:-16, width:16, height:37, fill:"#ffbf7c", opacity:0, transform:"scale(.72)"}, g);
+    g.style.opacity = 0;
+    marks.push({g, f, wet, idx});
+    return g;
+  };
+  // walk in from the waterline beyond the frame, then between each pause
+  let prev = -0.06;
+  PU.forEach((pu, i) => {
+    const steps = Math.max(3, Math.round((pu - prev) / .03));
+    for (let j = 1; j < steps; j++) {
+      const u = prev + (pu - prev) * (j / steps);
+      if (u < 0) continue;
+      const f = (i - 1 + .5) + (j / steps) * .7;         // revealed as you scroll toward the stop
+      footAt(u, j % 2 ? 1 : -1, null, f, false);
+    }
+    // at the pause he turns to the sea, feet side by side
+    const seaAng = phone ? 158 : 165;
+    { const a = P(pu); stopSets.push({x:a.x, y:a.y, s:(.75 + 2.7 * Math.pow(a.k, 1.2)) * (phone ? .8 : 1)}); }
+    footAt(pu, -1.1, seaAng, i + .2, true, i);
+    footAt(pu, 1.1, seaAng + 6, i + .25, true, i);
+    prev = pu;
+  });
+}
+layout();
+addEventListener("resize", layout);
+
+const track = $("#track"), dim = $("#dim"), roles = $("#roles");
+let cur = 0;
+function progress() {
+  const r = track.getBoundingClientRect();
+  return clamp(-r.top / (r.height - innerHeight));
+}
+function frame(t) {
+  const p = progress();
+  cur = RM ? p : cur + (p - cur) * .14;
+  const f = clamp((cur - .05) / .78) * 6.999;   // continuous stop index
+  stopEls.forEach((el, k) => {
+    const d = f - (k + .5);
+    const o = clamp(1 - (Math.abs(d) - .3) / .18);
+    el.style.opacity = o.toFixed(3);
+    el.style.transform = `translateY(${(-d * 14).toFixed(1)}px)`;
+  });
+  const active = Math.floor(f);
+  const pulse = RM ? .6 : .45 + .25 * Math.sin(t / 900);
+  for (const m of marks) {
+    const o = clamp((f - m.f) / .25);
+    m.g.style.opacity = o.toFixed(3);
+    if (m.wet) m.wet.setAttribute("opacity", (m.idx === active && cur < .84 ? pulse : m.idx < active ? .08 : 0).toFixed(3));
+  }
+  if (stopSets.length) {
+    const i0 = clamp(Math.floor(f - .5), 0, 6), i1 = clamp(i0 + 1, 0, 6), w = clamp(f - .5 - i0);
+    const ee = w * w * (3 - 2 * w), A = stopSets[i0], B = stopSets[i1];
+    const x = A.x + (B.x - A.x) * ee, y = A.y + (B.y - A.y) * ee, sc = A.s + (B.s - A.s) * ee;
+    poolEl.setAttribute("cx", x.toFixed(1)); poolEl.setAttribute("cy", y.toFixed(1));
+    poolEl.setAttribute("rx", (sc * 46).toFixed(1)); poolEl.setAttribute("ry", (sc * 16).toFixed(1));
+    poolEl.setAttribute("opacity", (clamp(f / .4) * (1 - clamp((cur - .84) / .05))).toFixed(3));
+  }
+  const ro = clamp((cur - .85) / .07);
+  roles.style.opacity = ro.toFixed(3);
+  roles.style.transform = `translateY(${((1 - ro) * 18).toFixed(1)}px)`;
+  roles.classList.toggle("on", ro > .5);
+  dim.style.opacity = (ro * .95).toFixed(3);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

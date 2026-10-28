@@ -1,0 +1,343 @@
+<!-- Direction 01: Swiss editorial — Churchgate drawn as a precise side elevation of the AC local inside a gridded frame; scroll dollies the camera into the one lit window until Mohit, chin on fist, fills the frame and a callout line ties him to his note. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Churchgate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --ink:#16202c; --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145;
+  --rule:rgba(22,32,44,.22); --mute:rgba(22,32,44,.62);
+  --serif:"Newsreader",Georgia,serif; --sans:"Inter Tight",system-ui,sans-serif;
+  --m:48px; --g:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.run{height:420vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:var(--m);overflow:hidden}
+.copy{grid-column:1 / span 4;display:flex;flex-direction:column;position:relative;z-index:2}
+h1{font-family:var(--serif);font-weight:350;font-size:clamp(56px,6.6vw,112px);line-height:.92;letter-spacing:-.025em;font-variation-settings:"opsz" 72}
+.lede{margin-top:28px;font-size:clamp(16px,1.2vw,19px);line-height:1.5;max-width:31ch;color:var(--ink)}
+.cta{margin-top:22px;display:inline-flex;gap:.45em;align-items:baseline;font-family:var(--serif);font-size:22px;text-decoration:none;width:max-content;border-bottom:1px solid transparent;transition:border-color .3s}
+.cta span{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{border-color:var(--ink)} .cta:hover span{transform:translateX(6px)}
+.note{margin-top:auto;font-family:var(--serif);font-style:italic;font-weight:350;font-size:clamp(24px,2.1vw,34px);line-height:1.2;max-width:15ch;opacity:0;transform:translateY(14px);text-wrap:balance}
+.note-wrap{margin-top:auto;position:relative}
+.place{font-size:14px;color:var(--mute);margin-top:18px;line-height:1.4;opacity:0}
+.frame{grid-column:5 / span 8;position:relative;overflow:hidden;background:var(--sodium)}
+.frame svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.lead{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.lead line{stroke:var(--ink);stroke-width:1}
+.lead circle{fill:var(--ink)}
+.after{height:40vh}
+.ln,.ln *{vector-effect:non-scaling-stroke}.ln{fill:none;stroke:var(--ink);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.led{font-family:var(--sans);font-weight:600;letter-spacing:.06em}
+@media (max-width:760px){
+  :root{--m:20px;--g:12px}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;row-gap:18px;padding:28px var(--m) 24px}
+  .copy{grid-column:1;display:block}
+  h1{font-size:52px}
+  .lede{margin-top:14px;font-size:15px}
+  .cta{margin-top:10px;font-size:19px}
+  .frame{grid-column:1;grid-row:2}
+  .note-wrap{grid-row:3}
+  .note{font-size:22px;max-width:22ch}
+  .place{display:none}
+  .lead{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><style>.mb-ln{stroke:var(--mb-ink,#16202c);stroke-width:var(--mb-w,3);stroke-linecap:round;stroke-linejoin:round;fill:none}.mb-pin{stroke:var(--mb-pin,#a596c8);stroke-width:1.6;fill:none}.mb-skin{fill:var(--mb-skin,#cf9a74)}.mb-eye{transform-box:fill-box;transform-origin:center;animation:mbblink 6s infinite}@keyframes mbblink{0%,95%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@media (prefers-reduced-motion:reduce){.mb-eye{animation:none}}</style><defs>
+<pattern id="mb-pinsH" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)"><line x1="0" y1="0" x2="9" y2="0" class="mb-pin"/></pattern><pattern id="mb-pins" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)"><line x1="0" y1="0" x2="0" y2="9" class="mb-pin"/></pattern>
+<g id="mb-hair">
+  <path class="mb-ln" style="fill:var(--mb-hair,#16202c)" d="M326,306 C316,292 314,270 326,256 C338,242 356,236 372,230 C400,220 432,218 456,222 C474,224 492,230 504,240 C512,236 518,240 516,248 C528,268 530,300 525,334 C522,366 514,394 496,416 C488,404 478,394 468,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <g class="mb-ln" style="stroke:var(--mb-strand,#5d6a78)">
+    <path d="M332,270 C352,250 394,238 440,236 C462,236 480,240 494,247"/>
+    <path d="M346,290 C372,268 414,258 458,258 C480,259 498,266 512,276"/>
+    <path d="M452,300 C474,294 498,298 518,310"/>
+  </g>
+</g>
+<g id="mb-face-base">
+  <!-- forehead, nose, upper lip -->
+  <path class="mb-ln" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386"/>
+  <!-- jaw to ear -->
+  <path class="mb-ln" d="M338,444 C344,454 356,460 372,460 C394,460 416,450 432,432 C440,422 446,410 450,400"/>
+  <path class="mb-ln" d="M325,381 C329,377 334,378 336,383"/>
+  <!-- ear -->
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M448,342 C452,328 472,324 479,338 C485,352 480,376 468,388 C460,394 452,392 449,386"/>
+  <path class="mb-ln" d="M460,348 C469,346 471,358 465,368"/>
+  <!-- glasses -->
+  <g class="mb-ln">
+    <path d="M334,336 L368,333 C371,333 372,335 372,338 L370,370 C369,376 365,379 359,379 L346,379 C340,379 337,375 336,370 Z"/>
+    <path d="M327,340 L308,341 C305,341 304,344 304,347 L306,379 C307,385 311,388 316,388"/>
+    <path d="M327,340 C330,338 332,337 334,336"/>
+    <path d="M372,337 L450,333"/>
+  </g>
+  <path style="fill:var(--mb-ink,#16202c)" d="M306,339 L369,331 C373,331 374,334 373,338 L334,341.5 L305,345 Z"/>
+</g>
+<g id="mb-face-smile">
+  <path class="mb-skin" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386 C331,392 333,398 334,402 C332,414 334,432 338,444 C344,454 356,460 372,460 C394,460 416,450 432,432 C450,424 476,418 494,414 C486,402 476,394 466,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <use href="#mb-face-base"/>
+  <path class="mb-ln" d="M329,386 C331,392 333,398 334,402 C332,414 334,432 338,446"/>
+  <path style="fill:var(--mb-ink,#16202c)" d="M330,389 C342,384 358,386 370,392 C358,393.5 344,393.5 331,393 Z"/>
+  <path class="mb-ln" style="fill:var(--mb-paper,#f7f2ea)" d="M335,399 C348,397 362,399 374,404 C366,415 350,418 340,411 Z"/>
+  <path class="mb-ln" d="M381,391 C387,400 386,410 379,418"/>
+  <path class="mb-ln" d="M346,355 C352,348 362,348 368,354"/><path class="mb-ln" d="M344,326 C354,320 366,320 376,325"/>
+</g>
+<g id="mb-face-pensive">
+  <path class="mb-skin" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386 C331,392 331,398 329,402 C333,404 334,407 331,410 C332,422 334,432 338,444 C344,454 356,460 372,460 C394,460 416,450 418,452 L421,480 C440,488 470,478 494,452 L494,414 C486,402 476,394 466,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <use href="#mb-face-base"/>
+  <path class="mb-ln" d="M329,386 C331,392 331,398 329,402 C333,404 334,407 331,410 C332,422 334,436 338,446"/>
+  <path style="fill:var(--mb-ink,#16202c)" d="M330,389 C340,386 352,387 360,391 C350,392.5 340,392.5 331,392.5 Z"/>
+  <path class="mb-ln" d="M331,404 C338,404 346,405 352,403"/>
+  <path class="mb-ln" d="M345,354 C351,348 361,348 367,352"/><path class="mb-ln" d="M343,327 C353,323 365,324 375,329"/>
+  <circle class="mb-eye" cx="350" cy="355" r="2.6" style="fill:var(--mb-ink,#16202c)"/>
+</g>
+<g id="mb-body-pensive">
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M290,720 C292,640 300,580 340,546 C372,524 400,512 420,478 L497,436 C506,446 513,456 516,468 C566,478 612,494 636,514 C656,540 662,620 664,720 Z"/>
+  <path fill="url(#mb-pins)" d="M290,720 C292,640 300,580 340,546 C372,524 400,512 420,478 C440,486 470,476 494,452 C504,456 512,462 516,468 C566,478 612,492 636,512 C656,540 662,620 664,720 Z"/>
+  <g class="mb-ln">
+    <path d="M292,720 C292,640 302,580 340,546"/>
+    <path d="M516,468 C566,478 612,494 636,514 C656,542 662,620 664,720"/>
+    <path d="M420,478 C440,488 472,478 494,452"/><path d="M418,452 L421,478"/><path d="M494,414 L499,440"/>
+    <path d="M497,434 C506,444 513,456 516,468 L452,532"/>
+    <path d="M494,452 C484,480 470,506 452,532"/>
+    <path d="M596,566 C602,612 604,664 602,720"/>
+  </g>
+</g>
+<g id="mb-arm-pensive">
+  <path style="fill:var(--mb-skin,#cf9a74)" d="M364,530 C356,566 346,606 340,644 L432,638 C426,600 418,560 406,520 Z"/>
+  <path class="mb-ln" d="M364,530 C356,566 346,606 340,644"/><path class="mb-ln" d="M406,520 C418,560 426,600 432,638"/>
+  <path id="mb-cuffP" style="fill:var(--mb-paper,#f7f2ea)" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path fill="url(#mb-pins)" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path class="mb-ln" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path class="mb-ln" d="M334,670 C368,662 404,660 437,664"/>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M330,696 L438,692 L446,720 L322,720 Z"/><path fill="url(#mb-pins)" d="M330,696 L438,692 L446,720 L322,720 Z"/>
+  <path class="mb-ln" d="M330,696 L322,720"/><path class="mb-ln" d="M438,692 L446,720"/>
+  <g transform="translate(366 470) scale(1.12) translate(-366 -470)">
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M334,456 C356,450 384,450 400,456 C410,470 412,500 404,522 C398,532 388,538 376,538 C360,540 344,538 336,532 C326,528 326,516 334,514 C324,510 322,496 330,492 C320,488 320,474 328,470 C322,466 324,457 334,456 Z"/>
+  <path class="mb-ln" d="M334,514 C340,514 346,513 352,511"/>
+  <path class="mb-ln" d="M330,492 C338,492 344,491 350,489"/>
+  <path class="mb-ln" d="M328,470 C336,471 342,470 348,468"/>
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M402,478 C388,470 368,466 352,466 C344,467 342,474 348,478 C364,482 384,486 400,494"/>
+</g></g>
+<g id="mb-body-back">
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M410,440 C440,432 470,420 496,410 L512,446 L404,486 Z"/>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M362,478 C420,452 480,430 536,446 C600,488 650,520 656,590 C662,700 668,820 676,1000 L170,1000 L188,884 C204,760 222,640 252,556 C276,510 320,492 362,478 Z"/>
+  <path fill="url(#mb-pinsH)" d="M362,478 C420,452 480,430 536,446 C600,488 650,520 656,590 C662,700 668,820 676,1000 L170,1000 L188,884 C204,760 222,640 252,556 C276,510 320,492 362,478 Z"/>
+  <g class="mb-ln">
+    <path d="M540,448 C600,486 646,520 656,590 C662,700 668,820 676,1000"/>
+    <path d="M364,478 C320,492 276,512 252,556 C226,630 208,760 190,880"/>
+    <path d="M372,466 C420,446 470,428 512,430 C524,432 532,440 538,448"/>
+    <path d="M362,480 C420,462 486,454 540,462"/>
+    <path d="M416,528 C460,520 540,520 606,540"/>
+    <path d="M416,520 C410,620 386,750 300,904"/>
+  </g>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path fill="url(#mb-pinsH)" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path class="mb-ln" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path class="mb-ln" d="M190,912 C224,912 262,916 296,924"/>
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M196,950 C192,970 182,988 172,1000 L238,1000 C244,988 252,970 262,954"/>
+</g>
+
+<symbol id="mb-pensive" viewBox="250 200 440 520"><use href="#mb-body-pensive"/><use href="#mb-hair"/><use href="#mb-face-pensive"/><use href="#mb-arm-pensive"/></symbol>
+<symbol id="mb-turn" viewBox="140 200 560 800"><use href="#mb-body-back"/><use href="#mb-hair"/><use href="#mb-face-smile"/></symbol>
+<symbol id="mb-head" viewBox="290 205 250 265"><use href="#mb-hair"/><use href="#mb-face-smile"/></symbol>
+<symbol id="mb-head-pensive" viewBox="290 205 250 265"><use href="#mb-hair"/><use href="#mb-face-pensive"/></symbol>
+</defs></svg>
+<div class="run" id="run">
+  <div class="stage">
+    <div class="copy">
+      <h1>Mohit<br>Bagri</h1>
+      <p class="lede">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <div class="note-wrap desk">
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+    </div>
+    <div class="frame" id="frame">
+      <svg class="scene" id="scene" viewBox="0 0 900 800" preserveAspectRatio="xMidYMid slice" aria-label="Side elevation of a Western Railway AC local at Churchgate; Mohit sits at the one lit window">
+        <defs>
+          <clipPath id="winclip"><rect x="535" y="368" width="80" height="70" rx="7"/></clipPath>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".45" stop-color="#fff" stop-opacity=".0"/><stop offset=".46" stop-color="#fff" stop-opacity=".55"/><stop offset=".62" stop-color="#fff" stop-opacity=".55"/><stop offset=".63" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <g id="cam">
+          <!-- far wall: flat field and the far platform's canopy, drawn as lines -->
+          <rect x="-400" y="-200" width="1700" height="1200" fill="#f2a145"/>
+          <rect x="-400" y="250" width="1700" height="70" fill="#e8913a"/>
+          <g class="ln" style="stroke:#9a5a1e">
+            <path d="M-400,250 H1300"/>
+            <path d="M-20,250 V320 M200,250 V320 M420,250 V320 M640,250 V320 M860,250 V320"/>
+          </g>
+          <!-- catenary -->
+          <g class="ln" style="stroke:#3b2a1a">
+            <path d="M-400,222 C-200,232 0,232 200,222 C400,232 600,232 800,222 C1000,232 1200,232 1300,226"/>
+            <path d="M-400,258 H1300"/>
+            <path d="M-100,226 V258 M0,229 V258 M100,229 V258 M300,229 V258 M400,229 V258 M500,229 V258 M700,229 V258 M900,229 V258"/>
+          </g>
+          <!-- the coach -->
+          <g id="coach">
+            <!-- roof AC units -->
+            <g fill="#e9e5dc"><rect x="40" y="311" width="140" height="21" rx="4"/><rect x="420" y="311" width="140" height="21" rx="4"/><rect x="780" y="311" width="140" height="21" rx="4"/></g>
+            <g class="ln"><rect x="40" y="311" width="140" height="21" rx="4"/><rect x="420" y="311" width="140" height="21" rx="4"/><rect x="780" y="311" width="140" height="21" rx="4"/>
+              <path d="M60,318 H160 M440,318 H540 M800,318 H900"/></g>
+            <!-- pantograph -->
+            <g><rect x="232" y="318" width="40" height="10" fill="#e9e5dc"/><path class="ln" d="M232,318 H272 V328 M232,318 V328 M240,318 L292,284 L252,259 M232,258.5 H272 M228,262 L232,258.5 M276,262 L272,258.5"/><circle cx="292" cy="284" r="2.5" fill="#16202c"/></g>
+            <!-- body -->
+            <path d="M-400,334 C-400,330 -396,328 -392,328 H1292 C1296,328 1300,330 1300,334 V546 H-400 Z" fill="#f6f3ec"/>
+            <rect x="-400" y="452" width="1700" height="34" fill="#2c6d8c"/>
+            <rect x="-400" y="489" width="1700" height="4" fill="#c8372d"/>
+            <rect x="-400" y="504" width="1700" height="42" fill="#0d1a2b"/>
+            <path class="ln" d="M-400,328 H1300 M-400,344 H1300"/>
+            <!-- windows -->
+            <g fill="#2b3a48">
+              <rect x="-150" y="368" width="80" height="70" rx="7"/><rect x="-55" y="368" width="80" height="70" rx="7"/><rect x="40" y="368" width="80" height="70" rx="7"/><rect x="135" y="368" width="80" height="70" rx="7"/>
+              <rect x="440" y="368" width="80" height="70" rx="7"/><rect x="630" y="368" width="80" height="70" rx="7"/>
+              <rect x="980" y="368" width="80" height="70" rx="7"/><rect x="1075" y="368" width="80" height="70" rx="7"/><rect x="1170" y="368" width="80" height="70" rx="7"/>
+            </g>
+            <g fill="#3a4a59"><rect x="-150" y="368" width="80" height="22" rx="7"/><rect x="-55" y="368" width="80" height="22" rx="7"/><rect x="40" y="368" width="80" height="22" rx="7"/><rect x="135" y="368" width="80" height="22" rx="7"/><rect x="440" y="368" width="80" height="22" rx="7"/><rect x="630" y="368" width="80" height="22" rx="7"/><rect x="980" y="368" width="80" height="22" rx="7"/><rect x="1075" y="368" width="80" height="22" rx="7"/><rect x="1170" y="368" width="80" height="22" rx="7"/></g>
+            <!-- doors (closed, sliding) -->
+            <g>
+              <rect x="268" y="356" width="104" height="190" fill="#efebe2"/>
+              <rect x="268" y="452" width="104" height="34" fill="#2c6d8c"/><rect x="268" y="489" width="104" height="4" fill="#c8372d"/>
+              <rect x="268" y="504" width="104" height="42" fill="#efebe2"/>
+              <rect x="280" y="370" width="34" height="62" rx="5" fill="#2b3a48"/><rect x="326" y="370" width="34" height="62" rx="5" fill="#2b3a48"/>
+              <path class="ln" d="M268,356 H372 V546 M268,356 V546 M320,356 V546"/>
+              <rect x="808" y="356" width="104" height="190" fill="#efebe2"/>
+              <rect x="808" y="452" width="104" height="34" fill="#2c6d8c"/><rect x="808" y="489" width="104" height="4" fill="#c8372d"/>
+              <rect x="808" y="504" width="104" height="42" fill="#efebe2"/>
+              <rect x="820" y="370" width="34" height="62" rx="5" fill="#2b3a48"/><rect x="866" y="370" width="34" height="62" rx="5" fill="#2b3a48"/>
+              <path class="ln" d="M808,356 H912 V546 M808,356 V546 M860,356 V546"/>
+            </g>
+            <!-- his window: lit interior -->
+            <rect x="535" y="368" width="80" height="70" rx="7" fill="#dfe4e2"/>
+            <g clip-path="url(#winclip)">
+              <rect x="535" y="420" width="80" height="20" fill="#cfd6d5"/>
+              <path class="ln" style="stroke:#9aa5a6" d="M535,420 H615"/>
+              <svg x="545" y="374" width="86" height="102" viewBox="0 0 440 520" overflow="visible"><use href="#mb-pensive"/></svg>
+              <rect id="refl" x="535" y="368" width="80" height="70" fill="url(#glass)"/>
+            </g>
+            <g class="ln">
+              <rect x="535" y="368" width="80" height="70" rx="7"/>
+              <rect x="-150" y="368" width="80" height="70" rx="7"/><rect x="-55" y="368" width="80" height="70" rx="7"/><rect x="40" y="368" width="80" height="70" rx="7"/><rect x="135" y="368" width="80" height="70" rx="7"/><rect x="440" y="368" width="80" height="70" rx="7"/><rect x="630" y="368" width="80" height="70" rx="7"/><rect x="980" y="368" width="80" height="70" rx="7"/><rect x="1075" y="368" width="80" height="70" rx="7"/><rect x="1170" y="368" width="80" height="70" rx="7"/>
+            </g>
+          </g>
+          <!-- platform -->
+          <rect x="-400" y="546" width="1700" height="460" fill="#d6cdbc"/>
+          <rect x="-400" y="546" width="1700" height="10" fill="#efc53f"/>
+          <path class="ln" d="M-400,556 H1300"/>
+          <rect x="-400" y="600" width="1700" height="400" fill="#cfc5b3"/>
+          <path class="ln" style="stroke:rgba(22,32,44,.25)" d="M-400,600 H1300"/>
+          <!-- platform bench, steel and slats -->
+          <g>
+            <rect x="560" y="676" width="230" height="10" fill="#2d5a49"/>
+            <rect x="560" y="652" width="230" height="8" fill="#2d5a49"/>
+            <path class="ln" d="M560,676 H790 V686 H560 Z M560,652 H790 V660 H560 Z M580,660 V676 M770,660 V676 M584,686 L576,736 M766,686 L774,736 M600,686 L604,736 M750,686 L746,736"/>
+          </g>
+          <!-- canopy overhead, near side -->
+          <rect x="-400" y="-200" width="1700" height="268" fill="#24463b"/>
+          <path class="ln" style="stroke:#0f2a22" d="M-400,68 H1300 M-400,52 H1300"/>
+          <g class="ln" style="stroke:#3d6a5a"><path d="M-400,30 H1300 M-400,10 H1300"/><path d="M-60,68 L0,0 M60,68 L0,0 M420,68 L480,0 M540,68 L480,0"/></g>
+          <!-- near column -->
+          <rect x="22" y="60" width="18" height="760" fill="#2d5a49"/>
+          <path d="M14,68 L48,68 L40,96 L22,96 Z" fill="#24463b"/>
+          <!-- station name board: Marathi + English -->
+          <g>
+            <path class="ln" d="M150,68 V112 M370,68 V112"/>
+            <rect x="120" y="112" width="280" height="76" fill="#f3cf3a"/>
+            <rect x="120" y="112" width="280" height="76" class="ln"/>
+            <text x="260" y="146" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="27" fill="#16202c">चर्चगेट</text>
+            <text x="260" y="176" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="21" letter-spacing="3" fill="#16202c">CHURCHGATE</text>
+          </g>
+          <!-- platform indicator: black board, amber LED -->
+          <g>
+            <path class="ln" d="M600,68 V108 M820,68 V108"/>
+            <rect x="570" y="108" width="280" height="78" fill="#0b0f14"/>
+            <svg x="582" y="116" width="256" height="62" viewBox="0 0 256 62">
+              <text id="ledName" class="led" x="0" y="25" font-size="19" fill="#ffb03a">CHURCHGATE</text>
+              <text id="ledTime" class="led" x="256" y="25" text-anchor="end" font-size="19" fill="#ff5a3a">--:--</text>
+              <g id="ledRun"><text class="led" x="0" y="52" font-size="15" fill="#ffb03a" opacity=".85">चर्चगेट · CHURCHGATE · चर्चगेट · CHURCHGATE</text></g>
+            </svg>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="note-wrap mob" style="display:none"><p class="note" id="note2">That's me. Can't wait to get home and fix what blocked production.</p></div>
+    <svg class="lead" id="lead"><line id="leadL" x1="0" y1="0" x2="0" y2="0"/><circle id="leadC" r="3.5" cx="-10" cy="-10"/></svg>
+  </div>
+</div>
+<!-- direction: Style01 Opening — Swiss editorial elevation, dolly into the window -->
+<script>
+(() => {
+  const run = document.getElementById('run'), frame = document.getElementById('frame');
+  const cam = document.getElementById('cam'), refl = document.getElementById('refl');
+  const notes = [document.getElementById('note'), document.getElementById('note2')];
+  const leadL = document.getElementById('leadL'), leadC = document.getElementById('leadC');
+  const mob = matchMedia('(max-width:760px)');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const setMob = () => { document.querySelector('.note-wrap.mob').style.display = mob.matches ? 'block' : 'none'; document.querySelector('.note-wrap.desk').style.display = mob.matches ? 'none' : 'block'; };
+  setMob(); mob.addEventListener('change', () => { setMob(); measure(); });
+  // camera target: his face inside the window
+  const W = 900, H = 800, TX = 575, TY = 404, S = 7.4;
+  let fr, top0, span, cur = 0, tgt = 0;
+  function measure(){
+    fr = frame.getBoundingClientRect();
+    const r = run.getBoundingClientRect();
+    top0 = r.top + scrollY; span = run.offsetHeight - innerHeight;
+  }
+  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  function frameTick(){
+    tgt = clamp((scrollY - top0) / span, 0, 1);
+    cur += (tgt - cur) * (reduce ? 1 : .12);
+    if (Math.abs(tgt - cur) < .0004) cur = tgt;
+    const z = ease(clamp(cur / .78, 0, 1));
+    const s = Math.exp(Math.log(S) * z);
+    // frame centre in viewBox units (slice mapping)
+    const k = Math.max(fr.width / W, fr.height / H);
+    const cx = W/2, cy = H/2;
+    // window centre travels from where it is to the frame centre (nudged right so the face sits off-centre)
+    const fx = cx + (mob.matches ? -6 : 40) * z, fy = cy + 10 * z;
+    const px = TX + (fx - TX) * z, py = TY + (fy - TY) * z;
+    const tx = px - TX * s, ty = py - TY * s;
+    cam.setAttribute('transform', `translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${s.toFixed(4)})`);
+    refl.style.opacity = (1 - clamp((cur - .35) / .35, 0, 1)).toFixed(3);
+    const n = clamp((cur - .74) / .16, 0, 1);
+    notes.forEach(el => { el.style.opacity = n; el.style.transform = `translateY(${(1-n)*14}px)`; });
+    // callout: from the note to his temple (Swiss diagram leader)
+    if (!mob.matches) {
+      const ln = clamp((cur - .84) / .12, 0, 1);
+      const nr = notes[0].getBoundingClientRect();
+      const ox = (fr.width - W*k)/2, oy = (fr.height - H*k)/2;
+      // his glasses hinge in scene units: symbol (512,371) + (372-250, 337-200)*96/440
+      const hx = 545 + (292-250)*86/440, hy = 374 + (372-200)*86/440;
+      const sx = fr.left + ox + (hx * s + tx) * k, sy = fr.top + oy + (hy * s + ty) * k;
+      const x1 = nr.left + Math.min(nr.width, 15*16) + 18, y1 = nr.top + 18;
+      const ex = x1 + (sx - x1) * ln, ey = y1 + (sy - y1) * ln;
+      leadL.setAttribute('x1', x1); leadL.setAttribute('y1', y1); leadL.setAttribute('x2', ex); leadL.setAttribute('y2', ey);
+      leadL.style.opacity = ln > 0 ? 1 : 0;
+      leadC.setAttribute('cx', ex); leadC.setAttribute('cy', ey); leadC.style.opacity = ln >= 1 ? 1 : 0;
+    }
+    requestAnimationFrame(frameTick);
+  }
+  // live Mumbai time on the indicator
+  const t = document.getElementById('ledTime');
+  const clock = () => { t.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()); };
+  clock(); setInterval(clock, 15000);
+  // ambient: the second LED line scrolls slowly, wrapping off the board
+  const runEl = document.getElementById('ledRun');
+  let lx = 0; const lw = 420;
+  if (!reduce) (function led(){ lx -= .35; if (lx < -lw) lx = 256; runEl.setAttribute('transform', `translate(${lx.toFixed(1)} 0)`); requestAnimationFrame(led); })();
+  addEventListener('resize', measure);
+  measure(); requestAnimationFrame(frameTick);
+})();
+</script>
+</body>
+</html>

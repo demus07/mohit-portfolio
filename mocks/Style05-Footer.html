@@ -1,0 +1,648 @@
+<!-- Direction 05: Pixel art — Siddhivinayak at night in 16-bit pixels: the cluster of banded spires and the gold shikhara light up tier by tier as you scroll, the saffron flag moves, diyas flicker and the queue waits; the invitation sits beside it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Siddhivinayak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #0d1a2b; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; color: #f4e8d4; }
+  .foot { position: relative; height: 210vh; }
+  .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }
+  .grid { position: relative; height: 100%; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2vw; padding: clamp(28px, 7vh, 80px) clamp(20px, 5vw, 80px) clamp(24px, 4vh, 48px); }
+  .copy { align-self: start; max-width: 30rem; display: flex; flex-direction: column; height: 100%; }
+  .slot { position: relative; }
+  h2 { font-family: "Pixelify Sans", monospace; font-weight: 600; font-size: clamp(2.2rem, 1.4rem + 2.6vw, 4rem); line-height: 1; margin: 0 0 .4em; color: #fbefdc; text-wrap: balance; }
+  .line { font-size: clamp(1.02rem, .95rem + .3vw, 1.22rem); line-height: 1.5; margin: 0 0 1.4em; max-width: 24em; color: #e9dcc6; }
+  .cta { font-family: "Pixelify Sans", monospace; font-weight: 500; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem); color: #f2a145; text-decoration: none; display: inline-block; transition: transform .25s, color .25s; }
+  .cta:hover, .cta:focus-visible { color: #ffcf87; transform: translateX(6px); }
+  .mail { display: block; margin: .35em 0 0; color: #d8c8ae; text-decoration: none; font-size: 1rem; }
+  .mail:hover { color: #fbefdc; }
+  blockquote { margin: auto 0 0; padding: 1.6em 0 0; font-family: "Pixelify Sans", monospace; font-size: clamp(1.1rem, 1rem + .4vw, 1.4rem); line-height: 1.35; color: #fbefdc; max-width: 22em; }
+  .reset { margin: .6em 0 0; font-size: 1rem; line-height: 1.5; color: #d8c8ae; max-width: 26em; }
+  .clock { margin: 1.4em 0 .8em; font-size: 1rem; color: #f2a145; }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 .9em; padding: 0; list-style: none; }
+  .links a { color: #e9dcc6; text-decoration: none; font-size: .98rem; background: linear-gradient(#f2a145, #f2a145) 0 100% / 0 2px no-repeat; padding-bottom: 2px; transition: background-size .3s, color .3s; }
+  .links a:hover, .links a:focus-visible { background-size: 100% 2px; color: #fbefdc; }
+  .copy-r { margin: 0; font-size: .9rem; color: #9d9384; }
+  @media (max-width: 760px) {
+    .foot { height: auto; }
+    .stage { position: relative; height: auto; }
+    .grid { grid-template-columns: 1fr; height: auto; padding-top: 48px; }
+    .copy { height: auto; }
+    blockquote { margin-top: 1em; }
+    .slot { height: 60vh; min-height: 440px; order: 2; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cta, .links a { transition: none; } }
+</style>
+</head>
+<body>
+<footer class="foot" id="foot">
+  <div class="stage" id="stage">
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <div class="grid">
+      <div class="copy">
+        <h2>Got something to build?</h2>
+        <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+        <div><a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me →</a><a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a></div>
+        <blockquote>“If you believe you can make it, you will. The rest is trusting God and doing the work.”<p class="reset">Siddhivinayak, where I go when I feel low or high. It's where I reset.</p></blockquote>
+        <p class="clock" id="clock">It's — in Mumbai.</p>
+        <ul class="links">
+          <li><a href="https://github.com/Mohit-Bagri">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a></li>
+          <li><a href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a></li>
+          <li><a href="https://www.instagram.com/mohit_.bagri/">Instagram</a></li>
+          <li><a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a></li>
+          <li><a href="mailto:mailmohitbagri@gmail.com">Email</a></li>
+        </ul>
+        <p class="copy-r">© 2026 Mohit Bagri</p>
+      </div>
+      <div class="slot" id="slot"></div>
+    </div>
+  </div>
+</footer>
+<!-- direction: 05 pixel art · footer -->
+<script>
+/* ---------- PX: tiny pixel engine shared by every Style05 page ---------- */
+const PX = (() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hex = h => { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+
+  // integer-scaled full-viewport stage; art is drawn at W x H "art pixels"
+  function stage(canvas, opt = {}) {
+    const ctx = canvas.getContext('2d');
+    const st = { canvas, ctx, W: 0, H: 0, s: 1 };
+    st.resize = () => {
+      const el = opt.box ? opt.box() : { w: innerWidth, h: innerHeight };
+      const base = opt.base || 480, baseH = opt.baseH || 270;
+      let s = Math.round(Math.min(el.w / base, el.h / baseH));
+      s = Math.max(opt.min || 2, Math.min(opt.max || 8, s));
+      st.s = s; st.W = Math.ceil(el.w / s); st.H = Math.ceil(el.h / s);
+      canvas.width = st.W; canvas.height = st.H;
+      canvas.style.width = st.W * s + 'px'; canvas.style.height = st.H * s + 'px';
+      ctx.imageSmoothingEnabled = false;
+      opt.onResize && opt.onResize(st);
+    };
+    addEventListener('resize', st.resize);
+    st.resize();
+    return st;
+  }
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+  // ordered 4x4 bayer dither between two colours at fraction t (0..1) inside a rect
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function dith(c, x, y, w, h, a, b, t) {
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+    R(c, x, y, w, h, a); if (t <= 0) return; if (t >= 1) { R(c, x, y, w, h, b); return; }
+    c.fillStyle = b;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (B4[((y + j) & 3) * 4 + ((x + i) & 3)] < t * 16) c.fillRect(x + i, y + j, 1, 1);
+  }
+  // vertical banded gradient: list of colours top->bottom, dithered seams (16-bit sky)
+  function bands(c, x, y, w, h, cols, seam = 3) {
+    const n = cols.length, bh = h / n;
+    for (let i = 0; i < n; i++) {
+      const y0 = Math.round(y + i * bh), y1 = Math.round(y + (i + 1) * bh);
+      R(c, x, y0, w, y1 - y0, cols[i]);
+      if (i < n - 1) { // dithered transition rows
+        for (let k = 0; k < seam; k++) dith(c, x, y1 - seam + k, w, 1, cols[i], cols[i + 1], (k + 1) / (seam + 1));
+      }
+    }
+  }
+  // crisp text: rasterise with canvas text, threshold alpha
+  const tc = document.createElement('canvas'), tx = tc.getContext('2d', { willReadFrequently: true });
+  function text(c, str, x, y, font, col, align = 'left') {
+    tx.font = font; const m = tx.measureText(str);
+    const w = Math.ceil(m.width) + 4, h = Math.ceil(parseInt(font.match(/(\d+)px/)[1]) * 1.6) + 4;
+    tc.width = w; tc.height = h; tx.font = font; tx.textBaseline = 'top'; tx.fillStyle = '#000'; tx.fillText(str, 2, 2);
+    const d = tx.getImageData(0, 0, w, h).data;
+    const ox = align === 'center' ? Math.round(x - m.width / 2) : align === 'right' ? Math.round(x - m.width) : Math.round(x);
+    c.fillStyle = col;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 110) c.fillRect(ox + i - 2, Math.round(y) + j - 2, 1, 1);
+    return m.width;
+  }
+  // 3x5 pixel font for LED boards
+  const F = { A: '010101111101101', B: '110101110101110', C: '011100100100011', D: '110101101101110', E: '111100110100111', F: '111100110100100', G: '011100101101011', H: '101101111101101', I: '111010010010111', K: '101101110101101', L: '100100100100111', M: '101111111101101', N: '110101101101101', O: '010101101101010', P: '110101110100100', R: '110101110101101', S: '011100010001110', T: '111010010010010', U: '101101101101111', V: '101101101101010', W: '101101111111101', X: '101101010101101', Y: '101101010010010', Z: '111001010100111', 0: '111101101101111', 1: '010110010010111', 2: '110001010100111', 3: '110001010001110', 4: '101101111001001', 5: '111100110001110', 6: '011100111101111', 7: '111001010010010', 8: '111101111101111', 9: '111101111001110', ':': '000010000010000', '.': '000000000000010', '-': '000000111000000', ' ': '000000000000000', "'": '010010000000000' };
+  function led(c, str, x, y, col, dim) {
+    let cx = Math.round(x);
+    for (const ch of str.toUpperCase()) {
+      const g = F[ch] || F[' '];
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 3; i++) {
+        if (g[j * 3 + i] === '1') P(c, cx + i, y + j, col); else if (dim) P(c, cx + i, y + j, dim);
+      }
+      cx += 4;
+    }
+    return cx - x;
+  }
+  // sprite compiler: rows of chars -> canvas, with palette map. '.' = clear
+  function sprite(rows, pal) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const c = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const k = r[x]; if (k !== '.' && k !== ' ' && pal[k]) P(c, x, y, pal[k]); } });
+    return cv;
+  }
+  // flip a sprite canvas horizontally
+  function flip(cv) { const o = document.createElement('canvas'); o.width = cv.width; o.height = cv.height; const c = o.getContext('2d'); c.translate(cv.width, 0); c.scale(-1, 1); c.drawImage(cv, 0, 0); return o; }
+  // scroll progress of a tall element whose sticky child is pinned: 0..1
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? 0 : Math.min(1, Math.max(0, -r.top / t)); }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  // seeded rng
+  function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function loop(fn) { let t0 = performance.now(); const f = now => { fn(Math.max(0, now - t0) / 1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+  return { RM, hex, mix, stage, R, P, dith, bands, text, led, sprite, flip, prog, clamp, ease, seg, rng, loop };
+})();
+
+/* ---------- MOHIT: the pixel character, authored once, reused everywhere ---------- */
+const MOHIT = (() => {
+  // palette (day). Light comes from the viewer's left.
+  const BASE = {
+    h: '#1b1824', H: '#2d2a3c', j: '#4d4a69',            // hair: base, mid, gloss
+    s: '#b0704a', S: '#d0976c', d: '#8a5139', D: '#5e3325', // skin
+    f: '#b47452', k: '#7c4733',                           // fist + crease
+    g: '#1d1b24', G: '#c4c8d2', l: '#ffffff', n: '#e2c9b8', // glasses rims, glint, lens sheen
+    e: '#16121a', o: '#efe6dc', b: '#211719',             // pupil, eye white, brow
+    m: '#4a2a22', L: '#77392f', T: '#f6efe6',             // moustache, lip, teeth
+    W: '#f4f1f8', V: '#d6cfe6', v: '#aea4c8', p: '#e2daf1', q: '#c8bede', // shirt + pinstripes
+    t: '#2a2c3a', u: '#3c3f52', z: '#141218',             // trousers, shoes
+    0: '#0b0910', 1: '#3a1c14', 2: '#4f4866',             // outlines: hair, skin, shirt
+  };
+  const SKIN = 'sSdDfk', SHIRT = 'WVvpq', HAIR = 'hHj';
+
+  function grid(w, h) { return Array.from({ length: h }, () => Array(w).fill('.')); }
+  function painter(g) { return (y, x, s) => { for (let i = 0; i < s.length; i++) if (s[i] !== ' ' && g[y] && x + i < g[y].length) g[y][x + i] = s[i]; }; }
+
+  // automatic finishing: pinstripes, edge light/shadow, selective outline
+  function finish(g, opt = {}) {
+    const H = g.length, W = g[0].length, at = (x, y) => (y < 0 || y >= H || x < 0 || x >= W) ? '.' : g[y][x];
+    const out = g.map(r => r.slice());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = g[y][x];
+      if (c === 's') {
+        if (opt.lightLeft !== false && !SKIN.includes(at(x - 1, y)) && 'hHj.'.includes(at(x - 1, y)) && at(x - 1, y) !== undefined) out[y][x] = at(x - 1, y) === '.' ? 'S' : 's';
+        if (at(x + 1, y) === '.') out[y][x] = 'd';
+      }
+      if (c === 'W') {
+        // shade the side away from the light
+        let run = 0; for (let k = 1; k <= 4; k++) if (!SHIRT.includes(at(x + k, y))) { run = k; break; }
+        if (run && run <= (opt.shirtShade || 3)) out[y][x] = 'V';
+        if (at(x, y - 1) === '.' ) out[y][x] = 'W';
+      }
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = out[y][x];
+      if ((opt.stripe ?? 3) && y % (opt.stripe || 3) === (opt.stripeOff || 0)) {
+        if (c === 'W') out[y][x] = 'p'; else if (c === 'V') out[y][x] = 'q';
+      }
+    }
+    if (opt.outline !== false) {
+      const o2 = out.map(r => r.slice());
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (out[y][x] !== '.') continue;
+        const ns = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => (y + b < 0 || y + b >= H || x + a < 0 || x + a >= W) ? '.' : out[y + b][x + a]).filter(v => v !== '.' && !'012'.includes(v));
+        if (!ns.length) continue;
+        o2[y][x] = ns.some(v => HAIR.includes(v) || 'gbe'.includes(v)) ? '0' : ns.some(v => SKIN.includes(v)) ? '1' : ns.some(v => SHIRT.includes(v)) ? '2' : '0';
+      }
+      return o2;
+    }
+    return out;
+  }
+  const rows = g => g.map(r => r.join(''));
+
+  /* ===== 1. BUST: seated at the window, chin on fist, pensive (3/4, looking out to viewer's left) ===== */
+  function bust(state = {}) {
+    const g = grid(48, 64), P = painter(g);
+    // hair: soft quiff, highest at the front (left), swept up and back
+    P(0, 17, 'hhhhh');
+    P(1, 15, 'hhhhhhhhhh');
+    P(2, 13, 'hhhhhhhhhhhhhhhh');
+    P(3, 12, 'hhhhhhhhhhhhhhhhhhhh');
+    P(4, 12, 'hhhhhhhhhhhhhhhhhhhhhh');
+    P(5, 12, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    P(6, 12, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(7, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(8, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(9, 14, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    // gloss strands sweeping up and back
+    P(1, 16, 'jjj');
+    P(2, 14, 'jjHH  HHH');
+    P(3, 13, 'jH  jjjjHH   H');
+    P(4, 13, 'H  HH   jjjjHH');
+    P(5, 15, 'jH    HHH  jjjH');
+    P(6, 14, 'H  jjH     HHHjjH');
+    P(7, 16, 'HH          HHjH');
+    P(8, 28, 'HHH');
+    // forehead, brows, sideburn, ear
+    P(10, 14, 'hhsssssssssssshhhhhhhhhh');
+    P(11, 14, 'hssssssssssssssshhhhhhh');
+    P(12, 14, 'sbbbbssbbbbbbssssshhhhh');
+    P(13, 14, 'sssssssssssssssssssshhh');
+    P(14, 13, 'gggggggggggggggggggggsshh');
+    P(15, 13, 'gnbbbssgssgnbbbbssgssssh');
+    P(16, 13, 'gseeossgssgseeoossgssdds');
+    P(17, 13, 'gseeossgsdgseeosssgssdsd');
+    P(18, 13, 'gssssssgsdgsssssssgssdsd');
+    P(19, 13, 'GGGGGGGGsdGGGGGGGGGssdsd');
+    // nose (tip just past the cheek line), moustache, closed mouth
+    P(20, 13, 'SSsssddssssssssssssdsd');
+    P(21, 13, 'Sssddddsssssssssssdd');
+    P(22, 14, 'smmmmmmssssssssssd');
+    P(23, 14, 'ssLLLLssssssssssd');
+    P(24, 14, 'sssssssssssssddd');
+    P(25, 15, 'sssssssssssdd');
+    P(26, 16, 'sssssssdDd');
+    // neck in shadow
+    P(24, 29, 'dd'); P(25, 27, 'dddd'); P(26, 26, 'ddddd');
+    for (let y = 27; y < 33; y++) P(y, 24, 'Ddddddd');
+    // collar: open, points falling either side of the V
+    P(28, 30, 'WWW');
+    P(29, 30, 'WWWWW');
+    P(30, 22, 'WW      WWWWWW');
+    P(31, 21, 'WWWW   VWWWWWWWW');
+    P(32, 20, 'WWWWWW dVWWWWWWWWWW');
+    P(33, 19, 'WWWWWWWsdvWWWWWWWWWWWW');
+    P(34, 18, 'WWWWWWWWdvWWWWWWWWWWWWWW');
+    // shirt body: shoulders slope out, then fall
+    for (let y = 35; y < 64; y++) {
+      const L = Math.max(3, 18 - Math.round((y - 35) * 1.4)), R = Math.min(47, 42 + Math.round((y - 35) * 0.45));
+      P(y, L, 'W'.repeat(R - L));
+    }
+    for (let y = 34; y < 64; y++) { P(y, 27, 'v'); }
+    for (let y = 44; y < 64; y++) P(y, 38 + ((y - 44) >> 3), 'V');
+    // fist under the chin: knuckles up, fingers curled toward us, thumb on the right
+    P(26, 13, 'ff');
+    P(27, 12, 'ffffffffkff');
+    P(28, 11, 'fffffffffkff');
+    P(29, 11, 'kkkkkkkkkfkf');
+    P(30, 11, 'fffffffffkff');
+    P(31, 11, 'fffffffffkff');
+    P(32, 11, 'kkkkkkkkkfff');
+    P(33, 11, 'ffffffffffff');
+    P(34, 12, 'ffffffffff');
+    P(35, 13, 'kkkkkkkk');
+    // forearm, vertical, elbow resting on the sill below
+    for (let y = 36; y < 48; y++) P(y, 13, 'ffffff' + (y < 40 ? 'k' : 'fk'));
+    // rolled sleeve cuff, then the sleeve to the elbow
+    P(47, 11, 'vvvvvvvvvvvv');
+    P(48, 10, 'WWWWWWWWWWWWWV');
+    P(49, 10, 'WWWWWWWWWWWWWV');
+    P(50, 10, 'WWWWWWWWWWWWWV');
+    P(51, 10, 'vvvvvvvvvvvvvv');
+    P(52, 11, 'WWWWWWWWWWWWV');
+    P(53, 11, 'WWWWWWWWWWWWV');
+    P(54, 12, 'VVVVVVVVVVV');
+    // the body behind the raised arm falls into shade
+    for (let y = 36; y < 64; y++) for (let x = 3; x < 13; x++) if (g[y][x] === 'W') g[y][x] = y > 54 || x < 11 ? 'V' : 'W';
+    for (let y = 55; y < 64; y++) P(y, 10, 'VVVVVVVVVVVVVV');
+    // ear, cleanly shaped, hair tucked behind it
+    P(13, 33, 'shhhh');
+    P(14, 34, 'Ssh'); P(15, 34, 'sdsh'); P(16, 34, 'sdsh'); P(17, 34, 'sdsh'); P(18, 34, 'ssdh');
+    P(19, 34, 'sds'); P(20, 34, 'dd.'); P(21, 33, 'd..');
+    for (let y = 14; y < 19; y++) P(y, 38, '.');
+    // light on the forehead, cheek and nose
+    P(10, 17, 'SSS'); P(11, 16, 'SSSS'); P(20, 15, 'SS'); P(21, 15, 'S');
+    // quiff lift at the front
+    P(0, 14, 'hh'); P(1, 13, 'hjj');
+    // states
+    if (state.blink) { P(15, 14, 'ssss'); P(16, 14, 'bbbss'); P(17, 14, 'sssss'); P(15, 24, 'ssss'); P(16, 24, 'bbbbs'); P(17, 24, 'sssss'); }
+    if (state.glint != null) { const x = 14 + state.glint; if (x < 19) P(18, x, 'l'); const x2 = 24 + state.glint; if (x2 < 30) P(18, x2, 'l'); }
+    return finish(g, { stripe: 3, stripeOff: 1 });
+  }
+
+
+  /* ===== 2. SEATED ON THE PARAPET, from behind; head: 0 = looking at the sea, 1 = turning, 2 = smiling over his shoulder ===== */
+  function back(state = {}) {
+    const g = grid(46, 56), P = painter(g), turn = state.turn || 0, w = state.wind || 0;
+    // shirt body (back): sloped shoulders, torso tapering to the waist, yoke and pleat
+    const SH = [[19, 16, 28], [20, 13, 31], [21, 10, 34], [22, 8, 36], [23, 7, 37], [24, 6, 38]];
+    SH.forEach(([y, l, r]) => P(y, l, 'W'.repeat(r - l)));
+    for (let y = 25; y < 54; y++) {
+      const t = (y - 25) / 28, L = Math.round(8 + t * 2.5), R = Math.round(36 - t * 2.5) + (y > 32 && w && ((y + w) % 6 < 2) ? 1 : 0);
+      P(y, L, 'W'.repeat(R - L));
+    }
+    P(26, 10, 'vvvvvvvvvvvvvvvvvvvvvvvv');                    // yoke seam
+    for (let y = 27; y < 54; y++) P(y, 22, 'v');               // box pleat
+    for (let y = 31; y < 54; y++) P(y, 29 + ((y + w) % 6 < 3 ? 0 : 1), 'V');
+    for (let y = 36; y < 54; y++) P(y, 14 + ((y + w) % 8 < 4 ? 0 : 1), 'V');
+    // arms hanging slightly out from the body, sleeves rolled, hands on the parapet edge
+    for (let y = 24; y < 41; y++) { const o = Math.round((y - 24) / 8); P(y, 4 - o, 'WWWWW'); P(y, 36 + o, 'WWWWW'); P(y, 8 - o, 'v'); P(y, 36 + o, 'v'); }
+    P(41, 1, 'vvvvvvv'); P(42, 1, 'WWWWWWW'); P(43, 1, 'WWWWWWW'); P(44, 1, 'vvvvvvv');
+    P(41, 38, 'vvvvvvv'); P(42, 38, 'WWWWWWW'); P(43, 38, 'WWWWWWW'); P(44, 38, 'vvvvvvv');
+    for (let y = 45; y < 53; y++) { P(y, 2, 'Sssd'); P(y, 39, 'sssd'); }
+    P(53, 1, 'ffffff'); P(54, 1, 'kkkkkk'); P(53, 38, 'ffffff'); P(54, 38, 'kkkkkk');
+    // neck + collar band
+    P(16, 18, 'dddddddd'); P(17, 18, 'ssssssss'); P(18, 18, 'ssssssss');
+    P(19, 16, 'WWVVVVVVVVWWW'); P(20, 15, 'WW') ;
+    if (turn === 0) {
+      P(0, 17, 'hhhhhhhhh'); P(1, 15, 'hhhhhhhhhhhhh'); P(2, 14, 'hhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 13, 'hhhhhhhhhhhhhhhhh');
+      P(13, 14, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhhh');
+      P(16, 17, 'hhhhhhhhhh');
+      P(1, 18, 'jjjHH'); P(2, 16, 'HjjjjjHH'); P(3, 15, 'H  HHjjjH'); P(4, 20, 'HHjH'); P(5, 15, 'H');
+      // ears either side, glasses arms over them
+      P(7, 11, 'gg'); P(7, 30, 'gg');
+      P(8, 11, 'Ss'); P(9, 11, 'sd'); P(10, 11, 'sd'); P(11, 11, 'sd'); P(12, 12, 'd');
+      P(8, 30, 'ss'); P(9, 30, 'ds'); P(10, 30, 'ds'); P(11, 30, 'dd'); P(12, 30, 'd');
+    } else if (turn === 1) {
+      P(0, 16, 'hhhhhhhhh'); P(1, 14, 'hhhhhhhhhhhhhh'); P(2, 13, 'hhhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 12, 'hhhhhhhhhhhhhhhhhh');
+      P(13, 13, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhh'); P(16, 18, 'hhhhhhh');
+      P(1, 17, 'jjjHH'); P(2, 15, 'HjjjjjHH'); P(3, 14, 'H  HHjjjH'); P(4, 19, 'HHjH');
+      // cheek edge + glasses rim appearing, ear moving to the centre-right
+      P(6, 10, 'gggggggg'); P(7, 10, 'Gs'); P(8, 10, 'Ssss'); P(9, 10, 'sssss'); P(10, 11, 'ssss'); P(11, 11, 'sss'); P(12, 12, 'sd'); P(13, 13, 'd');
+      P(7, 26, 'ss'); P(8, 26, 'sd'); P(9, 26, 'sd'); P(10, 26, 'sd'); P(11, 26, 'dd');
+      P(16, 17, 'dd');
+    } else {
+      // turned to smile over his shoulder, like the rooftop photo
+      P(0, 10, 'hhhhhhh'); P(1, 9, 'hhhhhhhhhhhhh'); P(2, 8, 'hhhhhhhhhhhhhhhhhhh');
+      P(3, 8, 'hhhhhhhhhhhhhhhhhhhhh'); P(4, 8, 'hhhhhhhhhhhhhhhhhhhhhh'); P(5, 9, 'hhhhhhhhhhhhhhhhhhhhh'); P(6, 9, 'hhhhhhhhhhhhhhhhhhhhh');
+      P(7, 9, 'ssssssshhhhhhhhhhhhhh');
+      P(8, 8, 'bbbsssssshhhhhhhhhhhhh');
+      P(0, 11, 'jjH'); P(1, 10, 'jjjHH'); P(2, 9, 'H  jjjHHH'); P(3, 13, 'HHjjjjHH'); P(4, 10, 'H     HHHjjH'); P(5, 12, 'HH');
+      P(9, 7, 'gggggggggggggggggssshhhhh');
+      P(10, 7, 'gneogSssssssssssdssdshhhh');
+      P(11, 7, 'gsssgsssssssssssdssdshhh');
+      P(12, 6, 'SGGGGGsSSsssssssddsdhhh');
+      P(13, 5, 'SSsdssSSssssssssdddhhh');
+      P(14, 6, 'smmmdssssssssssddhh');
+      P(15, 7, 'TTTdsssssssssddhh');
+      P(16, 7, 'LLdssssssssddd h');
+      P(17, 8, 'sssssssssddd');
+      P(18, 9, 'dsssssddd');
+      P(19, 12, 'ddd');
+      P(16, 18, 'dddddd');
+    }
+    return finish(g, { stripe: 3, stripeOff: 0, shirtShade: 4 });
+  }
+
+  /* ===== 3. WALKING, side view facing right, 8 frames; procedural limbs on an authored head and torso ===== */
+  function line(g, x0, y0, x1, y1, ch, wpx = 2) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1) * 2;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n);
+      for (let k = 0; k < wpx; k++) if (g[y] && g[y][x + k] !== undefined) g[y][x + k] = ch;
+    }
+  }
+  function walk(state = {}) {
+    const g = grid(20, 38), P = painter(g), ph = (state.f || 0) / 8 * Math.PI * 2, bob = Math.abs(Math.sin(ph)) > .7 ? 0 : 1;
+    const legs = (sgn, ch) => {
+      const a = Math.sin(ph) * .5 * sgn, knee = Math.max(0, Math.cos(ph) * sgn) * .7;
+      const hx = 8, hy = 22 + bob, kx = hx + Math.sin(a) * 7, ky = hy + Math.cos(a) * 7;
+      const ax = kx + Math.sin(a - knee) * 7, ay = ky + Math.cos(a - knee) * 7;
+      line(g, hx, hy, kx, ky, ch, 3); line(g, kx, ky, ax, Math.min(35, ay), ch, 2);
+      const fy = Math.min(35, Math.round(ay)); P(fy, Math.round(ax) - 1, 'zzzz'); P(fy - 1, Math.round(ax), 'zz');
+    };
+    const arm = (sgn, ch, skin) => {
+      const a = -Math.sin(ph) * .55 * sgn, sx = 9, sy = 14 + bob;
+      const ex = sx + Math.sin(a) * 5, ey = sy + Math.cos(a) * 5, hx = ex + Math.sin(a + .35) * 5, hy = ey + Math.cos(a + .35) * 5;
+      line(g, sx, sy, ex, ey, ch, 3); line(g, ex, ey, hx, hy, skin, 2); P(Math.round(hy), Math.round(hx), skin + skin);
+      P(Math.round(ey), Math.round(ex), ch === 'W' ? 'vvv' : 'vv');
+    };
+    arm(-1, 'V', 'd');           // far arm, in shade
+    legs(-1, 'u');               // far leg
+    const b = bob;
+    // head (quiff to the front), glasses, face
+    P(0 + b, 7, 'hhhhh'); P(1 + b, 5, 'hhhhhhhhj'); P(2 + b, 4, 'hhhhhjjhhhh'); P(3 + b, 4, 'hhhhhhhhhhh');
+    P(4 + b, 4, 'hhhhhhsssss'); P(5 + b, 4, 'hhhsgggggggg'); P(6 + b, 4, 'hhssssssbeG'); P(7 + b, 4, 'hdsssssGGGGS');
+    P(8 + b, 5, 'dsssssssmms'); P(9 + b, 5, 'ddsssssssd'); P(10 + b, 6, 'ddssssd'); P(11 + b, 8, 'ddd');
+    // torso, tucked white shirt
+    P(12 + b, 6, 'WWWWWWW'); P(13 + b, 5, 'WWWWWWWWW');
+    for (let y = 14; y < 22; y++) P(y + b, 5, 'WWWWWWWWV');
+    P(22 + b, 5, 'tttttttt'); P(23 + b, 5, 'tttttttt');
+    legs(1, 't');                // near leg
+    arm(1, 'W', 's');            // near arm, in front
+    return finish(g, { stripe: 2, shirtShade: 2 });
+  }
+
+  function build(fn, state, pal) { return PX.sprite(rows(fn(state || {})), Object.assign({}, BASE, pal || {})); }
+  return { BASE, bust, back, walk, build, finish, grid, painter, rows };
+})();
+
+(() => {
+const { R, P, dith, bands, mix, clamp, ease, seg, rng, text } = PX;
+const cv = document.getElementById('cv'), stage = document.getElementById('stage'), foot = document.getElementById('foot'), slotEl = document.getElementById('slot');
+let s = 3, W = 0, H = 0, T = {}, lit, dim, sky, tmp, mk, textR = 0;
+const narrow = () => innerWidth <= 760;
+
+const LIT = { st1: '#f6dfb0', st2: '#e7bf86', st3: '#c48a55', st4: '#8f5a34', rec: '#4b2a1c', g1: '#fff0b0', g2: '#ffcf5a', g3: '#e09a2e', g4: '#9a5e1a', or1: '#ffa95a', or2: '#e8742c', or3: '#a8461c', win: '#ffd27a', dark: '#2b1a14' };
+const DIM = { st1: '#59546e', st2: '#4a4660', st3: '#3c3850', st4: '#2f2c42', rec: '#1c1b2b', g1: '#7c7266', g2: '#6b6152', g3: '#544c42', g4: '#3b3530', or1: '#5d4c58', or2: '#4d3f4c', or3: '#3a303e', win: '#3a3a52', dark: '#181726' };
+
+// one banded cylindrical spire with a stepped cap and gold kalash
+function spire(c, x, base, w, h, k, shade) {
+  // banded cylindrical spire, tapering in its upper third, round from cylinder shading; stepped cap + gold kalash
+  x = Math.round(x); w = Math.max(3, Math.round(w)); h = Math.round(h); const top = base - h;
+  const band = [k.st1, k.st1, k.st2, k.st2, k.rec, k.st3];
+  for (let y = top; y < base; y++) {
+    const u = (base - y) / h, inset = u > .78 ? 1 : 0, ww = w - inset * 2, xx = x + inset;
+    let col = band[(base - y) % 6]; if (shade) col = mix(col, k.rec, .22);
+    R(c, xx, y, ww, 1, col);
+    if (col !== k.rec) { P(c, xx, y, mix(col, '#ffffff', .22)); R(c, xx + Math.ceil(ww * .62), y, ww - Math.ceil(ww * .62), 1, mix(col, k.rec, .38)); P(c, xx + ww - 1, y, mix(col, k.rec, .6)); }
+  }
+  // stepped cap
+  R(c, x, top - 1, w, 1, k.st4); R(c, x + 1, top - 3, w - 2, 2, k.st2); R(c, x + 2, top - 5, Math.max(1, w - 4), 2, k.st3);
+  kalash(c, x + w / 2, top - 5, w >= 7 ? 2 : 1, k);
+}
+function kalash(c, cx, y, size, k) {
+  cx = Math.round(cx - .5);
+  if (size === 1) { R(c, cx - 1, y - 3, 3, 2, k.g2); P(c, cx - 1, y - 3, k.g1); R(c, cx, y - 5, 1, 2, k.g3); P(c, cx, y - 1, k.g4); return; }
+  if (size === 2) { R(c, cx - 1, y - 1, 3, 1, k.g4); R(c, cx - 2, y - 4, 5, 3, k.g2); R(c, cx - 1, y - 5, 3, 1, k.g2); P(c, cx - 2, y - 4, k.g1); P(c, cx - 1, y - 5, k.g1); R(c, cx, y - 8, 1, 3, k.g3); return; }
+  // the big one on the central shikhara
+  const rows = [3, 5, 7, 9, 9, 7, 5]; R(c, cx - 3, y - 1, 7, 1, k.g4);
+  rows.forEach((w, i) => { const yy = y - 2 - i; R(c, cx - (w >> 1), yy, w, 1, k.g2); P(c, cx - (w >> 1), yy, k.g1); P(c, cx + (w >> 1), yy, k.g3); });
+  R(c, cx - 2, y - 10, 5, 1, k.g3); R(c, cx - 1, y - 12, 3, 2, k.g2); R(c, cx, y - 15, 1, 3, k.g1);
+}
+function shikhara(c, cx, base, w, h, k) {
+  // larger stepped pyramidal shikhara, horizontal tiers narrowing upward, gold-plated
+  let y = base, ww = w; const tiers = Math.floor(h / 4);
+  for (let i = 0; i < tiers && ww > 6; i++) {
+    const x = Math.round(cx - ww / 2);
+    R(c, x, y - 4, ww, 4, k.g3); R(c, x, y - 4, ww, 1, k.g1); R(c, x, y - 3, ww, 1, k.g2); R(c, x, y - 1, ww, 1, k.g4);
+    R(c, x, y - 4, 1, 4, k.g1); R(c, x + ww - 2, y - 3, 2, 3, k.g4);
+    // small niches on alternate tiers
+    if (i % 2 === 0) for (let nx = x + 3; nx < x + ww - 3; nx += 5) R(c, nx, y - 3, 1, 2, k.g4);
+    y -= 4; ww -= i < 3 ? 4 : 3;
+  }
+  R(c, Math.round(cx - 4), y - 2, 8, 2, k.g3); R(c, Math.round(cx - 3), y - 3, 6, 1, k.g2);
+  kalash(c, cx, y - 3, 3, k);
+  return y - 18; // top of kalash
+}
+
+function temple(c, k, cx, gy, TW) {
+  const BH = Math.round(TW * 0.34), half = TW / 2;
+  // main body: two storeys of stone with arched windows and cornices
+  const bx = Math.round(cx - half), by = gy - BH;
+  R(c, bx, by, TW, BH, k.st2);
+  R(c, bx, by, TW, 2, k.st1); R(c, bx, by + 2, TW, 1, k.st3);
+  const mid = by + Math.round(BH * .48);
+  R(c, bx - 2, mid, TW + 4, 2, k.st1); R(c, bx - 2, mid + 2, TW + 4, 1, k.st4);
+  R(c, bx - 2, gy - 3, TW + 4, 3, k.st3);
+  for (const [y0, y1] of [[by + 5, mid - 2], [mid + 5, gy - 6]]) {
+    for (let x = bx + 4; x < bx + TW - 6; x += 9) {
+      const wh = y1 - y0; R(c, x, y0 + 2, 5, wh - 2, k.rec); R(c, x + 1, y0 + 1, 3, 1, k.rec); R(c, x + 1, y0 + 3, 3, wh - 4, k.win === LIT.win ? mix(k.win, k.rec, .35) : k.win);
+      R(c, x - 1, y0 + 2, 1, wh - 2, k.st1);
+    }
+  }
+  // side shading so it reads as a mass
+  R(c, bx + TW - 6, by, 6, BH, mix(k.st2, k.rec, .3));
+  // setback storey with the dark eave band and a row of small spire tips
+  const ux = Math.round(cx - TW * .43), uw = Math.round(TW * .86), uy = by - 8;
+  R(c, ux, uy, uw, 8, k.st2); R(c, ux, uy, uw, 1, k.st1);
+  R(c, ux - 3, by - 3, uw + 6, 3, k.dark); R(c, ux - 3, by - 3, uw + 6, 1, k.rec);
+  for (let x = ux - 1; x < ux + uw + 1; x += 4) { R(c, x, uy - 2, 2, 2, k.st3); P(c, x, uy - 3, k.g2); }
+  const crownBase = uy - 1;
+  // crown: back row of spires, central shikhara, front row of spires (near occludes far)
+  const back = [[.16, .40], [.34, .33], [.54, .27], [.74, .2]];
+  const front = [[.25, .37], [.44, .3], [.63, .24], [.82, .17], [.95, .12]];
+  back.forEach(([o, hh]) => { [-1, 1].forEach(sg => spire(c, cx + sg * o * half - TW * .025, crownBase, TW * .05, TW * hh, k, true)); });
+  const topY = shikhara(c, cx, crownBase, TW * .27, TW * .5, k);
+  front.forEach(([o, hh]) => { [-1, 1].forEach(sg => spire(c, cx + sg * o * half - TW * .03, crownBase + 2, TW * .06, TW * hh, k, false)); });
+  // front porch with the small orange stepped dome over the entrance
+  const pw = Math.round(TW * .3), px = Math.round(cx - pw / 2), ph = Math.round(BH * .55), py = gy - ph;
+  R(c, px, py, pw, ph, k.st1); R(c, px, py, pw, 2, '#ffffff' === k.st1 ? k.st1 : mix(k.st1, '#ffffff', .2)); R(c, px + pw - 3, py, 3, ph, k.st3);
+  const aw = Math.round(pw * .44), ax = Math.round(cx - aw / 2);
+  R(c, ax, py + 6, aw, ph - 6, k.rec); R(c, ax + 1, py + 5, aw - 2, 1, k.rec); R(c, ax + 2, py + 4, aw - 4, 1, k.rec);
+  R(c, ax + 2, py + 8, aw - 4, ph - 8, k.g3); R(c, ax + 3, py + 10, aw - 6, ph - 10, k.g2); // the gold glow from inside
+  let dy = py, dw = pw - 4;
+  for (let i = 0; i < 4 && dw > 4; i++) { const dx = Math.round(cx - dw / 2); R(c, dx, dy - 3, dw, 3, k.or2); R(c, dx, dy - 3, dw, 1, k.or1); R(c, dx + dw - 2, dy - 2, 2, 2, k.or3); dy -= 3; dw -= 6; }
+  kalash(c, cx, dy, 2, k);
+  T.porchY = py; T.porchX = px; T.pw = pw; T.flagTop = topY; T.by = by; T.uy = uy; T.bx = bx;
+}
+
+function city(c, k2, gy, cx, TW) {
+  // Prabhadevi's blocks crowding in behind and either side
+  const r = rng(13);
+  for (let x = Math.max(-4, textR); x < W + 4;) {
+    const bw = 10 + Math.floor(r() * 16), far = Math.abs(x + bw / 2 - cx) < TW * .62;
+    const bh = (far ? 30 : 46) + Math.floor(r() * (far ? 24 : 60));
+    const col = far ? '#16243a' : '#1b2a42';
+    R(c, x, gy - bh, bw, bh, col); R(c, x, gy - bh, bw, 1, '#22344f');
+    for (let wy = gy - bh + 3; wy < gy - 6; wy += 4) for (let wx = x + 2; wx < x + bw - 2; wx += 3) { const v = r(); if (v > .8) P(c, wx, wy, v > .93 ? '#f2a145' : '#b98a4e'); else if (v > .7) P(c, wx, wy, '#24395a'); }
+    x += bw + (r() > .6 ? 2 : 0);
+  }
+}
+
+function layout() {
+  s = narrow() ? 2 : Math.max(2, Math.min(5, Math.round(innerWidth / 480)));
+  const rs = stage.getBoundingClientRect();
+  W = Math.ceil(rs.width / s); H = Math.ceil(stage.offsetHeight / s);
+  cv.width = W; cv.height = H; cv.style.width = W * s + 'px'; cv.style.height = H * s + 'px';
+  const sr = slotEl.getBoundingClientRect();
+  const sx = (sr.left - rs.left) / s, sy = (sr.top - rs.top) / s, sw = sr.width / s, sh = sr.height / s;
+  const TW = Math.round(clamp(Math.min(sw * (narrow() ? .94 : .78), sh * .82), 100, 200) / 2) * 2;
+  const cx = Math.round(sx + sw / 2), gy = Math.round(sy + sh - Math.max(22, sh * .12));
+  T = { cx, gy, TW };
+  // sky + city, then the temple twice (dark and floodlit) for the scroll reveal
+  sky = document.createElement('canvas'); sky.width = W; sky.height = H; const k = sky.getContext('2d');
+  bands(k, 0, 0, W, H, ['#0a1424', '#0c1828', '#0e1c2e', '#112136', '#15283f', '#1b3048', '#22374f'], 3);
+  textR = narrow() ? 0 : Math.round((document.querySelector('.copy').getBoundingClientRect().right - rs.left) / s) + 6;
+  const rr = rng(3); for (let i = 0; i < W * H / 300; i++) { const x = Math.floor(rr() * W), y = Math.floor(rr() * gy * .7), b = rr() > .8; if (x < textR && !narrow()) continue; if (narrow() && y < (slotEl.offsetTop / s)) continue; P(k, x, y, b ? '#f3ecd8' : '#5f6a8a'); }
+  city(k, null, gy, cx, TW);
+  // street
+  R(k, 0, gy, W, H - gy, '#141c2c'); R(k, 0, gy, W, 1, '#2a3247');
+  for (let y = gy + 4; y < H; y += 5) for (let x = (y % 10 ? 0 : 7); x < W; x += 14) R(k, x, y, 8, 1, '#192236');
+  lit = document.createElement('canvas'); lit.width = W; lit.height = H;
+  dim = document.createElement('canvas'); dim.width = W; dim.height = H;
+  temple(lit.getContext('2d'), LIT, cx, gy, TW);
+  const keep = { ...T };
+  temple(dim.getContext('2d'), DIM, cx, gy, TW);
+  T = { ...T, ...keep };
+  // Marathi name over the porch, glowing gold
+  const lc = lit.getContext('2d'), fs = TW > 150 ? 12 : 10;
+  R(lc, cx - Math.round(TW * .3), T.by + 4, Math.round(TW * .6), fs + 4, '#4b2a1c');
+  text(lc, 'श्री सिद्धिविनायक', cx, T.by + 2, `600 ${fs}px "Noto Sans Devanagari"`, '#ffcf5a', 'center');
+  const dc = dim.getContext('2d'); R(dc, cx - Math.round(TW * .3), T.by + 4, Math.round(TW * .6), fs + 4, '#1c1b2b');
+  tmp = document.createElement('canvas'); tmp.width = W; tmp.height = H;
+  mk = document.createElement('canvas'); mk.width = W; mk.height = H;
+}
+const masks = []; { const B = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]; for (let l = 0; l <= 16; l++) { const m = document.createElement('canvas'); m.width = m.height = 4; const mc = m.getContext('2d'); mc.fillStyle = '#000'; for (let i = 0; i < 16; i++) if (B[i] < l) mc.fillRect(i % 4, i >> 2, 1, 1); masks.push(m); } }
+
+// people in the queue: tiny devotees, a marigold stall, diyas, the mooshak, incense
+const queue = Array.from({ length: 9 }, (_, i) => ({ c: ['#d8436a', '#e2a23a', '#f4ead8', '#3c7a5a', '#c8692e', '#7a4fa0', '#f4ead8', '#b83a3a', '#2f6d9a'][i], h: 9 + (i % 3) }));
+function person(c, x, gy, col, h, t, i) {
+  const sway = Math.round(Math.sin(t * .8 + i) * .5);
+  R(c, x, gy - h, 3, 2, '#1a1216'); R(c, x, gy - h + 2, 3, 1, '#6b4532');
+  R(c, x - 1 + sway, gy - h + 3, 5, h - 6, col); R(c, x - 1 + sway, gy - h + 3, 1, h - 6, mix(col, '#ffffff', .2));
+  R(c, x, gy - 3, 1, 3, '#2a2230'); R(c, x + 2, gy - 3, 1, 3, '#2a2230');
+}
+function stall(c, x, gy, t) {
+  // flower stall: lamp, awning, garlands of marigold and rose, modak boxes
+  R(c, x, gy - 26, 34, 2, '#7a2a20'); for (let i = 0; i < 34; i += 4) R(c, x + i, gy - 24, 2, 2, '#e8c23c');
+  R(c, x + 1, gy - 24, 1, 24, '#3a2a22'); R(c, x + 32, gy - 24, 1, 24, '#3a2a22');
+  for (let g = 0; g < 7; g++) { const gx = x + 4 + g * 4; for (let k = 0; k < 9; k++) P(c, gx + (k % 2), gy - 22 + k, g % 3 === 2 ? (k % 2 ? '#d8436a' : '#f2f0e6') : (k % 2 ? '#ffb02e' : '#f08a1c')); }
+  R(c, x + 2, gy - 9, 30, 9, '#4a2f24'); R(c, x + 2, gy - 9, 30, 1, '#6a4534');
+  for (let b = 0; b < 4; b++) { R(c, x + 6 + b * 6, gy - 13, 5, 4, b % 2 ? '#f4d2dc' : '#fff4e6'); R(c, x + 6 + b * 6, gy - 13, 5, 1, '#e86a8a'); }
+  for (let k = 0; k < 6; k++) { P(c, x + 5 + k * 4, gy - 10, '#ffb02e'); P(c, x + 6 + k * 4, gy - 10, '#f08a1c'); }
+  const fl = PX.RM ? 1 : (Math.sin(t * 9) > .9 ? .7 : 1);
+  [[18, .05], [10, .08], [5, .14]].forEach(([r, a]) => { c.fillStyle = `rgba(255,200,110,${a * fl})`; for (let dy = -r; dy <= r; dy++) { const w = Math.round(Math.sqrt(r * r - dy * dy)); c.fillRect(x + 17 - w, gy - 21 + dy, w * 2, 1); } });
+  R(c, x + 16, gy - 22, 3, 2, '#fff2cf');
+}
+function diya(c, x, y, t, i) {
+  R(c, x - 1, y, 4, 1, '#8a4a22'); R(c, x, y + 1, 2, 1, '#6a3418');
+  const h = PX.RM ? 1 : (Math.sin(t * 11 + i * 3) > 0 ? 1 : 0);
+  P(c, x + 1, y - 1, '#ffd36a'); P(c, x + 1, y - 2 - h, '#fff2b0');
+  c.fillStyle = 'rgba(255,190,90,0.18)'; c.fillRect(x - 2, y - 4, 6, 5);
+}
+function mooshak(c, x, gy) {
+  R(c, x - 3, gy - 4, 9, 4, '#3a3448'); R(c, x - 3, gy - 4, 9, 1, '#4a4458');
+  R(c, x - 2, gy - 9, 6, 5, '#c79a4a'); R(c, x + 3, gy - 10, 3, 3, '#c79a4a'); P(c, x + 6, gy - 9, '#e8c06a'); P(c, x + 3, gy - 11, '#e8c06a'); R(c, x - 3, gy - 6, 1, 2, '#9a6a2a'); P(c, x - 2, gy - 9, '#e8c06a');
+}
+function flag(c, x, y, t) {
+  // pole from the kalash, saffron bhagwa flag (two stacked triangles), moving in the sea breeze
+  R(c, x, y - 22, 1, 22, '#c9a25a');
+  const ph = PX.RM ? 0 : Math.floor(t * 3) % 4, wv = [0, 1, 0, -1][ph];
+  for (let j = 0; j < 9; j++) { const len = Math.round(14 * (1 - Math.abs(j - 4) / 5)) + (j > 4 ? wv : 0); R(c, x + 1, y - 22 + j, Math.max(1, len), 1, j % 4 === 0 ? '#ff9a2e' : '#f27a1a'); }
+  for (let j = 0; j < 7; j++) { const len = Math.round(10 * (1 - Math.abs(j - 3) / 4)) - wv; R(c, x + 1, y - 13 + j, Math.max(1, len), 1, '#e86812'); }
+}
+
+function frame(t) {
+  const c = cv.getContext('2d');
+  // floodlights come on with scroll: desktop by pin progress, phone as the temple scrolls into view
+  let p;
+  if (narrow()) { const r = slotEl.getBoundingClientRect(); p = clamp((innerHeight - r.top) / (r.height * .9)); }
+  else p = clamp(PX.prog(foot) / .7);
+  c.drawImage(sky, 0, 0);
+  // reveal: the lit temple dithers in from the ground up
+  c.drawImage(dim, 0, 0);
+  const tc = tmp.getContext('2d'); tc.globalCompositeOperation = 'source-over'; tc.clearRect(0, 0, W, H); tc.drawImage(lit, 0, 0);
+  const mc = mk.getContext('2d'); mc.clearRect(0, 0, W, H);
+  const top = T.flagTop - 10, span = T.gy - top;
+  for (let y = 0; y < H; y += 2) { const u = clamp((T.gy - y) / span); const lvl = Math.round(clamp((p * 1.6 - u * .6) / .4) * 16); if (!lvl) continue; mc.fillStyle = mc.createPattern(masks[lvl], 'repeat'); mc.fillRect(0, y, W, 2); }
+  tc.globalCompositeOperation = 'destination-in'; tc.drawImage(mk, 0, 0);
+  c.drawImage(tmp, 0, 0);
+  // floodlight wash on the street + gold halo when lit
+  if (p > .2) { const a = clamp((p - .2) / .8); [[T.TW * .75, .05], [T.TW * .55, .05]].forEach(([r, al]) => { c.fillStyle = `rgba(255,190,90,${(al * a).toFixed(3)})`; for (let dy = -r * .5; dy <= 0; dy++) { const w = Math.round(r * Math.sqrt(1 - (dy / (r * .5)) ** 2)); c.fillRect(T.cx - w, T.gy + dy, w * 2, 1); } }); }
+  if (p > .75) flag(c, T.cx, T.flagTop + 2, t); else R(c, T.cx, T.flagTop - 20, 1, 22, '#4a4660');
+  // street life
+  const gy = T.gy;
+  stall(c, Math.round(T.cx - T.TW * .5 - 44), gy, t);
+  queue.forEach((q, i) => person(c, Math.round(T.porchX - 8 - i * 6), gy, q.c, q.h, t, i));
+  mooshak(c, Math.round(T.porchX + T.pw + 6), gy);
+  for (let i = 0; i < 6; i++) diya(c, Math.round(T.porchX + 3 + i * (T.pw - 6) / 5), gy - 1, t, i);
+  // incense smoke drifting up from the entrance
+  if (!PX.RM) for (let i = 0; i < 18; i++) { const ph = (t * .25 + i / 18) % 1; const x = Math.round(T.cx + Math.sin(ph * 7 + i) * (2 + ph * 8) + ph * 10), y = Math.round(T.porchY - 2 - ph * 40); if (ph < .9) P(c, x, y, `rgba(220,214,230,${(0.35 * (1 - ph)).toFixed(2)})`); }
+  // a night bird crossing high up, away from the text
+  const bx = Math.round(((t * 7) % (W * .55)) + W * (narrow() ? 0 : .45)), byy = Math.round(H * .1 + Math.sin(t) * 3); const wg = Math.floor(t * 4) % 2;
+  P(c, bx, byy, '#3a4a6a'); P(c, bx - 1, byy - wg, '#3a4a6a'); P(c, bx + 1, byy - wg, '#3a4a6a');
+}
+
+function clock() {
+  const s = new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true }).format(new Date()).replace(/\s?(am|pm)/i, (m, a) => ' ' + a.toLowerCase());
+  document.getElementById('clock').textContent = `It's ${s} in Mumbai.`;
+}
+clock(); setInterval(clock, 15000);
+addEventListener('resize', layout);
+layout();
+document.fonts && document.fonts.load('600 12px "Noto Sans Devanagari"', 'श्री सिद्धिविनायक').then(layout);
+document.fonts && document.fonts.ready.then(layout);
+PX.loop(t => frame(t));
+})();
+</script>
+</body>
+</html>

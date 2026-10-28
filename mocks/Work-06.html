@@ -1,0 +1,348 @@
+<!-- Direction 06: Passing train — an AC rake slides out of Churchgate at dusk; every lit window carries one project, and the platform holds the caption. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work: Passing Train</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d1a2b; --navy2:#13253b; --sodium:#f2a145; --paper:#efe8da; --sea:#2c6d8c;
+  --ink:#efe8da; --dim:rgba(239,232,218,.68);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--ink)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.track{height:820vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--navy)}
+.bg,.fg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bg{will-change:transform}
+
+/* ---- text zone ---- */
+.zone{position:absolute;left:clamp(24px,5.5vw,88px);top:clamp(70px,11vh,110px);width:min(760px,86vw);z-index:6;pointer-events:none}
+.zone > *{pointer-events:auto}
+.intro,.cap{position:absolute;left:0;top:0;width:100%;transition:opacity .7s ease, transform .7s ease}
+h1,h2{font-family:"Newsreader",serif;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(38px,4.3vw,64px);line-height:1.02;max-width:12ch}
+.intro p{margin-top:18px;font-size:17px;line-height:1.5;color:var(--dim);max-width:40ch}
+.cap{opacity:0;transform:translateY(10px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 48px;pointer-events:none}
+.cap.on{opacity:1;transform:none;pointer-events:auto}
+.kind{font-size:15px;color:var(--sodium);letter-spacing:.01em}
+.cap h2{font-size:clamp(34px,3.6vw,54px);line-height:1;margin-top:6px}
+.head{font-family:"Newsreader",serif;font-style:italic;font-size:clamp(19px,1.6vw,24px);line-height:1.25;margin-top:10px;max-width:22ch}
+.line{font-size:16px;line-height:1.5;color:var(--dim);margin-top:12px;max-width:40ch}
+.links{margin-top:14px;display:flex;gap:22px;font-size:15px}
+.links a{text-decoration:none;color:var(--sodium);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .35s ease;padding-bottom:2px}
+.links a:hover{background-size:100% 1px}
+.links span{color:var(--dim)}
+.facts{list-style:none;font-size:15px;line-height:1.45;color:var(--dim);padding-top:34px;max-width:36ch}
+.facts li{padding:6px 0 6px 16px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:1px;background:var(--sodium)}
+.facts .tech{color:rgba(239,232,218,.5);font-size:14px}
+
+/* ---- train ---- */
+.rail{position:absolute;left:0;bottom:calc(var(--plat) - 18px);height:0;width:100%;z-index:3}
+.train{position:absolute;left:0;bottom:0;display:flex;align-items:flex-end;transform-origin:0 100%;will-change:transform}
+.cab{width:300px;height:360px;position:relative;flex:none}
+.coach{width:620px;height:360px;position:relative;flex:none;margin-left:14px}
+.coach::before{ /* coupler gap */ content:"";position:absolute;left:-14px;bottom:70px;width:14px;height:200px;background:#1b2433}
+.body{position:absolute;inset:26px 0 0 0;border-radius:6px 6px 2px 2px;
+  background:linear-gradient(180deg,#f3ede2 0%,#e9e2d4 52%,#d9d1c1 100%);overflow:hidden}
+.body::after{ /* sodium light raking from the canopy lamps */
+  content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -20%,rgba(242,161,69,.28),rgba(242,161,69,0) 60%),linear-gradient(180deg,rgba(13,26,43,0) 50%,rgba(13,26,43,.32));pointer-events:none}
+.roof{position:absolute;left:8px;right:8px;top:8px;height:24px;border-radius:12px 12px 0 0;background:linear-gradient(180deg,#b9b6ae,#9c9a94)}
+.ac{position:absolute;top:0;height:14px;width:112px;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#c9c6bd,#a5a39c)}
+.ac::after{content:"";position:absolute;left:12px;right:12px;top:5px;height:3px;background:repeating-linear-gradient(90deg,#7d7b76 0 3px,transparent 3px 7px)}
+.band{position:absolute;left:0;right:0;top:272px;height:28px;background:#1f4f8f}
+.band::after{content:"";position:absolute;left:0;right:0;top:8px;height:3px;background:#c4362d}
+.skirt{position:absolute;left:0;right:0;top:300px;bottom:0;background:linear-gradient(180deg,#152238,#0c1424)}
+.door{position:absolute;top:30px;width:62px;height:242px;background:linear-gradient(180deg,#e5ddce,#d4cbb9)}
+.door::before,.door::after{content:"";position:absolute;top:20px;width:20px;height:96px;border-radius:3px;background:linear-gradient(170deg,#3e4c5c,#1b2636)}
+.door::before{left:7px}.door::after{right:7px}
+.door i{position:absolute;left:30px;top:0;bottom:0;width:2px;background:#a79e8d}
+.door.l{left:18px}.door.r{right:18px}
+.win{position:absolute;left:118px;right:118px;top:50px;height:240px;border-radius:12px;overflow:hidden;cursor:pointer;
+  background:#0b1320;display:block;text-decoration:none}
+.win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1), filter .6s ease;filter:saturate(.92) brightness(var(--lit,.55))}
+.win .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,48,70,.55),rgba(13,26,43,.25));mix-blend-mode:multiply;transition:opacity .6s ease}
+.win .glare{position:absolute;inset:-40% -20%;background:linear-gradient(105deg,transparent 38%,rgba(255,236,205,.16) 44%,rgba(255,236,205,.05) 50%,transparent 56%);transform:translateX(var(--gx,0));pointer-events:none}
+.win .frame{position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 5px #2b3646, inset 0 0 0 7px #a9a294;pointer-events:none}
+.win:hover img{transform:scale(1.035);filter:saturate(1) brightness(1)}
+.win:hover .tint{opacity:.35}
+.win:focus-visible{outline:2px solid var(--sodium);outline-offset:4px}
+.bogie{position:absolute;bottom:-34px;width:150px;height:38px;background:#0a0f19;border-radius:4px}
+.bogie.l{left:40px}.bogie.r{right:40px}
+
+/* cab: raked front */
+.cabbody{position:absolute;left:0;bottom:0;width:300px;height:334px}
+.cab .led{position:absolute;left:96px;top:82px;width:150px;height:30px;background:#0a0d12;border-radius:3px;
+  font:600 15px/30px "Hanken Grotesk",sans-serif;letter-spacing:.24em;color:#ffb347;text-align:center;
+  text-shadow:0 0 6px rgba(255,170,60,.85);
+  -webkit-mask:radial-gradient(circle at 50% 50%,#000 58%,rgba(0,0,0,.55) 60%) 0 0/3px 3px}
+
+/* platform */
+.platform{position:absolute;left:0;right:0;bottom:0;height:var(--plat);z-index:4;pointer-events:none}
+.platform svg{width:100%;height:100%;display:block}
+.stage{--plat:clamp(96px,14vh,140px)}
+
+.hint{position:absolute;right:clamp(24px,5.5vw,88px);bottom:calc(var(--plat) * .38);z-index:6;font-size:14px;color:rgba(239,232,218,.55);transition:opacity .6s}
+.after{height:40vh;background:var(--navy)}
+
+@media (max-width:760px){
+  .zone{top:64px;width:calc(100vw - 48px)}
+  .cap{grid-template-columns:1fr}
+  .facts{padding-top:10px;font-size:14px}
+  .facts li{padding:3px 0 3px 16px}
+  .facts li::before{top:12px}
+  .facts .tech{display:none}
+  h1{font-size:40px}
+  .zone{top:52px}
+  .cap h2{font-size:32px}
+  .head{font-size:19px;margin-top:6px}
+  .line{font-size:15px;margin-top:8px}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .intro,.cap,.win img{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage" id="stage">
+    <!-- far scene: dusk over Churchgate, WR HQ dome, Eros tower, Wankhede floodlights, canopy -->
+    <svg class="bg" id="bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0b1626"/>
+          <stop offset=".42" stop-color="#1a2c45"/>
+          <stop offset=".66" stop-color="#5a4a52"/>
+          <stop offset=".8" stop-color="#b97a52"/>
+          <stop offset=".9" stop-color="#e6a161"/>
+        </linearGradient>
+        <radialGradient id="flood" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff4dc" stop-opacity=".95"/>
+          <stop offset=".25" stop-color="#ffe2b0" stop-opacity=".35"/>
+          <stop offset="1" stop-color="#ffe2b0" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="lampGlow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#ffc06a" stop-opacity=".7"/>
+          <stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .09 0"/></filter>
+        <filter id="haze"><feGaussianBlur stdDeviation="2.2"/></filter>
+      </defs>
+      <rect width="1440" height="900" fill="url(#sky)"/>
+      <g transform="translate(0 -96)">
+      <!-- Wankhede floodlight towers, far right -->
+      <g opacity=".9">
+        <g transform="translate(1210 470)">
+          <path d="M-2 0 L-8 300 L8 300 L2 0Z" fill="#26283a"/>
+          <rect x="-34" y="-30" width="68" height="34" fill="#2f2f3e"/>
+          <g fill="#fff6e2"><circle cx="-24" cy="-22" r="3"/><circle cx="-12" cy="-22" r="3"/><circle cx="0" cy="-22" r="3"/><circle cx="12" cy="-22" r="3"/><circle cx="24" cy="-22" r="3"/><circle cx="-24" cy="-8" r="3"/><circle cx="-12" cy="-8" r="3"/><circle cx="0" cy="-8" r="3"/><circle cx="12" cy="-8" r="3"/><circle cx="24" cy="-8" r="3"/></g>
+          <ellipse cx="0" cy="-14" rx="120" ry="90" fill="url(#flood)" class="breath"/>
+        </g>
+        <g transform="translate(1360 500) scale(.8)">
+          <path d="M-2 0 L-8 320 L8 320 L2 0Z" fill="#26283a"/>
+          <rect x="-34" y="-30" width="68" height="34" fill="#2f2f3e"/>
+          <g fill="#fff6e2"><circle cx="-24" cy="-22" r="3"/><circle cx="-12" cy="-22" r="3"/><circle cx="0" cy="-22" r="3"/><circle cx="12" cy="-22" r="3"/><circle cx="24" cy="-22" r="3"/><circle cx="-24" cy="-8" r="3"/><circle cx="-12" cy="-8" r="3"/><circle cx="0" cy="-8" r="3"/><circle cx="12" cy="-8" r="3"/><circle cx="24" cy="-8" r="3"/></g>
+          <ellipse cx="0" cy="-14" rx="120" ry="90" fill="url(#flood)"/>
+        </g>
+      </g>
+      <!-- WR HQ: Gothic block with domed central tower -->
+      <g fill="#2a2a3b">
+        <path d="M770 640 V560 h40 v-26 l14 -18 14 18 v26 h60 v-40 h22 v-36 c0 -40 22 -64 42 -74 v-22 h6 v22 c20 10 42 34 42 74 v36 h22 v40 h60 v-26 l14 -18 14 18 v26 h40 v80Z"/>
+        <path d="M957 380 l6 -26 6 26Z"/>
+      </g>
+      <g fill="#f2b468" opacity=".55">
+        <rect x="826" y="584" width="5" height="10"/><rect x="846" y="584" width="5" height="10"/><rect x="900" y="574" width="5" height="10"/><rect x="1024" y="574" width="5" height="10"/><rect x="1080" y="584" width="5" height="10"/><rect x="1100" y="584" width="5" height="10"/><rect x="960" y="540" width="6" height="12"/>
+      </g>
+      <!-- Eros: Art Deco stepped tower, left -->
+      <g fill="#2f2c3a">
+        <path d="M250 660 V560 h70 v-30 h18 v-28 h14 v-30 h12 v-20 h10 v20 h12 v30 h14 v28 h18 v30 h70 v100Z"/>
+      </g>
+      <g stroke="#3d394a" stroke-width="2"><path d="M352 520 V650 M362 520 V650 M372 520 V650"/></g>
+      <!-- far trees / rooftops band -->
+      <path d="M0 650 C80 630 120 640 180 628 C240 618 300 640 380 630 C460 620 520 640 600 632 C700 620 760 640 860 636 C960 630 1040 644 1140 634 C1240 626 1320 640 1440 630 V1000 H0Z" fill="#1f2333"/>
+      <rect x="0" y="790" width="1440" height="210" fill="#26262c"/><rect x="0" y="790" width="1440" height="4" fill="#9c8130"/>
+      <!-- far side canopy columns (green steel), behind the train -->
+      <g fill="#24413a">
+        <rect x="90" y="560" width="10" height="232"/><rect x="450" y="560" width="10" height="232"/><rect x="810" y="560" width="10" height="232"/><rect x="1170" y="560" width="10" height="232"/>
+      </g>
+      <path d="M0 548 H1440 V566 H0Z" fill="#1a2a2a"/>
+      <g fill="url(#lampGlow)"><ellipse cx="270" cy="572" rx="60" ry="18"/><ellipse cx="630" cy="572" rx="60" ry="18"/><ellipse cx="990" cy="572" rx="60" ry="18"/><ellipse cx="1350" cy="572" rx="60" ry="18"/></g>
+      <!-- catenary -->
+      <g stroke="#0f1a28" stroke-width="1.6" fill="none" opacity=".9">
+        <path d="M0 470 Q360 486 720 470 T1440 470"/><path d="M0 482 Q360 496 720 482 T1440 482"/>
+      </g>
+      <g stroke="#0f1a28" stroke-width="5"><path d="M60 410 V560 M720 410 V560 M1380 410 V560"/></g>
+      <g stroke="#0f1a28" stroke-width="3"><path d="M60 440 H160 M720 440 H820 M1380 440 H1440"/></g>
+      </g>
+      <rect width="1440" height="900" filter="url(#grain)"/>
+    </svg>
+
+    <!-- near canopy overhead -->
+    <svg class="fg" style="z-index:5;pointer-events:none" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="roofG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#07101b"/><stop offset="1" stop-color="#0d1a2b"/></linearGradient>
+        <radialGradient id="tube" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path d="M0 0 H1440 V38 H0Z" fill="url(#roofG)"/>
+      <g fill="#0a1422"><path d="M0 38 H1440 V46 H0Z"/></g>
+      <g class="tubes">
+        <rect x="150" y="40" width="120" height="5" rx="2" fill="#ffe2b0"/><path d="M120 46 H300 L400 230 H20Z" fill="url(#tube)" opacity=".2"/>
+        <rect x="690" y="40" width="120" height="5" rx="2" fill="#ffe2b0"/><path d="M660 46 H840 L940 230 H560Z" fill="url(#tube)" opacity=".2"/>
+        <rect x="1230" y="40" width="120" height="5" rx="2" fill="#ffe2b0"/><path d="M1200 46 H1380 L1480 230 H1100Z" fill="url(#tube)" opacity=".2"/>
+      </g>
+    </svg>
+
+    <div class="zone" id="zone">
+      <div class="intro" id="intro">
+        <h1>Things I've built and shipped</h1>
+        <p>Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+      </div>
+    </div>
+
+    <div class="rail" id="rail"><div class="train" id="train"></div></div>
+
+    <div class="platform">
+      <svg viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="pf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3530"/><stop offset="1" stop-color="#15161a"/></linearGradient>
+          <filter id="pg"><feTurbulence type="fractalNoise" baseFrequency="1.4 .3" numOctaves="2"/><feColorMatrix values="0 0 0 0 .4  0 0 0 0 .36  0 0 0 0 .3  0 0 0 .22 0"/></filter>
+        </defs>
+        <rect width="1440" height="140" fill="url(#pf)"/>
+        <rect width="1440" height="10" fill="#e3b532"/>
+        <rect y="10" width="1440" height="3" fill="#8a6c1a"/>
+        <rect width="1440" height="140" filter="url(#pg)"/>
+      </svg>
+    </div>
+    <div class="hint" id="hint">Scroll, the train is leaving</div>
+  </div>
+</div>
+
+<script>
+const P = [
+ {s:"auctionxi",t:"AuctionXI",k:"My own product, 2026",h:"Live player auctions for any sport",l:"Real-time bidding, broadcast graphics and YouTube overlays, with no production team.",links:[["Live","https://auction-xi.com"]],
+  f:["Every bid lands on every screen at once, and the money always adds up.","Twenty broadcast scenes for the projector and the stream.","Auction-ready in under 20 minutes."],tech:"Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth"},
+ {s:"texagent",t:"TexAgent",k:"Client work, 2026",h:"A bahi-khata for textile brokers",l:"Bills, brokerage and follow-ups in one place, instead of a paper book.",links:[],priv:"Private client project"},
+ {s:"cachekaro",t:"Cache Karo",k:"Command-line tool, 2026",h:"Find the cache hogs, get the space back",l:"Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.",links:[["PyPI","https://pypi.org/project/cachekaro/"],["Source","https://github.com/Mohit-Bagri/cachekaro"]]},
+ {s:"aether",t:"Aether",k:"AI web app, 2025",h:"News, YouTube and Reddit in one conversation",l:"An assistant with 17+ tones, and an NLP pipeline that scores every article first.",links:[["Source","https://github.com/Mohit-Bagri/aether-news-trends"]]},
+ {s:"flowledger",t:"FlowLedger",k:"Mobile app, 2026",h:"Every rupee in, every rupee out",l:"A local-first finance app in Flutter that scans receipts and catches money leaks.",links:[["Source","https://github.com/Mohit-Bagri/flowledger"]]},
+ {s:"shuttle",t:"Space Shuttle VR",k:"VR game, 2024",h:"Fix the shuttle, then fly it out",l:"A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.",links:[["Source","https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game"]]},
+ {s:"velotype",t:"VeloType",k:"Web app, 2026",h:"A typing test built for feel",l:"Themes, modes and live words per minute, with a caret that keeps up.",links:[["Live","https://velo-type.vercel.app"]]},
+ {s:"windmill",t:"Windmill VR",k:"VR app, 2025",h:"Breathe with the windmill",l:"A calm VR app for Meta Quest, paced to a four-part breath.",links:[["Source","https://github.com/Mohit-Bagri/windmill-vr"]]}
+];
+const train = document.getElementById('train'), zone = document.getElementById('zone');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// cab (raked front, leading the rake out to the left)
+train.insertAdjacentHTML('beforeend', `
+<div class="cab"><svg class="cabbody" viewBox="0 0 300 334" aria-hidden="true">
+  <defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3ede2"/><stop offset=".55" stop-color="#e6dfd0"/><stop offset="1" stop-color="#cfc6b4"/></linearGradient>
+  <linearGradient id="ws" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b4a5c"/><stop offset=".6" stop-color="#18222f"/><stop offset="1" stop-color="#0d141e"/></linearGradient>
+  <radialGradient id="hl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fffbe9"/><stop offset=".3" stop-color="#ffe9b6" stop-opacity=".7"/><stop offset="1" stop-color="#ffe2a0" stop-opacity="0"/></radialGradient></defs>
+  <path d="M300 8 H120 C78 8 52 24 36 60 L6 200 C2 220 2 240 4 260 H300Z" fill="url(#cb)"/>
+  <path d="M300 230 H4 V260 H300Z" fill="#1f4f8f"/><rect x="4" y="238" width="296" height="3" fill="#c4362d"/>
+  <path d="M300 260 H4 C4 290 10 310 22 334 H300Z" fill="#111c2f"/>
+  <path d="M120 24 H240 V112 H70 C58 112 52 104 56 92 L72 46 C80 30 98 24 120 24Z" fill="url(#ws)"/>
+  <path d="M86 40 L120 40 L92 100 L68 100Z" fill="#fff" opacity=".07"/>
+  
+  <rect x="258" y="20" width="34" height="210" fill="#ddd4c3"/><rect x="264" y="40" width="22" height="70" rx="3" fill="#25313f"/>
+  <ellipse cx="40" cy="214" rx="9" ry="6" fill="#fffbe9"/><ellipse cx="40" cy="214" rx="70" ry="44" fill="url(#hl)" class="headlamp"/>
+  <rect x="120" y="0" width="140" height="10" rx="4" fill="#a8a59d"/>
+  <path d="M160 0 L190 -40 L220 0" stroke="#38404b" stroke-width="3" fill="none"/>
+</svg><div class="led">BORIVALI</div>
+<div class="bogie l" style="left:110px;width:140px"></div></div>`);
+
+P.forEach((p,i)=>{
+  train.insertAdjacentHTML('beforeend', `
+  <div class="coach" data-i="${i}">
+    <div class="roof"><div class="ac" style="left:90px"></div><div class="ac" style="right:90px"></div></div>
+    <div class="body">
+      <div class="door l"><i></i></div><div class="door r"><i></i></div>
+      <div class="band"></div><div class="skirt"></div>
+    </div>
+    <a class="win" href="${p.links[0]?p.links[0][1]:'#'}" ${p.links[0]?'target="_blank" rel="noopener"':''} aria-label="${p.t}">
+      <img src="media/${p.s}.png" alt="${p.t}: ${p.h}" loading="${i<2?'eager':'lazy'}" ${p.s==='texagent'?'style="object-position:50% 50%;transform:scale(1.6)"':''}>
+      <span class="tint"></span><span class="glare"></span><span class="frame"></span>
+    </a>
+    <div class="bogie l"></div><div class="bogie r"></div>
+  </div>`);
+  const links = p.links.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n} &rarr;</a>`).join('') + (p.priv?`<span>${p.priv}</span>`:'');
+  zone.insertAdjacentHTML('beforeend', `
+  <div class="cap" data-i="${i}">
+    <div><div class="kind">${p.k}</div><h2>${p.t}</h2><div class="head">${p.h}</div><p class="line">${p.l}</p><div class="links">${links}</div></div>
+    ${p.f?`<ul class="facts">${p.f.map(x=>`<li>${x}</li>`).join('')}<li class="tech">${p.tech}</li></ul>`:''}
+  </div>`);
+});
+
+const caps=[...zone.querySelectorAll('.cap')], wins=[...train.querySelectorAll('.win')], coaches=[...train.querySelectorAll('.coach')];
+const intro=document.getElementById('intro'), hint=document.getElementById('hint'), track=document.getElementById('track'), bg=document.getElementById('bg');
+let S=1, W=innerWidth, H=innerHeight, active=-2, centers=[];
+function layout(){
+  W=innerWidth;H=innerHeight;
+  const avail = H - Math.min(140,Math.max(96,H*.14)) - (W<760? 360 : 400); // room under the text zone
+  S = W<760 ? Math.min(1,(W-36)/384) : Math.max(.6, Math.min(1.12, avail/330, W/1100));
+  train.style.setProperty('--s',S);
+  centers = coaches.map(c=>c.offsetLeft + 310);
+}
+layout(); addEventListener('resize',()=>{layout();tick(true)});
+
+let cur=0, target=0;
+function prog(){
+  const r=track.getBoundingClientRect(); const len=track.offsetHeight-H;
+  return Math.min(1,Math.max(0,-r.top/len));
+}
+function tick(force){
+  const p = prog();
+  // stops: intro (cab + first window enter), then each window centred, then rake leaves
+  const startX = W*.98;                          // train starts just entering from right
+  const firstX = W*.5 - centers[0]*S;            // AuctionXI window centred
+  const lastX  = W*.5 - centers[7]*S;
+  const endX   = -(coaches[7].offsetLeft+700)*S - 40;
+  let x;
+  if(p<.1){ const e=p/.1; x = startX + (firstX-startX)*(1-Math.pow(1-e,3)); }
+  else if(p<.9){
+    // dwell on each window: ease between centres
+    const q=(p-.1)/.8*7, i=Math.floor(q), f=q-i;
+    const ef = f<.35?0:f>.85?1:((f-.35)/.5);
+    const s = ef*ef*(3-2*ef);
+    const a = W*.5 - centers[Math.min(7,i)]*S, b = W*.5 - centers[Math.min(7,i+1)]*S;
+    x = a + (b-a)*s;
+  } else { const e=(p-.9)/.1; x = lastX + (endX-lastX)*e*e; }
+  target = x;
+  if(reduce || force) cur = target;
+  cur += (target-cur)*.14;
+  train.style.transform = `translate3d(${cur}px,0,0) scale(${S})`;
+  bg.style.transform = `translate3d(${(-p*40).toFixed(1)}px,0,0) scale(1.08)`;
+
+  // which window is centred
+  let best=-1, bd=1e9;
+  coaches.forEach((c,i)=>{
+    const cx = cur + centers[i]*S, d=Math.abs(cx-W*.5);
+    if(d<bd){bd=d;best=i}
+    const lit = Math.max(.42, 1 - d/(W*.55)*.6);
+    wins[i].style.setProperty('--lit', lit.toFixed(3));
+    wins[i].style.setProperty('--gx', ((cx-W*.5)/W*-160).toFixed(1)+'%');
+  });
+  const showIntro = p<.06;
+  const idx = showIntro ? -1 : (bd < 640*S*.6 ? best : -1);
+  if(idx!==active){
+    active=idx;
+    intro.style.opacity = idx===-1 && p<.5 ? 1 : 0;
+    intro.style.transform = idx===-1 && p<.5 ? 'none':'translateY(-10px)';
+    caps.forEach((c,i)=>c.classList.toggle('on',i===idx));
+  }
+  hint.style.opacity = p<.04?1:0;
+}
+function loop(){tick();requestAnimationFrame(loop)}
+loop();
+</script>
+<!-- direction: 06 passing train -->
+</body>
+</html>

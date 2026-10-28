@@ -1,0 +1,354 @@
+<!-- Direction 07: Rajabai at dusk — the clock tower over the Oval Maidan, floodlit as the sky goes navy; scrolling turns the hands through the years while we slowly walk up to the clock. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk, Rajabai clock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0d1a2b; --sodium:#f2a145; --ink:#f4ebde; --serif:"Cormorant Garamond", Georgia, serif; --sans:"Manrope", system-ui, sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy);color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .track{height:1000vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,26,43,.94),rgba(13,26,43,.75) 50%,rgba(13,26,43,.2));opacity:0;pointer-events:none}
+
+  .copy{position:absolute;left:clamp(24px,7vw,128px);top:clamp(56px,13vh,128px);width:min(32rem,40vw)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(44px,4.3vw,70px);line-height:.98;letter-spacing:-.01em;text-wrap:balance;color:#fbf2e4}
+  h2 i{font-weight:400;color:#f6c48a}
+  .stops{position:relative;margin-top:clamp(30px,5.5vh,56px);height:15rem}
+  .stop{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;will-change:opacity,transform}
+  .stop .st{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+  .stop .name{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.5vw,38px);color:#fff6ea;line-height:1}
+  .stop .yr{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--sodium);font-variant-numeric:tabular-nums}
+  .stop p{margin-top:.85rem;font-family:var(--serif);font-size:clamp(20px,1.5vw,23px);line-height:1.42;max-width:25rem;color:#e9ddd0}
+
+  .roles{position:absolute;left:clamp(24px,7vw,128px);top:calc(clamp(56px,13vh,128px) + clamp(110px,10.5vw,160px));width:min(40rem,48vw);opacity:0;pointer-events:none}
+  .role{padding:.7rem 0}
+  .role h3{font-family:var(--serif);font-weight:500;font-size:25px;color:#fff6ea;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;line-height:1.1}
+  .role h3 span{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--sodium)}
+  .role .what{font-size:14.5px;color:#c8bbb0;margin-top:.25rem}
+  .role ul{list-style:none;margin-top:.55rem;display:grid;gap:.4rem;max-width:34rem}
+  .role li{font-size:14.5px;line-height:1.52;color:#ddd1c6;padding-left:1.1rem;position:relative}
+  .role li::before{content:"";position:absolute;left:0;top:.7em;width:.45rem;height:1px;background:var(--sodium)}
+
+  @media (max-width:760px){
+    .copy{left:20px;right:20px;width:auto;top:52px}
+    h2{font-size:40px}
+    .stops{margin-top:20px}
+    .stop .name{font-size:30px}
+    .stop p{font-size:19px;line-height:1.36}
+    .roles{left:20px;right:20px;width:auto;top:148px}
+    .role{padding:.45rem 0}.role h3{font-size:21px}.role li,.role .what{font-size:13.5px}
+    .veil{background:rgba(13,26,43,.88)}
+  }
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+  @keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.6deg)}}
+  .clouds{animation:drift 260s linear infinite}
+  .frond{transform-box:fill-box;transform-origin:50% 100%;animation:sway 7s ease-in-out infinite}
+  .frond.b{animation-duration:9s;animation-delay:-3s}
+  @media (prefers-reduced-motion:reduce){.clouds,.frond{animation:none}}
+</style>
+</head>
+<body>
+<!-- direction: 07 Rajabai clock tower at dusk -->
+<section class="track" id="track">
+  <div class="stage">
+    <svg class="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0b1626"/>
+          <stop offset=".45" stop-color="#1d2a4a"/>
+          <stop offset=".72" stop-color="#4a4466"/>
+          <stop offset=".88" stop-color="#9c6670"/>
+          <stop offset="1" stop-color="#d98a5e"/>
+        </linearGradient>
+        <linearGradient id="skyLate" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#070f1c"/>
+          <stop offset=".6" stop-color="#0f1b30"/>
+          <stop offset="1" stop-color="#2a2c48"/>
+        </linearGradient>
+        <!-- floodlight from the maidan: warm at the foot, cooling as it climbs -->
+        <linearGradient id="stone" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-850">
+          <stop offset="0" stop-color="#f0c08a"/>
+          <stop offset=".35" stop-color="#d9a578"/>
+          <stop offset=".7" stop-color="#9d7a78"/>
+          <stop offset="1" stop-color="#4f4762"/>
+        </linearGradient>
+        <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#1a1530" stop-opacity="0"/>
+          <stop offset=".55" stop-color="#1a1530" stop-opacity="0"/>
+          <stop offset="1" stop-color="#1a1530" stop-opacity=".45"/>
+        </linearGradient>
+        <linearGradient id="shadeU" gradientUnits="userSpaceOnUse" x1="-80" y1="0" x2="80" y2="0">
+          <stop offset="0" stop-color="#fff0d0" stop-opacity=".12"/>
+          <stop offset=".4" stop-color="#1a1530" stop-opacity="0"/>
+          <stop offset=".62" stop-color="#1a1530" stop-opacity=".18"/>
+          <stop offset="1" stop-color="#1a1530" stop-opacity=".5"/>
+        </linearGradient>
+        <filter id="cloudblur" x="-10%" y="-200%" width="120%" height="500%"><feGaussianBlur stdDeviation="5 2.5"/></filter>
+        <radialGradient id="face" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff2d6"/>
+          <stop offset=".8" stop-color="#f7dcaa"/>
+          <stop offset="1" stop-color="#e2b479"/>
+        </radialGradient>
+        <radialGradient id="halo" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#ffd59a" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#ffd59a" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="floodpool" cx=".5" cy="1" r=".6">
+          <stop offset="0" stop-color="#f2a145" stop-opacity=".45"/>
+          <stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1d2a2c"/>
+          <stop offset="1" stop-color="#0b1219"/>
+        </linearGradient>
+        <filter id="grain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="11" stitchTiles="stitch"/>
+          <feColorMatrix values="0 0 0 0 .5  0 0 0 0 .46  0 0 0 0 .42  0 0 0 .6 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <filter id="stonetex" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency=".6 .25" numOctaves="2" seed="3"/>
+          <feColorMatrix values="0 0 0 0 .2  0 0 0 0 .14  0 0 0 0 .12  0 0 0 .35 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+
+      <rect width="1440" height="900" fill="url(#sky)"/>
+      <rect id="late" width="1440" height="900" fill="url(#skyLate)" opacity="0"/>
+      <g id="stars" fill="#f6ead6"></g>
+      <g class="clouds" opacity=".32">
+        <g id="cl" fill="#c48a86" filter="url(#cloudblur)">
+          <path d="M80 560c90-10 260-12 380-6 30 2 30 9-4 10-140 5-280 4-376-1-26-1-24-2 0-3Z"/>
+          <path d="M600 610c70-6 190-7 290-2 20 1 18 6-4 7-110 3-210 2-286-1-18-1-18-3 0-4Z"/>
+          <path d="M980 540c60-4 160-5 230 0 20 1 18 5-4 6-90 3-170 2-226-1-16-1-16-4 0-5Z"/>
+        </g>
+        <use href="#cl" x="1440"/>
+      </g>
+
+      <!-- the camera: everything that belongs to the Fort pushes toward the clock -->
+      <g id="cam">
+        <g id="place">
+          <!-- distant Fort roofline, cool and flat -->
+          <path d="M-900 0v-90h40v-30h22v30h60v-50h18l10-24 10 24h18v50h70v-26h50v26h40v-60h16l14-30 14 30h16v60h90V0Z" fill="#3a3550" opacity=".45"/>
+          <path d="M260 0v-110h60v-28h12l10-22 10 22h12v28h90v-46h30v46h80v-60h18l14-28 14 28h18v60h60V0Z" fill="#3a3550" opacity=".45"/>
+          <!-- University Library wings either side of the tower -->
+          <g id="wings"></g>
+          <!-- the tower -->
+          <g id="tower"></g>
+          <ellipse cx="0" cy="-10" rx="300" ry="120" fill="url(#floodpool)"/>
+        </g>
+      </g>
+
+      <!-- Oval Maidan: grass and the rain trees along its edge, nearest of all -->
+      <path d="M0 830c300-14 700-18 1440-6v76H0Z" fill="url(#grass)"/>
+      <g id="trees" fill="#0e1720"></g>
+      <rect width="1440" height="900" fill="#fff" filter="url(#grain)" opacity=".09"/>
+    </svg>
+    <div class="veil" id="veil"></div>
+
+    <div class="copy">
+      <h2>Every detour was <i>part of the path</i></h2>
+      <div class="stops" id="stops"></div>
+    </div>
+
+    <div class="roles" id="roles">
+      <div class="role">
+        <h3>Sypha AI <span>Software Engineer, Dec 2025 – now</span></h3>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+      <div class="role"><h3>AuctionXI <span>Founder, Apr 2026 – now</span></h3></div>
+      <div class="role"><h3>TexAgent <span>Freelance developer, Sep 2026 – now</span></h3></div>
+      <div class="role"><h3>MK Exim India <span>Mar – Sep 2025</span></h3><div class="what">E-commerce, Amazon, TataCliQ and Sephora</div></div>
+      <div class="role"><h3>Brahmani Gems <span>Jul – Aug 2024</span></h3><div class="what">Web developer intern, Shopify</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const STOPS = [
+  ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+  ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+  ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+  ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+  ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+  ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const NS = "http://www.w3.org/2000/svg", $ = s => document.querySelector(s);
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
+const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); parent && parent.appendChild(e); return e; };
+// pointed (Gothic) arch, x/y = top-left of its box
+const arch = (x, y, w, h) => `M${x} ${y+h}V${y+w*.7}Q${x} ${y+w*.12} ${x+w/2} ${y}Q${x+w} ${y+w*.12} ${x+w} ${y+w*.7}V${y+h}Z`;
+
+const stopEls = STOPS.map(([n,y,l]) => {
+  const d = document.createElement("div"); d.className = "stop";
+  d.innerHTML = `<div class="st"><span class="name">${n}</span>${y ? `<span class="yr">${y}</span>` : ""}</div><p>${l}</p>`;
+  $("#stops").appendChild(d); return d;
+});
+
+// stars that come out as the evening deepens
+let seed = 5; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+const stars = [];
+for (let i = 0; i < 46; i++) stars.push(mk("circle", {cx:(600 + rnd()*840).toFixed(0), cy:(rnd()*420).toFixed(0), r:(.5 + rnd()*.9).toFixed(2), opacity:0}, $("#stars")));
+stars.forEach(s => s.dataset.t = rnd());
+
+// ---------- the tower (local coords: ground at y=0, x centred) ----------
+const T = $("#tower");
+const stone = "url(#stone)", recess = "#2b2238", deep = "#1d1729";
+const R = (x,y,w,h,f,o) => { const e = mk("rect", {x,y,width:w,height:h,fill:f, ...(o||{})}, T); if (f === stone) mk("rect",{x,y,width:w,height:h,fill:"url(#shadeU)"},T); return e; };
+const P = (d,f,o) => { const e = mk("path", {d, fill:f, ...(o||{})}, T); if (f === stone) mk("path",{d,fill:"url(#shadeU)"},T); return e; };
+const pinnacle = (x, y, w, h) => P(`M${x} ${y}h${w}v${-h*.55}l${-w/2} ${-h*.45}l${-w/2} ${h*.45}Z`, stone);
+// base
+R(-64,-300,128,300,stone);
+R(-74,-330,16,330,stone); R(58,-330,16,330,stone);
+pinnacle(-76,-330,20,46); pinnacle(56,-330,20,46);
+P(arch(-18,-74,36,74), deep);
+P(arch(-44,-262,24,104), recess); P(arch(20,-262,24,104), recess);
+P(arch(-44,-130,24,40), recess); P(arch(20,-130,24,40), recess);
+R(-64,-304,128,6,"#f3cf9c",{opacity:.6});
+R(-64,-150,128,4,"#f3cf9c",{opacity:.4});
+// mid stage with the tall paired lancets
+R(-56,-450,112,150,stone);
+P(arch(-42,-436,34,124), recess); P(arch(8,-436,34,124), recess);
+mk("circle",{cx:-25,cy:-404,r:7,fill:"none",stroke:"#cfa27c","stroke-width":2,opacity:.7},T);
+mk("circle",{cx:25,cy:-404,r:7,fill:"none",stroke:"#cfa27c","stroke-width":2,opacity:.7},T);
+R(-25.8,-390,1.6,78,"#cfa27c",{opacity:.6}); R(24.2,-390,1.6,78,"#cfa27c",{opacity:.6});
+// gallery parapet
+R(-62,-458,124,10,stone);
+for (let i = 0; i < 12; i++) R(-58 + i*10.2,-466,5,8,stone);
+// clock stage
+R(-52,-560,104,102,stone);
+// statues in their niches at the corners
+[-66, 52].forEach(x => { R(x,-560,14,102,stone); P(arch(x+2,-552,10,30), recess); P(`M${x+5} ${-524}h4v-16a2 2 0 0 0-4 0Z`, "#e7c294",{opacity:.8}); pinnacle(x-1,-560,16,52); });
+// the clock face
+const CX = 0, CY = -509;
+mk("circle",{cx:CX,cy:CY,r:78,fill:"url(#halo)",id:"halo"},T);
+mk("circle",{cx:CX,cy:CY,r:39,fill:"#5a4250"},T);
+mk("circle",{cx:CX,cy:CY,r:35,fill:"url(#face)"},T);
+mk("circle",{cx:CX,cy:CY,r:31,fill:"none",stroke:"#7a5a4c","stroke-width":.7},T);
+for (let i = 0; i < 60; i++) {
+  const a = i * Math.PI / 30, big = i % 5 === 0;
+  const r1 = big ? 26 : 29.2, r2 = 31;
+  mk("line",{x1:CX+Math.sin(a)*r1,y1:CY-Math.cos(a)*r1,x2:CX+Math.sin(a)*r2,y2:CY-Math.cos(a)*r2,stroke:"#3d2a24","stroke-width":big?1.6:.4,"stroke-linecap":"round"},T);
+}
+const hourH = mk("path",{d:`M${CX-1.6} ${CY+4}L${CX-.9} ${CY-17}L${CX} ${CY-19}L${CX+.9} ${CY-17}L${CX+1.6} ${CY+4}Z`,fill:"#2a1b16"},T);
+const minH = mk("path",{d:`M${CX-1} ${CY+5}L${CX-.5} ${CY-26}L${CX} ${CY-28}L${CX+.5} ${CY-26}L${CX+1} ${CY+5}Z`,fill:"#2a1b16"},T);
+mk("circle",{cx:CX,cy:CY,r:2,fill:"#2a1b16"},T);
+// octagonal lantern
+R(-40,-680,80,120,stone);
+R(-40,-680,14,120,stone,{opacity:.85});
+P(arch(-24,-662,16,82), recess); P(arch(-6,-662,12,82), "#3a2e47"); P(arch(10,-662,16,82), recess);
+R(-46,-688,92,10,stone);
+[-50,34].forEach(x => pinnacle(x,-560,16,150));
+pinnacle(-46,-688,12,60); pinnacle(34,-688,12,60);
+// upper octagon and spire
+R(-28,-744,56,58,stone);
+P(arch(-18,-736,12,40), recess); P(arch(6,-736,12,40), recess);
+P(`M-30 -744L0 -880L30 -744Z`, stone);
+P(`M0 -880L30 -744H8Z`, "#1a1530", {opacity:.35});
+R(-.8,-906,1.6,28,"#e5c08d");
+mk("circle",{cx:0,cy:-906,r:2.4,fill:"#e5c08d"},T);
+// shade on the far side + stone texture
+// courses of stone, faint
+for (let y = -20; y > -300; y -= 18) R(-64,y,128,.8,"#7a5a50",{opacity:.25});
+
+// library wings with lit Gothic windows
+(() => {
+  const W = $("#wings");
+  const wing = (x0, x1, h) => {
+    mk("path",{d:`M${x0} 0V${-h}L${x0+20} ${-h-40}H${x1-20}L${x1} ${-h}V0Z`,fill:"url(#stone)"},W);
+    mk("path",{d:`M${x0} 0V${-h}H${x1}V0Z`,fill:"#1a1530",opacity:.28},W);
+    mk("path",{d:`M${x0-4} ${-h}L${x0+20} ${-h-40}H${x1-20}L${x1+4} ${-h}Z`,fill:"#2e2840"},W);
+    mk("path",{d:`M${x0-4} ${-h}H${x1+4}`,stroke:"#f0c08a","stroke-width":2,opacity:.6},W);
+    for (let x = x0 + 22; x < x1 - 30; x += 34) {
+      mk("path",{d:arch(x,-h+26,16,52),fill:"#f4c27f",opacity:.45 + rnd()*.4},W);
+      mk("path",{d:arch(x,-h+96,16,40),fill:"#f4c27f",opacity:.3 + rnd()*.4},W);
+    }
+    for (let x = x0 + 30; x < x1 - 20; x += 46) mk("path",{d:`M${x} ${-h-40}l5 -16 5 16Z`,fill:"#2e2840"},W);
+  };
+  wing(-360,-76,150); wing(76,380,150);
+})();
+
+// trees on the maidan edge: rain-tree crowns and a couple of palms
+(() => {
+  const G = $("#trees");
+  const crown = (x, y, r) => {
+    mk("path",{d:`M${x-4} 846L${x-3} ${y+r*.2}L${x-r*.5} ${y-r*.1}L${x-2} ${y+r*.05}L${x+2} ${y-r*.15}L${x+3} ${y+r*.2}L${x+5} 846Z`},G);
+    for (let i = 0; i < 26; i++) { const a = rnd(); mk("ellipse",{cx:x + (a-.5)*r*2.6, cy:y - Math.sin(a*Math.PI)*r*.8 + rnd()*r*.45, rx:r*(.3+rnd()*.25), ry:r*(.22+rnd()*.18)},G); }
+  };
+  [[60,760,90],[1390,740,100]].forEach(a => crown(...a));
+  const palm = (x, h, cls) => {
+    const g = mk("g",{},G);
+    mk("path",{d:`M${x} 840q4 ${-h/2} ${-6} ${-h}l3 0q-6 ${h/2} 7 ${h}Z`},g);
+    const fx = x - 6, fy = 840 - h;
+    const fr = mk("g",{class:"frond " + cls},g);
+    [[-70,10],[-50,-14],[-20,-28],[16,-26],[46,-12],[68,12],[-30,22],[34,24]].forEach(([dx,dy]) =>
+      mk("path",{d:`M${fx} ${fy}q${dx*.5} ${dy-18} ${dx} ${dy+14}q${-dx*.45} ${-dy*.2-12} ${-dx} ${-dy-12}Z`},fr));
+  };
+  palm(1240, 230, ""); palm(1338, 190, "b");
+})();
+
+// placement in the visible part of the viewBox
+const place = $("#place"), cam = $("#cam");
+let clock = {x:0, y:0}, baseS = 1, zMax = 1.25;
+function layout() {
+  const W = innerWidth, H = innerHeight, sc = Math.max(W/1440, H/900);
+  const vw = W/sc, vh = H/sc, vx = (1440 - vw)/2, vy = (900 - vh)/2;
+  const phone = W < 760;
+  const tx = phone ? vx + vw*.5 : vx + vw*.7;
+  baseS = phone ? .5 : .84;
+  const gy = phone ? vy + vh + 30 : 836;
+  place.setAttribute("transform", `translate(${tx} ${gy}) scale(${baseS})`);
+  clock = {x: tx + CX*baseS, y: gy + CY*baseS}; stars.forEach(st => st.style.display = phone && +st.getAttribute('cy') < vy + 360 ? 'none' : ''); zMax = phone ? .5 : 1.25;
+}
+layout(); addEventListener("resize", layout);
+
+const track = $("#track"), veil = $("#veil"), roles = $("#roles"), late = $("#late");
+let cur = 0;
+const progress = () => { const r = track.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+function frame() {
+  const p = progress();
+  cur = RM ? p : cur + (p - cur) * .12;
+  const f = clamp((cur - .05) / .78) * 6.999;
+  stopEls.forEach((el, k) => {
+    const d = f - (k + .5), o = clamp(1 - (Math.abs(d) - .3) / .18);
+    el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${(-d*14).toFixed(1)}px)`;
+  });
+  // hands: each stop settles the hour hand one hour on; the minute hand sweeps a full turn between
+  const k = Math.floor(f), w = f - k;
+  const settle = w < .25 ? 0 : w > .75 ? 1 : (w - .25) / .5;
+  const sm = settle * settle * (3 - 2 * settle);
+  const hours = 4 + k + sm;                         // starts at four, ends near eleven
+  minH.setAttribute("transform", `rotate(${(hours * 360) % 360} ${CX} ${CY})`);
+  hourH.setAttribute("transform", `rotate(${hours * 30} ${CX} ${CY})`);
+  // walk up to the clock
+  const z = 1 + Math.pow(clamp(cur / .84), 1.4) * zMax;
+  cam.setAttribute("transform", `translate(${clock.x} ${clock.y}) scale(${z.toFixed(4)}) translate(${-clock.x} ${-clock.y})`);
+  late.setAttribute("opacity", (clamp(cur / .85) * .85).toFixed(3));
+  const sv = clamp((cur - .15) / .6);
+  stars.forEach(s => s.setAttribute("opacity", (clamp((sv - s.dataset.t * .8) * 4) * .8).toFixed(2)));
+  const ro = clamp((cur - .85) / .07);
+  roles.style.opacity = ro.toFixed(3); roles.style.transform = `translateY(${((1-ro)*18).toFixed(1)}px)`;
+  roles.style.pointerEvents = ro > .5 ? "auto" : "none";
+  veil.style.opacity = ro.toFixed(3);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

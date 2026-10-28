@@ -1,0 +1,232 @@
+<!-- Direction 09: Typographic — the year is the scene: huge sodium numerals that roll as you scroll and blur through the detour years, his line beneath, the city a thin strip of lights. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk, the years</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..500,0..100;1,9..144,300..400,0..100&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0d1a2b; --sodium:#f2a145; --ink:#f1e8da; --serif:"Fraunces", Georgia, serif; --sans:"Schibsted Grotesk", system-ui, sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy);color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .track{height:1000vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+    background:radial-gradient(120% 80% at 70% 108%, #1f2a44 0%, #0d1a2b 55%, #0a1422 100%)}
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:screen}
+
+  h2{position:absolute;left:clamp(24px,7vw,128px);top:clamp(44px,9vh,96px);font-family:var(--serif);font-weight:300;font-variation-settings:"SOFT" 50,"opsz" 48;
+     font-size:clamp(28px,2.4vw,40px);line-height:1.08;letter-spacing:-.005em;color:#f6eee2;max-width:15em;text-wrap:balance}
+  h2 i{color:#f6c48a;font-weight:300}
+
+  /* the year */
+  .year{position:absolute;right:clamp(24px,6vw,110px);top:clamp(120px,19vh,190px);display:flex;font-family:var(--serif);
+        font-weight:300;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:min(29vw,47vh);line-height:1;letter-spacing:-.04em;color:var(--sodium);
+        font-variant-numeric:lining-nums proportional-nums;will-change:opacity}
+  .col{position:relative;height:1em;overflow:hidden;
+       -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
+  .strip{display:flex;flex-direction:column;will-change:transform}
+  .strip span{height:1em;display:block;text-align:center;
+     background:linear-gradient(180deg,#ffc274 10%,#f2a145 55%,#d9772e 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .glow{position:absolute;inset:-10% -5%;background:radial-gradient(50% 50% at 50% 55%,rgba(242,161,69,.16),rgba(242,161,69,0) 70%);pointer-events:none}
+  .last{position:relative;padding:0 .14em;margin:0 -.14em}
+  .last .spin{position:absolute;inset:0;opacity:0;filter:blur(.035em);transform:scaleY(1.12)}
+  .last .spin .strip span{background:linear-gradient(180deg,#f2a145,#b9662a);-webkit-background-clip:text;background-clip:text}
+
+  .lines{position:absolute;right:clamp(24px,6vw,110px);top:calc(clamp(120px,19vh,190px) + min(29vw,47vh) * 1.02);width:min(38rem,46vw);height:11rem}
+  .stop{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;will-change:opacity,transform}
+  .stop .name{font-family:var(--serif);font-style:italic;font-weight:350;font-variation-settings:"SOFT" 50,"opsz" 36;font-size:clamp(24px,1.9vw,30px);color:#fff4e3}
+  .stop p{margin-top:.55rem;font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 18;font-size:clamp(18px,1.32vw,21px);line-height:1.5;color:#d9cfc2;max-width:27rem}
+
+  .city{position:absolute;left:0;right:0;bottom:0;height:15vh;min-height:96px}
+  .city svg{width:100%;height:100%;display:block}
+
+  .roles{position:absolute;left:clamp(24px,7vw,128px);right:clamp(24px,6vw,110px);top:clamp(190px,30vh,280px);display:grid;grid-template-columns:1.25fr 1fr;gap:1.2rem 4rem;opacity:0;pointer-events:none}
+  .role h3{font-family:var(--serif);font-weight:350;font-variation-settings:"opsz" 36;font-size:24px;color:#fff4e3;line-height:1.15}
+  .role .when{font-size:14.5px;font-weight:500;color:var(--sodium);margin-top:.2rem}
+  .role .what{font-size:14.5px;color:#b8afa6;margin-top:.15rem}
+  .role ul{list-style:none;margin-top:.7rem;display:grid;gap:.5rem;max-width:34rem}
+  .role li{font-size:15px;line-height:1.52;color:#ddd3c7;padding-left:1.1rem;position:relative}
+  .role li::before{content:"";position:absolute;left:0;top:.7em;width:.45rem;height:1px;background:var(--sodium)}
+  .others{display:grid;gap:1.15rem;align-content:start}
+
+  @media (max-width:760px){
+    h2{left:20px;right:20px;top:48px;font-size:30px}
+    .year{left:14px;right:auto;top:180px;font-size:36vw}
+    .lines{left:20px;right:20px;width:auto;top:calc(180px + 36vw * 1.08)}
+    .city{height:24vh}
+    .stop p{font-size:17.5px}
+    .roles{left:20px;right:20px;top:136px;grid-template-columns:1fr;gap:.9rem}
+    .role h3{font-size:20px}.role li,.role .what,.role .when{font-size:13.5px}
+    .others{gap:.7rem}
+  }
+  @keyframes drive{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes driveR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .cars{animation:drive 38s linear infinite}
+  .cars.r{animation:driveR 46s linear infinite}
+  @keyframes tw{0%,100%{opacity:1}50%{opacity:.4}}
+  .tw{animation:tw 4.5s ease-in-out infinite}.tw.b{animation-duration:6.5s;animation-delay:-2s}
+  @media (prefers-reduced-motion:reduce){.cars,.tw{animation:none}}
+</style>
+</head>
+<body>
+<!-- direction: 09 Typographic years -->
+<section class="track" id="track">
+  <div class="stage">
+    <svg class="grain" aria-hidden="true" width="100%" height="100%"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .8  0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <h2>Every detour was <i>part of the path</i></h2>
+
+    <div class="year" id="year" aria-hidden="true">
+            <div class="col"><div class="strip"><span>2</span></div></div>
+      <div class="col"><div class="strip"><span>0</span></div></div>
+      <div class="col"><div class="strip"><span>2</span></div></div>
+      <div class="col last" id="last">
+        <div class="strip" id="roll"></div>
+        <div class="spin" id="spinWrap"><div class="strip" id="spin"></div></div>
+      </div>
+    </div>
+
+    <div class="lines" id="lines"></div>
+
+    <div class="city" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="bay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1a2b" stop-opacity="0"/><stop offset="1" stop-color="#070e18"/></linearGradient>
+          <radialGradient id="lg"><stop offset="0" stop-color="#f2a145" stop-opacity=".7"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1440" height="120" fill="url(#bay)"/>
+        <g id="blocks" fill="#121c2c"></g>
+        <g id="wins" fill="#f6c27e"></g>
+        <g id="neck"></g>
+        <g opacity=".9"><g class="cars" id="carsA"></g></g>
+        <g opacity=".7"><g class="cars r" id="carsB"></g></g>
+        <rect y="104" width="1440" height="16" fill="#060c15"/>
+        <g id="refl"></g>
+      </svg>
+    </div>
+
+    <div class="roles" id="roles">
+      <div class="role">
+        <h3>Sypha AI</h3>
+        <div class="when">Software Engineer, Dec 2025 – now</div>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+      <div class="others">
+        <div class="role"><h3>AuctionXI</h3><div class="when">Founder, Apr 2026 – now</div></div>
+        <div class="role"><h3>TexAgent</h3><div class="when">Freelance developer, Sep 2026 – now</div></div>
+        <div class="role"><h3>MK Exim India</h3><div class="when">Mar – Sep 2025</div><div class="what">E-commerce, Amazon, TataCliQ and Sephora</div></div>
+        <div class="role"><h3>Brahmani Gems</h3><div class="when">Jul – Aug 2024</div><div class="what">Web developer intern, Shopify</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const STOPS = [
+  ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+  ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+  ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+  ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+  ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+  ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const $ = s => document.querySelector(s), NS = "http://www.w3.org/2000/svg";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
+const sm = x => { x = clamp(x); return x * x * (3 - 2 * x); };
+const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); parent && parent.appendChild(e); return e; };
+
+const stopEls = STOPS.map(([n,,l]) => {
+  const d = document.createElement("div"); d.className = "stop";
+  d.innerHTML = `<div class="name">${n}</div><p>${l}</p>`;
+  $("#lines").appendChild(d); return d;
+});
+// digit strips 0..9 twice so the roll can wrap
+const roll = $("#roll"), spin = $("#spin");
+for (let r = 0; r < 2; r++) for (let i = 0; i < 10; i++) { roll.insertAdjacentHTML("beforeend", `<span>${i}</span>`); spin.insertAdjacentHTML("beforeend", `<span>${i}</span>`); }
+
+// the city: a thin strip of Marine Drive, deco blocks, the necklace, traffic
+(() => {
+  let s = 3; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  const B = $("#blocks"), Wn = $("#wins"), N = $("#neck"), R = $("#refl");
+  let x = 0;
+  while (x < 1440) {
+    const w = 26 + rnd() * 40, h = 18 + rnd() * 30;
+    const curved = rnd() < .4;
+    mk("path", {d: curved ? `M${x} 96V${96-h+6}q0 -6 6 -6H${x+w}V96Z` : `M${x} 96V${96-h}H${x+w}V96Z`}, B);
+    for (let yy = 96 - h + 5; yy < 92; yy += 5) for (let xx = x + 3; xx < x + w - 3; xx += 5)
+      if (rnd() < .22) mk("rect", {x:xx.toFixed(1), y:yy, width:2, height:1.6, opacity:(.35 + rnd() * .6).toFixed(2), class: rnd() < .15 ? "tw" + (rnd() < .5 ? " b" : "") : ""}, Wn);
+    x += w + 1 + rnd() * 3;
+  }
+  // lamps along the wall
+  for (let i = 0; i < 64; i++) {
+    const lx = 10 + i * 22.6;
+    mk("circle", {cx:lx, cy:98, r:6, fill:"url(#lg)"}, N);
+    mk("circle", {cx:lx, cy:98, r:1.2, fill:"#ffd69a"}, N);
+    mk("rect", {x:lx - .7, y:106, width:1.4, height:6 + rnd() * 8, fill:"#f2a145", opacity:.35}, R);
+  }
+  // traffic: head and tail lights sliding along the drive
+  const cars = (g, col, n, y) => { for (let i = 0; i < n; i++) { const cx = rnd() * 2880; mk("rect", {x:cx.toFixed(0), y, width:3 + rnd() * 3, height:1.2, fill:col, opacity:.8}, g); } };
+  cars($("#carsA"), "#fff1d6", 46, 101); cars($("#carsB"), "#ff5a3c", 40, 102.6);
+})();
+
+const track = $("#track"), year = $("#year"), roles = $("#roles"), spinWrap = $("#spinWrap");
+// last digit of the year at each stop; null = the years that blurred
+const LAST = [1, null, null, 5, 5, 5, 6];
+function lastDigit(f) {
+  // settle on each stop's digit near its centre, roll between
+  const k = clamp(Math.floor(f), 0, 6), w = f - k;
+  const here = LAST[k] ?? (k === 1 ? 2.5 : 3.5);
+  const nextK = clamp(k + 1, 0, 6), next = LAST[nextK] ?? (nextK === 1 ? 2.5 : 3.5);
+  const prevK = clamp(k - 1, 0, 6), prev = LAST[prevK] ?? (prevK === 1 ? 2.5 : 3.5);
+  if (w > .72) return here + (next - here) * sm((w - .72) / .56);
+  if (w < .28) return prev + (here - prev) * sm((w + .28) / .56);
+  return here;
+}
+let cur = 0;
+const progress = () => { const r = track.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+function frame(t) {
+  const p = progress();
+  cur = RM ? p : cur + (p - cur) * .1;
+  const f = clamp((cur - .05) / .78) * 6.999;
+  stopEls.forEach((el, k) => {
+    const d = f - (k + .5), o = clamp(1 - (Math.abs(d) - .3) / .18);
+    el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${(-d * 12).toFixed(1)}px)`;
+  });
+  const v = lastDigit(f);
+  roll.style.transform = `translateY(${(-v * 5).toFixed(3)}%)`;      // 20 spans: one digit is 5% of the strip
+  // blur zone: between 2021 and 2025, the last digit never settles
+  const blurAmt = clamp(1 - Math.abs(f - 2) / 1.05) ;
+  const b = sm(blurAmt * 1.6);
+  const spinV = RM ? 3 : (t / 70) % 10;
+  spin.style.transform = `translateY(${(-spinV * 5).toFixed(3)}%)`;
+  spinWrap.style.opacity = (b * .7).toFixed(3);
+  roll.style.opacity = (1 - b * .92).toFixed(3);
+  const ro = sm((cur - .85) / .07);
+  year.style.opacity = (clamp(f / .5) * .3 + .7) * (1 - ro);
+  year.style.transform = `translateY(${(-ro * 30).toFixed(1)}px)`;
+  roles.style.opacity = ro.toFixed(3); roles.style.transform = `translateY(${((1 - ro) * 20).toFixed(1)}px)`;
+  roles.style.pointerEvents = ro > .5 ? "auto" : "none";
+  requestAnimationFrame(frame);
+}
+// the line sits under the year, flush with its first numeral
+function align() {
+  const L = $("#lines");
+  if (innerWidth < 760) { L.style.left = ""; L.style.right = ""; return; }
+  const r = year.getBoundingClientRect();
+  L.style.left = (r.left + r.height * .05) + "px"; L.style.right = "auto";
+}
+align(); addEventListener("resize", align); document.fonts && document.fonts.ready.then(align);
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

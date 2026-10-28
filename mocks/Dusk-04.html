@@ -1,0 +1,226 @@
+<!-- Direction 04: Strip map — the enamel route map above an AC local's door, where every detour is a station on a loop off the straight line; a sodium train dot travels it while dusk passes in the window below. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk: Strip Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sea:#2c6d8c;--sodium:#f2a145;--paper:#efe8da}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--navy)}
+body{font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.dusk{position:relative;height:900vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
+#tone{position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 0%,rgba(255,214,150,.0),rgba(120,72,30,.0));pointer-events:none}
+svg.map{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.32;mix-blend-mode:multiply}
+.copy{position:absolute;z-index:5;left:clamp(24px,5.6vw,104px);top:clamp(44px,10vh,120px);width:min(29rem,35vw)}
+h2{font-family:Spectral,serif;font-weight:300;font-size:clamp(44px,4.4vw,72px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.stops{position:relative;margin-top:clamp(26px,5vh,50px)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;will-change:opacity,transform}
+.where{margin:0 0 .55rem;font-size:16px;font-weight:600;display:flex;gap:.55rem;align-items:baseline}
+.where .yr{color:var(--sea);font-weight:500}
+.line{margin:0;font-family:Spectral,serif;font-weight:300;font-size:clamp(21px,1.6vw,25px);line-height:1.36;max-width:20em}
+.roles{font-size:14.5px;line-height:1.45}
+.roles .r{display:flex;flex-wrap:wrap;gap:.1rem .5rem;align-items:baseline;margin:0;padding:.55rem 0}
+.roles .r b{font-weight:600}
+.roles .r span{color:#4b5563}
+.roles .r em{font-style:normal;color:var(--sea);margin-left:auto;font-weight:500}
+.roles ul{list-style:none;margin:0 0 .45rem;padding:0;font-size:14px;color:#22303f}
+.roles li{padding:.2rem 0 .2rem 1rem;position:relative}
+.roles li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;border:2px solid var(--sea);background:var(--paper)}
+.st-name{font:500 15px Archivo,sans-serif;fill:var(--navy)}
+.st-year{font:400 13px Archivo,sans-serif;fill:var(--sea)}
+.not-taken{font:italic 300 14px Spectral,serif;fill:#6a7480}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;width:auto;top:32px}
+  h2{font-size:38px}
+  .stops{margin-top:16px}
+  .line{font-size:18px}
+  .where{font-size:14px}
+  .roles{font-size:12.5px}.roles ul{font-size:12px}.roles .r{padding:.3rem 0}
+  .st-name{font-size:13px}.st-year{font-size:12px}
+}
+</style>
+</head>
+<body>
+<section class="dusk" id="dusk">
+  <div class="stage">
+    <svg class="map" id="map" aria-hidden="true">
+      <defs>
+        <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+          <stop id="k0" offset="0" stop-color="#7f8fb0"/><stop id="k1" offset=".62" stop-color="#e8a477"/><stop id="k2" offset="1" stop-color="#f5c98d"/>
+        </linearGradient>
+        <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3a4a" stop-opacity=".28"/><stop offset=".5" stop-color="#1d3a4a" stop-opacity=".12"/><stop offset="1" stop-color="#1d3a4a" stop-opacity=".34"/></linearGradient>
+        <radialGradient id="gDot"><stop offset="0" stop-color="#ffd79a"/><stop offset=".35" stop-color="#f2a145" stop-opacity=".55"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <radialGradient id="gLamp"><stop offset="0" stop-color="#fff2d0"/><stop offset=".3" stop-color="#f2a145" stop-opacity=".5"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <clipPath id="winClip"><rect id="winClipR" rx="14"/></clipPath>
+      </defs>
+      <!-- the window strip under the map, dusk passing -->
+      <g id="window">
+        <rect id="frame" rx="20" fill="none"/>
+        <g clip-path="url(#winClip)">
+          <rect id="sky" fill="url(#gSky)"/>
+          <rect id="skyN" fill="#0d1a2b" opacity="0"/>
+          <rect id="seaR" fill="#3c5a74"/>
+          <g id="passing"></g>
+          <rect id="glass" fill="url(#gGlass)"/>
+        </g>
+        <rect id="seal" rx="14" fill="none" stroke="#2b2f36" stroke-width="7"/>
+      </g>
+      <!-- route -->
+      <path id="ghost" fill="none" stroke="#2c6d8c" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round" opacity=".55"/>
+      <text id="ghostLbl" class="not-taken" text-anchor="middle">the straight line</text>
+      <path id="routeBg" fill="none" stroke="#2c6d8c" stroke-opacity=".22" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="route" fill="none" stroke="#2c6d8c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <g id="stations"></g>
+      <circle id="halo" r="34" fill="url(#gDot)"/>
+      <circle id="dot" r="9" fill="#f2a145" stroke="#0d1a2b" stroke-width="2.5"/>
+    </svg>
+    <div id="tone"></div>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .35 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+  </div>
+</section>
+<!-- direction: Dusk 04 · Strip map -->
+<script>
+const STOPS=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const ROLES=`<div class="r"><b>Sypha AI</b><span>Software Engineer</span><em>Dec 2025 – now</em></div>
+<ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+<li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+<li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+<li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul>
+<div class="r"><b>AuctionXI</b><span>Founder</span><em>Apr 2026 – now</em></div>
+<div class="r"><b>TexAgent</b><span>Freelance developer</span><em>Sep 2026 – now</em></div>
+<div class="r"><b>MK Exim India</b><span>E-commerce, Amazon, TataCliQ and Sephora</span><em>Mar – Sep 2025</em></div>
+<div class="r"><b>Brahmani Gems</b><span>Web developer intern, Shopify</span><em>Jul – Aug 2024</em></div>`;
+const stopsEl=document.getElementById('stops');
+STOPS.forEach(([st,yr,l])=>{const a=document.createElement('article');a.className='stop';
+ a.innerHTML=`<p class="where"><span>${st}</span>${yr?`<span class="yr">${yr}</span>`:''}</p><p class="line">${l}</p>`;stopsEl.appendChild(a);});
+{const a=document.createElement('article');a.className='stop roles';a.innerHTML=ROLES;stopsEl.appendChild(a);}
+const stopEls=[...stopsEl.children];const N=stopEls.length;
+
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p&&p.appendChild(e);return e;};
+const $=id=>document.getElementById(id);
+let seed=8;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+
+/* route in "line space": a = along the straight line, b = off it (the detour).
+   Railway style: straight runs and 45-degree bends, corners rounded. */
+let W,H,ph,routeLen,stLens=[],stationEls=[];
+function build(){
+ W=innerWidth;H=innerHeight;ph=W<700;$('map').setAttribute('viewBox',`0 0 ${W} ${H}`);
+ let toXY,A,Bh;
+ if(!ph){const x0=W*.45,x1=W*.94,y=H*.58;A=x1-x0;Bh=Math.min(H*.24,A*.19);toXY=(a,b)=>[x0+a*A,y-b];}
+ else{const y0=H*.5,y1=H*.95,x=W*.34;A=y1-y0;Bh=Math.min(W*.27,A*.2);toXY=(a,b)=>[x+b,y0+a*A];}
+ const br=.07,rj=ph?.64:.58; // branch and rejoin positions along a
+ const d45=Bh/A;
+ const pts=[[0,0],[br,0],[br+d45,Bh],[rj-d45,Bh],[rj,0],[1,0]].map(([a,b])=>toXY(a,b));
+ // rounded polyline
+ const R=Math.min(26,Bh*.3);let d=`M${pts[0][0]} ${pts[0][1]}`;
+ for(let i=1;i<pts.length-1;i++){const [px,py]=pts[i-1],[cx,cy]=pts[i],[nx,ny]=pts[i+1];
+  const l1=Math.hypot(cx-px,cy-py),l2=Math.hypot(nx-cx,ny-cy);
+  const r=Math.min(R,l1*.45,l2*.45);const ax=cx-(cx-px)/l1*r,ay=cy-(cy-py)/l1*r,bx=cx+(nx-cx)/l2*r,by=cy+(ny-cy)/l2*r;
+  d+=` L${ax.toFixed(1)} ${ay.toFixed(1)} Q${cx} ${cy} ${bx.toFixed(1)} ${by.toFixed(1)}`;}
+ d+=` L${pts[5][0]} ${pts[5][1]}`;
+ ['route','routeBg'].forEach(id=>$(id).setAttribute('d',d));
+ const g0=toXY(br,0),g1=toXY(rj,0);$('ghost').setAttribute('d',`M${g0[0]} ${g0[1]} L${g1[0]} ${g1[1]}`);
+ const gm=toXY((br+rj)/2,0);
+ if(!ph){$('ghostLbl').setAttribute('x',gm[0]);$('ghostLbl').setAttribute('y',gm[1]+30);$('ghostLbl').removeAttribute('transform');}
+ else{$('ghostLbl').setAttribute('x',0);$('ghostLbl').setAttribute('y',0);$('ghostLbl').setAttribute('transform',`translate(${gm[0]-12} ${gm[1]}) rotate(-90)`);}
+ const route=$('route');routeLen=route.getTotalLength();route.setAttribute('stroke-dasharray',`${routeLen} ${routeLen}`);
+ // stations at positions along the drawn path
+ const sPos=[0.0,.5,null,.5,null,null,1];
+ const segA=(i)=>{const p=pts[i],q=pts[i+1];return [p,q];};
+ const st=[toXY(0.02,0),mid(pts[1],pts[2]),mid(pts[2],pts[3]),mid(pts[3],pts[4]),toXY(rj+(1-rj)*.3,0),toXY(rj+(1-rj)*.65,0),toXY(1,0)];
+ function mid(p,q){return[(p[0]+q[0])/2,(p[1]+q[1])/2];}
+ // arc length of each station: nearest sample
+ const samples=[];for(let i=0;i<=800;i++){const p=route.getPointAtLength(routeLen*i/800);samples.push([p.x,p.y,routeLen*i/800]);}
+ stLens=st.map(([x,y])=>{let b=samples[0],bd=1e9;for(const s of samples){const dd=(s[0]-x)**2+(s[1]-y)**2;if(dd<bd){bd=dd;b=s;}}return b[2];});
+ const G=$('stations');G.innerHTML='';stationEls=[];
+ st.forEach(([x,y],i)=>{const g=mk('g',{},G);const term=i===0||i===6;
+  const ring=mk('circle',{cx:x,cy:y,r:term?11:8,fill:'#efe8da',stroke:'#0d1a2b','stroke-width':term?3.5:3},g);
+  const pulse=mk('circle',{cx:x,cy:y,r:14,fill:'none',stroke:'#f2a145','stroke-width':2,opacity:0},g);
+  // label placement
+  let lx=x,ly=y,anchor='middle';const [nm,yr]=STOPS[i];
+  if(!ph){ if(i===1){lx=x-18;ly=y-6;anchor='end';} else if(i===3){lx=x+18;ly=y-6;anchor='start';} else if(i===2){ly=y-44;} else {ly=y+38;} }
+  else { if(i===1||i===2||i===3){lx=x+18;ly=y+4;anchor='start';} else {lx=x-20;ly=y+4;anchor='end';} }
+  const t=mk('text',{x:lx,y:ly,'text-anchor':anchor,class:'st-name'},g);t.textContent=nm;
+  if(yr){const t2=mk('text',{x:lx,y:ly+17,'text-anchor':anchor,class:'st-year'},g);t2.textContent=yr;}
+  stationEls.push({ring,pulse,g});
+ });
+ // window strip (desktop only)
+ const wx=-30,wy=H*.8,ww=W+60,wh=H*.2+40;
+ $('window').style.display=ph?'none':'';
+ $('frame').setAttribute('x',wx-12);$('frame').setAttribute('y',wy-12);$('frame').setAttribute('width',ww+24);$('frame').setAttribute('height',wh+24);
+ ['winClipR','seal','glass','sky','skyN'].forEach(id=>{const e=$(id);e.setAttribute('x',wx);e.setAttribute('y',wy);e.setAttribute('width',ww);e.setAttribute('height',wh);});
+ $('seaR').setAttribute('x',wx);$('seaR').setAttribute('y',wy+wh*.5);$('seaR').setAttribute('width',ww);$('seaR').setAttribute('height',wh*.5);
+ // passing scenery: a looping tile of buildings, masts and lamps, twice so it wraps
+ const P=$('passing');P.innerHTML='';seed=8;const tile=ww*1.4;
+ for(const off of [0,tile]){const g=mk('g',{class:'tile',transform:`translate(${off} 0)`},P);
+  for(let x=0;x<tile;){const bw=26+rnd()*60,bh=wh*(.12+rnd()*.26);mk('rect',{x:wx+x,y:wy+wh*.5-bh,width:bw,height:bh,fill:rnd()<.5?'#5a5466':'#4d4a5c',class:'bld'},g);
+    for(let k=0;k<6;k++)if(rnd()<.5)mk('rect',{x:wx+x+4+rnd()*(bw-8),y:wy+wh*.5-bh+4+rnd()*(bh-10),width:3,height:3,fill:'#ffcf86',class:'lw',opacity:0},g);
+    x+=bw+4+rnd()*30;}
+  for(let x=20;x<tile;x+=tile/5){mk('rect',{x:wx+x,y:wy-4,width:7,height:wh+8,fill:'#222a33'},g);mk('rect',{x:wx+x-40,y:wy+wh*.1,width:80,height:4,fill:'#222a33'},g);mk('path',{d:`M${wx+x-200} ${wy+wh*.06} Q${wx+x} ${wy+wh*.13} ${wx+x+200} ${wy+wh*.06}`,stroke:'#222a33','stroke-width':1.5,fill:'none'},g);}
+  for(let x=60;x<tile;x+=tile/7){mk('circle',{cx:wx+x,cy:wy+wh*.42,r:16,fill:'url(#gLamp)',class:'lamp',opacity:0},g);}
+ }
+ window.__tile=tile;last=-1;
+}
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sec=$('dusk');
+const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lerpC=(a,b,t)=>{const A=hex(a),B=hex(b);return `rgb(${A.map((v,i)=>Math.round(v+(B[i]-v)*t))})`;};
+let target=0,sm=0,last=-1,pan=0;
+function read(){const r=sec.getBoundingClientRect();const span=sec.offsetHeight-innerHeight;target=Math.min(1,Math.max(0,-r.top/span))*N;}
+/* the dot dwells at a station, then travels in the last third of each stop */
+const travel=s=>{const i=Math.min(6,Math.floor(s)),f=s-i;if(i>=6)return 6;return i+ss(.62,1,f);};
+function frame(t){
+ sm=RM?target:sm+(target-sm)*.1;if(Math.abs(target-sm)<.0005)sm=target;
+ const s=Math.min(sm,N-.0001);
+ stopEls.forEach((el,i)=>{const a=i===0?1:ss(i-.02,i+.14,s),b=i===N-1?1:1-ss(i+.86,i+.98,s);const o=Math.min(a,b);
+   el.style.opacity=o.toFixed(3);el.style.transform=`translateY(${((1-a)*14-(1-b)*14).toFixed(1)}px)`;el.style.visibility=o<.01?'hidden':'visible';});
+ if(Math.abs(s-last)>.0003){last=s;
+  const tv=travel(s);const i=Math.floor(tv),f=tv-i;const L=i>=6?stLens[6]:stLens[i]+(stLens[i+1]-stLens[i])*f;
+  $('route').setAttribute('stroke-dashoffset',(routeLen-L).toFixed(1));
+  const p=$('route').getPointAtLength(L);['dot','halo'].forEach(id=>{$(id).setAttribute('cx',p.x.toFixed(1));$(id).setAttribute('cy',p.y.toFixed(1));});
+  stationEls.forEach((S,k)=>{const reached=tv>=k-.02;S.ring.setAttribute('fill',reached?'#2c6d8c':'#efe8da');S.g.style.opacity=reached?1:.55;S.cur=Math.abs(tv-k)<.05&&s<7;});
+  // dusk: panel light warms, the window goes from sunset to night
+  const n=ss(0,7.6,s);
+  document.querySelector('.stage').style.background=lerpC('#efe8da','#e2cfa9',n);
+  $('k0').setAttribute('stop-color',lerpC('#7f8fb0','#1a2440',n));$('k1').setAttribute('stop-color',lerpC('#e8a477','#4a3a55',n));$('k2').setAttribute('stop-color',lerpC('#f5c98d','#8a4a3e',n));
+  $('seaR').setAttribute('fill',lerpC('#5e7d93','#121c2c',n));
+  document.querySelectorAll('.bld').forEach(e=>e.setAttribute('fill',lerpC('#6b6274','#151a26',n)));
+  document.querySelectorAll('.lw').forEach((e,k)=>e.setAttribute('opacity',(k%7)/7<n*1.2?1:0));
+  document.querySelectorAll('.lamp').forEach(e=>e.setAttribute('opacity',ss(1,5,s).toFixed(2)));
+  $('ghost').setAttribute('opacity',(.55*(1-ss(6.5,7.5,s)*.5)).toFixed(2));
+  const dim=ph&&s>6.9?.12:1; $('map').style.opacity=ph?(1-ss(6.85,7.1,s)*.96):1;
+ }
+ if(!RM){
+  stationEls.forEach(S=>{if(S.cur){const k=(t%2200)/2200;S.pulse.setAttribute('r',(12+k*16).toFixed(1));S.pulse.setAttribute('opacity',(1-k).toFixed(2));}else S.pulse.setAttribute('opacity',0);});
+  const tile=window.__tile||1000;pan=(t*.05)%tile;$('passing').setAttribute('transform',`translate(${(-pan).toFixed(1)} 0)`);
+ }
+ requestAnimationFrame(frame);
+}
+addEventListener('scroll',read,{passive:true});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{build();read();},120);});
+build();read();sm=target;requestAnimationFrame(frame);
+</script>
+</body>
+</html>

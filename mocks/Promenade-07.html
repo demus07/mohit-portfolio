@@ -1,0 +1,321 @@
+<!-- Direction 07: Early run — dawn on Marine Drive, the camera tracks Mohit on his run; scrolling lifts the sun over the city behind us and the shade of the Art Deco blocks pulls back off the promenade. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade — Early run</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:#9aa3bd; }
+  body { color:#1f2a3a; font-family:"DM Sans",system-ui,sans-serif; }
+  .track { height:380vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; }
+  .layer { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .copy { position:absolute; left:clamp(24px,6.4vw,100px); top:clamp(28px,10vh,104px); width:min(600px,42vw); z-index:5; }
+  h1 { font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:clamp(44px,5.1vw,84px); line-height:.98; letter-spacing:-0.01em; text-wrap:balance; color:var(--ink,#1f2a3a); }
+  h1 em { font-style:italic; }
+  .line { margin-top:24px; font-size:clamp(16px,1.18vw,19px); line-height:1.55; max-width:40ch; color:var(--ink2,#2c3a4c); }
+  .aside { margin-top:30px; max-width:30ch; font-family:"Instrument Serif",serif; font-style:italic; font-size:clamp(21px,1.65vw,27px); line-height:1.3; color:var(--ink,#1f2a3a);
+    opacity:0; transform:translateY(16px); transition:opacity 1.2s ease, transform 1.4s cubic-bezier(.2,.7,.2,1); }
+  .aside.on { opacity:1; transform:none; }
+  .grain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:soft-light; opacity:.5; z-index:6; }
+  @media (max-width:700px) {
+    .copy { width:auto; right:24px; top:28px; }
+    h1 { font-size:clamp(36px,10.4vw,46px); }
+    .line { margin-top:14px; font-size:15.5px; }
+    .aside { margin-top:16px; font-size:19px; }
+  }
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage">
+    <svg class="layer v" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <!-- looking west at dawn: Earth's shadow sits on the horizon, the pink Belt of Venus above it -->
+        <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="-900" x2="0" y2="440">
+          <stop id="s0" offset="0"/><stop id="s1" offset=".55"/><stop id="s2" offset=".8"/><stop id="s3" offset=".93"/><stop id="s4" offset="1"/>
+        </linearGradient>
+        <linearGradient id="sea" gradientUnits="userSpaceOnUse" x1="0" y1="440" x2="0" y2="640">
+          <stop id="w0" offset="0"/><stop id="w1" offset=".4"/><stop id="w2" offset="1"/>
+        </linearGradient>
+        <linearGradient id="face" gradientUnits="userSpaceOnUse" x1="0" y1="622" x2="0" y2="704">
+          <stop offset="0" stop-color="#f4dcc0"/><stop offset="1" stop-color="#d7b597"/>
+        </linearGradient>
+        <linearGradient id="floor" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="900">
+          <stop offset="0" stop-color="#e2c6aa"/><stop offset="1" stop-color="#ecd6bd"/>
+        </linearGradient>
+        <radialGradient id="lampGlow"><stop offset="0" stop-color="#ffcf87" stop-opacity=".95"/><stop offset=".3" stop-color="#f2a145" stop-opacity=".35"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
+        <filter id="paper" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency=".6 .9" numOctaves="2" seed="5"/>
+          <feColorMatrix values="0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .2  0 0 0 -1.6 .75"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+      </defs>
+
+      <rect x="-700" y="-1000" width="2900" height="1442" fill="url(#sky)"/>
+      <!-- a few high clouds catching the sun before anything else does -->
+      <g id="hiClouds" opacity=".85" filter="url(#blur3)">
+        <path d="M720 140 C800 128 900 132 980 142 C930 146 860 150 790 150 Z"/>
+        <path d="M980 196 C1080 184 1220 186 1320 198 C1240 204 1100 206 1000 204 Z"/>
+        <path d="M600 250 C660 244 740 246 790 252 C740 256 670 256 620 256 Z"/>
+        <path d="M1180 92 C1240 86 1320 88 1370 94 C1320 98 1250 98 1200 98 Z"/>
+      </g>
+
+      <!-- Malabar Hill and the curve of the bay, far right; tops lit first -->
+      <path d="M1040 442 C1100 416 1180 398 1250 394 C1330 390 1400 400 1480 416 C1560 430 1640 436 1760 442 Z" fill="#8b8fac"/>
+      <g id="towers" fill="#8e92ae">
+        <rect x="1150" y="356" width="14" height="66"/><rect x="1176" y="334" width="12" height="84"/>
+        <rect x="1212" y="350" width="18" height="56"/><rect x="1246" y="318" width="13" height="80"/>
+        <rect x="1290" y="340" width="16" height="60"/><rect x="1330" y="362" width="12" height="40"/>
+        <rect x="1380" y="352" width="14" height="52"/>
+      </g>
+      <g id="towerLit" fill="#e9c3ae" opacity="0">
+        <rect x="1150" y="356" width="5" height="66"/><rect x="1176" y="334" width="4" height="84"/>
+        <rect x="1212" y="350" width="6" height="56"/><rect x="1246" y="318" width="4" height="80"/>
+        <rect x="1290" y="340" width="5" height="60"/><rect x="1330" y="362" width="4" height="40"/><rect x="1380" y="352" width="5" height="52"/>
+      </g>
+      <!-- the Chowpatty end: low Deco blocks -->
+      <path id="decoFar" d="M820 442 v-8 h14 v-6 h20 v6 h12 v-11 h18 v11 h16 v-7 h22 v7 h14 v-13 h12 v13 h20 v-9 h16 v9 h18 v-6 h14 v6 h18 v-10 h20 v10 h16 v-7 h18 v7 h12 v-5 h16 v13 z" fill="#9b9bb4"/>
+      <g id="necklace" fill="#ffd9a0"></g>
+
+      <!-- the sea -->
+      <rect x="-700" y="440" width="2900" height="200" fill="url(#sea)"/>
+      <g id="seaLines" fill="none" stroke-linecap="round"></g>
+
+      <!-- the parapet, facing us and the sun behind us -->
+      <rect x="-700" y="616" width="2900" height="9" rx="4" fill="#f6e6d0"/>
+      <rect x="-700" y="624" width="2900" height="80" fill="url(#face)"/>
+      <rect x="-700" y="624" width="2900" height="80" fill="#000" filter="url(#paper)" opacity=".5"/>
+      <g id="wallJoints" stroke="#a98a72" stroke-width="1.4" opacity=".55"></g>
+      <!-- the promenade -->
+      <rect x="-700" y="704" width="2900" height="200" fill="url(#floor)"/>
+      <rect x="-700" y="704" width="2900" height="200" fill="#000" filter="url(#paper)" opacity=".35"/>
+      <g id="floorJoints" stroke="#b7957a" stroke-width="1.2" opacity=".5"></g>
+
+      <!-- far figures, nearer the wall -->
+      <g id="farShadows" fill="#6d6a96" opacity=".28"></g>
+      <g id="far"></g>
+
+      <!-- the shade of the buildings behind us, pulling back as the sun climbs -->
+      <clipPath id="floorClip"><rect x="-700" y="704" width="2900" height="220"/></clipPath>
+      <path id="shade" clip-path="url(#floorClip)" fill="#5b6290" opacity=".3" filter="url(#blur3)" style="mix-blend-mode:multiply"/>
+
+      <!-- Mohit -->
+      <g id="meShadow" fill="#5d5a8c" opacity=".3"></g>
+      <g id="me"></g>
+    </svg>
+
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy" id="copy">
+      <h1>One year in, here's <em>what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: 07 early run -->
+<script>
+(() => {
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = id => document.getElementById(id);
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  const ss = t => t*t*(3-2*t);
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const hex = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+  const mix = (a,b,t) => { const A = hex(a), B = hex(b); return '#' + A.map((v,i) => Math.round(lerp(v,B[i],t)).toString(16).padStart(2,'0')).join(''); };
+  const scene = $('scene'), track = $('track');
+
+  let vb = {x:0,y:0,w:1440,h:900};
+  function fit() {
+    const a = innerWidth / innerHeight;
+    if (a >= 1) { vb.h = 900; vb.w = 900*a; vb.x = 720 - vb.w/2; vb.y = 0; }
+    else { vb.w = 620; vb.h = vb.w/a; vb.x = 650 - vb.w/2; vb.y = 902 - vb.h; }
+    scene.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  }
+
+  // ---------- the runner ----------
+  // a jointed figure drawn as tapered strokes; angles are radians from straight down, positive swings forward (+x)
+  function makeRunner(parent, pal) {
+    const g = mk('g', {}, parent);
+    const st = (c) => mk('path', {stroke:c, 'stroke-linecap':'round', 'stroke-linejoin':'round', fill:'none'}, g);
+    return {
+      g, pal,
+      armB: [st(pal.skinD), st(pal.skinD), st(pal.shirtD || pal.shirt)],
+      legB: [st(pal.skinD), st(pal.skinD), st(pal.shortsD), st(pal.shoeD)],
+      shorts: st(pal.shorts), torso: st(pal.shirt), back: st(pal.shirtD || pal.shirt),
+      neck: st(pal.skin), head: mk('ellipse', {fill:pal.skin}, g), ear: mk('ellipse', {fill:pal.skinD}, g), hair: mk('path', {fill:pal.hair}, g),
+      glasses: pal.glasses ? mk('path', {stroke:'#1c1d24', 'stroke-width':1.5, fill:'none'}, g) : null,
+      legF: [st(pal.skin), st(pal.skin), st(pal.shorts), st(pal.shoe)],
+      armF: [st(pal.skin), st(pal.skin), st(pal.shirt)],
+    };
+  }
+  const D = (a, l) => [Math.sin(a)*l, Math.cos(a)*l];
+  const add = (p, v) => [p[0] + v[0], p[1] + v[1]];
+  const seg = (e, a, b, w) => { e.setAttribute('d', `M${a[0].toFixed(1)} ${a[1].toFixed(1)} L${b[0].toFixed(1)} ${b[1].toFixed(1)}`); e.setAttribute('stroke-width', w.toFixed(1)); };
+  function poseRunner(r, X, Y, S, ph, walk) {
+    const u = S/250;
+    const swing = walk ? .32 : .48, fold = walk ? .35 : 1.25, armA = walk ? .35 : .62;
+    const leg = (p) => {
+      const a = swing*Math.sin(p);
+      const k = .26 + fold*Math.pow(Math.max(0, Math.cos(p + .45)), 1.5);
+      const kn = D(a, 66*u), an = add(kn, D(a - k, 62*u));
+      return {a, k, kn, an, sa: a - k};
+    };
+    const L1 = leg(ph), L2 = leg(ph + Math.PI);
+    // put the lower foot on the ground: the bob comes out of the legs
+    const low = Math.max(L1.an[1], L2.an[1]) + 6*u;
+    const hip = [X, Y - low];
+    const lean = walk ? .05 : .17;
+    const P = (along, side) => [hip[0] + Math.sin(lean)*along + Math.cos(lean)*side, hip[1] - Math.cos(lean)*along + Math.sin(lean)*side];
+    const drawLeg = (parts, L) => {
+      const kn = add(hip, L.kn), an = add(hip, L.an);
+      seg(parts[0], hip, kn, 25*u);
+      seg(parts[1], kn, an, 17*u);
+      seg(parts[2], [hip[0], hip[1] - 2*u], [lerp(hip[0], kn[0], .42), lerp(hip[1], kn[1], .42)], 28*u);
+      const fw = [Math.cos(L.sa), -Math.sin(L.sa)];
+      const heel = [an[0] - fw[0]*5*u + Math.sin(L.sa)*6*u, an[1] - fw[1]*5*u + Math.cos(L.sa)*6*u];
+      const toe = [heel[0] + fw[0]*27*u, heel[1] + fw[1]*27*u];
+      seg(parts[3], heel, toe, 10*u);
+    };
+    drawLeg(r.legB, L2);
+    const sh = P(80*u, 0);
+    const arm = (parts, p) => {
+      const a = -armA*Math.sin(p) - .1;
+      const el = add(sh, D(a, 50*u)), wr = add(el, D(a + (walk ? .5 : 1.6), 42*u));
+      seg(parts[0], sh, el, 13*u); seg(parts[1], el, wr, 11*u);
+      seg(parts[2], sh, [lerp(sh[0], el[0], .38), lerp(sh[1], el[1], .38)], 17*u);
+    };
+    arm(r.armB, ph + Math.PI);
+    seg(r.torso, P(4*u, 1*u), P(78*u, 2*u), 38*u);
+    seg(r.back, P(8*u, -12*u), P(72*u, -12*u), 11*u);
+    seg(r.shorts, P(-6*u, 0), P(6*u, 0), 30*u);
+    seg(r.neck, P(84*u, 3*u), P(100*u, 5*u), 13*u);
+    const hc = P(116*u, 6*u);
+    r.head.setAttribute('cx', hc[0]); r.head.setAttribute('cy', hc[1]); r.head.setAttribute('rx', 14.5*u); r.head.setAttribute('ry', 17*u);
+    const ec = P(114*u, 2*u); r.ear.setAttribute('cx', ec[0]); r.ear.setAttribute('cy', ec[1]); r.ear.setAttribute('rx', 3*u); r.ear.setAttribute('ry', 4.5*u);
+    const H = (a, s) => P(a*u, s*u).map(v => v.toFixed(1)).join(' ');
+    r.hair.setAttribute('d', r.pal.walk
+      ? `M${H(118,-15)} C${H(130,-14)} ${H(134,0)} ${H(132,12)} C${H(126,4)} ${H(122,-6)} ${H(110,-14)} Z`
+      : `M${H(108,-14)} C${H(120,-19)} ${H(132,-15)} ${H(136,-6)} C${H(140,2)} ${H(141,10)} ${H(139,16)} C${H(135,17)} ${H(130,15)} ${H(127,12)} C${H(129,4)} ${H(126,-6)} ${H(118,-10)} C${H(114,-11)} ${H(112,-10)} ${H(108,-14)} Z`);
+    if (r.glasses) r.glasses.setAttribute('d', `M${H(120,-2)} L${H(119,9)} M${H(121,9)} L${H(121,17)} L${H(116,17)} L${H(116,9)} Z`);
+    drawLeg(r.legF, L1);
+    arm(r.armF, ph);
+  }
+  const mePal = { skin:'#a46d4f', skinD:'#7d5240', shirt:'#efe9df', shirtD:'#d3cabf', shorts:'#24304a', shortsD:'#1b2338', shoe:'#2a2f3c', shoeD:'#1e222c', hair:'#16161a', leg:19, arm:13, glasses:true };
+  const me = makeRunner($('me'), mePal);
+  const meSh = makeRunner($('meShadow'), Object.fromEntries(Object.entries(mePal).map(([k,v]) => [k, typeof v === 'string' ? 'currentColor' : v])));
+  $('meShadow').style.color = '#5d5a8c'; $('meShadow').querySelectorAll('[fill]').forEach(e => e.setAttribute('fill','#5d5a8c')); $('meShadow').querySelectorAll('[stroke]').forEach(e => e.getAttribute('stroke') !== 'none' && e.setAttribute('stroke','#5d5a8c'));
+
+  // others on the promenade, far side, smaller and paler (atmosphere)
+  const others = [
+    { pal:{ skin:'#8a6a5c', skinD:'#76594f', shirt:'#c76f63', shirtL:'#d98a7c', shorts:'#3b4157', shortsD:'#333849', shoe:'#3a3d48', shoeD:'#33363f', hair:'#2a2830', leg:19, arm:13 }, S:120, y:738, v:-150, x0:300, f:1.25 },
+    { pal:{ skin:'#8f6d5e', skinD:'#7a5d52', shirt:'#6c86a0', shirtL:'#88a0b6', shorts:'#3b4157', shortsD:'#333849', shoe:'#3a3d48', shoeD:'#33363f', hair:'#2a2830', leg:19, arm:13 }, S:112, y:728, v:-170, x0:1400, f:1.35 },
+    { pal:{ skin:'#8a6a5c', skinD:'#76594f', shirt:'#ece6da', shirtL:'#f6f0e6', shorts:'#ece6da', shortsD:'#d9d2c6', shoe:'#6b5c50', shoeD:'#5c5045', hair:'#d8d4cc', leg:19, arm:13, walk:true }, S:116, y:722, v:70, x0:900, f:.55 },
+  ];
+  for (const o of others) { o.r = makeRunner($('far'), o.pal); o.sh = mk('g', {}, $('farShadows')); o.shR = makeRunner(o.sh, o.pal); o.sh.querySelectorAll('*').forEach(e => { if (e.getAttribute('fill') && e.getAttribute('fill') !== 'none') e.setAttribute('fill', '#6d6a96'); if (e.getAttribute('stroke')) e.setAttribute('stroke','#6d6a96'); }); }
+
+  // world furniture that slides past: wall joints, floor joints, the necklace lamps far off
+  const SPEED = 230;   // promenade speed under his feet, units per second
+  const wj = [], fj = [];
+  for (let i = 0; i < 10; i++) wj.push(mk('path', {}, $('wallJoints')));
+  for (let i = 0; i < 16; i++) fj.push(mk('path', {}, $('floorJoints')));
+  const neck = [];
+  for (let i = 0; i < 22; i++) { const t = i/21; neck.push(mk('circle', {cx: 830 + t*560 + (i%2)*3, cy: 437 - t*4, r: (1.6 - t*.7).toFixed(2)}, $('necklace'))); }
+  const seaG = $('seaLines'); const sl = [];
+  let sd = 3; const rnd = () => (sd = sd*16807 % 2147483647) / 2147483647;
+  for (let i = 0; i < 30; i++) { const d = i/29; sl.push({ p: mk('path', {'stroke-width': (.6 + d*1.6).toFixed(2)}, seaG), y: 446 + d*d*170, d, x: rnd()*2600 - 600, len: 60 + d*300, sp: 2 + d*5 }); }
+
+  // the building shade: a stepped Deco skyline cast across the floor, world-fixed
+  const SKY = []; { let x = 0; while (x < 2880) { const w = 140 + rnd()*220, h = 6 + rnd()*26; SKY.push([x, h, w, rnd() < .45]); x += w; } }
+  function shadePath(edge, off) {
+    // edge: y where the tallest shade reaches; the cast steps sit above a base line
+    let d = `M${-800} 920 L${-800} ${edge + 30}`;
+    for (let k = -1; k < 2; k++) for (const [x0, h, w, round] of SKY) {
+      const x = x0 + k*2880 - off;
+      if (x > 2300 || x + w < -800) continue;
+      const y = edge + 30 - h;
+      if (round) d += ` L${x} ${edge + 30} L${x + 4} ${y + 6} Q ${x + 10} ${y} ${x + 40} ${y} L${x + w} ${y}`;
+      else d += ` L${x} ${edge + 30} L${x + 6} ${y} L${x + w} ${y}`;
+    }
+    return d + ` L2300 ${edge + 30} L2300 920 Z`;
+  }
+
+  const S = id => $(id);
+  const aside = $('aside');
+  let prog = 0, target = 0;
+  const read = () => { const r = track.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+
+  function frame(ms) {
+    prog += (target - prog) * (reduce ? 1 : .08);
+    const p = prog, t = reduce ? 1.3 : ms/1000;
+    const day = ss(clamp(p/.9, 0, 1));
+
+    // sky: belt of Venus sinks and fades; the day comes up warm
+    S('s0').setAttribute('stop-color', mix('#7e8fb0', '#9fbfd0', day));
+    S('s1').setAttribute('stop-color', mix('#a6aec8', '#c7d6d6', day));
+    S('s2').setAttribute('stop-color', mix('#e7b8b4', '#e8e2d2', day));
+    S('s3').setAttribute('stop-color', mix('#d8a8b0', '#efe8da', day));
+    S('s4').setAttribute('stop-color', mix('#8f95b6', '#e9e2d0', day));
+    S('s3').setAttribute('offset', lerp(.9, .97, day).toFixed(3));
+    S('w0').setAttribute('stop-color', mix('#c8a9b6', '#e3dccd', day));
+    S('w1').setAttribute('stop-color', mix('#8e93b2', '#7fa3b2', day));
+    S('w2').setAttribute('stop-color', mix('#6f7799', '#3f7590', day));
+    $('hiClouds').setAttribute('fill', mix('#f2b3a1', '#f7efe2', day));
+    $('towerLit').setAttribute('opacity', (ss(clamp(p*3,0,1))*(1-day)*.8).toFixed(2));
+    $('towers').setAttribute('fill', mix('#8e92ae', '#aab3bf', day));
+    $('decoFar').setAttribute('fill', mix('#9b9bb4', '#d9c7b4', day));
+    neck.forEach((c,i) => c.setAttribute('opacity', (1 - ss(clamp((p - i*.006)/.32, 0, 1))).toFixed(2)));
+    document.documentElement.style.setProperty('--ink', mix('#1f2742', '#1d2b3a', day));
+
+    // the world slides under him
+    const off = t*SPEED;
+    wj.forEach((e,i) => { const x = ((i*300 - off*.62) % 3000 + 3000) % 3000 - 800; e.setAttribute('d', `M${x} 626 V704`); });
+    fj.forEach((e,i) => { const x = ((i*190 - off) % 3040 + 3040) % 3040 - 800; e.setAttribute('d', `M${x*.62 + 720*.38} 705 L${x + (x - 720)*.18} 905`); });
+    for (const s of sl) { const x = ((s.x - t*s.sp - off*.004*s.d) % 2600 + 2600) % 2600 - 600; s.p.setAttribute('d', `M${x} ${s.y} h${s.len}`); s.p.setAttribute('stroke', mix('#e9c9c6','#f6f0e2',day)); s.p.setAttribute('opacity', (.12 + s.d*.25).toFixed(2)); }
+
+    // the shade line pulls back from the sea, over the wall, down the promenade, past him
+    const edge = lerp(690, 950, ss(clamp((p - .04)/.72, 0, 1)));
+    $('shade').setAttribute('d', shadePath(edge, ((off*.9) % 2880)));
+    $('shade').setAttribute('opacity', lerp(.36, .28, day).toFixed(2));
+
+    // Mohit
+    const X = 620, Y = 868;
+    const ph = t * 2*Math.PI / .78;
+    poseRunner(me, X, Y, 250, ph);
+    poseRunner(meSh, X, Y, 250, ph);
+    const lit = clamp((edge - 820)/70, 0, 1);         // 1 once the sun reaches his feet
+    const len = lerp(.62, .34, ss(clamp((p - .55)/.45, 0, 1)));
+    $('meShadow').setAttribute('transform', `translate(${X} ${Y}) skewX(-16) scale(1 ${len.toFixed(3)}) translate(${-X} ${-Y})`);
+    $('meShadow').setAttribute('opacity', (lit*.32).toFixed(2));
+    $('me').style.filter = `saturate(${lerp(.55, 1.05, lit)}) brightness(${lerp(.78, 1.04, lit)})`;
+
+    for (const o of others) {
+      const x = ((o.x0 + (o.v - SPEED*.62)*t) % 2600 + 2600) % 2600 - 600;
+      const ph2 = t * 2*Math.PI * o.f;
+      if (o.pal.walk) { poseRunner(o.r, x, o.y, o.S, ph2, true); poseRunner(o.shR, x, o.y, o.S, ph2, true); }
+      else { poseRunner(o.r, x, o.y, o.S, ph2); poseRunner(o.shR, x, o.y, o.S, ph2); }
+      o.r.g.setAttribute('transform', o.v < 0 ? `translate(${2*x} 0) scale(-1 1)` : '');
+      const shLit = clamp((edge - 700)/40, 0, 1);
+      o.sh.setAttribute('transform', `translate(${x} ${o.y}) skewX(-16) scale(${o.v < 0 ? -1 : 1} ${(len*.7).toFixed(3)}) translate(${-x} ${-o.y})`);
+      o.sh.setAttribute('opacity', shLit.toFixed(2));
+    }
+
+    aside.classList.toggle('on', p > .82);
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', () => { fit(); read(); });
+  addEventListener('scroll', read, {passive:true});
+  fit(); read(); prog = target;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!-- Direction 03: Sunset steps — from the Marine Drive parapet, the sun sinks into the Arabian Sea one notch per stop, flattening as it touches the water, while the sky deepens and a lone figure on the wall watches. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk: Sunset Steps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.dusk{position:relative;height:900vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#2d3f63}
+svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.22;mix-blend-mode:soft-light}
+.copy{position:absolute;z-index:5;left:clamp(24px,5.6vw,104px);top:clamp(44px,10vh,120px);width:min(30rem,36vw)}
+h2{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(48px,4.9vw,82px);line-height:.98;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.stops{position:relative;margin-top:clamp(28px,5vh,52px)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;will-change:opacity,transform}
+.where{margin:0 0 .55rem;font-size:16px;font-weight:600;display:flex;gap:.55rem;align-items:baseline;letter-spacing:.005em}
+.where .yr{color:#ffc98a;font-weight:500}
+.line{margin:0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(24px,1.85vw,30px);line-height:1.22;max-width:19em}
+.roles{font-size:14.5px;line-height:1.45}
+.roles .r{display:flex;flex-wrap:wrap;gap:.1rem .5rem;align-items:baseline;margin:0;padding:.55rem 0}
+.roles .r b{font-weight:600}
+.roles .r span{opacity:.72}
+.roles .r em{font-style:normal;color:#ffc98a;margin-left:auto}
+.roles ul{list-style:none;margin:0 0 .45rem;padding:0;font-size:14px;opacity:.92}
+.roles li{padding:.2rem 0 .2rem .95rem;position:relative}
+.roles li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;border:1px solid #ffc98a}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;width:auto;top:36px}
+  h2{font-size:42px}
+  .stops{margin-top:18px}
+  .line{font-size:21px}
+  .where{font-size:14px}
+  .roles{font-size:12.5px}.roles ul{font-size:12px}.roles .r{padding:.3rem 0}
+  svg.scene{top:auto;height:58%}
+}
+</style>
+</head>
+<body>
+<section class="dusk" id="dusk">
+  <div class="stage" id="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="562" gradientUnits="userSpaceOnUse">
+          <stop id="k0" offset="0"/><stop id="k1" offset=".58"/><stop id="k2" offset=".88"/><stop id="k3" offset="1"/>
+        </linearGradient>
+        <linearGradient id="gSea" x1="0" y1="560" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+          <stop id="w0" offset="0"/><stop id="w1" offset=".25"/><stop id="w2" offset="1"/>
+        </linearGradient>
+        <radialGradient id="gSun"><stop offset="0" stop-color="#fff6dc"/><stop offset=".72" id="sunEdge" stop-color="#ffd27c"/><stop offset="1" id="sunRim" stop-color="#ffb35c"/></radialGradient>
+        <radialGradient id="gHalo"><stop offset="0" id="haloC" stop-color="#ffcf7a" stop-opacity=".75"/><stop offset=".3" id="haloM" stop-color="#ff9f55" stop-opacity=".28"/><stop offset="1" stop-color="#ff9f55" stop-opacity="0"/></radialGradient>
+        <linearGradient id="gWall" x1="0" y1="790" x2="0" y2="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3a3240"/><stop offset=".07" stop-color="#241f2c"/><stop offset="1" stop-color="#120f18"/></linearGradient>
+        <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="soft"><feGaussianBlur stdDeviation=".6"/></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="1.6"/></filter>
+        <filter id="sea" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".003 .2" numOctaves="2" seed="21"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .8  0 0 0 0 .6  0 0 0 1.9 -1.05"/></filter>
+        <clipPath id="above"><rect width="1440" height="561"/></clipPath>
+        <clipPath id="below"><rect y="561" width="1440" height="340"/></clipPath>
+      </defs>
+      <rect width="1440" height="562" fill="url(#gSky)"/>
+      <g id="stars" opacity="0"></g>
+      <g clip-path="url(#above)">
+        <circle id="halo" cx="1040" cy="330" r="420" fill="url(#gHalo)"/>
+        <ellipse id="sun" cx="1040" cy="330" rx="58" ry="58" fill="url(#gSun)"/>
+      </g>
+      <!-- cloud bands, lit from below -->
+      <g id="clouds" filter="url(#blur2)">
+        <path id="c1" d="M760 404 C860 394 1010 396 1140 401 C1230 404 1300 410 1330 414 C1220 418 1050 418 900 414 C830 412 780 409 760 404Z"/>
+        <path id="c2" d="M840 470 C960 462 1150 462 1300 468 C1180 476 980 478 840 470Z"/>
+        <path id="c3" d="M520 252 C640 240 820 238 960 246 C860 256 640 260 520 252Z"/>
+        <path id="c4" d="M1180 300 C1260 294 1380 294 1460 300 C1380 307 1250 308 1180 300Z"/>
+      </g>
+      <g id="birds" fill="#2a2030"></g>
+      <rect y="560" width="1440" height="340" fill="url(#gSea)"/>
+      <rect y="560" width="1440" height="340" filter="url(#sea)" opacity=".22"/>
+      <g clip-path="url(#below)" filter="url(#soft)"><g id="glitter"></g></g>
+      <rect id="hz" y="559.5" width="1440" height="1.2" fill="#ffd9a0" opacity=".5"/>
+      <!-- tetrapods beyond the wall -->
+      <g id="tetra"></g>
+      <!-- parapet and the figure -->
+      <path d="M0 790 H1440 V900 H0Z" fill="url(#gWall)"/>
+      <rect y="789" width="1440" height="2.5" id="wallLip" fill="#b17a62" opacity=".55"/>
+      <g id="figure" fill="#15111b"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+  </div>
+</section>
+<!-- direction: Dusk 03 · Sunset steps -->
+<script>
+const STOPS=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const ROLES=`<div class="r"><b>Sypha AI</b><span>Software Engineer</span><em>Dec 2025 – now</em></div>
+<ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+<li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+<li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+<li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul>
+<div class="r"><b>AuctionXI</b><span>Founder</span><em>Apr 2026 – now</em></div>
+<div class="r"><b>TexAgent</b><span>Freelance developer</span><em>Sep 2026 – now</em></div>
+<div class="r"><b>MK Exim India</b><span>E-commerce, Amazon, TataCliQ and Sephora</span><em>Mar – Sep 2025</em></div>
+<div class="r"><b>Brahmani Gems</b><span>Web developer intern, Shopify</span><em>Jul – Aug 2024</em></div>`;
+const stopsEl=document.getElementById('stops');
+STOPS.forEach(([st,yr,l])=>{const a=document.createElement('article');a.className='stop';
+ a.innerHTML=`<p class="where"><span>${st}</span>${yr?`<span class="yr">${yr}</span>`:''}</p><p class="line">${l}</p>`;stopsEl.appendChild(a);});
+{const a=document.createElement('article');a.className='stop roles';a.innerHTML=ROLES;stopsEl.appendChild(a);}
+const stopEls=[...stopsEl.children];const N=stopEls.length;
+
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p&&p.appendChild(e);return e;};
+let seed=3;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const $=id=>document.getElementById(id);
+const HZ=560;
+
+/* palettes per notch: sky top, mid, low, horizon | sea near-horizon, mid, near */
+const P=[
+ ['#33476b','#8a7393','#f0b884','#fbd99c','#e9b88f','#7f6f86','#2b2d45'],
+ ['#2f4166','#83688c','#eda677','#f8c886','#e6a57c','#76627c','#282a42'],
+ ['#2b3b60','#7a5d85','#e8946b','#f5b26e','#de916b','#6c5674','#25263f'],
+ ['#26355a','#70517e','#e07f5f','#f19c5a','#d27b5c','#604b6b','#21223a'],
+ ['#213052','#634574','#d46a55','#ea844b','#c4664f','#543f62','#1d1e35'],
+ ['#1c2a4a','#543b68','#c3574d','#df6e41','#b05448','#463657','#191a30'],
+ ['#172442','#45335c','#ab4848','#cf5a3c','#974641','#3a2e4d','#15172b'],
+ ['#0f1a31','#2a2848','#5d3446','#94463f','#59343f','#272439','#0d1222']
+];
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lerpC=(a,b,t)=>{const A=hex(a),B=hex(b);return `rgb(${A.map((v,i)=>Math.round(v+(B[i]-v)*t))})`;};
+const pal=(s,j)=>{const i=Math.min(6,Math.floor(s));return lerpC(P[i][j],P[i+1][j],s-i);};
+
+/* tetrapods: four tapered legs from a hub, a rim of warm light on the sun side */
+function tetrapod(g,x,y,sz,rot,lit){
+ const legs=[[-90+rot,1],[35+rot,.95],[145+rot,.95],[95+rot*.4,.38]];
+ const grp=mk('g',{transform:`translate(${x} ${y})`},g);
+ legs.forEach(([a,f])=>{const r=a*Math.PI/180,L=sz*f,w0=sz*.3,w1=sz*.17;
+  const ex=Math.cos(r)*L,ey=Math.sin(r)*L,nx=-Math.sin(r),ny=Math.cos(r);
+  mk('path',{d:`M${nx*w0} ${ny*w0} L${ex+nx*w1} ${ey+ny*w1} Q${ex+Math.cos(r)*w1*1.1} ${ey+Math.sin(r)*w1*1.1} ${ex-nx*w1} ${ey-ny*w1} L${-nx*w0} ${-ny*w0}Z`,fill:'#1a1520'},grp);
+  if(lit&&Math.cos(r)>-.2)mk('path',{d:`M${-nx*w0*.9} ${-ny*w0*.9} L${ex-nx*w1*.9} ${ey-ny*w1*.9}`,stroke:'#c7735c','stroke-width':Math.max(.8,sz*.035),opacity:.55,'stroke-linecap':'round',class:'rim'},grp);});
+ mk('circle',{r:sz*.3,fill:'#1a1520'},grp);
+}
+function seated(g,x,y,s){ // seen from behind, sitting on the wall, facing the sea
+ const f=mk('g',{transform:`translate(${x} ${y}) scale(${s})`},g);
+ mk('path',{d:'M-13 1 C-14 -8 -15.5 -18 -15 -26 C-14.5 -32 -10 -35 -5 -36.2 C-3 -36.8 -2.6 -38.6 -2.8 -40 L2.8 -40 C2.6 -38.6 3 -36.8 5 -36.2 C10 -35 14.5 -32 15 -26 C15.5 -18 14 -8 13 1Z'},f);
+ mk('path',{d:'M-14.5 -24 C-18 -16 -19 -8 -17 0 L-13 0 C-14 -8 -13.6 -16 -12.6 -22Z M14.5 -24 C18 -16 19 -8 17 0 L13 0 C14 -8 13.6 -16 12.6 -22Z'},f);
+ mk('ellipse',{cx:0,cy:-46.5,rx:6.6,ry:7.6},f);
+ mk('path',{d:'M-7 -48 C-7.5 -58 7.5 -58 7 -48 C5 -53 -2 -54 -7 -48Z'},f);
+}
+let SX=1040;const glit=[];
+function build(){
+ const ph=innerWidth<700;SX=ph?720:1040;
+ $('tetra').innerHTML='';$('figure').innerHTML='';$('glitter').innerHTML='';glit.length=0;seed=3;
+ // two rows of tetrapods; the far row is smaller and hazier
+ for(let x=-30;x<1480;x+=52+rnd()*30)tetrapod($('tetra'),x,770+rnd()*6,26+rnd()*8,rnd()*70-35,Math.abs(x-SX)<500);
+ for(let x=-10;x<1480;x+=64+rnd()*36)tetrapod($('tetra'),x,788+rnd()*8,38+rnd()*12,rnd()*80-40,Math.abs(x-SX)<500);
+ seated($('figure'),SX-70,790,1.3);
+ // glitter: short horizontal flecks under the sun
+ for(let i=0;i<150;i++){const f=Math.pow(rnd(),1.3),y=HZ+3+f*230,w=(3+f*36)*(.4+rnd()),spread=(18+f*120)*(rnd()-.5)*2;
+  glit.push([mk('rect',{x:SX+spread-w/2,y,width:w,height:.9+f*2.2,rx:1,fill:rnd()<.35?'#fff0c8':'#ffc070'},$('glitter')),rnd()*6.28,f]);}
+}
+build();
+for(let i=0;i<90;i++)mk('circle',{cx:rnd()*1440,cy:rnd()*380,r:rnd()<.1?1.1:.6,fill:'#f6ecd8',opacity:.3+rnd()*.6},$('stars'));
+// two kites wheeling high over the sea
+const birds=[0,1].map(i=>mk('path',{d:'M-9 0 C-5 -3 -2 -3 0 0 C2 -3 5 -3 9 0 C5 -1.5 2 -1 0 1.4 C-2 -1 -5 -1.5 -9 0Z'},$('birds')));
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sec=$('dusk');
+const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+/* the notch: the sun holds through a stop and steps down in its last quarter */
+const notch=s=>{const i=Math.floor(s),f=s-i;return i+ss(.7,1,f);};
+let target=0,sm=0,last=-1;
+function read(){const r=sec.getBoundingClientRect();const span=sec.offsetHeight-innerHeight;target=Math.min(1,Math.max(0,-r.top/span))*N;}
+function frame(t){
+ sm=RM?target:sm+(target-sm)*.1;if(Math.abs(target-sm)<.0005)sm=target;
+ const s=Math.min(sm,N-.0001);
+ stopEls.forEach((el,i)=>{const a=i===0?1:ss(i-.02,i+.14,s),b=i===N-1?1:1-ss(i+.86,i+.98,s);const o=Math.min(a,b);
+   el.style.opacity=o.toFixed(3);el.style.transform=`translateY(${((1-a)*14-(1-b)*14).toFixed(1)}px)`;el.style.visibility=o<.01?'hidden':'visible';});
+ const n=Math.min(7,notch(s-.0) );
+ if(Math.abs(n-last)>.0003){last=n;
+   ['k0','k1','k2','k3'].forEach((id,j)=>$(id).setAttribute('stop-color',pal(n,j)));
+   ['w0','w1','w2'].forEach((id,j)=>$(id).setAttribute('stop-color',pal(n,j+4)));
+   $('stage').style.background=pal(n,0);
+   // sun: 7 notches down to half-set, then below
+   const cy=n<=6?330+n*(HZ-330)/6:HZ+(n-6)*90; const touch=ss(HZ-120,HZ+40,cy);
+   const rx=58+touch*5, ry=58-touch*12;
+   $('sun').setAttribute('cy',cy.toFixed(1));$('sun').setAttribute('cx',SX);$('sun').setAttribute('rx',rx.toFixed(1));$('sun').setAttribute('ry',ry.toFixed(1));
+   $('sunEdge').setAttribute('stop-color',lerpC('#ffd27c','#ff8a4a',ss(0,6.5,n)));$('sunRim').setAttribute('stop-color',lerpC('#ffb35c','#e8503a',ss(0,6.5,n)));
+   $('halo').setAttribute('cy',cy.toFixed(1));$('halo').setAttribute('cx',SX);$('halo').setAttribute('opacity',(1-ss(5.6,7,n)*.7).toFixed(3));
+   $('haloC').setAttribute('stop-color',lerpC('#ffd88a','#ff7a45',ss(0,6.5,n)));
+   const cl=[['#f6c39c','#f08a6e','#6a4a66'],['#f4b48a','#e2685a','#4f3a5a']];
+   ['c1','c2','c3','c4'].forEach((id,j)=>{const c=cl[j%2];$(id).setAttribute('fill',n<5?lerpC(c[0],c[1],n/5):lerpC(c[1],c[2],(n-5)/2));$(id).setAttribute('opacity',(.8-ss(6,7,n)*.35).toFixed(2));});
+   $('stars').setAttribute('opacity',ss(5.5,7,n).toFixed(3));
+   $('hz').setAttribute('opacity',(.5*(1-ss(6,7,n))).toFixed(3));
+   $('glitter').setAttribute('opacity',(1-ss(5.8,6.9,n)).toFixed(3));
+   $('wallLip').setAttribute('fill',lerpC('#c08a6c','#5a3b48',n/7));
+   document.querySelectorAll('.rim').forEach(e=>e.setAttribute('opacity',(.6*(1-ss(4,7,n))).toFixed(2)));
+ }
+ if(!RM){
+   // glitter breathes; each fleck fades in and out at its own pace
+   for(let i=0;i<glit.length;i+=1){const g=glit[i];const o=.25+.75*Math.max(0,Math.sin(t/700+g[1]));g[0].setAttribute('opacity',(o*(1-g[2]*.5)).toFixed(2));}
+   birds.forEach((b,i)=>{const a=t/(9000+i*2600)+i*2.4;const x=(ph()?640:1180)+Math.cos(a)*(150+i*60),y=170+i*40+Math.sin(a)*40;
+     b.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${(1+Math.sin(t/300+i)*.08).toFixed(3)} ${(1-Math.sin(t/300+i)*.25).toFixed(3)})`);});
+ }
+ requestAnimationFrame(frame);
+}
+const ph=()=>innerWidth<700;
+addEventListener('scroll',read,{passive:true});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{build();last=-1;read();},150);});
+read();sm=target;requestAnimationFrame(frame);
+</script>
+</body>
+</html>

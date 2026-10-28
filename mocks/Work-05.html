@@ -1,0 +1,280 @@
+<!-- Direction 05: Chalk menu board — the chai stall at the sea wall chalks the projects up like the day's menu; the one you choose is propped against the kettle as a print, cutting chai steaming beside it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Chalk menu board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--chalk:#f1ece0;--chalk2:rgba(241,236,224,.62);--saffron:#f2b35a;--sea:#2c6d8c;--hand:"Kalam",cursive;--sans:"Hanken Grotesk",system-ui,sans-serif;--cw:min(58vw,93vh)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#2a2621}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;color:#2a241c}
+a{color:inherit}
+.run{position:relative;height:520vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.stage>*{position:absolute}
+.bg{inset:0;width:100%;height:100%}
+
+/* the A-frame chalkboard on the pavement */
+.board{left:clamp(16px,4vw,72px);top:4.5vh;bottom:3vh;width:min(41vw,640px);z-index:4}
+.board .wood{position:absolute;inset:0;border-radius:4px;background:linear-gradient(100deg,#6b4527,#8a5a33 30%,#5c3a20 70%,#7a4f2c)}
+.board .wood::after{content:"";position:absolute;inset:0;border-radius:4px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.0) 0 7px,rgba(0,0,0,.08) 7px 8px);mix-blend-mode:multiply}
+.slate{position:absolute;inset:14px;border-radius:2px;overflow:hidden;background:#1d2723}
+.slate svg.dust{position:absolute;inset:0;width:100%;height:100%}
+.legs{position:absolute;bottom:-3vh;height:3.4vh;width:14px;background:linear-gradient(90deg,#4a2f19,#6b4527)}
+.chalk{position:absolute;inset:0;padding:clamp(22px,3.6vh,40px) clamp(22px,2.6vw,42px);color:var(--chalk);font-family:var(--hand);filter:url(#chalky)}
+.chalk h2{font-weight:400;font-size:clamp(34px,3.3vw,54px);line-height:1.02;text-wrap:balance;max-width:12ch;letter-spacing:.005em}
+.chalk .lede{font-weight:400;font-size:clamp(16px,1.25vw,20px);line-height:1.35;color:var(--chalk2);max-width:34ch;margin-top:10px}
+.menu{list-style:none;margin-top:clamp(14px,3.4vh,34px);position:relative}
+.doodle{position:absolute;right:6%;bottom:2.2%;width:clamp(44px,3.8vw,60px);opacity:.8;filter:url(#chalky)}
+.menu li{position:relative}
+.menu button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:14px;width:100%;padding:clamp(2px,.8vh,8px) 0;position:relative}
+.menu .nm{font-size:clamp(24px,2.3vw,36px);line-height:1.12;font-weight:400;transition:color .4s ease}
+.menu .dots{flex:1;border-bottom:2px dotted rgba(241,236,224,.28);transform:translateY(-6px)}
+.menu .yr{font-size:clamp(15px,1.15vw,19px);color:var(--chalk2);font-weight:300}
+.menu li.feat .nm{font-size:clamp(30px,2.8vw,44px);font-weight:700;color:#f6dfa9}
+.menu li.feat{margin-bottom:6px}
+.menu li.feat .yr{color:#e8cf98}
+.menu button:hover .nm,.menu button:focus-visible .nm{color:#fff}
+.menu svg.ring{position:absolute;left:-14px;top:-4px;width:calc(100% + 28px);height:calc(100% + 8px);overflow:visible;pointer-events:none}
+.menu svg.ring path{fill:none;stroke:#f2b35a;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset .9s cubic-bezier(.5,.1,.2,1)}
+.menu li.on svg.ring path{stroke-dashoffset:0}
+.menu li.on .nm{color:#fff}
+
+/* the cart: drawn in one SVG anchored bottom-right, everything sits on its counter */
+.cart{right:0;bottom:0;width:var(--cw);aspect-ratio:840/420;z-index:2}
+.cart svg{width:100%;height:100%;display:block;overflow:visible}
+.print{right:calc(var(--cw)*.19);bottom:calc(var(--cw)*.345);width:calc(var(--cw)*.56);z-index:3;transform:rotate(-2.2deg);transform-origin:50% 100%}
+.paper{position:relative;background:linear-gradient(170deg,#fbf6ea,#efe5d0);padding:calc(var(--cw)*.016) calc(var(--cw)*.016) 0}
+.paper::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,rgba(255,235,200,.0) 40%,rgba(255,226,180,.22) 70%,rgba(255,240,215,0)),linear-gradient(to bottom,rgba(0,0,0,0) 70%,rgba(70,50,20,.10))}
+.photo{position:relative;aspect-ratio:1506/940;overflow:hidden;background:#111}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.photo img.on{opacity:1}
+.photo .sheen{position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,0) 35%,rgba(255,244,220,.16) 50%,rgba(255,255,255,0) 62%);pointer-events:none}
+.caption{position:relative;min-height:calc(var(--cw)*.2);padding:calc(var(--cw)*.016) 4px calc(var(--cw)*.02)}
+.cp{position:absolute;inset:calc(var(--cw)*.014) 4px auto 4px;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.cp.on{opacity:1;pointer-events:auto;position:relative;inset:auto}
+.cp .k{font-size:13px;color:#7a6c58}
+.cp h3{font-size:clamp(15px,1.15vw,18px);font-weight:600;line-height:1.3;margin-top:2px;color:#241e17}
+.cp p{font-size:clamp(13px,.98vw,15px);line-height:1.45;color:#4b4134;margin-top:3px;max-width:48ch}
+.cp ul{list-style:none;margin-top:5px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.cp li{font-size:12.5px;line-height:1.38;color:#4b4134}
+.cp .t{font-size:12.5px;color:#7a6c58;margin-top:6px}
+.cp .ln{display:flex;gap:16px;margin-top:6px;font-size:14px;font-weight:600}
+.cp .ln a{color:var(--sea);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s ease;padding-bottom:1px}
+.cp .ln a:hover{background-size:100% 1px}
+.cp .ln span{color:#7a6c58;font-weight:400}
+.front{right:0;bottom:0;width:var(--cw);aspect-ratio:840/420;z-index:5;pointer-events:none}
+.front svg{width:100%;height:100%;display:block;overflow:visible}
+.steam path{fill:none;stroke:#fff;stroke-linecap:round}
+.after{height:12vh;background:#2a2621}
+
+@media (max-width:820px){
+  :root{--cw:100vw}
+  .board{left:16px;right:16px;width:auto;top:12px;bottom:auto;height:47vh}
+  .front,.doodle{display:none}
+  .menu button{padding:0}
+  .chalk{padding:16px 18px}
+  .chalk h2{font-size:28px;max-width:none}
+  .chalk .lede{font-size:14px}
+  .menu{margin-top:8px}
+  .menu .nm{font-size:18px}.menu li.feat .nm{font-size:23px}.menu .yr{font-size:13px}
+  .chalk .lede{margin-top:4px;line-height:1.25}
+  .legs{display:none}
+  .print{right:8vw;width:84vw;bottom:calc(100vw*.3)}
+  .cp ul,.cp .t{display:none}
+  .cp p{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<!-- direction: Work 05 · Chalk menu board -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="chalky" x="-2%" y="-2%" width="104%" height="104%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.5 1.55" result="holes"/>
+    <feComposite in="SourceGraphic" in2="holes" operator="in" result="speck"/>
+    <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="2" result="w"/>
+    <feDisplacementMap in="speck" in2="w" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<section class="run" id="run">
+  <div class="stage">
+    <svg class="bg" id="bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+
+    <div class="cart" aria-hidden="true"><svg id="cart" viewBox="0 0 840 420"></svg></div>
+
+    <figure class="print" id="print">
+      <div class="paper">
+        <div class="photo" id="photo"><div class="sheen"></div></div>
+        <figcaption class="caption" id="caption" aria-live="polite"></figcaption>
+      </div>
+    </figure>
+
+    <div class="front" aria-hidden="true"><svg id="front" viewBox="0 0 840 420"></svg></div>
+
+    <div class="board">
+      <div class="legs" style="left:12%"></div><div class="legs" style="right:12%"></div>
+      <div class="wood"></div>
+      <div class="slate">
+        <svg class="dust" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><filter id="slateN"><feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0"/></filter>
+          <radialGradient id="smear1" cx="30%" cy="60%" r="50%"><stop offset="0" stop-color="#e9efe9" stop-opacity=".09"/><stop offset="1" stop-color="#e9efe9" stop-opacity="0"/></radialGradient>
+          <radialGradient id="smear2" cx="80%" cy="20%" r="40%"><stop offset="0" stop-color="#e9efe9" stop-opacity=".07"/><stop offset="1" stop-color="#e9efe9" stop-opacity="0"/></radialGradient>
+          <linearGradient id="sun" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd59a" stop-opacity=".12"/><stop offset=".6" stop-color="#ffd59a" stop-opacity="0"/></linearGradient></defs>
+          <rect width="100" height="100" fill="url(#smear1)"/><rect width="100" height="100" fill="url(#smear2)"/>
+          <path d="M8 78 C 30 74 55 82 92 76" stroke="#e9efe9" stroke-opacity=".05" stroke-width="7" fill="none"/>
+          <rect width="100" height="100" filter="url(#slateN)"/>
+          <rect width="100" height="100" fill="url(#sun)"/>
+        </svg>
+        <div class="chalk">
+          <h2>Things I've built and shipped</h2>
+          <p class="lede">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+          <ul class="menu" id="menu"></ul>
+        </div>
+        <svg class="doodle" viewBox="0 0 80 110" aria-hidden="true" fill="none" stroke="#f1ece0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 40 L62 40 L56 104 L24 104 Z"/><path d="M22 62 L58 62"/><path d="M28 42 L30 102 M36 42 L37 102 M44 42 L43 102 M52 42 L50 102" stroke-width="1.2" opacity=".7"/>
+          <path d="M32 34 C 26 26 38 20 32 10 M46 34 C 40 24 52 18 46 4" stroke-width="1.6" opacity=".8"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="after"></div>
+
+<script>
+const P=[
+ {s:'auctionxi',n:'AuctionXI',k:'My own product, 2026',y:'2026',h:'Live player auctions for any sport',l:'Real-time bidding, broadcast graphics and YouTube overlays, with no production team.',a:[['Live','https://auction-xi.com']],
+  f:['Every bid lands on every screen at once, and the money always adds up.','Twenty broadcast scenes for the projector and the stream.','Auction-ready in under 20 minutes.'],t:'Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth'},
+ {s:'texagent',n:'TexAgent',k:'Client work, 2026',y:'2026',h:'A bahi-khata for textile brokers',l:'Bills, brokerage and follow-ups in one place, instead of a paper book.',a:[],priv:1},
+ {s:'cachekaro',n:'Cache Karo',k:'Command-line tool, 2026',y:'2026',h:'Find the cache hogs, get the space back',l:'Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',a:[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']]},
+ {s:'aether',n:'Aether',k:'AI web app, 2025',y:'2025',h:'News, YouTube and Reddit in one conversation',l:'An assistant with 17+ tones, and an NLP pipeline that scores every article first.',a:[['Source','https://github.com/Mohit-Bagri/aether-news-trends']]},
+ {s:'flowledger',n:'FlowLedger',k:'Mobile app, 2026',y:'2026',h:'Every rupee in, every rupee out',l:'A local-first finance app in Flutter that scans receipts and catches money leaks.',a:[['Source','https://github.com/Mohit-Bagri/flowledger']]},
+ {s:'shuttle',n:'Space Shuttle VR',k:'VR game, 2024',y:'2024',h:'Fix the shuttle, then fly it out',l:'A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',a:[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']]},
+ {s:'velotype',n:'VeloType',k:'Web app, 2026',y:'2026',h:'A typing test built for feel',l:'Themes, modes and live words per minute, with a caret that keeps up.',a:[['Live','https://velo-type.vercel.app']]},
+ {s:'windmill',n:'Windmill VR',k:'VR app, 2025',y:'2025',h:'Breathe with the windmill',l:'A calm VR app for Meta Quest, paced to a four-part breath.',a:[['Source','https://github.com/Mohit-Bagri/windmill-vr']]}
+];
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* menu, chalked */
+const menu=document.getElementById('menu'),photo=document.getElementById('photo'),caption=document.getElementById('caption');
+function ringPath(w,h,seed){const j=(n)=>((Math.sin(seed*91.7+n*12.9)*43758.5)%1)*4;
+  return `M ${w*.03} ${h*.62+j(1)} C ${w*.0} ${h*.1} ${w*.35} ${-h*.06+j(2)} ${w*.6} ${h*.02} C ${w*.9} ${h*.08} ${w*1.01} ${h*.4} ${w*.98} ${h*.66} C ${w*.95} ${h*.98} ${w*.5} ${h*1.04+j(3)} ${w*.2} ${h*.96} C ${w*.04} ${h*.9} ${w*.0} ${h*.7} ${w*.07} ${h*.48}`}
+P.forEach((p,i)=>{
+  menu.insertAdjacentHTML('beforeend',`<li class="${i===0?'feat':''}"><svg class="ring" preserveAspectRatio="none"><path/></svg><button data-i="${i}"><span class="nm">${p.n}</span><span class="dots"></span><span class="yr">${p.y}</span></button></li>`);
+  photo.insertAdjacentHTML('beforeend',`<img src="media/${p.s}.png" alt="${p.n}: ${p.h}">`);
+  caption.insertAdjacentHTML('beforeend',`<div class="cp"><div class="k">${p.n} · ${p.k}</div><h3>${p.h}</h3><p>${p.l}</p>${p.f?`<ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="t">${p.t}</div>`:''}<div class="ln">${p.a.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}${p.priv?'<span>Private client project</span>':''}</div></div>`);
+});
+photo.appendChild(photo.querySelector('.sheen'));
+const lis=[...menu.children],imgs=[...photo.querySelectorAll('img')],cps=[...caption.children];
+function sizeRings(){lis.forEach((li,i)=>{const svg=li.querySelector('svg'),r=svg.getBoundingClientRect();const w=r.width,h=r.height;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);const p=svg.querySelector('path');p.setAttribute('d',ringPath(w,h,i+1));const L=p.getTotalLength();p.style.setProperty('--len',L)})}
+let cur=-1,hover=-1;
+function set(i){if(i===cur)return;cur=i;lis.forEach((l,j)=>l.classList.toggle('on',j===i));imgs.forEach((m,j)=>m.classList.toggle('on',j===i));cps.forEach((c,j)=>c.classList.toggle('on',j===i))}
+lis.forEach((li,i)=>{const b=li.querySelector('button');
+  b.addEventListener('mouseenter',()=>{hover=i;set(i)});
+  b.addEventListener('focus',()=>{hover=i;set(i)});
+  b.addEventListener('click',()=>{const run=document.getElementById('run');const span=run.offsetHeight-innerHeight;scrollTo({top:run.offsetTop+span*((i+.5)/P.length),behavior:reduce?'auto':'smooth'});hover=-1});
+});
+menu.addEventListener('mouseleave',()=>{hover=-1;tick()});
+
+/* background: late afternoon over the bay, the parapet, Malabar Hill far off */
+const bg=document.getElementById('bg');
+el('defs',{},bg).innerHTML=`
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fb2c6"/><stop offset=".5" stop-color="#d2d6cc"/><stop offset=".78" stop-color="#f2dcb2"/></linearGradient>
+ <radialGradient id="sunG" cx="72%" cy="22%" r="40%"><stop offset="0" stop-color="#fff2d6" stop-opacity=".95"/><stop offset=".25" stop-color="#fbe2b4" stop-opacity=".5"/><stop offset="1" stop-color="#fbe2b4" stop-opacity="0"/></radialGradient>
+ <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f8aa3"/><stop offset="1" stop-color="#2c6d8c"/></linearGradient>
+ <linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2d6bf"/><stop offset=".12" stop-color="#b9ad98"/><stop offset="1" stop-color="#8d8373"/></linearGradient>
+ <linearGradient id="promG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a39581"/><stop offset="1" stop-color="#6e6354"/></linearGradient>
+ <filter id="grit"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .2 0 0 0 0 .17 0 0 0 0 .12 0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>`;
+el('rect',{width:1440,height:470,fill:'url(#sky)'},bg);
+el('rect',{width:1440,height:470,fill:'url(#sunG)'},bg);
+// soft clouds, painted light
+[[180,120,260,26,.35],[520,70,200,16,.28],[1180,150,300,22,.3],[900,250,380,14,.25]].forEach(([x,y,rx,ry,o])=>el('ellipse',{cx:x,cy:y,rx,ry,fill:'#fff8ec',opacity:o},bg));
+// Malabar Hill and the far curve
+el('path',{d:'M1060 452 C 1120 440 1170 418 1230 412 C 1290 406 1330 422 1380 418 C 1420 415 1440 424 1460 428 V 456 H 1060 Z',fill:'#93a8b3'},bg);
+let sd=17;const rr=()=>(sd=(sd*16807)%2147483647,(sd-1)/2147483646);
+for(let x=1100;x<1450;x+=7){const h=5+rr()*20*(x>1180&&x<1400?1:.5);const b=450-(x>1160?Math.min(28,(x-1160)*.22):0)+(x>1400?(x-1400)*.2:0);el('rect',{x,y:b-h,width:5.5,height:h+4,fill:'#8fa3ae'},bg)}
+el('path',{d:'M-10 470 C 300 462 700 458 1100 452',stroke:'#c9c3b4',fill:'none','stroke-width':2,opacity:.6},bg);
+el('rect',{x:0,y:452,width:1440,height:120,fill:'url(#seaG)'},bg);
+// the sun's glitter on the water
+const gl=el('g',{},bg);
+for(let i=0;i<110;i++){const y=456+Math.pow(rr(),1.4)*110,spread=40+(y-456)*2.6,x=1040+(rr()-.5)*spread*2,w=3+rr()*14;
+  const r=el('rect',{x,y,width:w,height:1.2,fill:'#fff6e0',opacity:.0},gl);
+  if(!reduce)el('animate',{attributeName:'opacity',values:`0;${(.5+rr()*.4).toFixed(2)};0`,dur:(1.6+rr()*2.6).toFixed(1)+'s',begin:(rr()*3).toFixed(1)+'s',repeatCount:'indefinite'},r);else r.setAttribute('opacity',.4)}
+for(let i=0;i<16;i++){const y=470+i*7+i*i*.3;el('path',{d:`M0 ${y} H1440`,stroke:'#1f5874',opacity:.12+i*.008,'stroke-dasharray':`${40+rr()*120} ${10+rr()*60}`},bg)}
+// parapet
+el('path',{d:'M0 560 L1440 548 L1440 640 L0 640 Z',fill:'url(#wallG)'},bg);
+el('path',{d:'M0 560 L1440 548',stroke:'#fff4de',opacity:.7,'stroke-width':2},bg);
+el('rect',{x:0,y:600,width:1440,height:300,fill:'url(#promG)'},bg);
+el('rect',{x:0,y:548,width:1440,height:352,filter:'url(#grit)'},bg);
+el('path',{d:'M0 640 H1440',stroke:'#5b5145',opacity:.5},bg);
+for(let x=-40;x<1440;x+=150)el('path',{d:`M${x} 900 L${x+90} 640`,stroke:'#5b5145',opacity:.25},bg);
+
+/* the cart (behind the print): a steel counter on a wooden body, back rail, the stove and kettle */
+const cart=document.getElementById('cart');
+el('defs',{},cart).innerHTML=`
+ <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1efe9"/><stop offset=".3" stop-color="#b9b8b3"/><stop offset="1" stop-color="#8d8c87"/></linearGradient>
+ <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6f86"/><stop offset="1" stop-color="#1d4b5d"/></linearGradient>
+ <linearGradient id="alu" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8c8a85"/><stop offset=".35" stop-color="#e7e4dc"/><stop offset=".55" stop-color="#bdbab2"/><stop offset="1" stop-color="#77756f"/></linearGradient>
+ <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d5a1c"/><stop offset=".4" stop-color="#e2b65a"/><stop offset="1" stop-color="#6c4c15"/></linearGradient>`;
+// counter top and painted body (stall carts are often painted in blue)
+el('rect',{x:40,y:124,width:800,height:16,fill:'url(#steel)'},cart);
+el('rect',{x:56,y:140,width:784,height:230,fill:'url(#body)'},cart);
+el('path',{d:'M56 200 H840 M56 300 H840',stroke:'#16394a',opacity:.6},cart);
+el('rect',{x:56,y:140,width:784,height:12,fill:'#0f2f3d',opacity:.35},cart);
+// wheels
+[[180,370],[700,370]].forEach(([x,y])=>{el('circle',{cx:x,cy:y,r:46,fill:'#1d1b18'},cart);el('circle',{cx:x,cy:y,r:30,fill:'none',stroke:'#4a463f','stroke-width':4},cart);el('circle',{cx:x,cy:y,r:6,fill:'#6b665d'},cart)});
+// stove with a blue ring of flame, and the kettle on it (to the right of the print)
+el('rect',{x:700,y:96,width:80,height:28,rx:4,fill:'url(#brass)'},cart);
+el('path',{d:'M708 96 Q 740 84 772 96',stroke:'#4f7fd6',fill:'none','stroke-width':3,opacity:.75,id:'flame'},cart);
+el('path',{d:'M694 96 L 700 40 Q 740 20 780 40 L 786 96 Z',fill:'url(#alu)'},cart);
+el('path',{d:'M712 40 Q 740 8 768 40',stroke:'#5d5b56','stroke-width':5,fill:'none'},cart);
+el('path',{d:'M694 60 Q 660 54 648 30',stroke:'url(#alu)','stroke-width':9,fill:'none','stroke-linecap':'round'},cart);
+el('path',{d:'M704 50 Q 740 44 776 50',stroke:'#fff',opacity:.35,'stroke-width':2,fill:'none'},cart);
+
+/* in front of the print: the tray of cutting chai, the saucepan, steam */
+const front=document.getElementById('front');
+el('defs',{},front).innerHTML=`
+ <linearGradient id="tea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a062"/><stop offset="1" stop-color="#93582a"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity=".45"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".12"/><stop offset="1" stop-color="#ffffff" stop-opacity=".4"/></linearGradient>
+ <linearGradient id="tray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8d6cf"/><stop offset="1" stop-color="#8f8d86"/></linearGradient>`;
+el('path',{d:'M36 128 L 190 128 L 183 136 L 43 136 Z',fill:'url(#tray)'},front);
+const steam=el('g',{class:'steam'},front);
+[[56,.9],[86,1],[114,.95],[142,1.05],[170,.92]].forEach(([x,s],i)=>{
+  const g=el('g',{transform:`translate(${x} 128) scale(${s})`},front);
+  el('path',{d:'M-11 -44 L 11 -44 L 8 0 L -8 0 Z',fill:'url(#glass)'},g);
+  el('path',{d:'M-10 -30 L 10 -30 L 8 0 L -8 0 Z',fill:'url(#tea)'},g);
+  el('path',{d:'M-10 -30 L 10 -30',stroke:'#f3dcb5','stroke-width':2},g);
+  for(let k=-3;k<=3;k++)el('path',{d:`M${k*3} -44 L ${k*2.3} 0`,stroke:'#fff',opacity:.22},g);
+  el('path',{d:'M-11 -44 H 11',stroke:'#fff',opacity:.7,'stroke-width':1.2},g);
+  const st=el('path',{d:'M0 -48 C -8 -62 8 -72 0 -86 C -6 -98 6 -106 2 -118','stroke-width':2.2,opacity:.35},steam);
+  st.setAttribute('transform',`translate(${x} 128)`);st.dataset.x=x;st.dataset.i=i;
+});
+// kettle spout steam
+const ks=el('path',{d:'M648 28 C 640 10 656 -6 646 -24 C 640 -36 652 -48 648 -60','stroke-width':3,opacity:.4},steam);ks.dataset.x=0;ks.dataset.i=9;
+
+/* scroll steps through the menu */
+const run=document.getElementById('run');
+function tick(){if(hover>=0)return;const span=run.offsetHeight-innerHeight;const p=Math.min(.9999,Math.max(0,(scrollY-run.offsetTop)/span));set(Math.floor(p*P.length))}
+let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;tick()})},{passive:true});
+addEventListener('resize',()=>{sizeRings()});
+document.fonts.ready.then(sizeRings);sizeRings();tick();if(cur<0)set(0);
+
+/* ambient: steam rises and curls, the flame breathes */
+if(!reduce){const sts=[...steam.querySelectorAll('path')],flame=document.getElementById('flame');
+  (function loop(now){const t=now/1000;sts.forEach(s=>{const i=+s.dataset.i;const ph=t*.55+i*.37;const k=ph%1;
+    const x=+s.dataset.x;const base=i===9?'':'';
+    s.style.transform=`translate(${(i===9?0:x)+Math.sin(t*1.3+i)*2.5}px,${(i===9?0:128)-k*16}px)`;s.style.opacity=(Math.sin(k*Math.PI)*.42).toFixed(3)});
+    flame.style.opacity=(.6+Math.sin(t*7)*.12+Math.sin(t*3.1)*.08).toFixed(2);
+    requestAnimationFrame(loop)})(performance.now())}
+</script>
+</body>
+</html>

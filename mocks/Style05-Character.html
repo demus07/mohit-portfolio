@@ -1,0 +1,368 @@
+<!-- Direction 05: Pixel art — character sheet for the Mohit sprite -->
+<!doctype html><html><head><meta charset="utf-8"><title>Style05 character</title>
+<style>body{margin:0;background:#efe8da;display:flex;gap:20px;padding:20px;flex-wrap:wrap;align-items:flex-end}canvas{image-rendering:pixelated}</style></head>
+<body><script>
+/* ---------- PX: tiny pixel engine shared by every Style05 page ---------- */
+const PX = (() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hex = h => { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+
+  // integer-scaled full-viewport stage; art is drawn at W x H "art pixels"
+  function stage(canvas, opt = {}) {
+    const ctx = canvas.getContext('2d');
+    const st = { canvas, ctx, W: 0, H: 0, s: 1 };
+    st.resize = () => {
+      const el = opt.box ? opt.box() : { w: innerWidth, h: innerHeight };
+      const base = opt.base || 480, baseH = opt.baseH || 270;
+      let s = Math.round(Math.min(el.w / base, el.h / baseH));
+      s = Math.max(opt.min || 2, Math.min(opt.max || 8, s));
+      st.s = s; st.W = Math.ceil(el.w / s); st.H = Math.ceil(el.h / s);
+      canvas.width = st.W; canvas.height = st.H;
+      canvas.style.width = st.W * s + 'px'; canvas.style.height = st.H * s + 'px';
+      ctx.imageSmoothingEnabled = false;
+      opt.onResize && opt.onResize(st);
+    };
+    addEventListener('resize', st.resize);
+    st.resize();
+    return st;
+  }
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+  // ordered 4x4 bayer dither between two colours at fraction t (0..1) inside a rect
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function dith(c, x, y, w, h, a, b, t) {
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+    R(c, x, y, w, h, a); if (t <= 0) return; if (t >= 1) { R(c, x, y, w, h, b); return; }
+    c.fillStyle = b;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (B4[((y + j) & 3) * 4 + ((x + i) & 3)] < t * 16) c.fillRect(x + i, y + j, 1, 1);
+  }
+  // vertical banded gradient: list of colours top->bottom, dithered seams (16-bit sky)
+  function bands(c, x, y, w, h, cols, seam = 3) {
+    const n = cols.length, bh = h / n;
+    for (let i = 0; i < n; i++) {
+      const y0 = Math.round(y + i * bh), y1 = Math.round(y + (i + 1) * bh);
+      R(c, x, y0, w, y1 - y0, cols[i]);
+      if (i < n - 1) { // dithered transition rows
+        for (let k = 0; k < seam; k++) dith(c, x, y1 - seam + k, w, 1, cols[i], cols[i + 1], (k + 1) / (seam + 1));
+      }
+    }
+  }
+  // crisp text: rasterise with canvas text, threshold alpha
+  const tc = document.createElement('canvas'), tx = tc.getContext('2d', { willReadFrequently: true });
+  function text(c, str, x, y, font, col, align = 'left') {
+    tx.font = font; const m = tx.measureText(str);
+    const w = Math.ceil(m.width) + 4, h = Math.ceil(parseInt(font.match(/(\d+)px/)[1]) * 1.6) + 4;
+    tc.width = w; tc.height = h; tx.font = font; tx.textBaseline = 'top'; tx.fillStyle = '#000'; tx.fillText(str, 2, 2);
+    const d = tx.getImageData(0, 0, w, h).data;
+    const ox = align === 'center' ? Math.round(x - m.width / 2) : align === 'right' ? Math.round(x - m.width) : Math.round(x);
+    c.fillStyle = col;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 110) c.fillRect(ox + i - 2, Math.round(y) + j - 2, 1, 1);
+    return m.width;
+  }
+  // 3x5 pixel font for LED boards
+  const F = { A: '010101111101101', B: '110101110101110', C: '011100100100011', D: '110101101101110', E: '111100110100111', F: '111100110100100', G: '011100101101011', H: '101101111101101', I: '111010010010111', K: '101101110101101', L: '100100100100111', M: '101111111101101', N: '110101101101101', O: '010101101101010', P: '110101110100100', R: '110101110101101', S: '011100010001110', T: '111010010010010', U: '101101101101111', V: '101101101101010', W: '101101111111101', X: '101101010101101', Y: '101101010010010', Z: '111001010100111', 0: '111101101101111', 1: '010110010010111', 2: '110001010100111', 3: '110001010001110', 4: '101101111001001', 5: '111100110001110', 6: '011100111101111', 7: '111001010010010', 8: '111101111101111', 9: '111101111001110', ':': '000010000010000', '.': '000000000000010', '-': '000000111000000', ' ': '000000000000000', "'": '010010000000000' };
+  function led(c, str, x, y, col, dim) {
+    let cx = Math.round(x);
+    for (const ch of str.toUpperCase()) {
+      const g = F[ch] || F[' '];
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 3; i++) {
+        if (g[j * 3 + i] === '1') P(c, cx + i, y + j, col); else if (dim) P(c, cx + i, y + j, dim);
+      }
+      cx += 4;
+    }
+    return cx - x;
+  }
+  // sprite compiler: rows of chars -> canvas, with palette map. '.' = clear
+  function sprite(rows, pal) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const c = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const k = r[x]; if (k !== '.' && k !== ' ' && pal[k]) P(c, x, y, pal[k]); } });
+    return cv;
+  }
+  // flip a sprite canvas horizontally
+  function flip(cv) { const o = document.createElement('canvas'); o.width = cv.width; o.height = cv.height; const c = o.getContext('2d'); c.translate(cv.width, 0); c.scale(-1, 1); c.drawImage(cv, 0, 0); return o; }
+  // scroll progress of a tall element whose sticky child is pinned: 0..1
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? 0 : Math.min(1, Math.max(0, -r.top / t)); }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  // seeded rng
+  function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function loop(fn) { let t0 = performance.now(); const f = now => { fn((now - t0) / 1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+  return { RM, hex, mix, stage, R, P, dith, bands, text, led, sprite, flip, prog, clamp, ease, seg, rng, loop };
+})();
+
+/* ---------- MOHIT: the pixel character, authored once, reused everywhere ---------- */
+const MOHIT = (() => {
+  // palette (day). Light comes from the viewer's left.
+  const BASE = {
+    h: '#1b1824', H: '#2d2a3c', j: '#4d4a69',            // hair: base, mid, gloss
+    s: '#b0704a', S: '#d0976c', d: '#8a5139', D: '#5e3325', // skin
+    f: '#b47452', k: '#7c4733',                           // fist + crease
+    g: '#1d1b24', G: '#c4c8d2', l: '#ffffff', n: '#e2c9b8', // glasses rims, glint, lens sheen
+    e: '#16121a', o: '#efe6dc', b: '#211719',             // pupil, eye white, brow
+    m: '#4a2a22', L: '#77392f', T: '#f6efe6',             // moustache, lip, teeth
+    W: '#f4f1f8', V: '#d6cfe6', v: '#aea4c8', p: '#e2daf1', q: '#c8bede', // shirt + pinstripes
+    t: '#2a2c3a', u: '#3c3f52', z: '#141218',             // trousers, shoes
+    0: '#0b0910', 1: '#3a1c14', 2: '#4f4866',             // outlines: hair, skin, shirt
+  };
+  const SKIN = 'sSdDfk', SHIRT = 'WVvpq', HAIR = 'hHj';
+
+  function grid(w, h) { return Array.from({ length: h }, () => Array(w).fill('.')); }
+  function painter(g) { return (y, x, s) => { for (let i = 0; i < s.length; i++) if (s[i] !== ' ' && g[y] && x + i < g[y].length) g[y][x + i] = s[i]; }; }
+
+  // automatic finishing: pinstripes, edge light/shadow, selective outline
+  function finish(g, opt = {}) {
+    const H = g.length, W = g[0].length, at = (x, y) => (y < 0 || y >= H || x < 0 || x >= W) ? '.' : g[y][x];
+    const out = g.map(r => r.slice());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = g[y][x];
+      if (c === 's') {
+        if (opt.lightLeft !== false && !SKIN.includes(at(x - 1, y)) && 'hHj.'.includes(at(x - 1, y)) && at(x - 1, y) !== undefined) out[y][x] = at(x - 1, y) === '.' ? 'S' : 's';
+        if (at(x + 1, y) === '.') out[y][x] = 'd';
+      }
+      if (c === 'W') {
+        // shade the side away from the light
+        let run = 0; for (let k = 1; k <= 4; k++) if (!SHIRT.includes(at(x + k, y))) { run = k; break; }
+        if (run && run <= (opt.shirtShade || 3)) out[y][x] = 'V';
+        if (at(x, y - 1) === '.' ) out[y][x] = 'W';
+      }
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = out[y][x];
+      if ((opt.stripe ?? 3) && y % (opt.stripe || 3) === (opt.stripeOff || 0)) {
+        if (c === 'W') out[y][x] = 'p'; else if (c === 'V') out[y][x] = 'q';
+      }
+    }
+    if (opt.outline !== false) {
+      const o2 = out.map(r => r.slice());
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (out[y][x] !== '.') continue;
+        const ns = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => (y + b < 0 || y + b >= H || x + a < 0 || x + a >= W) ? '.' : out[y + b][x + a]).filter(v => v !== '.' && !'012'.includes(v));
+        if (!ns.length) continue;
+        o2[y][x] = ns.some(v => HAIR.includes(v) || 'gbe'.includes(v)) ? '0' : ns.some(v => SKIN.includes(v)) ? '1' : ns.some(v => SHIRT.includes(v)) ? '2' : '0';
+      }
+      return o2;
+    }
+    return out;
+  }
+  const rows = g => g.map(r => r.join(''));
+
+  /* ===== 1. BUST: seated at the window, chin on fist, pensive (3/4, looking out to viewer's left) ===== */
+  function bust(state = {}) {
+    const g = grid(48, 64), P = painter(g);
+    // hair: soft quiff, highest at the front (left), swept up and back
+    P(0, 17, 'hhhhh');
+    P(1, 15, 'hhhhhhhhhh');
+    P(2, 13, 'hhhhhhhhhhhhhhhh');
+    P(3, 12, 'hhhhhhhhhhhhhhhhhhhh');
+    P(4, 12, 'hhhhhhhhhhhhhhhhhhhhhh');
+    P(5, 12, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    P(6, 12, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(7, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(8, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(9, 14, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    // gloss strands sweeping up and back
+    P(1, 16, 'jjj');
+    P(2, 14, 'jjHH  HHH');
+    P(3, 13, 'jH  jjjjHH   H');
+    P(4, 13, 'H  HH   jjjjHH');
+    P(5, 15, 'jH    HHH  jjjH');
+    P(6, 14, 'H  jjH     HHHjjH');
+    P(7, 16, 'HH          HHjH');
+    P(8, 28, 'HHH');
+    // forehead, brows, sideburn, ear
+    P(10, 14, 'hhsssssssssssshhhhhhhhhh');
+    P(11, 14, 'hssssssssssssssshhhhhhh');
+    P(12, 14, 'sbbbbssbbbbbbssssshhhhh');
+    P(13, 14, 'sssssssssssssssssssshhh');
+    P(14, 13, 'gggggggggggggggggggggsshh');
+    P(15, 13, 'gnbbbssgssgnbbbbssgssssh');
+    P(16, 13, 'gseeossgssgseeoossgssdds');
+    P(17, 13, 'gseeossgsdgseeosssgssdsd');
+    P(18, 13, 'gssssssgsdgsssssssgssdsd');
+    P(19, 13, 'GGGGGGGGsdGGGGGGGGGssdsd');
+    // nose (tip just past the cheek line), moustache, closed mouth
+    P(20, 13, 'SSsssddssssssssssssdsd');
+    P(21, 13, 'Sssddddsssssssssssdd');
+    P(22, 14, 'smmmmmmssssssssssd');
+    P(23, 14, 'ssLLLLssssssssssd');
+    P(24, 14, 'sssssssssssssddd');
+    P(25, 15, 'sssssssssssdd');
+    P(26, 16, 'sssssssdDd');
+    // neck in shadow
+    P(24, 29, 'dd'); P(25, 27, 'dddd'); P(26, 26, 'ddddd');
+    for (let y = 27; y < 33; y++) P(y, 24, 'Ddddddd');
+    // collar: open, points falling either side of the V
+    P(28, 30, 'WWW');
+    P(29, 30, 'WWWWW');
+    P(30, 22, 'WW      WWWWWW');
+    P(31, 21, 'WWWW   VWWWWWWWW');
+    P(32, 20, 'WWWWWW dVWWWWWWWWWW');
+    P(33, 19, 'WWWWWWWsdvWWWWWWWWWWWW');
+    P(34, 18, 'WWWWWWWWdvWWWWWWWWWWWWWW');
+    // shirt body: shoulders slope out, then fall
+    for (let y = 35; y < 64; y++) {
+      const L = Math.max(3, 18 - Math.round((y - 35) * 1.4)), R = Math.min(47, 42 + Math.round((y - 35) * 0.45));
+      P(y, L, 'W'.repeat(R - L));
+    }
+    for (let y = 34; y < 64; y++) { P(y, 27, 'v'); }
+    for (let y = 44; y < 64; y++) P(y, 38 + ((y - 44) >> 3), 'V');
+    // fist under the chin: knuckles up, fingers curled toward us, thumb on the right
+    P(26, 13, 'ff');
+    P(27, 12, 'ffffffffkff');
+    P(28, 11, 'fffffffffkff');
+    P(29, 11, 'kkkkkkkkkfkf');
+    P(30, 11, 'fffffffffkff');
+    P(31, 11, 'fffffffffkff');
+    P(32, 11, 'kkkkkkkkkfff');
+    P(33, 11, 'ffffffffffff');
+    P(34, 12, 'ffffffffff');
+    P(35, 13, 'kkkkkkkk');
+    // forearm, vertical, elbow resting on the sill below
+    for (let y = 36; y < 48; y++) P(y, 13, 'ffffff' + (y < 40 ? 'k' : 'fk'));
+    // rolled sleeve cuff, then the sleeve to the elbow
+    P(47, 11, 'vvvvvvvvvvvv');
+    P(48, 10, 'WWWWWWWWWWWWWV');
+    P(49, 10, 'WWWWWWWWWWWWWV');
+    P(50, 10, 'WWWWWWWWWWWWWV');
+    P(51, 10, 'vvvvvvvvvvvvvv');
+    P(52, 11, 'WWWWWWWWWWWWV');
+    P(53, 11, 'WWWWWWWWWWWWV');
+    P(54, 12, 'VVVVVVVVVVV');
+    // the body behind the raised arm falls into shade
+    for (let y = 36; y < 64; y++) for (let x = 3; x < 13; x++) if (g[y][x] === 'W') g[y][x] = y > 54 || x < 11 ? 'V' : 'W';
+    for (let y = 55; y < 64; y++) P(y, 10, 'VVVVVVVVVVVVVV');
+    // ear, cleanly shaped, hair tucked behind it
+    P(13, 33, 'shhhh');
+    P(14, 34, 'Ssh'); P(15, 34, 'sdsh'); P(16, 34, 'sdsh'); P(17, 34, 'sdsh'); P(18, 34, 'ssdh');
+    P(19, 34, 'sds'); P(20, 34, 'dd.'); P(21, 33, 'd..');
+    for (let y = 14; y < 19; y++) P(y, 38, '.');
+    // light on the forehead, cheek and nose
+    P(10, 17, 'SSS'); P(11, 16, 'SSSS'); P(20, 15, 'SS'); P(21, 15, 'S');
+    // quiff lift at the front
+    P(0, 14, 'hh'); P(1, 13, 'hjj');
+    // states
+    if (state.blink) { P(15, 14, 'ssss'); P(16, 14, 'bbbss'); P(17, 14, 'sssss'); P(15, 24, 'ssss'); P(16, 24, 'bbbbs'); P(17, 24, 'sssss'); }
+    if (state.glint != null) { const x = 14 + state.glint; if (x < 19) P(18, x, 'l'); const x2 = 24 + state.glint; if (x2 < 30) P(18, x2, 'l'); }
+    return finish(g, { stripe: 3, stripeOff: 1 });
+  }
+
+
+  /* ===== 2. SEATED ON THE PARAPET, from behind; head: 0 = looking at the sea, 1 = turning, 2 = smiling over his shoulder ===== */
+  function back(state = {}) {
+    const g = grid(46, 56), P = painter(g), turn = state.turn || 0, w = state.wind || 0;
+    // shirt body (back): sloped shoulders, torso tapering to the waist, yoke and pleat
+    const SH = [[19, 16, 28], [20, 13, 31], [21, 10, 34], [22, 8, 36], [23, 7, 37], [24, 6, 38]];
+    SH.forEach(([y, l, r]) => P(y, l, 'W'.repeat(r - l)));
+    for (let y = 25; y < 54; y++) {
+      const t = (y - 25) / 28, L = Math.round(8 + t * 2.5), R = Math.round(36 - t * 2.5) + (y > 32 && w && ((y + w) % 6 < 2) ? 1 : 0);
+      P(y, L, 'W'.repeat(R - L));
+    }
+    P(26, 10, 'vvvvvvvvvvvvvvvvvvvvvvvv');                    // yoke seam
+    for (let y = 27; y < 54; y++) P(y, 22, 'v');               // box pleat
+    for (let y = 31; y < 54; y++) P(y, 29 + ((y + w) % 6 < 3 ? 0 : 1), 'V');
+    for (let y = 36; y < 54; y++) P(y, 14 + ((y + w) % 8 < 4 ? 0 : 1), 'V');
+    // arms hanging slightly out from the body, sleeves rolled, hands on the parapet edge
+    for (let y = 24; y < 41; y++) { const o = Math.round((y - 24) / 8); P(y, 4 - o, 'WWWWW'); P(y, 36 + o, 'WWWWW'); P(y, 8 - o, 'v'); P(y, 36 + o, 'v'); }
+    P(41, 1, 'vvvvvvv'); P(42, 1, 'WWWWWWW'); P(43, 1, 'WWWWWWW'); P(44, 1, 'vvvvvvv');
+    P(41, 38, 'vvvvvvv'); P(42, 38, 'WWWWWWW'); P(43, 38, 'WWWWWWW'); P(44, 38, 'vvvvvvv');
+    for (let y = 45; y < 53; y++) { P(y, 2, 'Sssd'); P(y, 39, 'sssd'); }
+    P(53, 1, 'ffffff'); P(54, 1, 'kkkkkk'); P(53, 38, 'ffffff'); P(54, 38, 'kkkkkk');
+    // neck + collar band
+    P(16, 18, 'dddddddd'); P(17, 18, 'ssssssss'); P(18, 18, 'ssssssss');
+    P(19, 16, 'WWVVVVVVVVWWW'); P(20, 15, 'WW') ;
+    if (turn === 0) {
+      P(0, 17, 'hhhhhhhhh'); P(1, 15, 'hhhhhhhhhhhhh'); P(2, 14, 'hhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 13, 'hhhhhhhhhhhhhhhhh');
+      P(13, 14, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhhh');
+      P(16, 17, 'hhhhhhhhhh');
+      P(1, 18, 'jjjHH'); P(2, 16, 'HjjjjjHH'); P(3, 15, 'H  HHjjjH'); P(4, 20, 'HHjH'); P(5, 15, 'H');
+      // ears either side, glasses arms over them
+      P(7, 11, 'gg'); P(7, 30, 'gg');
+      P(8, 11, 'Ss'); P(9, 11, 'sd'); P(10, 11, 'sd'); P(11, 11, 'sd'); P(12, 12, 'd');
+      P(8, 30, 'ss'); P(9, 30, 'ds'); P(10, 30, 'ds'); P(11, 30, 'dd'); P(12, 30, 'd');
+    } else if (turn === 1) {
+      P(0, 16, 'hhhhhhhhh'); P(1, 14, 'hhhhhhhhhhhhhh'); P(2, 13, 'hhhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 12, 'hhhhhhhhhhhhhhhhhh');
+      P(13, 13, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhh'); P(16, 18, 'hhhhhhh');
+      P(1, 17, 'jjjHH'); P(2, 15, 'HjjjjjHH'); P(3, 14, 'H  HHjjjH'); P(4, 19, 'HHjH');
+      // cheek edge + glasses rim appearing, ear moving to the centre-right
+      P(6, 10, 'gggggggg'); P(7, 10, 'Gs'); P(8, 10, 'Ssss'); P(9, 10, 'sssss'); P(10, 11, 'ssss'); P(11, 11, 'sss'); P(12, 12, 'sd'); P(13, 13, 'd');
+      P(7, 26, 'ss'); P(8, 26, 'sd'); P(9, 26, 'sd'); P(10, 26, 'sd'); P(11, 26, 'dd');
+      P(16, 17, 'dd');
+    } else {
+      // turned to smile over his shoulder, like the rooftop photo
+      P(0, 10, 'hhhhhhh'); P(1, 9, 'hhhhhhhhhhhhh'); P(2, 8, 'hhhhhhhhhhhhhhhhhhh');
+      P(3, 8, 'hhhhhhhhhhhhhhhhhhhhh'); P(4, 8, 'hhhhhhhhhhhhhhhhhhhhhh'); P(5, 9, 'hhhhhhhhhhhhhhhhhhhhh'); P(6, 9, 'hhhhhhhhhhhhhhhhhhhhh');
+      P(7, 9, 'ssssssshhhhhhhhhhhhhh');
+      P(8, 8, 'bbbsssssshhhhhhhhhhhhh');
+      P(0, 11, 'jjH'); P(1, 10, 'jjjHH'); P(2, 9, 'H  jjjHHH'); P(3, 13, 'HHjjjjHH'); P(4, 10, 'H     HHHjjH'); P(5, 12, 'HH');
+      P(9, 7, 'gggggggggggggggggssshhhhh');
+      P(10, 7, 'gneogSssssssssssdssdshhhh');
+      P(11, 7, 'gsssgsssssssssssdssdshhh');
+      P(12, 6, 'SGGGGGsSSsssssssddsdhhh');
+      P(13, 5, 'SSsdssSSssssssssdddhhh');
+      P(14, 6, 'smmmdssssssssssddhh');
+      P(15, 7, 'TTTdsssssssssddhh');
+      P(16, 7, 'LLdssssssssddd h');
+      P(17, 8, 'sssssssssddd');
+      P(18, 9, 'dsssssddd');
+      P(19, 12, 'ddd');
+      P(16, 18, 'dddddd');
+    }
+    return finish(g, { stripe: 3, stripeOff: 0, shirtShade: 4 });
+  }
+
+  /* ===== 3. WALKING, side view facing right, 8 frames; procedural limbs on an authored head and torso ===== */
+  function line(g, x0, y0, x1, y1, ch, wpx = 2) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1) * 2;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n);
+      for (let k = 0; k < wpx; k++) if (g[y] && g[y][x + k] !== undefined) g[y][x + k] = ch;
+    }
+  }
+  function walk(state = {}) {
+    const g = grid(20, 38), P = painter(g), ph = (state.f || 0) / 8 * Math.PI * 2, bob = Math.abs(Math.sin(ph)) > .7 ? 0 : 1;
+    const legs = (sgn, ch) => {
+      const a = Math.sin(ph) * .5 * sgn, knee = Math.max(0, Math.cos(ph) * sgn) * .7;
+      const hx = 8, hy = 22 + bob, kx = hx + Math.sin(a) * 7, ky = hy + Math.cos(a) * 7;
+      const ax = kx + Math.sin(a - knee) * 7, ay = ky + Math.cos(a - knee) * 7;
+      line(g, hx, hy, kx, ky, ch, 3); line(g, kx, ky, ax, Math.min(35, ay), ch, 2);
+      const fy = Math.min(35, Math.round(ay)); P(fy, Math.round(ax) - 1, 'zzzz'); P(fy - 1, Math.round(ax), 'zz');
+    };
+    const arm = (sgn, ch, skin) => {
+      const a = -Math.sin(ph) * .55 * sgn, sx = 9, sy = 14 + bob;
+      const ex = sx + Math.sin(a) * 5, ey = sy + Math.cos(a) * 5, hx = ex + Math.sin(a + .35) * 5, hy = ey + Math.cos(a + .35) * 5;
+      line(g, sx, sy, ex, ey, ch, 3); line(g, ex, ey, hx, hy, skin, 2); P(Math.round(hy), Math.round(hx), skin + skin);
+      P(Math.round(ey), Math.round(ex), ch === 'W' ? 'vvv' : 'vv');
+    };
+    arm(-1, 'V', 'd');           // far arm, in shade
+    legs(-1, 'u');               // far leg
+    const b = bob;
+    // head (quiff to the front), glasses, face
+    P(0 + b, 7, 'hhhhh'); P(1 + b, 5, 'hhhhhhhhj'); P(2 + b, 4, 'hhhhhjjhhhh'); P(3 + b, 4, 'hhhhhhhhhhh');
+    P(4 + b, 4, 'hhhhhhsssss'); P(5 + b, 4, 'hhhsgggggggg'); P(6 + b, 4, 'hhssssssbeG'); P(7 + b, 4, 'hdsssssGGGGS');
+    P(8 + b, 5, 'dsssssssmms'); P(9 + b, 5, 'ddsssssssd'); P(10 + b, 6, 'ddssssd'); P(11 + b, 8, 'ddd');
+    // torso, tucked white shirt
+    P(12 + b, 6, 'WWWWWWW'); P(13 + b, 5, 'WWWWWWWWW');
+    for (let y = 14; y < 22; y++) P(y + b, 5, 'WWWWWWWWV');
+    P(22 + b, 5, 'tttttttt'); P(23 + b, 5, 'tttttttt');
+    legs(1, 't');                // near leg
+    arm(1, 'W', 's');            // near arm, in front
+    return finish(g, { stripe: 2, shirtShade: 2 });
+  }
+
+  function build(fn, state, pal) { return PX.sprite(rows(fn(state || {})), Object.assign({}, BASE, pal || {})); }
+  return { BASE, bust, back, walk, build, finish, grid, painter, rows };
+})();
+
+function show(cv,s,bg){const c=document.createElement('canvas');c.width=cv.width;c.height=cv.height;c.style.width=cv.width*s+'px';c.style.background=bg||'transparent';c.getContext('2d').drawImage(cv,0,0);document.body.appendChild(c);}
+show(MOHIT.build(MOHIT.bust),7,'#e9c48a');
+show(MOHIT.build(MOHIT.back,{turn:0}),6,'#8fc0cf');
+show(MOHIT.build(MOHIT.back,{turn:1}),6,'#8fc0cf');
+show(MOHIT.build(MOHIT.back,{turn:2}),6,'#8fc0cf');
+for(let f=0;f<8;f++) show(MOHIT.build(MOHIT.walk,{f}),5,'#2a3550');
+</script></body></html>

@@ -1,0 +1,370 @@
+<!-- Direction 06: Bollywood hand-painted poster — dusk on Marine Drive painted in violet and sodium, the hero rim-lit at the right; each scroll step lights the next lamp of the Necklace and paints the next stop, and his look turns to a smile at the last; the roles roll after like a poster's credits. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Dusk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4e6c8;--navy:#17204a;--ink:#1a1420;--saffron:#ef7d22;--marigold:#f7c548;--crimson:#b3123f;--plum:#4b1638;--teal:#2aa6a4;--sodium:#f2a145;--cream:#fbf1dc}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:"Hind",system-ui,sans-serif;color:var(--cream);background:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  /* painted sign-writer lettering: fill + hand-cut block extrude, part of the letterform not a drop shadow */
+  .paint{font-family:"Rozha One",Georgia,serif;font-weight:400;color:var(--marigold);line-height:.98;letter-spacing:-.005em;
+    text-shadow:1px 1px 0 var(--ex1,#c2241f),2px 2px 0 var(--ex1,#c2241f),3px 3px 0 var(--ex1,#c2241f),4px 4px 0 var(--ex1,#c2241f),5px 5px 0 var(--ex2,#5c0b26),6px 6px 0 var(--ex2,#5c0b26),7px 7px 0 var(--ex2,#5c0b26)}
+  .voice{font-family:"Rozha One",Georgia,serif;font-weight:400}
+  .fact{font-family:"Hind",system-ui,sans-serif;font-weight:500;font-size:clamp(1.02rem,.9rem + .35vw,1.22rem);line-height:1.45}
+  /* poster paper: tooth + faint halftone, fixed over everything */
+  .print{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.42;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .35  0 0 0 -1.4 1.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .print::after{content:"";position:absolute;inset:0;opacity:.35;
+    background-image:radial-gradient(rgba(60,20,30,.5) .7px,transparent 1.2px);background-size:5px 5px}
+  .brush{position:fixed;inset:0;pointer-events:none;z-index:49;mix-blend-mode:soft-light;opacity:.18;background-size:100% 100%;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.004 .09' numOctaves='3' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -.35'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>")}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  body{background:#0d1a2b}
+  .pin{position:relative;height:720vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  svg.layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .copy{position:absolute;left:clamp(20px,5vw,84px);top:clamp(52px,9vh,96px);width:min(560px,42vw);z-index:5}
+  .copy h2{font-size:clamp(1.9rem,1.1rem + 1.9vw,3.1rem);text-wrap:balance;--ex1:#a8321f;--ex2:#3a0d18}
+  .stops{position:relative;margin-top:clamp(26px,5vh,52px);min-height:16em}
+  .stop{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(26px);will-change:transform,opacity}
+  .stop .yr{font-weight:600;font-size:1.05rem;color:var(--sodium);min-height:1.5em}
+  .stop h3{font-family:"Rozha One",serif;font-weight:400;font-size:clamp(2.4rem,1.4rem + 2.8vw,4.3rem);line-height:1;color:var(--cream);margin:.12em 0 .3em}
+  .stop p{max-width:40ch;color:rgba(251,241,220,.9)}
+  /* credits */
+  .credits{position:relative;background:linear-gradient(#0d1a2b,#0a1424);padding:clamp(70px,12vh,140px) clamp(20px,5vw,84px) clamp(90px,14vh,160px)}
+  .credits .necklace{position:absolute;left:0;right:0;top:0;height:8px;background:radial-gradient(circle,#ffd27a 0 2px,transparent 3px) 0 50%/26px 8px repeat-x;opacity:.8}
+  .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:clamp(34px,5vh,56px) clamp(28px,4vw,64px);max-width:1240px}
+  .role h4{font-size:clamp(1.8rem,1.3rem + 1.1vw,2.5rem);--ex1:#a8321f;--ex2:#3a0d18}
+  .role .what{margin-top:8px;color:var(--cream);font-weight:600}
+  .role .when{color:var(--sodium)}
+  .role ul{list-style:none;margin-top:14px;display:grid;gap:9px}
+  .role li{position:relative;padding-left:1.3em;max-width:44ch;color:rgba(251,241,220,.86)}
+  .role li::before{content:"";position:absolute;left:0;top:.52em;width:.5em;height:.5em;background:var(--sodium);transform:rotate(45deg)}
+  .role.lead{grid-column:1/-1}
+  .role.lead ul{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;max-width:980px}
+  @media (max-width:720px){.role.lead ul{grid-template-columns:1fr}}
+  @media (max-width:720px){
+    .copy{width:auto;right:20px;top:40px}
+    .stops{min-height:14em}
+    .stop h3{font-size:2.2rem}
+  }
+</style>
+</head>
+<body>
+<div class="print"></div><div class="brush"></div>
+<section class="pin" id="pin">
+  <div class="stage">
+    <svg class="layer" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop id="s0" offset="0" stop-color="#2a2a6a"/><stop id="s1" offset=".45" stop-color="#8a3a6a"/><stop id="s2" offset=".8" stop-color="#f2a145"/><stop offset="1" stop-color="#f9c46a"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f72"/><stop offset=".4" stop-color="#1c2a52"/><stop offset="1" stop-color="#0d1a2b"/></linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ffe2a0" stop-opacity=".95"/><stop offset=".25" stop-color="#f2a145" stop-opacity=".55"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2d4a"/><stop offset="1" stop-color="#1a1428"/></linearGradient>
+      </defs>
+      <rect x="-400" y="-300" width="2240" height="900" fill="url(#sky)"/>
+      <rect id="night" x="-400" y="-300" width="2240" height="900" fill="#0d1a2b" opacity="0"/>
+      <g id="stars" fill="#fff3d0" opacity="0"></g>
+      <!-- sun gone under, a band of painted cloud lit from below -->
+      <g fill="#f7b35a" opacity=".55" id="cloudLit">
+        <path d="M560 420 C680 410 820 412 960 418 C860 428 680 430 560 420 Z"/>
+        <path d="M200 470 C300 462 420 464 520 468 C430 476 300 478 200 470 Z" opacity=".7"/>
+      </g>
+      <!-- Malabar Hill and the far curve; windows come on -->
+      <path d="M380 566 C420 548 470 528 530 520 C590 512 640 520 690 532 C740 544 790 556 840 566 Z" fill="#3a2a56"/>
+      <g fill="#3a2a56" id="towers"></g>
+      <g fill="#ffd27a" id="wins"></g>
+      <rect x="-400" y="564" width="2240" height="400" fill="url(#sea)"/>
+      <g id="reflect"></g>
+      <!-- Marine Drive running north: sea to the left, the promenade, road and Art Deco row to the right -->
+      <g id="deco"></g>
+      <path d="M-200 936 C200 788 566 646 904 585 L1000 585 C1200 600 1500 640 1840 700 L1840 1300 L-200 1300 Z" fill="#2b2140"/>
+      <path d="M520 1300 C700 900 880 700 960 588 L1000 588 C1000 700 1100 900 1300 1300 Z" fill="#1c1729"/>
+      <path d="M840 1300 C900 1000 960 800 980 588 L983 588 C990 800 1000 1000 1060 1300 Z" fill="#f2a145" opacity=".22"/>
+      <path d="M-200 930 C200 780 560 640 900 580 L960 580 C640 650 300 800 120 930 Z" fill="#3b2d4a"/>
+      <path d="M-200 930 C200 780 560 640 900 580 L904 585 C566 646 206 788 -190 936 Z" fill="#cdb8a8"/>
+      <path d="M-200 944 C200 794 566 650 904 585 L906 590 C570 656 210 802 -196 952 Z" fill="#6a5a72"/>
+      <g id="lamps"></g>
+    </svg>
+    <svg class="layer" id="heroSvg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="pointer-events:none">
+      <g id="heroG"><g id="heroA"></g><g id="heroB" opacity="0"></g></g>
+    </svg>
+    <div class="copy">
+      <h2 class="paint">Every detour was part of the path</h2>
+      <div class="stops" id="stops">
+        <div class="stop"><div class="yr">2021</div><h3>Ramrao Adik</h3><p class="fact">My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building.</p></div>
+        <div class="stop"><div class="yr"></div><h3>NFTs</h3><p class="fact">The worst call I've made. I listened to the hype instead of the people calling it out.</p></div>
+        <div class="stop"><div class="yr"></div><h3>Everything else</h3><p class="fact">Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy.</p></div>
+        <div class="stop"><div class="yr">2025</div><h3>MK Exim</h3><p class="fact">One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech.</p></div>
+        <div class="stop"><div class="yr">2025</div><h3>Graduated</h3><p class="fact">Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did.</p></div>
+        <div class="stop"><div class="yr">2025</div><h3>Sypha AI</h3><p class="fact">So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload.</p></div>
+        <div class="stop"><div class="yr">2026</div><h3>AuctionXI</h3><p class="fact">My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="credits">
+  <div class="necklace"></div>
+  <div class="roles">
+    <div class="role lead">
+      <h4 class="paint">Sypha AI</h4>
+      <div class="what fact">Software Engineer <span class="when">· Dec 2025 – now</span></div>
+      <ul class="fact">
+        <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+        <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+        <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+        <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+      </ul>
+    </div>
+    <div class="role"><h4 class="paint">AuctionXI</h4><div class="what fact">Founder <span class="when">· Apr 2026 – now</span></div></div>
+    <div class="role"><h4 class="paint">TexAgent</h4><div class="what fact">Freelance developer <span class="when">· Sep 2026 – now</span></div></div>
+    <div class="role"><h4 class="paint">MK Exim India</h4><div class="what fact">E-commerce, Amazon, TataCliQ and Sephora <span class="when">· Mar – Sep 2025</span></div></div>
+    <div class="role"><h4 class="paint">Brahmani Gems</h4><div class="what fact">Web developer intern, Shopify <span class="when">· Jul – Aug 2024</span></div></div>
+  </div>
+</section>
+<!-- direction: Style06 Dusk, Bollywood hand-painted poster -->
+<script>
+/* Mohit, hand-painted poster hero. MOHIT({mood:'pensive'|'smile', fist:bool, rim:'#hex', id:'m1'}) -> SVG <g> markup in a 400x500 box.
+   Head turned three-quarters to the viewer's left (as in his portrait), key light from the left, coloured rim light behind. */
+function MOHIT(o){
+  o=Object.assign({mood:'smile',fist:false,rim:'#5fd3d6',id:'m'},o||{});
+  const id=o.id, R=o.rim;
+  const SK='#b9784f', SK2='#94573b', SK3='#6b3a2a', SKH='#dca07a', SKL='#ecbd95';
+  const SH='#f3f0f7', SH2='#c7bfe0', SH3='#9389bf';
+  const HR='#120f14', HR2='#262634', HRG='#56658e';
+  const smile=o.mood==='smile';
+  return `
+<defs>
+  <pattern id="${id}stripe" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+    <rect width="7" height="7" fill="none"/><rect y="0" width="7" height="1.1" fill="#8f84c4" opacity=".45"/>
+  </pattern>
+  <linearGradient id="${id}skinL" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="${SKH}"/><stop offset=".55" stop-color="${SK}"/><stop offset="1" stop-color="${SK2}"/>
+  </linearGradient>
+  <filter id="${id}paint" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/>
+  </filter>
+</defs>
+<g filter="url(#${id}paint)">
+  <!-- torso / shirt -->
+  <path d="M38 500 C44 440 70 398 120 378 C150 366 176 356 190 340 L284 318 C300 340 330 356 352 372 C384 396 398 440 404 500 Z" fill="${SH}"/>
+  <path d="M38 500 C44 440 70 398 120 378 C150 366 176 356 190 340 L284 318 C300 340 330 356 352 372 C384 396 398 440 404 500 Z" fill="url(#${id}stripe)"/>
+  <!-- shirt shadow planes (lavender) -->
+  <path d="M262 352 C300 372 330 400 350 440 C362 466 368 486 370 500 L404 500 C398 440 384 396 352 372 C330 356 300 340 284 318 Z" fill="${SH2}"/>
+  <path d="M300 380 C326 410 340 450 344 500 L370 500 C366 470 356 430 330 398 Z" fill="${SH3}" opacity=".55"/>
+  <path d="M120 378 C92 392 70 420 58 460 C70 440 92 420 118 410 Z" fill="${SH2}" opacity=".8"/>
+  <!-- rim on the back of the shoulder -->
+  <path d="M352 372 C384 396 398 440 404 500 L398 500 C392 446 378 404 348 380 Z" fill="${R}" opacity=".85"/>
+  <!-- neck -->
+  <path d="M188 300 C190 324 188 340 184 352 C214 366 262 356 288 330 C282 312 278 290 276 266 Z" fill="${SK2}"/>
+  <path d="M188 300 C200 320 236 324 270 300 L276 266 C258 292 222 312 188 300 Z" fill="${SK3}" opacity=".7"/>
+  <path d="M276 270 C280 296 284 314 290 330 L284 332 C278 312 274 292 272 272 Z" fill="${R}" opacity=".8"/>
+  <!-- open collar -->
+  <path d="M184 350 C196 372 214 388 226 404 C236 380 238 366 236 356 C218 360 198 358 184 350 Z" fill="${SK2}"/>
+  <path d="M172 338 C176 360 190 386 218 412 C214 386 208 366 200 350 C192 346 182 342 172 338 Z" fill="${SH}"/>
+  <path d="M172 338 C176 360 190 386 218 412 C214 392 206 372 196 356 Z" fill="${SH2}" opacity=".5"/>
+  <path d="M236 356 C252 352 274 342 290 326 C304 344 316 362 324 380 C300 384 270 392 232 410 C238 392 240 372 236 356 Z" fill="${SH}"/>
+  <path d="M290 326 C304 344 316 362 324 380 C312 382 298 384 286 388 C296 370 296 348 290 326 Z" fill="${SH2}"/>
+  <!-- ear -->
+  <path d="M266 204 C280 192 298 198 296 220 C294 240 286 256 270 262 C266 242 264 222 266 204 Z" fill="${SK}"/>
+  <path d="M272 214 C282 208 290 214 288 226 C286 238 280 246 274 248 C278 236 278 224 272 214 Z" fill="${SK3}" opacity=".75"/>
+  <path d="M292 206 C298 214 298 232 290 248 C286 256 280 260 274 262 C286 252 294 232 292 206 Z" fill="${R}" opacity=".85"/>
+  <!-- face base -->
+  <path d="M150 134 C136 150 129 168 129 186 C129 195 135 200 135 207 C135 215 131 223 131 232 L132 248 C134 256 137 262 140 268 C138 276 140 284 146 291 C147 301 151 313 161 321 C173 331 191 331 206 325 C231 315 253 299 267 279 C275 263 278 241 276 220 L280 150 C260 120 190 115 150 134 Z" fill="url(#${id}skinL)"/>
+  <!-- painted shadow planes: temple, cheek, under jaw -->
+  <path d="M276 220 C278 241 275 263 267 279 C253 299 231 315 206 325 C224 312 238 296 246 276 C254 256 258 236 256 214 C262 206 270 206 276 220 Z" fill="${SK2}"/>
+  <path d="M230 160 C252 160 268 172 278 186 L276 220 C268 206 258 204 252 210 C248 190 242 174 230 160 Z" fill="${SK2}" opacity=".85"/>
+  <path d="M246 276 C238 296 224 312 206 325 C222 322 236 314 248 304 C254 296 252 286 246 276 Z" fill="${SK3}" opacity=".55"/>
+  
+  <!-- key-light highlights: forehead, cheekbone, chin -->
+  <path d="M156 160 C170 154 190 152 208 156 C192 160 174 166 160 176 C156 172 154 166 156 160 Z" fill="${SKL}" opacity=".6"/>
+  <path d="M146 232 C158 226 176 228 186 236 C176 244 160 246 148 242 Z" fill="${SKL}" opacity=".7"/>
+  <path d="M164 306 C172 300 186 300 194 306 C188 316 176 318 166 314 Z" fill="${SKL}" opacity=".6"/>
+  <!-- rim along jaw and cheek -->
+  <path d="M276 220 C278 241 275 263 267 279 C255 297 238 310 218 320 C240 306 258 288 268 266 C274 250 274 234 272 220 Z" fill="${R}" opacity=".9"/>
+  <!-- sideburn -->
+  <path d="M252 168 C260 170 268 178 270 190 L268 228 C262 220 258 206 256 194 C254 184 252 176 252 168 Z" fill="${HR}"/>
+  <!-- eye sockets -->
+  <path d="M182 196 C196 190 222 190 236 198 C232 212 214 218 196 214 C188 210 184 204 182 196 Z" fill="${SK2}" opacity=".7"/>
+  <path d="M138 199 C146 195 158 195 166 200 C162 211 150 214 141 210 Z" fill="${SK2}" opacity=".6"/>
+  ${smile?`
+  <!-- eyes, smiling: crescents, cheeks lifted -->
+  <path d="M189 208 C199 201 215 201 227 207 C216 210 200 211 189 208 Z" fill="#f1e6dc"/>
+  <path d="M196 207 C198 202 206 202 208 206 C206 210 199 210 196 207 Z" fill="#2a1912"/>
+  <path d="M186 208 C198 198 218 198 230 206" fill="none" stroke="${HR}" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M191 213 C203 210 216 210 226 211" fill="none" stroke="${SK3}" stroke-width="1.8" stroke-linecap="round" opacity=".8"/>
+  <path d="M194 218 C204 222 216 221 224 216" fill="none" stroke="${SK2}" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+  <path d="M144 208 C149 204 156 204 161 207 C155 210 149 210 144 208 Z" fill="#f1e6dc"/>
+  <path d="M145 207 C147 204 151 204 152 207 C151 209 147 209 145 207 Z" fill="#2a1912"/>
+  <path d="M141 208 C147 201 156 201 163 206" fill="none" stroke="${HR}" stroke-width="2.8" stroke-linecap="round"/>
+  `:`
+  <!-- eyes, pensive (lids lowered, looking out) -->
+  <path d="M188 208 C198 202 216 202 228 207 C216 212 200 213 188 208 Z" fill="#efe4da"/>
+  <path d="M192 206 C195 202 204 202 206 207 C204 212 195 212 192 206 Z" fill="#2a1912"/>
+  <path d="M186 207 C198 200 218 200 230 206" fill="none" stroke="${HR}" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M187 203 C200 196 216 196 228 201" fill="none" stroke="${SK3}" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+  <path d="M143 208 C148 204 156 204 161 207 C155 211 148 211 143 208 Z" fill="#efe4da"/>
+  <path d="M143 207 C145 204 150 204 151 207 C150 210 145 210 143 207 Z" fill="#2a1912"/>
+  <path d="M141 207 C147 202 156 202 163 206" fill="none" stroke="${HR}" stroke-width="2.8" stroke-linecap="round"/>
+  `}
+  <!-- brows -->
+  <path d="M180 189 C194 180 214 178 236 184 C232 188 214 186 196 190 C190 191 184 192 180 189 Z" fill="${HR}"/>
+  <path d="M136 192 C142 186 152 184 164 186 C158 190 148 191 140 195 Z" fill="${HR}"/>
+  <!-- nose -->
+  <path d="M164 204 C160 222 146 236 130 247 C125 252 128 259 135 258 C139 263 148 263 154 257 C152 248 158 236 168 226 Z" fill="${SK}"/>
+  <path d="M164 206 C160 222 152 234 141 245 C149 236 157 222 160 206 Z" fill="${SKL}" opacity=".9"/>
+  <path d="M135 258 C139 263 148 263 154 257 C150 255 143 255 138 254 Z" fill="${SK3}" opacity=".8"/>
+  <path d="M152 257 C156 250 160 242 168 236 C170 246 164 256 152 257 Z" fill="${SK2}"/>
+  ${smile?`
+  <!-- moustache + open smile -->
+  <path d="M140 270 C150 265 166 265 182 270 C170 272 154 273 140 270 Z" fill="${HR}" opacity=".55"/>
+  <path d="M138 277 C154 280 176 280 194 274 C190 292 172 304 156 302 C146 300 140 290 138 277 Z" fill="#4a1d1a"/>
+  <path d="M141 279 C156 282 176 282 191 277 C189 284 186 287 182 289 C168 291 152 290 143 286 Z" fill="#fbf6ef"/>
+  <path d="M150 297 C158 301 172 300 180 295 C174 302 160 304 150 297 Z" fill="#c4584e" opacity=".8"/>
+  <path d="M136 276 C138 272 141 271 143 273" fill="none" stroke="${SK3}" stroke-width="2" stroke-linecap="round"/>
+  <path d="M192 272 C198 270 202 274 200 280" fill="none" stroke="${SK3}" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M196 268 C210 276 214 294 206 306" fill="none" stroke="${SK2}" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  `:`
+  <!-- moustache + closed, thoughtful mouth -->
+  <path d="M140 270 C150 265 166 265 180 270 C168 272 154 273 140 270 Z" fill="${HR}" opacity=".55"/>
+  <path d="M143 279 C150 276 158 278 162 279 C168 277 176 278 180 282 C168 284 154 284 143 279 Z" fill="#8a4436"/>
+  <path d="M143 281 C152 283 168 284 180 282" fill="none" stroke="#4a2019" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M147 284 C154 292 170 292 177 284 C168 287 156 287 147 284 Z" fill="#a85a48"/>
+  <path d="M154 287 C160 289 166 289 170 287" stroke="#d98e78" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+  <path d="M150 296 C158 299 166 299 172 296" fill="none" stroke="${SK3}" stroke-width="1.4" opacity=".6"/>
+  `}
+  <!-- hair: volume on top swept up and back, short faded sides -->
+  <path d="M144 156 C134 134 138 106 150 86 C158 70 170 58 186 52 C196 48 204 54 214 52 C226 52 236 60 248 62 C262 66 274 72 284 80 C294 90 300 102 302 116 C306 132 304 146 301 158 C297 178 292 194 286 208 L274 200 C270 186 262 176 254 170 C246 160 240 150 232 146 C214 140 186 140 164 148 C156 151 150 153 144 156 Z" fill="${HR}"/>
+  <path d="M246 156 C258 166 270 184 274 200 L286 208 C292 192 297 174 300 156 C288 148 266 146 246 156 Z" fill="${HR2}"/>
+  <path d="M296 98 C306 116 308 138 304 160 C300 180 294 196 288 208 C296 184 300 146 296 98 Z" fill="${R}" opacity=".7"/>
+  <!-- painted gloss strokes, swept up and back -->
+  <path d="M150 142 C146 116 158 88 184 62" fill="none" stroke="${HRG}" stroke-width="5" stroke-linecap="round"/>
+  <path d="M168 134 C170 108 188 84 216 66" fill="none" stroke="${HRG}" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+  <path d="M190 126 C200 108 222 94 248 88" fill="none" stroke="${HRG}" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <path d="M214 122 C230 108 252 102 276 104" fill="none" stroke="${HRG}" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+  <path d="M162 92 C172 74 190 62 210 58" fill="none" stroke="#9aaad0" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+  <path d="M232 64 C244 62 256 66 266 74" fill="none" stroke="#9aaad0" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+  <!-- glasses: dark top rim, pale lower rim -->
+  <path d="M243 199 L270 206" stroke="#1b1a22" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M176 192 C196 186 224 186 244 190 L242 214 C238 224 222 228 204 226 C188 224 178 216 176 204 Z" fill="#cfe6f0" opacity=".16"/>
+  <path d="M176 204 C178 216 188 224 204 226 C222 228 238 224 242 214" fill="none" stroke="#c9ccd6" stroke-width="2.2"/>
+  <path d="M176 204 L176 192 C196 186 224 186 244 190 L242 214" fill="none" stroke="#1b1a22" stroke-width="3.6" stroke-linejoin="round"/>
+  <path d="M134 196 C144 192 158 191 168 193 L167 214 C164 221 152 223 142 221 C136 218 134 212 134 204 Z" fill="#cfe6f0" opacity=".14"/>
+  <path d="M134 204 C134 212 136 218 142 221 C152 223 164 221 167 214" fill="none" stroke="#c9ccd6" stroke-width="1.8"/>
+  <path d="M134 204 L134 196 C144 192 158 191 168 193 L167 214" fill="none" stroke="#1b1a22" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M168 195 C171 192 174 192 176 194" fill="none" stroke="#1b1a22" stroke-width="2.6"/>
+  <path d="M190 220 L214 192" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+  <path d="M206 222 L222 202" stroke="#fff" stroke-width="1.6" opacity=".3" stroke-linecap="round"/>
+  ${o.fist?`
+  <!-- forearm and fist under the chin -->
+  <path d="M152 366 C146 404 136 452 126 500 L200 500 C202 452 206 404 210 368 Z" fill="${SK}"/>
+  <path d="M184 366 C192 410 194 456 190 500 L200 500 C202 452 206 404 210 368 Z" fill="${SK2}"/>
+  <path d="M152 368 C148 400 142 434 136 466 C146 432 154 400 162 370 Z" fill="${SKL}" opacity=".55"/>
+  <!-- rolled sleeve -->
+  <path d="M104 470 C130 456 186 452 222 462 L232 500 L96 500 Z" fill="${SH}"/>
+  <path d="M104 470 C130 456 186 452 222 462 L232 500 L96 500 Z" fill="url(#${id}stripe)"/>
+  <path d="M104 470 C130 462 186 458 222 462 L224 474 C190 468 132 470 102 482 Z" fill="${SH2}"/>
+  <path d="M186 466 C200 478 214 488 230 500 L232 500 L222 462 Z" fill="${SH2}"/>
+  <!-- fist: one clean shape, knuckles toward us -->
+  <path d="M146 334 C150 318 172 312 196 316 C216 320 226 334 222 352 C219 368 204 378 184 378 C162 378 146 368 144 352 C143 346 144 340 146 334 Z" fill="${SK}"/>
+  <path d="M196 316 C216 320 226 334 222 352 C219 368 204 378 184 378 C204 368 212 352 210 334 C208 326 202 320 196 316 Z" fill="${SK2}"/>
+  <path d="M150 330 C160 320 180 318 196 322 C186 326 170 330 158 340 Z" fill="${SKL}" opacity=".8"/>
+  <path d="M158 346 C166 352 178 354 190 352 M160 360 C168 365 180 366 192 364" fill="none" stroke="${SK3}" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  <path d="M148 336 C156 340 168 340 176 334" fill="none" stroke="${SK3}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
+  <path d="M222 340 C224 352 220 366 208 374" fill="none" stroke="${R}" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+  `:''}
+</g>`;
+}
+
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+let seed=5;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const N=7;
+
+// towers + windows on Malabar Hill
+(()=>{let t='',w='';for(let i=0;i<16;i++){const x=470+i*22+rnd()*8,h=14+rnd()*40,y=540-h+Math.abs(i-7)*2.4,ww=10+rnd()*8;
+  t+=`<rect x="${x}" y="${y}" width="${ww}" height="${h+30}"/>`;
+  for(let r=y+5;r<y+h;r+=7)for(let c=x+2;c<x+ww-2;c+=4)if(rnd()<.5)w+=`<rect class="w" data-k="${Math.floor(rnd()*N)}" x="${c}" y="${r}" width="1.8" height="2.6" opacity="0"/>`;}
+  $('towers').innerHTML=t;$('wins').innerHTML=w;})();
+(()=>{let d='';let x=930;while(x<1500){const u=(x-930)/570,w=lerp(10,60,u)*(0.8+rnd()*.4),h=lerp(10,120,u)*(0.7+rnd()*.5),b=lerp(588,640,u);
+  d+=`<path d="M${x} ${b} V${b-h+6} Q${x} ${b-h} ${x+6} ${b-h} H${x+w} V${b} Z" fill="#3a2a56"/>`;
+  for(let r=b-h+6;r<b-4;r+=lerp(4,10,u))for(let c=x+3;c<x+w-3;c+=lerp(3,8,u))if(rnd()<.45)d+=`<rect class="w" data-k="${Math.floor(rnd()*N)}" x="${c}" y="${r}" width="${lerp(1.4,3.5,u)}" height="${lerp(2,5,u)}" fill="#ffd27a" opacity="0"/>`;
+  x+=w+lerp(1,4,u);}$('deco').innerHTML=d;})();
+for(let i=0;i<40;i++)$('stars').insertAdjacentHTML('beforeend',`<circle cx="${rnd()*1440}" cy="${rnd()*300}" r="${.6+rnd()*1.2}"/>`);
+
+// the lamps of the Necklace along the curve: near (left) to far
+const curve=u=>{ // cubic-ish along the walk's outer edge
+  const x=lerp(-140,900,1-Math.pow(1-u,1.6)), y=lerp(912,584,1-Math.pow(1-u,1.4));return[x,y];};
+const L=[];
+(()=>{let s='';
+  for(let i=0;i<N;i++){
+    const u=.1+i*.13, [x0,y0]=curve(u), k=lerp(1,.16,Math.pow(i/(N-1),.7)), h=300*k, x=x0+60*k, y=y0+46*k;
+    s+=`<g class="lamp" data-i="${i}">
+      <circle class="halo" cx="${x+38*k}" cy="${y-h+6*k}" r="${150*k}" fill="url(#glow)" opacity="0"/>
+      <path d="M${x-3*k} ${y} L${x-1.6*k} ${y-h} L${x+1.6*k} ${y-h} L${x+3*k} ${y} Z" fill="#2a1c34"/>
+      <path d="M${x} ${y-h+2*k} C${x} ${y-h-24*k} ${x+20*k} ${y-h-30*k} ${x+38*k} ${y-h-14*k}" fill="none" stroke="#2a1c34" stroke-width="${3*k}"/>
+      <path d="M${x+28*k} ${y-h-12*k} h${20*k} l${-3*k} ${8*k} h${-14*k} Z" fill="#2a1c34"/>
+      <ellipse class="bulb" cx="${x+38*k}" cy="${y-h-2*k}" rx="${7*k}" ry="${4*k}" fill="#5a4a5a"/>
+      <path class="pool" d="M${x+38*k-50*k} ${y+6*k} Q${x+38*k} ${y-6*k} ${x+38*k+60*k} ${y+6*k} Q${x+38*k} ${y+18*k} ${x+38*k-50*k} ${y+6*k} Z" fill="#f2a145" opacity="0"/>
+    </g>`;
+    L.push({x:x+38*k,y:y-h-2*k,k});
+  }
+  $('lamps').innerHTML=s;
+  // reflections of lit lamps on the sea
+  let r='';L.forEach((l,i)=>{if(l.y<560)return;});
+  $('reflect').innerHTML=r;
+})();
+
+$('heroA').innerHTML=MOHIT({mood:'pensive',id:'da',rim:'#f2a145'});
+$('heroB').innerHTML=MOHIT({mood:'smile',id:'db',rim:'#f2a145'});
+
+const pin=$('pin'),stops=[...document.querySelectorAll('.stop')],lamps=[...document.querySelectorAll('.lamp')],wins=[...document.querySelectorAll('.w')];
+const s0=$('s0'),s1=$('s1'),s2=$('s2'),night=$('night'),stars=$('stars'),heroG=$('heroG'),heroB=$('heroB');
+const mix=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16));const A=p(a),B=p(b);return'#'+A.map((v,i)=>Math.round(lerp(v,B[i],t)).toString(16).padStart(2,'0')).join('');};
+function heroPlace(){
+  const ar=innerWidth/innerHeight,vbW=ar>1.6?1440:900*ar,vbH=ar>1.6?1440/ar:900,Lx=720-vbW/2,T=450-vbH/2;
+  if(innerWidth<720){const sc=Math.min(vbW*.95/400,vbH*.44/500);return`translate(${Lx+vbW-400*sc+vbW*.08} ${T+vbH-500*sc}) scale(${sc})`;}
+  const sc=Math.min(vbH*.78/500,vbW*.36/400);return`translate(${Lx+vbW-400*sc} ${T+vbH-500*sc}) scale(${sc})`;
+}
+let tt=0,last=performance.now(),place='';
+function render(T){
+  const r=pin.getBoundingClientRect();const t=clamp(-r.top/(r.height-innerHeight));
+  tt+=reduce?(t-tt):(t-tt)*Math.min(1,16/110);
+  const f=Math.min(tt*N*1.08,N-.001); // continuous stop position
+  stops.forEach((el,i)=>{const d=f-i;let o=0,y=26;
+    if(d>=0&&d<1){const fi=i===0?1:clamp(d/.22),fo=i===N-1?1:clamp((1-d)/.22);o=Math.min(fi,fo);y=d<.5?(1-o)*26:-(1-o)*26;}
+    else if(d>=1&&i===N-1){o=1;y=0}
+    el.style.opacity=o;el.style.transform=`translateY(${y}px)`;});
+  // lamps light near to far
+  lamps.forEach((g,i)=>{const a=clamp((f-i+.2)/.35);g.querySelector('.halo').setAttribute('opacity',a);g.querySelector('.pool').setAttribute('opacity',a*.5);
+    g.querySelector('.bulb').setAttribute('fill',a>.05?mix('#5a4a5a','#fff2c8',a):'#5a4a5a');});
+  // sky deepens
+  const d=clamp(f/(N-1));
+  s0.setAttribute('stop-color',mix('#3a3478','#0d1a2b',d));s1.setAttribute('stop-color',mix('#9a3e6a','#2a2350',d));s2.setAttribute('stop-color',mix('#f2a145','#8a3a52',d));
+  $('cloudLit').setAttribute('opacity',.55*(1-d));
+  stars.setAttribute('opacity',d*.9);
+  wins.forEach(w=>{w.setAttribute('opacity',f>+w.dataset.k?1:0)});
+  heroB.setAttribute('opacity',clamp((f-(N-1.25))/.5));
+  const p=heroPlace();if(p!==place){heroG.setAttribute('transform',p);place=p;}
+}
+function frame(now){const T=now/1000;render(T);
+  if(!reduce) lamps.forEach((g,i)=>{const h=g.querySelector('.halo');const o=+h.getAttribute('opacity');if(o>0)h.setAttribute('opacity',o*(.92+.08*Math.sin(T*2.2+i)));});
+  requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

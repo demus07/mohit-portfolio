@@ -1,0 +1,542 @@
+<!-- Direction 05: Pixel art — Marine Drive in the afternoon: Mohit sits on the parapet with his back to us, the Art Deco curve running to Malabar Hill; as you scroll he turns and smiles over his shoulder. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Marine Drive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #a9cbd6; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; color: #1d2c36; }
+  .pin { position: relative; height: 420vh; }
+  .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }
+  .copy { position: absolute; left: clamp(20px, 5vw, 80px); top: clamp(28px, 8vh, 88px); width: min(31rem, 88vw); pointer-events: none; }
+  h2 { font-family: "Pixelify Sans", monospace; font-weight: 600; font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.9rem); line-height: 1; margin: 0 0 .45em; color: #16303d; text-wrap: balance; }
+  .line { font-size: clamp(1.05rem, .95rem + .35vw, 1.3rem); line-height: 1.45; margin: 0; max-width: 25em; color: #1f3946; }
+  .aside { font-family: "Pixelify Sans", monospace; font-size: clamp(1.1rem, 1rem + .4vw, 1.4rem); line-height: 1.35; margin: 1.1em 0 0; max-width: 18em; color: #16303d; opacity: 0; transform: translateY(10px); transition: opacity .7s, transform .7s; }
+  .stage.is-turned .aside { opacity: 1; transform: none; }
+  .after { height: 30vh; background: #8f8a84; }
+  @media (prefers-reduced-motion: reduce) { .aside { transition: none; } }
+</style>
+</head>
+<body>
+<section class="pin" id="pin">
+  <div class="stage" id="stage">
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <div class="copy">
+      <h2>One year in, here's what I shipped</h2>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</section>
+<div class="after"></div>
+<!-- direction: 05 pixel art · promenade -->
+<script>
+/* ---------- PX: tiny pixel engine shared by every Style05 page ---------- */
+const PX = (() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hex = h => { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+
+  // integer-scaled full-viewport stage; art is drawn at W x H "art pixels"
+  function stage(canvas, opt = {}) {
+    const ctx = canvas.getContext('2d');
+    const st = { canvas, ctx, W: 0, H: 0, s: 1 };
+    st.resize = () => {
+      const el = opt.box ? opt.box() : { w: innerWidth, h: innerHeight };
+      const base = opt.base || 480, baseH = opt.baseH || 270;
+      let s = Math.round(Math.min(el.w / base, el.h / baseH));
+      s = Math.max(opt.min || 2, Math.min(opt.max || 8, s));
+      st.s = s; st.W = Math.ceil(el.w / s); st.H = Math.ceil(el.h / s);
+      canvas.width = st.W; canvas.height = st.H;
+      canvas.style.width = st.W * s + 'px'; canvas.style.height = st.H * s + 'px';
+      ctx.imageSmoothingEnabled = false;
+      opt.onResize && opt.onResize(st);
+    };
+    addEventListener('resize', st.resize);
+    st.resize();
+    return st;
+  }
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+  // ordered 4x4 bayer dither between two colours at fraction t (0..1) inside a rect
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function dith(c, x, y, w, h, a, b, t) {
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+    R(c, x, y, w, h, a); if (t <= 0) return; if (t >= 1) { R(c, x, y, w, h, b); return; }
+    c.fillStyle = b;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (B4[((y + j) & 3) * 4 + ((x + i) & 3)] < t * 16) c.fillRect(x + i, y + j, 1, 1);
+  }
+  // vertical banded gradient: list of colours top->bottom, dithered seams (16-bit sky)
+  function bands(c, x, y, w, h, cols, seam = 3) {
+    const n = cols.length, bh = h / n;
+    for (let i = 0; i < n; i++) {
+      const y0 = Math.round(y + i * bh), y1 = Math.round(y + (i + 1) * bh);
+      R(c, x, y0, w, y1 - y0, cols[i]);
+      if (i < n - 1) { // dithered transition rows
+        for (let k = 0; k < seam; k++) dith(c, x, y1 - seam + k, w, 1, cols[i], cols[i + 1], (k + 1) / (seam + 1));
+      }
+    }
+  }
+  // crisp text: rasterise with canvas text, threshold alpha
+  const tc = document.createElement('canvas'), tx = tc.getContext('2d', { willReadFrequently: true });
+  function text(c, str, x, y, font, col, align = 'left') {
+    tx.font = font; const m = tx.measureText(str);
+    const w = Math.ceil(m.width) + 4, h = Math.ceil(parseInt(font.match(/(\d+)px/)[1]) * 1.6) + 4;
+    tc.width = w; tc.height = h; tx.font = font; tx.textBaseline = 'top'; tx.fillStyle = '#000'; tx.fillText(str, 2, 2);
+    const d = tx.getImageData(0, 0, w, h).data;
+    const ox = align === 'center' ? Math.round(x - m.width / 2) : align === 'right' ? Math.round(x - m.width) : Math.round(x);
+    c.fillStyle = col;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 110) c.fillRect(ox + i - 2, Math.round(y) + j - 2, 1, 1);
+    return m.width;
+  }
+  // 3x5 pixel font for LED boards
+  const F = { A: '010101111101101', B: '110101110101110', C: '011100100100011', D: '110101101101110', E: '111100110100111', F: '111100110100100', G: '011100101101011', H: '101101111101101', I: '111010010010111', K: '101101110101101', L: '100100100100111', M: '101111111101101', N: '110101101101101', O: '010101101101010', P: '110101110100100', R: '110101110101101', S: '011100010001110', T: '111010010010010', U: '101101101101111', V: '101101101101010', W: '101101111111101', X: '101101010101101', Y: '101101010010010', Z: '111001010100111', 0: '111101101101111', 1: '010110010010111', 2: '110001010100111', 3: '110001010001110', 4: '101101111001001', 5: '111100110001110', 6: '011100111101111', 7: '111001010010010', 8: '111101111101111', 9: '111101111001110', ':': '000010000010000', '.': '000000000000010', '-': '000000111000000', ' ': '000000000000000', "'": '010010000000000' };
+  function led(c, str, x, y, col, dim) {
+    let cx = Math.round(x);
+    for (const ch of str.toUpperCase()) {
+      const g = F[ch] || F[' '];
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 3; i++) {
+        if (g[j * 3 + i] === '1') P(c, cx + i, y + j, col); else if (dim) P(c, cx + i, y + j, dim);
+      }
+      cx += 4;
+    }
+    return cx - x;
+  }
+  // sprite compiler: rows of chars -> canvas, with palette map. '.' = clear
+  function sprite(rows, pal) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const c = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const k = r[x]; if (k !== '.' && k !== ' ' && pal[k]) P(c, x, y, pal[k]); } });
+    return cv;
+  }
+  // flip a sprite canvas horizontally
+  function flip(cv) { const o = document.createElement('canvas'); o.width = cv.width; o.height = cv.height; const c = o.getContext('2d'); c.translate(cv.width, 0); c.scale(-1, 1); c.drawImage(cv, 0, 0); return o; }
+  // scroll progress of a tall element whose sticky child is pinned: 0..1
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? 0 : Math.min(1, Math.max(0, -r.top / t)); }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  // seeded rng
+  function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function loop(fn) { let t0 = performance.now(); const f = now => { fn(Math.max(0, now - t0) / 1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+  return { RM, hex, mix, stage, R, P, dith, bands, text, led, sprite, flip, prog, clamp, ease, seg, rng, loop };
+})();
+
+/* ---------- MOHIT: the pixel character, authored once, reused everywhere ---------- */
+const MOHIT = (() => {
+  // palette (day). Light comes from the viewer's left.
+  const BASE = {
+    h: '#1b1824', H: '#2d2a3c', j: '#4d4a69',            // hair: base, mid, gloss
+    s: '#b0704a', S: '#d0976c', d: '#8a5139', D: '#5e3325', // skin
+    f: '#b47452', k: '#7c4733',                           // fist + crease
+    g: '#1d1b24', G: '#c4c8d2', l: '#ffffff', n: '#e2c9b8', // glasses rims, glint, lens sheen
+    e: '#16121a', o: '#efe6dc', b: '#211719',             // pupil, eye white, brow
+    m: '#4a2a22', L: '#77392f', T: '#f6efe6',             // moustache, lip, teeth
+    W: '#f4f1f8', V: '#d6cfe6', v: '#aea4c8', p: '#e2daf1', q: '#c8bede', // shirt + pinstripes
+    t: '#2a2c3a', u: '#3c3f52', z: '#141218',             // trousers, shoes
+    0: '#0b0910', 1: '#3a1c14', 2: '#4f4866',             // outlines: hair, skin, shirt
+  };
+  const SKIN = 'sSdDfk', SHIRT = 'WVvpq', HAIR = 'hHj';
+
+  function grid(w, h) { return Array.from({ length: h }, () => Array(w).fill('.')); }
+  function painter(g) { return (y, x, s) => { for (let i = 0; i < s.length; i++) if (s[i] !== ' ' && g[y] && x + i < g[y].length) g[y][x + i] = s[i]; }; }
+
+  // automatic finishing: pinstripes, edge light/shadow, selective outline
+  function finish(g, opt = {}) {
+    const H = g.length, W = g[0].length, at = (x, y) => (y < 0 || y >= H || x < 0 || x >= W) ? '.' : g[y][x];
+    const out = g.map(r => r.slice());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = g[y][x];
+      if (c === 's') {
+        if (opt.lightLeft !== false && !SKIN.includes(at(x - 1, y)) && 'hHj.'.includes(at(x - 1, y)) && at(x - 1, y) !== undefined) out[y][x] = at(x - 1, y) === '.' ? 'S' : 's';
+        if (at(x + 1, y) === '.') out[y][x] = 'd';
+      }
+      if (c === 'W') {
+        // shade the side away from the light
+        let run = 0; for (let k = 1; k <= 4; k++) if (!SHIRT.includes(at(x + k, y))) { run = k; break; }
+        if (run && run <= (opt.shirtShade || 3)) out[y][x] = 'V';
+        if (at(x, y - 1) === '.' ) out[y][x] = 'W';
+      }
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = out[y][x];
+      if ((opt.stripe ?? 3) && y % (opt.stripe || 3) === (opt.stripeOff || 0)) {
+        if (c === 'W') out[y][x] = 'p'; else if (c === 'V') out[y][x] = 'q';
+      }
+    }
+    if (opt.outline !== false) {
+      const o2 = out.map(r => r.slice());
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (out[y][x] !== '.') continue;
+        const ns = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => (y + b < 0 || y + b >= H || x + a < 0 || x + a >= W) ? '.' : out[y + b][x + a]).filter(v => v !== '.' && !'012'.includes(v));
+        if (!ns.length) continue;
+        o2[y][x] = ns.some(v => HAIR.includes(v) || 'gbe'.includes(v)) ? '0' : ns.some(v => SKIN.includes(v)) ? '1' : ns.some(v => SHIRT.includes(v)) ? '2' : '0';
+      }
+      return o2;
+    }
+    return out;
+  }
+  const rows = g => g.map(r => r.join(''));
+
+  /* ===== 1. BUST: seated at the window, chin on fist, pensive (3/4, looking out to viewer's left) ===== */
+  function bust(state = {}) {
+    const g = grid(48, 64), P = painter(g);
+    // hair: soft quiff, highest at the front (left), swept up and back
+    P(0, 17, 'hhhhh');
+    P(1, 15, 'hhhhhhhhhh');
+    P(2, 13, 'hhhhhhhhhhhhhhhh');
+    P(3, 12, 'hhhhhhhhhhhhhhhhhhhh');
+    P(4, 12, 'hhhhhhhhhhhhhhhhhhhhhh');
+    P(5, 12, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    P(6, 12, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(7, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(8, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(9, 14, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    // gloss strands sweeping up and back
+    P(1, 16, 'jjj');
+    P(2, 14, 'jjHH  HHH');
+    P(3, 13, 'jH  jjjjHH   H');
+    P(4, 13, 'H  HH   jjjjHH');
+    P(5, 15, 'jH    HHH  jjjH');
+    P(6, 14, 'H  jjH     HHHjjH');
+    P(7, 16, 'HH          HHjH');
+    P(8, 28, 'HHH');
+    // forehead, brows, sideburn, ear
+    P(10, 14, 'hhsssssssssssshhhhhhhhhh');
+    P(11, 14, 'hssssssssssssssshhhhhhh');
+    P(12, 14, 'sbbbbssbbbbbbssssshhhhh');
+    P(13, 14, 'sssssssssssssssssssshhh');
+    P(14, 13, 'gggggggggggggggggggggsshh');
+    P(15, 13, 'gnbbbssgssgnbbbbssgssssh');
+    P(16, 13, 'gseeossgssgseeoossgssdds');
+    P(17, 13, 'gseeossgsdgseeosssgssdsd');
+    P(18, 13, 'gssssssgsdgsssssssgssdsd');
+    P(19, 13, 'GGGGGGGGsdGGGGGGGGGssdsd');
+    // nose (tip just past the cheek line), moustache, closed mouth
+    P(20, 13, 'SSsssddssssssssssssdsd');
+    P(21, 13, 'Sssddddsssssssssssdd');
+    P(22, 14, 'smmmmmmssssssssssd');
+    P(23, 14, 'ssLLLLssssssssssd');
+    P(24, 14, 'sssssssssssssddd');
+    P(25, 15, 'sssssssssssdd');
+    P(26, 16, 'sssssssdDd');
+    // neck in shadow
+    P(24, 29, 'dd'); P(25, 27, 'dddd'); P(26, 26, 'ddddd');
+    for (let y = 27; y < 33; y++) P(y, 24, 'Ddddddd');
+    // collar: open, points falling either side of the V
+    P(28, 30, 'WWW');
+    P(29, 30, 'WWWWW');
+    P(30, 22, 'WW      WWWWWW');
+    P(31, 21, 'WWWW   VWWWWWWWW');
+    P(32, 20, 'WWWWWW dVWWWWWWWWWW');
+    P(33, 19, 'WWWWWWWsdvWWWWWWWWWWWW');
+    P(34, 18, 'WWWWWWWWdvWWWWWWWWWWWWWW');
+    // shirt body: shoulders slope out, then fall
+    for (let y = 35; y < 64; y++) {
+      const L = Math.max(3, 18 - Math.round((y - 35) * 1.4)), R = Math.min(47, 42 + Math.round((y - 35) * 0.45));
+      P(y, L, 'W'.repeat(R - L));
+    }
+    for (let y = 34; y < 64; y++) { P(y, 27, 'v'); }
+    for (let y = 44; y < 64; y++) P(y, 38 + ((y - 44) >> 3), 'V');
+    // fist under the chin: knuckles up, fingers curled toward us, thumb on the right
+    P(26, 13, 'ff');
+    P(27, 12, 'ffffffffkff');
+    P(28, 11, 'fffffffffkff');
+    P(29, 11, 'kkkkkkkkkfkf');
+    P(30, 11, 'fffffffffkff');
+    P(31, 11, 'fffffffffkff');
+    P(32, 11, 'kkkkkkkkkfff');
+    P(33, 11, 'ffffffffffff');
+    P(34, 12, 'ffffffffff');
+    P(35, 13, 'kkkkkkkk');
+    // forearm, vertical, elbow resting on the sill below
+    for (let y = 36; y < 48; y++) P(y, 13, 'ffffff' + (y < 40 ? 'k' : 'fk'));
+    // rolled sleeve cuff, then the sleeve to the elbow
+    P(47, 11, 'vvvvvvvvvvvv');
+    P(48, 10, 'WWWWWWWWWWWWWV');
+    P(49, 10, 'WWWWWWWWWWWWWV');
+    P(50, 10, 'WWWWWWWWWWWWWV');
+    P(51, 10, 'vvvvvvvvvvvvvv');
+    P(52, 11, 'WWWWWWWWWWWWV');
+    P(53, 11, 'WWWWWWWWWWWWV');
+    P(54, 12, 'VVVVVVVVVVV');
+    // the body behind the raised arm falls into shade
+    for (let y = 36; y < 64; y++) for (let x = 3; x < 13; x++) if (g[y][x] === 'W') g[y][x] = y > 54 || x < 11 ? 'V' : 'W';
+    for (let y = 55; y < 64; y++) P(y, 10, 'VVVVVVVVVVVVVV');
+    // ear, cleanly shaped, hair tucked behind it
+    P(13, 33, 'shhhh');
+    P(14, 34, 'Ssh'); P(15, 34, 'sdsh'); P(16, 34, 'sdsh'); P(17, 34, 'sdsh'); P(18, 34, 'ssdh');
+    P(19, 34, 'sds'); P(20, 34, 'dd.'); P(21, 33, 'd..');
+    for (let y = 14; y < 19; y++) P(y, 38, '.');
+    // light on the forehead, cheek and nose
+    P(10, 17, 'SSS'); P(11, 16, 'SSSS'); P(20, 15, 'SS'); P(21, 15, 'S');
+    // quiff lift at the front
+    P(0, 14, 'hh'); P(1, 13, 'hjj');
+    // states
+    if (state.blink) { P(15, 14, 'ssss'); P(16, 14, 'bbbss'); P(17, 14, 'sssss'); P(15, 24, 'ssss'); P(16, 24, 'bbbbs'); P(17, 24, 'sssss'); }
+    if (state.glint != null) { const x = 14 + state.glint; if (x < 19) P(18, x, 'l'); const x2 = 24 + state.glint; if (x2 < 30) P(18, x2, 'l'); }
+    return finish(g, { stripe: 3, stripeOff: 1 });
+  }
+
+
+  /* ===== 2. SEATED ON THE PARAPET, from behind; head: 0 = looking at the sea, 1 = turning, 2 = smiling over his shoulder ===== */
+  function back(state = {}) {
+    const g = grid(46, 56), P = painter(g), turn = state.turn || 0, w = state.wind || 0;
+    // shirt body (back): sloped shoulders, torso tapering to the waist, yoke and pleat
+    const SH = [[19, 16, 28], [20, 13, 31], [21, 10, 34], [22, 8, 36], [23, 7, 37], [24, 6, 38]];
+    SH.forEach(([y, l, r]) => P(y, l, 'W'.repeat(r - l)));
+    for (let y = 25; y < 54; y++) {
+      const t = (y - 25) / 28, L = Math.round(8 + t * 2.5), R = Math.round(36 - t * 2.5) + (y > 32 && w && ((y + w) % 6 < 2) ? 1 : 0);
+      P(y, L, 'W'.repeat(R - L));
+    }
+    P(26, 10, 'vvvvvvvvvvvvvvvvvvvvvvvv');                    // yoke seam
+    for (let y = 27; y < 54; y++) P(y, 22, 'v');               // box pleat
+    for (let y = 31; y < 54; y++) P(y, 29 + ((y + w) % 6 < 3 ? 0 : 1), 'V');
+    for (let y = 36; y < 54; y++) P(y, 14 + ((y + w) % 8 < 4 ? 0 : 1), 'V');
+    // arms hanging slightly out from the body, sleeves rolled, hands on the parapet edge
+    for (let y = 24; y < 41; y++) { const o = Math.round((y - 24) / 8); P(y, 4 - o, 'WWWWW'); P(y, 36 + o, 'WWWWW'); P(y, 8 - o, 'v'); P(y, 36 + o, 'v'); }
+    P(41, 1, 'vvvvvvv'); P(42, 1, 'WWWWWWW'); P(43, 1, 'WWWWWWW'); P(44, 1, 'vvvvvvv');
+    P(41, 38, 'vvvvvvv'); P(42, 38, 'WWWWWWW'); P(43, 38, 'WWWWWWW'); P(44, 38, 'vvvvvvv');
+    for (let y = 45; y < 53; y++) { P(y, 2, 'Sssd'); P(y, 39, 'sssd'); }
+    P(53, 1, 'ffffff'); P(54, 1, 'kkkkkk'); P(53, 38, 'ffffff'); P(54, 38, 'kkkkkk');
+    // neck + collar band
+    P(16, 18, 'dddddddd'); P(17, 18, 'ssssssss'); P(18, 18, 'ssssssss');
+    P(19, 16, 'WWVVVVVVVVWWW'); P(20, 15, 'WW') ;
+    if (turn === 0) {
+      P(0, 17, 'hhhhhhhhh'); P(1, 15, 'hhhhhhhhhhhhh'); P(2, 14, 'hhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 13, 'hhhhhhhhhhhhhhhhh');
+      P(13, 14, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhhh');
+      P(16, 17, 'hhhhhhhhhh');
+      P(1, 18, 'jjjHH'); P(2, 16, 'HjjjjjHH'); P(3, 15, 'H  HHjjjH'); P(4, 20, 'HHjH'); P(5, 15, 'H');
+      // ears either side, glasses arms over them
+      P(7, 11, 'gg'); P(7, 30, 'gg');
+      P(8, 11, 'Ss'); P(9, 11, 'sd'); P(10, 11, 'sd'); P(11, 11, 'sd'); P(12, 12, 'd');
+      P(8, 30, 'ss'); P(9, 30, 'ds'); P(10, 30, 'ds'); P(11, 30, 'dd'); P(12, 30, 'd');
+    } else if (turn === 1) {
+      P(0, 16, 'hhhhhhhhh'); P(1, 14, 'hhhhhhhhhhhhhh'); P(2, 13, 'hhhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 12, 'hhhhhhhhhhhhhhhhhh');
+      P(13, 13, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhh'); P(16, 18, 'hhhhhhh');
+      P(1, 17, 'jjjHH'); P(2, 15, 'HjjjjjHH'); P(3, 14, 'H  HHjjjH'); P(4, 19, 'HHjH');
+      // cheek edge + glasses rim appearing, ear moving to the centre-right
+      P(6, 10, 'gggggggg'); P(7, 10, 'Gs'); P(8, 10, 'Ssss'); P(9, 10, 'sssss'); P(10, 11, 'ssss'); P(11, 11, 'sss'); P(12, 12, 'sd'); P(13, 13, 'd');
+      P(7, 26, 'ss'); P(8, 26, 'sd'); P(9, 26, 'sd'); P(10, 26, 'sd'); P(11, 26, 'dd');
+      P(16, 17, 'dd');
+    } else {
+      // turned to smile over his shoulder, like the rooftop photo
+      P(0, 10, 'hhhhhhh'); P(1, 9, 'hhhhhhhhhhhhh'); P(2, 8, 'hhhhhhhhhhhhhhhhhhh');
+      P(3, 8, 'hhhhhhhhhhhhhhhhhhhhh'); P(4, 8, 'hhhhhhhhhhhhhhhhhhhhhh'); P(5, 9, 'hhhhhhhhhhhhhhhhhhhhh'); P(6, 9, 'hhhhhhhhhhhhhhhhhhhhh');
+      P(7, 9, 'ssssssshhhhhhhhhhhhhh');
+      P(8, 8, 'bbbsssssshhhhhhhhhhhhh');
+      P(0, 11, 'jjH'); P(1, 10, 'jjjHH'); P(2, 9, 'H  jjjHHH'); P(3, 13, 'HHjjjjHH'); P(4, 10, 'H     HHHjjH'); P(5, 12, 'HH');
+      P(9, 7, 'gggggggggggggggggssshhhhh');
+      P(10, 7, 'gneogSssssssssssdssdshhhh');
+      P(11, 7, 'gsssgsssssssssssdssdshhh');
+      P(12, 6, 'SGGGGGsSSsssssssddsdhhh');
+      P(13, 5, 'SSsdssSSssssssssdddhhh');
+      P(14, 6, 'smmmdssssssssssddhh');
+      P(15, 7, 'TTTdsssssssssddhh');
+      P(16, 7, 'LLdssssssssddd h');
+      P(17, 8, 'sssssssssddd');
+      P(18, 9, 'dsssssddd');
+      P(19, 12, 'ddd');
+      P(16, 18, 'dddddd');
+    }
+    return finish(g, { stripe: 3, stripeOff: 0, shirtShade: 4 });
+  }
+
+  /* ===== 3. WALKING, side view facing right, 8 frames; procedural limbs on an authored head and torso ===== */
+  function line(g, x0, y0, x1, y1, ch, wpx = 2) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1) * 2;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n);
+      for (let k = 0; k < wpx; k++) if (g[y] && g[y][x + k] !== undefined) g[y][x + k] = ch;
+    }
+  }
+  function walk(state = {}) {
+    const g = grid(20, 38), P = painter(g), ph = (state.f || 0) / 8 * Math.PI * 2, bob = Math.abs(Math.sin(ph)) > .7 ? 0 : 1;
+    const legs = (sgn, ch) => {
+      const a = Math.sin(ph) * .5 * sgn, knee = Math.max(0, Math.cos(ph) * sgn) * .7;
+      const hx = 8, hy = 22 + bob, kx = hx + Math.sin(a) * 7, ky = hy + Math.cos(a) * 7;
+      const ax = kx + Math.sin(a - knee) * 7, ay = ky + Math.cos(a - knee) * 7;
+      line(g, hx, hy, kx, ky, ch, 3); line(g, kx, ky, ax, Math.min(35, ay), ch, 2);
+      const fy = Math.min(35, Math.round(ay)); P(fy, Math.round(ax) - 1, 'zzzz'); P(fy - 1, Math.round(ax), 'zz');
+    };
+    const arm = (sgn, ch, skin) => {
+      const a = -Math.sin(ph) * .55 * sgn, sx = 9, sy = 14 + bob;
+      const ex = sx + Math.sin(a) * 5, ey = sy + Math.cos(a) * 5, hx = ex + Math.sin(a + .35) * 5, hy = ey + Math.cos(a + .35) * 5;
+      line(g, sx, sy, ex, ey, ch, 3); line(g, ex, ey, hx, hy, skin, 2); P(Math.round(hy), Math.round(hx), skin + skin);
+      P(Math.round(ey), Math.round(ex), ch === 'W' ? 'vvv' : 'vv');
+    };
+    arm(-1, 'V', 'd');           // far arm, in shade
+    legs(-1, 'u');               // far leg
+    const b = bob;
+    // head (quiff to the front), glasses, face
+    P(0 + b, 7, 'hhhhh'); P(1 + b, 5, 'hhhhhhhhj'); P(2 + b, 4, 'hhhhhjjhhhh'); P(3 + b, 4, 'hhhhhhhhhhh');
+    P(4 + b, 4, 'hhhhhhsssss'); P(5 + b, 4, 'hhhsgggggggg'); P(6 + b, 4, 'hhssssssbeG'); P(7 + b, 4, 'hdsssssGGGGS');
+    P(8 + b, 5, 'dsssssssmms'); P(9 + b, 5, 'ddsssssssd'); P(10 + b, 6, 'ddssssd'); P(11 + b, 8, 'ddd');
+    // torso, tucked white shirt
+    P(12 + b, 6, 'WWWWWWW'); P(13 + b, 5, 'WWWWWWWWW');
+    for (let y = 14; y < 22; y++) P(y + b, 5, 'WWWWWWWWV');
+    P(22 + b, 5, 'tttttttt'); P(23 + b, 5, 'tttttttt');
+    legs(1, 't');                // near leg
+    arm(1, 'W', 's');            // near arm, in front
+    return finish(g, { stripe: 2, shirtShade: 2 });
+  }
+
+  function build(fn, state, pal) { return PX.sprite(rows(fn(state || {})), Object.assign({}, BASE, pal || {})); }
+  return { BASE, bust, back, walk, build, finish, grid, painter, rows };
+})();
+
+(() => {
+const { R, P, dith, bands, mix, clamp, ease, seg, rng } = PX;
+const cv = document.getElementById('cv'), stEl = document.getElementById('stage'), pin = document.getElementById('pin');
+let S, W, H, bg, L = {};
+const heads = [0, 1, 2].map(turn => [0, 1, 2, 3, 4, 5].map(w => MOHIT.build(MOHIT.back, { turn, wind: w })));
+
+const C = {
+  sky: ['#8fbccd', '#9cc4d2', '#aacbd5', '#b9d2d7', '#c9dad8', '#d9e1d8', '#e6e5d8'],
+  sea: ['#8fb3bd', '#6f9fb0', '#5690a6', '#3f7f99', '#2c6d8c', '#265f7b'],
+  hill: '#7f9a8a', hill2: '#6c8878', hillTower: '#a9b5ad',
+  deco: ['#efe3c8', '#eedb9c', '#e9c0ae', '#e8e0cf', '#f1d7b0'], decoSh: '#c4b597', win: '#6c7a84', winLit: '#8b9aa3', brow: '#9a8c76',
+  wall: '#c9c1b2', wallTop: '#e3dccd', wallSh: '#a69d8f', wallDark: '#8a8276',
+  tet: '#b5b0a6', tetLit: '#d6d1c4', tetSh: '#8a857c', tetDark: '#6c675f',
+  pave: '#9a948c', paveL: '#aaa49b', foam: '#f4f6f2',
+};
+
+function decoBlock(c, x, base, w, h, col, detail) {
+  x = Math.round(x); w = Math.max(2, Math.round(w)); h = Math.max(2, Math.round(h)); const top = base - h;
+  R(c, x, top, w, h, col);
+  R(c, x + w - Math.max(1, Math.round(w * .18)), top, Math.max(1, Math.round(w * .18)), h, mix(col, '#8a7f6c', .25)); // shaded side
+  if (detail > 0) {
+    const fl = Math.max(2, Math.round(h / (detail > 1 ? 7 : 5)));
+    for (let y = top + 3; y < base - 2; y += fl) {
+      R(c, x + 1, y, w - 2, 1, C.brow);                                  // eyebrow sunshade
+      for (let wx = x + 2; wx < x + w - 2; wx += detail > 1 ? 4 : 3) R(c, wx, y + 1, detail > 1 ? 2 : 1, Math.max(1, fl - 2), C.win);
+    }
+    if (detail > 1) { // curved corner with ribbon balconies + stepped parapet crown
+      R(c, x - 2, top + 4, 3, h - 4, mix(col, '#ffffff', .25)); for (let y = top + 6; y < base - 2; y += fl) R(c, x - 3, y + fl - 2, 5, 1, C.decoSh);
+      R(c, x + Math.round(w * .3), top - 3, Math.round(w * .4), 3, col); R(c, x + Math.round(w * .4), top - 5, Math.round(w * .2), 2, col);
+    }
+  }
+}
+function tetrapod(c, x, y, flip, up, depth) {
+  // a concrete tetrapod: hub, three stubby legs in a tripod, one leg toward or away from us; lit from the left
+  const k = depth, lit = mix(C.tetLit, C.tetSh, .35 - k * .35), mid = mix(C.tet, C.tetSh, .4 - k * .4), sh = mix(C.tetSh, C.tetDark, .5 - k * .5), dk = C.tetDark;
+  const f = flip ? -1 : 1, v = up ? -1 : 1;
+  const leg = (dx, dy, len, col, edge) => { for (let i = 0; i < len; i++) { const px = x + Math.round(dx * i), py = y + Math.round(dy * i); R(c, px - 1, py - 1, 3, 3, col); if (edge) P(c, px - 1, py - 1, edge); } };
+  leg(-.9 * f, .7 * v, 5, mid, lit);
+  leg(.9 * f, .7 * v, 5, sh, null);
+  leg(0, -1 * v, 5, mid, lit);
+  R(c, x - 2, y - 2, 5, 5, mid); R(c, x - 2, y - 2, 2, 2, lit); R(c, x + 1, y + 1, 2, 2, sh);
+  // the leg pointing at us: a rounded end
+  R(c, x - 1, y + 1 * v, 3, 3, lit); P(c, x + 1, y + 3 * v, sh); P(c, x - 1, y + 3 * v, dk);
+}
+function build(st) {
+  S = st; W = st.W; H = st.H;
+  const phone = W < H;
+  bg = document.createElement('canvas'); bg.width = W; bg.height = H; const c = bg.getContext('2d');
+  const hz = Math.round(H * (phone ? 0.5 : 0.5));
+  const wallTop = Math.round(H * (phone ? 0.8 : 0.78));
+  L = { hz, wallTop, phone };
+  bands(c, 0, 0, W, hz, C.sky, 3);
+  // high soft clouds (static part)
+  // Malabar Hill on the horizon at the end of the curve
+  const hx0 = Math.round(W * (phone ? 0.42 : 0.5)), hx1 = Math.round(W * (phone ? 0.95 : 0.86));
+  for (let x = hx0; x < hx1; x++) { const t = (x - hx0) / (hx1 - hx0), hh = Math.round(Math.sin(t * Math.PI) * 9 + Math.sin(t * 9) * 1.5); R(c, x, hz - hh, 1, hh, C.hill); }
+  for (let i = 0; i < 9; i++) { const x = hx0 + 8 + i * Math.round((hx1 - hx0 - 16) / 9), t = (x - hx0) / (hx1 - hx0), hh = Math.round(Math.sin(t * Math.PI) * 9); R(c, x, hz - hh - 4 - (i % 3) * 2, 3, 4 + (i % 3) * 2, C.hillTower); }
+  // sea
+  bands(c, 0, hz, W, wallTop - hz, C.sea, 2);
+  // the curve of Art Deco blocks: far (small, near the hill) to near (big, right edge)
+  const r = rng(11);
+  const N = phone ? 16 : 22;
+  for (let i = N - 1; i >= 0; i--) {
+    const u = i / (N - 1); // 0 near .. 1 far
+    const e = Math.pow(1 - u, 2.2);
+    const x = Math.round(hx0 + 4 + (W + 30 - hx0) * (1 - u) * (1 - u * .15) - 12);
+    const base = Math.round(hz + 1 + e * (wallTop - hz - 16));
+    const w = 4 + e * (phone ? 50 : 72), h = 4 + e * (phone ? 120 : 110) * (0.75 + r() * .4);
+    decoBlock(c, x - w / 2, base, w, h, C.deco[i % C.deco.length], e > .35 ? 2 : e > .08 ? 1 : 0);
+  }
+  // the receding sea wall + tetrapods along the curve
+  for (let x = hx0 - 4; x < W; x++) {
+    const u = 1 - (x - hx0 + 4) / (W - hx0 + 4), e = Math.pow(1 - u, 2.2);
+    const y = Math.round(hz + 1 + e * (wallTop - hz - 16));
+    R(c, x, y, 1, 1 + Math.round(e * 3), C.wallTop); R(c, x, y + 1 + Math.round(e * 3), 1, 1 + Math.round(e * 2), C.tetSh);
+  }
+  // near tetrapod field below the parapet
+  const tz = wallTop - Math.round(H * (phone ? 0.06 : 0.08));
+  const rt = rng(5), pile = [];
+  for (let i = 0; i < W / 3.2; i++) pile.push({ x: rt() * (W + 20) - 10, y: tz + rt() * (wallTop - tz + 2), f: rt() > .5, u: rt() > .7 });
+  pile.sort((a, b) => a.y - b.y).forEach(q => tetrapod(c, Math.round(q.x), Math.round(q.y), q.f, q.u, (q.y - tz) / (wallTop - tz)));
+  // the parapet
+  R(c, 0, wallTop, W, 3, C.wallTop); R(c, 0, wallTop + 3, W, 1, C.wallSh);
+  R(c, 0, wallTop + 4, W, Math.round(H * 0.07), C.wall);
+  for (let x = 0; x < W; x += 2) if ((x * 7) % 11 < 3) P(c, x, wallTop + 6 + (x % 5), C.wallSh);
+  const py = wallTop + 4 + Math.round(H * 0.07);
+  R(c, 0, py, W, 2, C.wallDark);
+  // promenade paving
+  R(c, 0, py + 2, W, H - py, C.pave);
+  for (let y = py + 5; y < H; y += 5) for (let x = (y % 10 ? 0 : 8); x < W; x += 16) R(c, x, y, 14, 1, C.paveL);
+  L.py = py; L.tz = tz;
+}
+
+const clouds = Array.from({ length: 4 }, (_, i) => ({ x: i * 160 + 30, y: 14 + i * 11, w: 30 + i * 8, v: 1.2 + i * .3 }));
+const gulls = Array.from({ length: 3 }, (_, i) => ({ x: i * 150, y: .3 + i * .04, v: 6 + i * 2 }));
+const spray = [];
+const st = PX.stage(cv, { base: 360, baseH: 225, min: innerWidth < 700 ? 3 : 2, onResize: build });
+
+function frame(t) {
+  const c = st.ctx, p = PX.prog(pin);
+  c.drawImage(bg, 0, 0);
+  const { hz, wallTop, phone, tz } = L;
+  // drifting clouds (wrap off-frame, kept clear of the text: they live in the right half on desktop)
+  if (!phone) clouds.forEach((k, i) => {
+    const x0 = phone ? -k.w : W * .46, span = W - x0 + k.w, x = x0 + ((k.x + t * k.v) % span) - k.w * (phone ? 0 : -.2), y = Math.round(H * .08 + k.y * H / 300 + (phone ? H * .18 : 0));
+    const xx = Math.round(x);
+    if (xx < (phone ? -999 : W * .44)) return; R(c, xx + 4, y, k.w - 8, 3, '#e9eee9'); R(c, xx, y + 3, k.w, 3, '#f2f4ef'); R(c, xx + 8, y - 2, k.w * .4, 2, '#f2f4ef'); R(c, xx, y + 6, k.w, 1, '#cbd9dc');
+  });
+  // sea shimmer + slow swell lines
+  for (let i = 0; i < 70; i++) {
+    const yy = hz + 2 + ((i * 37) % (wallTop - hz - 10));
+    const ph = Math.sin(t * 1.2 + i * 1.7);
+    if (ph > 0.55) { const x = (i * 97 + Math.floor(t * 3 * (1 + i % 3))) % W; const near = (yy - hz) / (wallTop - hz); R(c, x, yy, 1 + Math.round(near * 4), 1, near < .3 ? '#d9e6e6' : '#9fc5d1'); }
+  }
+  // waves breaking on the tetrapods: white plumes that burst up, hang, and fall back
+  if (!PX.RM) for (let i = 0; i < Math.round(W / 60); i++) {
+    const per = 4.5 + (i % 3) * 1.3, ph = ((t + i * 2.3) % per) / per; if (ph > .5) continue;
+    const q = ph / .5, x0 = Math.round(((i * 89 + 31) % (W - 20)) + 10), top = Math.round(Math.sin(q * Math.PI) * (12 + (i * 5) % 7));
+    const rr = rng(i * 31 + 7);
+    for (let n = 0; n < 40; n++) {
+      const hgt = rr() * top, spread = (1 + hgt * .45) * (rr() - .5) * 2 * (0.6 + q), fall = q > .5 ? (q - .5) * 10 * rr() : 0;
+      const yy = Math.round(tz + 2 - hgt + fall), xx = Math.round(x0 + spread);
+      P(c, xx, yy, hgt > top * .55 ? '#ffffff' : '#d7e8ee');
+      if (rr() > .6) P(c, xx + 1, yy, '#ffffff');
+    }
+  }
+  // gulls in the open sky over the sea (right of the text)
+  gulls.forEach((g, i) => { const x = Math.round(((g.x + t * g.v) % (W * .5)) + W * .48), y = Math.round(H * (phone ? g.y + .16 : g.y) + Math.sin(t + i) * 3); const wg = Math.floor(t * 4 + i) % 2; R(c, x, y, 1, 1, '#f7f7f4'); P(c, x - 1, y - wg, '#f7f7f4'); P(c, x + 1, y - wg, '#f7f7f4'); P(c, x - 2, y - wg * 2 + 1, '#f7f7f4'); P(c, x + 2, y - wg * 2 + 1, '#f7f7f4'); });
+  // Mohit on the parapet; scroll turns his head
+  const turn = p < 0.32 ? 0 : p < 0.44 ? 1 : 2;
+  const wind = PX.RM ? 0 : Math.floor(t * 5) % 6;
+  const spr = heads[turn][wind];
+  const mx = Math.round(W * (phone ? 0.5 : 0.56) - spr.width / 2), my = wallTop + 2 - spr.height + 2;
+  c.drawImage(spr, mx, my);
+  // cutting chai on the parapet beside him, steam curling up
+  const gx = mx + spr.width + 6, gy = wallTop + 1;
+  R(c, gx, gy - 7, 5, 7, '#e9e2d6'); R(c, gx + 1, gy - 5, 3, 5, '#b9763d'); R(c, gx + 1, gy - 6, 3, 1, '#d4a26a');
+  P(c, gx + 1, gy - 4, '#c98a4c'); P(c, gx + 3, gy - 3, '#9d5f2e'); R(c, gx, gy - 7, 1, 7, '#f7f3ec'); R(c, gx + 4, gy - 7, 1, 7, '#c9c0b2');
+  if (!PX.RM) for (let k = 0; k < 3; k++) { const ph = (t * .6 + k / 3) % 1; const sx = gx + 2 + Math.round(Math.sin(ph * 6 + k) * 1.5), sy = gy - 9 - Math.round(ph * 12); if (ph < .8) P(c, sx, sy, 'rgba(255,255,255,0.75)'); }
+  stEl.classList.toggle('is-turned', p > 0.5);
+}
+PX.loop(t => frame(PX.RM ? 1 : t));
+})();
+</script>
+</body>
+</html>

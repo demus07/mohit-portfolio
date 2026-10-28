@@ -14,7 +14,7 @@ export const PERSON = {
 export const mailto = (subject: string) =>
   `mailto:${PERSON.email}?subject=${encodeURIComponent(subject)}`;
 
-// The opening: the evening local pulling into Bhayandar, Mohit hanging out of the door.
+// The opening: the AC local pulling into Churchgate, Mohit at a window.
 export const HERO = {
   title: "Mohit Bagri",
   line: "Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.",
@@ -22,36 +22,14 @@ export const HERO = {
   hint: "Scroll, the train is pulling in",
 };
 
-// The Western line, Churchgate to Bhayandar, every station on the way home.
-export const WESTERN_LINE = [
-  "Churchgate",
-  "Marine Lines",
-  "Charni Road",
-  "Grant Road",
-  "Mumbai Central",
-  "Mahalaxmi",
-  "Lower Parel",
-  "Prabhadevi",
-  "Dadar",
-  "Matunga Road",
-  "Mahim",
-  "Bandra",
-  "Khar Road",
-  "Santacruz",
-  "Vile Parle",
-  "Andheri",
-  "Jogeshwari",
-  "Ram Mandir",
-  "Goregaon",
-  "Malad",
-  "Kandivali",
-  "Borivali",
-  "Dahisar",
-  "Mira Road",
-  "Bhayandar",
-];
+// Marine Drive in the afternoon: who he is, in one breath.
+export const ABOUT = {
+  title: "One year in, here's what I shipped",
+  line: "An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.",
+  aside: "9.45 CGPA taught me less than shipping did. Still early. Still building.",
+};
 
-// The ride in: every detour is a station on the way.
+// Dusk on the promenade: every detour is a lamp coming on.
 export const ROUTE = {
   title: "Every detour was part of the path",
   stops: [
@@ -119,13 +97,11 @@ export type Project = {
   video?: string;
   note?: string;
   media: Media;
-  // what the departure board says about it
-  board: { time: string; via: string; cars: number; fast: boolean };
 };
 
 export const WORK = {
-  title: "Churchgate, all platforms",
-  line: "Everything I've built and shipped, end to end.",
+  title: "Things I've built and shipped",
+  line: "Products I run, client work, web and mobile apps, AI, VR and command-line tools.",
   projects: [
     {
       slug: "auctionxi",
@@ -142,7 +118,6 @@ export const WORK = {
       tech: ["Next.js", "TypeScript", "Postgres", "Drizzle", "Pusher", "NextAuth"],
       live: "https://auction-xi.com",
       media: { kind: "auctionxi" },
-      board: { time: "8:04", via: "Live", cars: 15, fast: true },
     },
     {
       slug: "texagent",
@@ -159,7 +134,6 @@ export const WORK = {
       tech: ["Next.js", "TypeScript", "Postgres", "Drizzle", "Tailwind CSS", "Vitest"],
       note: "Private client project",
       media: { kind: "texagent" },
-      board: { time: "8:11", via: "Private", cars: 12, fast: false },
     },
     {
       slug: "cachekaro",
@@ -177,7 +151,6 @@ export const WORK = {
       pypi: "https://pypi.org/project/cachekaro/",
       github: "https://github.com/Mohit-Bagri/cachekaro",
       media: { kind: "terminal" },
-      board: { time: "8:17", via: "PyPI", cars: 12, fast: true },
     },
     {
       slug: "aether",
@@ -196,7 +169,6 @@ export const WORK = {
       liveNote: "Free-tier demo, the first load can take a minute.",
       github: "https://github.com/Mohit-Bagri/aether-news-trends",
       media: { kind: "aether" },
-      board: { time: "8:26", via: "Live", cars: 12, fast: false },
     },
     {
       slug: "flowledger",
@@ -213,7 +185,6 @@ export const WORK = {
       tech: ["Flutter", "Dart", "Riverpod", "Supabase", "Hive", "ML Kit"],
       github: "https://github.com/Mohit-Bagri/flowledger",
       media: { kind: "flowledger" },
-      board: { time: "8:33", via: "Source", cars: 12, fast: false },
     },
     {
       slug: "shuttle",
@@ -236,7 +207,6 @@ export const WORK = {
         poster: "/work/shuttle-vr.jpg",
         alt: "Space Shuttle VR gameplay: the shuttle interior, a target range and the ladder climb",
       },
-      board: { time: "8:40", via: "Quest", cars: 12, fast: true },
     },
     {
       slug: "velotype",
@@ -254,7 +224,6 @@ export const WORK = {
       live: "https://velo-type.vercel.app",
       github: "https://github.com/Mohit-Bagri/velotype",
       media: { kind: "velotype" },
-      board: { time: "8:52", via: "Live", cars: 12, fast: false },
     },
     {
       slug: "windmill",
@@ -271,47 +240,29 @@ export const WORK = {
       tech: ["Unity", "C#", "Meta Quest"],
       github: "https://github.com/Mohit-Bagri/windmill-vr",
       media: { kind: "windmill" },
-      board: { time: "9:05", via: "Source", cars: 12, fast: false },
     },
   ] satisfies Project[],
 };
 
-export const DALAL = {
-  title: "Where I do the work",
-  line: "I like how businesses run underneath: startups, tax, the market.",
-  ticker: [
-    "Sypha Gateway: OpenRouter's 5% markup, gone",
-    "AI CLI: 500+ developers, every day",
-    "20+ model providers",
-    "P&L: days of reconciliation, one upload",
-    "Kotlin plugin: 21 issues traced, unblocked",
-    "AuctionXI: live at auction-xi.com",
-  ],
-  roles: [
-    {
-      company: "Sypha AI",
-      href: "https://sypha.ai",
-      role: "Software Engineer",
-      period: "Dec 2025 – now",
-      points: [
-        "Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.",
-        "Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.",
-        "Turned trackers, MIS reports and PDFs into a 21-sheet P&L workbook. Days of reconciliation, one upload.",
-        "Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.",
-      ],
-    },
-    { company: "AuctionXI", href: "https://auction-xi.com", role: "Founder", period: "Apr 2026 – now", points: [] },
-    { company: "TexAgent", role: "Freelance developer", period: "Sep 2026 – now", points: [] },
-    { company: "MK Exim India", role: "E-commerce, Amazon, TataCliQ and Sephora", period: "Mar – Sep 2025", points: [] },
-    { company: "Brahmani Gems", role: "Web developer intern, Shopify", period: "Jul – Aug 2024", points: [] },
-  ],
-};
-
-export const WANKHEDE = {
-  title: "The dream seat is at Wankhede",
-  line: "I love watching cricket. I'm bad at playing it.",
-  aside: "I swim and I lift, irregularly.",
-};
+// Where he has worked, plainly.
+export const ROLES = [
+  {
+    company: "Sypha AI",
+    href: "https://sypha.ai",
+    role: "Software Engineer",
+    period: "Dec 2025 – now",
+    points: [
+      "Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.",
+      "Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.",
+      "Turned trackers, MIS reports and PDFs into a 21-sheet P&L workbook. Days of reconciliation, one upload.",
+      "Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.",
+    ],
+  },
+  { company: "AuctionXI", href: "https://auction-xi.com", role: "Founder", period: "Apr 2026 – now", points: [] },
+  { company: "TexAgent", role: "Freelance developer", period: "Sep 2026 – now", points: [] },
+  { company: "MK Exim India", role: "E-commerce, Amazon, TataCliQ and Sephora", period: "Mar – Sep 2025", points: [] },
+  { company: "Brahmani Gems", role: "Web developer intern, Shopify", period: "Jul – Aug 2024", points: [] },
+] as { company: string; href?: string; role: string; period: string; points: string[] }[];
 
 // The footer, at Siddhivinayak after dark.
 export const CONTACT = {

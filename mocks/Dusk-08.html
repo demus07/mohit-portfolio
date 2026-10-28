@@ -1,0 +1,280 @@
+<!-- Direction 08: Constellation — night over the Arabian Sea from Marine Drive; each detour is a star, and as he walks the promenade below, the line joins them: down through the bad calls, then up. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk, constellation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0d1a2b; --sodium:#f2a145; --ink:#efe6d8; --serif:"Instrument Serif", Georgia, serif; --sans:"Instrument Sans", system-ui, sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#081221;color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .track{height:1000vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#081221}
+  svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,18,33,.95),rgba(8,18,33,.7) 52%,rgba(8,18,33,.1));opacity:0;pointer-events:none}
+
+  .copy{position:absolute;left:clamp(24px,7vw,128px);top:clamp(56px,12vh,120px);width:min(31rem,36vw)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(46px,4.4vw,72px);line-height:.98;letter-spacing:-.01em;text-wrap:balance;color:#f6efe4}
+  h2 i{color:#f6c48a}
+  .stops{position:relative;margin-top:clamp(28px,5vh,52px);height:15rem}
+  .stop{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;will-change:opacity,transform}
+  .stop .st{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+  .stop .name{font-family:var(--serif);font-size:clamp(30px,2.4vw,38px);line-height:1;color:#fff8ee}
+  .stop .yr{font-family:var(--sans);font-weight:500;font-size:15.5px;color:var(--sodium);font-variant-numeric:tabular-nums}
+  .stop p{margin-top:.9rem;font-family:var(--serif);font-size:clamp(20px,1.5vw,23px);line-height:1.38;max-width:25rem;color:#ddd3c6}
+
+  .roles{position:absolute;left:clamp(24px,7vw,128px);top:calc(clamp(56px,12vh,120px) + clamp(110px,10vw,160px));width:min(40rem,48vw);opacity:0;pointer-events:none}
+  .role{padding:.7rem 0}
+  .role h3{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;color:#fff8ee;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+  .role h3 span{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--sodium)}
+  .role .what{font-size:14.5px;color:#b9b2aa;margin-top:.25rem}
+  .role ul{list-style:none;margin-top:.55rem;display:grid;gap:.4rem;max-width:34rem}
+  .role li{font-size:14.5px;line-height:1.52;color:#d6cdc2;padding-left:1.1rem;position:relative}
+  .role li::before{content:"";position:absolute;left:0;top:.66em;width:4px;height:4px;border-radius:50%;background:var(--sodium)}
+
+  @media (max-width:760px){
+    .copy{left:20px;right:20px;width:auto;top:52px}
+    h2{font-size:42px}
+    .stops{margin-top:18px}
+    .stop .name{font-size:30px}
+    .stop p{font-size:19px}
+    .roles{left:20px;right:20px;width:auto;top:146px}
+    .role{padding:.45rem 0}.role h3{font-size:22px}.role li,.role .what{font-size:13.5px}
+    .veil{background:rgba(8,18,33,.9)}
+  }
+  @keyframes tw{0%,100%{opacity:1}50%{opacity:.35}}
+  .twA{animation:tw 5s ease-in-out infinite}.twB{animation:tw 7s ease-in-out infinite -2s}.twC{animation:tw 3.6s ease-in-out infinite -1s}
+  @keyframes shim{0%,100%{transform:scaleY(1);opacity:.6}50%{transform:scaleY(.82);opacity:.35}}
+  .shim{transform-box:fill-box;transform-origin:50% 0;animation:shim 3.2s ease-in-out infinite}
+  @media (prefers-reduced-motion:reduce){.twA,.twB,.twC,.shim{animation:none}}
+</style>
+</head>
+<body>
+<!-- direction: 08 Constellation -->
+<section class="track" id="track">
+  <div class="stage">
+    <svg class="scene" id="svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#060e1b"/>
+          <stop offset=".55" stop-color="#0d1a2b"/>
+          <stop offset=".9" stop-color="#1b2740"/>
+          <stop offset="1" stop-color="#2b2f48"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#18223a"/>
+          <stop offset="1" stop-color="#0a1322"/>
+        </linearGradient>
+        <radialGradient id="sglow"><stop offset="0" stop-color="#ffe2b5" stop-opacity=".9"/><stop offset=".25" stop-color="#f2a145" stop-opacity=".35"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <radialGradient id="lglow"><stop offset="0" stop-color="#f2a145" stop-opacity=".55"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="spike" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffe2b5" stop-opacity="0"/><stop offset=".5" stop-color="#fff3df"/><stop offset="1" stop-color="#ffe2b5" stop-opacity="0"/></linearGradient>
+        <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c48a" stop-opacity=".7"/><stop offset="1" stop-color="#f6c48a" stop-opacity="0"/></linearGradient>
+        <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3552" stop-opacity="0"/><stop offset="1" stop-color="#54405a" stop-opacity=".55"/></linearGradient>
+        <filter id="grain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="2" stitchTiles="stitch"/>
+          <feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .55  0 0 0 .5 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+      </defs>
+      <rect id="skyR" fill="url(#sky)"/>
+      <rect id="hazeR" fill="url(#haze)"/>
+      <g id="dust"></g>
+      <g id="lines"></g>
+      <g id="stars"></g>
+      <rect id="seaR" fill="url(#sea)"/>
+      <g id="water"></g>
+      <g id="bay"></g>
+      <g id="front"></g>
+      <rect id="grainR" fill="#fff" filter="url(#grain)" opacity=".08"/>
+    </svg>
+    <div class="veil" id="veil"></div>
+    <div class="copy">
+      <h2>Every detour was <i>part of the path</i></h2>
+      <div class="stops" id="stops"></div>
+    </div>
+    <div class="roles" id="roles">
+      <div class="role">
+        <h3>Sypha AI <span>Software Engineer, Dec 2025 – now</span></h3>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+      <div class="role"><h3>AuctionXI <span>Founder, Apr 2026 – now</span></h3></div>
+      <div class="role"><h3>TexAgent <span>Freelance developer, Sep 2026 – now</span></h3></div>
+      <div class="role"><h3>MK Exim India <span>Mar – Sep 2025</span></h3><div class="what">E-commerce, Amazon, TataCliQ and Sephora</div></div>
+      <div class="role"><h3>Brahmani Gems <span>Jul – Aug 2024</span></h3><div class="what">Web developer intern, Shopify</div></div>
+    </div>
+  </div>
+</section>
+<script>
+const STOPS = [
+  ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+  ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+  ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+  ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+  ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+  ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+// where each stop sits in the sky (fractions of the frame); the line dips through the detours, then climbs
+const DESK = [[.47,.40],[.54,.52],[.62,.58],[.69,.43],[.75,.35],[.83,.24],[.9,.12]];
+const PHONE = [[.12,.6],[.27,.67],[.42,.7],[.56,.6],[.68,.55],[.8,.48],[.9,.41]];
+const NS = "http://www.w3.org/2000/svg", $ = s => document.querySelector(s);
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
+const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); parent && parent.appendChild(e); return e; };
+const stopEls = STOPS.map(([n,y,l]) => {
+  const d = document.createElement("div"); d.className = "stop";
+  d.innerHTML = `<div class="st"><span class="name">${n}</span>${y ? `<span class="yr">${y}</span>` : ""}</div><p>${l}</p>`;
+  $("#stops").appendChild(d); return d;
+});
+
+let S = [], segs = [], refl = [], walker, legs = [], lampXs = [], W, H, HZ, PROM, phone, walkX0, walkX1;
+function build() {
+  W = innerWidth; H = innerHeight; phone = W < 760;
+  const svg = $("#svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  HZ = Math.round(H * (phone ? .8 : .77)); PROM = Math.round(H * (phone ? .9 : .885));
+  for (const id of ["skyR","hazeR","grainR"]) { const r = $("#"+id); r.setAttribute("width", W); r.setAttribute("height", id === "grainR" ? H : HZ); }
+  $("#hazeR").setAttribute("y", HZ * .55); $("#hazeR").setAttribute("height", HZ * .45);
+  const sea = $("#seaR"); sea.setAttribute("y", HZ); sea.setAttribute("width", W); sea.setAttribute("height", H - HZ);
+  ["dust","lines","stars","water","bay","front"].forEach(id => $("#"+id).innerHTML = "");
+  let seed = 9; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+
+  // the ordinary sky
+  const dust = $("#dust"), cls = ["twA","twB","twC"];
+  const groups = cls.map(c => mk("g", {class:c, fill:"#e9e4dc"}, dust));
+  const n = Math.round(W * H / 5200);
+  for (let i = 0; i < n; i++) {
+    const y = Math.pow(rnd(), 1.3) * HZ * .92, x = rnd() * W;
+    mk("circle", {cx:x.toFixed(1), cy:y.toFixed(1), r:(.35 + rnd() * .75).toFixed(2), opacity:(.25 + rnd() * .55 * (1 - y / HZ)).toFixed(2)}, groups[i % 3]);
+  }
+
+  // the stops
+  const pos = (phone ? PHONE : DESK).map(([a,b]) => [a * W, b * H]);
+  S = []; segs = []; refl = [];
+  const L = $("#lines"), G = $("#stars");
+  for (let i = 0; i < pos.length - 1; i++) {
+    const [x1,y1] = pos[i], [x2,y2] = pos[i+1];
+    const len = Math.hypot(x2-x1, y2-y1);
+    const ln = mk("line", {x1,y1,x2,y2,stroke:"#f2c894","stroke-width":1.1,"stroke-linecap":"round",opacity:.75,"stroke-dasharray":len,"stroke-dashoffset":len}, L);
+    segs.push({ln, len});
+  }
+  pos.forEach(([x,y], i) => {
+    const g = mk("g", {transform:`translate(${x.toFixed(1)} ${y.toFixed(1)})`}, G);
+    const big = i === 6 ? 1.35 : 1;
+    const glow = mk("circle", {r:46 * big, fill:"url(#sglow)", opacity:0}, g);
+    const sp = mk("g", {opacity:0}, g);
+    mk("rect", {x:-34*big, y:-.5, width:68*big, height:1, fill:"url(#spike)"}, sp);
+    mk("rect", {x:-34*big, y:-.5, width:68*big, height:1, fill:"url(#spike)", transform:"rotate(90)"}, sp);
+    mk("rect", {x:-14*big, y:-.4, width:28*big, height:.8, fill:"url(#spike)", transform:"rotate(45)"}, sp);
+    mk("rect", {x:-14*big, y:-.4, width:28*big, height:.8, fill:"url(#spike)", transform:"rotate(-45)"}, sp);
+    const core = mk("circle", {r:2.2 * big, fill:"#fff6e6", opacity:.35}, g);
+    S.push({x, y, glow, sp, core});
+    // its reflection on the water, shimmering
+    const r = mk("g", {class:"shim", opacity:0, fill:"#f6c48a"}, $("#water"));
+    const depth = PROM - 18 - HZ - 4;
+    for (let k = 0; k < 7; k++) {
+      const yy = HZ + 4 + Math.pow(k / 7, 1.3) * depth, w = 2 + rnd() * 6 + k * 2.2;
+      mk("rect", {x:(x - w / 2 + (rnd() - .5) * 8).toFixed(1), y:yy.toFixed(1), width:w.toFixed(1), height:1.4, rx:.7, opacity:(1 - k * .12).toFixed(2)}, r);
+    }
+    refl.push(r);
+  });
+
+  // the far bay: Malabar Hill and the necklace closing on the right
+  const bay = $("#bay");
+  const hillX = phone ? W * .55 : W * .62;
+  mk("path", {d:`M${hillX} ${HZ}C${hillX + W*.08} ${HZ-6} ${hillX + W*.16} ${HZ-22} ${W*.92} ${HZ-26}S${W} ${HZ-20} ${W} ${HZ-18}V${HZ}Z`, fill:"#131b2e"}, bay);
+  for (let i = 0; i < 70; i++) {
+    const x = hillX + W * .06 + rnd() * (W - hillX - W * .06), top = HZ - 4 - (x - hillX) / (W - hillX) * 22;
+    mk("rect", {x:x.toFixed(1), y:(top + rnd() * (HZ - top - 2)).toFixed(1), width:1.4, height:1.4, fill:"#f6c27e", opacity:(.3 + rnd() * .6).toFixed(2)}, bay);
+  }
+  for (let i = 0; i < 60; i++) {
+    const t = i / 59, x = hillX - W * .32 + t * W * .38, y = HZ - 1 + Math.sin(t * Math.PI) * 1.5;
+    mk("circle", {cx:x.toFixed(1), cy:y.toFixed(1), r:.9, fill:"#ffcf8f"}, bay);
+  }
+  mk("rect", {x:hillX - W * .33, y:HZ - 5, width:W * .4, height:10, fill:"url(#lglow)", opacity:.6, filter:"url(#soft)"}, bay);
+
+  // the promenade we're on: parapet, lamps, then him
+  const F = $("#front");
+  mk("rect", {x:0, y:PROM - 18, width:W, height:18, fill:"#151d2e"}, F);              // parapet
+  mk("rect", {x:0, y:PROM - 18, width:W, height:1.4, fill:"#f2a145", opacity:.35}, F); // lamplight on its lip
+  mk("rect", {x:0, y:PROM, width:W, height:H - PROM, fill:"#0c1320"}, F);              // promenade
+  lampXs = [];
+  const gap = phone ? 180 : 260;
+  for (let x = gap * .5; x < W + gap; x += gap) {
+    lampXs.push(x);
+    const h = phone ? 120 : 150;
+    mk("ellipse", {cx:x, cy:PROM + 6, rx:gap * .42, ry:10, fill:"url(#lglow)", opacity:.55}, F);
+    mk("rect", {x:x - 1.6, y:PROM - h, width:3.2, height:h, fill:"#0f1625"}, F);
+    mk("path", {d:`M${x} ${PROM - h + 2}q0 -14 -18 -16h-4`, stroke:"#0f1625", "stroke-width":2.6, fill:"none"}, F);
+    mk("circle", {cx:x - 22, cy:PROM - h - 12, r:26, fill:"url(#lglow)", opacity:.8}, F);
+    mk("rect", {x:x - 28, y:PROM - h - 16, width:12, height:4, rx:2, fill:"#ffd79c"}, F);
+  }
+  // him, small, walking east along the wall
+  walker = mk("g", {}, F);
+  const s = phone ? 1 : 1.25;
+  const body = mk("g", {transform:`scale(${s})`, fill:"#05090f"}, walker);
+  mk("circle", {cx:0, cy:-47, r:4.6}, body);
+  mk("path", {d:"M-5 -41h10l1.5 19h-13Z"}, body);                // shirt
+  legs = [mk("path", {d:"M-2.5 -23h4l-.6 23h-3Z"}, body), mk("path", {d:"M-1.5 -23h4l-.6 23h-3Z"}, body)];
+  const arm = mk("path", {d:"M3.5 -40l2 15-2.4.4-2-15Z"}, body);
+  legs.push(arm);
+  walkX0 = phone ? W * .1 : W * .44; walkX1 = phone ? W * .9 : W * .93;
+}
+build();
+addEventListener("resize", build);
+
+const track = $("#track"), veil = $("#veil"), roles = $("#roles");
+let cur = 0;
+const progress = () => { const r = track.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+function frame(t) {
+  const p = progress();
+  cur = RM ? p : cur + (p - cur) * .12;
+  const f = clamp((cur - .05) / .78) * 6.999;
+  stopEls.forEach((el, k) => {
+    const d = f - (k + .5), o = clamp(1 - (Math.abs(d) - .3) / .18);
+    el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${(-d*14).toFixed(1)}px)`;
+  });
+  const breath = RM ? 1 : .9 + .1 * Math.sin(t / 700);
+  S.forEach((s, i) => {
+    const lit = clamp((f - i) / .3);                   // ignites as its stop arrives
+    const isCur = clamp(1 - Math.abs(f - (i + .5)) / .6);
+    s.core.setAttribute("opacity", (.3 + lit * .7).toFixed(3));
+    s.core.setAttribute("r", ((i === 6 ? 2.6 : 2) + isCur * 1.2).toFixed(2));
+    s.glow.setAttribute("opacity", (lit * (.35 + isCur * .65 * breath)).toFixed(3));
+    s.sp.setAttribute("opacity", (isCur * breath).toFixed(3));
+    refl[i].setAttribute("opacity", (lit * (.25 + isCur * .5)).toFixed(3));
+  });
+  // line from each star to the next, drawn as he walks
+  segs.forEach((sg, i) => {
+    const d = clamp((f - (i + .55)) / .45);
+    const e = d * d * (3 - 2 * d);
+    sg.ln.setAttribute("stroke-dashoffset", (sg.len * (1 - e)).toFixed(1));
+  });
+  // he walks the promenade
+  const wx = walkX0 + (walkX1 - walkX0) * clamp(cur / .86);
+  walker.setAttribute("transform", `translate(${wx.toFixed(1)} ${PROM})`);
+  const ph = wx / 9, sw = Math.sin(ph) * 16;
+  const still = Math.abs(p - cur) < .0004 ? 0 : 1;
+  legs[0].setAttribute("transform", `rotate(${(sw * still).toFixed(1)} 0 -23)`);
+  legs[1].setAttribute("transform", `rotate(${(-sw * still).toFixed(1)} 0 -23)`);
+  legs[2].setAttribute("transform", `rotate(${(-sw * .6 * still).toFixed(1)} 4 -40)`);
+  const ro = clamp((cur - .85) / .07);
+  roles.style.opacity = ro.toFixed(3); roles.style.transform = `translateY(${((1-ro)*18).toFixed(1)}px)`;
+  roles.style.pointerEvents = ro > .5 ? "auto" : "none";
+  veil.style.opacity = ro.toFixed(3);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

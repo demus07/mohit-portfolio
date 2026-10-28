@@ -1,0 +1,176 @@
+<!-- Direction 09: Pure horizon — almost nothing: sea, sky and the thin line of the wall; the words lead, and scrolling moves the afternoon toward evening. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade — Pure horizon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1b2a3a; --ink2:#2e4152; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:#d9dccf; }
+  body { font-family:"Inter Tight",system-ui,sans-serif; color:var(--ink); }
+  .track { height:340vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; }
+  .layer { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .copy { position:absolute; left:clamp(24px,7vw,112px); top:clamp(30px,11vh,112px); width:min(820px,62vw); z-index:5; }
+  h1 { font-family:"Cormorant",Georgia,serif; font-weight:300; font-size:clamp(52px,6.6vw,112px); line-height:.94; letter-spacing:-0.02em; color:var(--ink); text-wrap:balance; }
+  h1 em { font-style:italic; font-weight:300; }
+  .line, .aside { opacity:0; transform:translateY(14px); transition:opacity 1.4s ease, transform 1.6s cubic-bezier(.2,.7,.2,1); }
+  .line { margin-top:30px; font-size:clamp(16px,1.2vw,19px); line-height:1.6; max-width:40ch; color:var(--ink2); }
+  .aside { margin-top:22px; max-width:36ch; font-family:"Cormorant",serif; font-style:italic; font-size:clamp(22px,1.75vw,29px); line-height:1.25; color:var(--ink); }
+  .on { opacity:1; transform:none; }
+  .grain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:soft-light; opacity:.55; z-index:6; }
+  @media (max-width:700px) {
+    .copy { width:auto; right:24px; top:30px; }
+    h1 { font-size:clamp(42px,12.4vw,54px); }
+    .line { margin-top:16px; font-size:15.5px; }
+    .aside { margin-top:12px; font-size:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage">
+    <svg class="layer" id="sv" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="-900" x2="0" y2="560">
+          <stop id="k0" offset="0"/><stop id="k1" offset=".5"/><stop id="k2" offset=".86"/><stop id="k3" offset="1"/>
+        </linearGradient>
+        <radialGradient id="sun">
+          <stop id="u0" offset="0" stop-opacity=".95"/><stop id="u1" offset=".22" stop-opacity=".42"/><stop id="u2" offset="1" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="sea" gradientUnits="userSpaceOnUse" x1="0" y1="560" x2="0" y2="900">
+          <stop id="e0" offset="0"/><stop id="e1" offset=".25"/><stop id="e2" offset="1"/>
+        </linearGradient>
+        <linearGradient id="hz" gradientUnits="userSpaceOnUse" x1="0" y1="520" x2="0" y2="570">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="-800" y="-1200" width="3000" height="1762" fill="url(#sky)"/>
+      <circle id="sunG" r="520" fill="url(#sun)"/>
+      <circle id="sunD" r="16" opacity="0"/>
+      <rect x="-800" y="520" width="3000" height="50" fill="url(#hz)"/>
+      <!-- Malabar Hill, barely there -->
+      <path id="hill" d="M1250 561 C1310 549 1370 543 1440 545 C1490 547 1540 553 1590 561 Z" opacity=".5"/>
+      <rect x="-800" y="561" width="3000" height="400" fill="url(#sea)"/>
+      <g id="boat" opacity=".75">
+        <path d="M-14 0 L14 0 L10 4 L-10 4 Z"/>
+        <path d="M-2 0 L-2 -16 L8 -2 Z" opacity=".8"/>
+      </g>
+      <!-- the wall: a line and its coping -->
+      <rect id="wall" x="-800" y="872" width="3000" height="200"/>
+      <rect id="cope" x="-800" y="870" width="3000" height="3"/>
+    </svg>
+    <canvas class="layer" id="glit"></canvas>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h1>One year in, here's <em>what I shipped</em></h1>
+      <p class="line" id="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: 09 pure horizon -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  const ss = t => t*t*(3-2*t);
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const hex = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+  // colour through several keys: early afternoon, late afternoon, the first gold
+  const ramp = (keys, t) => { const n = keys.length - 1, i = Math.min(n - 1, Math.floor(t*n)), f = t*n - i; const A = hex(keys[i]), B = hex(keys[i+1]); return '#' + A.map((v,j) => Math.round(lerp(v,B[j],f)).toString(16).padStart(2,'0')).join(''); };
+  const sv = $('sv'), cv = $('glit'), ctx = cv.getContext('2d'), track = $('track');
+  const HZ = 561;
+  let vb = {x:0,y:0,w:1440,h:900}, k = 1, dpr = 1;
+  function fit() {
+    const a = innerWidth/innerHeight;
+    if (a >= 1) { vb.h = 900; vb.w = 900*a; vb.x = 720 - vb.w/2; vb.y = 0; }
+    else { vb.w = 700; vb.h = vb.w/a; vb.x = 1000 - vb.w/2; vb.y = 905 - vb.h; }
+    sv.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    k = innerWidth/vb.w; dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = innerWidth*dpr; cv.height = innerHeight*dpr;
+  }
+  const C = {
+    k0: ['#9db6c4', '#a7b6bd', '#8c98a8'],
+    k1: ['#c9d3cf', '#d6d4c4', '#d5bfa4'],
+    k2: ['#e9e6da', '#efe2c6', '#f2c995'],
+    k3: ['#efeadf', '#f5e6c8', '#f6d3a2'],
+    u0: ['#fffaf0', '#fff4dc', '#ffe2b0'],
+    u1: ['#fbf3e2', '#f8e5c0', '#f5c27e'],
+    u2: ['#efe8da', '#efdcbc', '#f2a145'],
+    e0: ['#b9c6c3', '#c4c2b2', '#c9ae8c'],
+    e1: ['#6f98a6', '#6a8e9a', '#6e7e86'],
+    e2: ['#2c6d8c', '#2b5d76', '#2a4a62'],
+    wall: ['#3a4a50', '#3a4246', '#2c3036'],
+    cope: ['#e2ddd0', '#e9dcc0', '#f2c99a'],
+    hill: ['#a8b6b7', '#b2b2a6', '#a3958a'],
+    ink: ['#1b2a3a', '#20283a', '#2a2230'],
+  };
+  // glitter: short dashes that live and die, gathered under the sun
+  let sd = 9; const rnd = () => (sd = sd*16807 % 2147483647) / 2147483647;
+  const G = []; for (let i = 0; i < 700; i++) G.push({ u: rnd(), v: Math.pow(rnd(), 1.3), ph: rnd()*6.28, sp: .4 + rnd()*1.2, l: .5 + rnd() });
+  const ripples = []; for (let i = 0; i < 60; i++) ripples.push({ x: rnd()*3000 - 800, v: Math.pow(rnd(), 1.5), l: 30 + rnd()*180, sp: 2 + rnd()*6 });
+
+  let prog = 0, target = 0;
+  const read = () => { const r = track.getBoundingClientRect(); target = clamp(-r.top/(r.height - innerHeight), 0, 1); };
+  function frame(ms) {
+    prog += (target - prog)*(reduce ? 1 : .06);
+    const p = prog, t = reduce ? 0 : ms/1000;
+    const L = ss(p);
+    for (const id of ['k0','k1','k2','k3','u0','u1','u2','e0','e1','e2']) $(id).setAttribute('stop-color', ramp(C[id], L));
+    $('wall').setAttribute('fill', ramp(C.wall, L)); $('cope').setAttribute('fill', ramp(C.cope, L)); $('hill').setAttribute('fill', ramp(C.hill, L));
+    document.documentElement.style.setProperty('--ink', ramp(C.ink, L));
+    // the sun comes down from above the frame toward the water, right of centre
+    const sx = lerp(1180, 1060, L), sy = lerp(-60, 430, Math.pow(L, 1.15));
+    $('sunG').setAttribute('cx', sx); $('sunG').setAttribute('cy', sy);
+    const disc = $('sunD'); disc.setAttribute('cx', sx); disc.setAttribute('cy', sy); disc.setAttribute('fill', ramp(['#fffaf0','#fff3da','#ffe6b8'], L)); disc.setAttribute('opacity', clamp((L - .45)*2.2, 0, .9).toFixed(2)); disc.setAttribute('r', lerp(14, 19, L));
+
+    // a fishing boat crosses the horizon very slowly, entering and leaving off frame
+    const bx = ((t*6 + 900) % 2400) - 600;
+    $('boat').setAttribute('transform', `translate(${bx} ${HZ + 7})`);
+    $('boat').setAttribute('fill', ramp(['#55666c', '#4a4e52', '#3b3236'], L));
+
+    // the sea
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height);
+    const s = k*dpr; ctx.setTransform(s,0,0,s,-vb.x*s,-vb.y*s);
+    ctx.save(); ctx.beginPath(); ctx.rect(-800, HZ + 1, 3000, 870 - HZ - 1); ctx.clip();
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = ramp(['#e8eee8','#efe4ca','#f3d3a2'], L);
+    for (const r of ripples) {
+      const y = HZ + 3 + Math.pow(r.v, 1.6)*(868 - HZ);
+      const x = ((r.x - t*r.sp) % 3000 + 3000) % 3000 - 800;
+      ctx.globalAlpha = .08 + r.v*.12; ctx.lineWidth = .6 + r.v*1.4;
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + r.l*(.3 + r.v), y); ctx.stroke();
+    }
+    const glow = clamp(L*1.6 + .25, 0, 1);
+    ctx.strokeStyle = ramp(['#fffaf0','#fff3d8','#ffd79a'], L);
+    for (const g of G) {
+      const y = HZ + 2 + g.v*(866 - HZ);
+      const spread = 30 + g.v*lerp(260, 180, L);
+      const x = sx + (g.u - .5)*2*spread*(1 + Math.sin(g.ph)*.1) + (y - HZ)*.05;
+      const tw = Math.max(0, Math.sin(t*g.sp*2.2 + g.ph));
+      const fade = 1 - Math.abs(g.u - .5)*2;
+      ctx.globalAlpha = tw*tw*fade*glow*(.35 + g.v*.5);
+      ctx.lineWidth = .7 + g.v*1.6;
+      const len = (4 + g.v*26)*g.l;
+      ctx.beginPath(); ctx.moveTo(x - len/2, y); ctx.lineTo(x + len/2, y); ctx.stroke();
+    }
+    ctx.restore(); ctx.globalAlpha = 1;
+
+    $('line').classList.toggle('on', p > .14 || reduce);
+    $('aside').classList.toggle('on', p > .7 || reduce);
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', () => { fit(); read(); });
+  addEventListener('scroll', read, {passive:true});
+  fit(); read(); prog = target;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

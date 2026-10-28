@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · section mocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --paper: #efe8da; --ink: #23262a; --soft: rgb(35 38 42 / .62); --sea: #2c6d8c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Hanken Grotesk", system-ui, sans-serif; }
+  header, .group { padding: 72px clamp(20px, 4.4vw, 72px) 24px; display: grid; gap: 14px; }
+  h1 { margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(2.2rem, 1.4rem + 3vw, 4rem); letter-spacing: -.02em; line-height: 1.02; }
+  .group { padding-bottom: 0; }
+  header p, .group p { margin: 0; max-width: 56ch; color: var(--soft); line-height: 1.5; }
+  section { padding: 48px 0 24px; }
+  h2 { margin: 0 clamp(20px, 4.4vw, 72px) 18px; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.2rem); letter-spacing: -.01em; }
+  .row { display: grid; grid-auto-flow: column; grid-auto-columns: min(360px, 78vw); gap: 22px; overflow-x: auto; padding: 4px clamp(20px, 4.4vw, 72px) 18px; scroll-snap-type: x proximity; }
+  .card { scroll-snap-align: start; display: grid; gap: 10px; color: inherit; text-decoration: none; }
+  .thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 6px; background: #ddd4c2; }
+  .thumb iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+  .missing { position: absolute; inset: 0; display: grid; place-items: center; color: var(--soft); font-family: Newsreader, Georgia, serif; font-style: italic; }
+  .name { font-weight: 600; font-size: 15px; }
+  .dir { font-size: 14px; color: var(--soft); line-height: 1.4; }
+  .card:hover .name { color: var(--sea); }
+</style>
+</head>
+<body>
+<header>
+  <p>Each card is a live, scrollable mock. Open one, scroll it, then pick per section. Mix freely.</p>
+</header>
+<main id="rows"></main>
+<script>
+  const SECTIONS = [
+    ["Opening", "Opening: Churchgate, the AC local, you at the window"],
+    ["Promenade", "Marine Drive: who I am"],
+    ["Work", "Work: the projects, real media"],
+    ["Dusk", "Dusk: every detour, the lamps coming on"],
+    ["Footer", "Siddhivinayak: where I reset"],
+  ];
+  const rows = document.getElementById("rows");
+  const fit = () => document.querySelectorAll(".thumb").forEach(t => {
+    const f = t.querySelector("iframe"); if (f) f.style.transform = `scale(${t.clientWidth / 1440})`;
+  });
+  const card = (row, file, label) => {
+    const a = document.createElement("a"); a.className = "card"; a.href = file; a.target = "_blank";
+    a.innerHTML = `<div class="thumb"><div class="missing">Still being drawn</div></div><span class="name">${label}</span><span class="dir"></span>`;
+    row.append(a);
+    fetch(file).then(r => r.ok ? r.text() : null).then(src => {
+      if (!src) return;
+      const m = src.match(/<!--\s*Direction\s*\d+\s*:\s*([^—>]+?)\s+[—-]\s+([^>]*?)-->/i);
+      if (m) { a.querySelector(".name").textContent = `${label} · ${m[1].trim()}`; a.querySelector(".dir").textContent = m[2].trim(); }
+      const t = a.querySelector(".thumb"); t.innerHTML = "";
+      const f = document.createElement("iframe"); f.src = file; f.loading = "lazy"; f.tabIndex = -1; f.title = label;
+      t.append(f); fit();
+    });
+  };
+  const group = (title, note) => {
+    const g = document.createElement("header"); g.className = "group";
+    g.innerHTML = `<h1>${title}</h1><p>${note}</p>`; rows.append(g);
+  };
+  const addRow = (title) => {
+    const sec = document.createElement("section");
+    const h = document.createElement("h2"); h.textContent = title; sec.append(h);
+    const row = document.createElement("div"); row.className = "row"; sec.append(row);
+    rows.append(sec); return row;
+  };
+
+  group("Round two: ten styles", "Each row is one visual language carried through all five sections, with you drawn in that style.");
+  const STYLES = ["Swiss editorial", "Photo collage", "Low-poly 3D", "Ink line", "Pixel art", "Bollywood poster", "Deco geometric", "Dark cinematic", "Blueprint", "Kinetic type"];
+  STYLES.forEach((name, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    const row = addRow(`${name}`);
+    for (const [key] of SECTIONS) card(row, `Style${n}-${key}.html`, key);
+    for (const sheet of ["Character", "Portrait"]) {
+      const f = `Style${n}-${sheet}.html`;
+      fetch(f, { method: "HEAD" }).then(r => { if (r.ok) card(row, f, "Your character"); });
+    }
+  });
+
+  group("Round one: illustrated", "Ten directions per section in the painted style.");
+  for (const [key, title] of SECTIONS) {
+    const row = addRow(title);
+    for (let i = 1; i <= 10; i++) { const n = String(i).padStart(2, "0"); card(row, `${key}-${n}.html`, `${key} ${n}`); }
+  }
+  addEventListener("resize", fit);
+</script>
+</body>
+</html>

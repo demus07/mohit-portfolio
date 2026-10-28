@@ -1,0 +1,638 @@
+<!-- Direction 05: Pixel art — Churchgate at golden hour in 16-bit pixels; scroll dollies from the wide platform into one lit window of the AC local, where Mohit sits chin on fist, and his thought appears. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Churchgate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Devanagari:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #2a1c22; --paper: #efe8da; --sodium: #f2a145; --navy: #0d1a2b; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #d9a08e; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; color: var(--ink); }
+  .pin { position: relative; height: 520vh; }
+  .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; image-rendering: crisp-edges; }
+  .copy { position: absolute; left: clamp(20px, 5vw, 80px); top: clamp(28px, 8vh, 88px); width: min(30rem, 86vw); pointer-events: none; }
+  h1 { font-family: "Pixelify Sans", monospace; font-weight: 600; font-size: clamp(2.6rem, 1.6rem + 3.6vw, 5rem); line-height: .96; margin: 0 0 .35em; letter-spacing: .01em; color: #2a1c22; }
+  .line, .note { font-size: clamp(1.05rem, .95rem + .35vw, 1.3rem); line-height: 1.45; max-width: 25em; margin: 0; transition: opacity .6s, transform .6s; }
+  .line { color: #3b2a2e; }
+  .swap { display: grid; }
+  .swap > * { grid-area: 1 / 1; }
+  .note { font-family: "Pixelify Sans", monospace; font-size: clamp(1.25rem, 1.05rem + .7vw, 1.75rem); line-height: 1.3; color: #2a1c22; opacity: 0; transform: translateY(10px); max-width: 16em; }
+  .stage.is-close .line { opacity: 0; transform: translateY(-8px); }
+  .stage.is-note .note { opacity: 1; transform: none; }
+  h1, .line { transition: color .6s, opacity .6s, transform .6s; }
+  .after { height: 30vh; background: #1f2a44; }
+  @media (max-width: 640px) {
+    .copy { top: 22px; left: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .line, .note, h1 { transition: none; } }
+</style>
+</head>
+<body>
+<section class="pin" id="pin">
+  <div class="stage" id="stage">
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <div class="swap">
+        <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="after"></div>
+<!-- direction: 05 pixel art · opening -->
+<script>
+/* ---------- PX: tiny pixel engine shared by every Style05 page ---------- */
+const PX = (() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hex = h => { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+
+  // integer-scaled full-viewport stage; art is drawn at W x H "art pixels"
+  function stage(canvas, opt = {}) {
+    const ctx = canvas.getContext('2d');
+    const st = { canvas, ctx, W: 0, H: 0, s: 1 };
+    st.resize = () => {
+      const el = opt.box ? opt.box() : { w: innerWidth, h: innerHeight };
+      const base = opt.base || 480, baseH = opt.baseH || 270;
+      let s = Math.round(Math.min(el.w / base, el.h / baseH));
+      s = Math.max(opt.min || 2, Math.min(opt.max || 8, s));
+      st.s = s; st.W = Math.ceil(el.w / s); st.H = Math.ceil(el.h / s);
+      canvas.width = st.W; canvas.height = st.H;
+      canvas.style.width = st.W * s + 'px'; canvas.style.height = st.H * s + 'px';
+      ctx.imageSmoothingEnabled = false;
+      opt.onResize && opt.onResize(st);
+    };
+    addEventListener('resize', st.resize);
+    st.resize();
+    return st;
+  }
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+  // ordered 4x4 bayer dither between two colours at fraction t (0..1) inside a rect
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function dith(c, x, y, w, h, a, b, t) {
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+    R(c, x, y, w, h, a); if (t <= 0) return; if (t >= 1) { R(c, x, y, w, h, b); return; }
+    c.fillStyle = b;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (B4[((y + j) & 3) * 4 + ((x + i) & 3)] < t * 16) c.fillRect(x + i, y + j, 1, 1);
+  }
+  // vertical banded gradient: list of colours top->bottom, dithered seams (16-bit sky)
+  function bands(c, x, y, w, h, cols, seam = 3) {
+    const n = cols.length, bh = h / n;
+    for (let i = 0; i < n; i++) {
+      const y0 = Math.round(y + i * bh), y1 = Math.round(y + (i + 1) * bh);
+      R(c, x, y0, w, y1 - y0, cols[i]);
+      if (i < n - 1) { // dithered transition rows
+        for (let k = 0; k < seam; k++) dith(c, x, y1 - seam + k, w, 1, cols[i], cols[i + 1], (k + 1) / (seam + 1));
+      }
+    }
+  }
+  // crisp text: rasterise with canvas text, threshold alpha
+  const tc = document.createElement('canvas'), tx = tc.getContext('2d', { willReadFrequently: true });
+  function text(c, str, x, y, font, col, align = 'left') {
+    tx.font = font; const m = tx.measureText(str);
+    const w = Math.ceil(m.width) + 4, h = Math.ceil(parseInt(font.match(/(\d+)px/)[1]) * 1.6) + 4;
+    tc.width = w; tc.height = h; tx.font = font; tx.textBaseline = 'top'; tx.fillStyle = '#000'; tx.fillText(str, 2, 2);
+    const d = tx.getImageData(0, 0, w, h).data;
+    const ox = align === 'center' ? Math.round(x - m.width / 2) : align === 'right' ? Math.round(x - m.width) : Math.round(x);
+    c.fillStyle = col;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 110) c.fillRect(ox + i - 2, Math.round(y) + j - 2, 1, 1);
+    return m.width;
+  }
+  // 3x5 pixel font for LED boards
+  const F = { A: '010101111101101', B: '110101110101110', C: '011100100100011', D: '110101101101110', E: '111100110100111', F: '111100110100100', G: '011100101101011', H: '101101111101101', I: '111010010010111', K: '101101110101101', L: '100100100100111', M: '101111111101101', N: '110101101101101', O: '010101101101010', P: '110101110100100', R: '110101110101101', S: '011100010001110', T: '111010010010010', U: '101101101101111', V: '101101101101010', W: '101101111111101', X: '101101010101101', Y: '101101010010010', Z: '111001010100111', 0: '111101101101111', 1: '010110010010111', 2: '110001010100111', 3: '110001010001110', 4: '101101111001001', 5: '111100110001110', 6: '011100111101111', 7: '111001010010010', 8: '111101111101111', 9: '111101111001110', ':': '000010000010000', '.': '000000000000010', '-': '000000111000000', ' ': '000000000000000', "'": '010010000000000' };
+  function led(c, str, x, y, col, dim) {
+    let cx = Math.round(x);
+    for (const ch of str.toUpperCase()) {
+      const g = F[ch] || F[' '];
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 3; i++) {
+        if (g[j * 3 + i] === '1') P(c, cx + i, y + j, col); else if (dim) P(c, cx + i, y + j, dim);
+      }
+      cx += 4;
+    }
+    return cx - x;
+  }
+  // sprite compiler: rows of chars -> canvas, with palette map. '.' = clear
+  function sprite(rows, pal) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const c = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const k = r[x]; if (k !== '.' && k !== ' ' && pal[k]) P(c, x, y, pal[k]); } });
+    return cv;
+  }
+  // flip a sprite canvas horizontally
+  function flip(cv) { const o = document.createElement('canvas'); o.width = cv.width; o.height = cv.height; const c = o.getContext('2d'); c.translate(cv.width, 0); c.scale(-1, 1); c.drawImage(cv, 0, 0); return o; }
+  // scroll progress of a tall element whose sticky child is pinned: 0..1
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? 0 : Math.min(1, Math.max(0, -r.top / t)); }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  // seeded rng
+  function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function loop(fn) { let t0 = performance.now(); const f = now => { fn(Math.max(0, now - t0) / 1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+  return { RM, hex, mix, stage, R, P, dith, bands, text, led, sprite, flip, prog, clamp, ease, seg, rng, loop };
+})();
+
+/* ---------- MOHIT: the pixel character, authored once, reused everywhere ---------- */
+const MOHIT = (() => {
+  // palette (day). Light comes from the viewer's left.
+  const BASE = {
+    h: '#1b1824', H: '#2d2a3c', j: '#4d4a69',            // hair: base, mid, gloss
+    s: '#b0704a', S: '#d0976c', d: '#8a5139', D: '#5e3325', // skin
+    f: '#b47452', k: '#7c4733',                           // fist + crease
+    g: '#1d1b24', G: '#c4c8d2', l: '#ffffff', n: '#e2c9b8', // glasses rims, glint, lens sheen
+    e: '#16121a', o: '#efe6dc', b: '#211719',             // pupil, eye white, brow
+    m: '#4a2a22', L: '#77392f', T: '#f6efe6',             // moustache, lip, teeth
+    W: '#f4f1f8', V: '#d6cfe6', v: '#aea4c8', p: '#e2daf1', q: '#c8bede', // shirt + pinstripes
+    t: '#2a2c3a', u: '#3c3f52', z: '#141218',             // trousers, shoes
+    0: '#0b0910', 1: '#3a1c14', 2: '#4f4866',             // outlines: hair, skin, shirt
+  };
+  const SKIN = 'sSdDfk', SHIRT = 'WVvpq', HAIR = 'hHj';
+
+  function grid(w, h) { return Array.from({ length: h }, () => Array(w).fill('.')); }
+  function painter(g) { return (y, x, s) => { for (let i = 0; i < s.length; i++) if (s[i] !== ' ' && g[y] && x + i < g[y].length) g[y][x + i] = s[i]; }; }
+
+  // automatic finishing: pinstripes, edge light/shadow, selective outline
+  function finish(g, opt = {}) {
+    const H = g.length, W = g[0].length, at = (x, y) => (y < 0 || y >= H || x < 0 || x >= W) ? '.' : g[y][x];
+    const out = g.map(r => r.slice());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = g[y][x];
+      if (c === 's') {
+        if (opt.lightLeft !== false && !SKIN.includes(at(x - 1, y)) && 'hHj.'.includes(at(x - 1, y)) && at(x - 1, y) !== undefined) out[y][x] = at(x - 1, y) === '.' ? 'S' : 's';
+        if (at(x + 1, y) === '.') out[y][x] = 'd';
+      }
+      if (c === 'W') {
+        // shade the side away from the light
+        let run = 0; for (let k = 1; k <= 4; k++) if (!SHIRT.includes(at(x + k, y))) { run = k; break; }
+        if (run && run <= (opt.shirtShade || 3)) out[y][x] = 'V';
+        if (at(x, y - 1) === '.' ) out[y][x] = 'W';
+      }
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = out[y][x];
+      if ((opt.stripe ?? 3) && y % (opt.stripe || 3) === (opt.stripeOff || 0)) {
+        if (c === 'W') out[y][x] = 'p'; else if (c === 'V') out[y][x] = 'q';
+      }
+    }
+    if (opt.outline !== false) {
+      const o2 = out.map(r => r.slice());
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (out[y][x] !== '.') continue;
+        const ns = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => (y + b < 0 || y + b >= H || x + a < 0 || x + a >= W) ? '.' : out[y + b][x + a]).filter(v => v !== '.' && !'012'.includes(v));
+        if (!ns.length) continue;
+        o2[y][x] = ns.some(v => HAIR.includes(v) || 'gbe'.includes(v)) ? '0' : ns.some(v => SKIN.includes(v)) ? '1' : ns.some(v => SHIRT.includes(v)) ? '2' : '0';
+      }
+      return o2;
+    }
+    return out;
+  }
+  const rows = g => g.map(r => r.join(''));
+
+  /* ===== 1. BUST: seated at the window, chin on fist, pensive (3/4, looking out to viewer's left) ===== */
+  function bust(state = {}) {
+    const g = grid(48, 64), P = painter(g);
+    // hair: soft quiff, highest at the front (left), swept up and back
+    P(0, 17, 'hhhhh');
+    P(1, 15, 'hhhhhhhhhh');
+    P(2, 13, 'hhhhhhhhhhhhhhhh');
+    P(3, 12, 'hhhhhhhhhhhhhhhhhhhh');
+    P(4, 12, 'hhhhhhhhhhhhhhhhhhhhhh');
+    P(5, 12, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    P(6, 12, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(7, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(8, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(9, 14, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    // gloss strands sweeping up and back
+    P(1, 16, 'jjj');
+    P(2, 14, 'jjHH  HHH');
+    P(3, 13, 'jH  jjjjHH   H');
+    P(4, 13, 'H  HH   jjjjHH');
+    P(5, 15, 'jH    HHH  jjjH');
+    P(6, 14, 'H  jjH     HHHjjH');
+    P(7, 16, 'HH          HHjH');
+    P(8, 28, 'HHH');
+    // forehead, brows, sideburn, ear
+    P(10, 14, 'hhsssssssssssshhhhhhhhhh');
+    P(11, 14, 'hssssssssssssssshhhhhhh');
+    P(12, 14, 'sbbbbssbbbbbbssssshhhhh');
+    P(13, 14, 'sssssssssssssssssssshhh');
+    P(14, 13, 'gggggggggggggggggggggsshh');
+    P(15, 13, 'gnbbbssgssgnbbbbssgssssh');
+    P(16, 13, 'gseeossgssgseeoossgssdds');
+    P(17, 13, 'gseeossgsdgseeosssgssdsd');
+    P(18, 13, 'gssssssgsdgsssssssgssdsd');
+    P(19, 13, 'GGGGGGGGsdGGGGGGGGGssdsd');
+    // nose (tip just past the cheek line), moustache, closed mouth
+    P(20, 13, 'SSsssddssssssssssssdsd');
+    P(21, 13, 'Sssddddsssssssssssdd');
+    P(22, 14, 'smmmmmmssssssssssd');
+    P(23, 14, 'ssLLLLssssssssssd');
+    P(24, 14, 'sssssssssssssddd');
+    P(25, 15, 'sssssssssssdd');
+    P(26, 16, 'sssssssdDd');
+    // neck in shadow
+    P(24, 29, 'dd'); P(25, 27, 'dddd'); P(26, 26, 'ddddd');
+    for (let y = 27; y < 33; y++) P(y, 24, 'Ddddddd');
+    // collar: open, points falling either side of the V
+    P(28, 30, 'WWW');
+    P(29, 30, 'WWWWW');
+    P(30, 22, 'WW      WWWWWW');
+    P(31, 21, 'WWWW   VWWWWWWWW');
+    P(32, 20, 'WWWWWW dVWWWWWWWWWW');
+    P(33, 19, 'WWWWWWWsdvWWWWWWWWWWWW');
+    P(34, 18, 'WWWWWWWWdvWWWWWWWWWWWWWW');
+    // shirt body: shoulders slope out, then fall
+    for (let y = 35; y < 64; y++) {
+      const L = Math.max(3, 18 - Math.round((y - 35) * 1.4)), R = Math.min(47, 42 + Math.round((y - 35) * 0.45));
+      P(y, L, 'W'.repeat(R - L));
+    }
+    for (let y = 34; y < 64; y++) { P(y, 27, 'v'); }
+    for (let y = 44; y < 64; y++) P(y, 38 + ((y - 44) >> 3), 'V');
+    // fist under the chin: knuckles up, fingers curled toward us, thumb on the right
+    P(26, 13, 'ff');
+    P(27, 12, 'ffffffffkff');
+    P(28, 11, 'fffffffffkff');
+    P(29, 11, 'kkkkkkkkkfkf');
+    P(30, 11, 'fffffffffkff');
+    P(31, 11, 'fffffffffkff');
+    P(32, 11, 'kkkkkkkkkfff');
+    P(33, 11, 'ffffffffffff');
+    P(34, 12, 'ffffffffff');
+    P(35, 13, 'kkkkkkkk');
+    // forearm, vertical, elbow resting on the sill below
+    for (let y = 36; y < 48; y++) P(y, 13, 'ffffff' + (y < 40 ? 'k' : 'fk'));
+    // rolled sleeve cuff, then the sleeve to the elbow
+    P(47, 11, 'vvvvvvvvvvvv');
+    P(48, 10, 'WWWWWWWWWWWWWV');
+    P(49, 10, 'WWWWWWWWWWWWWV');
+    P(50, 10, 'WWWWWWWWWWWWWV');
+    P(51, 10, 'vvvvvvvvvvvvvv');
+    P(52, 11, 'WWWWWWWWWWWWV');
+    P(53, 11, 'WWWWWWWWWWWWV');
+    P(54, 12, 'VVVVVVVVVVV');
+    // the body behind the raised arm falls into shade
+    for (let y = 36; y < 64; y++) for (let x = 3; x < 13; x++) if (g[y][x] === 'W') g[y][x] = y > 54 || x < 11 ? 'V' : 'W';
+    for (let y = 55; y < 64; y++) P(y, 10, 'VVVVVVVVVVVVVV');
+    // ear, cleanly shaped, hair tucked behind it
+    P(13, 33, 'shhhh');
+    P(14, 34, 'Ssh'); P(15, 34, 'sdsh'); P(16, 34, 'sdsh'); P(17, 34, 'sdsh'); P(18, 34, 'ssdh');
+    P(19, 34, 'sds'); P(20, 34, 'dd.'); P(21, 33, 'd..');
+    for (let y = 14; y < 19; y++) P(y, 38, '.');
+    // light on the forehead, cheek and nose
+    P(10, 17, 'SSS'); P(11, 16, 'SSSS'); P(20, 15, 'SS'); P(21, 15, 'S');
+    // quiff lift at the front
+    P(0, 14, 'hh'); P(1, 13, 'hjj');
+    // states
+    if (state.blink) { P(15, 14, 'ssss'); P(16, 14, 'bbbss'); P(17, 14, 'sssss'); P(15, 24, 'ssss'); P(16, 24, 'bbbbs'); P(17, 24, 'sssss'); }
+    if (state.glint != null) { const x = 14 + state.glint; if (x < 19) P(18, x, 'l'); const x2 = 24 + state.glint; if (x2 < 30) P(18, x2, 'l'); }
+    return finish(g, { stripe: 3, stripeOff: 1 });
+  }
+
+
+  /* ===== 2. SEATED ON THE PARAPET, from behind; head: 0 = looking at the sea, 1 = turning, 2 = smiling over his shoulder ===== */
+  function back(state = {}) {
+    const g = grid(46, 56), P = painter(g), turn = state.turn || 0, w = state.wind || 0;
+    // shirt body (back): sloped shoulders, torso tapering to the waist, yoke and pleat
+    const SH = [[19, 16, 28], [20, 13, 31], [21, 10, 34], [22, 8, 36], [23, 7, 37], [24, 6, 38]];
+    SH.forEach(([y, l, r]) => P(y, l, 'W'.repeat(r - l)));
+    for (let y = 25; y < 54; y++) {
+      const t = (y - 25) / 28, L = Math.round(8 + t * 2.5), R = Math.round(36 - t * 2.5) + (y > 32 && w && ((y + w) % 6 < 2) ? 1 : 0);
+      P(y, L, 'W'.repeat(R - L));
+    }
+    P(26, 10, 'vvvvvvvvvvvvvvvvvvvvvvvv');                    // yoke seam
+    for (let y = 27; y < 54; y++) P(y, 22, 'v');               // box pleat
+    for (let y = 31; y < 54; y++) P(y, 29 + ((y + w) % 6 < 3 ? 0 : 1), 'V');
+    for (let y = 36; y < 54; y++) P(y, 14 + ((y + w) % 8 < 4 ? 0 : 1), 'V');
+    // arms hanging slightly out from the body, sleeves rolled, hands on the parapet edge
+    for (let y = 24; y < 41; y++) { const o = Math.round((y - 24) / 8); P(y, 4 - o, 'WWWWW'); P(y, 36 + o, 'WWWWW'); P(y, 8 - o, 'v'); P(y, 36 + o, 'v'); }
+    P(41, 1, 'vvvvvvv'); P(42, 1, 'WWWWWWW'); P(43, 1, 'WWWWWWW'); P(44, 1, 'vvvvvvv');
+    P(41, 38, 'vvvvvvv'); P(42, 38, 'WWWWWWW'); P(43, 38, 'WWWWWWW'); P(44, 38, 'vvvvvvv');
+    for (let y = 45; y < 53; y++) { P(y, 2, 'Sssd'); P(y, 39, 'sssd'); }
+    P(53, 1, 'ffffff'); P(54, 1, 'kkkkkk'); P(53, 38, 'ffffff'); P(54, 38, 'kkkkkk');
+    // neck + collar band
+    P(16, 18, 'dddddddd'); P(17, 18, 'ssssssss'); P(18, 18, 'ssssssss');
+    P(19, 16, 'WWVVVVVVVVWWW'); P(20, 15, 'WW') ;
+    if (turn === 0) {
+      P(0, 17, 'hhhhhhhhh'); P(1, 15, 'hhhhhhhhhhhhh'); P(2, 14, 'hhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 13, 'hhhhhhhhhhhhhhhhh');
+      P(13, 14, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhhh');
+      P(16, 17, 'hhhhhhhhhh');
+      P(1, 18, 'jjjHH'); P(2, 16, 'HjjjjjHH'); P(3, 15, 'H  HHjjjH'); P(4, 20, 'HHjH'); P(5, 15, 'H');
+      // ears either side, glasses arms over them
+      P(7, 11, 'gg'); P(7, 30, 'gg');
+      P(8, 11, 'Ss'); P(9, 11, 'sd'); P(10, 11, 'sd'); P(11, 11, 'sd'); P(12, 12, 'd');
+      P(8, 30, 'ss'); P(9, 30, 'ds'); P(10, 30, 'ds'); P(11, 30, 'dd'); P(12, 30, 'd');
+    } else if (turn === 1) {
+      P(0, 16, 'hhhhhhhhh'); P(1, 14, 'hhhhhhhhhhhhhh'); P(2, 13, 'hhhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 12, 'hhhhhhhhhhhhhhhhhh');
+      P(13, 13, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhh'); P(16, 18, 'hhhhhhh');
+      P(1, 17, 'jjjHH'); P(2, 15, 'HjjjjjHH'); P(3, 14, 'H  HHjjjH'); P(4, 19, 'HHjH');
+      // cheek edge + glasses rim appearing, ear moving to the centre-right
+      P(6, 10, 'gggggggg'); P(7, 10, 'Gs'); P(8, 10, 'Ssss'); P(9, 10, 'sssss'); P(10, 11, 'ssss'); P(11, 11, 'sss'); P(12, 12, 'sd'); P(13, 13, 'd');
+      P(7, 26, 'ss'); P(8, 26, 'sd'); P(9, 26, 'sd'); P(10, 26, 'sd'); P(11, 26, 'dd');
+      P(16, 17, 'dd');
+    } else {
+      // turned to smile over his shoulder, like the rooftop photo
+      P(0, 10, 'hhhhhhh'); P(1, 9, 'hhhhhhhhhhhhh'); P(2, 8, 'hhhhhhhhhhhhhhhhhhh');
+      P(3, 8, 'hhhhhhhhhhhhhhhhhhhhh'); P(4, 8, 'hhhhhhhhhhhhhhhhhhhhhh'); P(5, 9, 'hhhhhhhhhhhhhhhhhhhhh'); P(6, 9, 'hhhhhhhhhhhhhhhhhhhhh');
+      P(7, 9, 'ssssssshhhhhhhhhhhhhh');
+      P(8, 8, 'bbbsssssshhhhhhhhhhhhh');
+      P(0, 11, 'jjH'); P(1, 10, 'jjjHH'); P(2, 9, 'H  jjjHHH'); P(3, 13, 'HHjjjjHH'); P(4, 10, 'H     HHHjjH'); P(5, 12, 'HH');
+      P(9, 7, 'gggggggggggggggggssshhhhh');
+      P(10, 7, 'gneogSssssssssssdssdshhhh');
+      P(11, 7, 'gsssgsssssssssssdssdshhh');
+      P(12, 6, 'SGGGGGsSSsssssssddsdhhh');
+      P(13, 5, 'SSsdssSSssssssssdddhhh');
+      P(14, 6, 'smmmdssssssssssddhh');
+      P(15, 7, 'TTTdsssssssssddhh');
+      P(16, 7, 'LLdssssssssddd h');
+      P(17, 8, 'sssssssssddd');
+      P(18, 9, 'dsssssddd');
+      P(19, 12, 'ddd');
+      P(16, 18, 'dddddd');
+    }
+    return finish(g, { stripe: 3, stripeOff: 0, shirtShade: 4 });
+  }
+
+  /* ===== 3. WALKING, side view facing right, 8 frames; procedural limbs on an authored head and torso ===== */
+  function line(g, x0, y0, x1, y1, ch, wpx = 2) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1) * 2;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n);
+      for (let k = 0; k < wpx; k++) if (g[y] && g[y][x + k] !== undefined) g[y][x + k] = ch;
+    }
+  }
+  function walk(state = {}) {
+    const g = grid(20, 38), P = painter(g), ph = (state.f || 0) / 8 * Math.PI * 2, bob = Math.abs(Math.sin(ph)) > .7 ? 0 : 1;
+    const legs = (sgn, ch) => {
+      const a = Math.sin(ph) * .5 * sgn, knee = Math.max(0, Math.cos(ph) * sgn) * .7;
+      const hx = 8, hy = 22 + bob, kx = hx + Math.sin(a) * 7, ky = hy + Math.cos(a) * 7;
+      const ax = kx + Math.sin(a - knee) * 7, ay = ky + Math.cos(a - knee) * 7;
+      line(g, hx, hy, kx, ky, ch, 3); line(g, kx, ky, ax, Math.min(35, ay), ch, 2);
+      const fy = Math.min(35, Math.round(ay)); P(fy, Math.round(ax) - 1, 'zzzz'); P(fy - 1, Math.round(ax), 'zz');
+    };
+    const arm = (sgn, ch, skin) => {
+      const a = -Math.sin(ph) * .55 * sgn, sx = 9, sy = 14 + bob;
+      const ex = sx + Math.sin(a) * 5, ey = sy + Math.cos(a) * 5, hx = ex + Math.sin(a + .35) * 5, hy = ey + Math.cos(a + .35) * 5;
+      line(g, sx, sy, ex, ey, ch, 3); line(g, ex, ey, hx, hy, skin, 2); P(Math.round(hy), Math.round(hx), skin + skin);
+      P(Math.round(ey), Math.round(ex), ch === 'W' ? 'vvv' : 'vv');
+    };
+    arm(-1, 'V', 'd');           // far arm, in shade
+    legs(-1, 'u');               // far leg
+    const b = bob;
+    // head (quiff to the front), glasses, face
+    P(0 + b, 7, 'hhhhh'); P(1 + b, 5, 'hhhhhhhhj'); P(2 + b, 4, 'hhhhhjjhhhh'); P(3 + b, 4, 'hhhhhhhhhhh');
+    P(4 + b, 4, 'hhhhhhsssss'); P(5 + b, 4, 'hhhsgggggggg'); P(6 + b, 4, 'hhssssssbeG'); P(7 + b, 4, 'hdsssssGGGGS');
+    P(8 + b, 5, 'dsssssssmms'); P(9 + b, 5, 'ddsssssssd'); P(10 + b, 6, 'ddssssd'); P(11 + b, 8, 'ddd');
+    // torso, tucked white shirt
+    P(12 + b, 6, 'WWWWWWW'); P(13 + b, 5, 'WWWWWWWWW');
+    for (let y = 14; y < 22; y++) P(y + b, 5, 'WWWWWWWWV');
+    P(22 + b, 5, 'tttttttt'); P(23 + b, 5, 'tttttttt');
+    legs(1, 't');                // near leg
+    arm(1, 'W', 's');            // near arm, in front
+    return finish(g, { stripe: 2, shirtShade: 2 });
+  }
+
+  function build(fn, state, pal) { return PX.sprite(rows(fn(state || {})), Object.assign({}, BASE, pal || {})); }
+  return { BASE, bust, back, walk, build, finish, grid, painter, rows };
+})();
+
+(() => {
+const { R, P, dith, bands, text, led, mix, clamp, ease, seg, rng } = PX;
+const cv = document.getElementById('cv'), stEl = document.getElementById('stage'), pin = document.getElementById('pin');
+let CWin = { x: 0, y: 0 }, S, world, close, W, H, CW, CH, target = { x: 0, y: 0 }, crowd = [];
+const bust = [MOHIT.build(MOHIT.bust, {}), MOHIT.build(MOHIT.bust, { blink: 1 })];
+const glints = [0, 1, 2, 3, 4, 5, 6].map(g => MOHIT.build(MOHIT.bust, { glint: g }));
+
+const C = {
+  sky: ['#cf9a92', '#d9a48f', '#e3ae8c', '#ebba8a', '#f1c68a', '#f4d192', '#f6daa0'],
+  far: '#c99486', far2: '#bb877f', farWin: '#efc08e',
+  roof: '#59605a', roofDark: '#3d4541', col: '#3e6a50', colLit: '#5d8f6b',
+  plat: '#a39189', platDark: '#8c7b74', edge: '#e6bf3b', edgeDark: '#b08d22', bed: '#5d4b47', rail: '#b3a69f',
+  body: '#f3ece3', bodySh: '#d8cdc1', bodyLit: '#fff7ea', roofT: '#c0b6ae', ac: '#cfc6be', acSh: '#a49b94',
+  glass: '#33394c', glassHi: '#5a5a6c', refl: '#e9b47e', blue: '#2e5c9c', red: '#c8433a', skirt: '#1f2a44', bogie: '#26262c',
+  warm: '#f3b26b', warm2: '#e39552', board: '#f2cf3a', boardInk: '#1e1a16',
+};
+
+function drawSky(c, w, h, horizon) {
+  bands(c, 0, 0, w, horizon, C.sky, 3);
+}
+// Western Railway HQ (gothic, domed central tower) and Eros (stepped art deco tower), hazy
+function skyline(c, w, base, sc = 1) {
+  const r = rng(7);
+  // low general blocks
+  for (let x = -4; x < w; x += 10 + Math.floor(r() * 14)) { const bh = 8 + Math.floor(r() * 16); R(c, x, base - bh, 12 + r() * 10, bh, C.far); }
+  // WR HQ: long gothic block with gables and a domed central tower
+  const hx = Math.round(w * 0.16);
+  R(c, hx, base - 30, 70, 30, C.far2);
+  for (let i = 0; i < 6; i++) { const gx = hx + 4 + i * 11; for (let k = 0; k < 4; k++) R(c, gx + k, base - 34 + k, 8 - 2 * k, 1, C.far2); R(c, gx + 3, base - 38, 2, 4, C.far2); }
+  R(c, hx + 29, base - 52, 12, 22, C.far2);
+  for (let k = 0; k < 7; k++) R(c, hx + 29 + Math.floor(k / 1.4), base - 52 - k, 12 - 2 * Math.floor(k / 1.4), 1, C.far2);
+  R(c, hx + 34, base - 64, 2, 6, C.far2); P(c, hx + 35, base - 66, C.far2);
+  for (let i = 0; i < 9; i++) for (let j = 0; j < 3; j++) R(c, hx + 4 + i * 7, base - 26 + j * 8, 2, 4, C.farWin);
+  // Eros: stepped art deco tower
+  const ex = Math.round(w * 0.36);
+  R(c, ex, base - 26, 34, 26, C.far);
+  R(c, ex + 11, base - 40, 12, 14, C.far); R(c, ex + 13, base - 46, 8, 6, C.far); R(c, ex + 15, base - 50, 4, 4, C.far);
+  for (let j = 0; j < 4; j++) R(c, ex + 2, base - 22 + j * 5, 30, 1, C.far2);
+  R(c, ex + 16, base - 38, 2, 10, C.farWin);
+}
+// one AC local coach strip; scale k (1 in the wide shot). returns window rects
+function coach(c, x, y, len, cab, lit) {
+  const top = y, h = 46;
+  // roof + AC units + pantograph
+  R(c, x + 2, top - 2, len - 4, 3, C.roofT);
+  for (let i = 0; i < 3; i++) { const ax = x + 16 + i * Math.floor((len - 40) / 2.2); R(c, ax, top - 6, 18, 4, C.ac); R(c, ax, top - 3, 18, 1, C.acSh); R(c, ax + 2, top - 5, 14, 1, C.bodyLit); }
+  // body
+  R(c, x, top, len, h - 12, C.body);
+  R(c, x, top, len, 2, C.bodyLit);
+  R(c, x, top + h - 22, len, 4, C.blue);
+  R(c, x, top + h - 18, len, 1, C.red);
+  R(c, x, top + h - 17, len, 5, C.blue);
+  R(c, x, top + h - 12, len, 8, C.skirt);
+  R(c, x, top + h - 12, len, 1, '#33405c');
+  // bogies
+  [x + 14, x + len - 34].forEach(bx => { R(c, bx, top + h - 4, 20, 4, C.bogie); R(c, bx + 2, top + h - 1, 5, 2, '#111'); R(c, bx + 13, top + h - 1, 5, 2, '#111'); });
+  const wins = [];
+  // doors
+  [x + 8, x + len - 20].forEach(dx => { R(c, dx, top + 4, 12, h - 16, C.bodySh); R(c, dx + 1, top + 5, 10, h - 18, C.body); R(c, dx + 5, top + 5, 1, h - 18, C.bodySh); R(c, dx + 2, top + 7, 3, 9, C.glass); R(c, dx + 7, top + 7, 3, 9, C.glass); });
+  // windows
+  const n = Math.max(2, Math.floor((len - 44) / 22));
+  for (let i = 0; i < n; i++) {
+    const wx = x + 26 + i * 22, wy = top + 8;
+    R(c, wx, wy, 18, 12, C.glass); dith(c, wx, wy, 18, 4, '#6d5f6c', C.glass, .5); R(c, wx, wy, 18, 1, '#8a7378');
+    // warm glare sliding across the sealed glass
+    R(c, wx + 13 - (i * 3) % 9, wy + 4, 2, 8, '#3d4458');
+    wins.push({ x: wx, y: wy, w: 18, h: 12 });
+  }
+  if (cab) {
+    // raked cab front with windscreen, headlamps and amber LED board
+    const fx = x - 18;
+    for (let j = 0; j < h - 12; j++) R(c, fx + Math.max(0, 10 - j), top + j, 18 - Math.max(0, 10 - j), 1, j < 2 ? C.bodyLit : C.body);
+    R(c, fx + 4, top + h - 22, 14, 10, C.blue); R(c, fx + 4, top + h - 18, 14, 1, C.red);
+    R(c, fx + 3, top + h - 12, 15, 8, C.skirt);
+    for (let j = 0; j < 12; j++) R(c, fx + Math.max(1, 9 - j) + 1, top + 4 + j, 9, 1, C.glass);
+    R(c, fx + 6, top - 2, 12, 5, '#141218'); led(c, 'CCG', fx + 6, top - 2, '#ffb43a');
+    R(c, fx + 4, top + h - 15, 3, 2, '#fff4cf');
+  }
+  return wins;
+}
+function platformCols(c, x0, w, yTop, yBot, step, lit) {
+  for (let x = x0; x < w; x += step) { R(c, x, yTop, 3, yBot - yTop, C.col); R(c, x, yTop, 1, yBot - yTop, lit ? C.colLit : C.col); R(c, x - 2, yTop, 7, 2, C.col); }
+}
+
+function buildWorld() {
+  W = S.W; H = S.H;
+  world = document.createElement('canvas'); world.width = W; world.height = H;
+  const c = world.getContext('2d');
+  const phone = W < H;
+  const horizon = Math.round(H * (phone ? 0.72 : 0.66));
+  bands(c, 0, 0, W, horizon + 4, C.sky, 3);
+  // sun low over the city
+  const sx = Math.round(W * (phone ? 0.7 : 0.47)), sy = Math.round(horizon - H * 0.1);
+  for (let r = 46; r > 0; r -= 8) { c.fillStyle = r > 24 ? 'rgba(255,236,190,0.16)' : 'rgba(255,240,205,0.3)'; c.beginPath(); for (let a = -r; a <= r; a++) { const hh = Math.round(Math.sqrt(r * r - a * a)); c.rect(sx + a, sy - hh, 1, hh * 2); } c.fill(); }
+  for (let a = -11; a <= 11; a++) { const hh = Math.round(Math.sqrt(121 - a * a)); R(c, sx + a, sy - hh, 1, hh * 2, '#fff3d2'); }
+  skyline(c, W, horizon);
+  // canopy over the right of the platforms (green steel columns)
+  const cTop = Math.round(H * 0.3), cx0 = Math.round(W * (phone ? 0.5 : 0.56));
+  R(c, cx0, cTop, W - cx0, 5, C.roof); R(c, cx0, cTop + 5, W - cx0, 3, C.roofDark);
+  for (let x = cx0; x < W; x += 6) P(c, x, cTop - 1, C.roof);
+  platformCols(c, cx0 + 6, W, cTop + 8, horizon + 8, 34, false);
+  // far platform + yellow station board
+  R(c, 0, horizon, W, 8, C.platDark); R(c, 0, horizon + 7, W, 1, C.edge);
+  const bx = Math.round(W * (phone ? 0.06 : 0.3)), by = horizon - 46;
+  R(c, bx + 4, by + 14, 1, 34, '#3e3a36'); R(c, bx + 41, by + 14, 1, 34, '#3e3a36');
+  R(c, bx, by, 46, 14, '#2f2a24'); R(c, bx + 1, by + 1, 44, 12, C.board);
+  text(c, 'चर्चगेट', bx + 4, by + 1, '700 8px "Noto Sans Devanagari"', C.boardInk);
+  led(c, 'CHURCHGATE', bx + 4, by + 7, C.boardInk);
+  // track bed
+  const ty = horizon + 8; R(c, 0, ty, W, Math.round(H * 0.06), C.bed);
+  // train
+  const top = ty - 34 + Math.round(H * 0.06) - 4;
+  let wins = [];
+  const clen = 150, start = Math.round(W * (phone ? 0.16 : 0.07));
+  for (let x = start, i = 0; x < W + 10; x += clen + 3, i++) wins = wins.concat(coach(c, x, top, clen, i === 0).map(w => ({ ...w, ci: i })));
+  // pick his window: the one nearest the golden third
+  const want = W * (phone ? 0.5 : 0.62);
+  const mw = wins.reduce((a, b) => Math.abs(b.x + 9 - want) < Math.abs(a.x + 9 - want) ? b : a);
+  R(c, mw.x, mw.y, mw.w, mw.h, C.warm); R(c, mw.x, mw.y + 8, mw.w, 4, C.warm2);
+  // tiny Mohit at the window: hair, glasses glint, white shirt, fist
+  const hx = mw.x + 7, hy = mw.y + 2;
+  R(c, hx, hy, 5, 2, '#1b1824'); R(c, hx, hy + 2, 1, 1, '#1b1824'); R(c, hx + 1, hy + 2, 4, 4, '#a86a47'); P(c, hx + 1, hy + 3, '#1d1b24'); P(c, hx + 2, hy + 3, '#1d1b24'); P(c, hx + 3, hy + 3, '#c4c8d2');
+  R(c, hx - 2, hy + 6, 9, 4, '#f4f1f8'); R(c, hx - 1, hy + 5, 2, 3, '#b47452');
+  R(c, mw.x, mw.y + 10, mw.w, 2, C.bodySh);
+  target = { x: mw.x + 9, y: mw.y + 6 };
+  // near platform (foreground): yellow edge, tiles, columns in front of the train
+  const ny = top + 46;
+  R(c, 0, ny, W, H - ny, C.plat);
+  R(c, 0, ny, W, 3, C.edge); R(c, 0, ny + 3, W, 1, C.edgeDark);
+  for (let y = ny + 8; y < H; y += 7) for (let x = (y % 14 ? 0 : 6); x < W; x += 12) R(c, x, y, 10, 1, C.platDark);
+  // long shadows of the near canopy columns falling across the platform
+  for (let x = cx0 - 20; x < W; x += 34) for (let j = 0; j < H - ny - 4; j++) P(c, x - j * 2, ny + 4 + j, C.platDark);
+  stEl._ny = ny;
+  return c;
+}
+
+// close-up: the window from outside, Mohit inside, chin on his fist
+function buildClose() {
+  CW = Math.ceil(W / 2); CH = Math.ceil(H / 2);
+  close = document.createElement('canvas'); close.width = CW; close.height = CH;
+}
+function drawClose(t, p) {
+  const c = close.getContext('2d'), phone = CW < CH;
+  // body panel
+  R(c, 0, 0, CW, CH, C.body);
+  bands(c, 0, 0, CW, CH, ['#f6efe5', '#f3ece3', '#efe6dc', '#ebe1d6'], 2);
+  // window geometry: centred-right on desktop, centred on phone
+  const ww = Math.min(phone ? CW - 12 : 120, CW - 10), wh = Math.min(phone ? 92 : 64, CH - 30);
+  const wx = Math.round(phone ? (CW - ww) / 2 : CW * 0.56 - ww / 2 + 20), wy = Math.round(phone ? Math.max(48, CH * 0.3) : CH * 0.24);
+  // roof line + gutter
+  R(c, 0, 0, CW, 3, C.roofT); R(c, 0, 3, CW, 1, C.acSh);
+  // sliding door on the left (desktop)
+  if (!phone) { const dx = wx + ww + 14; R(c, dx, 6, 30, CH, C.bodySh); R(c, dx + 1, 7, 28, CH, C.body); R(c, dx + 14, 7, 1, CH, C.bodySh); R(c, dx + 4, 14, 8, 30, C.glass); R(c, dx + 17, 14, 8, 30, C.glass); dith(c, dx + 4, 14, 8, 6, '#6d5f6c', C.glass, .5); dith(c, dx + 17, 14, 8, 6, '#6d5f6c', C.glass, .5); }
+  CWin = { x: wx + ww / 2, y: wy + wh / 2 };
+  // rubber seal + frame
+  R(c, wx - 3, wy - 3, ww + 6, wh + 6, '#b9aea4'); R(c, wx - 2, wy - 2, ww + 4, wh + 4, '#3a3a44');
+  // interior: warm coach light, seat back, far window glow
+  bands(c, wx, wy, ww, wh, ['#f6c27c', '#f0b26c', '#e6a061', '#d98f57'], 2);
+  R(c, wx, wy + Math.round(wh * 0.7), ww, wh, '#7d5c58');
+  R(c, wx, wy + Math.round(wh * 0.7), ww, 2, '#97726a');
+  // grab rail
+  R(c, wx, wy + 6, ww, 1, '#c9a27a');
+  // Mohit
+  const fr = (t % 4.2) > 4.05 ? bust[1] : (t % 7 > 6.2 ? glints[Math.min(6, Math.floor((t % 7 - 6.2) * 9))] : bust[0]);
+  const mx = Math.round(wx + ww / 2 - 24 + (phone ? 0 : 10)), my = wy + wh - 52;
+  const breath = Math.round(Math.sin(t * 1.3) * .5 + .5);
+  c.drawImage(fr, mx, my + breath);
+  // tinted glass + gold reflections drifting across (dithered so he stays readable)
+  const drift = (t * 6) % (ww + 60) - 30;
+  c.save(); c.beginPath(); c.rect(wx, wy, ww, wh); c.clip();
+  c.fillStyle = 'rgba(255,238,200,0.22)';
+  for (let j = 0; j < wh; j++) { const x = Math.round(wx + drift - 20 + j * 0.5); for (let i = 0; i < 14; i++) if (((x + i + j) & 1) === 0 || i > 3 && i < 10) c.fillRect(x + i, wy + wh - j, 1, 1); }
+  c.restore();
+  // sill + rubber at the bottom (occludes him: near in front of far)
+  R(c, wx - 3, wy + wh, ww + 6, 3, '#b9aea4'); R(c, wx - 3, wy + wh + 3, ww + 6, 1, '#8f857c');
+  // below: blue band, red line, skirt
+  const by = Math.min(CH - 18, wy + wh + 12);
+  R(c, 0, by, CW, 6, C.blue); R(c, 0, by + 6, CW, 1, C.red); R(c, 0, by + 7, CW, 6, C.blue); R(c, 0, by + 13, CW, CH, C.skirt);
+}
+
+// dithered dissolve masks
+const masks = [];
+for (let l = 0; l <= 16; l++) { const m = document.createElement('canvas'); m.width = m.height = 4; const mc = m.getContext('2d'); const B = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]; for (let i = 0; i < 16; i++) if (B[i] < l) { mc.fillStyle = '#000'; mc.fillRect(i % 4, i >> 2, 1, 1); } masks.push(m); }
+const tmp = document.createElement('canvas');
+
+const st = PX.stage(cv, { box: () => ({ w: innerWidth, h: innerHeight }), onResize: (s) => { S = s; buildWorld(); buildClose(); tmp.width = s.W; tmp.height = s.H; makeCrowd(); } });
+function makeCrowd() { const r = rng(3); crowd = Array.from({ length: Math.max(3, Math.round(W / 70)) }, (_, i) => ({ x: r() * W, v: (r() > .5 ? 1 : -1) * (3 + r() * 4), c: ['#7a4b6d', '#3b5c7a', '#8a5a3a', '#556b4a', '#b0663a'][i % 5] })); }
+
+const birds = Array.from({ length: 4 }, (_, i) => ({ x: i * 120, y: 30 + i * 9, v: 9 + i * 2 }));
+function frame(t) {
+  const p = PX.prog(pin), c = st.ctx;
+  const zoomT = ease(seg(p, 0.06, 0.52));
+  const d = seg(p, 0.4, 0.56);
+  const z = 1 + zoomT * 2 + ease(d) * 2.5;
+  // camera: pull the target window toward the right third while zooming
+  const fx = target.x, fy = target.y;
+  const ax = W * (W < H ? 0.5 : 0.62), ay = H * (W < H ? 0.62 : 0.56);
+  let sx = fx - ax / z * (1 - zoomT) - (W / 2) / z * zoomT, sy = fy - ay / z * (1 - zoomT) - (H / 2) / z * zoomT;
+  sx = clamp(sx, 0, W - W / z); sy = clamp(sy, 0, H - H / z);
+  // live layer on the world: birds over the sky, commuters on the near platform
+  const wc = world.getContext('2d');
+  c.imageSmoothingEnabled = false;
+  c.drawImage(world, sx, sy, W / z, H / z, 0, 0, W, H);
+  const map = (x, y) => [(x - sx) * z, (y - sy) * z];
+  if (zoomT < .35) {
+    birds.forEach(b => { const bx = ((b.x + t * b.v) % (W + 40)) - 20, by = H * (0.3 + (b.y - 30) / 300) + Math.sin(t * 2 + b.x) * 2; const [X, Y] = map(bx, by); const wing = Math.floor(t * 6 + b.x) % 2; const s = Math.max(1, Math.round(z)), bc = '#5c3c44'; R(c, X + s, Y, s, s, bc); R(c, X, Y - (wing ? s : 0), s, s, bc); R(c, X + 2 * s, Y - (wing ? s : 0), s, s, bc); R(c, X - s, Y - (wing ? 2 * s : -s), s, s, bc); R(c, X + 3 * s, Y - (wing ? 2 * s : -s), s, s, bc); });
+    const ny = stEl._ny;
+    crowd.forEach((m, i) => { const mx = ((m.x + t * m.v) % (W + 20) + W + 20) % (W + 20) - 10; const [X, Y] = map(mx, ny + 10 + (i % 3) * 6); const s = Math.max(1, Math.round(z)); const leg = Math.floor(t * 5 + i) % 2; R(c, X, Y - 12 * s, 3 * s, 3 * s, '#3a2620'); R(c, X - s, Y - 9 * s, 5 * s, 6 * s, m.c); R(c, X + (leg ? 0 : s), Y - 3 * s, s, 3 * s, '#2a2830'); R(c, X + (leg ? 2 : 1) * s, Y - 3 * s, s, 3 * s, '#2a2830'); });
+  }
+  // dissolve into the close-up
+  if (d > 0) {
+    drawClose(t, p);
+    const tc = tmp.getContext('2d'); tc.globalCompositeOperation = 'source-over'; tc.clearRect(0, 0, W, H); tc.imageSmoothingEnabled = false;
+    const cz = 2 + (1 - ease(d)) * 1.6;
+    const cw = W / cz, ch = H / cz;
+    const [tx, ty] = map(target.x, target.y), e = ease(d);
+    const fx = (CWin.x - (CW - CW) / 2) * 2, fy = (CWin.y - (CH - CH) / 2) * 2;
+    const dx = tx + (fx - tx) * e, dy = ty + (fy - ty) * e;
+    tc.drawImage(close, CWin.x - dx / cz, CWin.y - dy / cz, cw, ch, 0, 0, W, H);
+    tc.globalCompositeOperation = 'destination-in'; tc.fillStyle = tc.createPattern(masks[Math.round(d * 16)], 'repeat'); tc.fillRect(0, 0, W, H);
+    c.drawImage(tmp, 0, 0);
+  }
+  stEl.classList.toggle('is-close', d > .5);
+  stEl.classList.toggle('is-note', p > 0.7);
+}
+document.fonts && document.fonts.load('700 8px "Noto Sans Devanagari"', 'चर्चगेट').then(() => st.resize());
+PX.loop(t => { if (PX.RM) t = 0.5; frame(t); });
+})();
+</script>
+</body>
+</html>

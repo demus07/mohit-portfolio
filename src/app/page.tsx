@@ -1,27 +1,25 @@
 import { Loader } from "@/components/chrome/Loader";
 import { Nav } from "@/components/chrome/Nav";
 import { ActionBar } from "@/components/chrome/ActionBar";
-import { Bhayandar } from "@/components/scenes/Bhayandar";
-import { Route } from "@/components/scenes/Route";
-import { Station } from "@/components/scenes/Station";
-import { Dalal } from "@/components/scenes/Dalal";
-import { Wankhede } from "@/components/scenes/Wankhede";
+import { Churchgate } from "@/components/scenes/Churchgate";
+import { Promenade } from "@/components/scenes/Promenade";
+import { Work } from "@/components/scenes/Work";
+import { Dusk } from "@/components/scenes/Dusk";
 import { Temple } from "@/components/scenes/Temple";
 
-// The evening local pulling into Bhayandar, then the story of how he got on it: the ride in,
-// Churchgate, Dalal Street at noon, Wankhede at dusk, and Siddhivinayak after dark to close.
+// One walk: off the AC local at Churchgate, across to Marine Drive in the afternoon, the work in the
+// shade, the lamps coming on along the bay at dusk, and Siddhivinayak after dark, where he resets.
 export default function Home() {
   return (
     <>
       <Loader />
       <div className="grain" aria-hidden="true" />
       <Nav />
-      <Bhayandar />
+      <Churchgate />
       <main>
-        <Route />
-        <Station />
-        <Dalal />
-        <Wankhede />
+        <Promenade />
+        <Work />
+        <Dusk />
       </main>
       <Temple />
       <ActionBar />

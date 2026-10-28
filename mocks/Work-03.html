@@ -1,0 +1,214 @@
+<!-- Direction 03: Sticky split — the text scrolls on paper at left while the right half is a pinned view over the sea where each project's media stands on the horizon; the afternoon turns to dusk across the eight. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Sticky split</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--ink:#1d2a33;--soft:#5d6970;--sea:#2c6d8c;--serif:"Fraunces",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper)}
+body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40;opacity:.18;mix-blend-mode:multiply}
+.split{display:grid;grid-template-columns:42fr 58fr;min-height:100vh}
+.text{position:relative;padding:0 clamp(28px,4.5vw,80px) 0 clamp(16px,5.5vw,96px)}
+.intro{min-height:52vh;padding-top:clamp(40px,11vh,110px)}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(42px,4.3vw,68px);line-height:1.02;letter-spacing:-.02em;text-wrap:balance;max-width:10ch;font-variation-settings:"SOFT" 50}
+.lede{font-size:clamp(15px,1.15vw,18px);line-height:1.5;color:var(--soft);max-width:40ch;margin-top:20px}
+.proj{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:6vh 0}
+.proj.first{min-height:80vh;justify-content:flex-start;padding-top:2vh}
+.proj .k{font-size:14px;color:var(--soft)}
+.proj .n{font-family:var(--serif);font-weight:300;font-size:clamp(40px,3.8vw,60px);line-height:1;letter-spacing:-.02em;margin-top:8px;transition:color .6s ease}
+.proj h3{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(22px,1.8vw,28px);line-height:1.2;margin-top:16px;max-width:20ch;text-wrap:balance}
+.proj p{font-size:16px;line-height:1.55;color:#38454d;max-width:40ch;margin-top:12px}
+.proj ul{list-style:none;margin-top:18px;max-width:40ch}
+.proj li{font-size:15px;line-height:1.45;color:#38454d;padding:9px 0 9px 22px;position:relative}
+.proj li::before{content:"";position:absolute;left:0;top:1.05em;width:10px;height:1px;background:var(--sea)}
+.proj .t{font-size:14px;color:var(--soft);margin-top:10px;max-width:40ch;line-height:1.5}
+.proj .ln{display:flex;gap:22px;margin-top:20px;font-size:15px;font-weight:500}
+.proj .ln a{color:var(--sea);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .45s ease;padding-bottom:2px}
+.proj .ln a:hover{background-size:100% 1px}
+.proj .ln span{color:var(--soft);font-weight:400}
+.proj .mm{display:none}
+.proj{opacity:.28;transition:opacity .7s ease}
+.proj.on{opacity:1}
+.outro{height:30vh}
+
+/* the curve: eight lamps along Marine Drive as the way through */
+.curve{left:5%;bottom:1.2%;height:8.5%;aspect-ratio:300/92;pointer-events:none;z-index:3}
+.curve svg{width:100%;height:100%;overflow:visible}
+.curve button{pointer-events:auto}
+
+/* the view */
+.view{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.view>*{position:absolute}
+.skyc{inset:0}
+.sunglow{width:70%;aspect-ratio:1;border-radius:50%;left:50%;will-change:transform,opacity}
+.seab{left:0;right:0;top:72%;height:28%}
+.horiz{left:0;right:0;top:72%;height:1px;opacity:.5}
+.path{left:0;right:0;top:72%;height:16%;will-change:opacity}
+.refl{left:0;right:0;top:72%;height:16%;overflow:hidden;opacity:.32;filter:url(#ripple) blur(1.5px);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,0) 85%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,0) 85%)}
+.refl img{position:absolute;left:0;width:100%;bottom:auto;top:-180%;transform:scaleY(-1);opacity:0;transition:opacity .9s ease}
+.refl img.on{opacity:1}
+.media{left:50%;top:7%;height:min(58%,calc(58vw*.624));aspect-ratio:1506/940;transform:translateX(-50%);max-width:100%}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transition:opacity .9s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.media img.on{opacity:1;transform:none}
+.media .light{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;will-change:opacity}
+.hill{left:0;right:0;top:62%;height:10.1%;width:100%}
+.wall{left:0;right:0;bottom:0;height:12%}
+.wall svg{width:100%;height:100%;display:block}
+.chai{right:7%;bottom:10.2%;width:34px}
+.steam{right:calc(7% + 4px);bottom:calc(10.2% + 52px);width:26px;height:70px;opacity:.6}
+
+@media (max-width:860px){
+  .split{grid-template-columns:1fr}
+  .view{grid-row:1;position:sticky;top:0;height:46vh;z-index:2}
+  .media{top:5%;height:auto;width:100%;left:0;transform:none}
+  .hill{top:66%;height:8%}
+  .seab,.horiz,.path,.refl{top:74%}
+  .wall{height:8%}.chai,.steam,.curve{display:none}
+  .text{grid-row:2}
+  .intro{min-height:auto;padding-top:28px;padding-bottom:20px}
+  .proj,.proj.first{min-height:70vh;justify-content:flex-start;padding-top:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<!-- direction: Work 03 · Sticky split -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="ripple" x="0" y="0" width="100%" height="100%"><feTurbulence id="turb" type="fractalNoise" baseFrequency=".004 .09" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter>
+</svg>
+<svg class="grain" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .3 0 0 0 0 .27 0 0 0 0 .2 0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+
+<main class="split">
+  <div class="text" id="text">
+    <header class="intro">
+      <h2>Things I've built and shipped</h2>
+      <p class="lede">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+    </header>
+    <div id="projects"></div>
+    <div class="outro"></div>
+  </div>
+  <aside class="view" id="view" aria-hidden="false">
+    <div class="skyc" id="sky"></div>
+    <div class="sunglow" id="sun"></div>
+    <div class="seab" id="seab"></div>
+    <div class="path" id="path"></div>
+    <div class="refl" id="refl"></div>
+    <div class="horiz" id="horiz"></div>
+    <svg class="hill" id="hill" viewBox="0 0 800 60" preserveAspectRatio="xMaxYMax slice" aria-hidden="true"></svg>
+    <div class="media" id="media"><div class="light" id="light"></div></div>
+    <div class="wall"><svg viewBox="0 0 800 100" preserveAspectRatio="none" id="wall"></svg></div>
+    <div class="curve" aria-label="Projects"><svg id="curve" viewBox="0 0 300 92"></svg></div>
+    <svg class="chai" viewBox="0 0 34 52" aria-hidden="true"><defs><linearGradient id="tea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d79a54"/><stop offset="1" stop-color="#8a4f22"/></linearGradient></defs>
+      <path d="M3 4 L31 4 L27 50 L7 50 Z" fill="rgba(255,255,255,.18)"/><path d="M5 16 L29 16 L27 50 L7 50 Z" fill="url(#tea)"/>
+      <path d="M8 4 L10 50 M14 4 L15 50 M20 4 L19 50 M26 4 L24 50" stroke="rgba(255,255,255,.28)" stroke-width="1"/><path d="M3 4 H31" stroke="rgba(255,255,255,.6)" stroke-width="1.2"/></svg>
+    <svg class="steam" viewBox="0 0 26 70" aria-hidden="true"><path id="st" d="M13 70 C 4 56 22 46 12 32 C 4 20 20 12 14 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+  </aside>
+</main>
+
+<script>
+const P=[
+ {s:'auctionxi',n:'AuctionXI',k:'My own product, 2026',h:'Live player auctions for any sport',l:'Real-time bidding, broadcast graphics and YouTube overlays, with no production team.',a:[['Live','https://auction-xi.com']],
+  f:['Every bid lands on every screen at once, and the money always adds up.','Twenty broadcast scenes for the projector and the stream.','Auction-ready in under 20 minutes.'],t:'Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth'},
+ {s:'texagent',n:'TexAgent',k:'Client work, 2026',h:'A bahi-khata for textile brokers',l:'Bills, brokerage and follow-ups in one place, instead of a paper book.',a:[],priv:1},
+ {s:'cachekaro',n:'Cache Karo',k:'Command-line tool, 2026',h:'Find the cache hogs, get the space back',l:'Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',a:[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']]},
+ {s:'aether',n:'Aether',k:'AI web app, 2025',h:'News, YouTube and Reddit in one conversation',l:'An assistant with 17+ tones, and an NLP pipeline that scores every article first.',a:[['Source','https://github.com/Mohit-Bagri/aether-news-trends']]},
+ {s:'flowledger',n:'FlowLedger',k:'Mobile app, 2026',h:'Every rupee in, every rupee out',l:'A local-first finance app in Flutter that scans receipts and catches money leaks.',a:[['Source','https://github.com/Mohit-Bagri/flowledger']]},
+ {s:'shuttle',n:'Space Shuttle VR',k:'VR game, 2024',h:'Fix the shuttle, then fly it out',l:'A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',a:[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']]},
+ {s:'velotype',n:'VeloType',k:'Web app, 2026',h:'A typing test built for feel',l:'Themes, modes and live words per minute, with a caret that keeps up.',a:[['Live','https://velo-type.vercel.app']]},
+ {s:'windmill',n:'Windmill VR',k:'VR app, 2025',h:'Breathe with the windmill',l:'A calm VR app for Meta Quest, paced to a four-part breath.',a:[['Source','https://github.com/Mohit-Bagri/windmill-vr']]}
+];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const box=document.getElementById('projects'),media=document.getElementById('media'),refl=document.getElementById('refl'),light=document.getElementById('light');
+P.forEach((p,i)=>{
+  box.insertAdjacentHTML('beforeend',`<article class="proj${i===0?' first':''}" id="p-${p.s}"><div class="k">${p.k}</div><div class="n">${p.n}</div><h3>${p.h}</h3><p>${p.l}</p>${p.f?`<ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="t">${p.t}</div>`:''}<div class="ln">${p.a.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}${p.priv?'<span>Private client project</span>':''}</div></article>`);
+  media.insertAdjacentHTML('beforeend',`<img src="media/${p.s}.png" alt="${p.n}: ${p.h}">`);
+  refl.insertAdjacentHTML('beforeend',`<img src="media/${p.s}.png" alt="">`);
+});
+media.appendChild(light);
+const arts=[...box.children],mi=[...media.querySelectorAll('img')],ri=[...refl.querySelectorAll('img')];
+
+/* the curve of lamps, a small map of the walk */
+const NS='http://www.w3.org/2000/svg',cv=document.getElementById('curve');
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+el('path',{d:'M6 20 C 40 84 150 92 230 70 C 262 61 284 44 294 22',fill:'none',stroke:'#f6efe2','stroke-width':1.2,opacity:.7},cv);
+const pts=[[14,36],[40,62],[78,78],[120,84],[164,82],[204,75],[244,64],[278,42]];
+const dots=pts.map(([x,y],i)=>{const g=el('g',{style:'cursor:pointer;pointer-events:auto'},cv);
+  el('circle',{cx:x,cy:y,r:12,fill:'transparent'},g);
+  const halo=el('circle',{cx:x,cy:y,r:9,fill:'#f2a145',opacity:0},g);
+  const c=el('circle',{cx:x,cy:y,r:3.2,fill:'#f6efe2',stroke:'#f6efe2','stroke-width':1},g);
+  const tt=el('title',{},g);tt.textContent=P[i].n;
+  g.addEventListener('click',()=>arts[i].scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}));
+  return {halo,c}});
+
+/* Malabar Hill and the far end of the necklace, on the horizon */
+const hill=document.getElementById('hill');
+const hp=el('path',{d:'M380 60 C 450 54 500 36 560 30 C 620 24 660 36 712 33 C 760 30 790 40 800 42 V60 Z',fill:'#5c6b78'},hill);
+const hb=el('g',{},hill);let sd=9;const rr=()=>(sd=(sd*16807)%2147483647,(sd-1)/2147483646);
+for(let x=480;x<800;x+=5){const h=3+rr()*12*(x>540&&x<740?1:.5);const b=60-(x>520?Math.min(22,(x-520)*.18):0)+(x>740?(x-740)*.2:0);el('rect',{x,y:b-h,width:4,height:h+3},hb)}
+const nl=el('g',{},hill);for(let i=0;i<46;i++){const t=i/45;el('circle',{cx:(t*520).toFixed(1),cy:(59.5-t*t*4).toFixed(1),r:(1.1-t*.5).toFixed(2),fill:'#ffc77a'},nl)}
+/* the parapet in the foreground */
+const wall=document.getElementById('wall');
+el('defs',{},wall).innerHTML='<linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" id="wtop" stop-color="#cfc6b4"/><stop offset=".16" stop-color="#8f897c"/><stop offset="1" stop-color="#5a5650"/></linearGradient>';
+el('path',{d:'M0 14 L800 6 L800 100 L0 100 Z',fill:'url(#wg)'},wall);
+el('path',{d:'M0 14 L800 6',stroke:'#fff',opacity:.35,'stroke-width':1.2},wall);
+
+/* light keys: afternoon → golden → dusk, sampled continuously by scroll */
+const K=[ // top, mid, horizon, sea-top, sea-bottom, sun colour, sun y (0..1 of view), glow opacity, path opacity, light tint
+ {t:'#7fa9c4',m:'#b9cdd3',h:'#efe4cb',s1:'#3b7d98',s2:'#225a74',sun:'#fff3d6',y:.0,g:.55,p:.35,lt:'rgba(255,248,230,.0)'},
+ {t:'#88a8bd',m:'#c8cfc8',h:'#f2dcb4',s1:'#3a7690',s2:'#21546c',sun:'#ffe8bc',y:.18,g:.6,p:.45,lt:'rgba(255,236,200,.18)'},
+ {t:'#8c9fb3',m:'#d6c3a8',h:'#f4c98f',s1:'#386c84',s2:'#1f4c63',sun:'#ffd9a0',y:.36,g:.7,p:.6,lt:'rgba(255,214,160,.3)'},
+ {t:'#6f7c98',m:'#c99a86',h:'#f2a861',s1:'#35566c',s2:'#1b3a50',sun:'#ffc27a',y:.56,g:.85,p:.8,lt:'rgba(255,190,120,.42)'},
+ {t:'#2b3553',m:'#8c5a63',h:'#ec8a4e',s1:'#2a3d55',s2:'#152539',sun:'#ffb066',y:.7,g:.95,p:.9,lt:'rgba(242,161,69,.5)'},
+ {t:'#121f35',m:'#3d3550',h:'#c9653f',s1:'#1d2a40',s2:'#0f1a2b',sun:'#f29a52',y:.78,g:.6,p:.5,lt:'rgba(242,161,69,.35)'}
+];
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>{const A=hex(a),B=hex(b);return `rgb(${A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')})`};
+const lerp=(a,b,t)=>a+(b-a)*t;
+const sky=document.getElementById('sky'),sun=document.getElementById('sun'),seab=document.getElementById('seab'),path=document.getElementById('path'),horiz=document.getElementById('horiz'),wtop=document.getElementById('wtop');
+function paint(f){ // f in 0..1
+  const x=f*(K.length-1),i=Math.min(K.length-2,Math.floor(x)),t=x-i,a=K[i],b=K[i+1];
+  const top=mix(a.t,b.t,t),mid=mix(a.m,b.m,t),hor=mix(a.h,b.h,t);
+  sky.style.background=`linear-gradient(to bottom,${top} 0%,${mid} 45%,${hor} 72%)`;
+  seab.style.background=`linear-gradient(to bottom,${mix(a.s1,b.s1,t)},${mix(a.s2,b.s2,t)})`;
+  const sy=lerp(a.y,b.y,t);const sc=mix(a.sun,b.sun,t);
+  sun.style.background=`radial-gradient(closest-side,${sc} 0%,${sc.replace('rgb','rgba').replace(')',',.55)')} 12%,rgba(0,0,0,0) 100%)`;
+  sun.style.transform=`translate(-50%,${(sy*100-35).toFixed(2)}vh)`;sun.style.top='0';sun.style.opacity=lerp(a.g,b.g,t).toFixed(3);
+  path.style.background=`radial-gradient(18% 100% at 50% 0%,${sc.replace('rgb','rgba').replace(')',',.75)')},rgba(0,0,0,0)),repeating-linear-gradient(to bottom,rgba(255,255,255,0) 0 5px,${sc.replace('rgb','rgba').replace(')',',.12)')} 5px 6px)`;
+  path.style.opacity=lerp(a.p,b.p,t).toFixed(3);
+  horiz.style.background=hor;
+  light.style.background=`linear-gradient(to bottom,${a.lt} 0%,rgba(0,0,0,0) 60%)`;light.style.opacity=(t<.5?1:1);
+  hp.setAttribute('fill',mix('#9fb0b9','#1a2236',f));hb.setAttribute('fill',mix('#9fb0b9','#1a2236',f));nl.setAttribute('opacity',Math.max(0,(f-.45)/.55).toFixed(2));
+  wtop.setAttribute('stop-color',mix('#d9cdb6',hor.startsWith('rgb')?'#e9b27a':'#e9b27a',f));
+}
+
+let cur=-1;
+function setActive(i){if(i===cur)return;cur=i;arts.forEach((a,j)=>a.classList.toggle('on',j===i));mi.forEach((m,j)=>m.classList.toggle('on',j===i));ri.forEach((m,j)=>m.classList.toggle('on',j===i));
+  dots.forEach((d,j)=>{d.halo.setAttribute('opacity',j<=i?(j===i?.35:.12):0);d.c.setAttribute('fill',j<=i?'#f2a145':'rgba(246,239,226,.35)')})}
+function tick(){
+  const mid=innerHeight*(innerWidth<860?.62:.5);let best=0,bd=1e9;
+  const c=arts.map(a=>{const r=a.getBoundingClientRect();return r.top+r.height/2});
+  c.forEach((y,i)=>{const d=Math.abs(y-mid);if(d<bd){bd=d;best=i}});
+  setActive(best);
+  // continuous light: position between first and last project centres
+  const f=Math.min(1,Math.max(0,(mid-c[0])/(c[c.length-1]-c[0])));
+  paint(f);
+}
+let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;tick()})},{passive:true});
+addEventListener('resize',tick);tick();
+
+/* ambient: water and steam */
+if(!reduce){const turb=document.getElementById('turb'),st=document.getElementById('st');let t0=performance.now();
+  (function loop(now){const t=(now-t0)/1000;   st.setAttribute('transform',`translate(${(Math.sin(t*.9)*2.5).toFixed(2)} ${(-(t*14)%14).toFixed(2)})`);st.setAttribute('opacity',(.35+Math.sin(t*1.3)*.15).toFixed(2));
+   requestAnimationFrame(loop)})(t0)}
+</script>
+</body>
+</html>

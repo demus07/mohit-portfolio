@@ -1,0 +1,450 @@
+<!-- Direction 04: Ink line — Churchgate drawn in pen and brush on warm paper, the AC local across the lower third with one window lit sodium orange; scrolling dollies in until the window fills the page and he is there, chin on his fist, thinking. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1ead9;--paper2:#e9e0cb;--ink:#1d1a16;--ink2:#5b544a;--ink3:#8c8478;--acc:#e2782a;--acc-soft:#f2c38d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 -1.3 .78'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:300px}
+.serif{font-family:"Newsreader",Georgia,serif}
+h1,h2{font-family:"Newsreader",Georgia,serif;font-weight:400;letter-spacing:-.018em;line-height:.98;text-wrap:balance;font-optical-sizing:auto}
+p{text-wrap:pretty}
+a{color:inherit}
+.ilink{text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/100% 2px no-repeat;padding-bottom:.12em;transition:background-size .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.ilink:hover,.ilink:focus-visible{background-size:100% .5em}
+.cta{display:inline-flex;align-items:baseline;gap:.45em;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.45rem;text-decoration:none;color:var(--ink);position:relative;padding-bottom:.2em}
+.cta svg{position:absolute;left:-2%;bottom:-.25em;width:104%;height:.7em;overflow:visible}
+.cta svg path{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1)}
+.cta:hover svg path,.cta:focus-visible svg path{animation:redraw .8s cubic-bezier(.2,.7,.2,1)}
+.cta .arr{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cta:hover .arr,.cta:focus-visible .arr{transform:translateX(6px)}
+@keyframes redraw{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.intro{position:relative;height:480vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wash{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 72% at 0% 0%,var(--paper) 0 62%,rgba(241,234,217,0) 100%)}
+.copy{position:absolute;z-index:3;left:clamp(24px,5.4vw,96px);top:clamp(28px,9vh,96px);width:min(36rem,42vw)}
+h1{font-size:clamp(3.2rem,5.6vw,6rem);font-weight:300;white-space:nowrap}
+h1 em{font-style:italic;font-weight:300}
+.slot{position:relative;margin:1.1rem 0 1.3rem;min-height:4.9em;max-width:23rem}
+.line{font-size:clamp(1.02rem,1.2vw,1.16rem);line-height:1.5;color:var(--ink)}
+.note{position:absolute;left:0;top:0;font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.4rem,1.9vw,1.85rem);line-height:1.22;opacity:0}
+.note::before{content:"";position:absolute;left:-1.1rem;top:.55em;width:.42rem;height:.42rem;border-radius:50%;background:var(--acc)}
+#clouds{animation:drift 140s linear infinite}
+@keyframes drift{to{transform:translateX(-1440px)}}
+.strap{transform-box:fill-box;transform-origin:50% 0;animation:sway 5.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+#glint{animation:glint 14s linear infinite}
+@keyframes glint{from{transform:translateX(-500px)}to{transform:translateX(900px)}}
+.hint{position:absolute;left:clamp(24px,5.4vw,96px);bottom:28px;font-size:.92rem;color:var(--ink2);display:flex;gap:.6rem;align-items:center;transition:opacity .6s}
+.hint i{display:block;width:1px;height:28px;background:var(--ink2);transform-origin:top;animation:tick 2.4s ease-in-out infinite}
+@keyframes tick{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:720px){
+  .copy{left:22px;right:22px;top:26px;width:auto}
+  h1{font-size:clamp(2.8rem,13.5vw,3.8rem);white-space:normal}
+  .slot{margin:.9rem 0 1.1rem;min-height:6.4em}
+  .wash{background:linear-gradient(var(--paper) 0 30%,rgba(241,234,217,0) 44%)}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+<!-- direction: 04 ink line / opening -->
+<div class="grain"></div>
+<section class="intro" id="intro">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <!-- Mohit, ink line. Head 3/4 to viewer's left. -->
+<filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.2"/></filter>
+<pattern id="pinstripe" width="9" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(4)"><line x1="4" y1="0" x2="4" y2="40" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<pattern id="hairSide" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-62)"><rect width="5" height="2.6" fill="#1d1a16"/></pattern>
+<g id="m-hair">
+  <!-- short sides, cropped close: hatched -->
+  <path d="M234,160 C254,154 280,150 298,148 C300,170 294,190 280,204 C270,212 262,218 254,221 C258,207 262,195 262,187 C258,179 250,175 242,175 C240,183 240,192 241,201 C236,191 234,178 234,160 Z" fill="url(#hairSide)"/>
+  <path d="M298,150 C298,172 292,192 278,206 C270,213 262,218 254,221" fill="none" stroke="#1d1a16" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- the quiff: volume on top swept up and back -->
+  <path d="M152,148 C146,138 144,124 148,112 C150,102 156,94 166,90 C172,82 184,76 198,76 C214,72 234,74 252,80 C276,88 296,104 300,128 C302,140 300,150 298,152 C276,150 252,154 234,162 C226,156 218,150 208,147 C200,150 190,153 180,151 C170,149 160,148 152,148 Z" fill="#1d1a16"/>
+  <g fill="none" stroke="#f1ead9" stroke-linecap="round">
+    <path d="M166,104 C188,90 222,86 256,96" stroke-width="2.4"/>
+    <path d="M160,124 C184,110 222,106 266,116" stroke-width="1.5"/>
+    <path d="M244,128 C262,128 280,134 290,144" stroke-width="1.3"/>
+    <path d="M196,86 C212,82 230,82 246,86" stroke-width="1"/>
+  </g>
+  <path d="M164,92 C170,80 182,72 198,70 M186,78 C200,70 218,68 234,70 M150,112 C150,102 154,96 160,92" fill="none" stroke="#1d1a16" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<g id="m-face-base" fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+  <!-- skin, carried up under the hair -->
+  <path d="M152,150 L154,118 L260,112 L300,150 L264,200 L256,222 L240,204 Z" fill="#e4c6a2" stroke="none"/>
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240 L252,221 L254,184 L241,169 L234,165 C221,155 199,148 178,146 Z" fill="#e4c6a2" stroke="none"/>
+  <!-- neck -->
+  <path d="M184,274 C183,296 180,318 176,336 L274,336 C266,300 262,262 258,214 L252,221 Z" fill="#e4c6a2" stroke="none"/>
+  <path d="M184,274 C183,296 180,318 176,336" stroke-width="2.4"/>
+  <path d="M258,216 C262,252 266,292 272,334" stroke-width="2.6"/>
+  <!-- shadow under jaw on neck -->
+  <g stroke-width="1.1" opacity=".75"><path d="M196,292 L206,284 M202,300 L218,282 M208,304 L228,280 M210,306 L234,276 M220,308 L242,266 M230,306 L248,262 M240,300 L251,280"/></g>
+  <!-- profile contour -->
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227" stroke-width="2.6"/>
+  <path d="M146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240" stroke-width="2.6"/>
+  <!-- ear -->
+  <path d="M242,190 C252,178 268,184 267,204 C266,222 256,236 244,238" stroke-width="2.4" fill="#e4c6a2"/>
+  <path d="M250,198 C256,194 261,200 258,210 C256,216 252,220 249,222" stroke-width="1.4"/>
+  <!-- nostril -->
+  <path d="M140,219 C144,216 149,217 151,221" stroke-width="1.6"/>
+  <!-- cheek hatching on the far, shadow side -->
+  <g stroke-width="1" opacity=".7"><path d="M214,222 L226,208 M218,232 L232,214 M222,242 L236,224 M228,250 L240,234 M206,222 L214,212"/></g>
+  <path d="M131,190 C134,188 137,188 139,190" stroke-width="1.4"/>
+  <!-- eyebrow -->
+  <path d="M150,170 C160,163 174,162 188,167" stroke-width="3.4"/>
+  <!-- moustache, light -->
+  <g stroke-width="1.1" opacity=".85"><path d="M147,232 L149,236 M151,231 L153,236 M155,231 L157,236 M159,232 L161,236 M163,233 L164,236"/></g>
+</g>
+
+<g id="m-glasses" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- lower rims light -->
+  <path d="M148,180 C147,191 149,199 153,204 C165,207 182,207 192,203 C196,196 197,187 197,179" stroke="#8b847b" stroke-width="1.4"/>
+  <path d="M141,182 C134,182 129,182 127,182 C127,192 129,199 133,201 L139,201" stroke="#8b847b" stroke-width="1.2"/>
+  <!-- top rims dark -->
+  <path d="M146,179 C160,175 182,175 198,178" stroke="#1d1a16" stroke-width="4"/>
+  <path d="M141,181 C135,180 130,180 126,181" stroke="#1d1a16" stroke-width="3.4"/>
+  <!-- bridge and temple arm -->
+  <path d="M141,182 C143,180 145,180 147,181" stroke="#1d1a16" stroke-width="2"/>
+  <path d="M197,179 L243,188" stroke="#1d1a16" stroke-width="2.4"/>
+  <!-- glint -->
+  <path d="M184,184 L176,197 M189,185 L183,195" stroke="#1d1a16" stroke-width=".7" opacity=".35"/>
+</g>
+
+<symbol id="m-head-pensive" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- eye looking out, lid a touch low -->
+    <path d="M156,190 C161,186 169,185 176,188" stroke-width="2.4"/>
+    <path d="M158,195 C164,197 170,196 174,193" stroke-width="1" opacity=".6"/>
+    <circle cx="161.5" cy="191" r="2.8" fill="#1d1a16" stroke="none"/>
+    <!-- closed mouth -->
+    <path d="M145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256" stroke-width="2.4"/>
+    <path d="M144,243 C150,245 157,244 163,241" stroke-width="2"/>
+    <path d="M152,251 C155,252 158,251 160,250" stroke-width="1.1" opacity=".7"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<symbol id="m-head-smile" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- smiling eye, squint -->
+    <path d="M156,191 C162,185 170,185 177,190" stroke-width="2.6"/>
+    <path d="M159,195 C165,198 171,197 175,194" stroke-width="1.3"/>
+    <!-- open smile with teeth -->
+    <path d="M145,227 C144,231 143,234 144,237" stroke-width="2.4"/>
+    <path d="M143,238 L153,251 L147,258 L142,250 Z" fill="#e4c6a2" stroke="none"/>
+    <path d="M145,237 C155,241 167,240 177,232 C174,246 163,253 152,251 C148,249 145,244 145,237 Z" fill="#fbf7ee" stroke-width="2.2"/>
+    <path d="M147,241 C156,244 166,243 174,237" stroke-width=".9" opacity=".55"/>
+    <path d="M152,251 C149,252 147,254 146,256" stroke-width="2.4"/>
+    <!-- cheek lifted -->
+    <path d="M152,224 C162,226 172,230 178,236" stroke-width="1.4"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<pattern id="pinH" width="40" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)"><line x1="0" y1="4" x2="40" y2="4" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<symbol id="m-window" viewBox="-30 0 460 540" overflow="hidden">
+  <g transform="rotate(-4 200 290)"><use href="#m-head-pensive" width="400" height="400"/></g>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- torso -->
+    <path id="mw-torso" d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="url(#pinstripe)" stroke="none"/>
+    <g stroke-width="1" opacity=".5"><path d="M66,430 L96,400 M64,456 L104,416 M64,482 L110,436 M66,508 L114,460 M70,534 L118,486"/></g>
+    <!-- collar -->
+    <path d="M184,312 C176,328 180,346 198,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M264,306 C276,324 272,344 254,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M222,346 C224,400 228,470 232,544" stroke-width="1.6"/>
+    <!-- near upper arm, elbow down on the sill -->
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M330,450 C342,466 346,488 342,510 M356,410 C364,424 366,440 364,456" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M372,430 L390,414 M370,456 L394,436 M370,482 L396,460 M370,508 L396,486 M372,534 L396,512"/></g>
+    <!-- forearm: wrist to rolled cuff -->
+    <path d="M182,322 C206,316 222,318 230,326 C238,370 248,412 258,452 L210,466 C204,424 196,380 182,322 Z" fill="#e4c6a2" stroke="none"/>
+    <path d="M226,318 C236,364 246,410 258,452" stroke-width="2.5"/>
+    <path d="M190,340 C196,384 204,426 210,466" stroke-width="2.5"/>
+    <g stroke-width="1" opacity=".55"><path d="M240,372 L230,384 M244,392 L234,404 M248,412 L236,426 M252,432 L240,446"/></g>
+    <!-- rolled cuff -->
+    <path d="M204,462 C222,452 246,446 262,446 C268,458 270,472 270,486 C252,488 228,494 208,504 C204,490 202,476 204,462 Z" fill="#fbf8f1" stroke-width="2.4"/>
+    <path d="M206,478 C226,470 248,464 268,464" stroke-width="1.2"/>
+    <!-- sleeve to the elbow -->
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="#f8f4ec" stroke="none"/>
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M208,504 C210,516 212,530 214,544 M270,486 C276,506 282,526 286,544" stroke-width="2.5"/>
+    <!-- fist under the chin: fingers curled toward us, thumb along the top -->
+    <path d="M154,276 C176,272 198,273 214,280 C224,292 226,314 220,330 C212,338 198,342 184,342 C172,344 160,342 156,334 C146,332 142,322 148,316 C140,312 140,300 147,296 C140,290 142,280 154,276 Z" fill="#e4c6a2" stroke-width="2.5"/>
+    <path d="M147,296 C158,295 168,297 178,300 M148,316 C158,315 168,317 178,320 M156,334 C164,333 172,334 180,337" stroke-width="1.6"/>
+    <path d="M178,284 C181,300 182,320 180,340" stroke-width="1.2" opacity=".75"/>
+    <path d="M222,300 C206,293 188,290 172,293 C166,295 166,300 172,302 C188,303 206,306 222,313" fill="#e4c6a2" stroke-width="1.8"/>
+    <g stroke-width="1" opacity=".55"><path d="M196,318 L206,308 M198,330 L216,312 M210,336 L222,324"/></g>
+  </g>
+</symbol>
+
+<symbol id="m-back" viewBox="20 40 420 520" overflow="hidden">
+  <use href="#m-head-smile" width="400" height="400"/>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="url(#pinH)" stroke="none"/>
+    <!-- collar band wrapping the neck -->
+    <path d="M192,302 C208,284 250,276 294,288 C296,292 296,296 294,300 C258,292 224,296 198,312 C194,309 192,306 192,302 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M136,356 C210,344 300,344 372,356" stroke-width="1.3"/>
+    <path d="M262,350 L266,384" stroke-width="1.3"/>
+    <path d="M350,324 C364,376 364,440 356,564" stroke-width="1.8"/>
+    <path d="M136,344 C120,396 116,470 122,564" stroke-width="1.8"/>
+    <path d="M300,412 C320,428 334,452 338,482 M214,432 C232,444 246,466 250,492 M180,384 C196,394 206,408 210,424 M286,492 C300,504 308,522 310,548" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M362,396 L378,382 M362,420 L384,402 M362,444 L386,424 M360,468 L388,448 M360,492 L388,472 M358,516 L388,496 M358,540 L387,520"/></g>
+  </g>
+</symbol>
+
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+        <clipPath id="winClip"><rect x="660" y="181" width="680" height="519" rx="26"/></clipPath>
+      </defs>
+      <g id="cam">
+        <g id="wide">
+          <g id="clouds"></g>
+          <g id="city" fill="none" stroke="#8c8478" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="canopy"></g>
+          <g id="wires"></g>
+          <g id="train"></g>
+          <g id="ground"></g>
+          <g id="board"></g>
+        </g>
+        <!-- the window, drawn at close scale, placed into the world at the lit window -->
+        <g id="close">
+          <g id="surround"></g>
+          <g clip-path="url(#winClip)">
+            <rect x="640" y="160" width="720" height="560" fill="#f3cf9f"/>
+            <g id="interior"></g>
+            <g filter="url(#ink)"><use href="#m-window" x="806" y="150" width="580" height="680"/></g>
+            <g id="glint" opacity=".55"></g>
+          </g>
+          <g id="gasket"></g>
+        </g>
+      </g>
+    </svg>
+    <div class="wash"></div>
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <div class="slot">
+        <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span class="arr">→</span><svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2,9 C40,4 80,12 120,7 C150,4 176,9 198,6"/></svg></a>
+    </div>
+  </div>
+</section>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+const f1=n=>Math.round(n*10)/10;
+/* a hand-drawn segment: slight bow in the middle */
+function wob(x1,y1,x2,y2,r,j=1){const mx=(x1+x2)/2+(r()-.5)*j*2,my=(y1+y2)/2+(r()-.5)*j*2;return`M${f1(x1)},${f1(y1)}Q${f1(mx)},${f1(my)} ${f1(x2)},${f1(y2)}`}
+/* parallel hatching inside a clip */
+let _hid=0;
+function hatch(parent,o){const{box:[x,y,w,h],angle=45,gap=6,width=1,color='#1d1a16',op=1,seed=1,jit=.8,trim=0,clipPath,clipRect}=o;const r=rng(seed);
+  const g=el('g',{},parent);
+  let cid=o.clip;
+  if(!cid){cid='hc'+(++_hid);const defs=parent.ownerSVGElement?parent.ownerSVGElement.querySelector('defs'):parent.querySelector('defs');const cp=el('clipPath',{id:cid},defs);if(clipPath)el('path',{d:clipPath},cp);else el('rect',{x,y,width:w,height:h,rx:o.rx||0},cp)}
+  g.setAttribute('clip-path',`url(#${cid})`);
+  const a=angle*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,cx=x+w/2,cy=y+h/2,L=Math.hypot(w,h)/2+4;
+  let d='';for(let t=-L;t<=L;t+=gap*(.85+r()*.3)){const ox=cx+nx*t,oy=cy+ny*t;const l1=L*(1-trim*r()),l2=L*(1-trim*r());d+=wob(ox-dx*l1,oy-dy*l1,ox+dx*l2,oy+dy*l2,r,jit)}
+  el('path',{d,fill:'none',stroke:color,'stroke-width':width,opacity:op,'stroke-linecap':'round'},g);return g}
+function cross(parent,o){hatch(parent,o);return hatch(parent,Object.assign({},o,{angle:(o.angle||45)+90,seed:(o.seed||1)+7,clip:o._clip}))}
+function P(parent,d,o={}){return el('path',Object.assign({d,fill:'none',stroke:'#1d1a16','stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'},o),parent)}
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const smooth=(a,b,v)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)};
+function progressOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+
+const svg=document.getElementById('scene');
+const $=id=>document.getElementById(id);
+const INK='#1d1a16';
+/* ---------- clouds: long dry-brush strokes, two copies so they wrap ---------- */
+(()=>{const g=$('clouds'),r=rng(3);
+  const banks=[[160,150,.9],[520,110,.7],[980,170,1],[1260,120,.6]];
+  for(const off of [0,1440])for(const[bx,by,sc]of banks){
+    for(let i=0;i<6;i++){const x=off+bx+(r()-.3)*60*sc,y=by+i*7*sc+r()*3,l=(110+r()*170)*sc;
+      P(g,wob(x,y,x+l,y+(r()-.5)*2,r,1.4),{stroke:'#8c8478','stroke-width':1.1,opacity:.75-i*.08})}}})();
+/* ---------- far city: Western Railway HQ and Eros, in grey ink ---------- */
+(()=>{const g=$('city');
+  const d=[
+  // HQ central tower and dome
+  'M676,500V318H764V500','M672,318H768','M680,318C680,276 700,254 720,248C740,254 760,276 760,318','M700,318C700,284 708,262 720,250','M740,318C740,284 732,262 720,250','M712,248V232H728V248','M720,232V200','M716,212H724',
+  'M704,404V360Q720,336 736,360V404','M704,446V420Q720,404 736,420V446',
+  // wings
+  'M540,500V412H676','M764,412H900V500','M540,412L540,372L550,356L560,372V412','M890,412V372L900,356L910,372','M900,372V412',
+  'M600,412L630,384L660,412','M780,412L810,384L840,412','M540,428H676','M764,428H900',
+  // Eros: curved corner, stepped tower
+  'M1060,500V446Q1060,406 1100,406H1330V500','M1160,406V372H1250V406','M1172,372V344H1238V372','M1186,344V318H1224V344','M1205,318V296',
+  'M1060,452H1330','M1064,474H1330','M1180,388V406M1194,388V406M1208,388V406M1222,388V406M1236,388V406','M1190,360V372M1205,358V372M1220,360V372',
+  // a deco block between
+  'M950,500V440Q950,430 960,430H1040V500','M950,456H1040M950,474H1040'];
+  for(const p of d)P(g,p,{stroke:'#8c8478','stroke-width':1.3});
+  // arched windows along the wings
+  for(let x=552;x<670;x+=20)P(g,`M${x},476V454Q${x+6},444 ${x+12},454V476`,{stroke:'#8c8478','stroke-width':1});
+  for(let x=772;x<890;x+=20)P(g,`M${x},476V454Q${x+6},444 ${x+12},454V476`,{stroke:'#8c8478','stroke-width':1});
+  hatch(g,{box:[744,318,20,182],angle:80,gap:3.4,width:.8,color:'#8c8478',seed:5});
+  hatch(g,{box:[1250,406,80,94],angle:70,gap:4,width:.8,color:'#8c8478',seed:6});
+  hatch(g,{clipPath:'M740,318C740,284 732,262 720,250C740,254 760,276 760,318Z',box:[720,248,40,70],angle:75,gap:3,width:.8,color:'#8c8478',seed:8});
+})();
+/* ---------- platform canopy on green steel columns ---------- */
+(()=>{const g=$('canopy'),r=rng(11);
+  el('rect',{x:-20,y:360,width:1480,height:20,fill:'#f1ead9'},g);
+  P(g,'M-20,360H1460',{'stroke-width':2.4});P(g,'M-20,380H1460',{'stroke-width':1.8});
+  hatch(g,{box:[-20,361,1480,18],angle:90,gap:5,width:.9,color:INK,op:.7,seed:12});
+  for(let x=40;x<1460;x+=150){P(g,wob(x,380,x,502,r,.4),{'stroke-width':3});
+    P(g,`M${x-22},380Q${x-4},386 ${x},404M${x+22},380Q${x+4},386 ${x},404`,{'stroke-width':1.6});}
+})();
+/* ---------- overhead line and pantograph ---------- */
+(()=>{const g=$('wires');
+  P(g,'M-20,430H1460',{'stroke-width':1.2});P(g,'M-20,416C300,424 600,424 900,416S1300,424 1460,416',{'stroke-width':.9});
+  for(let x=0;x<1440;x+=48)P(g,`M${x},419V430`,{'stroke-width':.7});
+  P(g,'M684,474H744M692,474L714,452L700,432M736,474L714,452M690,431H720M706,431V436',{'stroke-width':1.6});el('circle',{cx:714,cy:452,r:2.4,fill:INK},g);
+})();
+/* ---------- the AC local ---------- */
+const W={x:1026,y:569,w:76,h:58};
+(()=>{const g=$('train');let s=20;
+  const cars=[40,640,1240];
+  cars.forEach((x0,ci)=>{const L=592,c=el('g',{},g);
+    // AC units on the roof
+    for(const ax of [120,370]){el('rect',{x:x0+ax,y:474,width:110,height:15,rx:5,fill:'#f1ead9',stroke:INK,'stroke-width':1.6},c);
+      hatch(c,{box:[x0+ax+8,477,94,9],angle:90,gap:3,width:.8,seed:s++})}
+    // body (cab nose on the first car)
+    const body=ci===0?`M${x0+40},750V560C${x0+40},524 ${x0+52},504 ${x0+82},498H${x0+L-8}Q${x0+L},498 ${x0+L},508V750Z`:`M${x0},750V508Q${x0},498 ${x0+10},498H${x0+L-10}Q${x0+L},498 ${x0+L},508V750Z`;
+    el('path',{d:body,fill:'#f6f1e6'},c);
+    // blue band with a thin red line above it
+    const bx=ci===0?x0+40:x0;
+    hatch(c,{box:[bx,618,x0+L-bx,30],angle:2,gap:2.3,width:1,seed:s++,clipPath:`M${bx},618H${x0+L}V648H${bx}Z`});
+    P(c,`M${bx},613H${x0+L}`,{'stroke-width':1});
+    // navy skirt
+    hatch(c,{box:[bx,700,x0+L-bx,50],angle:30,gap:2.6,width:1,seed:s++});hatch(c,{box:[bx,700,x0+L-bx,50],angle:-40,gap:3.2,width:.9,seed:s++});
+    P(c,body,{'stroke-width':2.4});P(c,`M${bx},520H${x0+L}`,{'stroke-width':1.1,opacity:.7});P(c,`M${bx},700H${x0+L}`,{'stroke-width':1.4});
+    // doors (closed, sliding)
+    for(const dx of [40,270,500]){if(ci===0&&dx===40)continue;const x=x0+dx;
+      el('rect',{x,y:512,width:64,height:236,fill:'#f6f1e6'},c);
+      hatch(c,{box:[x,618,64,30],angle:2,gap:2.3,width:1,seed:s++});
+      hatch(c,{box:[x,700,64,48],angle:30,gap:2.6,width:1,seed:s++});
+      P(c,`M${x},748V512H${x+64}V748M${x+32},512V748`,{'stroke-width':2});
+      for(const wx of [x+8,x+38]){el('rect',{x:wx,y:530,width:18,height:72,rx:4,fill:'#d9d1c0'},c);hatch(c,{box:[wx,530,18,72],angle:62,gap:3,width:.9,color:'#3b362f',seed:s++,rx:4});P(c,`M${wx+4},530h10a4,4 0 0 1 4,4v64a4,4 0 0 1 -4,4h-10a4,4 0 0 1 -4,-4v-64a4,4 0 0 1 4,-4Z`,{'stroke-width':1.4})}}
+    // sealed tinted windows
+    const wins=ci===0?[150,228,346,424]:[114,192,340,418];
+    for(const wx0 of wins){const x=x0+wx0,y=540;if(ci===1&&wx0===340)continue;
+      el('rect',{x,y,width:76,height:58,rx:8,fill:'#cfc6b3'},c);
+      hatch(c,{box:[x,y,76,58],angle:58,gap:2.6,width:1,color:'#2f2a24',seed:s++,rx:8});
+      el('rect',{x,y,width:76,height:58,rx:8,fill:'none',stroke:INK,'stroke-width':2.2},c);
+      P(c,`M${x+12},${y+46}L${x+34},${y+10}`,{stroke:'#f1ead9','stroke-width':2.4,opacity:.6})}
+    if(ci===0){// cab side window and nose shading
+      el('rect',{x:x0+66,y:540,width:46,height:52,rx:8,fill:'#cfc6b3'},c);hatch(c,{box:[x0+66,540,46,52],angle:58,gap:2.6,width:1,color:'#2f2a24',seed:s++,rx:8});
+      el('rect',{x:x0+66,y:540,width:46,height:52,rx:8,fill:'none',stroke:INK,'stroke-width':2},c);
+      el('circle',{cx:x0+58,cy:676,r:5,fill:'#f2c38d',stroke:INK,'stroke-width':1.4},c);}
+    // underframe and bogies
+    el('rect',{x:x0+150,y:750,width:300,height:18,fill:INK},c);
+    for(const bx2 of [x0+60,x0+L-140]){P(c,`M${bx2},752H${bx2+90}V768H${bx2}Z`,{'stroke-width':2,fill:'#2b2722'});
+      for(const wx of [bx2+20,bx2+70])el('circle',{cx:wx,cy:770,r:12,fill:'#f1ead9',stroke:INK,'stroke-width':2},c)}
+    if(ci<2)el('rect',{x:x0+L,y:512,width:8,height:236,fill:'#2b2722'},c);
+  });
+  // a warm spill of light from the one lit window onto the band below
+  el('rect',{x:W.x-W.w/2-4,y:W.y-W.h/2-2,width:W.w+8,height:W.h+30,rx:12,fill:'#e2782a',opacity:.3,filter:'url(#soft)'},g);
+})();
+/* ---------- track and our platform edge ---------- */
+(()=>{const g=$('ground'),r=rng(31);
+  P(g,'M-20,782H1460',{'stroke-width':2.2});
+  for(let i=0;i<260;i++){const x=r()*1460,y=790+r()*36;P(g,`M${f1(x)},${f1(y)}l${f1(2+r()*4)},${f1((r()-.5)*2)}`,{'stroke-width':1,opacity:.5})}
+  el('rect',{x:-20,y:832,width:1480,height:80,fill:'#f1ead9'},g);
+  P(g,'M-20,832H1460',{'stroke-width':2.6});
+  hatch(g,{box:[-20,836,1480,18],angle:90,gap:7,width:2.2,color:'#c98a3c',seed:32});
+  P(g,'M-20,856H1460',{'stroke-width':1});
+})();
+/* ---------- station board, Marathi and English ---------- */
+(()=>{const g=$('board');
+  P(g,'M1160,-10V92M1300,-10V92',{'stroke-width':2});
+  el('rect',{x:1110,y:92,width:240,height:96,rx:4,fill:'#f2c38d',stroke:INK,'stroke-width':2.4},g);
+  const t1=el('text',{x:1230,y:138,'text-anchor':'middle','font-family':'"Tiro Devanagari Marathi",serif','font-size':34,fill:INK},g);t1.textContent='चर्चगेट';
+  const t2=el('text',{x:1230,y:174,'text-anchor':'middle','font-family':'"Hanken Grotesk",sans-serif','font-weight':600,'font-size':22,'letter-spacing':4,fill:INK},g);t2.textContent='CHURCHGATE';
+})();
+/* ---------- close-up: the coach wall round the window ---------- */
+(()=>{const g=$('surround'),r=rng(41);
+  el('rect',{x:-4000,y:-3000,width:9000,height:7000,fill:'#f6f1e6'},g);
+  // the lines of the wall at close scale
+  P(g,'M560,30H5000',{'stroke-width':3,opacity:.6});
+  P(g,'M-4000,748H5000',{'stroke-width':3});
+  hatch(g,{box:[-1200,756,4000,110],angle:2,gap:7,width:3,seed:42});
+  P(g,'M-4000,872H5000',{'stroke-width':3});
+  // the window next along, tinted
+  el('rect',{x:1394,y:181,width:680,height:519,rx:26,fill:'#cfc6b3'},g);
+  hatch(g,{box:[1394,181,680,519],angle:58,gap:8,width:2.4,color:'#2f2a24',seed:44,rx:26});
+  el('rect',{x:1382,y:169,width:704,height:543,rx:34,fill:'none',stroke:INK,'stroke-width':2.2},g);
+  el('rect',{x:1394,y:181,width:680,height:519,rx:26,fill:'none',stroke:INK,'stroke-width':6},g);
+  // rivet lines
+  for(let x=640;x<2400;x+=36){el('circle',{cx:x,cy:118,r:2.4,fill:INK,opacity:.5},g);}
+  const gk=$('gasket');
+  el('rect',{x:660,y:181,width:680,height:519,rx:26,fill:'none',stroke:INK,'stroke-width':6},gk);
+  el('rect',{x:648,y:169,width:704,height:543,rx:34,fill:'none',stroke:INK,'stroke-width':2.2},gk);
+})();
+/* ---------- inside the coach ---------- */
+(()=>{const g=$('interior'),r=rng(51);
+  // far window across the aisle, the platform soft beyond
+  el('rect',{x:640,y:222,width:330,height:250,rx:22,fill:'#f8e6c9'},g);
+  P(g,'M640,222h308a22,22 0 0 1 22,22v206a22,22 0 0 1 -22,22h-308',{'stroke-width':2.6});
+  for(let x=690;x<960;x+=86)P(g,wob(x,250,x,470,r,.6),{stroke:'#a37b4e','stroke-width':2.2,opacity:.6});
+  P(g,'M640,262H970',{stroke:'#a37b4e','stroke-width':2.4,opacity:.6});
+  // luggage rack and grab rail
+  P(g,'M640,196H1360',{'stroke-width':3});P(g,'M640,206H1360',{'stroke-width':1.4});
+  hatch(g,{box:[640,160,720,34],angle:90,gap:9,width:1.4,seed:52,op:.6});
+  for(const [x,d] of [[700,0],[790,1.3],[880,2.1]]){const s=el('g',{class:'strap',style:`animation-delay:-${d}s`},g);
+    P(s,`M${x},206V250`,{'stroke-width':2.4});el('path',{d:`M${x},250c-14,0 -18,14 -18,24c0,14 8,22 18,22s18,-8 18,-22c0,-10 -4,-24 -18,-24Z`,fill:'none',stroke:INK,'stroke-width':4},s)}
+  // seat back behind him
+  el('path',{d:'M1050,700V420Q1050,380 1090,380H1360V700Z',fill:'#e9cfa6'},g);
+  P(g,'M1050,700V420Q1050,380 1090,380H1360',{'stroke-width':2.6});
+  hatch(g,{clipPath:'M1050,700V420Q1050,380 1090,380H1360V700Z',box:[1050,380,310,320],angle:95,gap:6,width:1.1,seed:53,op:.7});
+  // a wash of shade on the right
+  hatch(g,{box:[1240,200,120,500],angle:70,gap:5,width:1,seed:54,op:.45});
+  // glints across the glass, drifting
+  const gl=$('glint');P(gl,'M700,760L980,120M760,760L1040,120',{stroke:'#fffaf0','stroke-width':14,opacity:.35});P(gl,'M820,760L1100,120',{stroke:'#fffaf0','stroke-width':4,opacity:.5});
+})();
+/* ---------- camera ---------- */
+const cam=$('cam'),close=$('close'),sur=$('surround'),wide=$('wide'),line=$('line'),note=$('note'),intro=$('intro');
+const K=W.w/680;
+close.setAttribute('transform',`translate(${W.x},${W.y}) scale(${K}) translate(-1000,-440.5)`);
+let mobile,sEnd,T0,T1;
+function layout(){mobile=innerWidth<720;
+  const asp=innerWidth/innerHeight;
+  if(mobile){const vw=900*asp;sEnd=(vw*.88)/W.w;T0={x:720,y:600};T1={x:720,y:900*.66}}
+  else{sEnd=680/W.w*Math.min(1,asp/1.6);T0={x:W.x,y:W.y};T1={x:1000,y:450}}
+}
+layout();addEventListener('resize',()=>{layout();last=-1;frame()});
+let last=-1;
+function frame(){const p=RM?1:progressOf(intro);if(Math.abs(p-last)<1e-4)return;last=p;
+  const e=smooth(.03,.74,p);const s=Math.pow(sEnd,e);const m=ease(e);
+  const tx=T0.x+(T1.x-T0.x)*m,ty=T0.y+(T1.y-T0.y)*m;
+  cam.setAttribute('transform',`translate(${f1(tx)},${f1(ty)}) scale(${s.toFixed(4)}) translate(${-W.x},${-W.y})`);
+  const so=smooth(1.9,3.6,s);sur.setAttribute('opacity',so.toFixed(3));wide.style.display=so>=.999?'none':'';
+  const n=smooth(.8,.9,p);note.style.opacity=n;line.style.opacity=1-smooth(.76,.84,p);
+  note.style.transform=`translateY(${(1-n)*8}px)`;
+}
+function loop(){frame();requestAnimationFrame(loop)}loop();
+</script>
+</body>
+</html>

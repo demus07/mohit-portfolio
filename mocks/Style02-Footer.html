@@ -1,0 +1,315 @@
+<!-- Direction 02: Photo collage — Siddhivinayak after dark, cut from cream, tan and gold paper: the cluster of banded spires around the gold stepped shikhara, the orange dome over the door, marigold strung across the top; scroll floodlights it and hoists the saffron flag while the invitation waits on torn paper. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footer · Photo collage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Serif:ital@0;1&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --paper-hi:#f7f2e7; --news:#e6dfcf; --ink:#1b2230; --soft:rgb(27 34 48 / .68);
+  --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145; --tape:rgb(238 228 200 / .74);
+  --serif:"Instrument Serif", Georgia, serif; --sans:"Archivo", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .55 -.08'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.tape{position:absolute;width:110px;height:30px;background:
+  repeating-linear-gradient(90deg,rgb(255 255 255 / .12) 0 2px,transparent 2px 7px),var(--tape);
+  clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 24%,96% 38%,100% 52%,96% 66%,100% 80%,96% 92%,100% 100%,0 100%,4% 88%,0 76%,4% 62%,0 48%,4% 34%,0 20%);
+  mix-blend-mode:multiply;z-index:3}
+.reg{position:fixed;width:26px;height:26px;z-index:51;pointer-events:none;opacity:.5}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+.reg::before{left:12px;top:0;width:1px;height:26px}.reg::after{top:12px;left:0;height:1px;width:26px}
+.reg i{position:absolute;inset:6px;border:1px solid var(--ink);border-radius:50%}
+.reg.tl{top:16px;left:16px}.reg.tr{top:16px;right:16px}.reg.bl{bottom:16px;left:16px}.reg.br{bottom:16px;right:16px}
+.serif{font-family:var(--serif);font-weight:400}
+.ring{position:absolute;width:150px;height:150px;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(circle,transparent 58%,rgb(150 92 40 / .16) 61%,rgb(150 92 40 / .34) 64%,rgb(150 92 40 / .1) 67%,transparent 70%);
+  -webkit-mask:radial-gradient(circle at 70% 30%,transparent 18%,#000 42%)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+html,body{background:var(--navy)}
+.grain{opacity:.42;mix-blend-mode:soft-light}
+.reg::before,.reg::after{background:#f3e7d2}.reg i{border-color:#f3e7d2}
+.scroller{height:175vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#bg{position:absolute;inset:0;width:100%;height:100%}
+.garland{transform-box:view-box;animation:sway 7s ease-in-out infinite alternate}
+.garland.b{animation-duration:9s;animation-delay:-3s}
+@keyframes sway{from{transform:rotate(-.5deg)}to{transform:rotate(.5deg)}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame 1.6s ease-in-out infinite alternate}
+.flame:nth-of-type(2n){animation-duration:1.9s}
+@keyframes flame{from{transform:scaleY(.86) skewX(-3deg)}to{transform:scaleY(1.08) skewX(3deg)}}
+
+.copy{position:absolute;z-index:10;left:clamp(20px,5vw,80px);top:clamp(48px,8vh,96px);width:min(560px,42vw);color:#f6ecd9}
+.copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(46px,min(5.4vw,8.4vh),84px);line-height:.98;letter-spacing:-.015em;margin:0 0 16px;max-width:12ch;text-wrap:balance}
+.copy .line{margin:0 0 clamp(18px,3vh,30px);max-width:40ch;font-size:clamp(16px,1.3vw,19px);color:rgb(246 236 217 / .82);font-variation-settings:"wdth" 92}
+.write{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:clamp(18px,1.5vw,22px);background:var(--sodium);color:#1b1408;padding:12px 22px 12px 20px;transform:rotate(-1.5deg);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 64%,4% 56%,0 48%);transition:transform .35s}
+.write:hover,.write:focus-visible{transform:rotate(0) translateY(-2px)}
+.write .ar{transition:transform .35s}.write:hover .ar{transform:translateX(5px)}
+.mail{display:block;margin:12px 0 0 4px;font-size:16px;color:rgb(246 236 217 / .8);text-decoration:none;width:max-content}
+.mail:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--sodium);text-underline-offset:4px}
+.belief{position:relative;margin:clamp(20px,4vh,40px) 0 clamp(16px,3vh,28px);background:#f8f1e2;color:var(--ink);padding:clamp(18px,2.6vh,26px) 26px clamp(16px,2.4vh,22px);max-width:460px;transform:rotate(.8deg);
+  clip-path:polygon(0 2%,9% 0,22% 2%,36% 0,50% 2%,64% 0,78% 2%,90% 0,100% 2%,99% 50%,100% 98%,86% 100%,70% 98%,54% 100%,38% 98%,22% 100%,8% 98%,0 100%,1% 50%)}
+.belief q{display:block;font-family:var(--serif);font-size:clamp(21px,min(1.8vw,3vh),27px);line-height:1.2;quotes:"“" "”"}
+.belief p{margin:10px 0 0;font-size:15.5px;color:var(--soft);max-width:40ch}
+.belief .tape{top:6px;right:24px;width:84px;transform:rotate(6deg)}
+.clock{margin:0 0 12px;font-size:16px;color:rgb(246 236 217 / .85)}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15.5px;font-weight:600;margin-bottom:12px}
+.links a{text-decoration:none;color:#f6ecd9;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0 2px no-repeat;transition:background-size .35s}
+.links a:hover,.links a:focus-visible{background-size:100% 2px}
+.copyr{font-size:14px;color:rgb(246 236 217 / .6)}
+.shree{position:absolute;z-index:7;background:#e8742c;color:#2a1206;font-family:"Tiro Devanagari Marathi",serif;font-size:clamp(22px,2vw,30px);padding:10px 20px 6px;transform:rotate(-4deg);
+  clip-path:polygon(0 4%,8% 0,20% 3%,34% 0,48% 4%,62% 0,76% 3%,90% 0,100% 4%,98% 50%,100% 96%,86% 100%,70% 96%,54% 100%,38% 96%,22% 100%,8% 96%,0 100%,2% 50%)}
+
+@media (max-width:860px){
+  .scroller{height:auto}
+  .stage{position:relative;height:auto;overflow:visible;display:flex;flex-direction:column}
+  .copy{position:relative;left:auto;top:auto;width:auto;padding:64px 20px 0;order:1}
+  #bg{position:relative;order:2;height:auto;aspect-ratio:390/520;margin-top:20px}
+  .shree{display:none}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<span class="reg tl"><i></i></span><span class="reg tr"><i></i></span><span class="reg bl"><i></i></span><span class="reg br"><i></i></span>
+<div class="scroller" id="scroller">
+ <div class="stage" id="stage">
+  <svg id="bg" viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg" aria-label="Shree Siddhivinayak Temple, Prabhadevi, at night">
+   <defs>
+    <pattern id="dG" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><circle cx="3" cy="3" r="1.9" fill="#f2b04a"/></pattern>
+    <pattern id="dGs" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><circle cx="2.5" cy="2.5" r="1" fill="#fff0c2"/></pattern>
+    <pattern id="dB" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2" cy="2" r="1.15" fill="#3a2214"/></pattern>
+    <pattern id="dN" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="1.3" fill="#0a1424"/></pattern>
+    <radialGradient id="halo"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+    <mask id="haloM" maskContentUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5" fill="url(#halo)"/></mask>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f6cf6a"/><stop offset=".55" stop-color="#e2a83f"/><stop offset="1" stop-color="#9c6a24"/></linearGradient>
+   </defs>
+   <g id="sky"></g>
+   <g id="city"></g>
+   <g id="flood" opacity=".25"><ellipse cx="1080" cy="430" rx="420" ry="360" fill="url(#dG)" mask="url(#haloM)" opacity=".55"/></g>
+   <g id="temple" transform="translate(780 168)"></g>
+   <g id="street"></g>
+   <g id="garlands"></g>
+  </svg>
+  <div class="shree" id="shree">श्री सिद्धिविनायक</div>
+  <div class="copy">
+   <h2>Got something to build?</h2>
+   <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+   <a class="write" href="mailto:mailmohitbagri@gmail.com">Write to me <span class="ar">→</span></a>
+   <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+   <div class="belief"><span class="tape"></span>
+    <q>If you believe you can make it, you will. The rest is trusting God and doing the work.</q>
+    <p>Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+   </div>
+   <p class="clock" id="clock">It's in Mumbai.</p>
+   <nav class="links" aria-label="Elsewhere">
+    <a href="https://github.com/Mohit-Bagri" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://leetcode.com/u/mailmohitbagri/" target="_blank" rel="noopener">LeetCode</a>
+    <a href="https://www.instagram.com/mohit_.bagri/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+   </nav>
+   <div class="copyr">© 2026 Mohit Bagri</div>
+  </div>
+ </div>
+</div>
+<!-- direction: Style02 Footer, photo collage -->
+<script>/* collage kit: seeded randomness and torn-paper edges */
+const KIT = (() => {
+  const rng = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+  // torn rectangle path: edges listed in `sides` are torn, others straight
+  function torn(x, y, w, h, o = {}) {
+    const amp = o.amp ?? 3, step = o.step ?? 9, r = rng(o.seed ?? 7), sides = o.sides ?? "tblr";
+    const pts = [];
+    const edge = (x0, y0, x1, y1, t, nx, ny) => {
+      const len = Math.hypot(x1 - x0, y1 - y0), n = Math.max(1, Math.round(len / step));
+      for (let i = 0; i < n; i++) {
+        const f = i / n, j = t ? (r() - .5) * 2 * amp + (r() < .12 ? amp * 1.6 : 0) : 0;
+        pts.push([x0 + (x1 - x0) * f + nx * j, y0 + (y1 - y0) * f + ny * j]);
+      }
+    };
+    edge(x, y, x + w, y, sides.includes("t"), 0, 1);
+    edge(x + w, y, x + w, y + h, sides.includes("r"), -1, 0);
+    edge(x + w, y + h, x, y + h, sides.includes("b"), 0, -1);
+    edge(x, y + h, x, y, sides.includes("l"), 1, 0);
+    return "M" + pts.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") + "Z";
+  }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return { rng, torn, clamp, seg, ease, reduce };
+})();
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const { torn, rng, clamp, seg, ease } = KIT;
+
+/* night sky and Prabhadevi's blocks */
+$("sky").innerHTML = [[0, "#0b1626"], [210, "#0f1d33"], [420, "#15253f"]]
+  .map(([y, c], i) => `<path d="${torn(-30, y, 1500, 920 - y, { amp: 2.5, step: 11, seed: 500 + i, sides: "t" })}" fill="${c}"/>`).join("")
+  + `<rect width="1440" height="420" fill="url(#dN)" opacity=".4"/>`;
+(function () {
+  const r = rng(77);
+  let s = "";
+  const blocks = [[700, 300, 120], [800, 420, 90], [1350, 330, 140], [1250, 400, 120], [1440, 280, 110]];
+  blocks.forEach(([x, y, w], i) => {
+    s += `<rect x="${x - w / 2}" y="${y}" width="${w}" height="${900 - y}" fill="${i % 2 ? "#17243c" : "#1b2943"}"/>`;
+    for (let f = 0; f < 14; f++) for (let k = 0; k < Math.floor(w / 24); k++) if (r() > .7)
+      s += `<rect class="cw" x="${x - w / 2 + 8 + k * 24}" y="${y + 14 + f * 26}" width="7" height="5" fill="#f2b45f" opacity="0" data-t="${r()}"/>`;
+  });
+  $("city").innerHTML = s;
+})();
+
+/* ---------- the temple, cut from paper ---------- */
+(function () {
+  const CREAM = "#efdcc0", TAN = "#d6b386", BROWN = "#8f5d3b", DARK = "#3e2418", PINK = "#ecd2bd";
+  let s = "";
+  // multi-storey base, cream-pink stone
+  s += `<rect x="70" y="398" width="460" height="330" fill="${PINK}"/>
+        <rect x="300" y="398" width="230" height="330" fill="url(#dB)" opacity=".22"/>`;
+  [452, 520, 588, 656].forEach((y, f) => {
+    s += `<rect x="62" y="${y - 8}" width="476" height="9" fill="${TAN}"/><rect x="62" y="${y + 1}" width="476" height="3" fill="${DARK}" opacity=".5"/>`;
+    for (let k = 0; k < 7; k++) {
+      const x = 104 + k * 62; if (f === 3 && k > 1 && k < 5) continue;
+      s += `<path d="M${x},${y + 52} V${y + 24} a10,10 0 0 1 20,0 V${y + 52}Z" fill="${DARK}"/><path d="M${x + 3},${y + 52} V${y + 26} a7,7 0 0 1 14,0 V${y + 52}Z" fill="#e9a948" opacity=".55" class="winT"/>`;
+    }
+  });
+  // eaves: cornice, then the dark shadowed band with its row of small spire tips
+  s += `<rect x="54" y="370" width="492" height="30" fill="${DARK}"/>`;
+  for (let k = 0; k < 22; k++) { const x = 66 + k * 22; s += `<path d="M${x},400 L${x + 6},382 L${x + 12},400Z" fill="${TAN}"/><circle cx="${x + 6}" cy="380" r="2" fill="#f0c25a"/>`; }
+  s += `<rect x="46" y="362" width="508" height="10" fill="${CREAM}"/><rect x="46" y="370" width="508" height="3" fill="${BROWN}"/>`;
+
+  // banded spire: cylinder with horizontal bands, stepped cap, gold kalash
+  const spire = (cx, top, w) => {
+    let g = "";
+    const bands = [CREAM, TAN, CREAM, BROWN];
+    for (let y = top + 18, i = 0; y < 364; y += 13, i++) {
+      g += `<rect x="${cx - w / 2}" y="${y}" width="${w}" height="13" fill="${bands[i % 4]}"/>`;
+      if (i % 3 === 2) g += `<rect x="${cx - w / 2 - 1}" y="${y + 11}" width="${w + 2}" height="3" fill="${DARK}"/>`;
+    }
+    g += `<rect x="${cx + w * .12}" y="${top + 18}" width="${w * .38}" height="${346 - top}" fill="url(#dB)" opacity=".35"/>`;
+    g += `<rect x="${cx - w / 2 - 3}" y="${top + 12}" width="${w + 6}" height="7" fill="${CREAM}"/><rect x="${cx - w / 2 + 2}" y="${top + 6}" width="${w - 4}" height="6" fill="${TAN}"/><rect x="${cx - w / 4}" y="${top + 1}" width="${w / 2}" height="6" fill="${CREAM}"/>`;
+    g += `<ellipse cx="${cx}" cy="${top - 5}" rx="${w * .2 + 2}" ry="6" fill="url(#gold)"/><path d="M${cx - 2},${top - 10} L${cx},${top - 22} L${cx + 2},${top - 10}Z" fill="#f6cf6a"/>`;
+    return g;
+  };
+  // back row first, then the front row (nearer occludes further)
+  [[122, 236, 22], [478, 236, 22], [164, 262, 20], [436, 262, 20], [252, 222, 22], [348, 222, 22], [82, 290, 20], [518, 290, 20]].forEach(a => s += spire(...a));
+  [[104, 214, 30], [146, 166, 34], [190, 196, 30], [226, 246, 26], [374, 246, 26], [410, 196, 30], [454, 166, 34], [496, 214, 30]].forEach(a => s += spire(...a));
+
+  // central stepped pyramidal shikhara, gold-plated
+  const tiers = 10;
+  for (let i = 0; i < tiers; i++) {
+    const w = 190 - i * 14.5, y = 362 - (i + 1) * 21;
+    s += `<rect x="${300 - w / 2}" y="${y}" width="${w}" height="21" fill="url(#gold)"/>
+          <rect x="${300 - w / 2 - 3}" y="${y + 17}" width="${w + 6}" height="4" fill="#8a5a1e"/>
+          <rect x="${300 - w / 2 + 4}" y="${y + 3}" width="${w * .3}" height="12" fill="url(#dGs)" opacity=".6"/>`;
+  }
+  // big gold kalash, pole and saffron flag
+  s += `<rect x="281" y="140" width="38" height="12" fill="url(#gold)"/>
+        <path d="M276,140 C268,118 284,102 300,102 C316,102 332,118 324,140Z" fill="url(#gold)"/>
+        <rect x="287" y="94" width="26" height="9" fill="#e2a83f"/>
+        <path d="M292,94 C292,84 308,84 308,94Z" fill="#f6cf6a"/><path d="M298,86 L300,66 L302,86Z" fill="#f6cf6a"/>
+        <rect x="299" y="-6" width="2.6" height="96" fill="#5a3a20"/>
+        <g id="flagG"><path id="flag" d="M301,-4 L372,14 L301,32Z" fill="#f0702a"/><path id="flagS" d="M301,-4 L372,14 L301,32Z" fill="url(#dB)" opacity=".18"/></g>`;
+  // the small orange stepped dome over the entrance, with its own gold finial
+  s += `<rect x="232" y="652" width="136" height="76" fill="${CREAM}"/>
+        <path d="M274,728 V690 a26,26 0 0 1 52,0 V728Z" fill="${DARK}"/>
+        <path d="M280,728 V692 a20,20 0 0 1 40,0 V728Z" fill="#f2b04a" class="door"/>
+        <rect x="226" y="644" width="148" height="10" fill="${TAN}"/>`;
+  [[136, 12], [116, 12], [96, 12], [76, 11], [56, 10], [38, 9]].forEach(([w, h], i, a) => {
+    const y = 644 - a.slice(0, i + 1).reduce((t, v) => t + v[1], 0);
+    s += `<rect x="${300 - w / 2}" y="${y}" width="${w}" height="${h}" fill="${i % 2 ? "#e98a3c" : "#dd6f28"}"/>`;
+  });
+  s += `<ellipse cx="300" cy="574" rx="10" ry="6" fill="url(#gold)"/><path d="M298,570 L300,556 L302,570Z" fill="#f6cf6a"/>`;
+  // floodlight: gold wash over the stone, grows with scroll
+  s += `<g id="litT" opacity=".2" style="mix-blend-mode:multiply"><rect x="40" y="180" width="520" height="560" fill="#f2b04a" opacity=".35"/></g>`;
+  $("temple").innerHTML = s;
+})();
+
+/* street: diyas and a garland stall at the temple's foot */
+(function () {
+  let s = `<path d="${torn(-30, 884, 1500, 40, { amp: 1.5, step: 10, seed: 520, sides: "t" })}" fill="#1a2338"/>`;
+  [840, 900, 1240, 1300, 960, 1180].forEach((x, i) => {
+    s += `<path d="M${x - 14},888 Q${x},902 ${x + 14},888Z" fill="#b5562a"/>
+          <path class="flame diya" d="M${x},886 C${x - 5},878 ${x - 1},870 ${x},864 C${x + 1},870 ${x + 5},878 ${x},886Z" fill="#ffd36a" opacity="0"/>`;
+  });
+  $("street").innerHTML = s;
+})();
+
+/* marigold garlands strung across the top */
+(function () {
+  let s = "";
+  const string = (x0, x1, y, sag, cls, seed) => {
+    const r = rng(seed); let g = `<g class="garland ${cls}" style="transform-origin:${(x0 + x1) / 2}px ${y}px">`;
+    for (let i = 0; i <= 52; i++) {
+      const t = i / 52, x = x0 + (x1 - x0) * t, yy = y + Math.sin(Math.PI * t) * sag;
+      const c = i % 7 === 3 ? "#c8312b" : (i % 2 ? "#f6a21a" : "#f38b12");
+      g += `<circle cx="${x}" cy="${yy}" r="${6.5 + r() * 1.6}" fill="${c}"/><circle cx="${x - 2}" cy="${yy - 2}" r="2.6" fill="#ffd36a" opacity=".7"/>`;
+      if (i % 13 === 0) g += `<path d="M${x},${yy} v34" stroke="#3a6b2e" stroke-width="2"/>${[0, 1, 2].map(j => `<circle cx="${x}" cy="${yy + 12 + j * 12}" r="6" fill="${j % 2 ? "#f6a21a" : "#f38b12"}"/>`).join("")}`;
+    }
+    return g + "</g>";
+  };
+  s += string(620, 1460, -10, 70, "a", 1) + string(860, 1460, -18, 44, "b", 2);
+  $("garlands").innerHTML = s;
+})();
+
+/* live Mumbai clock */
+function tick() {
+  const t = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true }).format(new Date());
+  $("clock").textContent = `It's ${t.replace("AM", "am").replace("PM", "pm")} in Mumbai.`;
+}
+tick(); setInterval(tick, 15000);
+
+/* scroll: floodlights come on, the flag goes up, the city lights */
+const flood = $("flood"), lit = $("litT"), flagG = $("flagG"), flag = $("flag"), flagS = $("flagS"), shree = $("shree");
+const cws = [...document.querySelectorAll(".cw")], diyas = [...document.querySelectorAll(".diya")], winT = [...document.querySelectorAll(".winT")];
+let P = 0;
+function frame() {
+  const sc = $("scroller"), r = sc.getBoundingClientRect();
+  const span = r.height - innerHeight;
+  P = KIT.reduce || span <= 0 ? 1 : clamp(-r.top / span * 1.25);
+  const e = ease(P);
+  flood.setAttribute("opacity", .25 + e * .75);
+  lit.setAttribute("opacity", .15 + e * .85);
+  flagG.setAttribute("transform", `translate(0 ${(1 - e) * 40})`);
+  cws.forEach(w => w.setAttribute("opacity", +w.dataset.t < e * .9 ? .7 : 0));
+  diyas.forEach((d, i) => d.setAttribute("opacity", P > .15 + i * .1 ? 1 : 0));
+  winT.forEach(w => w.setAttribute("opacity", .25 + e * .6));
+  placeShree();
+}
+// keep the Marathi scrap pinned near the crown, whatever the crop
+function placeShree() {
+  const svg = $("bg"); const m = svg.getScreenCTM(); if (!m || innerWidth <= 860) return;
+  const pt = svg.createSVGPoint(); pt.x = 640; pt.y = 190; const q = pt.matrixTransform(m);
+  shree.style.left = (q.x - 40) + "px"; shree.style.top = q.y + "px";
+}
+// flag ripples in the sea breeze
+function wave(t) {
+  if (!KIT.reduce) {
+    const a = Math.sin(t / 520) * 4, b = Math.sin(t / 380 + 1) * 3;
+    const d = `M301,-4 C325,${-2 + a} 350,${6 - a} 372,${14 + b} C350,${20 + a} 325,${28 - b} 301,32Z`;
+    flag.setAttribute("d", d); flagS.setAttribute("d", d);
+  }
+  requestAnimationFrame(wave);
+}
+requestAnimationFrame(wave);
+let raf = 0;
+addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }, { passive: true });
+addEventListener("resize", frame);
+document.fonts && document.fonts.ready.then(frame);
+frame();
+</script>
+</body>
+</html>

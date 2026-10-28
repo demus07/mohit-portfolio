@@ -1,0 +1,253 @@
+<!-- Direction 07: Deco geometric — Siddhivinayak at night as a faithful geometric elevation: banded spires with gold kalash, the stepped gold shikhara and its saffron flag, the orange entrance dome; scrolling brings the floodlights up and the gold rays bloom. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Write to me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@400;600&family=Noto+Sans+Devanagari:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--gold:#e8b53e}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"Josefin Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.track{height:200vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;z-index:3;left:clamp(28px,5.6vw,104px);top:clamp(40px,9vh,96px);width:min(31rem,36vw)}
+h2{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(44px,4.6vw,80px);line-height:.98;letter-spacing:-.012em;margin:0 0 .45em;max-width:none}
+.line{font-size:clamp(17px,1.25vw,20px);line-height:1.55;max-width:34ch;margin:0 0 1.5em;color:rgba(239,232,218,.82)}
+.cta{font-family:"Bodoni Moda",serif;font-size:clamp(26px,2.2vw,36px);color:var(--sodium);text-decoration:none;display:inline-flex;gap:.4em;align-items:baseline;padding-bottom:4px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 2px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 2px}.cta:hover span{transform:translateX(7px)}
+.mail{display:block;margin:.5em 0 0;font-size:17px;color:rgba(239,232,218,.7);text-decoration:none;width:max-content}
+.mail:hover{color:var(--paper)}
+blockquote{margin:clamp(28px,5vh,52px) 0 0;padding:0;max-width:30ch;opacity:0;transform:translateY(14px)}
+blockquote p{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(20px,1.55vw,25px);line-height:1.35;margin:0 0 .7em}
+blockquote footer{font-size:16px;line-height:1.5;color:rgba(239,232,218,.68);max-width:36ch}
+.bar{position:absolute;z-index:3;left:clamp(28px,5.6vw,104px);right:clamp(28px,5.6vw,104px);bottom:clamp(20px,3.6vh,36px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;font-size:15.5px;color:rgba(239,232,218,.72)}
+.bar .clock{color:var(--paper);margin-right:auto}
+.bar nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.bar nav a{text-decoration:none;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0% 1.5px no-repeat;padding-bottom:2px;transition:background-size .45s,color .3s}
+.bar nav a:hover{background-size:100% 1.5px;color:var(--paper)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (max-width:760px){
+  .track{height:auto}
+  .stage{position:relative;height:auto;overflow:visible;display:flex;flex-direction:column}
+  .copy{position:relative;left:auto;top:auto;width:auto;padding:36px 20px 8px;order:-1}
+  h2{font-size:44px;max-width:none}
+  .line{font-size:16px}
+  blockquote{opacity:1;transform:none}
+  #world{position:relative;height:62vh;min-height:420px}
+  .bar{position:relative;left:auto;right:auto;bottom:auto;padding:18px 20px 30px;flex-direction:column;gap:12px}
+  .bar .clock{margin:0}
+}
+@media (prefers-reduced-motion:reduce){.cta,.cta span{transition:none}}
+</style>
+</head>
+<body>
+<!-- direction: Footer / Style 07 Deco geometric -->
+<div class="track" id="track">
+  <div class="stage" id="stage">
+    <svg id="world" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <clipPath id="rayC"><path d="M570,420 A430,430 0 0 1 1430,420 L1430,640 L570,640 Z"/></clipPath>
+      </defs>
+      <!-- night sky in bands -->
+      <rect x="-1000" y="-200" width="3440" height="1200" fill="#0d1a2b"/>
+      <rect x="-1000" y="420" width="3440" height="400" fill="#13223a"/>
+      <rect x="-1000" y="560" width="3440" height="300" fill="#1a2944"/>
+      <g id="stars" fill="#efe8da" opacity=".7"></g>
+      <!-- floodlight rays behind the shikhara -->
+      <g clip-path="url(#rayC)"><g id="rays" transform="translate(1000 420)" opacity="0"></g></g>
+      <circle id="glow" cx="1000" cy="460" r="250" fill="#e8b53e" opacity="0"/>
+      <!-- Prabhadevi blocks -->
+      <g id="blocks"></g>
+      <!-- the temple -->
+      <g id="temple"></g>
+      <!-- street -->
+      <rect x="-1000" y="820" width="3440" height="200" fill="#0a1422"/>
+      <rect x="-1000" y="820" width="3440" height="4" fill="#2a3550"/>
+      <g id="diyas"></g>
+    </svg>
+    <div class="copy">
+      <h2>Got something<br>to build?</h2>
+      <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+      <blockquote id="quote">
+        <p>“If you believe you can make it, you will. The rest is trusting God and doing the work.”</p>
+        <footer>Siddhivinayak, where I go when I feel low or high. It's where I reset.</footer>
+      </blockquote>
+    </div>
+    <div class="bar">
+      <span class="clock" id="clock">It's — in Mumbai.</span>
+      <nav>
+        <a href="https://github.com/Mohit-Bagri" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://leetcode.com/u/mailmohitbagri/" target="_blank" rel="noopener">LeetCode</a>
+        <a href="https://www.instagram.com/mohit_.bagri/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+        <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+      </nav>
+      <span>© 2026 Mohit Bagri</span>
+    </div>
+    <div class="grain"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const CX = 1000;
+  // ---- stars
+  const rnd = (i, k) => { const v = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return v - Math.floor(v); };
+  let h = "";
+  for (let i = 0, n = 0; i < 300 && n < 46; i++) { const x = rnd(i, 1) * 1440, y = rnd(i, 2) * 380 + 10; if (x < 620) continue; n++; const r = 1 + rnd(i, 3) * 1.5; h += `<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${r.toFixed(1)}" height="${r.toFixed(1)}" transform="rotate(45 ${x.toFixed(0)} ${y.toFixed(0)})"/>`; }
+  $("stars").innerHTML = h;
+  // ---- rays
+  h = "";
+  for (let i = 0; i < 36; i++) { const a0 = i / 36 * Math.PI * 2, a1 = a0 + Math.PI / 54; h += `<path d="M0,0 L${Math.cos(a0) * 700},${Math.sin(a0) * 700} L${Math.cos(a1) * 700},${Math.sin(a1) * 700} Z" fill="#e8b53e"/>`; }
+  $("rays").innerHTML = h;
+  // ---- Prabhadevi blocks: stepped Deco silhouettes with lit windows
+  const B = [[560, 120, 380], [640, 90, 470], [700, 60, 560], [1300, 70, 540], [1360, 110, 430], [1460, 140, 360], [1590, 120, 470], [430, 130, 720], [-60, 200, 740]];
+  h = "";
+  B.forEach(([x, w, top], bi) => {
+    h += `<path d="M${x},820 V${top + 30} H${x + 14} V${top + 14} H${x + 28} V${top} H${x + w - 28} V${top + 14} H${x + w - 14} V${top + 30} H${x + w} V820 Z" fill="${bi % 2 ? "#14213a" : "#182844"}"/>`;
+    for (let yy = top + 46; yy < 800; yy += 34) for (let xx = x + 14; xx < x + w - 18; xx += 24) {
+      if (rnd(xx * 3 + yy, bi) < .3) h += `<rect class="win" x="${xx}" y="${yy}" width="10" height="14" fill="#f2a145" opacity="${(.45 + rnd(xx, yy) * .45).toFixed(2)}"/>`;
+    }
+  });
+  $("blocks").innerHTML = h;
+
+  // ---- temple
+  const ST = { cream: "#f1d9a6", tan: "#d9ae6d", brown: "#a06a38", recess: "#4a2b1b", shade: "#c49155" };
+  const G = { lit: "#f0c24a", mid: "#d9a034", dark: "#a8731e", pale: "#f8dc84" };
+  const kalash = (x, y, s) => `<g transform="translate(${x} ${y}) scale(${s})">
+      <rect x="-6" y="-4" width="12" height="4" fill="${G.dark}"/>
+      <path d="M-7,-4 C-9,-14 -4,-20 0,-20 C4,-20 9,-14 7,-4 Z" fill="${G.lit}"/>
+      <path d="M0,-20 C4,-20 9,-14 7,-4 L2,-4 C4,-12 3,-17 0,-20 Z" fill="${G.mid}"/>
+      <rect x="-3" y="-25" width="6" height="5" fill="${G.lit}"/>
+      <path d="M-2,-25 L0,-34 L2,-25 Z" fill="${G.pale}"/></g>`;
+  // a banded cylindrical spire with a stepped cap and gold kalash
+  const spire = (x, top, w, dim) => {
+    const base = 600, bands = [ST.cream, ST.tan, ST.cream, ST.brown, ST.cream, ST.tan];
+    let s = `<g class="spire">`;
+    let y = base, i = 0;
+    while (y > top + 12) {
+      const hgt = Math.min(y - (top + 12), 14 + (i % 3) * 4);
+      s += `<rect x="${x - w / 2}" y="${y - hgt}" width="${w}" height="${hgt}" fill="${bands[i % bands.length]}"/>`;
+      s += `<rect x="${x + w * .12}" y="${y - hgt}" width="${w * .38}" height="${hgt}" fill="#000" opacity=".14"/>`;
+      if (i % 2 === 1) s += `<rect x="${x - w / 2 - 1.5}" y="${y - hgt - 3}" width="${w + 3}" height="4" fill="${ST.recess}"/>`;
+      y -= hgt; i++;
+    }
+    s += `<rect x="${x - w / 2 - 2}" y="${top + 6}" width="${w + 4}" height="6" fill="${ST.tan}"/>`;
+    s += `<rect x="${x - w / 2 + 3}" y="${top + 1}" width="${w - 6}" height="5" fill="${ST.cream}"/>`;
+    s += `<rect x="${x - w / 4}" y="${top - 3}" width="${w / 2}" height="4" fill="${ST.brown}"/>`;
+    s += kalash(x, top - 3, w / 30 + .25);
+    if (dim) s += `<rect x="${x - w / 2 - 2}" y="${top - 3}" width="${w + 4}" height="${base - top + 3}" fill="#3a2416" opacity=".32"/>`;
+    s += `</g>`;
+    return s;
+  };
+  let T = "";
+  // back row of spires (darker, fills the cluster)
+  [[-150, 470, 22], [-188, 498, 21], [-222, 520, 20], [150, 470, 22], [188, 498, 21], [222, 520, 20], [-84, 430, 22], [84, 430, 22]].forEach(([dx, top, w]) => T += spire(CX + dx, top, w, true));
+  // front row of spires
+  [[-118, 408, 30], [-168, 440, 28], [-206, 468, 26], [-242, 500, 24], [118, 408, 30], [168, 440, 28], [206, 468, 26], [242, 500, 24]].forEach(([dx, top, w]) => T += spire(CX + dx, top, w, false));
+  // central stepped pyramidal shikhara (gold)
+  const tiers = 11, bw = 210, tw = 56, by = 604, ty = 330;
+  for (let i = 0; i < tiers; i++) {
+    const w = bw - (bw - tw) * i / (tiers - 1), y1 = by - (by - ty) * i / tiers, y0 = by - (by - ty) * (i + 1) / tiers, hgt = y1 - y0;
+    T += `<rect x="${CX - w / 2}" y="${y0}" width="${w}" height="${hgt}" fill="${G.lit}"/>`;
+    T += `<rect x="${CX + w * .1}" y="${y0}" width="${w * .4}" height="${hgt}" fill="${G.mid}"/>`;
+    T += `<rect x="${CX - w / 2 - 4}" y="${y1 - 5}" width="${w + 8}" height="5" fill="${G.dark}"/>`;
+    // small ribs
+    for (let k = -2; k <= 2; k++) T += `<rect x="${CX + k * w / 5 - 1.5}" y="${y0 + 3}" width="3" height="${hgt - 9}" fill="${G.dark}" opacity=".35"/>`;
+  }
+  // amalaka, big kalash, pole and flag
+  T += `<ellipse cx="${CX}" cy="${ty - 6}" rx="40" ry="12" fill="${G.mid}"/><ellipse cx="${CX}" cy="${ty - 10}" rx="34" ry="9" fill="${G.lit}"/>`;
+  T += kalash(CX, ty - 16, 2.1);
+  T += `<rect x="${CX + 14}" y="182" width="3.5" height="${ty - 196}" fill="#6b4a2a"/>`;
+  T += `<path id="flag" fill="#f06a1d"/>`;
+  // eaves band with a row of small spire tips
+  T += `<rect x="${CX - 270}" y="600" width="540" height="12" fill="${ST.tan}"/>`;
+  T += `<rect x="${CX - 262}" y="612" width="524" height="22" fill="#2a1912"/>`;
+  for (let x = CX - 252; x <= CX + 252; x += 21) T += `<path d="M${x - 5},612 L${x - 5},604 L${x},594 L${x + 5},604 L${x + 5},612 Z" fill="${ST.cream}"/><circle cx="${x}" cy="592" r="2.4" fill="${G.lit}"/>`;
+  // main multi-storey block
+  T += `<rect x="${CX - 250}" y="634" width="500" height="186" fill="${ST.cream}"/>`;
+  T += `<rect x="${CX + 60}" y="634" width="190" height="186" fill="${ST.shade}" opacity=".55"/>`;
+  [674, 730].forEach(y => { T += `<rect x="${CX - 256}" y="${y}" width="512" height="7" fill="${ST.tan}"/>`; });
+  for (let row = 0; row < 2; row++) for (let x = CX - 226; x <= CX + 210; x += 36) {
+    if (row === 1 && Math.abs(x + 8 - CX) < 90) continue;
+    if (row === 0 && Math.abs(x + 8 - CX) < 140) continue;
+    const y = row ? 742 : 640;
+    T += `<path d="M${x},${y + 24} V${y + 10} A8,8 0 0 1 ${x + 16},${y + 10} V${y + 24} Z" fill="#5a3420" class="tw"/>`;
+  }
+  // sign band
+  T += `<rect x="${CX - 120}" y="640" width="240" height="34" fill="#7a1f1a"/>`;
+  T += `<text x="${CX}" y="664" text-anchor="middle" font-family="Noto Sans Devanagari, sans-serif" font-weight="600" font-size="22" fill="${G.pale}">श्री सिद्धिविनायक</text>`;
+  // marigold garlands swagging along the block
+  for (let s = 0; s < 8; s++) {
+    const x0 = CX - 250 + s * 62.5, x1 = x0 + 62.5;
+    for (let k = 0; k <= 10; k++) { const t = k / 10, x = x0 + (x1 - x0) * t, y = 636 + Math.sin(t * Math.PI) * 14; T += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" fill="${k % 3 ? "#f29a1d" : "#f6c21c"}"/>`; }
+  }
+  // orange stepped dome over the entrance, in front and lower
+  T += `<rect x="${CX - 74}" y="766" width="148" height="54" fill="${ST.tan}"/>`;
+  T += `<path d="M${CX - 28},820 V796 A28,28 0 0 1 ${CX + 28},796 V820 Z" fill="#2a1408"/>`;
+  T += `<path id="door" d="M${CX - 21},820 V798 A21,21 0 0 1 ${CX + 21},798 V820 Z" fill="#f2a145" opacity=".7"/>`;
+  T += `<rect x="${CX - 80}" y="760" width="160" height="8" fill="${ST.brown}"/>`;
+  [[140, 9, "#d8611f"], [116, 9, "#e5732a"], [92, 8, "#d8611f"], [70, 8, "#e5732a"]].reduce((y, [w, hh, c]) => { T += `<rect x="${CX - w / 2}" y="${y - hh}" width="${w}" height="${hh}" fill="${c}"/><rect x="${CX - w / 2}" y="${y - 2}" width="${w}" height="2" fill="#8a3412"/>`; return y - hh; }, 760);
+  T += `<path d="M${CX - 31},726 A31,27 0 0 1 ${CX + 31},726 Z" fill="#ef7d2c"/><path d="M${CX + 4},699 A31,27 0 0 1 ${CX + 31},726 L${CX + 4},726 Z" fill="#d8611f"/>`;
+  T += kalash(CX, 700, 1.05);
+  // mooshak on a plinth beside the steps
+  T += `<rect x="${CX + 96}" y="800" width="34" height="20" fill="${ST.brown}"/><path d="M${CX + 100},800 C${CX + 100},786 ${CX + 112},782 ${CX + 122},788 L${CX + 130},792 L${CX + 124},796 L${CX + 126},800 Z" fill="#3a2a22"/><circle cx="${CX + 112}" cy="787" r="3" fill="#3a2a22"/>`;
+  // bell at the entrance
+  T += `<rect x="${CX - 1}" y="768" width="2" height="12" fill="${G.dark}"/><path d="M${CX - 6},790 C${CX - 6},782 ${CX - 3},780 ${CX},780 C${CX + 3},780 ${CX + 6},782 ${CX + 6},790 Z" fill="${G.lit}"/>`;
+  $("temple").innerHTML = `<g id="tShade">${T}</g>`;
+
+  // diyas along the street
+  h = "";
+  for (let x = CX - 240; x <= CX + 240; x += 40) { if (Math.abs(x - CX) < 50) continue; h += `<g transform="translate(${x} 832)"><path d="M-8,0 L8,0 L5,5 L-5,5 Z" fill="#8a4a24"/><path class="fl" d="M0,-12 C3,-7 3,-2 0,0 C-3,-2 -3,-7 0,-12 Z" fill="#ffc35a"/><circle cy="-5" r="8" fill="#f2a145" opacity=".22"/></g>`; }
+  $("diyas").innerHTML = h;
+
+  const vb = () => $("world").setAttribute("viewBox", innerWidth <= 760 ? "620 150 760 750" : "0 0 1440 900");
+  vb(); addEventListener("resize", vb);
+  // ---- clock
+  const fmt = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true });
+  const tick = () => { $("clock").textContent = `It's ${fmt.format(new Date()).replace(/\s?([AP])M/, (m, a) => " " + a.toLowerCase() + "m")} in Mumbai.`; };
+  tick(); setInterval(tick, 15000);
+
+  // ---- motion
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const track = $("track"), world = $("world"), rays = $("rays"), glow = $("glow"), dim = $("tShade"), flag = $("flag"), quote = $("quote");
+  const fl = [...document.querySelectorAll(".fl")];
+  const clamp = v => Math.min(1, Math.max(0, v));
+  const sm = t => t * t * (3 - 2 * t);
+  let cur = 0, t0 = performance.now();
+  function prog() {
+    if (innerWidth <= 760) { const r = world.getBoundingClientRect(); return clamp(1 - (r.top + r.height * .3) / innerHeight); }
+    const r = track.getBoundingClientRect(); return clamp(-r.top / (track.offsetHeight - innerHeight));
+  }
+  function frame(now) {
+    cur += (prog() - cur) * (reduce ? 1 : .08);
+    const L = sm(clamp(cur / .7));
+    const br = (.5 + .5 * L).toFixed(3); if (dim.dataset.b !== br) { dim.dataset.b = br; dim.style.filter = `brightness(${br}) saturate(${(.7 + .3 * L).toFixed(3)})`; }
+    rays.setAttribute("opacity", (.13 * L).toFixed(3));
+    glow.setAttribute("opacity", (.1 * L).toFixed(3));
+    const q = sm(clamp((cur - .45) / .3));
+    if (innerWidth > 760) { quote.style.opacity = q; quote.style.transform = `translateY(${14 * (1 - q)}px)`; }
+    const t = reduce ? 0 : (now - t0) / 1000;
+    rays.setAttribute("transform", `translate(1000 420) rotate(${t * 1.4 + cur * 20})`);
+    // saffron flag: triangular pennant rippling from the pole
+    const px = CX + 17.5, py = 184, L2 = 92, a = Math.sin(t * 2.2) * 6, b = Math.sin(t * 2.2 + 1.4) * 7;
+    flag.setAttribute("d", `M${px},${py} Q${px + L2 * .45},${py + 8 + a} ${px + L2},${py + 24 + b * .6} Q${px + L2 * .5},${py + 34 + b} ${px},${py + 44} Z`);
+    fl.forEach((f, i) => f.setAttribute("transform", `scale(${(1 + Math.sin(t * 7 + i * 1.7) * .08).toFixed(3)} ${(1 + Math.sin(t * 9 + i) * .12).toFixed(3)})`));
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

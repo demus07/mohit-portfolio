@@ -1,0 +1,76 @@
+.promenade {
+  background: #e6e0cf;
+  color: var(--ink);
+}
+
+/* the sun on the water: each glint breathes on its own clock */
+.glints rect {
+  animation: glint 4s ease-in-out infinite alternate;
+}
+@keyframes glint {
+  from {
+    opacity: 0.08;
+  }
+}
+.boat {
+  animation: cross 140s linear -40s infinite;
+}
+@keyframes cross {
+  0% {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+  6%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(860px);
+    opacity: 0;
+  }
+}
+.gulls {
+  animation: glide 34s ease-in-out infinite alternate;
+}
+@keyframes glide {
+  to {
+    transform: translate(-120px, -20px);
+  }
+}
+.steam path {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: steam 3.6s ease-in-out infinite;
+  opacity: 0;
+}
+.steam path + path {
+  animation-delay: -1.8s;
+}
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scaleY(0.8);
+  }
+  40% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) scaleY(1.1);
+  }
+}
+[data-still] .glints rect,
+[data-still] .boat,
+[data-still] .gulls,
+[data-still] .steam path {
+  animation-play-state: paused;
+}
+
+@media (max-width: 759px) {
+  .promenade {
+    background: linear-gradient(180deg, #b3c9d2 0%, #e6e0cf 60%);
+  }
+  .promenade :global(.scene-art) {
+    mask-image: linear-gradient(180deg, transparent 0, #000 22%);
+  }
+}

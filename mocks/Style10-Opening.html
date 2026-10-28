@@ -1,0 +1,459 @@
+<!-- Direction 10: Kinetic typography — at Churchgate the AC local is drawn in type (its blue band is his line on a running ticker, the station name fills the sky), and scroll dollies into one lit window where Mohit sits, chin on fist, while the note sets itself word by word. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Hanken+Grotesk:wght@400;500;600;800&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--paper:#efe8da;--ink:#13202e;--sea:#2c6d8c;--sodium:#f2a145;--navy:#0d1a2b}
+  html,body{background:var(--paper);color:var(--ink)}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .run{position:relative;height:560vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#f3dcb4}
+  .cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+  .layer{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0;will-change:transform,opacity}
+  .layer svg{display:block;width:1440px;height:900px;overflow:visible}
+  #near{opacity:0}
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .5 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
+  /* copy */
+  .copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,96px);top:clamp(36px,9vh,96px);width:min(30rem,34vw)}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:340;font-variation-settings:"opsz" 144;font-size:clamp(3.4rem,7.4vw,7.6rem);line-height:.86;letter-spacing:-.035em;color:var(--ink)}
+  h1 .ch{display:inline-block;will-change:transform}
+  .line{margin-top:1.4rem;max-width:22rem;font-size:clamp(1rem,1.15vw,1.15rem);line-height:1.5;color:#33404c}
+  .note{margin-top:1.6rem;max-width:21rem;font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:360;font-size:clamp(1.5rem,2.1vw,2.1rem);line-height:1.18;letter-spacing:-.01em;color:var(--ink)}
+  .note .w{display:inline-block;opacity:0;transform:translateY(.5em);font-variation-settings:"wght" 300}
+  .cta{display:inline-flex;gap:.45em;margin-top:1.6rem;font-weight:600;font-size:1.02rem;color:var(--sea);text-decoration:none;opacity:0;
+    background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;padding-bottom:3px;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 1.5px}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(6px)}
+  .after{height:60vh;background:var(--paper)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;top:28px;width:auto}
+    h1{font-size:3.3rem}
+    .line{font-size:.98rem;max-width:19rem;margin-top:.9rem}
+    .note{font-size:1.4rem;margin-top:1rem;max-width:20rem}
+    .cta{margin-top:1rem}
+  }
+  @media (prefers-reduced-motion:reduce){ .tick{animation:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <linearGradient id="m10-skinlight" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#d59f76"/><stop offset=".55" stop-color="#be875f"/><stop offset="1" stop-color="#a06a47"/>
+  </linearGradient>
+  <linearGradient id="m10-hairsheen" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#2a3142"/><stop offset=".5" stop-color="#121419"/><stop offset="1" stop-color="#0b0c10"/>
+  </linearGradient>
+  <!-- pinstripes are lines of type: his name, set tiny in lavender -->
+  <pattern id="m10-pin" width="96" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+    <rect width="96" height="9" fill="#f7f4f8"/><text x="0" y="4" font-size="4.6" textLength="96" lengthAdjust="spacingAndGlyphs" fill="#a996cf" font-family="Hanken Grotesk, sans-serif" font-weight="600">mohit bagri · mohit bagri · mohit bagri ·</text>
+  </pattern>
+  <pattern id="m10-pinV" width="9" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
+    <rect width="9" height="96" fill="#f7f4f8"/><text transform="translate(4,0) rotate(90)" x="0" y="0" font-size="4.6" textLength="96" lengthAdjust="spacingAndGlyphs" fill="#a996cf" font-family="Hanken Grotesk, sans-serif" font-weight="600">mohit bagri · mohit bagri · mohit bagri ·</text>
+  </pattern>
+
+  <!-- HEAD: three-quarter, facing left. Shared by both expressions. viewBox space ~ x 110..320, y 80..350 -->
+  <g id="m10-head-base">
+    <!-- neck -->
+    <path d="M186,318 C188,336 188,352 186,372 L296,378 C284,350 274,326 268,292 Z" fill="#a06a47"/>
+    <path d="M190,330 C214,344 246,340 266,318 L268,300 C246,322 214,330 190,330Z" fill="#7f5236" opacity=".55"/>
+    <!-- ear -->
+    <path d="M254,236 C262,222 284,222 286,242 C288,262 278,284 262,288 C256,289 252,282 252,272 Z" fill="#b57d56"/>
+    <path d="M262,246 C268,236 278,240 276,254 C275,266 268,274 262,276" fill="none" stroke="#7a4d33" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- face -->
+    <path d="M160,168 C152,182 148,198 147,214 C148,224 151,230 149,238 C143,248 134,256 129,264 C127,269 131,273 139,274 C141,279 140,284 138,288 C140,292 142,294 140,299 C142,305 146,309 147,315 C146,322 150,330 160,335 C176,343 204,342 226,334 C244,326 254,310 258,290 L256,240 C254,214 246,192 232,178 C210,162 180,160 160,168 Z" fill="url(#m10-skinlight)"/>
+    <!-- cheek & jaw shading toward ear -->
+    <path d="M228,250 C238,270 246,296 238,318 C250,308 256,292 258,276 L256,240 C246,236 236,240 228,250Z" fill="#8f5c3d" opacity=".45"/>
+    <path d="M150,316 C162,328 186,334 210,330 C190,338 168,338 156,330 Z" fill="#8f5c3d" opacity=".5"/>
+    <!-- nose shadow -->
+    <path d="M152,236 C148,248 142,258 140,268 C146,266 150,262 156,262 C152,254 152,244 152,236Z" fill="#8f5c3d" opacity=".35"/>
+    <path d="M139,274 C144,272 150,270 156,272" fill="none" stroke="#6e432b" stroke-width="2" stroke-linecap="round"/>
+    <!-- moustache: light -->
+    <path d="M139,281 C148,277 160,277 172,283 C162,284 150,285 140,286 Z" fill="#3b2a24" opacity=".55"/>
+    <!-- eyebrow -->
+    <path d="M168,194 C182,185 204,183 224,188 C227,190 226,193 222,193 C204,190 186,192 170,199 Z" fill="#14161b"/>
+    <path d="M138,203 C143,198 150,196 156,197 L155,201 C150,201 145,203 140,206Z" fill="#14161b" opacity=".9"/>
+  </g>
+
+  <!-- HAIR: thick, glossy, short sides, soft quiff swept up and back -->
+  <g id="m10-hair">
+    <path d="M156,186 C147,172 144,154 149,138 C153,124 162,112 176,105 C186,100 196,98 208,98 C214,92 224,89 234,91 C242,93 248,96 254,95 C264,91 276,92 284,98 C298,106 310,120 318,140 C326,160 324,186 316,208 C310,224 302,240 296,256 L282,258 C282,242 278,230 270,224 C264,220 258,221 254,227 C252,212 246,198 236,188 C222,182 200,180 182,184 C172,186 164,189 156,186 Z" fill="url(#m10-hairsheen)"/>
+    <path d="M163,150 C178,126 206,114 244,114" fill="none" stroke="#5a6680" stroke-width="2.6" stroke-linecap="round" opacity=".7"/>
+    <path d="M172,170 C192,146 226,134 266,136" fill="none" stroke="#3d475b" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+    <path d="M206,104 C232,100 262,104 290,118" fill="none" stroke="#56627a" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <path d="M232,162 C258,154 286,160 306,176" fill="none" stroke="#2f3747" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+    <path d="M158,132 C164,120 172,112 184,108" fill="none" stroke="#6b7891" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+    <!-- short faded side above the ear -->
+    <path d="M244,192 C252,202 256,214 256,228 C262,220 270,220 278,226 C284,214 284,200 278,188 C266,182 254,184 244,192Z" fill="#2a2a2e" opacity=".55"/>
+    <path d="M244,198 C250,214 252,232 252,248 C248,240 244,226 240,214Z" fill="#1b1c20" opacity=".8"/>
+  </g>
+
+  <!-- GLASSES: thin rectangular, dark top rim, light grey lower rim, slightly oversized -->
+  <g id="m10-glasses">
+    <!-- near lens -->
+    <path d="M168,207 L226,203 C230,203 232,206 232,210 L230,236 C229,242 225,245 219,245 L178,247 C172,247 168,244 167,238 L166,212 C166,209 166,207 168,207 Z" fill="#dfe8ef" fill-opacity=".14" stroke="#c7cdd3" stroke-width="2.2"/>
+    <path d="M166,212 C166,208 167,207 170,207 L226,203 C230,203 232,206 232,210" fill="none" stroke="#141820" stroke-width="4.2" stroke-linecap="round"/>
+    <!-- glint -->
+    <path d="M206,210 L220,209" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    <!-- far lens (foreshortened) -->
+    <path d="M131,211 L153,209 L154,236 C154,240 151,242 147,242 L136,243 C132,243 130,240 130,236 Z" fill="#dfe8ef" fill-opacity=".14" stroke="#c7cdd3" stroke-width="2"/>
+    <path d="M130,214 L130,212 L153,209" fill="none" stroke="#141820" stroke-width="3.6" stroke-linecap="round"/>
+    <!-- bridge -->
+    <path d="M153,212 C157,209 162,209 166,211" fill="none" stroke="#141820" stroke-width="2.6" stroke-linecap="round"/>
+    <!-- temple arm to ear -->
+    <path d="M231,208 L262,226" stroke="#141820" stroke-width="3.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- EYES: pensive (looking out, slightly lowered lid) -->
+  <g id="m10-eyes-pensive">
+    <path d="M182,227 C189,220 202,219 212,224 C204,229 192,230 182,227 Z" fill="#f3ece4"/>
+    <circle cx="193" cy="225" r="4.6" fill="#1a120e"/>
+    <circle cx="191.6" cy="223.6" r="1.2" fill="#fff" opacity=".9"/>
+    <path d="M180,226 C189,218 203,217 214,223" fill="none" stroke="#14100e" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M186,232 C194,234 204,233 211,229" fill="none" stroke="#7a4d33" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
+    <path d="M140,227 C143,224 147,223 150,225" fill="none" stroke="#14100e" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <g id="m10-eyes-smile">
+    <path d="M182,226 C190,219 202,218 212,223 C204,226 192,228 182,226 Z" fill="#f3ece4"/>
+    <circle cx="189" cy="223.5" r="4.2" fill="#1a120e"/>
+    <circle cx="187.6" cy="222.2" r="1.1" fill="#fff" opacity=".9"/>
+    <path d="M180,225 C189,217 203,216 214,222" fill="none" stroke="#14100e" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M184,232 C193,236 204,235 213,229" fill="none" stroke="#7a4d33" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+    <path d="M139,226 C143,222 147,222 150,224" fill="none" stroke="#14100e" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- MOUTHS -->
+  <g id="m10-mouth-pensive">
+    <path d="M140,293 C148,291 158,292 166,295" fill="none" stroke="#5a3322" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M142,299 C149,302 156,302 162,300" fill="none" stroke="#8a5638" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+  </g>
+  <g id="m10-mouth-smile">
+    <path d="M138,289 C152,290 170,290 188,284 C184,300 168,312 152,311 C144,310 140,302 138,289 Z" fill="#5a2a20"/>
+    <path d="M141,291 C154,293 170,292 185,287 C183,292 180,295 176,297 C164,299 150,298 143,296 Z" fill="#f6f1ea"/>
+    <path d="M150,306 C158,307 166,305 172,302" fill="none" stroke="#b46a5a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    <path d="M186,280 C192,284 194,290 192,296" fill="none" stroke="#7a4d33" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  </g>
+
+  <!-- ASSEMBLED HEADS -->
+  <g id="m10-headP">
+    <use href="#m10-head-base"/><use href="#m10-eyes-pensive"/><use href="#m10-mouth-pensive"/><use href="#m10-hair"/><use href="#m10-glasses"/>
+  </g>
+  <g id="m10-headS">
+    <use href="#m10-head-base"/><use href="#m10-eyes-smile"/><use href="#m10-mouth-smile"/><use href="#m10-hair"/><use href="#m10-glasses"/>
+  </g>
+
+  <!-- POSE A: at the window, chin on fist, pondering. viewBox 20 50 480 600 -->
+  <symbol id="m10-pensive" viewBox="20 50 480 600">
+    <!-- torso: broad shoulders, near shoulder to the right -->
+    <path d="M60,650 C62,560 84,470 132,420 C156,396 190,376 220,370 L296,372 C350,380 410,402 446,440 C478,474 494,560 498,650 Z" fill="url(#m10-pinV)"/>
+    <path d="M330,380 C392,396 440,424 462,470 C482,514 492,580 496,650 L420,650 C418,560 400,470 330,380Z" fill="#cfc6dc" opacity=".55"/>
+    <path d="M384,470 C392,540 396,600 396,650" fill="none" stroke="#c4b9d8" stroke-width="2"/>
+    <!-- open collar -->
+    <path d="M190,372 C204,392 222,406 242,414 L250,382 C232,380 208,376 190,372Z" fill="#a06a47"/>
+    <path d="M184,366 C190,394 210,418 240,430 L232,452 C200,438 178,410 172,376Z" fill="#fbf9fb"/>
+    <path d="M300,370 C288,394 268,412 244,420 L252,442 C280,432 302,408 312,378Z" fill="#ece6f1"/>
+    <path d="M184,366 C190,394 210,418 240,430 M300,370 C288,394 268,412 244,420" fill="none" stroke="#9c8fb4" stroke-width="1.4" opacity=".8"/>
+    <use href="#m10-headP"/>
+    <!-- raised forearm: sleeve to the elbow, rolled cuff, tapering to the wrist -->
+    <path d="M78,650 C82,624 88,604 96,590 L204,584 C206,604 208,628 210,650 Z" fill="url(#m10-pinV)"/>
+    <path d="M178,588 C190,610 198,630 200,650 L210,650 C208,628 206,604 204,584Z" fill="#cfc6dc" opacity=".7"/>
+    <path d="M104,566 C110,520 124,462 146,410 C150,402 156,398 162,398 L192,396 C198,398 200,404 199,412 C194,460 192,520 194,566 Z" fill="#a8714c"/>
+    <path d="M176,404 C186,404 194,406 198,412 C194,460 192,520 194,566 L178,566 C176,516 176,456 176,404Z" fill="#8a5a3b" opacity=".6"/>
+    <path d="M110,560 C116,512 128,462 148,414" fill="none" stroke="#d29d74" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <path d="M150,404 C160,409 182,409 196,404" fill="none" stroke="#7f5236" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+    <!-- rolled cuff, thick folded band -->
+    <path d="M92,560 C120,546 176,544 206,554 L208,592 C178,582 122,584 90,598 Z" fill="url(#m10-pin)"/>
+    <path d="M92,560 C120,546 176,544 206,554" fill="none" stroke="#fbf9fb" stroke-width="4" stroke-linecap="round"/>
+    <path d="M91,579 C120,567 176,565 207,574" fill="none" stroke="#b6a8cf" stroke-width="1.8"/>
+    <path d="M90,598 C122,584 178,582 208,592" fill="none" stroke="#9c8fb4" stroke-width="2"/>
+    <!-- relaxed curled hand under the jaw: back of hand, curled fingers toward the face, thumb tucked along the jaw -->
+    <path d="M152,404 C142,388 138,368 142,352 C146,338 160,330 178,330 C196,330 210,338 213,352 C216,368 210,388 198,402 C184,408 164,408 152,404 Z" fill="#b57d56"/>
+    <path d="M196,350 C205,356 209,370 205,384 C202,394 198,400 194,402" fill="none" stroke="#8a5a3b" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <g fill="#bf8862" stroke="#7a4d33" stroke-width="1.4" stroke-opacity=".55">
+      <path d="M140,340 C140,333 146,330 156,331 L168,333 C171,337 170,343 166,345 L148,346 C143,346 140,344 140,340Z"/>
+      <path d="M136,354 C136,347 142,345 152,346 L164,347 C168,351 167,357 163,359 L144,360 C139,360 136,358 136,354Z"/>
+      <path d="M135,368 C135,361 141,359 151,360 L162,361 C166,365 165,371 161,373 L143,374 C138,374 135,372 135,368Z"/>
+      <path d="M138,381 C138,375 144,373 152,374 L160,375 C163,379 162,384 158,386 L146,387 C141,387 138,385 138,381Z"/>
+    </g>
+    <path d="M168,334 C186,330 202,334 210,344" fill="none" stroke="#d6a27a" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+    <path d="M182,338 C192,336 202,340 206,348 C200,350 190,350 182,346 Z" fill="#c48d65"/>
+  </symbol>
+
+  <!-- POSE B: from behind, turning to smile over his shoulder (after the portrait). viewBox 20 50 480 600 -->
+  <symbol id="m10-turn" viewBox="20 50 480 600">
+    <path d="M50,650 C52,580 62,500 86,462 C98,442 118,430 142,422 C168,410 184,392 190,378 L304,370 C330,388 370,404 410,416 C446,428 470,452 482,492 C494,540 498,600 500,650 Z" fill="url(#m10-pin)"/>
+    <path d="M410,416 C446,428 470,452 482,492 C494,540 498,600 500,650 L440,650 C440,570 432,480 410,416Z" fill="#cfc6dc" opacity=".55"/>
+    <!-- near arm hangs at the left, a shade cooler -->
+    <path d="M142,422 C118,430 98,442 86,462 C62,500 52,580 50,650 L150,650 C148,580 150,500 142,422Z" fill="#e4dded" opacity=".9"/>
+    <path d="M142,422 C150,500 148,580 150,650" fill="none" stroke="#bdb0d6" stroke-width="2"/>
+    <!-- yoke seam -->
+    <path d="M150,440 C230,458 340,454 420,424" fill="none" stroke="#c9bedd" stroke-width="2"/>
+    <use href="#m10-headS"/>
+    <!-- collar around the back of the neck -->
+    <path d="M196,362 C232,364 270,356 298,344 C304,352 307,360 308,368 C276,382 236,388 200,386 C198,378 196,370 196,362 Z" fill="#fbf9fb"/>
+    <path d="M196,362 C232,364 270,356 298,344" fill="none" stroke="#b6a8cf" stroke-width="1.6"/>
+  </symbol>
+</defs>
+</svg>
+
+<section class="run" id="run">
+  <div class="stage">
+    <div class="cam" id="cam">
+
+      <!-- FAR: Churchgate, the rake at the platform, golden hour -->
+      <div class="layer" id="far">
+        <svg viewBox="0 0 1440 900" aria-hidden="true">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f4e3c4"/><stop offset=".55" stop-color="#f5d09a"/><stop offset="1" stop-color="#f2b877"/>
+            </linearGradient>
+            <radialGradient id="sun" cx="1080" cy="430" r="520" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fff2d6" stop-opacity=".95"/><stop offset=".35" stop-color="#ffd79a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd79a" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fbf6ec"/><stop offset=".7" stop-color="#efe6d6"/><stop offset="1" stop-color="#ddd0bb"/>
+            </linearGradient>
+            <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a4c5c"/><stop offset="1" stop-color="#22303d"/>
+            </linearGradient>
+            <linearGradient id="lit" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffd89a"/><stop offset="1" stop-color="#f2a145"/>
+            </linearGradient>
+            <path id="bandPath" d="M-260,628 L1500,628"/>
+          </defs>
+          <rect x="-600" y="-500" width="2640" height="1400" fill="#f4e3c4"/><rect x="-600" width="2640" height="900" fill="url(#sky)"/>
+          <rect x="-600" width="2640" height="900" fill="url(#sun)"/>
+
+          <!-- the station name is the sky -->
+          <g id="skyWord" opacity=".9">
+            <text x="1440" y="430" text-anchor="end" font-family="Tiro Devanagari Marathi, serif" font-size="380" fill="none" stroke="#c98a4c" stroke-width="1.8" opacity=".6">चर्चगेट</text>
+          </g>
+
+          <!-- distant city: Western Railway HQ dome + Eros stepped tower, set back in haze -->
+          <g fill="#e9be86" opacity=".9" transform="translate(520,0)">
+            <path d="M120,470 L120,380 L150,380 L150,360 L170,360 L170,340 L186,340 L186,322 L206,322 L206,340 L222,340 L222,360 L242,360 L242,380 L272,380 L272,470Z"/>
+            <path d="M300,470 L300,400 L330,400 L330,350 C330,318 350,300 372,296 L372,282 L378,270 L384,282 L384,296 C406,300 426,318 426,350 L426,400 L456,400 L456,470Z"/>
+            <rect x="470" y="410" width="120" height="60"/><rect x="600" y="396" width="90" height="74"/>
+          </g>
+
+          <!-- canopy: roof edge and green columns -->
+          <g>
+            <rect x="-600" y="0" width="2640" height="96" fill="#2f4a3e"/>
+            <rect x="-600" y="96" width="2640" height="10" fill="#1f332a"/>
+            <g fill="#3c6150">
+              <rect x="-300" y="96" width="14" height="680"/><rect x="760" y="96" width="14" height="680"/><rect x="1200" y="96" width="14" height="680"/><rect x="1640" y="96" width="14" height="680"/>
+            </g>
+            <!-- station board: Marathi + English -->
+            <g transform="translate(860,128)">
+              <rect x="0" y="0" width="250" height="98" fill="#f2c41a"/>
+              <text x="125" y="46" text-anchor="middle" font-family="Tiro Devanagari Marathi, serif" font-size="40" fill="#141414">चर्चगेट</text>
+              <text x="125" y="84" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="30" letter-spacing="3" fill="#141414">CHURCHGATE</text>
+              <line x1="60" y1="-32" x2="60" y2="0" stroke="#1f332a" stroke-width="3"/><line x1="190" y1="-32" x2="190" y2="0" stroke="#1f332a" stroke-width="3"/>
+            </g>
+            <!-- catenary wire carrying the line -->
+            <path d="M-600,250 C400,272 1000,272 2040,250" fill="none" stroke="#5a4b3a" stroke-width="1.4" opacity=".6"/>
+          </g>
+
+          <!-- THE RAKE -->
+          <g id="rake">
+            <!-- roof AC units -->
+            <g fill="#e6dccb"><rect x="-40" y="446" width="190" height="24" rx="10"/><rect x="250" y="446" width="190" height="24" rx="10"/><rect x="560" y="446" width="190" height="24" rx="10"/><rect x="870" y="446" width="190" height="24" rx="10"/></g>
+            <!-- pantograph -->
+            <path d="M1000,446 L1040,300 L1090,446 M1040,300 L980,296 L1100,296" fill="none" stroke="#3a3a3a" stroke-width="3"/>
+            <!-- body -->
+            <path d="M-60,470 L1150,470 C1210,470 1250,486 1290,530 L1330,600 C1340,620 1344,650 1344,690 L1344,740 L-60,740Z" fill="url(#body)"/>
+            <!-- windows: sealed, tinted -->
+            <g fill="url(#glass)">
+              <rect x="-20" y="514" width="110" height="80" rx="8"/><rect x="150" y="514" width="110" height="80" rx="8"/>
+              <rect x="410" y="514" width="110" height="80" rx="8"/>
+              <rect x="790" y="514" width="110" height="80" rx="8"/><rect x="960" y="514" width="110" height="80" rx="8"/>
+            </g>
+            <!-- the one lit window: him -->
+            <g id="litWin">
+              <rect x="580" y="514" width="110" height="80" rx="8" fill="url(#lit)"/>
+              <g transform="translate(608,512) scale(.17)"><use href="#m10-pensive" width="480" height="600"/></g>
+              <rect x="580" y="514" width="110" height="80" rx="8" fill="none" stroke="#d9cdb8" stroke-width="3"/>
+            </g>
+            <!-- doors, closed -->
+            <g fill="none" stroke="#cbbfa9" stroke-width="2.5">
+              <rect x="296" y="492" width="86" height="236"/><line x1="339" y1="492" x2="339" y2="728"/>
+              <rect x="710" y="492" width="64" height="0"/>
+              <rect x="1090" y="492" width="86" height="236"/><line x1="1133" y1="492" x2="1133" y2="728"/>
+            </g>
+            <g fill="#3a4c5c"><rect x="306" y="510" width="24" height="60" rx="4"/><rect x="348" y="510" width="24" height="60" rx="4"/><rect x="1100" y="510" width="24" height="60" rx="4"/><rect x="1142" y="510" width="24" height="60" rx="4"/></g>
+            <!-- cab front -->
+            <path d="M1196,486 C1230,492 1262,510 1286,544 L1314,596 L1214,596 Z" fill="#26343f"/>
+            <rect x="1214" y="606" width="98" height="20" fill="#16191c"/>
+            <text x="1263" y="621" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="13" letter-spacing="1.5" fill="#ffb02e">CHURCHGATE</text>
+            <circle cx="1322" cy="690" r="8" fill="#fff3cf"/>
+            <!-- blue band with red line; the band is a running line of type -->
+            <rect x="-60" y="606" width="1252" height="34" fill="#2d5ea6"/>
+            <rect x="-60" y="642" width="1252" height="3" fill="#c8332b"/>
+            <g clip-path="url(#bandClip)">
+              <g class="tick" style="animation:tick 38s linear infinite">
+                <text y="630" font-family="Hanken Grotesk, sans-serif" font-weight="600" font-size="17" letter-spacing="1" fill="#eef2fb">
+                  <tspan x="-60">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.     ·     Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.     ·     Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</tspan>
+                </text>
+              </g>
+            </g>
+            <clipPath id="bandClip"><rect x="-60" y="606" width="1252" height="34"/></clipPath>
+            <!-- navy skirt -->
+            <rect x="-60" y="700" width="1404" height="40" fill="#1d2a44"/>
+            <g fill="#121212"><rect x="0" y="740" width="200" height="16"/><rect x="900" y="740" width="200" height="16"/></g>
+          </g>
+
+          <!-- platform: yellow edge -->
+          <rect x="-600" y="756" width="2640" height="160" fill="#b9ab95"/>
+          <rect x="-600" y="756" width="2640" height="12" fill="#f2c41a"/>
+          <g fill="#a99a82" opacity=".7"><rect x="-600" y="800" width="2640" height="2"/><rect x="-600" y="850" width="2640" height="2"/></g>
+        </svg>
+      </div>
+
+      <!-- NEAR: one window, close -->
+      <div class="layer" id="near">
+        <svg viewBox="0 0 1440 900" aria-hidden="true">
+          <defs>
+            <radialGradient id="inLight" cx="1080" cy="300" r="760" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#ffe2b0"/><stop offset=".55" stop-color="#f4bd75"/><stop offset="1" stop-color="#d98a46"/>
+            </radialGradient>
+            <linearGradient id="bodyN" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fbf6ec"/><stop offset="1" stop-color="#e3d8c4"/>
+            </linearGradient>
+            <clipPath id="winClip"><rect x="610" y="110" width="780" height="600" rx="34"/></clipPath>
+            <path id="nearBand" d="M0,780 L1440,780"/>
+          </defs>
+          <rect x="-600" y="-500" width="2640" height="600" fill="#f8f2e7"/><rect x="-600" width="2640" height="900" fill="url(#bodyN)"/>
+          <g clip-path="url(#winClip)">
+            <rect x="610" y="110" width="780" height="600" fill="url(#inLight)"/>
+            <!-- far window across the aisle, the platform bright beyond -->
+            <rect x="660" y="170" width="280" height="220" rx="18" fill="#fff0d4" opacity=".75"/>
+            <rect x="678" y="188" width="244" height="184" rx="12" fill="#f8dcae" opacity=".7"/>
+            <!-- seat back -->
+            <path d="M1290,380 C1330,380 1380,400 1380,440 L1380,720 L1240,720 L1240,420 C1240,396 1262,380 1290,380Z" fill="#7f8fa0" opacity=".55"/>
+            <g transform="translate(740,150) scale(1.12)"><use href="#m10-pensive" width="480" height="600"/></g>
+            <!-- reflection: the platform and the name slide over the glass -->
+            <g id="refl" style="mix-blend-mode:screen" opacity=".5">
+              <text x="520" y="330" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="200" letter-spacing="8" fill="#fff4dc" opacity=".35">CHURCHGATE</text>
+              <text x="900" y="640" font-family="Tiro Devanagari Marathi, serif" font-size="210" fill="#fff4dc" opacity=".22">चर्चगेट</text>
+              <rect x="560" y="0" width="22" height="900" fill="#fff" opacity=".18" transform="rotate(18 900 400)"/>
+            </g>
+          </g>
+          <!-- window frame: sealed, rubber gasket -->
+          <rect x="610" y="110" width="780" height="600" rx="34" fill="none" stroke="#2a2f35" stroke-width="10"/>
+          <rect x="598" y="98" width="804" height="624" rx="42" fill="none" stroke="#d8ccb6" stroke-width="6"/>
+          <!-- blue band + red line under the window, running his line -->
+          <rect x="-600" y="756" width="2640" height="50" fill="#2d5ea6"/>
+          <rect x="-600" y="810" width="2640" height="5" fill="#c8332b"/>
+          <g class="tick" style="animation:tick2 52s linear infinite">
+            <text y="790" font-family="Hanken Grotesk, sans-serif" font-weight="600" font-size="24" letter-spacing="1" fill="#eef2fb"><tspan x="-600">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.      ·      Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.      ·      Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.      ·      </tspan></text>
+          </g>
+          <rect x="-600" y="856" width="2640" height="44" fill="#1d2a44"/>
+        </svg>
+      </div>
+    </div>
+    <div class="grain"></div>
+
+    <div class="copy">
+      <h1 id="name" aria-label="Mohit Bagri">Mohit Bagri</h1>
+      <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      <a class="cta" id="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    </div>
+  </div>
+</section>
+<style>
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-1046px)}}
+  @keyframes tick2{from{transform:translateX(0)}to{transform:translateX(-1290px)}}
+</style>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const run = document.getElementById('run'), cam = document.getElementById('cam');
+  const far = document.getElementById('far'), near = document.getElementById('near');
+  const sky1 = document.getElementById('skyWord'), refl = document.getElementById('refl');
+  const name = document.getElementById('name'), line = document.getElementById('line'), cta = document.getElementById('cta');
+  // split name into letters, note into words
+  name.innerHTML = [...name.textContent].map(c => c === ' ' ? ' ' : `<span class="ch">${c}</span>`).join('');
+  const chs = [...name.querySelectorAll('.ch')];
+  const note = document.getElementById('note');
+  note.innerHTML = note.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
+  const words = [...note.querySelectorAll('.w')];
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // target window centre in FAR, matching window centre in NEAR
+  const W1 = { x: 635, y: 554 }, W2 = { x: 1000, y: 410 }, S = 780 / 110; // near window is 7.45x the far one
+
+  let vw, vh, k, mobile;
+  function layout() {
+    vw = innerWidth; vh = innerHeight; mobile = vw <= 720;
+    k = Math.max(vw / 1440, vh / 900);
+  }
+  let t = 0;
+  function frame(now) {
+    const r = run.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - vh));
+    const d = ease(seg(p, .1, .62));             // dolly
+    // camera: focal point in virtual units we keep centred on mobile
+    const fx = mobile ? lerp(W1.x, W2.x + 30, d) : 720;
+    const ty = mobile ? Math.round(vh * .27) : vh / 2 - 450 * k;
+    cam.style.transform = `translate(${vw / 2 - fx * k}px,${ty}px) scale(${k})`;
+
+    // far scales up around its lit window, moving it to where the near window sits
+    const s1 = lerp(1, S, Math.pow(d, 1.6));
+    const tx = lerp(0, W2.x - W1.x * S, Math.pow(d, 1.6)) + (W1.x - W1.x * s1) * (1 - Math.pow(d, 1.6)) * 0;
+    const fxp = W1.x + (W2.x - W1.x) * Math.pow(d, 1.6), fyp = W1.y + (W2.y - W1.y) * Math.pow(d, 1.6);
+    far.style.transform = `translate(${fxp - W1.x * s1}px,${fyp - W1.y * s1}px) scale(${s1})`;
+    far.style.opacity = 1 - seg(p, .44, .58);
+    // near grows from the far window's size to full
+    const s2 = s1 / S;
+    near.style.transform = `translate(${fxp - W2.x * s2}px,${fyp - W2.y * s2}px) scale(${s2})`;
+    near.style.opacity = seg(p, .4, .56);
+
+    // sky words drift; reflection pulls away as we settle
+    t = now / 1000;
+    if (!reduce) {
+      sky1.setAttribute('transform', `translate(${-p * 220 + Math.sin(t / 9) * 12},0)`);
+    }
+    const rp = ease(seg(p, .55, .8));
+    refl.setAttribute('transform', `translate(${-rp * 520},${-rp * 40})`);
+    refl.style.opacity = .55 * (1 - rp * .85);
+
+    // name letters lift away to make room; line yields to the note
+    const out = seg(p, .08, .4);
+    chs.forEach((c, i) => {
+      const q = clamp(out * 1.6 - i * .05);
+      c.style.transform = `translateY(${-q * 18}px)`;
+      c.style.fontVariationSettings = `"wght" ${Math.round(lerp(340, 600, seg(p, .62, .9)))}, "opsz" 144`;
+    });
+    line.style.opacity = 1 - seg(p, .56, .66);
+    line.style.transform = `translateY(${-seg(p, .56, .66) * 12}px)`;
+    const np = seg(p, .64, .92);
+    words.forEach((w, i) => {
+      const q = clamp(np * words.length * 1.25 - i);
+      w.style.opacity = q;
+      w.style.transform = `translateY(${(1 - ease(q)) * .5}em)`;
+      w.style.fontVariationSettings = `"wght" ${Math.round(lerp(300, 380, q))}`;
+    });
+    note.style.marginTop = `calc(${-seg(p, .56, .66)} * (${line.offsetHeight}px + 1.4rem) + 1.6rem)`;
+    cta.style.opacity = seg(p, .9, .97);
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', layout); layout(); requestAnimationFrame(frame);
+})();
+</script>
+<!-- direction: Style 10 Kinetic typography / Opening -->
+</body>
+</html>

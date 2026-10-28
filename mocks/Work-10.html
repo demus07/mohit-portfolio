@@ -1,0 +1,268 @@
+<!-- Direction 10: Ledger — a red cloth bahi-khata on a broker's white gaddi in afternoon light; scroll unties and opens it, each project is entered in ink, and its screenshot is pasted on the facing page like a receipt. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work: Bahi-khata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--page:#f3ead2;--ink:#1d2a4a;--red:#a3201c;--redDeep:#6f1210;--rule:#c8504a;--sea:#2c6d8c;--text:#2a2420;--dim:#6b6052}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#ece6da;color:var(--text)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.track{height:640vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.gaddi{position:absolute;inset:0;width:100%;height:100%}
+
+.zone{position:absolute;left:clamp(24px,5.5vw,88px);top:clamp(48px,7vh,72px);z-index:5;max-width:560px;transition:opacity .6s}
+h1{font-family:"EB Garamond",serif;font-weight:500;font-size:clamp(40px,4.2vw,62px);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.zone p{font-size:17px;line-height:1.5;color:var(--dim);margin-top:14px;max-width:44ch}
+
+/* ---------- the book ---------- */
+.bookWrap{position:absolute;left:50%;bottom:clamp(20px,4vh,44px);width:var(--bw);height:var(--bh);transform:translateX(-50%);perspective:2600px;z-index:3}
+.book{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.half{position:absolute;top:0;width:50%;height:100%}
+.right{left:50%}
+.pageR{position:absolute;inset:0;background:var(--page);border-radius:0 4px 4px 0}
+.cloth{position:absolute;inset:-10px -12px -10px -4px;background:var(--red);border-radius:6px;z-index:-1}
+.cloth::after,.cover .front::after{content:"";position:absolute;inset:0;border-radius:inherit;mix-blend-mode:multiply;opacity:.6;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='1.2 .35' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 .4 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .5 0'/></filter><rect width='160' height='160' filter='url(%23c)'/></svg>")}
+.cover{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:0 50%;transform-style:preserve-3d;will-change:transform;z-index:4}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.front{background:var(--red);border-radius:2px 8px 8px 2px;inset:-10px -12px -10px 0}
+.front .gold{position:absolute;inset:26px;border:2px solid #d9a441;border-radius:4px;opacity:.75}
+.front .gold::after{content:"";position:absolute;inset:8px;border:1px solid #d9a441;border-radius:2px}
+.front .string{position:absolute;top:0;bottom:0;left:56%;width:5px;background:linear-gradient(90deg,#efe7d6,#cbbfa8);transition:opacity .4s}
+.front .knot{position:absolute;left:calc(56% - 9px);top:calc(50% - 9px);width:22px;height:18px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#f6efe1,#bfb29a)}
+.back{transform:rotateY(180deg);background:var(--red);border-radius:8px 2px 2px 8px;inset:-10px 0 -10px -12px}
+.back .pageL{inset:10px 0 10px 12px;border-radius:4px 0 0 4px}
+.pageL{position:absolute;inset:0;padding:clamp(18px,2.6vh,30px) 28px 20px 42px}
+
+/* ruling */
+.ruled{background:
+  linear-gradient(90deg,transparent 30px,var(--rule) 30px,var(--rule) 31px,transparent 31px,transparent 34px,var(--rule) 34px,var(--rule) 35px,transparent 35px),
+  repeating-linear-gradient(180deg,transparent 0 33px,rgba(200,80,74,.22) 33px 34px),var(--page)}
+.fold{position:absolute;top:0;bottom:0;width:18px;pointer-events:none;background:linear-gradient(90deg,rgba(120,90,50,0),rgba(120,90,50,.08) 48%,rgba(255,255,255,.4) 52%,rgba(120,90,50,0))}
+.gutterL{position:absolute;right:0;top:0;bottom:0;width:60px;background:linear-gradient(90deg,rgba(80,50,20,0),rgba(80,50,20,.16));pointer-events:none}
+.gutterR{position:absolute;left:0;top:0;bottom:0;width:60px;background:linear-gradient(270deg,rgba(80,50,20,0),rgba(80,50,20,.16));pointer-events:none}
+.light{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,226,170,.28),rgba(255,226,170,0) 45%)}
+
+/* entries */
+.entries{list-style:none;position:relative;z-index:1}
+.e{position:relative;display:grid;grid-template-columns:52px 1fr;column-gap:12px;padding:4px 0 5px;cursor:pointer;border-radius:3px}
+.e .yr{font-family:"EB Garamond",serif;font-style:italic;color:var(--red);font-size:17px;line-height:25px;padding-top:2px}
+.ink{font-family:"EB Garamond",serif;font-style:italic;color:var(--ink);font-size:20px;line-height:25px;
+  clip-path:inset(0 100% 0 0);transition:clip-path 1.4s cubic-bezier(.45,.05,.3,1),color .3s}
+.e.w .ink{clip-path:inset(0 0 0 0)}
+.ink b{font-weight:600;font-style:normal}
+.e .more{grid-column:2;font-size:14px;line-height:1.45;color:var(--dim);max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s ease}
+.e.on .more,.feat .more{max-height:220px;opacity:1}
+.e.on .ink{color:#0f1d3d}
+.e:hover .ink{color:var(--sea)}
+.more .k{color:var(--red)}
+.more .ln{margin-top:2px;max-width:46ch}
+.more .lk{display:flex;gap:16px;margin-top:4px;padding-bottom:4px}
+.more .lk a{color:var(--sea);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
+.more .lk a:hover{background-size:100% 1px}
+.feat .ink{font-size:27px;line-height:31px}
+.feat .facts{list-style:none;margin-top:4px}
+.feat .facts li{padding-left:14px;position:relative;margin-top:2px}
+.feat .facts li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--red)}
+.feat .tech{color:#8b8070;font-size:13px}
+.rc{display:none}
+
+/* receipts pasted on the right page */
+.pile{position:absolute;inset:0}
+.rcpt{position:absolute;left:50%;top:50%;width:70%;background:#fbf7ee;padding:10px 10px 30px;
+  transform:translate(-50%,-50%) translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s,1));opacity:0;
+  transition:transform .9s cubic-bezier(.2,.75,.25,1),opacity .6s ease}
+.rcpt.in{opacity:1}
+.rcpt img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.rcpt .nm{position:absolute;left:12px;bottom:7px;font-family:"EB Garamond",serif;font-style:italic;font-size:16px;color:var(--ink)}
+.rcpt::before{ /* brown paper tape */
+  content:"";position:absolute;left:50%;top:-12px;width:90px;height:24px;transform:translateX(-50%) rotate(-3deg);
+  background:rgba(196,160,104,.72);mix-blend-mode:multiply}
+.rcpt::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,226,170,.25),rgba(255,226,170,0) 40%,rgba(60,40,20,.08))}
+.rcpt.top{--s:1.02}
+
+.hint{position:absolute;right:clamp(24px,5.5vw,88px);top:clamp(56px,8vh,80px);font-size:14px;color:var(--dim);z-index:6;transition:opacity .5s}
+
+/* ---------- phone: one page, receipts pasted inline ---------- */
+@media (max-width:820px){
+  .track{height:auto}
+  .stage{position:relative;height:auto;overflow:visible;padding:56px 0 40px}
+  .gaddi{position:fixed}
+  .zone{position:relative;left:auto;top:auto;padding:0 24px;margin-bottom:28px}
+  .hint,.cover,.right{display:none}
+  .bookWrap{position:relative;left:auto;bottom:auto;transform:none;width:auto;height:auto;margin:0 14px;perspective:none}
+  .book{position:relative}
+  .half.left{position:relative;width:100%}
+  .cloth{inset:-8px}
+  .pageL{position:relative;padding:22px 16px 22px 42px}
+  .gutterL{display:none}
+  .e{grid-template-columns:40px 1fr;column-gap:8px;padding:8px 0}
+  .e .more,.e.on .more,.feat .more{max-height:none;opacity:1}
+  .feat .ink{font-size:24px;line-height:28px}
+  .rc{display:block;grid-column:1/-1;margin:12px 6px 6px;background:#fbf7ee;padding:7px 7px 22px;position:relative;transform:rotate(var(--r));opacity:0;transition:opacity .8s}
+  .e.w .rc{opacity:1}
+  .rc img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+  .rc::before{content:"";position:absolute;left:50%;top:-10px;width:70px;height:20px;transform:translateX(-50%) rotate(-3deg);background:rgba(196,160,104,.72);mix-blend-mode:multiply}
+}
+@media (prefers-reduced-motion:reduce){.ink,.rcpt,.cover{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="track" id="track">
+ <div class="stage" id="stage">
+  <!-- the broker's gaddi: white cotton sheet, a bolster, afternoon window light -->
+  <svg class="gaddi" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sheet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f1e7"/><stop offset="1" stop-color="#e3dccd"/></linearGradient>
+      <linearGradient id="bolster" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d1c0"/><stop offset=".35" stop-color="#fbf8f1"/><stop offset=".7" stop-color="#ebe4d6"/><stop offset="1" stop-color="#c7bea9"/></linearGradient>
+      <linearGradient id="win" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd896" stop-opacity="0"/><stop offset=".5" stop-color="#ffd896" stop-opacity=".35"/><stop offset="1" stop-color="#ffd896" stop-opacity="0"/></linearGradient>
+      <filter id="cotton"><feTurbulence type="fractalNoise" baseFrequency=".9 .6" numOctaves="3" seed="6"/><feColorMatrix values="0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .12 0"/></filter>
+      <filter id="blur18"><feGaussianBlur stdDeviation="18"/></filter>
+    </defs>
+    <rect width="1440" height="900" fill="url(#sheet)"/>
+    <!-- soft creases in the sheet -->
+    <g filter="url(#blur18)" opacity=".5">
+      <path d="M-40 380 C300 340 520 420 900 360 S1300 330 1500 380" stroke="#cfc6b3" stroke-width="16" fill="none"/>
+      <path d="M200 900 C260 700 220 600 300 420" stroke="#d6cdbb" stroke-width="20" fill="none"/>
+      <path d="M1180 900 C1120 760 1200 640 1150 500" stroke="#d6cdbb" stroke-width="18" fill="none"/>
+    </g>
+    <!-- bolster (takiya) along the far edge -->
+    <rect x="760" y="-40" width="760" height="120" rx="60" fill="url(#bolster)"/>
+    <path d="M800 70 C1000 82 1300 82 1500 70" stroke="#c4baa4" stroke-width="2" fill="none" opacity=".6"/>
+    <!-- light through the shutter slats -->
+    <g filter="url(#blur18)" class="slats">
+      <path d="M-200 120 L300 -100 L380 -100 L-120 120Z" fill="url(#win)"/>
+      <path d="M-120 260 L460 -60 L540 -60 L-40 260Z" fill="url(#win)"/>
+      <path d="M-40 400 L620 -20 L700 -20 L40 400Z" fill="url(#win)"/>
+    </g>
+    <rect width="1440" height="900" filter="url(#cotton)"/>
+  </svg>
+
+  <div class="zone" id="zone">
+    <h1>Things I've built and shipped</h1>
+    <p>Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+  </div>
+  <div class="hint" id="hint">Scroll to open the book</div>
+
+  <div class="bookWrap" id="bookWrap">
+    <div class="book" id="book">
+      <!-- left half exists only on phone; on desktop the left page is the back of the cover -->
+      <div class="half left" id="leftHalf">
+        <div class="cloth"></div>
+        <div class="pageL ruled" id="pageL"><ul class="entries" id="entries"></ul><div class="fold" style="left:62%"></div><div class="gutterL"></div><div class="light"></div></div>
+      </div>
+      <div class="half right">
+        <div class="cloth"></div>
+        <div class="pageR ruled"><div class="pile" id="pile"></div><div class="fold" style="left:50%"></div><div class="gutterR"></div><div class="light"></div></div>
+      </div>
+      <div class="cover" id="cover">
+        <div class="face front"><div class="gold"></div><div class="string" id="string"></div><div class="knot" id="knot"></div></div>
+        <div class="face back" id="back"></div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+
+<script>
+const P=[
+ {s:"auctionxi",t:"AuctionXI",y:"2026",k:"My own product, 2026",h:"Live player auctions for any sport",l:"Real-time bidding, broadcast graphics and YouTube overlays, with no production team.",links:[["Live","https://auction-xi.com"]],
+  f:["Every bid lands on every screen at once, and the money always adds up.","Twenty broadcast scenes for the projector and the stream.","Auction-ready in under 20 minutes."],tech:"Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth"},
+ {s:"texagent",t:"TexAgent",y:"2026",k:"Client work, 2026",h:"A bahi-khata for textile brokers",l:"Bills, brokerage and follow-ups in one place, instead of a paper book.",links:[],priv:"Private client project"},
+ {s:"cachekaro",t:"Cache Karo",y:"2026",k:"Command-line tool, 2026",h:"Find the cache hogs, get the space back",l:"Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.",links:[["PyPI","https://pypi.org/project/cachekaro/"],["Source","https://github.com/Mohit-Bagri/cachekaro"]]},
+ {s:"aether",t:"Aether",y:"2025",k:"AI web app, 2025",h:"News, YouTube and Reddit in one conversation",l:"An assistant with 17+ tones, and an NLP pipeline that scores every article first.",links:[["Source","https://github.com/Mohit-Bagri/aether-news-trends"]]},
+ {s:"flowledger",t:"FlowLedger",y:"2026",k:"Mobile app, 2026",h:"Every rupee in, every rupee out",l:"A local-first finance app in Flutter that scans receipts and catches money leaks.",links:[["Source","https://github.com/Mohit-Bagri/flowledger"]]},
+ {s:"shuttle",t:"Space Shuttle VR",y:"2024",k:"VR game, 2024",h:"Fix the shuttle, then fly it out",l:"A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.",links:[["Source","https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game"]]},
+ {s:"velotype",t:"VeloType",y:"2026",k:"Web app, 2026",h:"A typing test built for feel",l:"Themes, modes and live words per minute, with a caret that keeps up.",links:[["Live","https://velo-type.vercel.app"]]},
+ {s:"windmill",t:"Windmill VR",y:"2025",k:"VR app, 2025",h:"Breathe with the windmill",l:"A calm VR app for Meta Quest, paced to a four-part breath.",links:[["Source","https://github.com/Mohit-Bagri/windmill-vr"]]}
+];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mob=()=>innerWidth<820;
+const entries=document.getElementById('entries'), pile=document.getElementById('pile');
+const tilt=[-2.2,1.8,-1.2,2.6,-2.8,1.1,-1.6,2.2], off=[[0,-10],[-46,-70],[40,-56],[-38,46],[44,60],[-52,8],[48,-14],[6,36]];
+P.forEach((p,i)=>{
+  const links=p.links.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n} &rarr;</a>`).join('')+(p.priv?`<span>${p.priv}</span>`:'');
+  const li=document.createElement('li'); li.className='e'+(i===0?' feat':''); li.tabIndex=0;
+  li.innerHTML=`<span class="yr">${p.y}</span><span class="ink"><b>${p.t}</b>, ${p.h.charAt(0).toLowerCase()+p.h.slice(1)}</span>
+    <div class="more"><div><span class="k">${p.k}.</span> <span class="ln">${p.l}</span></div>${p.f?`<ul class="facts">${p.f.map(x=>`<li>${x}</li>`).join('')}<li class="tech">${p.tech}</li></ul>`:''}<div class="lk">${links}</div></div>
+    <div class="rc" style="--r:${tilt[i]}deg"><img src="media/${p.s}.png" alt="${p.t}: ${p.h}" loading="lazy" ${p.s==='texagent'?'style="object-position:50% 48%;transform:scale(1)"':''}></div>`;
+  li.addEventListener('mouseenter',()=>{ if(li.classList.contains('w')) focusOn(i,true) });
+  li.addEventListener('focus',()=>{ if(li.classList.contains('w')) focusOn(i,true) });
+  entries.appendChild(li);
+  const r=document.createElement('a'); r.className='rcpt'; r.href=p.links[0]?p.links[0][1]:'#'; if(p.links[0]){r.target='_blank';r.rel='noopener'}
+  r.style.setProperty('--r',tilt[i]+'deg'); r.style.setProperty('--x',off[i][0]+'px'); r.style.setProperty('--y',(off[i][1]+40)+'px');
+  r.innerHTML=`<img src="media/${p.s}.png" alt="${p.t}"><span class="nm">${p.t}</span>`;
+  if(!p.links[0]) r.addEventListener('click',e=>e.preventDefault());
+  pile.appendChild(r);
+});
+const lis=[...entries.children], rcs=[...pile.children];
+
+// desktop: the left page lives on the back of the cover
+const leftHalf=document.getElementById('leftHalf'), back=document.getElementById('back'), pageL=document.getElementById('pageL');
+function placePage(){
+  if(!mob()){ if(pageL.parentElement!==back){ back.appendChild(pageL); leftHalf.style.display='none'; } }
+  else { if(pageL.parentElement!==leftHalf){ leftHalf.appendChild(pageL); leftHalf.style.display=''; } }
+}
+function sizeBook(){
+  const W=innerWidth,H=innerHeight;
+  const bh=Math.min(H-300, 610), bw=Math.min(W-2*Math.max(24,W*.055), bh*2.05, 1280);
+  document.documentElement.style.setProperty('--bw',bw+'px'); document.documentElement.style.setProperty('--bh',bh+'px');
+}
+placePage(); sizeBook();
+addEventListener('resize',()=>{placePage();sizeBook();last=-1});
+
+let written=-1, focus=-1, manual=false, z=10;
+function focusOn(i,isManual){
+  if(isManual) manual=true;
+  if(i===focus) return; focus=i;
+  lis.forEach((l,j)=>l.classList.toggle('on',j===i));
+  rcs.forEach((r,j)=>{ r.classList.toggle('top',j===i); if(j===i){ r.style.zIndex=++z; r.style.setProperty('--r',(tilt[j]*.35)+'deg'); } else r.style.setProperty('--r',tilt[j]+'deg'); });
+}
+function writeUpTo(n){
+  if(n===written) return;
+  lis.forEach((l,j)=>l.classList.toggle('w',j<=n));
+  rcs.forEach((r,j)=>{ const was=r.classList.contains('in'); r.classList.toggle('in',j<=n); if(j<=n&&!was){ r.style.zIndex=++z; r.style.setProperty('--y',off[j][1]+'px'); } if(j>n){ r.style.setProperty('--y',(off[j][1]+40)+'px'); } });
+  written=n; if(!manual || focus>n) { manual=false; focusOn(Math.max(0,n)) }
+}
+
+const track=document.getElementById('track'), book=document.getElementById('book'), cover=document.getElementById('cover'), zone=document.getElementById('zone'), hint=document.getElementById('hint'), string=document.getElementById('string'), knot=document.getElementById('knot');
+const sm=t=>t*t*(3-2*t);
+let last=-1;
+function tick(){
+  if(mob()){ requestAnimationFrame(tick); return; }
+  const L=track.offsetHeight-innerHeight, p=Math.min(1,Math.max(0,-track.getBoundingClientRect().top/L));
+  if(p!==last){
+    last=p;
+    const untie=sm(Math.min(1,p/.05));
+    string.style.opacity=knot.style.opacity=(1-untie).toFixed(2);
+    const o=reduce? (p>.04?1:0) : sm(Math.min(1,Math.max(0,(p-.04)/.16)));
+    cover.style.transform=`rotateY(${(-180*o).toFixed(2)}deg)`;
+    // closed: the right half is centred; open: the spread is centred
+    book.style.transform=`translateX(${(-25*(1-o)).toFixed(2)}%) rotate(${(-1.4*(1-o)-.4).toFixed(2)}deg)`;
+    hint.style.opacity=p<.03?1:0;
+    // write the entries one by one
+    const n = o<.98 ? -1 : Math.min(7,Math.floor((p-.2)/.72*8.2));
+    writeUpTo(Math.max(-1,n));
+    if(n<0) {lis.forEach(l=>l.classList.remove('on'));focus=-1}
+  }
+  requestAnimationFrame(tick);
+}
+tick();
+
+// phone: write each entry as it scrolls into view
+if(mob()){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('w','on'); io.unobserve(e.target);} }),{rootMargin:'0px 0px -15% 0px'});
+  lis.forEach(l=>io.observe(l));
+}
+</script>
+<!-- direction: 10 ledger -->
+</body>
+</html>

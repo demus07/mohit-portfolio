@@ -1,0 +1,396 @@
+<!-- Direction 06: Monsoon high tide — a grey July afternoon on Marine Drive; scrolling drives one wave over the sea wall and the spray hangs in the air. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade — Monsoon high tide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#efe8da; --ink:#1d2a30; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:#56646a; }
+  body { color:var(--paper); font-family:"Hanken Grotesk",system-ui,sans-serif; }
+  .track { height:420vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; }
+  .layer { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  #clouds { will-change:transform; overflow:visible; }
+  .copy { position:absolute; left:clamp(24px,6.2vw,96px); top:clamp(28px,11vh,110px); width:min(680px,46vw); z-index:5; pointer-events:none; }
+  h1 { font-family:"Newsreader",Georgia,serif; font-weight:300; font-size:clamp(40px,4.6vw,76px); line-height:1.02; letter-spacing:-0.015em; text-wrap:balance; }
+  h1 em { font-style:italic; }
+  .line { margin-top:26px; font-size:clamp(16px,1.2vw,19px); line-height:1.55; max-width:40ch; color:rgba(239,232,218,.86); }
+  .aside { margin-top:34px; max-width:30ch;
+    font-family:"Newsreader",serif; font-style:italic; font-weight:400; font-size:clamp(20px,1.6vw,26px); line-height:1.35;
+    color:var(--paper); opacity:0; transform:translateY(18px); transition:opacity 1.2s ease, transform 1.4s cubic-bezier(.2,.7,.2,1); }
+  .aside.on { opacity:1; transform:none; }
+  .grain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:overlay; opacity:.35; z-index:6; }
+  .after { height:40vh; background:#56646a; }
+  @media (max-width:700px) {
+    .copy { width:auto; right:24px; top:28px; }
+    h1 { font-size:clamp(34px,9.6vw,44px); }
+    .line { margin-top:16px; font-size:15.5px; }
+    .aside { margin-top:18px; font-size:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage" id="stage">
+
+    <!-- far: sky, hill, the bay -->
+    <svg class="layer v" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="-900" x2="0" y2="440">
+          <stop offset="0" stop-color="#3a464d"/>
+          <stop offset=".55" stop-color="#55636a"/>
+          <stop offset=".86" stop-color="#8d9a99"/>
+          <stop offset="1" stop-color="#b9c0b8"/>
+        </linearGradient>
+        <radialGradient id="break" cx="1060" cy="360" r="520" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 360) scale(1 .32) translate(-1060 -360)">
+          <stop offset="0" stop-color="#e9e6d4" stop-opacity=".75"/>
+          <stop offset=".5" stop-color="#cfd2c4" stop-opacity=".25"/>
+          <stop offset="1" stop-color="#cfd2c4" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="haze" x1="0" y1="380" x2="0" y2="450" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#b9c0b8" stop-opacity="0"/>
+          <stop offset="1" stop-color="#b9c0b8" stop-opacity=".9"/>
+        </linearGradient>
+      </defs>
+      <rect x="-600" y="-1000" width="2700" height="1460" fill="url(#sky)"/>
+      <rect x="-600" y="-1000" width="2700" height="1460" fill="url(#break)"/>
+      <!-- Malabar Hill at the end of the curve, washed out by rain -->
+      <path d="M1180 436 C1230 410 1290 392 1360 388 C1420 386 1470 396 1530 412 C1580 424 1640 430 1700 436 Z" fill="#9aa5a3"/>
+      <g fill="#97a2a0">
+        <rect x="1262" y="352" width="13" height="60"/><rect x="1284" y="338" width="10" height="70"/>
+        <rect x="1318" y="356" width="16" height="40"/><rect x="1352" y="330" width="11" height="64"/>
+        <rect x="1398" y="348" width="14" height="44"/><rect x="1440" y="362" width="10" height="34"/>
+      </g>
+      <!-- the Art Deco line along the bay, Chowpatty end -->
+      <g fill="#a7b0ac">
+        <path d="M980 436 h12 v-10 h18 v10 h14 v-14 h16 v14 h10 v-9 h20 v9 h14 v-16 h12 v16 h18 v-11 h16 v11 h16 v-8 h14 v8 h16 v-12 h20 v12 h12 v-9 h18 v9 z"/>
+      </g>
+      <g fill="#c4c9bf" opacity=".9">
+        <circle cx="992" cy="428" r="1.3"/><circle cx="1030" cy="427" r="1.3"/><circle cx="1068" cy="428" r="1.3"/><circle cx="1104" cy="427" r="1.3"/><circle cx="1140" cy="428" r="1.3"/><circle cx="1176" cy="429" r="1.3"/>
+      </g>
+      <!-- Nariman Point to the south, the other horn of the bay -->
+      <g fill="#a3aca9">
+        <rect x="-160" y="398" width="26" height="40"/><rect x="-128" y="384" width="18" height="54"/><rect x="-104" y="404" width="30" height="34"/>
+        <rect x="-60" y="414" width="22" height="24"/><rect x="-30" y="420" width="40" height="18"/>
+      </g>
+      <rect x="-600" y="380" width="2700" height="70" fill="url(#haze)"/>
+    </svg>
+
+    <!-- monsoon cloud deck, rendered once, drifts as one layer -->
+    <svg class="layer v" id="clouds" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="cl" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency="0.0022 0.009" numOctaves="5" seed="11"/>
+          <feColorMatrix values="0 0 0 0 .20  0 0 0 0 .24  0 0 0 0 .27  0 0 0 -2.4 1.55"/>
+        </filter>
+        <filter id="cl2" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency="0.003 0.016" numOctaves="4" seed="4"/>
+          <feColorMatrix values="0 0 0 0 .80  0 0 0 0 .82  0 0 0 0 .78  0 0 0 -2.2 1.05"/>
+        </filter>
+        <linearGradient id="cfade" x1="0" y1="-900" x2="0" y2="420" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="cm"><rect x="-700" y="-1000" width="2900" height="1440" fill="url(#cfade)"/></mask>
+      </defs>
+      <g mask="url(#cm)">
+        <rect x="-700" y="-1000" width="2900" height="1420" filter="url(#cl2)" opacity=".55"/>
+        <rect x="-700" y="-1000" width="2900" height="1420" filter="url(#cl)"/>
+      </g>
+      <!-- rain shafts hanging from the deck far out to sea -->
+      <filter id="rs" x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation="26 4"/></filter>
+      <g opacity=".3" fill="#3a464c">
+        <path d="M1500 160 L1440 440 L1660 440 L1680 170 Z" filter="url(#rs)"/>
+      </g>
+    </svg>
+
+    <!-- the sea -->
+    <svg class="layer v" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sea" x1="0" y1="436" x2="0" y2="760" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#93a39f"/>
+          <stop offset=".18" stop-color="#5f7a7c"/>
+          <stop offset=".6" stop-color="#3a5a62"/>
+          <stop offset="1" stop-color="#2a434b"/>
+        </linearGradient>
+        <radialGradient id="glint" cx="1060" cy="470" r="420" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 470) scale(1 .18) translate(-1060 -470)">
+          <stop offset="0" stop-color="#dfe2d4" stop-opacity=".55"/><stop offset="1" stop-color="#dfe2d4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect x="-600" y="436" width="2700" height="340" fill="url(#sea)"/>
+      <rect x="-600" y="436" width="2700" height="200" fill="url(#glint)"/>
+      <g id="swells" fill="none" stroke-linecap="round"></g>
+    </svg>
+
+    <!-- the wave, driven by scroll -->
+    <svg class="layer v" id="waveSvg" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="wbody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#a9c0b8"/>
+          <stop offset=".22" stop-color="#5d8582"/>
+          <stop offset=".6" stop-color="#2f4d55"/>
+          <stop offset="1" stop-color="#2f4d55" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="sheet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f3f1e8" stop-opacity="0"/>
+          <stop offset=".35" stop-color="#f3f1e8" stop-opacity=".45"/>
+          <stop offset=".75" stop-color="#e3e8e0" stop-opacity=".7"/>
+          <stop offset="1" stop-color="#b8cac4" stop-opacity=".75"/>
+        </linearGradient>
+        <filter id="froth" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".018 .03" numOctaves="3" seed="9" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="70" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation="2.2"/></filter>
+        <filter id="softer" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="22"/></filter>
+      </defs>
+      <path id="swell" fill="url(#wbody)"/>
+      <path id="swellFoam" fill="#e8ebe2" opacity=".85"/>
+      <g id="plumes" filter="url(#froth)"></g>
+      <ellipse id="mist" cx="1110" cy="600" rx="300" ry="200" fill="#e7e9e1" opacity="0" filter="url(#softer)"/>
+    </svg>
+
+    <canvas class="layer" id="sprayBack"></canvas>
+
+    <!-- near: the parapet, the promenade, two people under one umbrella -->
+    <svg class="layer v" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="conc" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency=".9 .05" numOctaves="3" seed="2" result="n"/>
+          <feColorMatrix in="n" values="0 0 0 0 .1  0 0 0 0 .13  0 0 0 0 .14  0 0 0 -1.3 .9"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <linearGradient id="wallFace" x1="0" y1="752" x2="0" y2="826" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6d7672"/><stop offset=".18" stop-color="#565f5d"/><stop offset="1" stop-color="#3d4646"/>
+        </linearGradient>
+        <linearGradient id="floor" x1="0" y1="826" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#3c4648"/><stop offset=".35" stop-color="#6c7979"/><stop offset="1" stop-color="#4c585a"/>
+        </linearGradient>
+        <linearGradient id="refl" x1="0" y1="826" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#1d272b" stop-opacity=".7"/><stop offset="1" stop-color="#1d272b" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- parapet: rounded coping catching the bright sky, wet face below -->
+      <rect x="-600" y="744" width="2700" height="12" rx="5" fill="#9aa39d"/>
+      <rect x="-600" y="744" width="2700" height="3" fill="#c9cdc3" opacity=".8"/>
+      <rect x="-600" y="755" width="2700" height="72" fill="url(#wallFace)"/>
+      <rect x="-600" y="755" width="2700" height="72" fill="#000" filter="url(#conc)" opacity=".5"/>
+      <g stroke="#2f3838" stroke-width="1.2" opacity=".55">
+        <path d="M-200 756v70M100 756v70M400 756v70M700 756v70M1000 756v70M1300 756v70M1600 756v70"/>
+      </g>
+      <!-- promenade, wet, holding the sky -->
+      <rect x="-600" y="826" width="2700" height="80" fill="url(#floor)"/>
+      <rect x="-600" y="826" width="2700" height="22" fill="url(#refl)"/>
+      <g fill="#b9c2bb" opacity=".22">
+        <ellipse cx="860" cy="872" rx="220" ry="6"/><ellipse cx="1260" cy="862" rx="160" ry="4"/><ellipse cx="200" cy="884" rx="260" ry="5"/>
+      </g>
+      <!-- the couple -->
+      <g id="couple" transform="translate(372 0)">
+        <!-- reflection in the wet floor -->
+        <g transform="translate(0 1712) scale(1 -1)" opacity=".18">
+          <path d="M-46 870 L-40 760 L-14 760 L-10 870 Z" fill="#1a2226"/>
+          <path d="M8 870 L12 768 L40 768 L44 870 Z" fill="#1a2226"/>
+        </g>
+        <!-- her: kurta and dupatta, leaning slightly into him -->
+        <path d="M-54 870 C-56 830 -52 790 -50 762 C-49 736 -48 712 -44 694 C-40 680 -26 676 -16 680 C-8 684 -4 700 -4 716 C-4 744 -6 780 -8 812 L-10 870 Z" fill="#2c3438"/>
+        <path d="M-44 698 C-36 720 -30 752 -34 790 C-28 760 -24 724 -26 700 Z" fill="#7d4a46" opacity=".75"/>
+        <ellipse cx="-29" cy="664" rx="13" ry="15" fill="#1b2125"/>
+        <path d="M-42 660 C-40 646 -20 642 -16 656 C-18 670 -16 682 -12 692 C-24 690 -38 686 -42 660 Z" fill="#141a1d"/>
+        <!-- him: shirt dark with rain on the shoulders -->
+        <path d="M2 870 L4 790 C4 770 2 744 4 716 C6 696 14 680 28 676 C42 674 54 688 54 708 C56 742 52 780 50 800 L48 870 Z" fill="#374247"/>
+        <path d="M4 716 C10 700 20 688 30 686 C24 700 20 716 18 740 Z" fill="#4b585d" opacity=".7"/>
+        <ellipse cx="30" cy="660" rx="14" ry="16" fill="#1b2125"/>
+        <path d="M16 654 C18 640 40 638 44 652 C42 646 30 644 18 660 Z" fill="#11161a"/>
+        <!-- his arm up to the umbrella -->
+        <path d="M48 700 C58 690 60 670 54 640 L46 640 C50 664 46 684 40 694 Z" fill="#323c41"/>
+        <path d="M50 642 L46 560" stroke="#15191c" stroke-width="3"/>
+        <!-- umbrella -->
+        <path d="M-74 600 C-60 538 6 512 46 516 C96 520 148 552 160 604 C140 594 124 596 106 604 C90 592 70 594 52 604 C34 592 14 592 -4 604 C-22 594 -42 594 -58 604 C-62 600 -68 600 -74 600 Z" fill="#141a1e"/>
+        <path d="M-60 596 C-40 548 0 528 40 524" stroke="#5d686c" stroke-width="2" fill="none" opacity=".7"/>
+        <path d="M46 516 L52 604 M46 516 L-4 604 M46 516 L106 604" stroke="#2c3438" stroke-width="1.2" opacity=".8"/>
+        <path d="M46 516 L44 504" stroke="#141a1e" stroke-width="3"/>
+      </g>
+    </svg>
+
+    <canvas class="layer" id="near"></canvas>
+
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy">
+      <h1>One year in, here's <em>what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: 06 monsoon high tide -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const track = document.getElementById('track');
+  const svgs = [...document.querySelectorAll('svg.v')];
+  const cB = document.getElementById('sprayBack'), cN = document.getElementById('near');
+  const xB = cB.getContext('2d'), xN = cN.getContext('2d');
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  const ss = t => t*t*(3-2*t);
+  const lerp = (a,b,t) => a + (b-a)*t;
+  let vb = {x:0,y:0,w:1440,h:900}, sc = 1, dpr = 1;
+
+  function fit() {
+    const W = innerWidth, H = innerHeight, a = W / H;
+    if (a >= 1) { vb.h = 900; vb.w = 900*a; vb.x = 720 - vb.w/2; vb.y = 0; }
+    else { vb.w = 780; vb.h = vb.w / a; vb.x = 1090 - vb.w/2; vb.y = 900 - vb.h; }
+    const s = `${vb.x} ${vb.y} ${vb.w} ${vb.h}`;
+    svgs.forEach(v => v.setAttribute('viewBox', s));
+    dpr = Math.min(2, devicePixelRatio || 1);
+    sc = W / vb.w;
+    for (const c of [cB, cN]) { c.width = W*dpr; c.height = H*dpr; }
+  }
+
+  // seeded random
+  let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+
+  // ambient swell lines on the sea
+  const swG = document.getElementById('swells');
+  const swl = [];
+  for (let i = 0; i < 26; i++) {
+    const d = i/25, y = 446 + Math.pow(d,1.6)*300;
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('stroke', i%3 ? '#c9d2ca' : '#1f363d');
+    p.setAttribute('stroke-width', (0.6 + d*2.4).toFixed(2));
+    p.setAttribute('opacity', (i%3 ? .10 + d*.22 : .25).toFixed(2));
+    swG.appendChild(p);
+    swl.push({p, y, d, ph: rnd()*6.28, len: 80 + d*420, x: rnd()*2400 - 500, sp: 4 + d*14});
+  }
+
+  // spray particles: pure functions of time since impact, so scrolling back reverses them
+  const P = [];
+  for (let i = 0; i < 1600; i++) {
+    const x0 = 820 + Math.pow(rnd(), .8)*560;
+    const centre = 1 - Math.abs((x0 - 1090)/300);
+    P.push({ x0, vy: (260 + rnd()*620) * (0.55 + 0.6*clamp(centre,0,1)), vx: -40 - rnd()*150, r: .5 + rnd()*rnd()*3.2, a: .2 + rnd()*.55, del: rnd()*.12, ph: rnd()*6.28 });
+  }
+  const D = []; // drops that reach the promenade, in front of the wall
+  for (let i = 0; i < 90; i++) D.push({ x0: 640 + rnd()*700, t0: .62 + rnd()*.18, vx: -60 - rnd()*200, r: 1 + rnd()*2.8, land: 840 + rnd()*56 });
+  const R = []; // rain
+  for (let i = 0; i < 260; i++) R.push({ x: rnd(), y: rnd(), l: 14 + rnd()*30, s: .7 + rnd()*.6, a: .05 + rnd()*.14 });
+
+  const swell = document.getElementById('swell'), swellFoam = document.getElementById('swellFoam');
+  const plumesG = document.getElementById('plumes'), mist = document.getElementById('mist');
+  const PL = [];
+  for (let i = 0; i < 14; i++) {
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('fill','url(#sheet)'); plumesG.appendChild(p);
+    PL.push({ p, x: 850 + i*38 + (rnd()-.5)*30, w: 40 + rnd()*60, h: .4 + rnd()*.55 - Math.abs(i-6.5)*.04, lean: -20 - rnd()*50 });
+  }
+  const aside = document.getElementById('aside');
+
+  let prog = 0, target = 0;
+  function readScroll() {
+    const r = track.getBoundingClientRect();
+    target = clamp(-r.top / (r.height - innerHeight), 0, 1);
+  }
+
+  function draw(t) {
+    prog += (target - prog) * (reduce ? 1 : 0.09);
+    const p = prog;
+    const time = reduce ? 0 : t/1000;
+
+    // ambient swells drift landward-left
+    for (const s of swl) {
+      let x = ((s.x - time*s.sp) % 2600 + 2600) % 2600 - 600;
+      const y = s.y + Math.sin(time*.6 + s.ph)*1.5*s.d;
+      s.p.setAttribute('d', `M${x.toFixed(1)} ${y.toFixed(1)} q ${s.len/2} ${-2-s.d*4} ${s.len} 0`);
+    }
+
+    // the incoming swell: from the horizon to the wall
+    const a = ss(clamp(p/0.48, 0, 1));
+    const cx = lerp(1240, 1090, a);
+    const base = lerp(470, 748, Math.pow(a, 1.3));
+    const h = lerp(3, 120, Math.pow(a, 2.2)) * (1 - ss(clamp((p-.5)/.12,0,1)) * .9);
+    const half = lerp(260, 620, a);
+    const L = cx - half, Rr = cx + half;
+    const steep = lerp(.5, .2, a);
+    swell.setAttribute('d', `M${L} ${base+2} C ${cx-half*.55} ${base} ${cx-half*steep} ${base-h} ${cx} ${base-h} C ${cx+half*steep*.6} ${base-h} ${cx+half*.45} ${base} ${Rr} ${base+2} L ${Rr} ${base+40} L ${L} ${base+40} Z`);
+    const fh = Math.max(1, h*.18);
+    swellFoam.setAttribute('d', `M${cx-half*.42} ${base-h*.45} C ${cx-half*.2} ${base-h*.95} ${cx-10} ${base-h-1} ${cx+20} ${base-h} C ${cx+half*.2} ${base-h*.9} ${cx+half*.3} ${base-h*.6} ${cx+half*.38} ${base-h*.4} C ${cx+half*.2} ${base-h*.7+fh} ${cx-half*.1} ${base-h+fh*2} ${cx-half*.42} ${base-h*.45} Z`);
+    swell.setAttribute('opacity', clamp(a*4,0,1).toFixed(2));
+    swellFoam.setAttribute('opacity', (clamp((a-.35)*2,0,1)*.85).toFixed(2));
+
+    // impact: sheets of water climb over the coping
+    const ti = clamp((p - .47) / .53, 0, 1);
+    const rise = ss(clamp(ti/.28, 0, 1));
+    const fall = ss(clamp((ti - .55)/.4, 0, 1));
+    for (const s of PL) {
+      const H = 600 * s.h * rise * (1 - fall*.85);
+      const top = 750 - H, lean = s.lean * rise + fall*-30;
+      const w = s.w * (1 + rise*.6);
+      if (H < 2) { s.p.setAttribute('d',''); continue; }
+      s.p.setAttribute('d', `M${s.x - w/2} 752 C ${s.x - w*.45} ${750 - H*.5} ${s.x + lean - w*.5} ${top + H*.15} ${s.x + lean} ${top} C ${s.x + lean + w*.5} ${top + H*.2} ${s.x + w*.4} ${750 - H*.4} ${s.x + w/2} 752 Z`);
+      s.p.setAttribute('opacity', (1 - fall*.9).toFixed(2));
+    }
+    mist.setAttribute('opacity', (ss(clamp((ti-.12)/.3,0,1)) * (1 - fall*.6) * .55).toFixed(2));
+
+    // spray behind the parapet
+    xB.setTransform(1,0,0,1,0,0); xB.clearRect(0,0,cB.width,cB.height);
+    const k = sc*dpr; xB.setTransform(k,0,0,k,-vb.x*k,-vb.y*k);
+    if (ti > 0) {
+      for (const q of P) {
+        const tau = clamp(ti - q.del, 0, 1) * 1.7;
+        if (tau <= 0) continue;
+        // strong drag so the spray hangs near the top of its flight
+        const drag = 2.2, ft = (1 - Math.exp(-drag*tau)) / drag;
+        const y = 750 - q.vy*ft*2.1 + 210*tau*tau;
+        const x = q.x0 + q.vx*ft*1.4 + Math.sin(time*.8 + q.ph)*3*tau;
+        if (y > 756) continue;
+        const life = clamp(1.5 - tau*.8, 0, 1);
+        xB.globalAlpha = q.a * life;
+        xB.fillStyle = q.r > 2.4 ? '#dfe5df' : '#f2f2ea';
+        xB.beginPath(); xB.arc(x, y, q.r*(1 + tau*.35), 0, 6.283); xB.fill();
+      }
+    }
+    xB.globalAlpha = 1;
+
+    // near canvas: drops thrown over the wall, then rain
+    xN.setTransform(1,0,0,1,0,0); xN.clearRect(0,0,cN.width,cN.height);
+    xN.setTransform(k,0,0,k,-vb.x*k,-vb.y*k);
+    for (const d of D) {
+      const u = (p - d.t0) / .2;
+      if (u <= 0 || u > 1.6) continue;
+      const y = Math.min(d.land, 700 - 120*u + 560*u*u);
+      const x = d.x0 + d.vx*u;
+      xN.fillStyle = '#e9ece4';
+      if (y >= d.land) {
+        const s = clamp((u - .9), 0, .7);
+        xN.globalAlpha = .3*(1 - s/.7);
+        xN.beginPath(); xN.ellipse(x, d.land, 3 + s*20, 1 + s*2, 0, 0, 6.283); xN.fill();
+      } else {
+        xN.globalAlpha = .7;
+        xN.beginPath(); xN.ellipse(x, y, d.r*.8, d.r*1.6, 0, 0, 6.283); xN.fill();
+      }
+    }
+    xN.globalAlpha = 1;
+    xN.setTransform(dpr,0,0,dpr,0,0);
+    xN.strokeStyle = '#dfe6e2'; xN.lineCap = 'round';
+    const W = innerWidth, H = innerHeight;
+    for (const r of R) {
+      const yy = ((r.y*H + time*900*r.s) % (H + 60)) - 30;
+      const xx = ((r.x*W - time*160*r.s) % W + W) % W;
+      xN.globalAlpha = r.a; xN.lineWidth = r.s*1.1;
+      xN.beginPath(); xN.moveTo(xx, yy); xN.lineTo(xx - r.l*.18, yy + r.l); xN.stroke();
+    }
+    xN.globalAlpha = 1;
+
+    aside.classList.toggle('on', p > .86);
+    if (!reduce) clouds.style.transform = `translateX(${Math.sin(time*.02)*30 - p*40}px)`;
+    requestAnimationFrame(draw);
+  }
+  const clouds = document.getElementById('clouds');
+  addEventListener('resize', () => { fit(); readScroll(); });
+  addEventListener('scroll', readScroll, {passive:true});
+  fit(); readScroll(); prog = target;
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

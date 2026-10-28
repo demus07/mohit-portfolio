@@ -40,12 +40,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#efe8da",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#efe8da" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d1a2b" },
+  ],
 };
+
+// A saved choice of day or night, applied before the first paint so nothing flashes.
+const THEME = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${serif.variable} ${sans.variable} ${mono.variable} is-loading`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME }} />
+      </head>
       <body>
         <MotionLayer />
         {children}

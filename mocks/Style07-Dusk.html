@@ -1,0 +1,271 @@
+<!-- Direction 07: Deco geometric — dusk on Marine Drive in banded colour: a stepped sun sinks one notch per stop while Mohit walks the promenade from one Deco lamp post to the next, each lamp lighting as a detour becomes part of the path. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · The path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--sea:#2c6d8c}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"Josefin Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:820vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;z-index:3;left:clamp(28px,5.6vw,104px);top:clamp(40px,9vh,96px);width:min(32rem,38vw)}
+h2{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(36px,3.4vw,58px);line-height:1;letter-spacing:-.01em;margin:0 0 clamp(22px,4vh,40px);max-width:13ch}
+.stops{position:relative;height:clamp(230px,34vh,320px)}
+.stop{position:absolute;inset:0;opacity:0;transform:translateY(18px)}
+.stop .big{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(56px,6vw,104px);line-height:.9;color:var(--sodium);margin:0 0 12px;letter-spacing:-.02em}
+.stop .big.word{font-size:clamp(44px,4.4vw,76px);line-height:.95}
+.stop .where{font-size:clamp(17px,1.2vw,19px);font-weight:600;margin:0 0 10px;color:var(--paper)}
+.stop .what{font-family:"Bodoni Moda",serif;font-size:clamp(19px,1.45vw,23px);line-height:1.4;margin:0;max-width:30ch;color:rgba(239,232,218,.9)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* roles */
+.roles{background:#1f1d33;padding:clamp(80px,14vh,150px) clamp(20px,5.6vw,104px) clamp(90px,16vh,170px);position:relative}
+.roles .in{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:7fr 5fr;gap:clamp(40px,6vw,110px)}
+.role{padding:0 0 clamp(26px,4vh,40px);margin:0 0 clamp(26px,4vh,40px);position:relative}
+.role::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;background:rgba(242,161,69,.5)}
+.role:last-child::after{display:none}
+.role h3{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(28px,2.4vw,40px);line-height:1.05;margin:0 0 8px}
+.role .m{font-size:17px;line-height:1.45;color:rgba(239,232,218,.66);margin:0}
+.role ul{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px}
+.role li{position:relative;padding-left:26px;font-size:17px;line-height:1.5;max-width:46ch;color:rgba(239,232,218,.88)}
+.role li::before{content:"";position:absolute;left:2px;top:.5em;width:9px;height:9px;background:var(--sodium);transform:rotate(45deg)}
+.big-role .m{color:var(--sodium)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:24px;width:auto}
+  h2{font-size:32px;margin-bottom:16px;max-width:none}
+  .stops{height:250px}
+  .stop .big{font-size:52px}
+  .stop .what{font-size:18px}
+  .roles .in{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- direction: Dusk / Style 07 Deco geometric -->
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="world" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <clipPath id="above"><rect x="-2000" y="-1000" width="6000" height="1600"/></clipPath>
+        <clipPath id="below"><rect x="-2000" y="600" width="6000" height="400"/></clipPath>
+        <pattern id="pinW" width="5" height="8" patternUnits="userSpaceOnUse"><rect width="5" height="8" fill="#f1e6dc"/><rect width="1" height="8" fill="#b5a5d4"/></pattern>
+      </defs>
+      <g id="farPan">
+        <!-- banded sky -->
+        <rect x="-2000" y="-600" width="6000" height="1300" fill="#1a2140"/>
+        <rect x="-2000" y="150" width="6000" height="460" fill="#2c2a55"/>
+        <rect x="-2000" y="300" width="6000" height="310" fill="#4b3560"/>
+        <rect x="-2000" y="410" width="6000" height="200" fill="#7c4163"/>
+        <rect x="-2000" y="490" width="6000" height="120" fill="#b4545c"/>
+        <rect x="-2000" y="548" width="6000" height="62" fill="#e07b52"/>
+        <rect id="night" x="-2000" y="-600" width="6000" height="1210" fill="#0d1a2b" opacity="0"/>
+        <!-- stars appear late -->
+        <g id="stars" fill="#efe8da" opacity="0"></g>
+        <!-- sun -->
+        <g clip-path="url(#above)"><g id="sun"><circle r="140" fill="#f2a145" opacity=".22"/><circle r="104" fill="#f2a145" opacity=".35"/><circle r="74" fill="#f6b45c"/><circle r="50" fill="#f9cb7e"/></g></g>
+        <!-- Malabar Hill and the far curve -->
+        <path d="M1080,606 L1150,590 L1210,572 L1270,560 L1340,548 L1420,540 L1560,534 L1700,540 L1700,610 L1080,610 Z" fill="#241f3e"/>
+        <g fill="#241f3e"><rect x="1250" y="520" width="14" height="44"/><rect x="1300" y="500" width="18" height="56"/><rect x="1332" y="512" width="12" height="40"/><rect x="1400" y="486" width="20" height="60"/><rect x="1460" y="500" width="16" height="40"/><rect x="1520" y="490" width="22" height="50"/></g>
+        <g id="farwin" fill="#f2a145"></g>
+        <g id="necklace"></g>
+        <!-- sea -->
+        <rect x="-2000" y="606" width="6000" height="300" fill="#1c2b4a"/>
+        <rect x="-2000" y="640" width="6000" height="300" fill="#182644"/>
+        <rect x="-2000" y="690" width="6000" height="300" fill="#14213b"/>
+        <g id="refl" fill="#f2a145"></g>
+      </g>
+      <g id="nearPan">
+        <!-- parapet -->
+        <rect x="-2000" y="748" width="6000" height="16" fill="#3a3550"/>
+        <rect x="-2000" y="764" width="6000" height="48" fill="#2a2742"/>
+        <!-- promenade -->
+        <rect x="-2000" y="812" width="6000" height="120" fill="#1f1d33"/>
+        <g id="slabs" fill="#26233d"></g>
+        <g id="lamps"></g>
+        <g id="walker"></g>
+      </g>
+    </svg>
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+    <div class="grain"></div>
+  </div>
+</div>
+
+<section class="roles">
+  <div class="in">
+    <div>
+      <div class="role big-role">
+        <h3>Sypha AI</h3>
+        <p class="m">Software Engineer, Dec 2025 – now</p>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="role"><h3>AuctionXI</h3><p class="m">Founder, Apr 2026 – now</p></div>
+      <div class="role"><h3>TexAgent</h3><p class="m">Freelance developer, Sep 2026 – now</p></div>
+      <div class="role"><h3>MK Exim India</h3><p class="m">E-commerce, Amazon, TataCliQ and Sephora, Mar – Sep 2025</p></div>
+      <div class="role"><h3>Brahmani Gems</h3><p class="m">Web developer intern, Shopify, Jul – Aug 2024</p></div>
+    </div>
+  </div>
+</section>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const STOPS = [
+    ["Ramrao Adik", "2021", "My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+    ["NFTs", "", "The worst call I've made. I listened to the hype instead of the people calling it out."],
+    ["Everything else", "", "Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+    ["MK Exim", "2025", "One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+    ["Graduated", "2025", "Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+    ["Sypha AI", "2025", "So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+    ["AuctionXI", "2026", "My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+  ];
+  $("stops").innerHTML = STOPS.map(([w, y, t]) => `<div class="stop">${y ? `<p class="big">${y}</p><p class="where">${w}</p>` : `<p class="big word">${w}</p>`}<p class="what">${t}</p></div>`).join("");
+  const stopEls = [...document.querySelectorAll(".stop")];
+
+  // scenery
+  let h = "";
+  const rnd = (i, k) => { const v = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return v - Math.floor(v); };
+  for (let i = 0, n = 0; i < 400 && n < 60; i++) { const x = rnd(i, 1) * 2400 - 400, y = rnd(i, 2) * 400 + 10; if (x < 600 && y > 40) continue; n++; const r = 1 + rnd(i, 3) * 1.6; h += `<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${r.toFixed(1)}" height="${r.toFixed(1)}" transform="rotate(45 ${x.toFixed(0)} ${y.toFixed(0)})"/>`; }
+  $("stars").innerHTML = h;
+  h = "";
+  [[1252, 530], [1304, 512], [1306, 532], [1404, 500], [1408, 524], [1524, 504], [1462, 512]].forEach(([x, y], i) => h += `<rect x="${x}" y="${y}" width="4" height="6" opacity="0" data-i="${i}"/>`);
+  $("farwin").innerHTML = h;
+  // necklace: lamp dots along the curve
+  const nk = [];
+  h = "";
+  for (let i = 0; i < 42; i++) {
+    const t = i / 41, x = 560 + t * 640, y = 604 - Math.pow(t, 2) * 40;
+    h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(2.6 - t * 1.2).toFixed(2)}" fill="#f2a145" opacity=".12"/>`;
+  }
+  $("necklace").innerHTML = h;
+  const nkDots = [...$("necklace").children];
+  // sun reflection: stepped bars
+  h = "";
+  for (let i = 0; i < 9; i++) { const w = 110 - i * 11; h += `<rect x="${-w / 2}" y="${618 + i * 16}" width="${w}" height="5" opacity="${.75 - i * .07}"/>`; }
+  $("refl").innerHTML = h;
+  h = "";
+  for (let x = -2000; x < 4000; x += 90) h += `<rect x="${x}" y="812" width="3" height="120"/>`;
+  $("slabs").innerHTML = h;
+
+  // lamps: Marine Drive posts as Deco geometry
+  const LX = [180, 380, 580, 780, 980, 1180, 1380];
+  $("lamps").innerHTML = LX.map((x, i) => `
+    <g class="lamp" transform="translate(${x} 0)">
+      <path class="cone" d="M-14,574 L14,574 L120,812 L-120,812 Z" fill="#f2a145" opacity="0"/>
+      <ellipse class="pool" cx="46" cy="842" rx="96" ry="13" fill="#f2a145" opacity="0"/>
+      <rect x="-5" y="560" width="10" height="252" fill="#3d3a58"/>
+      <rect x="-10" y="790" width="20" height="22" fill="#3d3a58"/>
+      <path d="M0,564 C0,540 22,532 44,536" fill="none" stroke="#3d3a58" stroke-width="7"/>
+      <circle class="halo" cx="46" cy="550" r="30" fill="#f2a145" opacity="0"/>
+      <path d="M32,540 L60,540 L54,552 L38,552 Z" fill="#3d3a58"/>
+      <rect class="bulb" x="40" y="552" width="12" height="7" rx="3" fill="#5a5470"/>
+    </g>`).join("");
+  const lamps = [...document.querySelectorAll(".lamp")];
+  lamps.forEach(l => l.querySelector(".cone").setAttribute("d", "M36,558 L56,558 L130,812 L-38,812 Z"));
+
+  // Mohit walking, built from the same pieces: quiff, glasses, pinstripe shirt, rolled sleeves
+  $("walker").innerHTML = `
+    <g id="wk">
+      <g id="legB"><path d="M-9,-90 L9,-90 L7,-4 L-6,-4 Z" fill="#141a30"/><path d="M-7,-6 L16,-6 C18,-6 19,-3 19,0 L-7,0 Z" fill="#0b0e1c"/></g>
+      <g id="armB"><path d="M-8,-158 L8,-158 L7,-122 L-7,-122 Z" fill="#cfc4dc"/><rect x="-8" y="-126" width="16" height="7" rx="2" fill="#bfb3cf"/><path d="M-6,-120 L6,-120 L5,-90 L-5,-90 Z" fill="#8a5236"/><circle cx="0" cy="-87" r="5.5" fill="#8a5236"/></g>
+      <path d="M-20,-158 C-20,-166 -12,-170 0,-170 C14,-170 22,-166 22,-158 L19,-84 C8,-80 -8,-80 -18,-84 Z" fill="url(#pinW)"/>
+      <path d="M10,-169 C18,-167 22,-163 22,-158 L19,-84 C14,-82 10,-81 6,-81 Z" fill="#b9acc9" opacity=".55"/>
+      <path d="M-4,-170 L6,-160 L12,-170 Z" fill="#fbf9fc"/>
+      <g id="legF"><path d="M-9,-90 L9,-90 L7,-4 L-6,-4 Z" fill="#1e2544"/><path d="M-7,-6 L16,-6 C18,-6 19,-3 19,0 L-7,0 Z" fill="#0b0e1c"/></g>
+      <path d="M-2,-178 L10,-178 L10,-168 L-2,-168 Z" fill="#9c6140"/>
+      <path d="M-13,-194 C-13,-210 -3,-217 8,-217 C20,-217 26,-208 25,-197 L28,-189 L24,-187 C24,-178 18,-172 8,-172 C-4,-172 -13,-180 -13,-194 Z" fill="#c38458"/>
+      <path d="M8,-217 C20,-217 26,-208 25,-197 L25,-186 C18,-190 14,-200 8,-217 Z" fill="#a8694a" opacity="0"/>
+      <path d="M-16,-195 C-19,-211 -9,-224 6,-227 C16,-229 27,-224 30,-215 C22,-217 14,-215 10,-210 C6,-205 0,-203 -4,-197 L-6,-186 L-13,-184 Z" fill="#141218"/>
+      <ellipse cx="-4" cy="-193" rx="4" ry="6" fill="#a8694a"/>
+      <rect x="12" y="-203" width="13" height="9" rx="2" fill="#ffffff" fill-opacity=".15" stroke="#c9c5cf" stroke-width="1.6"/>
+      <path d="M12,-201 L12,-203 L25,-203 L25,-201" fill="none" stroke="#1b1a20" stroke-width="2.6"/>
+      <path d="M12,-201 L-2,-199" stroke="#1b1a20" stroke-width="1.8"/>
+      <path d="M17,-181 C20,-180 23,-181 25,-183" fill="none" stroke="#6e3a2a" stroke-width="1.6" stroke-linecap="round"/>
+      <g id="armF"><path d="M-8,-160 L8,-160 L7,-124 L-7,-124 Z" fill="url(#pinW)"/><rect x="-8.5" y="-128" width="17" height="8" rx="2" fill="#ece6f2"/><path d="M-6,-121 L6,-121 L5,-91 L-5,-91 Z" fill="#b57650"/><circle cx="0" cy="-88" r="6" fill="#b57650"/></g>
+    </g>`;
+  const wk = $("wk"), legF = $("legF"), legB = $("legB"), armF = $("armF"), armB = $("armB");
+  const sun = $("sun"), refl = $("refl"), night = $("night"), stars = $("stars");
+  const farPan = $("farPan"), nearPan = $("nearPan");
+  const farwin = [...$("farwin").children];
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const track = $("track");
+  const clamp = v => Math.min(1, Math.max(0, v));
+  const sm = t => t * t * (3 - 2 * t);
+  let cur = 0, t0 = performance.now();
+  const N = STOPS.length;
+  function frame(now) {
+    const r = track.getBoundingClientRect();
+    const target = clamp(-r.top / (track.offsetHeight - innerHeight));
+    cur += (target - cur) * (reduce ? 1 : .09);
+    const f = cur * (N - .001);               // 0..7
+    const idx = Math.floor(f), within = f - idx;
+    // walker: walks during first 45% of each stop, then stands under the lamp
+    const move = sm(clamp(within / .45));
+    const x0 = idx === 0 ? 40 : LX[idx - 1] - 20, x1 = LX[idx] - 20;
+    const wx = x0 + (x1 - x0) * move;
+    const walking = move > 0 && move < 1;
+    const ph = wx / 26;
+    const sw = walking ? Math.sin(ph) * 26 : 0, swb = walking ? Math.sin(ph) * 20 : 0;
+    legF.setAttribute("transform", `rotate(${sw} 0 -84)`);
+    legB.setAttribute("transform", `rotate(${-sw} 0 -84)`);
+    armF.setAttribute("transform", `rotate(${-swb} 0 -146)`);
+    armB.setAttribute("transform", `rotate(${swb} 0 -146)`);
+    const bob = walking ? Math.abs(Math.cos(ph)) * -3 : 0;
+    wk.setAttribute("transform", `translate(${wx} ${878 + bob}) scale(1.12)`);
+    // lamps: lit up to idx (lighting as he arrives)
+    lamps.forEach((l, i) => {
+      const lit = i < idx ? 1 : i === idx ? sm(clamp((within - .3) / .25)) : 0;
+      l.querySelector(".cone").setAttribute("opacity", (lit * (i === idx ? .13 : .06)).toFixed(3));
+      l.querySelector(".pool").setAttribute("opacity", (lit * .2).toFixed(3));
+      l.querySelector(".halo").setAttribute("opacity", (lit * .35).toFixed(3));
+      l.querySelector(".bulb").setAttribute("fill", lit > .5 ? "#ffd89a" : "#5a5470");
+    });
+    // stop copy crossfade
+    stopEls.forEach((el, i) => {
+      const d = f - i;
+      let o = 0, y = 18;
+      if (d >= 0 && d < 1) {
+        const fi = i === 0 ? 1 : sm(clamp(d / .1)), fo = i === N - 1 ? 1 : 1 - sm(clamp((d - .88) / .12));
+        o = Math.min(fi, fo); y = fo < 1 ? -12 * (1 - fo) : 18 * (1 - fi);
+      }
+      el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${y.toFixed(1)}px)`;
+    });
+    // sun sinks one notch per stop
+    const sy = 470 + (cur * 1.04) * 200;
+    const sx = 1030;
+    sun.setAttribute("transform", `translate(${sx} ${sy})`);
+    refl.setAttribute("transform", `translate(${sx} 0)`);
+    refl.setAttribute("opacity", clamp(1 - cur * 1.1).toFixed(3));
+    night.setAttribute("opacity", (cur * .55).toFixed(3));
+    stars.setAttribute("opacity", clamp((cur - .5) * 2).toFixed(3));
+    nkDots.forEach((d, i) => d.setAttribute("opacity", (i / nkDots.length < cur * 1.15 ? .95 : .12)));
+    farwin.forEach((w, i) => w.setAttribute("opacity", i / farwin.length < cur ? .9 : 0));
+    // pan on narrow screens so he stays centred
+    const vw = innerWidth / innerHeight * 900;
+    let px = 0;
+    if (vw < 1300) px = Math.min(Math.max(720 - wx - 30, -(1480 - 720 - vw / 2)), 720 - vw / 2);
+    nearPan.setAttribute("transform", `translate(${px.toFixed(1)} 0)`);
+    farPan.setAttribute("transform", `translate(${(px * .35).toFixed(1)} 0)`);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

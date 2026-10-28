@@ -1,0 +1,599 @@
+<!-- Direction 05: Pixel art — the work hangs on a Marine Drive Art Deco facade: AuctionXI on an Eros-style marquee hoarding with chasing bulbs, the other seven on iron hoardings whose lamps light as you reach them. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9dcc4; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; color: #2a2220; }
+  main { position: relative; overflow: hidden; padding: 0 clamp(20px, 5vw, 80px) 140px; }
+  canvas.layer { position: absolute; left: 0; top: 0; image-rendering: pixelated; pointer-events: none; }
+  #bg { z-index: 0; } #fg { z-index: 3; }
+  .hero, .feature, .list { position: relative; z-index: 1; }
+  .hero { padding-top: max(30vh, 230px); max-width: 34rem; }
+  h2 { font-family: "Pixelify Sans", monospace; font-weight: 600; font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.9rem); line-height: 1; margin: 0 0 .45em; color: #2a1d1b; text-wrap: balance; }
+  .hero p { font-size: clamp(1.05rem, .95rem + .35vw, 1.3rem); line-height: 1.45; margin: 0; max-width: 24em; color: #3c2f2b; }
+  .feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: start; margin-top: clamp(56px, 9vh, 110px); }
+  .feature .slot { margin-top: 64px; }
+  h3 { font-family: "Pixelify Sans", monospace; font-weight: 600; font-size: clamp(1.5rem, 1.2rem + .9vw, 2.2rem); line-height: 1.05; margin: 0 0 .2em; color: #2a1d1b; }
+  .meta { font-size: .95rem; color: #6a5850; margin: 0 0 .9em; }
+  .head { font-weight: 600; font-size: 1.12rem; line-height: 1.35; margin: 0 0 .35em; color: #2a1d1b; }
+  .line { font-size: 1rem; line-height: 1.5; margin: 0 0 .8em; color: #3c2f2b; max-width: 27em; }
+  .feature .head { font-family: "Pixelify Sans", monospace; font-weight: 500; font-size: clamp(1.35rem, 1.1rem + .7vw, 1.9rem); line-height: 1.15; }
+  .feature .line { font-size: 1.08rem; }
+  .facts { list-style: none; padding: 0; margin: 1.1em 0; display: grid; gap: .6em; max-width: 27em; }
+  .facts li { line-height: 1.45; padding-left: 1.1em; position: relative; color: #3c2f2b; }
+  .facts li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; background: #c8692e; }
+  .tech { font-size: .95rem; color: #6a5850; margin: 0 0 1.1em; line-height: 1.5; }
+  .links { margin: 0; display: flex; gap: 18px; flex-wrap: wrap; }
+  .links a { color: #8c3b1b; font-weight: 600; text-decoration: none; background: linear-gradient(#c8692e, #c8692e) 0 100% / 0 2px no-repeat; transition: background-size .3s; padding-bottom: 2px; }
+  .links a:hover, .links a:focus-visible { background-size: 100% 2px; }
+  .links span { color: #6a5850; font-size: .95rem; }
+  .slot { position: relative; aspect-ratio: 16 / 10; }
+  .slot img { position: absolute; display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.82) saturate(.9); transition: filter .5s; }
+  .card.lit .slot img, .feature .slot img { filter: none; }
+  .list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 110px clamp(24px, 3vw, 48px); margin-top: clamp(110px, 16vh, 180px); }
+  .card .slot { margin: 64px 0 28px; }
+  .card h3 { font-size: clamp(1.3rem, 1.15rem + .4vw, 1.6rem); }
+  @media (max-width: 1100px) { .list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .feature { grid-template-columns: 1fr; }
+    .feature .slot { order: -1; margin-top: 40px; }
+    .list { grid-template-columns: 1fr; gap: 72px; }
+    .hero { padding-top: 220px; }
+    .slot { margin-inline: 12px !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { .slot img, .links a { transition: none; } }
+</style>
+</head>
+<body>
+<main id="work">
+  <canvas class="layer" id="bg" aria-hidden="true"></canvas>
+  <header class="hero">
+    <h2>Things I've built and shipped</h2>
+    <p>Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+  </header>
+
+  <article class="feature card lit" data-feature>
+    <div class="ftext">
+      <h3>AuctionXI</h3>
+      <p class="meta">My own product, 2026</p>
+      <p class="head">Live player auctions for any sport</p>
+      <p class="line">Real-time bidding, broadcast graphics and YouTube overlays, with no production team.</p>
+      <ul class="facts">
+        <li>Every bid lands on every screen at once, and the money always adds up.</li>
+        <li>Twenty broadcast scenes for the projector and the stream.</li>
+        <li>Auction-ready in under 20 minutes.</li>
+      </ul>
+      <p class="tech">Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth</p>
+      <p class="links"><a href="https://auction-xi.com">Live →</a></p>
+    </div>
+    <div class="slot big"><img src="media/auctionxi.png" alt="AuctionXI live auction screen showing the current bid"></div>
+  </article>
+
+  <section class="list" aria-label="More projects">
+    <article class="card"><div class="slot"><img src="media/texagent.png" alt="TexAgent screen" loading="lazy"></div>
+      <h3>TexAgent</h3><p class="meta">Client work, 2026</p><p class="head">A bahi-khata for textile brokers</p><p class="line">Bills, brokerage and follow-ups in one place, instead of a paper book.</p><p class="links"><span>Private client project</span></p></article>
+    <article class="card"><div class="slot"><img src="media/cachekaro.png" alt="Cache Karo terminal screen" loading="lazy"></div>
+      <h3>Cache Karo</h3><p class="meta">Command-line tool, 2026</p><p class="head">Find the cache hogs, get the space back</p><p class="line">Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.</p><p class="links"><a href="https://pypi.org/project/cachekaro/">PyPI →</a><a href="https://github.com/Mohit-Bagri/cachekaro">Source →</a></p></article>
+    <article class="card"><div class="slot"><img src="media/aether.png" alt="Aether screen" loading="lazy"></div>
+      <h3>Aether</h3><p class="meta">AI web app, 2025</p><p class="head">News, YouTube and Reddit in one conversation</p><p class="line">An assistant with 17+ tones, and an NLP pipeline that scores every article first.</p><p class="links"><a href="https://github.com/Mohit-Bagri/aether-news-trends">Source →</a></p></article>
+    <article class="card"><div class="slot"><img src="media/flowledger.png" alt="FlowLedger screen" loading="lazy"></div>
+      <h3>FlowLedger</h3><p class="meta">Mobile app, 2026</p><p class="head">Every rupee in, every rupee out</p><p class="line">A local-first finance app in Flutter that scans receipts and catches money leaks.</p><p class="links"><a href="https://github.com/Mohit-Bagri/flowledger">Source →</a></p></article>
+    <article class="card"><div class="slot"><img src="media/shuttle.png" alt="Space Shuttle VR screen" loading="lazy"></div>
+      <h3>Space Shuttle VR</h3><p class="meta">VR game, 2024</p><p class="head">Fix the shuttle, then fly it out</p><p class="line">A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.</p><p class="links"><a href="https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game">Source →</a></p></article>
+    <article class="card"><div class="slot"><img src="media/velotype.png" alt="VeloType screen" loading="lazy"></div>
+      <h3>VeloType</h3><p class="meta">Web app, 2026</p><p class="head">A typing test built for feel</p><p class="line">Themes, modes and live words per minute, with a caret that keeps up.</p><p class="links"><a href="https://velo-type.vercel.app">Live →</a></p></article>
+    <article class="card"><div class="slot"><img src="media/windmill.png" alt="Windmill VR screen" loading="lazy"></div>
+      <h3>Windmill VR</h3><p class="meta">VR app, 2025</p><p class="head">Breathe with the windmill</p><p class="line">A calm VR app for Meta Quest, paced to a four-part breath.</p><p class="links"><a href="https://github.com/Mohit-Bagri/windmill-vr">Source →</a></p></article>
+  </section>
+  <canvas class="layer" id="fg" aria-hidden="true"></canvas>
+</main>
+<!-- direction: 05 pixel art · work -->
+<script>
+/* ---------- PX: tiny pixel engine shared by every Style05 page ---------- */
+const PX = (() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hex = h => { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+
+  // integer-scaled full-viewport stage; art is drawn at W x H "art pixels"
+  function stage(canvas, opt = {}) {
+    const ctx = canvas.getContext('2d');
+    const st = { canvas, ctx, W: 0, H: 0, s: 1 };
+    st.resize = () => {
+      const el = opt.box ? opt.box() : { w: innerWidth, h: innerHeight };
+      const base = opt.base || 480, baseH = opt.baseH || 270;
+      let s = Math.round(Math.min(el.w / base, el.h / baseH));
+      s = Math.max(opt.min || 2, Math.min(opt.max || 8, s));
+      st.s = s; st.W = Math.ceil(el.w / s); st.H = Math.ceil(el.h / s);
+      canvas.width = st.W; canvas.height = st.H;
+      canvas.style.width = st.W * s + 'px'; canvas.style.height = st.H * s + 'px';
+      ctx.imageSmoothingEnabled = false;
+      opt.onResize && opt.onResize(st);
+    };
+    addEventListener('resize', st.resize);
+    st.resize();
+    return st;
+  }
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+  // ordered 4x4 bayer dither between two colours at fraction t (0..1) inside a rect
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function dith(c, x, y, w, h, a, b, t) {
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+    R(c, x, y, w, h, a); if (t <= 0) return; if (t >= 1) { R(c, x, y, w, h, b); return; }
+    c.fillStyle = b;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (B4[((y + j) & 3) * 4 + ((x + i) & 3)] < t * 16) c.fillRect(x + i, y + j, 1, 1);
+  }
+  // vertical banded gradient: list of colours top->bottom, dithered seams (16-bit sky)
+  function bands(c, x, y, w, h, cols, seam = 3) {
+    const n = cols.length, bh = h / n;
+    for (let i = 0; i < n; i++) {
+      const y0 = Math.round(y + i * bh), y1 = Math.round(y + (i + 1) * bh);
+      R(c, x, y0, w, y1 - y0, cols[i]);
+      if (i < n - 1) { // dithered transition rows
+        for (let k = 0; k < seam; k++) dith(c, x, y1 - seam + k, w, 1, cols[i], cols[i + 1], (k + 1) / (seam + 1));
+      }
+    }
+  }
+  // crisp text: rasterise with canvas text, threshold alpha
+  const tc = document.createElement('canvas'), tx = tc.getContext('2d', { willReadFrequently: true });
+  function text(c, str, x, y, font, col, align = 'left') {
+    tx.font = font; const m = tx.measureText(str);
+    const w = Math.ceil(m.width) + 4, h = Math.ceil(parseInt(font.match(/(\d+)px/)[1]) * 1.6) + 4;
+    tc.width = w; tc.height = h; tx.font = font; tx.textBaseline = 'top'; tx.fillStyle = '#000'; tx.fillText(str, 2, 2);
+    const d = tx.getImageData(0, 0, w, h).data;
+    const ox = align === 'center' ? Math.round(x - m.width / 2) : align === 'right' ? Math.round(x - m.width) : Math.round(x);
+    c.fillStyle = col;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 110) c.fillRect(ox + i - 2, Math.round(y) + j - 2, 1, 1);
+    return m.width;
+  }
+  // 3x5 pixel font for LED boards
+  const F = { A: '010101111101101', B: '110101110101110', C: '011100100100011', D: '110101101101110', E: '111100110100111', F: '111100110100100', G: '011100101101011', H: '101101111101101', I: '111010010010111', K: '101101110101101', L: '100100100100111', M: '101111111101101', N: '110101101101101', O: '010101101101010', P: '110101110100100', R: '110101110101101', S: '011100010001110', T: '111010010010010', U: '101101101101111', V: '101101101101010', W: '101101111111101', X: '101101010101101', Y: '101101010010010', Z: '111001010100111', 0: '111101101101111', 1: '010110010010111', 2: '110001010100111', 3: '110001010001110', 4: '101101111001001', 5: '111100110001110', 6: '011100111101111', 7: '111001010010010', 8: '111101111101111', 9: '111101111001110', ':': '000010000010000', '.': '000000000000010', '-': '000000111000000', ' ': '000000000000000', "'": '010010000000000' };
+  function led(c, str, x, y, col, dim) {
+    let cx = Math.round(x);
+    for (const ch of str.toUpperCase()) {
+      const g = F[ch] || F[' '];
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 3; i++) {
+        if (g[j * 3 + i] === '1') P(c, cx + i, y + j, col); else if (dim) P(c, cx + i, y + j, dim);
+      }
+      cx += 4;
+    }
+    return cx - x;
+  }
+  // sprite compiler: rows of chars -> canvas, with palette map. '.' = clear
+  function sprite(rows, pal) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const c = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const k = r[x]; if (k !== '.' && k !== ' ' && pal[k]) P(c, x, y, pal[k]); } });
+    return cv;
+  }
+  // flip a sprite canvas horizontally
+  function flip(cv) { const o = document.createElement('canvas'); o.width = cv.width; o.height = cv.height; const c = o.getContext('2d'); c.translate(cv.width, 0); c.scale(-1, 1); c.drawImage(cv, 0, 0); return o; }
+  // scroll progress of a tall element whose sticky child is pinned: 0..1
+  function prog(el) { const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t <= 0 ? 0 : Math.min(1, Math.max(0, -r.top / t)); }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  // seeded rng
+  function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function loop(fn) { let t0 = performance.now(); const f = now => { fn(Math.max(0, now - t0) / 1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+  return { RM, hex, mix, stage, R, P, dith, bands, text, led, sprite, flip, prog, clamp, ease, seg, rng, loop };
+})();
+
+/* ---------- MOHIT: the pixel character, authored once, reused everywhere ---------- */
+const MOHIT = (() => {
+  // palette (day). Light comes from the viewer's left.
+  const BASE = {
+    h: '#1b1824', H: '#2d2a3c', j: '#4d4a69',            // hair: base, mid, gloss
+    s: '#b0704a', S: '#d0976c', d: '#8a5139', D: '#5e3325', // skin
+    f: '#b47452', k: '#7c4733',                           // fist + crease
+    g: '#1d1b24', G: '#c4c8d2', l: '#ffffff', n: '#e2c9b8', // glasses rims, glint, lens sheen
+    e: '#16121a', o: '#efe6dc', b: '#211719',             // pupil, eye white, brow
+    m: '#4a2a22', L: '#77392f', T: '#f6efe6',             // moustache, lip, teeth
+    W: '#f4f1f8', V: '#d6cfe6', v: '#aea4c8', p: '#e2daf1', q: '#c8bede', // shirt + pinstripes
+    t: '#2a2c3a', u: '#3c3f52', z: '#141218',             // trousers, shoes
+    0: '#0b0910', 1: '#3a1c14', 2: '#4f4866',             // outlines: hair, skin, shirt
+  };
+  const SKIN = 'sSdDfk', SHIRT = 'WVvpq', HAIR = 'hHj';
+
+  function grid(w, h) { return Array.from({ length: h }, () => Array(w).fill('.')); }
+  function painter(g) { return (y, x, s) => { for (let i = 0; i < s.length; i++) if (s[i] !== ' ' && g[y] && x + i < g[y].length) g[y][x + i] = s[i]; }; }
+
+  // automatic finishing: pinstripes, edge light/shadow, selective outline
+  function finish(g, opt = {}) {
+    const H = g.length, W = g[0].length, at = (x, y) => (y < 0 || y >= H || x < 0 || x >= W) ? '.' : g[y][x];
+    const out = g.map(r => r.slice());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = g[y][x];
+      if (c === 's') {
+        if (opt.lightLeft !== false && !SKIN.includes(at(x - 1, y)) && 'hHj.'.includes(at(x - 1, y)) && at(x - 1, y) !== undefined) out[y][x] = at(x - 1, y) === '.' ? 'S' : 's';
+        if (at(x + 1, y) === '.') out[y][x] = 'd';
+      }
+      if (c === 'W') {
+        // shade the side away from the light
+        let run = 0; for (let k = 1; k <= 4; k++) if (!SHIRT.includes(at(x + k, y))) { run = k; break; }
+        if (run && run <= (opt.shirtShade || 3)) out[y][x] = 'V';
+        if (at(x, y - 1) === '.' ) out[y][x] = 'W';
+      }
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const c = out[y][x];
+      if ((opt.stripe ?? 3) && y % (opt.stripe || 3) === (opt.stripeOff || 0)) {
+        if (c === 'W') out[y][x] = 'p'; else if (c === 'V') out[y][x] = 'q';
+      }
+    }
+    if (opt.outline !== false) {
+      const o2 = out.map(r => r.slice());
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (out[y][x] !== '.') continue;
+        const ns = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([a, b]) => (y + b < 0 || y + b >= H || x + a < 0 || x + a >= W) ? '.' : out[y + b][x + a]).filter(v => v !== '.' && !'012'.includes(v));
+        if (!ns.length) continue;
+        o2[y][x] = ns.some(v => HAIR.includes(v) || 'gbe'.includes(v)) ? '0' : ns.some(v => SKIN.includes(v)) ? '1' : ns.some(v => SHIRT.includes(v)) ? '2' : '0';
+      }
+      return o2;
+    }
+    return out;
+  }
+  const rows = g => g.map(r => r.join(''));
+
+  /* ===== 1. BUST: seated at the window, chin on fist, pensive (3/4, looking out to viewer's left) ===== */
+  function bust(state = {}) {
+    const g = grid(48, 64), P = painter(g);
+    // hair: soft quiff, highest at the front (left), swept up and back
+    P(0, 17, 'hhhhh');
+    P(1, 15, 'hhhhhhhhhh');
+    P(2, 13, 'hhhhhhhhhhhhhhhh');
+    P(3, 12, 'hhhhhhhhhhhhhhhhhhhh');
+    P(4, 12, 'hhhhhhhhhhhhhhhhhhhhhh');
+    P(5, 12, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    P(6, 12, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(7, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(8, 13, 'hhhhhhhhhhhhhhhhhhhhhhhhh');
+    P(9, 14, 'hhhhhhhhhhhhhhhhhhhhhhhh');
+    // gloss strands sweeping up and back
+    P(1, 16, 'jjj');
+    P(2, 14, 'jjHH  HHH');
+    P(3, 13, 'jH  jjjjHH   H');
+    P(4, 13, 'H  HH   jjjjHH');
+    P(5, 15, 'jH    HHH  jjjH');
+    P(6, 14, 'H  jjH     HHHjjH');
+    P(7, 16, 'HH          HHjH');
+    P(8, 28, 'HHH');
+    // forehead, brows, sideburn, ear
+    P(10, 14, 'hhsssssssssssshhhhhhhhhh');
+    P(11, 14, 'hssssssssssssssshhhhhhh');
+    P(12, 14, 'sbbbbssbbbbbbssssshhhhh');
+    P(13, 14, 'sssssssssssssssssssshhh');
+    P(14, 13, 'gggggggggggggggggggggsshh');
+    P(15, 13, 'gnbbbssgssgnbbbbssgssssh');
+    P(16, 13, 'gseeossgssgseeoossgssdds');
+    P(17, 13, 'gseeossgsdgseeosssgssdsd');
+    P(18, 13, 'gssssssgsdgsssssssgssdsd');
+    P(19, 13, 'GGGGGGGGsdGGGGGGGGGssdsd');
+    // nose (tip just past the cheek line), moustache, closed mouth
+    P(20, 13, 'SSsssddssssssssssssdsd');
+    P(21, 13, 'Sssddddsssssssssssdd');
+    P(22, 14, 'smmmmmmssssssssssd');
+    P(23, 14, 'ssLLLLssssssssssd');
+    P(24, 14, 'sssssssssssssddd');
+    P(25, 15, 'sssssssssssdd');
+    P(26, 16, 'sssssssdDd');
+    // neck in shadow
+    P(24, 29, 'dd'); P(25, 27, 'dddd'); P(26, 26, 'ddddd');
+    for (let y = 27; y < 33; y++) P(y, 24, 'Ddddddd');
+    // collar: open, points falling either side of the V
+    P(28, 30, 'WWW');
+    P(29, 30, 'WWWWW');
+    P(30, 22, 'WW      WWWWWW');
+    P(31, 21, 'WWWW   VWWWWWWWW');
+    P(32, 20, 'WWWWWW dVWWWWWWWWWW');
+    P(33, 19, 'WWWWWWWsdvWWWWWWWWWWWW');
+    P(34, 18, 'WWWWWWWWdvWWWWWWWWWWWWWW');
+    // shirt body: shoulders slope out, then fall
+    for (let y = 35; y < 64; y++) {
+      const L = Math.max(3, 18 - Math.round((y - 35) * 1.4)), R = Math.min(47, 42 + Math.round((y - 35) * 0.45));
+      P(y, L, 'W'.repeat(R - L));
+    }
+    for (let y = 34; y < 64; y++) { P(y, 27, 'v'); }
+    for (let y = 44; y < 64; y++) P(y, 38 + ((y - 44) >> 3), 'V');
+    // fist under the chin: knuckles up, fingers curled toward us, thumb on the right
+    P(26, 13, 'ff');
+    P(27, 12, 'ffffffffkff');
+    P(28, 11, 'fffffffffkff');
+    P(29, 11, 'kkkkkkkkkfkf');
+    P(30, 11, 'fffffffffkff');
+    P(31, 11, 'fffffffffkff');
+    P(32, 11, 'kkkkkkkkkfff');
+    P(33, 11, 'ffffffffffff');
+    P(34, 12, 'ffffffffff');
+    P(35, 13, 'kkkkkkkk');
+    // forearm, vertical, elbow resting on the sill below
+    for (let y = 36; y < 48; y++) P(y, 13, 'ffffff' + (y < 40 ? 'k' : 'fk'));
+    // rolled sleeve cuff, then the sleeve to the elbow
+    P(47, 11, 'vvvvvvvvvvvv');
+    P(48, 10, 'WWWWWWWWWWWWWV');
+    P(49, 10, 'WWWWWWWWWWWWWV');
+    P(50, 10, 'WWWWWWWWWWWWWV');
+    P(51, 10, 'vvvvvvvvvvvvvv');
+    P(52, 11, 'WWWWWWWWWWWWV');
+    P(53, 11, 'WWWWWWWWWWWWV');
+    P(54, 12, 'VVVVVVVVVVV');
+    // the body behind the raised arm falls into shade
+    for (let y = 36; y < 64; y++) for (let x = 3; x < 13; x++) if (g[y][x] === 'W') g[y][x] = y > 54 || x < 11 ? 'V' : 'W';
+    for (let y = 55; y < 64; y++) P(y, 10, 'VVVVVVVVVVVVVV');
+    // ear, cleanly shaped, hair tucked behind it
+    P(13, 33, 'shhhh');
+    P(14, 34, 'Ssh'); P(15, 34, 'sdsh'); P(16, 34, 'sdsh'); P(17, 34, 'sdsh'); P(18, 34, 'ssdh');
+    P(19, 34, 'sds'); P(20, 34, 'dd.'); P(21, 33, 'd..');
+    for (let y = 14; y < 19; y++) P(y, 38, '.');
+    // light on the forehead, cheek and nose
+    P(10, 17, 'SSS'); P(11, 16, 'SSSS'); P(20, 15, 'SS'); P(21, 15, 'S');
+    // quiff lift at the front
+    P(0, 14, 'hh'); P(1, 13, 'hjj');
+    // states
+    if (state.blink) { P(15, 14, 'ssss'); P(16, 14, 'bbbss'); P(17, 14, 'sssss'); P(15, 24, 'ssss'); P(16, 24, 'bbbbs'); P(17, 24, 'sssss'); }
+    if (state.glint != null) { const x = 14 + state.glint; if (x < 19) P(18, x, 'l'); const x2 = 24 + state.glint; if (x2 < 30) P(18, x2, 'l'); }
+    return finish(g, { stripe: 3, stripeOff: 1 });
+  }
+
+
+  /* ===== 2. SEATED ON THE PARAPET, from behind; head: 0 = looking at the sea, 1 = turning, 2 = smiling over his shoulder ===== */
+  function back(state = {}) {
+    const g = grid(46, 56), P = painter(g), turn = state.turn || 0, w = state.wind || 0;
+    // shirt body (back): sloped shoulders, torso tapering to the waist, yoke and pleat
+    const SH = [[19, 16, 28], [20, 13, 31], [21, 10, 34], [22, 8, 36], [23, 7, 37], [24, 6, 38]];
+    SH.forEach(([y, l, r]) => P(y, l, 'W'.repeat(r - l)));
+    for (let y = 25; y < 54; y++) {
+      const t = (y - 25) / 28, L = Math.round(8 + t * 2.5), R = Math.round(36 - t * 2.5) + (y > 32 && w && ((y + w) % 6 < 2) ? 1 : 0);
+      P(y, L, 'W'.repeat(R - L));
+    }
+    P(26, 10, 'vvvvvvvvvvvvvvvvvvvvvvvv');                    // yoke seam
+    for (let y = 27; y < 54; y++) P(y, 22, 'v');               // box pleat
+    for (let y = 31; y < 54; y++) P(y, 29 + ((y + w) % 6 < 3 ? 0 : 1), 'V');
+    for (let y = 36; y < 54; y++) P(y, 14 + ((y + w) % 8 < 4 ? 0 : 1), 'V');
+    // arms hanging slightly out from the body, sleeves rolled, hands on the parapet edge
+    for (let y = 24; y < 41; y++) { const o = Math.round((y - 24) / 8); P(y, 4 - o, 'WWWWW'); P(y, 36 + o, 'WWWWW'); P(y, 8 - o, 'v'); P(y, 36 + o, 'v'); }
+    P(41, 1, 'vvvvvvv'); P(42, 1, 'WWWWWWW'); P(43, 1, 'WWWWWWW'); P(44, 1, 'vvvvvvv');
+    P(41, 38, 'vvvvvvv'); P(42, 38, 'WWWWWWW'); P(43, 38, 'WWWWWWW'); P(44, 38, 'vvvvvvv');
+    for (let y = 45; y < 53; y++) { P(y, 2, 'Sssd'); P(y, 39, 'sssd'); }
+    P(53, 1, 'ffffff'); P(54, 1, 'kkkkkk'); P(53, 38, 'ffffff'); P(54, 38, 'kkkkkk');
+    // neck + collar band
+    P(16, 18, 'dddddddd'); P(17, 18, 'ssssssss'); P(18, 18, 'ssssssss');
+    P(19, 16, 'WWVVVVVVVVWWW'); P(20, 15, 'WW') ;
+    if (turn === 0) {
+      P(0, 17, 'hhhhhhhhh'); P(1, 15, 'hhhhhhhhhhhhh'); P(2, 14, 'hhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 13, 'hhhhhhhhhhhhhhhhh');
+      P(13, 14, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhhh');
+      P(16, 17, 'hhhhhhhhhh');
+      P(1, 18, 'jjjHH'); P(2, 16, 'HjjjjjHH'); P(3, 15, 'H  HHjjjH'); P(4, 20, 'HHjH'); P(5, 15, 'H');
+      // ears either side, glasses arms over them
+      P(7, 11, 'gg'); P(7, 30, 'gg');
+      P(8, 11, 'Ss'); P(9, 11, 'sd'); P(10, 11, 'sd'); P(11, 11, 'sd'); P(12, 12, 'd');
+      P(8, 30, 'ss'); P(9, 30, 'ds'); P(10, 30, 'ds'); P(11, 30, 'dd'); P(12, 30, 'd');
+    } else if (turn === 1) {
+      P(0, 16, 'hhhhhhhhh'); P(1, 14, 'hhhhhhhhhhhhhh'); P(2, 13, 'hhhhhhhhhhhhhhhh');
+      for (let y = 3; y < 13; y++) P(y, 12, 'hhhhhhhhhhhhhhhhhh');
+      P(13, 13, 'hhhhhhhhhhhhhhh'); P(14, 15, 'hhhhhhhhhhhh'); P(15, 16, 'hhhhhhhhhh'); P(16, 18, 'hhhhhhh');
+      P(1, 17, 'jjjHH'); P(2, 15, 'HjjjjjHH'); P(3, 14, 'H  HHjjjH'); P(4, 19, 'HHjH');
+      // cheek edge + glasses rim appearing, ear moving to the centre-right
+      P(6, 10, 'gggggggg'); P(7, 10, 'Gs'); P(8, 10, 'Ssss'); P(9, 10, 'sssss'); P(10, 11, 'ssss'); P(11, 11, 'sss'); P(12, 12, 'sd'); P(13, 13, 'd');
+      P(7, 26, 'ss'); P(8, 26, 'sd'); P(9, 26, 'sd'); P(10, 26, 'sd'); P(11, 26, 'dd');
+      P(16, 17, 'dd');
+    } else {
+      // turned to smile over his shoulder, like the rooftop photo
+      P(0, 10, 'hhhhhhh'); P(1, 9, 'hhhhhhhhhhhhh'); P(2, 8, 'hhhhhhhhhhhhhhhhhhh');
+      P(3, 8, 'hhhhhhhhhhhhhhhhhhhhh'); P(4, 8, 'hhhhhhhhhhhhhhhhhhhhhh'); P(5, 9, 'hhhhhhhhhhhhhhhhhhhhh'); P(6, 9, 'hhhhhhhhhhhhhhhhhhhhh');
+      P(7, 9, 'ssssssshhhhhhhhhhhhhh');
+      P(8, 8, 'bbbsssssshhhhhhhhhhhhh');
+      P(0, 11, 'jjH'); P(1, 10, 'jjjHH'); P(2, 9, 'H  jjjHHH'); P(3, 13, 'HHjjjjHH'); P(4, 10, 'H     HHHjjH'); P(5, 12, 'HH');
+      P(9, 7, 'gggggggggggggggggssshhhhh');
+      P(10, 7, 'gneogSssssssssssdssdshhhh');
+      P(11, 7, 'gsssgsssssssssssdssdshhh');
+      P(12, 6, 'SGGGGGsSSsssssssddsdhhh');
+      P(13, 5, 'SSsdssSSssssssssdddhhh');
+      P(14, 6, 'smmmdssssssssssddhh');
+      P(15, 7, 'TTTdsssssssssddhh');
+      P(16, 7, 'LLdssssssssddd h');
+      P(17, 8, 'sssssssssddd');
+      P(18, 9, 'dsssssddd');
+      P(19, 12, 'ddd');
+      P(16, 18, 'dddddd');
+    }
+    return finish(g, { stripe: 3, stripeOff: 0, shirtShade: 4 });
+  }
+
+  /* ===== 3. WALKING, side view facing right, 8 frames; procedural limbs on an authored head and torso ===== */
+  function line(g, x0, y0, x1, y1, ch, wpx = 2) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1) * 2;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n);
+      for (let k = 0; k < wpx; k++) if (g[y] && g[y][x + k] !== undefined) g[y][x + k] = ch;
+    }
+  }
+  function walk(state = {}) {
+    const g = grid(20, 38), P = painter(g), ph = (state.f || 0) / 8 * Math.PI * 2, bob = Math.abs(Math.sin(ph)) > .7 ? 0 : 1;
+    const legs = (sgn, ch) => {
+      const a = Math.sin(ph) * .5 * sgn, knee = Math.max(0, Math.cos(ph) * sgn) * .7;
+      const hx = 8, hy = 22 + bob, kx = hx + Math.sin(a) * 7, ky = hy + Math.cos(a) * 7;
+      const ax = kx + Math.sin(a - knee) * 7, ay = ky + Math.cos(a - knee) * 7;
+      line(g, hx, hy, kx, ky, ch, 3); line(g, kx, ky, ax, Math.min(35, ay), ch, 2);
+      const fy = Math.min(35, Math.round(ay)); P(fy, Math.round(ax) - 1, 'zzzz'); P(fy - 1, Math.round(ax), 'zz');
+    };
+    const arm = (sgn, ch, skin) => {
+      const a = -Math.sin(ph) * .55 * sgn, sx = 9, sy = 14 + bob;
+      const ex = sx + Math.sin(a) * 5, ey = sy + Math.cos(a) * 5, hx = ex + Math.sin(a + .35) * 5, hy = ey + Math.cos(a + .35) * 5;
+      line(g, sx, sy, ex, ey, ch, 3); line(g, ex, ey, hx, hy, skin, 2); P(Math.round(hy), Math.round(hx), skin + skin);
+      P(Math.round(ey), Math.round(ex), ch === 'W' ? 'vvv' : 'vv');
+    };
+    arm(-1, 'V', 'd');           // far arm, in shade
+    legs(-1, 'u');               // far leg
+    const b = bob;
+    // head (quiff to the front), glasses, face
+    P(0 + b, 7, 'hhhhh'); P(1 + b, 5, 'hhhhhhhhj'); P(2 + b, 4, 'hhhhhjjhhhh'); P(3 + b, 4, 'hhhhhhhhhhh');
+    P(4 + b, 4, 'hhhhhhsssss'); P(5 + b, 4, 'hhhsgggggggg'); P(6 + b, 4, 'hhssssssbeG'); P(7 + b, 4, 'hdsssssGGGGS');
+    P(8 + b, 5, 'dsssssssmms'); P(9 + b, 5, 'ddsssssssd'); P(10 + b, 6, 'ddssssd'); P(11 + b, 8, 'ddd');
+    // torso, tucked white shirt
+    P(12 + b, 6, 'WWWWWWW'); P(13 + b, 5, 'WWWWWWWWW');
+    for (let y = 14; y < 22; y++) P(y + b, 5, 'WWWWWWWWV');
+    P(22 + b, 5, 'tttttttt'); P(23 + b, 5, 'tttttttt');
+    legs(1, 't');                // near leg
+    arm(1, 'W', 's');            // near arm, in front
+    return finish(g, { stripe: 2, shirtShade: 2 });
+  }
+
+  function build(fn, state, pal) { return PX.sprite(rows(fn(state || {})), Object.assign({}, BASE, pal || {})); }
+  return { BASE, bust, back, walk, build, finish, grid, painter, rows };
+})();
+
+(() => {
+const { R, P, dith, bands, mix, rng, clamp } = PX;
+const main = document.getElementById('work'), bgc = document.getElementById('bg'), fgc = document.getElementById('fg');
+const bctx = bgc.getContext('2d'), fctx = fgc.getContext('2d');
+let s = 3, W = 0, H = 0, slots = [], crown = 0;
+const cards = [...document.querySelectorAll('.card')];
+
+const C = {
+  sky: ['#9fc2cf', '#b4cdd2', '#cbd6d0', '#e0dccb', '#ecd9b8', '#f0cf9f'],
+  plaster: '#ecdfc6', plaster2: '#e4d5b9', plaster3: '#f3e9d6', ledge: '#d6c4a2', ledgeSh: '#c3ae8a',
+  iron: '#2c312c', iron2: '#454e46', ironHi: '#6d786c', rivet: '#8b958a',
+  bulbOn: '#ffd986', bulbHot: '#fff4cf', bulbOff: '#8a6c44', glow: 'rgba(255,214,140,0.16)',
+};
+
+function layout() {
+  s = Math.max(2, Math.min(5, Math.round(innerWidth / 480)));
+  if (innerWidth < 700) s = 3;
+  const r = main.getBoundingClientRect();
+  W = Math.ceil(r.width / s); H = Math.ceil(main.scrollHeight / s);
+  [bgc, fgc].forEach(cv => { cv.width = W; cv.height = H; cv.style.width = W * s + 'px'; cv.style.height = H * s + 'px'; cv.getContext('2d').imageSmoothingEnabled = false; });
+  // snap every media slot to the art grid so frames hug the images exactly
+  slots = cards.map(card => {
+    const sl = card.querySelector('.slot'), img = sl.querySelector('img');
+    img.style.left = img.style.top = '0px'; img.style.width = img.style.height = '100%';
+    const b = sl.getBoundingClientRect();
+    const x0 = Math.ceil((b.left - r.left) / s), y0 = Math.ceil((b.top - r.top) / s), x1 = Math.floor((b.right - r.left) / s), y1 = Math.floor((b.bottom - r.top) / s);
+    img.style.left = (x0 * s - (b.left - r.left)) + 'px'; img.style.top = (y0 * s - (b.top - r.top)) + 'px';
+    img.style.width = (x1 - x0) * s + 'px'; img.style.height = (y1 - y0) * s + 'px';
+    return { card, x: x0, y: y0, w: x1 - x0, h: y1 - y0, feature: card.hasAttribute('data-feature'), lit: card.hasAttribute('data-feature') ? 1 : 0 };
+  });
+  drawBg();
+}
+
+function drawBg() {
+  const c = bctx, r = rng(4);
+  crown = Math.round(Math.max(150, innerHeight * .22) / s);
+  // sky behind the crown of the building
+  bands(c, 0, 0, W, crown + 4, C.sky, 2);
+  // plaster wall with a fine dither grain
+  R(c, 0, crown, W, H - crown, C.plaster);
+  for (let i = 0; i < W * (H - crown) / 22; i++) P(c, Math.floor(r() * W), crown + Math.floor(r() * (H - crown)), r() > .5 ? C.plaster2 : C.plaster3);
+  // stepped Art Deco crown: parapet line, central stepped tower with fins and a sunburst
+  const cy = crown;
+  R(c, 0, cy - 6, W, 6, C.plaster3); R(c, 0, cy - 6, W, 1, '#fbf5e8'); R(c, 0, cy, W, 2, C.ledge); R(c, 0, cy + 2, W, 1, C.ledgeSh);
+  const tx = Math.round(W * (W < 200 ? .7 : .72)), tw = Math.min(110, Math.round(W * .32));
+  const steps = [[tw, 10], [tw - 18, 9], [tw - 36, 8], [tw - 54, 7]];
+  let yy = cy - 6;
+  steps.forEach(([w, h]) => { if (w < 8) return; R(c, tx - w / 2, yy - h, w, h, C.plaster3); R(c, tx - w / 2, yy - h, w, 1, '#fbf5e8'); R(c, tx + w / 2 - 3, yy - h, 3, h, C.plaster2); yy -= h; });
+  // vertical fins
+  for (let k = -2; k <= 2; k++) R(c, tx + k * 8, cy - 40, 2, 34, C.plaster2);
+  // sunburst relief in the top tier
+  const sx = tx, sy = cy - 6 - 10;
+  for (let a = 0; a < 9; a++) { const ang = Math.PI + (a / 8) * Math.PI; for (let k = 3; k < 9; k++) P(c, sx + Math.round(Math.cos(ang) * k), sy + Math.round(Math.sin(ang) * k * .8), C.ledgeSh); }
+  // flagpole
+  R(c, tx, yy - 14, 1, 14, '#6b6158');
+  // eyebrow ledges marching down the facade (soft, behind everything)
+  // painted light: warm afternoon wash on the upper wall
+  for (let y = cy; y < cy + 80 && y < H; y += 1) { const t = 1 - (y - cy) / 80; for (let x = (y & 1); x < W; x += 2) if (((x * 13 + y * 7) % 17) / 17 < t * .25) P(c, x, y, '#f6e2bd'); }
+}
+
+function frameIron(c, q) {
+  const { x, y, w, h } = q;
+  R(c, x - 4, y - 4, w + 8, 4, C.iron2); R(c, x - 4, y + h, w + 8, 4, C.iron);
+  R(c, x - 4, y, 4, h, C.iron2); R(c, x + w, y, 4, h, C.iron);
+  R(c, x - 4, y - 4, w + 8, 1, C.ironHi); R(c, x - 4, y - 4, 1, h + 8, C.ironHi);
+  R(c, x - 5, y - 5, w + 10, 1, '#1a1d1a'); R(c, x - 5, y + h + 4, w + 10, 1, '#1a1d1a'); R(c, x - 5, y - 5, 1, h + 10, '#1a1d1a'); R(c, x + w + 4, y - 5, 1, h + 10, '#1a1d1a');
+  for (let i = 6; i < w; i += 12) { P(c, x + i, y - 2, C.rivet); P(c, x + i, y + h + 2, C.rivet); }
+}
+function lamp(c, cx, y0, lit, t) {
+  // hoarding lamp in elevation: stem rising from the frame, enamel shade facing down onto the board
+  cx = Math.round(cx); y0 = Math.round(y0);
+  R(c, cx - 1, y0 - 12, 2, 12, C.iron); P(c, cx - 1, y0 - 12, C.ironHi);
+  R(c, cx - 3, y0 - 1, 6, 2, C.iron);
+  const g = '#2f5a46', gl = '#4f8468', gd = '#1f3d30';
+  R(c, cx - 3, y0 - 19, 6, 1, gd); R(c, cx - 4, y0 - 18, 8, 2, g); R(c, cx - 5, y0 - 16, 10, 2, g); R(c, cx - 6, y0 - 14, 12, 1, gl);
+  R(c, cx - 3, y0 - 18, 2, 3, gl); P(c, cx, y0 - 20, gd);
+  if (lit) { const fl = !PX.RM && Math.sin(t * 13 + cx) > .985 ? 0 : 1; R(c, cx - 4, y0 - 13, 8, 1, fl ? C.bulbHot : C.bulbOn); R(c, cx - 2, y0 - 12, 4, 1, C.bulbOn); }
+  else R(c, cx - 4, y0 - 13, 8, 1, '#5d5546');
+}
+function cone(c, cx, y0, q, k) {
+  // stepped pools of warm light falling from the shade onto the board (three flat bands, no gradients)
+  if (k <= .02) return;
+  const top = y0 - 12, bottom = q.y + 2;
+  [[1, .2], [.85, .15], [.7, .1]].forEach(([len, spread]) => {
+    c.fillStyle = `rgba(255,222,150,${(0.12 * k).toFixed(3)})`;
+    const yb = top + (bottom - top) * len;
+    for (let y = top; y < yb; y++) { const d = (y - top) / (bottom - top); const half = Math.round(4 + d * q.w * spread * 2); c.fillRect(Math.round(cx) - half, y, half * 2, 1); }
+  });
+}
+function glowImg(c, q, k) {
+  // the lamp's light on the board itself: a soft stepped falloff from the top edge
+  if (k <= .02) return;
+  for (let i = 0; i < 3; i++) { c.fillStyle = `rgba(255,226,170,${(0.05 * k).toFixed(3)})`; c.fillRect(q.x, q.y, q.w, Math.round(q.h * (0.12 + i * 0.1))); }
+}
+function bulbs(c, q, t) {
+  // Eros-style marquee: bulbs round the frame, chasing
+  const { x, y, w, h } = q, step = 5, ph = Math.floor(t * 6);
+  const pts = [];
+  for (let i = 0; i <= w + 8; i += step) { pts.push([x - 4 + i, y - 8]); }
+  for (let i = step; i <= h + 8; i += step) pts.push([x + w + 4, y - 8 + i]);
+  for (let i = step; i <= w + 8; i += step) pts.push([x + w + 4 - i, y + h + 4 + 4]);
+  for (let i = step; i < h + 12; i += step) pts.push([x - 4, y + h + 8 - i]);
+  // plate behind the bulbs
+  R(c, x - 9, y - 12, w + 18, 4 + 4, '#7b2c22'); R(c, x - 9, y + h + 4, w + 18, 8, '#7b2c22');
+  R(c, x - 9, y - 12, 5, h + 24, '#7b2c22'); R(c, x + w + 4, y - 12, 5, h + 24, '#7b2c22');
+  R(c, x - 9, y - 12, w + 18, 1, '#a8483a');
+  pts.forEach(([px, py], i) => {
+    const on = PX.RM ? true : ((i + ph) % 3) !== 0;
+    R(c, px - 1, py - 1, 3, 3, on ? C.bulbOn : C.bulbOff); if (on) P(c, px, py, C.bulbHot);
+  });
+}
+// pigeons on the crown ledge
+const pigeons = [{ x: .18, f: 0 }, { x: .24, f: 1.3 }, { x: .58, f: 2.1 }];
+function pigeon(c, x, y, peck, look) {
+  const g = '#7d8290', d = '#5b606c', l = '#a9adb8', n = '#5d7b78';
+  R(c, x, y - 4, 6, 3, g); R(c, x + 1, y - 5, 4, 1, l); R(c, x - 2, y - 3, 2, 1, d);
+  const hx = look ? x + 5 : x - 1, hy = peck ? y - 3 : y - 7;
+  R(c, hx, hy, 2, 2, d); P(c, hx + (look ? 2 : -1), hy + 1, '#c9a26a'); R(c, look ? x + 4 : x, y - 5 + (peck ? 1 : 0), 2, 2, n);
+  P(c, x + 2, y - 1, '#c56a5a'); P(c, x + 4, y - 1, '#c56a5a');
+}
+
+function frame(t) {
+  const c = fctx; c.clearRect(0, 0, W, H);
+  slots.forEach((q, i) => {
+    const tgt = q.card.classList.contains('lit') ? 1 : 0; q.lit += (tgt - q.lit) * .12;
+    if (q.feature) { bulbs(c, q, t); cone(c, q.x + q.w * .25, q.y - 12, q, 1); cone(c, q.x + q.w * .75, q.y - 12, q, 1); lamp(c, q.x + q.w * .25, q.y - 12, 1, t); lamp(c, q.x + q.w * .75, q.y - 12, 1, t); glowImg(c, q, 1); }
+    else { frameIron(c, q); cone(c, q.x + q.w / 2, q.y - 5, q, q.lit); lamp(c, q.x + q.w / 2, q.y - 5, q.lit > .5, t); glowImg(c, q, q.lit); }
+  });
+  pigeons.forEach((p, i) => { const tt = t + p.f; const peck = !PX.RM && (tt % 3) < .5 && Math.floor(tt * 4) % 2 === 0; pigeon(c, Math.round(W * p.x + (PX.RM ? 0 : Math.sin(tt * .3) * 6)), crown - 6, peck, Math.floor(tt / 4) % 2 === 0); });
+}
+
+// lamps come on as each hoarding reaches the middle of the screen, and on hover
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.target.hasAttribute('data-feature')) e.target.classList.toggle('lit', e.isIntersecting); }), { rootMargin: '-35% 0px -35% 0px' });
+cards.forEach(cd => { io.observe(cd); cd.addEventListener('mouseenter', () => cd.classList.add('lit')); });
+addEventListener('resize', layout);
+const imgs = [...document.images];
+Promise.all(imgs.map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; }))).then(layout);
+document.fonts && document.fonts.ready.then(layout);
+layout();
+PX.loop(t => frame(t));
+})();
+</script>
+</body>
+</html>

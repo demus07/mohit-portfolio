@@ -1,0 +1,575 @@
+<!-- Direction 08: Dark cinematic minimal — Churchgate at night as one letterboxed film shot: a slow dolly across the platform into a single lit window of the AC local, where Mohit sits rim-lit, chin on fist. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Churchgate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Devanagari:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06080c; --navy:#0d1a2b; --sodium:#f2a145; --sodium-hi:#ffcf8f; --cream:#ece4d6; --mute:#8a93a1; --moon:#a9c0d6;
+  --serif:"Instrument Serif", "Newsreader", Georgia, serif; --sans:"Hanken Grotesk", system-ui, sans-serif;
+  --bar:max(84px, calc((100vh - 100vw / 2.39) / 2));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink)}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.serif{font-family:var(--serif);font-weight:400}
+.cta{display:inline-flex;align-items:baseline;gap:.5em;font-family:var(--sans);font-size:15px;letter-spacing:.01em;color:var(--sodium);
+  padding-bottom:3px;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.cta:hover,.cta:focus-visible{background-size:100% 1px;color:var(--sodium-hi)}
+.cta .arr{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover .arr{transform:translateX(5px)}
+/* film grain + vignette: fixed, above everything, never intercepts input */
+.grain{position:fixed;inset:-60px;z-index:90;pointer-events:none;opacity:.11;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -.35'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  animation:grain .9s steps(5) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-31px,17px)}40%{transform:translate(23px,-29px)}60%{transform:translate(-13px,-41px)}80%{transform:translate(37px,11px)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
+/* letterbox */
+.bar{position:absolute;left:0;right:0;height:var(--bar);background:#000;z-index:20}
+.bar.top{top:0}.bar.bot{bottom:0}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}*{transition-duration:.01s!important}}
+
+.pin{position:relative;height:460vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#05070b}
+.cam{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0}
+#wide{will-change:transform}
+#close{opacity:0}
+.cam svg{display:block;overflow:visible}
+.bar.top{display:flex;align-items:flex-end;gap:48px;padding:0 64px 26px}
+.name{font-family:var(--serif);font-size:clamp(44px,4.4vw,72px);line-height:.9;letter-spacing:-.01em;white-space:nowrap}
+.line{font-size:15px;line-height:1.5;color:#b9b2a6;max-width:40ch;padding-bottom:4px}
+.bar.top .cta{margin-left:auto;padding-bottom:6px}
+.bar.bot{display:flex;align-items:center;justify-content:center;padding:0 24px}
+.note{font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.9vw,28px);color:var(--cream);text-align:center;opacity:0;transform:translateY(10px);max-width:34ch;line-height:1.25}
+.note span{color:var(--sodium-hi)}
+@media (max-width:760px){
+  :root{--bar:96px}
+  .bar.top{height:auto;min-height:250px;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:14px;padding:0 22px 22px}
+  .name{font-size:46px}
+  .line{font-size:15px}
+  .bar.top .cta{margin-left:0}
+  .bar.bot{height:118px}
+}
+</style>
+</head>
+<body>
+<svg class="defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- ===== Mohit, style 08: rim-lit film-still figure. Head faces right; key light (sodium) from the right, cool fill from behind. ===== -->
+    <linearGradient id="mSkin" gradientUnits="userSpaceOnUse" x1="140" y1="0" x2="296" y2="0">
+      <stop offset="0" stop-color="#140c09"/>
+      <stop offset=".45" stop-color="#3a2216"/>
+      <stop offset=".78" stop-color="#8a5636"/>
+      <stop offset="1" stop-color="#c7895a"/>
+    </linearGradient>
+    <linearGradient id="mSkinV" gradientUnits="userSpaceOnUse" x1="0" y1="110" x2="0" y2="330">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".7" stop-color="#000" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".45"/>
+    </linearGradient>
+    <linearGradient id="mHair" gradientUnits="userSpaceOnUse" x1="120" y1="80" x2="270" y2="150">
+      <stop offset="0" stop-color="#040507"/>
+      <stop offset=".75" stop-color="#09090b"/>
+      <stop offset="1" stop-color="#1e1510"/>
+    </linearGradient>
+    <linearGradient id="mShirt" gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="330" y2="0">
+      <stop offset="0" stop-color="#2a2a33"/>
+      <stop offset=".45" stop-color="#77717f"/>
+      <stop offset=".75" stop-color="#c9bfc9"/>
+      <stop offset="1" stop-color="#f4ebe6"/>
+    </linearGradient>
+    <linearGradient id="mArm" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="310" y2="0">
+      <stop offset="0" stop-color="#1d120c"/>
+      <stop offset=".6" stop-color="#6e4329"/>
+      <stop offset="1" stop-color="#c88a5b"/>
+    </linearGradient>
+    <pattern id="mPin" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(4)">
+      <rect width="7" height="7" fill="none"/>
+      <path d="M0 3.5H7" stroke="#8f7fb0" stroke-width=".7" opacity=".55"/>
+    </pattern>
+    <pattern id="mPinV" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-6)">
+      <path d="M3.5 0V7" stroke="#8f7fb0" stroke-width=".7" opacity=".5"/>
+    </pattern>
+
+    <!-- head shape (skin), facing right -->
+    <path id="mFace" d="M156 262 C134 236 122 206 124 178 C128 130 166 100 212 98 C246 98 264 120 266 150
+      C267 168 271 182 270 192 C269 199 270 204 274 210 C281 220 290 230 293 238 C295 245 290 249 284 249
+      C280 249 277 251 276 254 C279 259 281 264 279 267 C278 269 276 270 276 271 C279 274 279 279 275 283
+      C272 285 271 288 273 293 C277 300 274 309 263 311 C246 313 226 304 210 292 C202 286 196 280 192 272
+      C178 270 166 268 156 262 Z"/>
+    <path id="mHairP" d="M264 150 C266 140 270 132 273 122 C277 110 278 96 274 86 C270 76 260 70 246 70
+      C236 70 230 72 222 75 C210 77 198 80 188 84 C176 86 164 92 154 100 C136 114 124 136 120 162
+      C116 186 120 206 130 226 C136 236 142 242 150 246 C158 236 166 222 172 212 C178 204 186 200 196 199
+      C200 200 203 202 205 206 L208 226 L212 226 C212 214 214 200 216 188 C220 174 230 160 244 154
+      C252 151 258 150 264 150 Z"/>
+    <linearGradient id="mFadeBG" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="196" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <linearGradient id="mFadeFG" gradientUnits="userSpaceOnUse" x1="0" y1="130" x2="0" y2="162"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <mask id="mClipBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeBG)"/></mask>
+    <mask id="mClipFront" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeFG)"/></mask>
+    <mask id="mRimFace" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mFace" fill="#fff"/><use href="#mFace" fill="#000" transform="translate(-4.5 1.5)"/>
+    </mask>
+    <mask id="mRimHair" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(-3 3.5)"/>
+    </mask>
+    <mask id="mRimHairBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(3.5 2)"/>
+    </mask>
+    <linearGradient id="mRimG" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="0" y2="320">
+      <stop offset="0" stop-color="#ffd59a" stop-opacity=".5"/>
+      <stop offset=".35" stop-color="#ffd59a"/>
+      <stop offset=".8" stop-color="#ffbf73"/>
+      <stop offset="1" stop-color="#ffbf73" stop-opacity=".3"/>
+    </linearGradient>
+
+
+    <!-- HEAD: pensive (closed mouth, eyes looking out). Faces right. -->
+    <g id="m-head-base">
+      <use href="#mFace" fill="url(#mSkin)"/>
+      <use href="#mFace" fill="url(#mSkinV)"/>
+      <!-- soft modelling: cheekbone light, jaw shadow -->
+      <ellipse cx="248" cy="240" rx="16" ry="11" fill="#e0a070" opacity=".05"/>
+      <path d="M214 290 C230 302 248 310 262 311" fill="none" stroke="#1a0e08" stroke-width="5" opacity=".28" stroke-linecap="round"/>
+      <use href="#mFace" fill="url(#mRimG)" mask="url(#mRimFace)"/>
+      <!-- ear -->
+      <path d="M201 206 C187 197 172 205 172 222 C172 239 181 251 193 252 C199 252 203 246 201 238 Z" fill="#3a2217"/>
+      <path d="M195 212 C184 210 179 220 181 232 C183 241 189 245 194 242" fill="none" stroke="#160c08" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M187 222 C186 228 188 233 192 235" fill="none" stroke="#160c08" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <path d="M176 214 C173 224 175 238 182 246" fill="none" stroke="#7fa6cf" stroke-width="1.4" opacity=".45" stroke-linecap="round"/>
+      <path d="M279 246 C282 248 285 248 287 246" fill="none" stroke="#4a2a1a" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258.5 C276 261.5 269 261.5 263 260.5 Z" fill="#140b08" opacity=".7"/>
+      <!-- brow -->
+      <path d="M244 190 C252 184 263 182 273 185 L272 190 C263 188 254 189 246 194 Z" fill="#0b0807"/>
+      <!-- hair -->
+      <use href="#mHairP" fill="url(#mHair)"/>
+      <path d="M268 96 C246 82 204 84 166 102 M270 116 C238 106 196 104 150 124 M258 140 C232 128 196 128 160 146 M240 162 C220 152 194 154 176 168"
+        fill="none" stroke="#2c2b31" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+      <path d="M272 92 C262 78 236 76 206 84" fill="none" stroke="#ffcf8f" stroke-width="2" opacity=".3" stroke-linecap="round"/>
+      <g mask="url(#mClipFront)"><use href="#mHairP" fill="#ffcf8f" opacity=".85" mask="url(#mRimHair)"/></g>
+      <g mask="url(#mClipBack)"><use href="#mHairP" fill="#7fa6cf" opacity=".5" mask="url(#mRimHairBack)"/></g>
+      <path d="M150 246 C140 240 132 232 128 222" fill="none" stroke="#2a1a12" stroke-width="5" opacity=".6" stroke-linecap="round"/>
+      
+    </g>
+    <g id="m-glasses">
+      <!-- glasses: temple arm to the ear, near lens (slightly foreshortened), double bridge -->
+      <path d="M248 198 L198 204" stroke="#26272c" stroke-width="3" stroke-linecap="round"/>
+      <path d="M244 197.6 L214 201.4" stroke="#9a9ca4" stroke-width=".9" opacity=".55"/>
+      <path d="M249 197 L274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 Z" fill="#a8c4dc" opacity=".07"/>
+      <path d="M253 220 L262 196 L268 195.6 L259 220.6 Z" fill="#fff2dc" opacity=".13"/>
+      <path d="M247.6 201 C247.4 198.6 248.4 197.1 251 196.9 L274 195 C276.5 195 277.5 196.5 277.3 198.5" fill="none" stroke="#141418" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 L247.6 201" fill="none" stroke="#a9adb5" stroke-width="1.4" opacity=".8"/>
+      <path d="M274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.6 210" fill="none" stroke="#ffd59a" stroke-width=".9" opacity=".7"/>
+      <path d="M277 197.6 L281 197.4" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/>
+    
+    </g>
+    <g id="m-head">
+      <use href="#m-head-base"/>
+      <path class="m-mouth" d="M266 270.5 C270 271.5 273.5 271.5 277 270.5" fill="none" stroke="#3a1d14" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M269 278 C272 280 274.5 280 276 278" fill="none" stroke="#c78558" stroke-width="1.4" opacity=".55" stroke-linecap="round"/>
+      <!-- eye: looking out, lids a little lowered -->
+      <g class="m-eye">
+        <path d="M253 207.5 C258 203.5 265 203.5 269 206.5 C265 210 258 211 253 207.5 Z" fill="#d9bfa9" opacity=".75"/>
+        <circle cx="264.2" cy="207" r="3" fill="#120a07"/>
+        <circle cx="265.6" cy="206" r=".85" fill="#ffe6c2"/>
+        <path d="M251.5 206.5 C257 201 265 201 270 205" fill="none" stroke="#0d0806" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M255 211.5 C259.5 213 265 212.6 268.5 210.2" fill="none" stroke="#5b3523" stroke-width="1.1" opacity=".7"/>
+      </g>
+      <use href="#m-glasses"/>
+    </g>
+    <g id="m-head-smile">
+      <use href="#m-head-base"/>
+            <path d="M258 262 C265 259 273 259 280 262 C279 268 276 274 270 276 C265 276 261 271 258 262 Z" fill="#2a130c"/>
+      <path d="M261 263 C266 261.4 273 261.4 279.5 263 L278.9 266.6 C272 265.9 266 266 262 266.8 Z" fill="#e6dccf"/>
+      <path d="M262 274 C266 277.5 271 277.6 275 275.4" fill="none" stroke="#7a3f2b" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M250 258 C252 264 255 268 258 270" fill="none" stroke="#3a2015" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258 C276 260.5 269 260.8 263 260 Z" fill="#140b08" opacity=".75"/>
+      
+      <!-- crescent eye -->
+      <path d="M252 207 C257 202.6 265 202.6 270 206.4 C265 208.4 258 208.8 252 207 Z" fill="#2a160d"/>
+      <path d="M251.5 206.6 C257 201 265 201 270.5 205.4" fill="none" stroke="#0d0806" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M254.5 211 C259 213.4 264.5 213.2 269 210.6" fill="none" stroke="#3a2015" stroke-width="1.3"/>
+      <path d="M250 210 L246 213" stroke="#3a2015" stroke-width="1" opacity=".6"/>
+      <use href="#m-glasses"/>
+    </g>
+
+    <!-- SEATED at a window, chin on fist, facing right. Elbow rests on the sill below frame. viewBox 0 0 440 600 -->
+    <symbol id="m-seated" viewBox="0 0 440 600">
+      <!-- neck -->
+      <path d="M168 250 L232 294 C236 314 242 330 250 348 L164 352 C162 320 162 284 168 250 Z" fill="#1d110b"/>
+      <path d="M230 296 C234 316 240 332 248 348 L238 349 C232 332 228 314 224 296 Z" fill="#8a5636" opacity=".5"/>
+      <!-- torso, leaning in -->
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mShirt)"/>
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M92 400 C112 370 140 348 170 340 C140 372 118 430 112 490 C108 540 100 580 96 600 L60 600 C60 520 72 446 92 400 Z" fill="#06070a" opacity=".6"/>
+      <!-- collar -->
+      <path d="M160 326 C182 314 214 316 240 330 L252 352 C236 344 218 340 202 342 C188 340 174 344 164 350 Z" fill="#d6ccd4"/>
+      <path d="M160 326 C182 314 214 316 240 330" fill="none" stroke="#fff" stroke-width="1.4" opacity=".45"/>
+      <path d="M240 330 L266 368 L248 364 L236 344 Z" fill="#ece2e0"/>
+      <path d="M240 330 L266 368" stroke="#ffe0b8" stroke-width="1.4" opacity=".8"/>
+      <!-- head -->
+      <use href="#m-head"/>
+      <!-- upper arm (sleeve) from the shoulder down toward the elbow on the sill -->
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mShirt)"/>
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mPin)" opacity=".6"/>
+      <path d="M232 380 C252 430 276 520 296 600" fill="none" stroke="#ffd9a8" stroke-width="2" opacity=".5"/>
+      <path d="M150 368 C140 380 140 400 146 420 C160 470 180 540 196 600" fill="none" stroke="#050608" stroke-width="10" opacity=".4"/>
+      <!-- forearm rising to the fist -->
+      <path d="M262 600 C262 530 266 448 270 392 C272 370 274 352 278 340 L318 344 C316 366 312 392 310 414 C306 470 306 530 312 600 Z" fill="url(#mArm)"/>
+      <path d="M314 352 C312 380 308 410 306 440" fill="none" stroke="#ffcf8f" stroke-width="2.4" opacity=".55" stroke-linecap="round"/>
+      <!-- rolled cuff -->
+      <path d="M256 548 C276 538 300 536 318 540 L320 600 L254 600 Z" fill="#cbc2cf"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="#efe7ea"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="url(#mPin)"/>
+      <path d="M256 565 C278 555 300 553 319 558" fill="none" stroke="#6b6378" stroke-width="1.4" opacity=".7"/>
+      <path d="M256 548 C266 543 276 540 284 539 L284 600 L254 600 Z" fill="#0b0b10" opacity=".5"/>
+      <!-- fist: one clean shape under the chin -->
+      <path d="M254 312 C262 302 288 300 306 306 C318 310 322 322 320 334 C318 348 310 358 296 360
+        C282 362 270 360 262 354 C252 346 248 324 254 312 Z" fill="url(#mArm)"/>
+      <path d="M268 324 C278 322 296 322 312 326 M266 338 C278 336 296 336 310 340 M270 351 C280 350 292 350 302 352" fill="none" stroke="#3b2216" stroke-width="1.8" opacity=".6" stroke-linecap="round"/>
+      <path d="M316 314 C321 324 320 340 312 352" fill="none" stroke="#ffd59a" stroke-width="2.2" opacity=".8" stroke-linecap="round"/>
+      <path d="M256 314 C264 310 270 312 272 318 C266 328 258 332 252 330 Z" fill="#26150d" opacity=".55"/>
+      <!-- jaw resting: the chin redrawn over the fist, with its contact shadow -->
+      <path d="M258 311 C268 316 286 316 300 308 C290 304 268 304 258 311 Z" fill="#170d08" opacity=".55"/>
+      <path d="M273 293 C277 300 274 309 263 311 C252 312.5 240 309 230 303 C246 306 262 304 273 293 Z" fill="#6e4329"/>
+      <!-- warm rim down the front of the chest -->
+      <path d="M266 344 C292 352 312 378 322 414" fill="none" stroke="#ffd29a" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+      <path d="M146 336 C122 348 104 370 92 400" fill="none" stroke="#7fa6cf" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- STANDING, from behind, turning over his shoulder to smile (after the portrait). Faces left. viewBox 0 0 400 600 -->
+    <linearGradient id="mBackShirt" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="360" y2="0">
+      <stop offset="0" stop-color="#f1e6e0"/><stop offset=".3" stop-color="#b3a8b8"/>
+      <stop offset=".65" stop-color="#46434f"/><stop offset="1" stop-color="#14151a"/>
+    </linearGradient>
+    <symbol id="m-back" viewBox="0 0 400 600">
+      <path d="M176 250 L236 254 C238 280 240 300 244 322 L172 324 C174 300 174 276 176 250 Z" fill="#1d120c"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mBackShirt)"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mPin)" opacity=".7"/>
+      <path d="M80 378 C140 366 240 364 328 376" fill="none" stroke="#2a2833" stroke-width="1.4" opacity=".4"/>
+      <path d="M196 390 C190 450 198 530 192 600 M124 430 C134 480 126 550 120 600 M270 420 C280 480 276 540 282 600" fill="none" stroke="#1c1b24" stroke-width="6" opacity=".16" stroke-linecap="round"/>
+      <path d="M160 306 C186 294 226 294 252 304 L254 322 C228 314 190 314 162 322 Z" fill="#dcd2d8"/>
+      <path d="M160 306 C186 294 226 294 252 304" fill="none" stroke="#fff3e2" stroke-width="1.4" opacity=".6"/>
+      <g transform="translate(416 12) scale(-1 1)"><use href="#m-head-smile"/></g>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="#cfc3cc"/>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M62 404 C52 446 48 510 50 600" fill="none" stroke="#fff1de" stroke-width="2" opacity=".7"/>
+      <path d="M150 316 C104 330 70 356 60 400" fill="none" stroke="#ffd29a" stroke-width="2.4" opacity=".7" stroke-linecap="round"/>
+      <path d="M262 312 C306 322 334 348 342 390" fill="none" stroke="#7fa6cf" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- the interior seen through HIS window, local 660 x 470. Shared by the wide shot (tiny) and the close-up (full) so the dolly is continuous. -->
+    <linearGradient id="inBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3e5557"/><stop offset=".35" stop-color="#1c2a2d"/><stop offset="1" stop-color="#0c1214"/>
+    </linearGradient>
+    <linearGradient id="inCeil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e4f4f1" stop-opacity=".9"/><stop offset="1" stop-color="#e4f4f1" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="bok" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+    <symbol id="interior" viewBox="0 0 660 470">
+      <rect width="660" height="470" fill="url(#inBg)"/>
+      <!-- opposite side windows behind him: the far platform, bokeh of sodium -->
+      <rect x="-10" y="92" width="230" height="168" rx="14" fill="#06090c"/>
+      <rect x="458" y="92" width="220" height="168" rx="14" fill="#06090c"/>
+      <g filter="url(#bok)">
+        <circle cx="40" cy="150" r="9" fill="#f2a145" opacity=".55"/><circle cx="112" cy="138" r="6" fill="#f2a145" opacity=".45"/>
+        <circle cx="176" cy="160" r="11" fill="#ffcf8f" opacity=".35"/><circle cx="90" cy="214" r="5" fill="#a9c0d6" opacity=".3"/>
+        <circle cx="510" cy="146" r="8" fill="#f2a145" opacity=".5"/><circle cx="600" cy="170" r="12" fill="#ffcf8f" opacity=".3"/>
+        <circle cx="640" cy="128" r="6" fill="#f2a145" opacity=".45"/>
+      </g>
+      <!-- ceiling strip light and grab rail -->
+      <rect x="0" y="0" width="660" height="20" fill="#dceeea" opacity=".85"/>
+      <rect x="0" y="20" width="660" height="90" fill="url(#inCeil)" opacity=".35"/>
+      <rect x="0" y="46" width="660" height="4" fill="#9fb0ae"/>
+      <g fill="none" stroke="#7d8d8c" stroke-width="5" stroke-linecap="round">
+        <g><path d="M70 50 V92"/><path d="M58 92 H82 L70 112 Z" stroke-width="4" stroke-linejoin="round"/>
+          <animateTransform attributeName="transform" type="rotate" values="-3 70 50;3 70 50;-3 70 50" dur="6.2s" repeatCount="indefinite"/></g>
+        <g><path d="M210 50 V92"/><path d="M198 92 H222 L210 112 Z" stroke-width="4" stroke-linejoin="round"/>
+          <animateTransform attributeName="transform" type="rotate" values="2.5 210 50;-3 210 50;2.5 210 50" dur="7s" repeatCount="indefinite"/></g>
+        <g><path d="M560 50 V92"/><path d="M548 92 H572 L560 112 Z" stroke-width="4" stroke-linejoin="round"/>
+          <animateTransform attributeName="transform" type="rotate" values="-2 560 50;3 560 50;-2 560 50" dur="5.6s" repeatCount="indefinite"/></g>
+      </g>
+      <!-- seat backs: his, behind him; the empty one facing him -->
+      <path d="M96 470 V286 C96 266 108 256 128 256 H176 C194 256 204 266 204 286 V470 Z" fill="#1d2b3a"/>
+      <path d="M190 262 C200 268 204 278 204 292 V470" fill="none" stroke="#5d7486" stroke-width="3" opacity=".6"/>
+      <path d="M556 470 V296 C556 276 566 266 584 266 H640 C654 266 662 276 662 290 V470 Z" fill="#172431"/>
+      <path d="M558 300 C558 282 566 272 580 270" fill="none" stroke="#f2a145" stroke-width="3" opacity=".35"/>
+      <!-- Mohit -->
+      <use href="#m-seated" x="146" y="-19" width="460" height="627"/>
+      <!-- sodium spill from the platform lamp onto him and the interior -->
+      <rect width="660" height="470" fill="url(#inSpill)"/>
+    </symbol>
+    <radialGradient id="inSpill" cx=".78" cy="-.1" r=".9">
+      <stop offset="0" stop-color="#f2a145" stop-opacity=".12"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<section class="pin" id="pin">
+  <div class="stage" id="stage">
+    <!-- WIDE: platform 4, Churchgate, night -->
+    <div class="cam" id="wide">
+      <svg viewBox="0 0 1600 900" width="1600" height="900">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#04070c"/><stop offset=".55" stop-color="#0b1626"/><stop offset=".85" stop-color="#16202c"/><stop offset="1" stop-color="#2b2219"/>
+          </linearGradient>
+          <linearGradient id="body" gradientUnits="userSpaceOnUse" x1="0" y1="392" x2="0" y2="640">
+            <stop offset="0" stop-color="#2c2a27"/><stop offset=".16" stop-color="#6c675d"/><stop offset=".42" stop-color="#7f796d"/><stop offset=".8" stop-color="#57524a"/><stop offset="1" stop-color="#262522"/>
+          </linearGradient>
+          <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9dbab6" stop-opacity=".75"/><stop offset=".25" stop-color="#3d5455"/><stop offset="1" stop-color="#121b1d"/>
+          </linearGradient>
+          <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#17171a"/><stop offset="1" stop-color="#0a0b0d"/>
+          </linearGradient>
+          <radialGradient id="glow"><stop offset="0" stop-color="#ffcf8f" stop-opacity=".9"/><stop offset=".2" stop-color="#f2a145" stop-opacity=".35"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+          <radialGradient id="pool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f2a145" stop-opacity=".5"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+          <radialGradient id="dark" gradientUnits="userSpaceOnUse" cx="1015" cy="470" r="900"><stop offset="0" stop-color="#05070b" stop-opacity="0"/><stop offset=".25" stop-color="#05070b" stop-opacity=".15"/><stop offset=".7" stop-color="#05070b" stop-opacity=".6"/><stop offset="1" stop-color="#05070b" stop-opacity=".75"/></radialGradient>
+          <radialGradient id="flood"><stop offset="0" stop-color="#f3f6ff" stop-opacity=".9"/><stop offset=".15" stop-color="#cfdcf0" stop-opacity=".25"/><stop offset="1" stop-color="#cfdcf0" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2a145" stop-opacity=".09"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></linearGradient>
+        </defs>
+        <rect width="1600" height="420" fill="url(#sky)"/>
+        <!-- Wankhede floodlights, far left, in haze -->
+        <g opacity=".5">
+          <path d="M96 392 L106 206 M232 392 L240 220" stroke="#151b24" stroke-width="3"/>
+          <circle cx="106" cy="204" r="110" fill="url(#flood)" class="flick"/>
+          <circle cx="240" cy="218" r="90" fill="url(#flood)" opacity=".8"/>
+          <rect x="88" y="196" width="36" height="12" rx="2" fill="#eef3ff"/><rect x="224" y="211" width="32" height="10" rx="2" fill="#eef3ff" opacity=".9"/>
+        </g>
+        <!-- distant blocks -->
+        <path d="M0 392 V352 H60 V340 H140 V356 H230 V346 H330 V392 Z M690 392 V350 H760 V338 H800 V392 Z M930 392 V346 H1010 V334 H1090 V350 H1180 V340 H1280 V352 H1380 V336 H1470 V348 H1600 V392 Z" fill="#0b1119"/>
+        <g fill="#f2a145" opacity=".55">
+          <rect x="22" y="362" width="4" height="5"/><rect x="74" y="352" width="4" height="5"/><rect x="170" y="366" width="4" height="5"/><rect x="954" y="358" width="4" height="5"/>
+          <rect x="1040" y="346" width="4" height="5"/><rect x="1120" y="362" width="4" height="5"/><rect x="1300" y="364" width="4" height="5"/><rect x="1410" y="350" width="4" height="5"/><rect x="1540" y="360" width="4" height="5"/>
+        </g>
+        <!-- Western Railway HQ: Gothic, central domed tower -->
+        <g>
+          <path d="M330 392 V318 L352 298 L374 318 V302 H420 V292 L436 268 L452 292 V302 H490 V240 H534 V302 H572 V292 L588 268 L604 292 V302 H650 V318 L672 298 L694 318 V392 Z" fill="#0c121b"/>
+          <path d="M494 240 V226 H530 V240 Z M496 226 C496 192 528 192 528 226 Z" fill="#0c121b"/>
+          <path d="M512 196 V176 M506 184 H518" stroke="#0c121b" stroke-width="3"/>
+          <path d="M496 226 C496 200 510 194 512 194" fill="none" stroke="#3a4558" stroke-width="1.5" opacity=".7"/>
+          <g fill="#f2a145" opacity=".5"><path d="M380 340 v10 h6 v-10 a3 3 0 0 0 -6 0Z M404 340 v10 h6 v-10 a3 3 0 0 0 -6 0Z M554 340 v10 h6 v-10 a3 3 0 0 0 -6 0Z M618 340 v10 h6 v-10 a3 3 0 0 0 -6 0Z M508 262 v12 h8 v-12 a4 4 0 0 0 -8 0Z"/></g>
+        </g>
+        <!-- Eros: Art Deco stepped tower -->
+        <path d="M806 392 V318 H830 V300 H848 V276 H858 V254 H870 V276 H880 V300 H898 V318 H922 V392 Z" fill="#0d121a"/>
+        <path d="M856 300 V384 M864 280 V384 M872 300 V384" stroke="#16202b" stroke-width="2"/>
+        <!-- overhead equipment: masts and catenary -->
+        <g stroke="#10151c">
+          <path d="M742 410 V292 M1262 410 V292" stroke-width="6"/>
+          <path d="M700 300 H790 M1220 300 H1310" stroke-width="4"/>
+          <path d="M0 336 Q400 344 800 336 T1600 336" fill="none" stroke-width="1.6"/>
+          <path d="M0 350 Q400 356 800 350 T1600 350" fill="none" stroke-width="1.2"/>
+        </g>
+        <!-- the rake (generated) -->
+        <g id="rake"></g>
+        <!-- sodium pool on the coach around his window -->
+        <rect x="-100" y="380" width="1800" height="300" fill="url(#dark)"/>
+        <ellipse cx="1015" cy="480" rx="300" ry="210" fill="url(#pool)" style="mix-blend-mode:screen"/>
+        <!-- track gap, our platform -->
+        <rect y="640" width="1600" height="18" fill="#030405"/>
+        <rect y="658" width="1600" height="10" fill="#7e6a2a"/>
+        <rect y="658" width="1600" height="3" fill="#b8963a" opacity=".7"/>
+        <rect y="668" width="1600" height="232" fill="url(#floor)"/>
+        <g filter="url(#soft)" fill="#f2a145">
+          <ellipse cx="260" cy="760" rx="40" ry="110" opacity=".12"/><ellipse cx="640" cy="760" rx="40" ry="110" opacity=".12"/>
+          <ellipse cx="1015" cy="760" rx="60" ry="130" opacity=".26"/><ellipse cx="1390" cy="760" rx="40" ry="110" opacity=".12"/>
+          <ellipse cx="1015" cy="663" rx="190" ry="10" opacity=".5"/>
+        </g>
+        <!-- near canopy: underside, trusses, fascia -->
+        <rect width="1600" height="150" fill="#060709"/>
+        <g stroke="#0f1114" stroke-width="3"><path d="M0 40 H1600 M0 96 H1600"/><path d="M0 150 L80 40 L160 150 L240 40 L320 150 L400 40 L480 150 L560 40 L640 150 L720 40 L800 150 L880 40 L960 150 L1040 40 L1120 150 L1200 40 L1280 150 L1360 40 L1440 150 L1520 40 L1600 150" fill="none" stroke-width="2" opacity=".8"/></g>
+        <rect y="140" width="1600" height="28" fill="#101215"/>
+        <rect y="166" width="1600" height="2" fill="#3a3024"/>
+        <!-- lamps and their light cones -->
+        <g id="lamps"></g>
+        <!-- station board, hanging from the fascia -->
+        <g>
+          <path d="M392 168 V196 M568 168 V196" stroke="#1a1c1f" stroke-width="3"/>
+          <rect x="370" y="194" width="220" height="64" rx="3" fill="#a8862a"/>
+          <rect x="370" y="194" width="220" height="64" rx="3" fill="url(#pool)" opacity=".4"/>
+          <text x="480" y="223" text-anchor="middle" font-family="Noto Sans Devanagari, sans-serif" font-weight="600" font-size="23" fill="#15130e">चर्चगेट</text>
+          <text x="480" y="249" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="17" letter-spacing="2" fill="#15130e">CHURCHGATE</text>
+        </g>
+        <!-- foreground columns: green steel, nearest, they occlude everything -->
+        <g>
+          <rect x="140" y="140" width="26" height="760" fill="#0f1d16"/><rect x="140" y="140" width="4" height="760" fill="#3c5a3f" opacity=".7"/>
+          <path d="M120 168 L140 196 V168 Z M186 168 L166 196 V168 Z" fill="#0f1d16"/>
+          <rect x="1512" y="140" width="28" height="760" fill="#0f1d16"/><rect x="1512" y="140" width="4" height="760" fill="#5d6f43" opacity=".8"/>
+          <path d="M1492 168 L1512 196 V168 Z M1560 168 L1540 196 V168 Z" fill="#0f1d16"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- CLOSE: his window, exterior of the coach, 10x the wide scale -->
+    <div class="cam" id="close">
+      <svg viewBox="0 0 1600 900" width="1600" height="900">
+        <defs>
+          <linearGradient id="cBody" gradientUnits="userSpaceOnUse" x1="0" y1="-300" x2="0" y2="700">
+            <stop offset="0" stop-color="#1c1b19"/><stop offset=".4" stop-color="#5d584f"/><stop offset=".72" stop-color="#7d776b"/><stop offset="1" stop-color="#5e594f"/>
+          </linearGradient>
+          <radialGradient id="cPool" gradientUnits="userSpaceOnUse" cx="860" cy="-60" r="900">
+            <stop offset="0" stop-color="#f2a145" stop-opacity=".5"/><stop offset=".6" stop-color="#f2a145" stop-opacity=".06"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".46" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff6e8" stop-opacity=".07"/><stop offset=".58" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="cDark" gradientUnits="userSpaceOnUse" cx="820" cy="440" r="1000"><stop offset="0" stop-color="#05070b" stop-opacity="0"/><stop offset=".45" stop-color="#05070b" stop-opacity=".25"/><stop offset="1" stop-color="#05070b" stop-opacity=".85"/></radialGradient>
+          <clipPath id="glass"><rect x="470" y="215" width="660" height="470" rx="22"/></clipPath>
+        </defs>
+        <rect x="-3000" y="-3000" width="7600" height="7600" fill="#0b0c0e"/>
+        <rect x="-3000" y="-600" width="7600" height="1295" fill="url(#cBody)"/>
+        <rect x="-3000" y="695" width="7600" height="10" fill="#8e2a26"/>
+        <rect x="-3000" y="705" width="7600" height="196" fill="#1f3a6e"/>
+        <rect x="-3000" y="705" width="7600" height="196" fill="url(#cPool)" opacity=".5"/>
+        <rect x="-3000" y="901" width="7600" height="500" fill="#121a2b"/>
+        <!-- neighbouring windows and the door seam, out at the edges -->
+        <rect x="-430" y="215" width="660" height="470" rx="22" fill="#1a2426"/>
+        <rect x="1370" y="215" width="660" height="470" rx="22" fill="#1a2426"/>
+        <path d="M300 -600 V1400" stroke="#2a2824" stroke-width="6"/><path d="M308 -600 V1400" stroke="#d8cdb7" stroke-width="2" opacity=".35"/>
+        <!-- gasket -->
+        <rect x="456" y="201" width="688" height="498" rx="34" fill="#0a0b0c"/>
+        <rect x="456" y="201" width="688" height="498" rx="34" fill="none" stroke="#ffd59a" stroke-opacity=".18" stroke-width="2"/>
+        <g clip-path="url(#glass)">
+          <use href="#interior" x="470" y="215" width="660" height="470"/>
+          <rect x="470" y="215" width="660" height="470" fill="#0b1c22" opacity=".18"/>
+          <rect x="470" y="215" width="660" height="470" fill="url(#sheen)"/>
+          <circle id="refl" cx="1060" cy="270" r="46" fill="#f2a145" opacity=".16" filter="url(#soft)"/>
+        </g>
+        <!-- lamp pool over the whole flank -->
+        <rect x="-3000" y="-3000" width="7600" height="7600" fill="url(#cPool)" style="mix-blend-mode:screen" opacity=".55"/>
+        <rect x="-3000" y="-3000" width="7600" height="7600" fill="url(#cDark)"/>
+      </svg>
+    </div>
+
+    <div class="bar top">
+      <h1 class="name">Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span class="arr">→</span></a>
+    </div>
+    <div class="bar bot"><p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p></div>
+  </div>
+</section>
+<div class="grain"></div><div class="vignette"></div>
+<!-- direction: 08 Dark cinematic minimal / Opening -->
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+/* progress of a tall pinned section: 0 when its top hits the viewport top, 1 when its bottom hits the viewport bottom */
+function secProgress(el) { const r = el.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight)); }
+function loop(fn) { let last = performance.now(); const f = now => { fn(now, Math.min(64, now - last)); last = now; requestAnimationFrame(f); }; requestAnimationFrame(f); }
+
+const NS = 'http://www.w3.org/2000/svg';
+const mk = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.appendChild(e); return e; };
+/* ---- the rake: Western Railway AC local, white body, tinted sealed windows, red line + blue band, navy skirt ---- */
+const rake = document.getElementById('rake');
+const coaches = [[-700, 70], [80, 830], [860, 1420]];
+coaches.forEach(([x0, x1], ci) => {
+  mk('rect', { x: x0, y: 400, width: x1 - x0, height: 240, fill: 'url(#body)' }, rake);
+  mk('path', { d: `M${x0} 404 Q${x0} 392 ${x0 + 14} 392 H${x1 - 14} Q${x1} 392 ${x1} 404 Z`, fill: '#3a3833' }, rake);
+  mk('rect', { x: x0, y: 494.5, width: x1 - x0, height: 1.4, fill: '#8e2a26' }, rake);
+  mk('rect', { x: x0, y: 496, width: x1 - x0, height: 20, fill: '#1f3a6e' }, rake);
+  mk('rect', { x: x0, y: 606, width: x1 - x0, height: 34, fill: '#121a2b' }, rake);
+  // AC units, low on the roof
+  [0.25, 0.7].forEach(f => { const cx = x0 + (x1 - x0) * f; mk('rect', { x: cx - 70, y: 380, width: 140, height: 13, rx: 3, fill: '#2b2a27' }, rake); mk('rect', { x: cx - 70, y: 380, width: 140, height: 2, fill: '#6a6458', opacity: .6 }, rake); });
+});
+// gangway gaps
+[[70, 80], [830, 860]].forEach(([a, b]) => mk('rect', { x: a, y: 404, width: b - a, height: 236, fill: '#07080a' }, rake));
+// doors (closed, with door windows) and windows
+const doors = [-640, -260, 120, 470, 898, 1238];
+doors.forEach(x => {
+  mk('rect', { x, y: 418, width: 54, height: 188, rx: 3, fill: '#6a645a' }, rake);
+  mk('rect', { x: x + 26, y: 418, width: 2, height: 188, fill: '#2a2824' }, rake);
+  mk('rect', { x: x + 6, y: 432, width: 16, height: 50, rx: 3, fill: 'url(#win)' }, rake);
+  mk('rect', { x: x + 32, y: 432, width: 16, height: 50, rx: 3, fill: 'url(#win)' }, rake);
+});
+const wins = [-560, -480, -400, -180, -100, -20, 200, 280, 360, 544, 624, 704, 1062, 1142, 1318];
+wins.forEach((x, i) => {
+  const g = mk('g', {}, rake);
+  mk('rect', { x: x - 1.5, y: 445, width: 69, height: 50, rx: 4.5, fill: '#0a0b0c' }, g);
+  mk('rect', { x, y: 446.5, width: 66, height: 47, rx: 3, fill: 'url(#win)' }, g);
+});
+// HIS window, the shared interior
+mk('rect', { x: 980.5, y: 445, width: 69, height: 50, rx: 4.5, fill: '#0a0b0c' }, rake);
+const sv = mk('svg', { x: 982, y: 446.5, width: 66, height: 47, viewBox: '0 0 660 470' }, rake);
+mk('use', { href: '#interior', width: 660, height: 470 }, sv);
+// cab front, raked, amber LED board, head lamps off
+mk('path', { d: 'M1420 392 H1432 C1462 404 1480 432 1486 470 L1490 606 L1484 640 H1420 Z', fill: 'url(#body)' }, rake);
+mk('path', { d: 'M1436 412 C1458 422 1472 440 1478 466 L1440 466 Z', fill: '#0d1214' }, rake);
+mk('rect', { x: 1426, y: 398, width: 30, height: 8, rx: 1, fill: '#f2a145', opacity: .85 }, rake);
+mk('rect', { x: 1420, y: 494.5, width: 66, height: 1.4, fill: '#8e2a26' }, rake);
+mk('rect', { x: 1420, y: 496, width: 66, height: 20, fill: '#1f3a6e' }, rake);
+mk('rect', { x: 1420, y: 606, width: 68, height: 34, fill: '#121a2b' }, rake);
+// pantograph on the cab coach
+mk('path', { d: 'M1140 380 L1170 352 L1200 380 M1150 380 L1170 360 L1190 380 M1150 350 H1190', fill: 'none', stroke: '#1a1d22', 'stroke-width': 3 }, rake);
+/* ---- lamps ---- */
+const lampG = document.getElementById('lamps');
+[[260, .55], [640, .6], [1015, 1], [1390, .55]].forEach(([x, k], i) => {
+  mk('path', { d: `M${x - 30} 176 L${x + 30} 176 L${x + 170} 660 L${x - 170} 660 Z`, fill: 'url(#cone)', opacity: k }, lampG);
+  mk('circle', { cx: x, cy: 176, r: 70 * k + 30, fill: 'url(#glow)', class: i === 1 ? 'flick' : '' }, lampG);
+  mk('rect', { x: x - 28, y: 168, width: 56, height: 7, rx: 2, fill: '#1a1a1c' }, lampG);
+  mk('rect', { x: x - 24, y: 174, width: 48, height: 3, rx: 1.5, fill: '#ffe2b0' }, lampG);
+});
+
+/* ---- camera: dolly from the wide platform into his window ---- */
+const pin = document.getElementById('pin'), wide = document.getElementById('wide'), close = document.getElementById('close');
+const note = document.getElementById('note'), topbar = document.querySelector('.bar.top'), botbar = document.querySelector('.bar.bot');
+const T = { x: 1015, y: 470 }, Z = 10;
+let W, H, frame, k0;
+function measure() {
+  W = innerWidth; H = innerHeight;
+  const tb = topbar.getBoundingClientRect().height, bb = botbar.getBoundingClientRect().height;
+  frame = { top: tb, h: H - tb - bb };
+  k0 = Math.max(W / 1600, frame.h / 900);
+}
+function render() {
+  const p = RM ? (secProgress(pin) > .5 ? 1 : 0) : secProgress(pin);
+  const t = ease(sstep(.05, .88, p));
+  const z = Math.pow(Z, t), k = k0 * z;
+  const s0x = (W - 1600 * k0) / 2 + T.x * k0, s0y = frame.top + (frame.h - 900 * k0) / 2 + T.y * k0;
+  const mobile = W < 760;
+  const sfx = mobile ? W / 2 : W * .6, sfy = frame.top + frame.h / 2;
+  const sx = lerp(s0x, sfx, t), sy = lerp(s0y, sfy, t);
+  wide.style.transform = `translate3d(${sx - T.x * k}px,${sy - T.y * k}px,0) scale(${k})`;
+  const kc = k / Z;
+  close.style.transform = `translate(${sx - 800 * kc}px,${sy - 450 * kc}px) scale(${kc})`;
+  const co = sstep(.36, .62, t);
+  close.style.opacity = co;
+  wide.style.visibility = co >= 1 ? 'hidden' : 'visible';
+  const n = sstep(.9, .985, p);
+  note.style.opacity = n; note.style.transform = `translateY(${(1 - n) * 10}px)`;
+}
+measure(); addEventListener('resize', () => { measure(); render(); });
+addEventListener('scroll', render, { passive: true });
+render();
+/* ambient: reflection drifting across his glass, a tired lamp */
+const refl = document.getElementById('refl');
+const flick = document.querySelectorAll('.flick');
+if (RM) document.querySelectorAll('animateTransform').forEach(a => a.remove());
+else loop(now => {
+  const s = now / 1000;
+  refl.setAttribute('cx', 1000 + Math.sin(s * .21) * 70);
+  refl.setAttribute('cy', 268 + Math.cos(s * .17) * 14);
+  const f = (Math.sin(s * 13) > .96 || Math.sin(s * 2.3) > .995) ? .55 : 1;
+  flick.forEach(e => e.style.opacity = f);
+});
+</script>
+</body>
+</html>

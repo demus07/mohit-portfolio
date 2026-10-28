@@ -1,0 +1,297 @@
+<!-- Direction 08: Isometric terminus — Churchgate as a calm tabletop diorama of platforms, canopies and AC rakes; scroll swings the camera round and down into one coach, one window, him. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--ink:#1d2a36;--sea:#2c6d8c}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:"DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:460vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.2;mix-blend-mode:multiply}
+.copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,104px);top:clamp(32px,10vh,108px);width:min(30rem,36vw)}
+h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(56px,7vw,120px);line-height:.9;letter-spacing:-.015em;margin:0 0 .3em}
+.line{font-size:clamp(16px,1.15vw,18px);line-height:1.6;max-width:40ch;margin:0 0 1.5em;color:rgba(29,42,54,.84)}
+.cta{font-size:clamp(16px,1.15vw,18px);font-weight:500;color:var(--sea);text-decoration:none;display:inline-flex;gap:.5em;align-items:baseline;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 1.5px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1.5px}.cta:hover span{transform:translateX(6px)}
+.note{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(24px,2vw,32px);line-height:1.22;max-width:19ch;margin:2em 0 0;opacity:0;transform:translateY(14px)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:26px;width:auto}
+  h1{font-size:56px}
+  .line{font-size:16px;margin-bottom:1em}
+  .note{font-size:22px;margin-top:.9em;max-width:26ch}
+}
+</style>
+</head>
+<body>
+<!-- direction: Opening 08 / Isometric terminus -->
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="world" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="pin" width="5" height="40" patternUnits="userSpaceOnUse">
+          <rect width="5" height="40" fill="#f1eef6"/><rect x="2" width=".8" height="40" fill="#a597cf" opacity=".6"/>
+        </pattern>
+        <linearGradient id="shirtShade" x1="0" x2="1">
+          <stop offset="0" stop-color="#fff3d8" stop-opacity=".25"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#2c4a66" stop-opacity=".35"/>
+        </linearGradient>
+        <linearGradient id="skinG" x1="0" x2="1">
+          <stop offset="0" stop-color="#dfa47a"/><stop offset=".6" stop-color="#bd835f"/><stop offset="1" stop-color="#8b5c47"/>
+        </linearGradient>
+        <linearGradient id="interior" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e3e8e4"/><stop offset=".35" stop-color="#b9c4c6"/><stop offset="1" stop-color="#7a8a96"/>
+        </linearGradient>
+        <linearGradient id="sunFace" x1="0" y1="0" x2="1" y2=".3"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".0"/><stop offset=".45" stop-color="#ffd9a0" stop-opacity=".22"/><stop offset=".6" stop-color="#ffe6bf" stop-opacity=".05"/><stop offset="1" stop-color="#5a6a80" stop-opacity=".12"/></linearGradient>
+        <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+        <g id="mohit">
+          <path fill="url(#pin)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="url(#shirtShade)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="#8a5c45" d="M210,166 L242,164 L246,206 L212,212Z"/>
+          <path fill="#f6f3f9" d="M204,206 C214,198 234,195 250,200 L254,216 C238,209 220,211 209,224Z"/>
+          <path fill="url(#skinG)" d="M216,74 C250,70 274,94 272,124 C271,148 262,166 246,178 C236,186 222,190 210,192 L186,192 C178,188 175,182 174,176 C170,174 169,170 171,166 C167,164 166,160 169,157 C165,155 162,152 164,148 L159,143 C156,140 159,137 163,135 L166,126 C165,112 168,98 178,88 C188,78 202,75 216,74Z"/>
+          <g class="hairg" transform="translate(0 21.6) scale(1 .8)"><path fill="#161211" d="M171,108 C165,98 164,84 168,70 C166,60 170,50 178,44 L176,38 C186,34 196,30 208,32 L206,26 C222,26 238,32 250,42 C264,52 272,66 274,84 C278,100 276,122 270,140 C268,148 266,154 262,158 C258,140 254,128 248,122 C240,114 230,110 220,108 C208,104 196,102 186,104 C180,105 175,106 171,108Z"/>
+          <path fill="#2f2622" d="M172,94 C168,70 178,48 200,40 C222,34 244,42 258,58 C238,50 216,50 198,58 C184,66 178,80 176,98Z"/>
+          <path fill="none" stroke="#4a3d36" stroke-width="1.3" stroke-linecap="round" d="M178,64 C190,46 214,38 240,44 M180,80 C196,60 226,54 256,64 M194,98 C212,82 240,80 268,92"/></g>
+          <ellipse cx="243" cy="134" rx="7" ry="11.5" fill="#a26d50"/>
+          <path d="M165,116 C172,112 182,111 190,113" fill="none" stroke="#1b1513" stroke-width="3" stroke-linecap="round"/>
+          <path d="M172,129 C175,128 178,128 182,130" fill="none" stroke="#2a1d17" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M166,160 L172,161" stroke="#6b3c2d" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M163,120 L190,118 C192,126 192,134 189,141 L168,142 C164,135 163,127 163,120Z" fill="rgba(255,250,235,.2)" stroke="#2b2724" stroke-width="2.3"/>
+          <path d="M190,122 L244,127" stroke="#2b2724" stroke-width="2.2"/>
+          <path fill="url(#pin)" d="M236,232 C262,246 266,292 244,336 L226,372 C214,384 192,382 188,366 C186,344 200,300 212,262 C218,246 224,236 236,232Z"/>
+          <path fill="#2c4a66" opacity=".2" d="M236,232 C262,246 266,292 244,336 L226,372 C240,330 250,280 236,232Z"/>
+          <path fill="url(#skinG)" d="M190,364 C186,320 180,260 176,214 L202,210 C206,260 212,320 214,362Z"/>
+          <path fill="url(#pin)" d="M185,326 C196,322 208,322 217,324 L219,350 C208,349 196,351 186,353Z"/>
+          <path fill="url(#skinG)" d="M166,198 C166,188 174,183 186,184 L204,188 C211,193 210,206 205,214 L182,218 C172,216 166,208 166,198Z"/>
+          <path d="M171,192 C170,198 170,204 173,210 M179,188 C178,196 178,206 181,214" fill="none" stroke="#7c5340" stroke-width="1.2" opacity=".7"/>
+        </g>
+      </defs>
+      <g id="rig"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .32  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('world'), rig=document.getElementById('rig'), track=document.getElementById('track'), note=document.getElementById('note');
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+
+  // isometric projection, metres -> units
+  const C=Math.cos(Math.PI/6), S=.5, K=10;
+  const P=(x,y,z=0)=>[(x-y)*C*K, ((x+y)*S - z)*K];
+  const pts=a=>a.map(([x,y,z])=>P(x,y,z).map(v=>v.toFixed(2)).join(',')).join(' ');
+  let out=[];
+  const poly=(a,fill,extra='')=>out.push(`<polygon points="${pts(a)}" fill="${fill}" ${extra}/>`);
+  function box(x0,y0,z0,dx,dy,dz,top,left,right,extra=''){
+    const x1=x0+dx,y1=y0+dy,z1=z0+dz;
+    if(left) poly([[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]],left,extra);
+    if(right) poly([[x1,y0,z0],[x1,y1,z0],[x1,y1,z1],[x1,y0,z1]],right,extra);
+    if(top) poly([[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],top,extra);
+  }
+  // flat drawing on a +y face: local u (m, along +x), v (m, down from z0)
+  const faceY=(x0,y,z0)=>{const [ox,oy]=P(x0,y,z0);return `matrix(${C*K} ${S*K} 0 ${K} ${ox.toFixed(2)} ${oy.toFixed(2)})`;};
+  // on a +x face: local u along +y
+  const faceX=(x,y0,z0)=>{const [ox,oy]=P(x,y0,z0);return `matrix(${-C*K} ${S*K} 0 ${K} ${ox.toFixed(2)} ${oy.toFixed(2)})`;};
+  const shadow=(x0,y0,dx,dy,h)=>{const sx=h*1.1, sy=h*.35;
+    poly([[x0,y0,0],[x0+dx,y0,0],[x0+dx+sx,y0+sy,0],[x0+dx+sx,y0+dy+sy,0],[x0+sx,y0+dy+sy,0],[x0,y0+dy,0]],'#5b4f3e','opacity=".16"');};
+
+  // palette (afternoon, light from the west, upper left)
+  const col={ground:'#e2d8c4',ballast:'#c9bca5',ballastD:'#b3a58d',rail:'#8d8273',plat:'#e9e1cf',platL:'#cfc4ad',platR:'#b9ad95',yellow:'#e2b53a',
+    body:'#f6f2ea',bodyL:'#ece6db',bodyR:'#cfc8bc',roof:'#d9d6cf',ac:'#c4c0b8',green:'#2f6650',greenD:'#234c3c',canopy:'#c5cfc4',canopyL:'#a9b5aa',canopyR:'#8f9c92',
+    navy:'#1c2a4a',blue:'#2c5f98',red:'#b23a34',glass:'#2a3a4c',cream:'#efe1c2',creamL:'#e2d0aa',creamR:'#cbb68e',stone:'#d8c3a0',stoneL:'#c9b089',stoneR:'#a98f68'};
+
+  const L={x0:-14,x1:178,y0:-34,y1:70};
+  // tabletop slab with a cut soil edge, like a model
+  box(L.x0,L.y0,-4,L.x1-L.x0,L.y1-L.y0,4,col.ground,'#c7b494','#a8946f');
+  poly([[L.x0,L.y1,-4],[L.x1,L.y1,-4],[L.x1,L.y1,-2.6],[L.x0,L.y1,-2.6]],'#9c8463');
+  poly([[L.x1,L.y0,-4],[L.x1,L.y1,-4],[L.x1,L.y1,-2.6],[L.x1,L.y0,-2.6]],'#86704f');
+
+  // track bed & rails
+  const tracks=[2,14,18,30,44];
+  tracks.forEach(y=>{
+    box(L.x0,y-2,0,138-L.x0,4,.15,col.ballast,col.ballastD,col.ballastD);
+    for(let x=L.x0+1;x<137;x+=1.6) poly([[x,y-1.2,.16],[x+.5,y-1.2,.16],[x+.5,y+1.2,.16],[x,y+1.2,.16]],'#a8997f');
+    [-.75,.75].forEach(o=>out.push(`<line x1="${P(L.x0,y+o,.2)[0]}" y1="${P(L.x0,y+o,.2)[1]}" x2="${P(136,y+o,.2)[0]}" y2="${P(136,y+o,.2)[1]}" stroke="${col.rail}" stroke-width="1.1"/>`));
+    box(136,y-1.6,0,1.2,3.2,1.2,'#b34a3a','#8f3a2e','#7a3127'); // buffer stop
+  });
+  // road in front of the concourse
+  box(150,L.y0,0,L.x1-150,L.y1-L.y0,.05,'#ddd3bf','#cbbfa7','#cbbfa7');
+  box(155,L.y0,.05,9,L.y1-L.y0,.02,'#5d5a57',null,null);
+  for(let y=L.y0+2;y<L.y1-2;y+=5) poly([[159.4,y,.08],[159.6,y,.08],[159.6,y+2.4,.08],[159.4,y+2.4,.08]],'#e9e1cf');
+
+  // shadows first, on the ground
+  const trains=[{y:2,x0:-30,x1:135},{y:14,x0:20,x1:135},{y:30,x0:-40,x1:135},{y:44,x0:60,x1:135}];
+  trains.forEach(t=>shadow(Math.max(L.x0,t.x0),t.y-1.8,Math.min(135,t.x1)-Math.max(L.x0,t.x0),3.6,4.3));
+  const plats=[{y0:4,y1:12,cx0:30},{y0:20,y1:28,cx0:20},{y0:32,y1:42,cx0:66}];
+  plats.forEach(p=>shadow(p.cx0,p.y0+.6,135-p.cx0,p.y1-p.y0-1.2,6.6));
+  shadow(138,-8,13,54,9);
+
+  // trains: AC EMU rakes (white, blue band, red line, navy skirt)
+  function train(t,target){
+    const x0=Math.max(L.x0,t.x0), x1=t.x1, y0=t.y-1.8, y1=t.y+1.8;
+    box(x0,y0,.2,x1-x0,3.6,.7,'#2a2a30','#24242a','#1d1d22');
+    box(x0,y0,.9,x1-x0,3.6,3.3,col.roof,col.bodyL,col.bodyR);
+    // face detail
+    out.push(`<g transform="${faceY(x0,y1,4.2)}">`);
+    out.push(`<rect x="0" y="2.25" width="${x1-x0}" height=".07" fill="${col.red}"/><rect x="0" y="2.32" width="${x1-x0}" height=".45" fill="${col.blue}"/><rect x="0" y="2.77" width="${x1-x0}" height=".53" fill="${col.navy}"/>`);
+    out.push(`<rect x="0" y="0" width="${x1-x0}" height=".08" fill="#fff" opacity=".7"/>`);
+    for(let c=Math.ceil((x0-t.x0)/20)*0+0; c<(x1-x0); c+=20){
+      const cx=c - ((x0-t.x0)%20);
+      [1.5,9.3,17.1].forEach(d=>{const u=cx+d; if(target&&Math.abs(u-55.5)<.01) return; if(u>-.5&&u<x1-x0-1.4){out.push(`<rect x="${u}" y=".25" width="1.4" height="3.05" fill="#e3ddd1"/><rect x="${u+.15}" y=".8" width=".5" height="1.5" rx=".08" fill="${col.glass}"/><rect x="${u+.75}" y=".8" width=".5" height="1.5" rx=".08" fill="${col.glass}"/>`);}});
+      [3.4,5.8,11.2,13.6].forEach(d=>{const u=cx+d; if(u>-.5&&u<x1-x0-1.8) out.push(`<rect x="${u}" y="1.0" width="1.9" height="1.05" rx=".12" fill="${col.glass}"/><rect x="${u}" y="1.0" width="1.9" height=".12" fill="#9fb3b7" opacity=".6"/>`);});
+      if(cx>0) out.push(`<rect x="${cx-.06}" y="0" width=".12" height="3.3" fill="#3a3a40"/>`);
+    }
+    if(target) out.push(target+`<rect x="${TU-14}" y="0" width="34" height="3.3" fill="url(#sunFace)"/>`);
+    out.push(`</g>`);
+    // roof AC units
+    for(let c=t.x0;c<x1;c+=20){const ux=c+6; if(ux>x0&&ux+7<x1){box(ux,t.y-1,4.2,7,2,.45,col.ac,'#b4b0a7','#a19d95');}}
+    // raked cab front at the buffer end
+    out.push(`<g transform="${faceX(x1,y0,4.2)}"><rect x=".3" y=".55" width="3" height="1.4" rx=".2" fill="${col.glass}"/><rect x=".9" y=".2" width="1.8" height=".3" fill="#1b1b1b"/><rect x="1" y=".27" width="1.6" height=".16" fill="#f2a145"/><rect x="0" y="2.25" width="3.6" height=".07" fill="${col.red}"/><rect x="0" y="2.32" width="3.6" height=".45" fill="${col.blue}"/><rect x="0" y="2.77" width="3.6" height=".53" fill="${col.navy}"/><circle cx=".55" cy="2.1" r=".14" fill="#fff6d8"/><circle cx="3.05" cy="2.1" r=".14" fill="#fff6d8"/></g>`);
+  }
+  function platform(p){
+    const len=136-L.x0;
+    box(L.x0,p.y0,0,len,p.y1-p.y0,1,col.plat,col.platL,col.platR);
+    poly([[L.x0,p.y0,1.01],[136,p.y0,1.01],[136,p.y0+.4,1.01],[L.x0,p.y0+.4,1.01]],col.yellow);
+    poly([[L.x0,p.y1-.4,1.01],[136,p.y1-.4,1.01],[136,p.y1,1.01],[L.x0,p.y1,1.01]],col.yellow);
+    const yc=(p.y0+p.y1)/2;
+    people.filter(q=>q.p===p).forEach(q=>out.push(`<g class="person" data-i="${q.i}"></g>`));
+    for(let x=p.cx0+2;x<135;x+=9) box(x,yc-.15,1,.3,.3,5.3,col.greenD,col.green,col.greenD);
+    // canopy: thin roof slab with ridge lines
+    box(p.cx0,p.y0+.5,6.3,135-p.cx0,p.y1-p.y0-1,.35,col.canopy,col.canopyL,col.canopyR);
+    for(let y=p.y0+1.2;y<p.y1-.6;y+=.9) out.push(`<line x1="${P(p.cx0,y,6.66)[0]}" y1="${P(p.cx0,y,6.66)[1]}" x2="${P(135,y,6.66)[0]}" y2="${P(135,y,6.66)[1]}" stroke="#b2bdb2" stroke-width=".6"/>`);
+    if(p.board){ // yellow station board, Marathi + English
+      const bx=p.board; box(bx,p.y1-1.6,1,.12,.12,2.2,'#333','#444','#222');box(bx+3,p.y1-1.6,1,.12,.12,2.2,'#333','#444','#222');
+      out.push(`<g transform="${faceY(bx-.3,p.y1-1.5,3.9)}"><rect width="3.7" height="1" fill="${col.yellow}"/><text x="1.85" y=".44" font-size=".36" text-anchor="middle" font-family="sans-serif" font-weight="700" fill="#111">चर्चगेट</text><text x="1.85" y=".86" font-size=".3" text-anchor="middle" font-family="sans-serif" font-weight="700" fill="#111">CHURCHGATE</text></g>`);
+    }
+  }
+  // tiny passengers walking on the platforms
+  const people=[]; let pi=0;
+  plats.forEach((p,k)=>{for(let j=0;j<7;j++) people.push({p,i:pi++,x:Math.random()*130,y:p.y0+1.4+Math.random()*(p.y1-p.y0-2.8),v:(Math.random()<.5?-1:1)*(.6+Math.random()*.7),c:['#2c5f98','#b23a34','#e0b13a','#3d3d3d','#f1ece2','#7a5a8c'][Math.floor(Math.random()*6)]});});
+  plats[2].board=92;
+
+  // the target: one window on the nearest rake, with him in it
+  const TX=-14, TU=57.4; // target window u on rake 3 (x = TX+TU)
+  const sc=.0032;
+  const target=`<g><clipPath id="tw"><rect x="${TU}" y="1" width="1.9" height="1.05" rx=".12"/></clipPath>
+    <g clip-path="url(#tw)"><rect x="${TU-.1}" y=".9" width="2.1" height="1.3" fill="url(#interior)"/><rect x="${TU-.1}" y=".95" width="2.1" height=".06" fill="#fffef6"/>
+    <rect x="${TU+.05}" y="1.25" width=".5" height=".5" fill="#9fb7c2" opacity=".7"/>
+    <rect x="${TU+1.12}" y=".9" width=".03" height="1.3" fill="#dfe4e4"/>
+    <path d="M${TU+1.45},1.9 c0,-.1 .05,-.14 .12,-.14 h.5 v.5 h-.62z" fill="#405f86"/>
+    <use href="#mohit" transform="translate(${TU+.7-160*sc} ${1.07-26*sc}) scale(${sc})"/>
+    <rect x="${TU}" y="1" width="1.9" height="1.05" fill="#d7ecf2" opacity=".08"/>
+    <path d="M${TU},1 h.6 l-.6,.7z" fill="#fff" opacity=".18"/></g></g>`;
+
+  // build, near-to-far ordered by y bands
+  train(trains[0]); platform(plats[0]); train(trains[1]);
+  platform(plats[1]); train(trains[2],target); platform(plats[2]); train(trains[3]);
+  // concourse building at the buffer end
+  box(138,-8,0,13,54,8.5,col.cream,col.creamL,col.creamR);
+  box(138,-8,8.5,13,54,.6,'#f4ead2','#e6d6b2','#d2bf96');
+  out.push(`<g transform="${faceX(151,-8,8.2)}">`); for(let u=2;u<53;u+=4) out.push(`<path d="M${u},7.6 v-3.4 a1,1 0 0 1 2,0 v3.4z" fill="#8f7a5a" opacity=".55"/>`); out.push(`<rect x="0" y="1" width="54" height=".2" fill="#cdb98f"/></g>`);
+  out.push(`<g transform="${faceX(151,14,7.8)}"><rect x="0" y="0" width="10" height="1.4" fill="${col.yellow}"/><text x="5" y="1.05" font-size=".95" text-anchor="middle" font-family="sans-serif" font-weight="700" fill="#111">CHURCHGATE</text></g>`);
+  // Western Railway HQ: Gothic stone with a domed central tower
+  box(152,-30,0,14,20,10,col.stone,col.stoneL,col.stoneR);
+  box(155.5,-23,10,7,6,7,col.stone,col.stoneL,col.stoneR);
+  {const [cx,cy]=P(159,-20,17); out.push(`<path d="M${cx-48},${cy+14} C${cx-46},${cy-40} ${cx+46},${cy-40} ${cx+48},${cy+14}Z" fill="#b9a07a"/><path d="M${cx-48},${cy+14} C${cx-46},${cy-40} ${cx},${cy-46} ${cx},${cy-34} L${cx},${cy+20}Z" fill="#cfb68c"/><rect x="${cx-1.5}" y="${cy-62}" width="3" height="26" fill="#8f7a5a"/>`);}
+  out.push(`<g transform="${faceX(166,-30,9)}">`); for(let u=1.2;u<20;u+=2.2) out.push(`<path d="M${u},7 v-3 l.6,-.9 l.6,.9 v3z" fill="#7b6448" opacity=".55"/>`); out.push(`</g>`);
+  // Eros: cream Art Deco with a stepped tower
+  box(152,48,0,14,16,9,col.cream,col.creamL,col.creamR);
+  box(160,52,9,5,7,3,col.cream,col.creamL,col.creamR); box(161,53.2,12,3,4.6,3,col.cream,col.creamL,col.creamR); box(161.8,54.2,15,1.4,2.6,3,col.cream,col.creamL,col.creamR);
+  out.push(`<g transform="${faceX(166,48,8.6)}"><rect x="1" y="1.2" width="14" height=".25" fill="#b88f5a"/><rect x="1" y="2" width="14" height=".25" fill="#b88f5a"/><rect x="2" y="5" width="12" height="3.6" fill="#7a4f3a" opacity=".5"/></g>`);
+  out.push(`<g id="taxis"></g>`);
+  // rain trees along the road
+  [[170,-4],[171,10],[169.5,24],[171,38],[170,70]].forEach(([x,y],i)=>{ if(y>L.y1-2) return;
+    box(x-.2,y-.2,0,.4,.4,4,'#5a4636','#5a4636','#46372a');
+    const [cx,cy]=P(x,y,5.5); const r=34+i%2*8;
+    out.push(`<ellipse cx="${cx+6}" cy="${cy+(4+r*.1)*K}" rx="${r*1.1}" ry="${r*.45}" fill="#5b4f3e" opacity=".14"/>`);
+    out.push(`<g><ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*.62}" fill="#3f6b42"/><ellipse cx="${cx-r*.25}" cy="${cy-r*.18}" rx="${r*.7}" ry="${r*.4}" fill="#5c8a52"/><ellipse cx="${cx-r*.4}" cy="${cy-r*.26}" rx="${r*.32}" ry="${r*.18}" fill="#7da463"/></g>`);
+  });
+  // a slow cloud shadow drifting over the model
+  out.push(`<ellipse id="cloud" cx="0" cy="0" rx="420" ry="160" fill="#3a3a48" opacity=".045" filter="url(#soft)"/>`);
+  rig.innerHTML=out.join('');
+
+  // taxis: kaali-peeli, moving along the road, fading at the ends
+  const taxiG=document.getElementById('taxis');
+  const taxis=[0,1,2].map(i=>{const g=document.createElementNS(NS,'g');taxiG.appendChild(g);return {g,y:L.y0+i*36,lane:i%2?157.5:161.5,dir:i%2?1:-1};});
+  function drawTaxi(t){out=[];const x=t.lane-.8,y=t.y;
+    box(x,y,.25,1.6,3.6,.75,'#151515','#1c1c1c','#101010'); box(x+.1,y+.7,1,1.4,1.8,.6,'#f2c230','#e3b020','#c99a14');
+    t.g.innerHTML=out.join(''); const a=Math.min(1,(t.y-L.y0)/6,(L.y1-4-t.y)/6); t.g.setAttribute('opacity',clamp(a).toFixed(2));}
+  // people
+  const personEls=[...document.querySelectorAll('.person')];
+  function drawPerson(q){const [x,y]=P(q.x,q.y,1); const el=personEls[q.i];
+    el.innerHTML=`<rect x="${(x-1.6).toFixed(1)}" y="${(y-15).toFixed(1)}" width="3.2" height="11" rx="1.4" fill="${q.c}"/><circle cx="${x.toFixed(1)}" cy="${(y-17.5).toFixed(1)}" r="2" fill="#4a3428"/><rect x="${(x-1.2).toFixed(1)}" y="${(y-4.5).toFixed(1)}" width="2.4" height="4.5" fill="#2c2c34"/>`;
+    el.setAttribute('opacity',clamp(Math.min(q.x+12,130-q.x)/6).toFixed(2));}
+  const cloud=document.getElementById('cloud');
+
+  // camera: zoom while the world un-shears so the coach side turns to face us
+  const target3={x:TX+TU+.95,y:trains[2].y+1.8,z:4.2-1.5};
+  const [tpx,tpy]=P(target3.x,target3.y,target3.z);
+  const A=1/C, D=-S/C;
+  const M=t=>[1+(A-1)*t, D*t];
+  const fit={x:P(L.x0,L.y1)[0],X:P(L.x1,L.y0)[0],y:P(L.x0,L.y0,0)[1]-200,Y:P(L.x1,L.y1,-4)[1]};
+  function camera(t){
+    const ph=innerWidth<700, asp=innerHeight/innerWidth;
+    const [a,d]=M(t); const fx0=tpx*a, fy0=tpx*d+tpy;
+    const cw=(fit.X-fit.x), cy=(fit.y+fit.Y)/2;
+    const wide=ph?{x:(fit.x+fit.X)/2+120,y:cy+120,w:cw*.62,fx:.5,fy:.58}:{x:(fit.x+fit.X)/2-40,y:cy+40,w:cw*1.12,fx:.55,fy:.56};
+    const close=ph?{x:fx0,y:fy0,w:44,fx:.5,fy:.68}:{x:fx0,y:fy0,w:62,fx:.66,fy:.56};
+    const w=Math.exp(lerp(Math.log(wide.w),Math.log(close.w),t)), h=w*asp;
+    // follow the target smoothly: blend from the wide centre to the window
+    const k=Math.pow(t,.7);
+    const X=lerp(wide.x,close.x,k), Y=lerp(wide.y,close.y,k);
+    return [X-lerp(wide.fx,close.fx,k)*w, Y-lerp(wide.fy,close.fy,k)*h, w, h];
+  }
+
+  let sp=null,last=performance.now();
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    const r=track.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight));
+    sp=sp===null||rm?p:sp+(p-sp)*Math.min(1,dt*6);
+    const zt=ease(seg(sp,.04,.82)), sh=ease(seg(sp,.38,.86));
+    const [a,d]=M(sh);
+    rig.setAttribute('transform',`matrix(${a.toFixed(5)} ${d.toFixed(5)} 0 1 0 0)`);
+    // camera follows sheared target
+    const vb=(()=>{const [aa,dd]=M(sh); const fx0=tpx*aa, fy0=tpx*dd+tpy; const c=camera(zt); // replace close focus with current shear
+      const asp=innerHeight/innerWidth, ph=innerWidth<700; const cw=(fit.X-fit.x), cy=(fit.y+fit.Y)/2;
+      const wide=ph?{x:(fit.x+fit.X)/2+120,y:cy+120,w:cw*.62,fx:.5,fy:.58}:{x:(fit.x+fit.X)/2-40,y:cy+40,w:cw*1.12,fx:.55,fy:.56};
+      const close=ph?{w:30,fx:.5,fy:.7}:{w:40,fx:.64,fy:.56};
+      const w=Math.exp(lerp(Math.log(wide.w),Math.log(close.w),zt)), h=w*asp;
+      // where the window sits on screen in the wide shot, then glide it to its final spot
+      const W0=wide.w, H0=W0*asp, sx0=(tpx-(wide.x-wide.fx*W0))/W0, sy0=(tpy-(wide.y-wide.fy*H0))/H0;
+      const k=Math.sqrt(zt), sx=lerp(sx0,close.fx,k), sy=lerp(sy0,close.fy,k);
+      return [fx0-sx*w, fy0-sy*h, w, h];})();
+    svg.setAttribute('viewBox',vb.map(v=>v.toFixed(3)).join(' '));
+    const n=seg(sp,.86,.97); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+    if(!rm){
+      taxis.forEach(t=>{t.y+=t.dir*dt*2.2; if(t.y>L.y1-4) t.y=L.y0; if(t.y<L.y0) t.y=L.y1-4;});
+      people.forEach(q=>{q.x+=q.v*dt; if(q.x>130) q.x=-12; if(q.x<-12) q.x=130;});
+    }
+    taxis.forEach(drawTaxi); people.forEach(drawPerson);
+    const cx=((now/1000*8)%2400)-600; cloud.setAttribute('transform',`translate(${cx.toFixed(1)} ${(400+cx*.2).toFixed(1)})`);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

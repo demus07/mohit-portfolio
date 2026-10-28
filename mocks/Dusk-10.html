@@ -1,0 +1,298 @@
+<!-- Direction 10: Taxi window — the back seat of a kaali-peeli on Marine Drive at dusk; each stop is a street lamp that slides past the window and fills the cab with sodium light. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk, taxi window</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..500;1,7..72,300..400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0d1a2b; --sodium:#f2a145; --ink:#efe5d6; --serif:"Literata", Georgia, serif; --sans:"Work Sans", system-ui, sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#080c14;color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .track{height:1000vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#080c14}
+  svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+  .copy{position:absolute;left:clamp(24px,6.5vw,120px);top:clamp(56px,13vh,128px);width:min(31rem,36vw)}
+  h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,3.7vw,60px);line-height:1.05;letter-spacing:-.015em;text-wrap:balance;color:#f7efe3}
+  h2 i{color:#f6c48a;font-weight:300}
+  .stops{position:relative;margin-top:clamp(28px,5vh,52px);height:15rem}
+  .stop{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;will-change:opacity,transform}
+  .stop .st{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+  .stop .name{font-family:var(--serif);font-style:italic;font-weight:350;font-size:clamp(25px,2vw,31px);color:#fff4e4}
+  .stop .yr{font-family:var(--sans);font-weight:500;font-size:15.5px;color:var(--sodium)}
+  .stop p{margin-top:.8rem;font-family:var(--serif);font-weight:300;font-size:clamp(17.5px,1.28vw,20px);line-height:1.55;max-width:25rem;color:#ddd2c4}
+
+  .roles{position:absolute;left:clamp(24px,6.5vw,120px);top:calc(clamp(56px,13vh,128px) + clamp(100px,9.5vw,140px));width:min(35rem,37vw);opacity:0;pointer-events:none}
+  .role{padding:.6rem 0}
+  .role h3{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.2;color:#fff4e4;display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap}
+  .role h3 span{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--sodium)}
+  .role .what{font-size:14px;color:#b4aa9f;margin-top:.2rem}
+  .role ul{list-style:none;margin-top:.5rem;display:grid;gap:.4rem}
+  .role li{font-size:14px;line-height:1.5;color:#d8cdc0;padding-left:1rem;position:relative}
+  .role li::before{content:"";position:absolute;left:0;top:.68em;width:.4rem;height:1px;background:var(--sodium)}
+
+  @media (max-width:760px){
+    .copy{left:20px;right:20px;width:auto;top:48px}
+    h2{font-size:36px}
+    .stops{margin-top:18px}
+    .stop .name{font-size:25px}
+    .stop p{font-size:16.5px;line-height:1.5}
+    .roles{left:20px;right:20px;width:auto;top:140px}
+    .role{padding:.4rem 0}.role h3{font-size:19px}.role li,.role .what{font-size:13.5px}
+  }
+</style>
+</head>
+<body>
+<!-- direction: 10 Taxi window -->
+<section class="track" id="track">
+  <div class="stage">
+    <svg class="scene" id="svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#16213b"/>
+          <stop offset=".45" stop-color="#3a3858"/>
+          <stop offset=".78" stop-color="#94606c"/>
+          <stop offset="1" stop-color="#e28c5c"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#4a3e5c"/>
+          <stop offset=".3" stop-color="#262c48"/>
+          <stop offset="1" stop-color="#151b30"/>
+        </linearGradient>
+        <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8d8a92"/>
+          <stop offset=".5" stop-color="#3a3a44"/>
+          <stop offset="1" stop-color="#6f6c74"/>
+        </linearGradient>
+        <radialGradient id="halo"><stop offset="0" stop-color="#ffd18e" stop-opacity=".9"/><stop offset=".2" stop-color="#f2a145" stop-opacity=".45"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <radialGradient id="spill" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f2a145" stop-opacity=".75"/><stop offset=".5" stop-color="#e08a3a" stop-opacity=".25"/><stop offset="1" stop-color="#e08a3a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="seat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#14161f"/><stop offset=".25" stop-color="#1d1f2a"/><stop offset="1" stop-color="#0b0d13"/></linearGradient>
+        <linearGradient id="cabShade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2030" stop-opacity=".55"/><stop offset=".5" stop-color="#0b0f17" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fb4c8" stop-opacity=".1"/><stop offset=".45" stop-color="#9fb4c8" stop-opacity=".02"/><stop offset=".5" stop-color="#cfe0ee" stop-opacity=".09"/><stop offset=".56" stop-color="#9fb4c8" stop-opacity=".02"/><stop offset="1" stop-color="#0d1a2b" stop-opacity=".25"/></linearGradient>
+        <pattern id="fabric" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#171923"/><path d="M0 0h7M0 3.5h7" stroke="#20222e" stroke-width="1.2"/></pattern>
+        <filter id="grain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="21" stitchTiles="stitch"/>
+          <feColorMatrix values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .45  0 0 0 .55 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2"/></filter>
+        <filter id="big" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="28"/></filter>
+        <clipPath id="win"><path id="winClip"/></clipPath>
+      </defs>
+      <!-- outside, seen through the glass -->
+      <g clip-path="url(#win)">
+        <g id="out"></g>
+      </g>
+      <!-- the cab -->
+      <g id="cab"></g>
+      <rect id="grainR" fill="#fff" filter="url(#grain)" opacity=".09"/>
+    </svg>
+
+    <div class="copy">
+      <h2>Every detour was <i>part of the path</i></h2>
+      <div class="stops" id="stops"></div>
+    </div>
+    <div class="roles" id="roles">
+      <div class="role">
+        <h3>Sypha AI <span>Software Engineer, Dec 2025 – now</span></h3>
+        <ul>
+          <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+          <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+          <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+          <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+        </ul>
+      </div>
+      <div class="role"><h3>AuctionXI <span>Founder, Apr 2026 – now</span></h3></div>
+      <div class="role"><h3>TexAgent <span>Freelance developer, Sep 2026 – now</span></h3></div>
+      <div class="role"><h3>MK Exim India <span>Mar – Sep 2025</span></h3><div class="what">E-commerce, Amazon, TataCliQ and Sephora</div></div>
+      <div class="role"><h3>Brahmani Gems <span>Jul – Aug 2024</span></h3><div class="what">Web developer intern, Shopify</div></div>
+    </div>
+  </div>
+</section>
+<script>
+const STOPS = [
+  ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+  ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+  ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+  ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+  ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+  ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const NS = "http://www.w3.org/2000/svg", $ = s => document.querySelector(s);
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
+const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); parent && parent.appendChild(e); return e; };
+const stopEls = STOPS.map(([n,y,l]) => {
+  const d = document.createElement("div"); d.className = "stop";
+  d.innerHTML = `<div class="st"><span class="name">${n}</span>${y ? `<span class="yr">${y}</span>` : ""}</div><p>${l}</p>`;
+  $("#stops").appendChild(d); return d;
+});
+
+let G = {};
+function build() {
+  const W = innerWidth, H = innerHeight, phone = W < 760;
+  $("#svg").setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const gr = $("#grainR"); gr.setAttribute("width", W); gr.setAttribute("height", H);
+  let seed = 4; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  // the window opening
+  const x0 = phone ? W * .06 : W * .47, x1 = phone ? W * .94 : W * .9;
+  const y0 = phone ? H * .47 : H * .17, y1 = phone ? H * .78 : H * .63;
+  const ww = x1 - x0, wh = y1 - y0;
+  // Padmini rear door glass: the rear top corner swept round, the front edge nearly upright
+  const rr = Math.min(ww, wh) * .32, rf = Math.min(ww, wh) * .08;
+  const winD = `M${x0} ${y1}V${y0 + rr}Q${x0} ${y0} ${x0 + rr * 1.3} ${y0}H${x1 - rf}Q${x1} ${y0} ${x1} ${y0 + rf}V${y1}Z`;
+  $("#winClip").setAttribute("d", winD);
+  const out = $("#out"), cab = $("#cab"); out.innerHTML = ""; cab.innerHTML = "";
+
+  // ---- outside: the bay at dusk ----
+  const hz = y0 + wh * .56;
+  const bob = mk("g", {}, out);                                 // the cab rides; the world bobs a little
+  mk("rect", {x:x0 - 20, y:y0 - 20, width:ww + 40, height:hz - y0 + 20, fill:"url(#sky)"}, bob);
+  // afterglow low on the right, where the sun went down behind the hill
+  mk("ellipse", {cx:x0 + ww * .8, cy:hz, rx:ww * .5, ry:wh * .25, fill:"#f2a145", opacity:.3, filter:"url(#big)"}, bob);
+  // Malabar Hill far ahead (right), its towers and lit windows
+  const hill = mk("g", {}, bob);
+  mk("path", {d:`M${x0 + ww * .55} ${hz}C${x0 + ww * .7} ${hz - wh * .03} ${x0 + ww * .85} ${hz - wh * .08} ${x1 + 20} ${hz - wh * .1}V${hz}Z`, fill:"#2b2742"}, hill);
+  for (let i = 0; i < 9; i++) {
+    const bx = x0 + ww * (.72 + i * .035), bh = wh * (.05 + rnd() * .09), bw = ww * .022;
+    mk("rect", {x:bx, y:hz - wh * .07 - bh + i * .5, width:bw, height:bh + wh * .07, fill:"#25213a"}, hill);
+    for (let k = 0; k < 5; k++) if (rnd() < .6) mk("rect", {x:bx + bw * (.2 + rnd() * .5), y:hz - wh * .07 - bh + 3 + rnd() * bh, width:1.6, height:1.6, fill:"#f6c27e", opacity:.8}, hill);
+  }
+  // the necklace closing round the bay toward the hill
+  for (let i = 0; i < 40; i++) {
+    const t = i / 39, nx = x0 + ww * (.25 + t * .62), ny = hz - 1 - t * t * wh * .012;
+    mk("circle", {cx:nx, cy:ny, r:.9 + (1 - t) * .7, fill:"#ffd38f"}, bob);
+  }
+  // sea
+  mk("rect", {x:x0 - 20, y:hz, width:ww + 40, height:y1 - hz + 20, fill:"url(#sea)"}, bob);
+  const glints = mk("g", {fill:"#f5b878"}, bob);
+  for (let i = 0; i < 26; i++) mk("rect", {x:x0 + ww * (.55 + rnd() * .4), y:hz + 3 + rnd() * wh * .14, width:6 + rnd() * 26, height:1, opacity:(.15 + rnd() * .5).toFixed(2)}, glints);
+  // the moving band: parapet, people sitting on it, lamps; one strip that we slide
+  const S = ww * .95;                                            // distance between stop lamps
+  const band = mk("g", {}, bob);
+  const wallTop = y0 + wh * .74;
+  const span = S * 12;
+  const bandStart = x0 + ww / 2 - S * 2.5;                       // lamp k sits at bandStart + (k+2.5)*S... see lampX
+  mk("rect", {x:bandStart - S, y:wallTop, width:span + S * 2, height:wh * .06, fill:"#2b2a3c"}, band);
+  mk("rect", {x:bandStart - S, y:wallTop, width:span + S * 2, height:1.5, fill:"#d99a72", opacity:.55}, band);
+  mk("rect", {x:bandStart - S, y:wallTop + wh * .06, width:span + S * 2, height:y1 - wallTop, fill:"#151621"}, band);  // promenade
+  // people on the wall, backs to us, facing the sea
+  for (let x = bandStart - S; x < bandStart + span; x += 40 + rnd() * 130) {
+    if (rnd() < .35) continue;
+    const pair = rnd() < .5, s = wh * .045;
+    for (let j = 0; j < (pair ? 2 : 1); j++) {
+      const px = x + j * s * 1.15;
+      mk("path", {d:`M${px - s * .5} ${wallTop + 1}q0 ${-s * .9} ${s * .5} ${-s * .95}q${s * .5} ${s * .05} ${s * .5} ${s * .95}Z`, fill:"#0f1019"}, band);
+      mk("circle", {cx:px, cy:wallTop - s * 1.12, r:s * .26, fill:"#0f1019"}, band);
+    }
+  }
+  // lamps: one per stop, and one either side so the window is never empty at the ends
+  const lamps = [];
+  for (let k = -1; k <= 8; k++) {
+    const lx = bandStart + (k + 2) * S;
+    const g = mk("g", {}, band);
+    const top = y0 + wh * .1;
+    mk("rect", {x:lx - 2.4, y:top, width:4.8, height:wallTop - top + wh * .06, fill:"#11121b"}, g);
+    mk("path", {d:`M${lx} ${top + 2}q0 ${-wh * .05} ${-ww * .05} ${-wh * .055}`, stroke:"#11121b", "stroke-width":4, fill:"none"}, g);
+    const hx = lx - ww * .055, hy = top - wh * .055;
+    const halo = mk("circle", {cx:hx, cy:hy + 4, r:wh * .34, fill:"url(#halo)"}, g);
+    mk("rect", {x:hx - 13, y:hy, width:26, height:6, rx:3, fill:"#ffdca4"}, g);
+    // the pool it throws on the promenade
+    mk("ellipse", {cx:hx, cy:wallTop + wh * .09, rx:ww * .14, ry:wh * .03, fill:"#f2a145", opacity:.3, filter:"url(#soft)"}, g);
+    lamps.push({lx, halo});
+  }
+
+  // the glass, wound down a hand's width: clear air above its edge, tint and a sheen below
+  const gTop = y0 + wh * .2;
+  mk("rect", {x:x0 - 10, y:gTop, width:ww + 20, height:y1 - gTop + 10, fill:"url(#glass)"}, out);
+  mk("rect", {x:x0 - 10, y:gTop, width:ww + 20, height:y1 - gTop + 10, fill:"#0d1a2b", opacity:.18}, out);
+  mk("rect", {x:x0 - 10, y:gTop - 1, width:ww + 20, height:3, rx:1.5, fill:"#c9d4dc", opacity:.45}, out);
+  mk("rect", {x:x0 - 10, y:gTop + 2, width:ww + 20, height:2, fill:"#05070b", opacity:.35}, out);
+
+  // ---- the cab: everything that isn't glass ----
+  const frame = `M0 0H${W}V${H}H0Z ` + winD;
+  mk("path", {d:frame, fill:"#0b0f17", "fill-rule":"evenodd"}, cab);
+  // headliner a touch lighter, curving down to the window
+  mk("rect", {x:0, y:0, width:W, height:H, fill:"url(#cabShade)"}, cab);
+  // door panel below the glass, vinyl with stitched ribs
+  const dpTop = y1 + 14;
+  const door = mk("g", {}, cab);
+  mk("path", {d:`M${x0 - ww * .12} ${dpTop}H${x1 + 8}V${H + 10}H${x0 - ww * .18}Z`, fill:"#141824"}, door);
+  for (let i = 1; i < 6; i++) mk("path", {d:`M${x0 - ww * .1} ${dpTop + i * (H - dpTop) / 6}H${x1}`, stroke:"#1b2030", "stroke-width":1.4}, door);
+  mk("path", {d:`M${x0 - ww * .12} ${dpTop}H${x1 + 8}`, stroke:"#232838", "stroke-width":3}, door);
+  // chrome sill and window frame
+  mk("path", {d:winD, fill:"none", stroke:"url(#chrome)", "stroke-width":7, "stroke-linejoin":"round"}, cab);
+  mk("path", {d:winD, fill:"none", stroke:"#05070b", "stroke-width":1.5, opacity:.8}, cab);
+  mk("rect", {x:x0 - 6, y:y1 + 2, width:ww + 12, height:9, rx:3, fill:"url(#chrome)"}, cab);
+  // armrest along the door
+  mk("rect", {x:x0 + ww * .18, y:dpTop + (H - dpTop) * .58, width:ww * .5, height:Math.max(18, (H - dpTop) * .1), rx:9, fill:"#1c2130"}, cab);
+  mk("rect", {x:x0 + ww * .18, y:dpTop + (H - dpTop) * .58, width:ww * .5, height:2, rx:1, fill:"#3a3f52", opacity:.7}, cab);
+  // the lock knob at the sill, and the window winder
+  mk("rect", {x:x0 + ww * .07, y:y1 - 14, width:7, height:16, rx:3.5, fill:"#6e6a72"}, cab);
+  const cx = x1 - ww * .17, cy = dpTop + (H - dpTop) * .36, cr = Math.min(46, ww * .07);
+  mk("circle", {cx, cy, r:cr * .32, fill:"#5a5862"}, cab);
+  mk("path", {d:`M${cx} ${cy}L${cx - cr} ${cy + cr * .35}`, stroke:"#77737c", "stroke-width":cr * .22, "stroke-linecap":"round"}, cab);
+  mk("rect", {x:cx - cr - cr * .14, y:cy + cr * .35 - cr * .38, width:cr * .28, height:cr * .62, rx:cr * .14, fill:"#2a1f1a"}, cab);
+  // front bench seat back, on the right where the front of the car is
+  const sx = phone ? W * .93 : x1 - ww * .02;
+  const seat = mk("g", {}, cab);
+  mk("path", {d:`M${sx} ${H + 10}V${y0 + wh * .62}Q${sx} ${y0 + wh * .44} ${sx + W * .08} ${y0 + wh * .42}H${W + 10}V${H + 10}Z`, fill:"url(#fabric)"}, seat);
+  mk("path", {d:`M${sx} ${H + 10}V${y0 + wh * .62}Q${sx} ${y0 + wh * .44} ${sx + W * .08} ${y0 + wh * .42}H${W + 10}`, fill:"none", stroke:"#2c2e3a", "stroke-width":3}, seat);
+  mk("path", {d:`M${sx} ${H + 10}V${y0 + wh * .62}Q${sx} ${y0 + wh * .44} ${sx + W * .08} ${y0 + wh * .42}H${W + 10}V${H + 10}Z`, fill:"url(#seat)", opacity:.6}, seat);
+  // lamplight spilling into the cab: across the door, the sill, the seat edge
+  const spill = mk("ellipse", {cx:x0 + ww / 2, cy:y1 + (H - y1) * .45, rx:ww * .55, ry:(H - y1) * .7, fill:"url(#spill)", opacity:0, style:"mix-blend-mode:screen"}, cab);
+  const roof = mk("ellipse", {cx:x0, cy:y0 - wh * .08, rx:ww * .5, ry:wh * .18, fill:"url(#spill)", opacity:0, style:"mix-blend-mode:screen"}, cab);
+  const sillGlint = mk("rect", {x:x0 - 6, y:y1 + 2, width:ww * .25, height:9, rx:3, fill:"#ffd8a0", opacity:0, filter:"url(#soft)"}, cab);
+  G = {W, H, phone, x0, x1, y0, y1, ww, wh, S, band, bob, lamps, spill, roof, sillGlint, bandStart};
+}
+build();
+addEventListener("resize", build);
+
+const track = $("#track"), roles = $("#roles");
+let cur = 0;
+const progress = () => { const r = track.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+function frame(t) {
+  const p = progress();
+  cur = RM ? p : cur + (p - cur) * .1;
+  const f = clamp((cur - .05) / .78) * 6.999;
+  stopEls.forEach((el, k) => {
+    const d = f - (k + .5), o = clamp(1 - (Math.abs(d) - .3) / .18);
+    el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${(-d * 14).toFixed(1)}px)`;
+  });
+  // travel: lamp k is centred in the window at f = k + .5, before the first stop we roll up to it, after the last we drive on
+  const travel = (cur < .05 ? (cur - .05) / .78 * 7 : cur > .83 ? 7 + (cur - .83) / .78 * 7 : f) - .5;
+  // lamp k sits at bandStart + (k+2)*S; slide the band so lamp k is centred when travel = k
+  const off = (G.x0 + G.ww / 2) - G.bandStart - (travel + 2) * G.S;
+  const bobY = RM ? 0 : Math.sin(t / 420) * .9 + Math.sin(t / 173) * .4;
+  G.band.setAttribute("transform", `translate(${off.toFixed(1)} 0)`);
+  G.bob.setAttribute("transform", `translate(0 ${bobY.toFixed(2)})`);
+  // how lit is the cab: by the nearest lamp's distance from the window's centre
+  let light = 0, lampX = 0;
+  for (const L of G.lamps) {
+    const sx = L.lx + off - G.ww * .055;
+    const d = (sx - (G.x0 + G.ww / 2)) / (G.ww * .55);
+    const l = Math.max(0, 1 - d * d);
+    if (l > light) { light = l; lampX = sx; }
+  }
+  const flick = RM ? 1 : .96 + .04 * Math.sin(t / 90);
+  G.spill.setAttribute("opacity", (light * .95 * flick).toFixed(3));
+  G.spill.setAttribute("cx", (lampX + G.ww * .08).toFixed(1));
+  G.roof.setAttribute("opacity", (light * .7).toFixed(3));
+  G.roof.setAttribute("cx", (lampX - G.ww * .1).toFixed(1));
+  G.sillGlint.setAttribute("opacity", (light * .8).toFixed(3));
+  G.sillGlint.setAttribute("x", clamp(lampX - G.ww * .12, G.x0, G.x1 - G.ww * .25).toFixed(1));
+  const ro = clamp((cur - .86) / .07);
+  roles.style.opacity = ro.toFixed(3); roles.style.transform = `translateY(${((1 - ro) * 18).toFixed(1)}px)`;
+  roles.style.pointerEvents = ro > .5 ? "auto" : "none";
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!-- Direction 05: Two-colour linocut — navy and saffron ink cut into warm paper, a railway-poster sunset over Churchgate; scrolling pans along the carved rake to the one lit window, where he sits with his chin on his fist. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#efe2c6;--navy:#1b2a4a;--saffron:#e8892b}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--navy)}
+  body{font-family:"Archivo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .intro{position:relative;height:520vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--paper)}
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  /* paper tooth and uneven ink, fixed to the sheet */
+  .paper{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.55;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .3  0 0 0 -1.1 .62'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .fibre{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.35;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='.04 .9' numOctaves='2' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .94  0 0 0 0 .89  0 0 0 0 .78  0 0 0 2.4 -1.5'/></filter><rect width='100%' height='100%' filter='url(%23m)'/></svg>")}
+  .copy{position:absolute;z-index:3;left:clamp(24px,5vw,84px);top:clamp(30px,8vh,90px);width:min(27rem,36vw)}
+  h1{font-family:"Gloock",Georgia,serif;font-weight:400;font-size:clamp(3.2rem,7vw,7.2rem);line-height:.86;letter-spacing:-.01em;color:var(--navy);text-wrap:balance}
+  .slot{position:relative;margin-top:1.4rem;min-height:6.6em;max-width:21rem}
+  .line{font-size:clamp(1rem,1.15vw,1.12rem);line-height:1.5;color:var(--navy)}
+  .note{position:absolute;inset:0;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(1.35rem,1.8vw,1.75rem);line-height:1.25;color:var(--navy);opacity:0}
+  .line,.note{padding:.1em 0}
+  .cta{display:inline-flex;gap:.5em;font-size:1.05rem;font-weight:500;color:var(--navy);text-decoration:none;padding:.35em .1em .3em;
+    background:linear-gradient(var(--saffron),var(--saffron)) 0 100%/100% 3px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 100%}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(5px)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;top:24px;width:auto}
+    h1{font-size:clamp(2.9rem,14vw,3.8rem)}
+    .slot{margin-top:1rem;min-height:6.2em}
+  }
+</style>
+</head>
+<body>
+<!-- direction: 05 two-colour linocut -->
+<section class="intro" id="intro">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <pattern id="speck" width="97" height="89" patternUnits="userSpaceOnUse"><g id="speckDots" fill="#efe2c6"></g></pattern>
+        <pattern id="pin" width="7" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+          <line x1="1.5" y1="0" x2="1.5" y2="12" stroke="#1b2a4a" stroke-width="1.6"/>
+        </pattern>
+        <pattern id="hatchS" width="10" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+          <path d="M0,3.5 C3,2.6 7,2.6 10,3.5" stroke="#e8892b" stroke-width="2.2" fill="none"/>
+        </pattern>
+        <pattern id="hatchN" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><rect width="8" height="3.2" fill="#1b2a4a"/></pattern>
+<symbol id="mohit" viewBox="0 0 300 300">
+          <!-- torso -->
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="#efe2c6"/>
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="url(#pin)"/>
+          <path d="M182,190 C228,200 258,232 270,300 L210,300 C210,258 202,220 182,190 Z" fill="url(#hatchN)"/>
+          <path d="M106,192 C80,200 56,218 42,246 C60,226 84,210 112,202 Z" fill="#efe2c6" opacity=".7"/>
+          <!-- neck -->
+          <path d="M134,138 L168,134 C168,154 170,170 176,188 L128,190 C133,174 135,156 134,138 Z" fill="#e8892b"/>
+          <path d="M134,148 C146,160 160,162 170,154 L169,144 Z" fill="#1b2a4a" opacity=".25"/>
+          <!-- collar -->
+          <path d="M124,190 C128,178 134,172 140,176 L150,212 L128,206 Z" fill="#efe2c6"/>
+          <path d="M178,190 C174,178 168,172 162,176 L150,212 L172,206 Z" fill="#efe2c6"/>
+          <!-- head -->
+          <path d="M150,46 C124,45 106,58 101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C124,155 141,153 154,145 C164,138 171,125 174,110 C178,88 174,56 150,46 Z" fill="#e8892b"/>
+          <path d="M101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C109,130 107,110 111,88 Z" fill="#efe2c6" opacity=".85"/>
+          <path d="M154,145 C164,138 171,125 174,110 C172,128 160,146 138,152 Z" fill="#1b2a4a" opacity=".7"/>
+          <path d="M101,112 C104,114 106,116 104,119" stroke="#1b2a4a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- ear -->
+          <path d="M162,94 C170,88 179,94 177,106 C176,116 169,122 163,118 Z" fill="#e8892b"/>
+          <path d="M167,99 C172,97 174,104 171,110" stroke="#1b2a4a" stroke-width="2" fill="none"/>
+          <!-- hair, short, swept up and back -->
+          <g transform="translate(0 14) scale(1 .84)"><path d="M101,84 C97,70 98,56 104,46 C106,40 109,36 112,33 C113,30 116,28 119,28 C124,23 132,20 140,20 C144,18 150,18 154,20 C162,20 170,23 176,28 C179,29 182,31 183,34 C191,43 194,60 190,78 C188,89 182,98 176,104 L170,94 C168,80 160,72 150,70 C136,68 120,72 107,80 Z" fill="#1b2a4a"/>
+            <path d="M107,80 C120,72 136,68 150,70 C160,72 168,80 170,94 L164,96 C162,86 156,80 148,78 C134,77 120,80 110,86 Z" fill="#1b2a4a" opacity=".55"/>
+            <g stroke="#efe2c6" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".5">
+              <path d="M106,70 C108,54 116,40 130,32"/><path d="M114,68 C118,52 130,38 146,30"/><path d="M124,68 C130,52 144,40 162,34"/>
+              <path d="M136,68 C144,56 160,46 178,42"/><path d="M150,70 C160,62 174,58 186,58"/><path d="M162,78 C172,74 182,74 189,76"/>
+            </g>
+            <path d="M105,48 C110,36 122,26 138,22 C152,19 166,22 176,28" stroke="#efe2c6" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/></g>
+            <path d="M163,92 C164,84 166,78 170,76 L170,94 Z" fill="#1b2a4a"/>
+          <!-- brow -->
+          <path d="M104,84 C110,80 120,80 128,84" stroke="#1b2a4a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <!-- eyes, lowered, thinking -->
+          <path d="M109,97 C113,99 118,99 122,97" stroke="#1b2a4a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M95,96 C97,97 99,97 100,96" stroke="#1b2a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- glasses -->
+          <path d="M104,86 L133,86 C135,86 136,88 135,91 L133,101 C132,105 129,107 125,107 L110,107 C106,107 104,104 104,100 Z" fill="#efe2c6" fill-opacity=".16" stroke="#1b2a4a" stroke-width="2.4"/>
+          <path d="M93,88 L99,87 L99,102 C97,105 95,105 94,104 Z" fill="#efe2c6" fill-opacity=".12" stroke="#1b2a4a" stroke-width="2"/>
+          <path d="M99,89 L104,89" stroke="#1b2a4a" stroke-width="2"/>
+          <path d="M135,89 L164,96" stroke="#1b2a4a" stroke-width="2.2"/>
+          <path d="M108,89 L117,89" stroke="#efe2c6" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+          <!-- mouth -->
+          <path d="M104,132 C107,133 110,133 112,131" stroke="#1b2a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- forearm rising from the sill -->
+          <path d="M82,300 C86,250 88,210 90,168 L126,166 C130,212 138,256 150,300 Z" fill="#e8892b"/>
+          <path d="M82,300 C86,250 88,210 90,168 L102,168 C100,212 100,256 102,300 Z" fill="#efe2c6"/>
+          <!-- rolled sleeve -->
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="#efe2c6"/>
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="url(#pin)"/>
+          <path d="M84,254 C102,248 128,248 142,254 L143,261 C128,255 102,255 84,262 Z" fill="#1b2a4a"/>
+          <!-- fist under the chin -->
+          <path d="M87,168 C85,157 91,148 101,146 C111,144 123,146 127,154 C131,162 129,174 123,178 C113,182 97,182 89,178 Z" fill="#e8892b"/>
+          <path d="M91,158 C99,154 111,154 119,158" stroke="#1b2a4a" stroke-width="1.8" fill="none" opacity=".8"/>
+          <path d="M89,168 C97,164 109,164 121,168" stroke="#1b2a4a" stroke-width="1.6" fill="none" opacity=".6"/>
+          <path d="M87,168 C85,157 91,148 101,146 C97,154 95,164 97,178 C93,178 89,176 87,168 Z" fill="#efe2c6" opacity=".85"/>
+        </symbol>
+        <clipPath id="skyClip"><rect x="-2000" y="-2000" width="9000" height="2560"/></clipPath>
+      </defs>
+      <rect x="-3000" y="-3000" width="12000" height="9000" fill="#efe2c6"/>
+      <g id="sky"></g>
+      <g id="city"></g>
+      <g id="wires"></g>
+      <g id="train"></g>
+      <g id="win"></g>
+      <g id="ground"></g>
+      <g id="kites"></g>
+      <rect x="-3000" y="-3000" width="12000" height="9000" fill="url(#speck)" opacity=".85"/>
+    </svg>
+    <div class="paper"></div>
+    <div class="fibre"></div>
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <div class="slot">
+        <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    </div>
+  </div>
+</section>
+<script>
+(() => {
+  const NAVY = "#1b2a4a", SAF = "#e8892b", PAPER = "#efe2c6";
+  const NS = "http://www.w3.org/2000/svg";
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const R = (a, b) => a + (b - a) * rnd();
+  const el = (parent, tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (typeof parent === "string" ? document.getElementById(parent) : parent).appendChild(e); return e; };
+  // a cut edge: subdivide a polygon and nudge each point, like a gouge following a line
+  const rough = (pts, amp = 1.6, step = 16) => {
+    const out = [];
+    for (let i = 0; i < pts.length; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[(i + 1) % pts.length];
+      const L = Math.hypot(x2 - x1, y2 - y1), n = Math.max(1, Math.round(L / step));
+      const nx = -(y2 - y1) / (L || 1), ny = (x2 - x1) / (L || 1);
+      for (let k = 0; k < n; k++) {
+        const t = k / n, j = k === 0 ? 0 : R(-amp, amp);
+        out.push([x1 + (x2 - x1) * t + nx * j, y1 + (y2 - y1) * t + ny * j]);
+      }
+    }
+    return "M" + out.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") + "Z";
+  };
+  const rect = (x, y, w, h) => [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+  const rrect = (x, y, w, h, r, seg = 4) => {
+    const p = [], c = [[x + w - r, y + r, -90], [x + w - r, y + h - r, 0], [x + r, y + h - r, 90], [x + r, y + r, 180]];
+    c.forEach(([cx, cy, a0]) => { for (let i = 0; i <= seg; i++) { const a = (a0 + 90 * i / seg) * Math.PI / 180; p.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } });
+    return p;
+  };
+  const circ = (cx, cy, r, n = 64) => Array.from({ length: n }, (_, i) => [cx + r * Math.cos(i / n * Math.PI * 2), cy + r * Math.sin(i / n * Math.PI * 2)]);
+  // a tapered gouge stroke (lens shape)
+  const gouge = (x, y, len, th, ang = 0) => {
+    const c = Math.cos(ang), s = Math.sin(ang), h = th / 2;
+    const p = (u, v) => `${(x + u * c - v * s).toFixed(1)},${(y + u * s + v * c).toFixed(1)}`;
+    return `M${p(0, 0)}Q${p(len * .5, -h * 2)} ${p(len, 0)}Q${p(len * .5, h * 2)} ${p(0, 0)}Z`;
+  };
+
+  // speckle tile: paper showing through the ink
+  const sd = document.getElementById("speckDots");
+  for (let i = 0; i < 46; i++) el(sd, "circle", { cx: R(0, 97), cy: R(0, 89), r: R(.35, 1.25) });
+
+  /* ---------- SKY: the sun behind the rake, carved rays ---------- */
+  const SUN = { x: 2930, y: 470, r: 210 };
+  const sky = el("sky", "g", { "clip-path": "url(#skyClip)" });
+  // rays, cut as alternating wedges
+  for (let a = 182; a < 352; a += 7.5) {
+    const a0 = a * Math.PI / 180, a1 = (a + 3.2) * Math.PI / 180, r0 = SUN.r + 40, r1 = R(900, 1300);
+    const pts = [[SUN.x + r0 * Math.cos(a0), SUN.y + r0 * Math.sin(a0)], [SUN.x + r1 * Math.cos(a0), SUN.y + r1 * Math.sin(a0)],
+                 [SUN.x + r1 * Math.cos(a1), SUN.y + r1 * Math.sin(a1)], [SUN.x + r0 * Math.cos(a1), SUN.y + r0 * Math.sin(a1)]];
+    el(sky, "path", { d: rough(pts, 2.4, 40), fill: SAF });
+  }
+  // horizon bands carved across the sky, thicker toward the sea haze
+  for (let i = 0; i < 260; i++) {
+    const y = 560 - Math.pow(rnd(), 1.8) * 330, x = R(-200, 3900);
+    if (x < 820 && y < 440) continue;                 // keep the opening text zone clean
+    const len = R(40, 190) * (1 - (560 - y) / 500), th = R(1.4, 4) * (1 - (560 - y) / 420);
+    if (th < .6) continue;
+    el(sky, "path", { d: gouge(x, y, len, th, R(-.02, .02)), fill: SAF });
+  }
+  // the sun: a solid disc with carved concentric rings
+  el(sky, "path", { d: rough(circ(SUN.x, SUN.y, SUN.r), 2.5, 18), fill: SAF });
+  for (let r = 40; r < SUN.r - 10; r += 26) el(sky, "circle", { cx: SUN.x, cy: SUN.y, r, fill: "none", stroke: PAPER, "stroke-width": R(2, 3.4), "stroke-dasharray": `${R(30, 80)} ${R(8, 20)}`, opacity: .85 });
+
+  /* ---------- CITY: Churchgate's skyline in navy ---------- */
+  const city = document.getElementById("city"), H0 = 560;
+  const block = (x, w, h) => el(city, "path", { d: rough(rect(x, H0 - h, w, h + 10), 1.4), fill: NAVY });
+  // Western Railway HQ: Gothic body, central domed tower, turrets
+  el(city, "path", { d: rough([[360, 570], [360, 430], [420, 430], [420, 404], [432, 388], [444, 404], [444, 430], [560, 430], [560, 372], [576, 352], [576, 312],
+    [584, 290], [596, 274], [612, 262], [626, 236], [640, 262], [656, 274], [668, 290], [676, 312], [676, 352], [692, 372], [692, 430], [808, 430], [808, 404], [820, 388],
+    [832, 404], [832, 430], [900, 430], [900, 570]], 1.3, 14), fill: NAVY });
+  for (let x = 380; x < 890; x += 22) if (x < 556 || x > 696) el(city, "path", { d: gouge(x, 470, 26, 3.6, Math.PI / 2), fill: PAPER });
+  el(city, "path", { d: rough(rrect(606, 330, 40, 60, 18), 1, 8), fill: PAPER });
+  el(city, "path", { d: rough(rrect(612, 336, 28, 50, 12), 1, 8), fill: NAVY });
+  // Eros: Art Deco with a stepped tower
+  el(city, "path", { d: rough([[1420, 570], [1420, 470], [1440, 450], [1620, 450], [1620, 410], [1636, 410], [1636, 380], [1650, 380], [1650, 352], [1662, 352], [1662, 330],
+    [1676, 330], [1676, 352], [1688, 352], [1688, 380], [1702, 380], [1702, 410], [1718, 410], [1718, 450], [1800, 450], [1800, 570]], 1.2, 14), fill: NAVY });
+  [1660, 1669, 1678].forEach(x => el(city, "path", { d: gouge(x, 360, 80, 3, Math.PI / 2), fill: PAPER }));
+  for (let y = 476; y < 550; y += 16) el(city, "path", { d: gouge(1440, y, 160, 3.2), fill: PAPER });
+  // blocks and rain trees between
+  [[60, 120, 120], [200, 110, 80], [960, 90, 150], [1070, 140, 96], [1230, 120, 128], [1860, 110, 170], [1990, 150, 110], [2160, 90, 140], [3300, 140, 120], [3460, 120, 160], [3600, 160, 100]].forEach(([x, w, h]) => {
+    block(x, w, h);
+    for (let yy = H0 - h + 16; yy < H0 - 10; yy += 18) for (let xx = x + 12; xx < x + w - 14; xx += 22) el(city, "path", { d: gouge(xx, yy, 10, 3), fill: PAPER });
+  });
+  const tree = (x, s) => el(city, "path", { d: rough(Array.from({ length: 40 }, (_, i) => { const a = Math.PI + i / 39 * Math.PI; const rr = s * (1 + .12 * Math.sin(i * 1.9)); return [x + rr * 1.5 * Math.cos(a), H0 + 6 + rr * .75 * Math.sin(a)]; }), 2.2, 12), fill: NAVY });
+  tree(1330, 70); tree(2050, 90); tree(2300, 60); tree(3150, 80);
+  // Wankhede floodlight masts, far
+  [[2420, 300], [2540, 330]].forEach(([x, top]) => {
+    el(city, "path", { d: rough([[x - 4, H0], [x - 1, top], [x + 1, top], [x + 4, H0]], .6, 30), fill: NAVY });
+    el(city, "path", { d: rough(rect(x - 26, top - 22, 52, 26), 1, 10), fill: NAVY });
+    for (let i = 0; i < 4; i++) el(city, "rect", { x: x - 22 + i * 12, y: top - 18, width: 8, height: 7, fill: SAF });
+  });
+
+  /* ---------- WIRES ---------- */
+  const wires = document.getElementById("wires");
+  [458, 472].forEach((y, i) => {
+    let d = "M-400," + y;
+    for (let x = -400; x <= 4200; x += 600) d += ` Q${x + 300},${y + (i ? 16 : 8)} ${x + 600},${y}`;
+    el(wires, "path", { d, fill: "none", stroke: NAVY, "stroke-width": i ? 1.6 : 2.4 });
+  });
+  for (let x = -100; x < 4200; x += 600) {
+    el(wires, "path", { d: rough(rect(x, 430, 10, 90), .8, 20), fill: NAVY });
+    el(wires, "path", { d: rough(rect(x - 40, 440, 90, 7), .6, 20), fill: NAVY });
+  }
+
+  /* ---------- THE RAKE ---------- */
+  const tr = document.getElementById("train");
+  const TOP = 500, BOT = 790, X0 = 150, X1 = 4300;
+  // cab at the left, raked front
+  el(tr, "path", { d: rough([[X0 + 30, TOP + 6], [X0 + 260, TOP], [X0 + 260, BOT], [X0 - 4, BOT], [X0 - 10, 720], [X0 + 4, 580]], 1.4, 16), fill: NAVY });
+  el(tr, "path", { d: rough([[X0 + 34, TOP + 18], [X0 + 250, TOP + 12], [X0 + 250, 690], [X0 + 4, 690], [X0 + 10, 590]], 1.4, 16), fill: PAPER });
+  el(tr, "path", { d: rough([[X0 + 40, TOP + 40], [X0 + 170, TOP + 34], [X0 + 170, 630], [X0 + 16, 630], [X0 + 22, 588]], 1.4, 16), fill: NAVY });
+  for (let i = 0; i < 5; i++) el(tr, "path", { d: gouge(X0 + 50 + i * 20, TOP + 60 + i * 10, 70, 3, .9), fill: PAPER });
+  el(tr, "path", { d: rough(rect(X0 + 70, TOP + 44, 80, 16), .8, 10), fill: SAF });     // amber destination board
+  // headlamp and its carved beam
+  el(tr, "path", { d: rough(circ(X0 + 14, 735, 11, 20), 1, 8), fill: SAF });
+  for (let i = -3; i <= 3; i++) el(tr, "path", { d: gouge(X0 + 2, 735, 260 - Math.abs(i) * 30, 5, Math.PI + i * .07), fill: SAF });
+  // pantograph
+  el(tr, "path", { d: `M${X0 + 150},${TOP} L${X0 + 190},${TOP - 34} L${X0 + 230},${TOP} M${X0 + 160},${TOP - 34} L${X0 + 222},${TOP - 34} M${X0 + 190},${TOP - 34} L${X0 + 196},${TOP - 42}`, stroke: NAVY, "stroke-width": 4, fill: "none" });
+  // body outline (paper body, navy line)
+  el(tr, "path", { d: rough(rect(X0 + 260, TOP, X1 - X0 - 260, BOT - TOP), 1.2, 22), fill: PAPER, stroke: NAVY, "stroke-width": 4 });
+  // roof shadow, carved hatching
+  el(tr, "path", { d: rough(rect(X0 + 260, TOP, X1 - X0 - 260, 16), 1, 22), fill: NAVY });
+  for (let x = X0 + 270; x < X1; x += R(24, 44)) el(tr, "path", { d: gouge(x, TOP + 22, R(30, 70), R(2, 3.2)), fill: NAVY });
+  // roof AC units
+  for (let x = X0 + 330; x < X1; x += 520) el(tr, "path", { d: rough(rect(x, TOP - 16, 220, 18), 1, 14), fill: NAVY });
+  // bands: navy blue band, saffron for the thin red line, navy skirt
+  el(tr, "path", { d: rough(rect(X0 - 4, 700, X1 - X0 + 4, 26), 1.2, 22), fill: NAVY });
+  el(tr, "path", { d: rough(rect(X0 - 4, 731, X1 - X0 + 4, 6), .8, 22), fill: SAF });
+  el(tr, "path", { d: rough(rect(X0 - 4, 742, X1 - X0 + 4, 48), 1.2, 22), fill: NAVY });
+  for (let x = X0 + 10; x < X1; x += R(40, 90)) el(tr, "path", { d: gouge(x, 766, R(40, 110), R(2, 3)), fill: PAPER });
+  // underframe and wheels
+  el(tr, "path", { d: rough(rect(X0, 790, X1 - X0, 22), 1.4, 22), fill: NAVY });
+  // coaches: windows and doors
+  const WIN = { w: 120, h: 130, y: 545 };
+  const target = { x: 2760, y: WIN.y + WIN.h / 2 };
+  // lay out the slots first, then light the one nearest the sun
+  const slots = []; let col = 0;
+  for (let x = X0 + 300; x < X1 - 120; ) {
+    if (col % 5 === 4) { slots.push({ door: true, x }); x += 150; } else { slots.push({ door: false, x }); x += WIN.w + 26; }
+    col++;
+  }
+  let best = null;
+  slots.forEach(sl => { if (!sl.door && (!best || Math.abs(sl.x + WIN.w / 2 - target.x) < Math.abs(best.x + WIN.w / 2 - target.x))) best = sl; });
+  target.x = best.x + WIN.w / 2;
+  slots.forEach(sl => {
+    const x = sl.x;
+    if (sl.door) {
+      el(tr, "path", { d: rough(rect(x, TOP + 26, 120, BOT - TOP - 40), 1, 16), fill: "none", stroke: NAVY, "stroke-width": 3.4 });
+      el(tr, "path", { d: `M${x + 60},${TOP + 26} L${x + 60},${BOT - 14}`, stroke: NAVY, "stroke-width": 3 });
+      el(tr, "path", { d: rough(rrect(x + 12, TOP + 48, 36, 100, 8), 1, 10), fill: NAVY });
+      el(tr, "path", { d: rough(rrect(x + 72, TOP + 48, 36, 100, 8), 1, 10), fill: NAVY });
+      return;
+    }
+    if (sl === best) return;
+    el(tr, "path", { d: rough(rrect(x, WIN.y, WIN.w, WIN.h, 16), 1.2, 14), fill: NAVY });
+    el(tr, "path", { d: gouge(x + 14, WIN.y + 94, 90, 5, -.55), fill: PAPER });
+    el(tr, "path", { d: gouge(x + 34, WIN.y + 110, 60, 3, -.55), fill: SAF });
+  });
+  /* ---------- HIS WINDOW: the only one lit ---------- */
+  const win = document.getElementById("win");
+  const wx = target.x - WIN.w / 2, wy = WIN.y;
+  el(win, "clipPath", { id: "wc" }).appendChild(Object.assign(document.createElementNS(NS, "path"), {}));
+  document.querySelector("#wc path").setAttribute("d", rough(rrect(wx, wy, WIN.w, WIN.h, 16), .8, 14));
+  const inside = el(win, "g", { "clip-path": "url(#wc)" });
+  el(inside, "rect", { x: wx - 10, y: wy - 10, width: WIN.w + 20, height: WIN.h + 20, fill: PAPER });
+  el(inside, "rect", { x: wx - 10, y: wy - 10, width: WIN.w + 20, height: 70, fill: "url(#hatchS)" });
+  el(inside, "path", { d: rough(rect(wx - 10, wy + 92, WIN.w + 20, 60), 1, 14), fill: NAVY });
+  el(inside, "path", { d: gouge(wx - 6, wy + 96, WIN.w + 10, 2.6), fill: SAF });
+  el(inside, "use", { href: "#mohit", x: wx - 4, y: wy + 6, width: 150, height: 150 });
+  el(win, "path", { d: rough(rrect(wx, wy, WIN.w, WIN.h, 16), .8, 14), fill: "none", stroke: NAVY, "stroke-width": 5 });
+  // warm light falling from the lit window onto the body below it
+  for (let i = 0; i < 4; i++) el(win, "path", { d: gouge(wx + 8 + i * 4, wy + WIN.h + 10 + i * 9, WIN.w - 16 - i * 8, 3.2 - i * .5), fill: SAF });
+  window.__target = target;
+
+  /* ---------- GROUND: platform in navy, carved ---------- */
+  const g = document.getElementById("ground");
+  el(g, "path", { d: rough(rect(-600, 812, 5000, 14), 1.4, 20), fill: NAVY });
+  el(g, "path", { d: rough(rect(-600, 826, 5000, 16), 1.2, 20), fill: SAF });
+  el(g, "path", { d: rough(rect(-600, 842, 5000, 900), 1.2, 30), fill: NAVY });
+  for (let i = 0; i < 160; i++) {
+    const y = 850 + Math.pow(rnd(), 1.3) * 300, x = R(-600, 4400);
+    el(g, "path", { d: gouge(x, y, R(40, 220) * (1 + (y - 850) / 200), R(1.6, 3.6) * (1 + (y - 850) / 260)), fill: PAPER });
+  }
+  // the long shadow of the sun along the platform edge, in saffron
+  for (let x = -400; x < 4400; x += R(60, 140)) el(g, "path", { d: gouge(x, 852, R(30, 80), R(2, 3)), fill: SAF });
+
+  /* ---------- kites ---------- */
+  const k = document.getElementById("kites");
+  window.__kites = [0, 1, 2, 3].map(i => el(k, "path", { d: "M0,0 C8,-6 16,-6 22,0 C28,-6 36,-6 44,0 C36,-2 28,1 22,4 C16,1 8,-2 0,0 Z", fill: NAVY }));
+})();
+</script>
+<script>
+(() => {
+  const svg = document.getElementById("scene"), sec = document.getElementById("intro");
+  const line = document.getElementById("line"), note = document.getElementById("note");
+  const T = window.__target, kites = window.__kites;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  let target = 0, cur = 0;
+  const read = () => { const r = sec.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+  addEventListener("scroll", read, { passive: true }); addEventListener("resize", read); read(); cur = target;
+  function frame(t) {
+    cur += (target - cur) * (reduce ? 1 : .08);
+    const p = cur, s = t / 1000;
+    const W = innerWidth, H = innerHeight, aspect = W / H, narrow = aspect < .9;
+    // start: the cab and the city; pan along the carved rake; settle close on his window
+    const w0 = narrow ? 640 : 1440, h0 = w0 / aspect;
+    const sx0 = narrow ? 120 : 0, cy0 = narrow ? 900 - h0 / 2 + 40 : 450;
+    const w1 = narrow ? 340 : 980, h1 = w1 / aspect;
+    const sx1 = narrow ? T.x - w1 * .42 : T.x - w1 * .7;
+    const cy1 = narrow ? T.y - h1 * .12 : 500 - h1 * .6 + h1 / 2;
+    const pan = ease(seg(p, .04, .72)), zoom = ease(seg(p, .5, .92));
+    const w = w0 * Math.pow(w1 / w0, zoom), h = w / aspect;
+    // x: pan the left edge from start to the end frame's left edge, and let zoom refine
+    const xEndAtW0 = T.x - (narrow ? w0 * .42 : w0 * .7);
+    const xPan = sx0 + (xEndAtW0 - sx0) * pan;
+    const xZoomed = xPan + (sx1 - xEndAtW0) * zoom;
+    const cy = cy0 + (cy1 - cy0) * zoom;
+    svg.setAttribute("viewBox", `${xZoomed.toFixed(2)} ${(cy - h / 2).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)}`);
+    const a = seg(p, .34, .5), b = seg(p, .76, .92);
+    line.style.opacity = 1 - a; line.style.transform = `translateY(${-a * 12}px)`;
+    note.style.opacity = b; note.style.transform = `translateY(${(1 - b) * 12}px)`;
+    if (!reduce) kites.forEach((k, i) => {
+      const x = ((s * (14 + i * 5) + i * 900) % 4200) - 300, y = 150 + i * 46 + Math.sin(s * .4 + i * 2) * 20;
+      k.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(Math.sin(s * .6 + i) * 8).toFixed(2)}) scale(${.7 + i * .12})`);
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

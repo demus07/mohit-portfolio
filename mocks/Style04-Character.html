@@ -1,0 +1,304 @@
+<!doctype html><html><body style="margin:0;background:#f1ead9">
+<svg width="1440" height="900" viewBox="0 0 1440 900"><defs><!-- Mohit, ink line. Head 3/4 to viewer's left. -->
+<filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.2"/></filter>
+<pattern id="pinstripe" width="9" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(4)"><line x1="4" y1="0" x2="4" y2="40" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<pattern id="hairSide" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-62)"><rect width="5" height="2.6" fill="#1d1a16"/></pattern>
+<g id="m-hair">
+  <!-- short sides, cropped close: hatched -->
+  <path d="M234,160 C254,154 280,150 298,148 C300,170 294,190 280,204 C270,212 262,218 254,221 C258,207 262,195 262,187 C258,179 250,175 242,175 C240,183 240,192 241,201 C236,191 234,178 234,160 Z" fill="url(#hairSide)"/>
+  <path d="M298,150 C298,172 292,192 278,206 C270,213 262,218 254,221" fill="none" stroke="#1d1a16" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- the quiff: volume on top swept up and back -->
+  <path d="M152,148 C146,138 144,124 148,112 C150,102 156,94 166,90 C172,82 184,76 198,76 C214,72 234,74 252,80 C276,88 296,104 300,128 C302,140 300,150 298,152 C276,150 252,154 234,162 C226,156 218,150 208,147 C200,150 190,153 180,151 C170,149 160,148 152,148 Z" fill="#1d1a16"/>
+  <g fill="none" stroke="#f1ead9" stroke-linecap="round">
+    <path d="M166,104 C188,90 222,86 256,96" stroke-width="2.4"/>
+    <path d="M160,124 C184,110 222,106 266,116" stroke-width="1.5"/>
+    <path d="M244,128 C262,128 280,134 290,144" stroke-width="1.3"/>
+    <path d="M196,86 C212,82 230,82 246,86" stroke-width="1"/>
+  </g>
+  <path d="M164,92 C170,80 182,72 198,70 M186,78 C200,70 218,68 234,70 M150,112 C150,102 154,96 160,92" fill="none" stroke="#1d1a16" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<g id="m-face-base" fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+  <!-- skin, paper fill so it occludes -->
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240 L252,221 L254,184 L241,169 L234,165 C221,155 199,148 178,146 Z" fill="#e4c6a2" stroke="none"/>
+  <!-- neck -->
+  <path d="M184,274 C183,296 180,318 176,336 L274,336 C266,300 262,262 258,214 L252,221 Z" fill="#e4c6a2" stroke="none"/>
+  <path d="M184,274 C183,296 180,318 176,336" stroke-width="2.4"/>
+  <path d="M258,216 C262,252 266,292 272,334" stroke-width="2.6"/>
+  <!-- shadow under jaw on neck -->
+  <g stroke-width="1.1" opacity=".75"><path d="M196,292 L206,284 M202,300 L218,282 M208,304 L228,280 M210,306 L234,276 M220,308 L242,266 M230,306 L248,262 M240,300 L251,280"/></g>
+  <!-- profile contour -->
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227" stroke-width="2.6"/>
+  <path d="M146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240" stroke-width="2.6"/>
+  <!-- ear -->
+  <path d="M242,190 C252,178 268,184 267,204 C266,222 256,236 244,238" stroke-width="2.4" fill="#e4c6a2"/>
+  <path d="M250,198 C256,194 261,200 258,210 C256,216 252,220 249,222" stroke-width="1.4"/>
+  <!-- nostril -->
+  <path d="M140,219 C144,216 149,217 151,221" stroke-width="1.6"/>
+  <!-- cheek hatching on the far, shadow side -->
+  <g stroke-width="1" opacity=".7"><path d="M214,222 L226,208 M218,232 L232,214 M222,242 L236,224 M228,250 L240,234 M206,222 L214,212"/></g>
+  <path d="M131,190 C134,188 137,188 139,190" stroke-width="1.4"/>
+  <!-- eyebrow -->
+  <path d="M150,170 C160,163 174,162 188,167" stroke-width="3.4"/>
+  <!-- moustache, light -->
+  <g stroke-width="1.1" opacity=".85"><path d="M147,232 L149,236 M151,231 L153,236 M155,231 L157,236 M159,232 L161,236 M163,233 L164,236"/></g>
+</g>
+
+<g id="m-glasses" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- lower rims light -->
+  <path d="M148,180 C147,191 149,199 153,204 C165,207 182,207 192,203 C196,196 197,187 197,179" stroke="#8b847b" stroke-width="1.4"/>
+  <path d="M141,182 C134,182 129,182 127,182 C127,192 129,199 133,201 L139,201" stroke="#8b847b" stroke-width="1.2"/>
+  <!-- top rims dark -->
+  <path d="M146,179 C160,175 182,175 198,178" stroke="#1d1a16" stroke-width="4"/>
+  <path d="M141,181 C135,180 130,180 126,181" stroke="#1d1a16" stroke-width="3.4"/>
+  <!-- bridge and temple arm -->
+  <path d="M141,182 C143,180 145,180 147,181" stroke="#1d1a16" stroke-width="2"/>
+  <path d="M197,179 L243,188" stroke="#1d1a16" stroke-width="2.4"/>
+  <!-- glint -->
+  <path d="M184,184 L176,197 M189,185 L183,195" stroke="#1d1a16" stroke-width=".7" opacity=".35"/>
+</g>
+
+<symbol id="m-head-pensive" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- eye looking out, lid a touch low -->
+    <path d="M156,190 C161,186 169,185 176,188" stroke-width="2.4"/>
+    <path d="M158,195 C164,197 170,196 174,193" stroke-width="1" opacity=".6"/>
+    <circle cx="161.5" cy="191" r="2.8" fill="#1d1a16" stroke="none"/>
+    <!-- closed mouth -->
+    <path d="M145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256" stroke-width="2.4"/>
+    <path d="M144,243 C150,245 157,244 163,241" stroke-width="2"/>
+    <path d="M152,251 C155,252 158,251 160,250" stroke-width="1.1" opacity=".7"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<symbol id="m-head-smile" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- smiling eye, squint -->
+    <path d="M156,191 C162,185 170,185 177,190" stroke-width="2.6"/>
+    <path d="M159,195 C165,198 171,197 175,194" stroke-width="1.3"/>
+    <!-- open smile with teeth -->
+    <path d="M145,227 C144,231 143,234 144,237" stroke-width="2.4"/>
+    <path d="M145,237 C155,241 167,240 177,232 C174,246 163,253 152,251 C148,249 145,244 145,237 Z" fill="#fbf7ee" stroke-width="2.2"/>
+    <path d="M147,241 C156,244 166,243 174,237" stroke-width=".9" opacity=".55"/>
+    <path d="M152,251 C149,252 147,254 146,256" stroke-width="2.4"/>
+    <!-- cheek lifted -->
+    <path d="M152,224 C162,226 172,230 178,236" stroke-width="1.4"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<pattern id="pinH" width="40" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)"><line x1="0" y1="4" x2="40" y2="4" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<symbol id="m-window" viewBox="-30 0 460 540" overflow="hidden">
+  <g transform="rotate(-4 200 290)"><use href="#m-head-pensive" width="400" height="400"/></g>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- torso -->
+    <path id="mw-torso" d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="url(#pinstripe)" stroke="none"/>
+    <g stroke-width="1" opacity=".5"><path d="M66,430 L96,400 M64,456 L104,416 M64,482 L110,436 M66,508 L114,460 M70,534 L118,486"/></g>
+    <!-- collar -->
+    <path d="M184,312 C176,328 180,346 198,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M264,306 C276,324 272,344 254,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M222,346 C224,400 228,470 232,544" stroke-width="1.6"/>
+    <!-- near upper arm, elbow down on the sill -->
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M330,450 C342,466 346,488 342,510 M356,410 C364,424 366,440 364,456" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M372,430 L390,414 M370,456 L394,436 M370,482 L396,460 M370,508 L396,486 M372,534 L396,512"/></g>
+    <!-- forearm: wrist to rolled cuff -->
+    <path d="M182,322 C206,316 222,318 230,326 C238,370 248,412 258,452 L210,466 C204,424 196,380 182,322 Z" fill="#e4c6a2" stroke="none"/>
+    <path d="M226,318 C236,364 246,410 258,452" stroke-width="2.5"/>
+    <path d="M190,340 C196,384 204,426 210,466" stroke-width="2.5"/>
+    <g stroke-width="1" opacity=".55"><path d="M240,372 L230,384 M244,392 L234,404 M248,412 L236,426 M252,432 L240,446"/></g>
+    <!-- rolled cuff -->
+    <path d="M204,462 C222,452 246,446 262,446 C268,458 270,472 270,486 C252,488 228,494 208,504 C204,490 202,476 204,462 Z" fill="#fbf8f1" stroke-width="2.4"/>
+    <path d="M206,478 C226,470 248,464 268,464" stroke-width="1.2"/>
+    <!-- sleeve to the elbow -->
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="#f8f4ec" stroke="none"/>
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M208,504 C210,516 212,530 214,544 M270,486 C276,506 282,526 286,544" stroke-width="2.5"/>
+    <!-- fist under the chin: fingers curled toward us, thumb along the top -->
+    <path d="M154,276 C176,272 198,273 214,280 C224,292 226,314 220,330 C212,338 198,342 184,342 C172,344 160,342 156,334 C146,332 142,322 148,316 C140,312 140,300 147,296 C140,290 142,280 154,276 Z" fill="#e4c6a2" stroke-width="2.5"/>
+    <path d="M147,296 C158,295 168,297 178,300 M148,316 C158,315 168,317 178,320 M156,334 C164,333 172,334 180,337" stroke-width="1.6"/>
+    <path d="M178,284 C181,300 182,320 180,340" stroke-width="1.2" opacity=".75"/>
+    <path d="M222,300 C206,293 188,290 172,293 C166,295 166,300 172,302 C188,303 206,306 222,313" fill="#e4c6a2" stroke-width="1.8"/>
+    <g stroke-width="1" opacity=".55"><path d="M196,318 L206,308 M198,330 L216,312 M210,336 L222,324"/></g>
+  </g>
+</symbol>
+
+<symbol id="m-back" viewBox="20 40 420 520" overflow="hidden">
+  <use href="#m-head-smile" width="400" height="400"/>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="url(#pinH)" stroke="none"/>
+    <!-- collar band wrapping the neck -->
+    <path d="M192,302 C208,284 250,276 294,288 C296,292 296,296 294,300 C258,292 224,296 198,312 C194,309 192,306 192,302 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M136,356 C210,344 300,344 372,356" stroke-width="1.3"/>
+    <path d="M262,350 L266,384" stroke-width="1.3"/>
+    <path d="M350,324 C364,376 364,440 356,564" stroke-width="1.8"/>
+    <path d="M136,344 C120,396 116,470 122,564" stroke-width="1.8"/>
+    <path d="M300,412 C320,428 334,452 338,482 M214,432 C232,444 246,466 250,492 M180,384 C196,394 206,408 210,424 M286,492 C300,504 308,522 310,548" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M362,396 L378,382 M362,420 L384,402 M362,444 L386,424 M360,468 L388,448 M360,492 L388,472 M358,516 L388,496 M358,540 L387,520"/></g>
+  </g>
+</symbol>
+</defs>
+<g filter="url(#ink)"><use href="#m-head-pensive" x="-160" y="-150" width="1100" height="1100"/>
+<use href="#m-head-smile" x="560" y="-150" width="1100" height="1100"/></g></svg>
+<svg width="1440" height="900" viewBox="0 0 1440 900"><defs><!-- Mohit, ink line. Head 3/4 to viewer's left. -->
+<filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.2"/></filter>
+<pattern id="pinstripe" width="9" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(4)"><line x1="4" y1="0" x2="4" y2="40" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<pattern id="hairSide" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-62)"><rect width="5" height="2.6" fill="#1d1a16"/></pattern>
+<g id="m-hair">
+  <!-- short sides, cropped close: hatched -->
+  <path d="M234,160 C254,154 280,150 298,148 C300,170 294,190 280,204 C270,212 262,218 254,221 C258,207 262,195 262,187 C258,179 250,175 242,175 C240,183 240,192 241,201 C236,191 234,178 234,160 Z" fill="url(#hairSide)"/>
+  <path d="M298,150 C298,172 292,192 278,206 C270,213 262,218 254,221" fill="none" stroke="#1d1a16" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- the quiff: volume on top swept up and back -->
+  <path d="M152,148 C146,138 144,124 148,112 C150,102 156,94 166,90 C172,82 184,76 198,76 C214,72 234,74 252,80 C276,88 296,104 300,128 C302,140 300,150 298,152 C276,150 252,154 234,162 C226,156 218,150 208,147 C200,150 190,153 180,151 C170,149 160,148 152,148 Z" fill="#1d1a16"/>
+  <g fill="none" stroke="#f1ead9" stroke-linecap="round">
+    <path d="M166,104 C188,90 222,86 256,96" stroke-width="2.4"/>
+    <path d="M160,124 C184,110 222,106 266,116" stroke-width="1.5"/>
+    <path d="M244,128 C262,128 280,134 290,144" stroke-width="1.3"/>
+    <path d="M196,86 C212,82 230,82 246,86" stroke-width="1"/>
+  </g>
+  <path d="M164,92 C170,80 182,72 198,70 M186,78 C200,70 218,68 234,70 M150,112 C150,102 154,96 160,92" fill="none" stroke="#1d1a16" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<g id="m-face-base" fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+  <!-- skin, paper fill so it occludes -->
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240 L252,221 L254,184 L241,169 L234,165 C221,155 199,148 178,146 Z" fill="#e4c6a2" stroke="none"/>
+  <!-- neck -->
+  <path d="M184,274 C183,296 180,318 176,336 L274,336 C266,300 262,262 258,214 L252,221 Z" fill="#e4c6a2" stroke="none"/>
+  <path d="M184,274 C183,296 180,318 176,336" stroke-width="2.4"/>
+  <path d="M258,216 C262,252 266,292 272,334" stroke-width="2.6"/>
+  <!-- shadow under jaw on neck -->
+  <g stroke-width="1.1" opacity=".75"><path d="M196,292 L206,284 M202,300 L218,282 M208,304 L228,280 M210,306 L234,276 M220,308 L242,266 M230,306 L248,262 M240,300 L251,280"/></g>
+  <!-- profile contour -->
+  <path d="M152,144 C146,152 143,162 144,171 C145,177 146,181 145,186 C140,197 133,206 129,213 C128,218 131,221 137,222 C140,223 143,225 145,227" stroke-width="2.6"/>
+  <path d="M146,256 C145,261 148,265 155,268 C168,276 188,276 206,270 C222,263 234,253 242,240" stroke-width="2.6"/>
+  <!-- ear -->
+  <path d="M242,190 C252,178 268,184 267,204 C266,222 256,236 244,238" stroke-width="2.4" fill="#e4c6a2"/>
+  <path d="M250,198 C256,194 261,200 258,210 C256,216 252,220 249,222" stroke-width="1.4"/>
+  <!-- nostril -->
+  <path d="M140,219 C144,216 149,217 151,221" stroke-width="1.6"/>
+  <!-- cheek hatching on the far, shadow side -->
+  <g stroke-width="1" opacity=".7"><path d="M214,222 L226,208 M218,232 L232,214 M222,242 L236,224 M228,250 L240,234 M206,222 L214,212"/></g>
+  <path d="M131,190 C134,188 137,188 139,190" stroke-width="1.4"/>
+  <!-- eyebrow -->
+  <path d="M150,170 C160,163 174,162 188,167" stroke-width="3.4"/>
+  <!-- moustache, light -->
+  <g stroke-width="1.1" opacity=".85"><path d="M147,232 L149,236 M151,231 L153,236 M155,231 L157,236 M159,232 L161,236 M163,233 L164,236"/></g>
+</g>
+
+<g id="m-glasses" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- lower rims light -->
+  <path d="M148,180 C147,191 149,199 153,204 C165,207 182,207 192,203 C196,196 197,187 197,179" stroke="#8b847b" stroke-width="1.4"/>
+  <path d="M141,182 C134,182 129,182 127,182 C127,192 129,199 133,201 L139,201" stroke="#8b847b" stroke-width="1.2"/>
+  <!-- top rims dark -->
+  <path d="M146,179 C160,175 182,175 198,178" stroke="#1d1a16" stroke-width="4"/>
+  <path d="M141,181 C135,180 130,180 126,181" stroke="#1d1a16" stroke-width="3.4"/>
+  <!-- bridge and temple arm -->
+  <path d="M141,182 C143,180 145,180 147,181" stroke="#1d1a16" stroke-width="2"/>
+  <path d="M197,179 L243,188" stroke="#1d1a16" stroke-width="2.4"/>
+  <!-- glint -->
+  <path d="M184,184 L176,197 M189,185 L183,195" stroke="#1d1a16" stroke-width=".7" opacity=".35"/>
+</g>
+
+<symbol id="m-head-pensive" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- eye looking out, lid a touch low -->
+    <path d="M156,190 C161,186 169,185 176,188" stroke-width="2.4"/>
+    <path d="M158,195 C164,197 170,196 174,193" stroke-width="1" opacity=".6"/>
+    <circle cx="161.5" cy="191" r="2.8" fill="#1d1a16" stroke="none"/>
+    <!-- closed mouth -->
+    <path d="M145,227 C144,232 143,237 144,241 C142,244 142,247 144,249 C145,251 145,253 146,256" stroke-width="2.4"/>
+    <path d="M144,243 C150,245 157,244 163,241" stroke-width="2"/>
+    <path d="M152,251 C155,252 158,251 160,250" stroke-width="1.1" opacity=".7"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<symbol id="m-head-smile" viewBox="0 0 400 400" overflow="visible">
+  <use href="#m-face-base"/>
+  <g fill="none" stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- smiling eye, squint -->
+    <path d="M156,191 C162,185 170,185 177,190" stroke-width="2.6"/>
+    <path d="M159,195 C165,198 171,197 175,194" stroke-width="1.3"/>
+    <!-- open smile with teeth -->
+    <path d="M145,227 C144,231 143,234 144,237" stroke-width="2.4"/>
+    <path d="M145,237 C155,241 167,240 177,232 C174,246 163,253 152,251 C148,249 145,244 145,237 Z" fill="#fbf7ee" stroke-width="2.2"/>
+    <path d="M147,241 C156,244 166,243 174,237" stroke-width=".9" opacity=".55"/>
+    <path d="M152,251 C149,252 147,254 146,256" stroke-width="2.4"/>
+    <!-- cheek lifted -->
+    <path d="M152,224 C162,226 172,230 178,236" stroke-width="1.4"/>
+  </g>
+  <use href="#m-glasses"/>
+  <use href="#m-hair"/>
+</symbol>
+
+<pattern id="pinH" width="40" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)"><line x1="0" y1="4" x2="40" y2="4" stroke="#8d82a6" stroke-width=".9" opacity=".55"/></pattern>
+
+<symbol id="m-window" viewBox="-30 0 460 540" overflow="hidden">
+  <g transform="rotate(-4 200 290)"><use href="#m-head-pensive" width="400" height="400"/></g>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- torso -->
+    <path id="mw-torso" d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M60,544 C52,456 62,384 98,352 C124,330 156,318 184,312 L222,346 L264,306 C306,312 350,330 376,364 C396,404 400,470 392,544 Z" fill="url(#pinstripe)" stroke="none"/>
+    <g stroke-width="1" opacity=".5"><path d="M66,430 L96,400 M64,456 L104,416 M64,482 L110,436 M66,508 L114,460 M70,534 L118,486"/></g>
+    <!-- collar -->
+    <path d="M184,312 C176,328 180,346 198,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M264,306 C276,324 272,344 254,360 L222,346 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M222,346 C224,400 228,470 232,544" stroke-width="1.6"/>
+    <!-- near upper arm, elbow down on the sill -->
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M376,364 C396,404 400,470 392,544 L262,544 C270,500 290,450 314,404 C330,380 352,366 376,364 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M330,450 C342,466 346,488 342,510 M356,410 C364,424 366,440 364,456" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M372,430 L390,414 M370,456 L394,436 M370,482 L396,460 M370,508 L396,486 M372,534 L396,512"/></g>
+    <!-- forearm: wrist to rolled cuff -->
+    <path d="M182,322 C206,316 222,318 230,326 C238,370 248,412 258,452 L210,466 C204,424 196,380 182,322 Z" fill="#e4c6a2" stroke="none"/>
+    <path d="M226,318 C236,364 246,410 258,452" stroke-width="2.5"/>
+    <path d="M190,340 C196,384 204,426 210,466" stroke-width="2.5"/>
+    <g stroke-width="1" opacity=".55"><path d="M240,372 L230,384 M244,392 L234,404 M248,412 L236,426 M252,432 L240,446"/></g>
+    <!-- rolled cuff -->
+    <path d="M204,462 C222,452 246,446 262,446 C268,458 270,472 270,486 C252,488 228,494 208,504 C204,490 202,476 204,462 Z" fill="#fbf8f1" stroke-width="2.4"/>
+    <path d="M206,478 C226,470 248,464 268,464" stroke-width="1.2"/>
+    <!-- sleeve to the elbow -->
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="#f8f4ec" stroke="none"/>
+    <path d="M208,504 C228,494 252,488 270,486 C276,506 282,526 286,544 L214,544 C212,530 210,516 208,504 Z" fill="url(#pinstripe)" stroke="none"/>
+    <path d="M208,504 C210,516 212,530 214,544 M270,486 C276,506 282,526 286,544" stroke-width="2.5"/>
+    <!-- fist under the chin: fingers curled toward us, thumb along the top -->
+    <path d="M154,276 C176,272 198,273 214,280 C224,292 226,314 220,330 C212,338 198,342 184,342 C172,344 160,342 156,334 C146,332 142,322 148,316 C140,312 140,300 147,296 C140,290 142,280 154,276 Z" fill="#e4c6a2" stroke-width="2.5"/>
+    <path d="M147,296 C158,295 168,297 178,300 M148,316 C158,315 168,317 178,320 M156,334 C164,333 172,334 180,337" stroke-width="1.6"/>
+    <path d="M178,284 C181,300 182,320 180,340" stroke-width="1.2" opacity=".75"/>
+    <path d="M222,300 C206,293 188,290 172,293 C166,295 166,300 172,302 C188,303 206,306 222,313" fill="#e4c6a2" stroke-width="1.8"/>
+    <g stroke-width="1" opacity=".55"><path d="M196,318 L206,308 M198,330 L216,312 M210,336 L222,324"/></g>
+  </g>
+</symbol>
+
+<symbol id="m-back" viewBox="20 40 420 520" overflow="hidden">
+  <use href="#m-head-smile" width="400" height="400"/>
+  <g stroke="#1d1a16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="#f8f4ec" stroke-width="2.6"/>
+    <path d="M104,564 C94,470 98,392 122,350 C142,318 176,300 210,292 C236,286 262,286 292,288 C330,292 360,310 376,344 C392,390 392,480 386,564 Z" fill="url(#pinH)" stroke="none"/>
+    <!-- collar band wrapping the neck -->
+    <path d="M192,302 C208,284 250,276 294,288 C296,292 296,296 294,300 C258,292 224,296 198,312 C194,309 192,306 192,302 Z" fill="#fbf8f1" stroke-width="2.2"/>
+    <path d="M136,356 C210,344 300,344 372,356" stroke-width="1.3"/>
+    <path d="M262,350 L266,384" stroke-width="1.3"/>
+    <path d="M350,324 C364,376 364,440 356,564" stroke-width="1.8"/>
+    <path d="M136,344 C120,396 116,470 122,564" stroke-width="1.8"/>
+    <path d="M300,412 C320,428 334,452 338,482 M214,432 C232,444 246,466 250,492 M180,384 C196,394 206,408 210,424 M286,492 C300,504 308,522 310,548" stroke-width="1.2"/>
+    <g stroke-width="1" opacity=".5"><path d="M362,396 L378,382 M362,420 L384,402 M362,444 L386,424 M360,468 L388,448 M360,492 L388,472 M358,516 L388,496 M358,540 L387,520"/></g>
+  </g>
+</symbol>
+</defs>
+<g filter="url(#ink)"><use href="#m-window" x="0" y="0" width="690" height="810"/>
+<use href="#m-back" x="720" y="0" width="680" height="840"/></g></svg>
+</body></html>

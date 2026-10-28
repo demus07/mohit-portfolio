@@ -1,0 +1,117 @@
+/* Paper in the shade, or navy after dark: the light here is even, so the work carries the colour. */
+.work :global(.line) {
+  color: var(--fg);
+}
+.work {
+  position: relative;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.6s var(--ease), color 0.6s var(--ease);
+  padding: clamp(110px, 16vh, 180px) var(--m) clamp(60px, 10vh, 120px);
+}
+.head {
+  display: grid;
+  gap: 18px;
+  margin-bottom: clamp(70px, 12vh, 140px);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.3fr);
+  gap: clamp(36px, 6vw, 110px);
+  align-items: start;
+  padding-bottom: clamp(100px, 16vh, 180px);
+}
+.text {
+  display: grid;
+  gap: 14px;
+  max-width: 32rem;
+  position: sticky;
+  top: clamp(90px, 14vh, 130px);
+}
+.name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.6rem);
+  letter-spacing: -0.01em;
+}
+.kind {
+  font-size: 15px;
+  color: var(--fg-soft);
+  margin-top: -8px;
+}
+.headline {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+  text-wrap: balance;
+  margin: 10px 0 4px;
+}
+.facts {
+  display: grid;
+  gap: 8px;
+  max-width: 40ch;
+  font-size: 15.5px;
+  color: var(--fg-soft);
+  margin-top: 6px;
+}
+.facts li {
+  padding-left: 18px;
+  position: relative;
+}
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+}
+.tech {
+  font-size: 14px;
+  color: var(--fg-faint);
+  max-width: 44ch;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--fg-faint);
+}
+
+/* the work itself, as it is */
+.media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #050706;
+}
+
+@media (max-width: 759px) {
+  .work {
+    padding: 96px 20px 40px;
+  }
+  .project {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding-bottom: 96px;
+  }
+  .text {
+    position: static;
+  }
+  .media {
+    aspect-ratio: 4 / 5;
+  }
+}

@@ -1,0 +1,421 @@
+<!-- Direction 04: Departure board — the black Western Railway indicator is the headline, his name in amber dot-matrix as the train; scrolling tips the board up and away to reveal the evening rake at Churchgate and him at a lit window. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&family=Hanken+Grotesk:wght@400;500&family=Noto+Sans+Devanagari:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0d1a2b;color:#efe8da}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .intro{position:relative;height:460vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0d1a2b}
+  .layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #sceneSoft{filter:blur(10px) brightness(.55)}
+  .grain{position:absolute;inset:-50%;pointer-events:none;opacity:.18;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:g 1.2s steps(4) infinite}
+  @keyframes g{0%{transform:translate(0,0)}25%{transform:translate(-2%,3%)}50%{transform:translate(3%,-1%)}75%{transform:translate(-1%,-2%)}}
+  /* the indicator board */
+  .hang{position:absolute;left:clamp(20px,5vw,84px);top:0;width:min(1040px,calc(100vw - 2*clamp(20px,5vw,84px)));perspective:1400px;perspective-origin:50% 0;z-index:3}
+  .rod{position:absolute;top:0;width:6px;height:var(--rodH);background:linear-gradient(90deg,#1a1d22,#3b4048 50%,#15181c)}
+  .rod.l{left:12%}.rod.r{right:12%}
+  .board{position:absolute;left:0;right:0;top:var(--rodH);transform-origin:50% 0;transform-style:preserve-3d;will-change:transform}
+  .face{position:relative;background:#0b0b0c;padding:14px;border-radius:4px;
+    box-shadow:inset 0 0 0 2px #23262b,inset 0 0 0 7px #0f1012}
+  .face::after{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 30%)}
+  #led{display:block;width:100%;height:auto}
+  .glow{position:absolute;left:5%;right:5%;top:100%;height:120px;background:radial-gradient(50% 60% at 50% 0,rgba(255,170,60,.22),rgba(255,170,60,0));pointer-events:none}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .copy{position:absolute;z-index:4;left:clamp(24px,5.4vw,92px);width:min(24rem,34vw);will-change:transform}
+  .name{white-space:nowrap;font-family:"Newsreader",Georgia,serif;font-weight:400;font-size:clamp(2.8rem,5.4vw,5.4rem);line-height:.95;letter-spacing:-.02em;color:#f6ead2;opacity:0;margin-bottom:1.1rem}
+  .slot{position:relative;min-height:6.6em}
+  .line{font-size:clamp(1rem,1.15vw,1.12rem);line-height:1.55;color:#d4c8b4;max-width:21rem}
+  .note{position:absolute;inset:0;font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.75vw,1.7rem);line-height:1.3;color:#f6ead2;opacity:0}
+  .cta{display:inline-flex;gap:.5em;font-size:1.05rem;font-weight:500;color:#f2a145;text-decoration:none;padding-bottom:3px;
+    background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 1px}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(5px)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;width:auto}
+    .face{padding:7px}
+    .rod.l{left:18%}.rod.r{right:18%}
+  }
+  @media (prefers-reduced-motion:reduce){.grain{animation:none}}
+</style>
+</head>
+<body>
+<!-- direction: 04 departure board -->
+<section class="intro" id="intro">
+  <div class="stage" id="stage">
+    <svg class="layer" id="sceneSoft" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#world"/></svg>
+    <svg class="layer" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="opacity:0">
+      <defs>
+        <pattern id="pin" width="5.5" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+          <line x1="1" y1="0" x2="1" y2="10" stroke="#9f8cc4" stroke-width=".9" stroke-opacity=".55"/>
+        </pattern>
+        <symbol id="mohit" viewBox="0 0 300 300">
+          <!-- torso -->
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="#f4eef2"/>
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="url(#pin)"/>
+          <path d="M182,190 C228,200 258,232 270,300 L210,300 C210,258 202,220 182,190 Z" fill="#b9a7c6" opacity=".45"/>
+          <path d="M106,192 C80,200 56,218 42,246 C60,226 84,210 112,202 Z" fill="#ffffff" opacity=".7"/>
+          <!-- neck -->
+          <path d="M134,138 L168,134 C168,154 170,170 176,188 L128,190 C133,174 135,156 134,138 Z" fill="#a26a48"/>
+          <path d="M134,148 C146,160 160,162 170,154 L169,144 Z" fill="#7a4b33" opacity=".25"/>
+          <!-- collar -->
+          <path d="M124,190 C128,178 134,172 140,176 L150,212 L128,206 Z" fill="#fdfafa"/>
+          <path d="M178,190 C174,178 168,172 162,176 L150,212 L172,206 Z" fill="#ddd2e2"/>
+          <!-- head -->
+          <path d="M150,46 C124,45 106,58 101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C124,155 141,153 154,145 C164,138 171,125 174,110 C178,88 174,56 150,46 Z" fill="#b97e57"/>
+          <path d="M101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C109,130 107,110 111,88 Z" fill="#dcaa80" opacity=".85"/>
+          <path d="M154,145 C164,138 171,125 174,110 C172,128 160,146 138,152 Z" fill="#7a4b33" opacity=".7"/>
+          <path d="M101,112 C104,114 106,116 104,119" stroke="#8a5638" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- ear -->
+          <path d="M162,94 C170,88 179,94 177,106 C176,116 169,122 163,118 Z" fill="#a66d4a"/>
+          <path d="M167,99 C172,97 174,104 171,110" stroke="#7a4b33" stroke-width="2" fill="none"/>
+          <!-- hair, short, swept up and back -->
+          <g transform="translate(0 14) scale(1 .84)"><path d="M101,84 C97,70 98,56 104,46 C106,40 109,36 112,33 C113,30 116,28 119,28 C124,23 132,20 140,20 C144,18 150,18 154,20 C162,20 170,23 176,28 C179,29 182,31 183,34 C191,43 194,60 190,78 C188,89 182,98 176,104 L170,94 C168,80 160,72 150,70 C136,68 120,72 107,80 Z" fill="#17110e"/>
+            <path d="M107,80 C120,72 136,68 150,70 C160,72 168,80 170,94 L164,96 C162,86 156,80 148,78 C134,77 120,80 110,86 Z" fill="#4a362b" opacity=".55"/>
+            <g stroke="#45362d" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".5">
+              <path d="M106,70 C108,54 116,40 130,32"/><path d="M114,68 C118,52 130,38 146,30"/><path d="M124,68 C130,52 144,40 162,34"/>
+              <path d="M136,68 C144,56 160,46 178,42"/><path d="M150,70 C160,62 174,58 186,58"/><path d="M162,78 C172,74 182,74 189,76"/>
+            </g>
+            <path d="M105,48 C110,36 122,26 138,22 C152,19 166,22 176,28" stroke="#9a8273" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/></g>
+            <path d="M163,92 C164,84 166,78 170,76 L170,94 Z" fill="#1a1411"/>
+          <!-- brow -->
+          <path d="M104,84 C110,80 120,80 128,84" stroke="#1a1411" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <!-- eyes, lowered, thinking -->
+          <path d="M109,97 C113,99 118,99 122,97" stroke="#2a1a12" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M95,96 C97,97 99,97 100,96" stroke="#2a1a12" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- glasses -->
+          <path d="M104,86 L133,86 C135,86 136,88 135,91 L133,101 C132,105 129,107 125,107 L110,107 C106,107 104,104 104,100 Z" fill="#fff4dc" fill-opacity=".16" stroke="#3a3436" stroke-width="2.4"/>
+          <path d="M93,88 L99,87 L99,102 C97,105 95,105 94,104 Z" fill="#fff4dc" fill-opacity=".12" stroke="#3a3436" stroke-width="2"/>
+          <path d="M99,89 L104,89" stroke="#3a3436" stroke-width="2"/>
+          <path d="M135,89 L164,96" stroke="#3a3436" stroke-width="2.2"/>
+          <path d="M108,89 L117,89" stroke="#fffaf0" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+          <!-- mouth -->
+          <path d="M104,132 C107,133 110,133 112,131" stroke="#6b3b28" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- forearm rising from the sill -->
+          <path d="M82,300 C86,250 88,210 90,168 L126,166 C130,212 138,256 150,300 Z" fill="#a86f4c"/>
+          <path d="M82,300 C86,250 88,210 90,168 L102,168 C100,212 100,256 102,300 Z" fill="#c48d66"/>
+          <!-- rolled sleeve -->
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="#f4eef2"/>
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="url(#pin)"/>
+          <path d="M84,254 C102,248 128,248 142,254 L143,261 C128,255 102,255 84,262 Z" fill="#d6cbe0"/>
+          <!-- fist under the chin -->
+          <path d="M87,168 C85,157 91,148 101,146 C111,144 123,146 127,154 C131,162 129,174 123,178 C113,182 97,182 89,178 Z" fill="#b97e57"/>
+          <path d="M91,158 C99,154 111,154 119,158" stroke="#7a4b33" stroke-width="1.8" fill="none" opacity=".8"/>
+          <path d="M89,168 C97,164 109,164 121,168" stroke="#7a4b33" stroke-width="1.6" fill="none" opacity=".6"/>
+          <path d="M87,168 C85,157 91,148 101,146 C97,154 95,164 97,178 C93,178 89,176 87,168 Z" fill="#dcaa80" opacity=".85"/>
+        </symbol>
+        <linearGradient id="canopy" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#1a2738"/>
+        </linearGradient>
+        <linearGradient id="bodyN" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d9cbb4"/><stop offset=".5" stop-color="#cdb999"/><stop offset="1" stop-color="#a88f72"/>
+        </linearGradient>
+        <linearGradient id="lit" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff9ea"/><stop offset=".55" stop-color="#f6e6c4"/><stop offset="1" stop-color="#d9bf93"/>
+        </linearGradient>
+        <linearGradient id="darkGlass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a2f3a"/><stop offset="1" stop-color="#151a24"/>
+        </linearGradient>
+        <radialGradient id="sodium" cx="720" cy="760" r="820" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#f2a145" stop-opacity=".38"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3a3434"/><stop offset="1" stop-color="#1c1d24"/>
+        </linearGradient>
+        <radialGradient id="tube">
+          <stop offset="0" stop-color="#ffe2b0" stop-opacity=".42"/><stop offset="1" stop-color="#ffe2b0" stop-opacity="0"/>
+        </radialGradient>
+        <g id="world">
+          <rect x="-1500" y="-1500" width="4440" height="3900" fill="#0d1a2b"/>
+          <!-- beyond, between canopy and roof: the far platform's lamps -->
+          <g fill="#f2a145" opacity=".45">
+            <circle cx="80" cy="300" r="1.4"/><circle cx="320" cy="296" r="1.4"/><circle cx="560" cy="294" r="1.4"/><circle cx="800" cy="294" r="1.4"/><circle cx="1040" cy="296" r="1.4"/><circle cx="1280" cy="300" r="1.4"/>
+          </g>
+          <!-- canopy underside and its lamps -->
+          <path d="M-1500,-1500 L2940,-1500 L2940,250 L-1500,250 Z" fill="url(#canopy)"/>
+          <g>
+            <rect x="140" y="214" width="160" height="7" rx="3" fill="#fff4dc"/><ellipse cx="220" cy="218" rx="170" ry="40" fill="url(#tube)"/>
+            <rect x="640" y="214" width="160" height="7" rx="3" fill="#fff4dc"/><ellipse cx="720" cy="218" rx="170" ry="40" fill="url(#tube)"/>
+            <rect x="1140" y="214" width="160" height="7" rx="3" fill="#fff4dc"/><ellipse cx="1220" cy="218" rx="170" ry="40" fill="url(#tube)"/>
+          </g>
+          <rect x="-1500" y="250" width="4440" height="18" fill="#22303f"/>
+          <!-- the rake -->
+          <g id="rake">
+            <rect x="-1500" y="344" width="4440" height="12" rx="6" fill="#bfae94"/>
+            <rect x="-1500" y="352" width="4440" height="330" fill="url(#bodyN)"/>
+            <g id="coachBits"></g>
+            <rect x="-1500" y="574" width="4440" height="26" fill="#2b5c8f"/>
+            <rect x="-1500" y="603" width="4440" height="4" fill="#c3343a"/>
+            <rect x="-1500" y="607" width="4440" height="60" fill="#1b2544"/>
+            <rect x="-1500" y="667" width="4440" height="40" fill="#141418"/>
+          </g>
+          <!-- the window -->
+          <g transform="translate(1010 455)">
+            <rect x="-52" y="-58" width="104" height="116" rx="12" fill="#a8977c"/>
+            <clipPath id="tw"><rect x="-46" y="-52" width="92" height="104" rx="9"/></clipPath>
+            <g clip-path="url(#tw)">
+              <rect x="-50" y="-56" width="100" height="112" fill="url(#lit)"/>
+              <rect x="-50" y="-44" width="100" height="3" fill="#ffffff"/>
+              <rect x="-40" y="-26" width="34" height="30" rx="4" fill="#1b2433"/>
+              <rect x="8" y="-26" width="34" height="30" rx="4" fill="#1b2433"/>
+              <circle cx="22" cy="-14" r="2" fill="#f2a145" opacity=".8"/>
+              <path d="M-50,14 C-20,10 20,10 50,14 L50,60 L-50,60 Z" fill="#335a85"/>
+              <path d="M-50,14 C-20,10 20,10 50,14 L50,17 C20,13 -20,13 -50,17 Z" fill="#7fa4c8"/>
+              <g id="him"><use href="#mohit" x="-60" y="-40" width="112" height="112"/></g>
+              <rect id="sheen" x="-120" y="-60" width="26" height="130" fill="#ffffff" opacity=".14" transform="skewX(-20)"/>
+            </g>
+            <rect x="-46" y="-52" width="92" height="104" rx="9" fill="none" stroke="#2a2a2e" stroke-width="2.5"/>
+          </g>
+          <!-- sodium wash over everything near -->
+          <rect x="-1500" y="-200" width="4440" height="1400" fill="url(#sodium)"/>
+          <!-- platform, yellow edge, wet sheen -->
+          <rect x="-1500" y="707" width="4440" height="2000" fill="url(#floor)"/>
+          <rect x="-1500" y="707" width="4440" height="14" fill="#e3b934"/>
+          <rect x="-1500" y="721" width="4440" height="3" fill="#6b5a2a"/>
+          <g opacity=".22" fill="#f2a145">
+            <rect x="160" y="760" width="120" height="3"/><rect x="660" y="770" width="120" height="3"/><rect x="1160" y="760" width="120" height="3"/>
+            <rect x="980" y="790" width="60" height="70" opacity=".5"/>
+          </g>
+          <!-- green steel column, nearest, occludes the rake -->
+          <g>
+            <rect x="96" y="250" width="34" height="2000" fill="#2c5440"/>
+            <rect x="100" y="250" width="6" height="2000" fill="#4f7d64"/>
+            <rect x="84" y="250" width="58" height="22" fill="#2c5440"/>
+            <rect x="1344" y="250" width="30" height="2000" fill="#2c5440"/>
+            <rect x="1348" y="250" width="5" height="2000" fill="#4f7d64"/>
+          </g>
+        </g>
+      </defs>
+      <use href="#world"/>
+    </svg>
+    <div class="grain"></div>
+
+    <div class="hang" id="hang" style="--rodH:9vh">
+      <div class="rod l"></div><div class="rod r"></div>
+      <div class="board" id="board">
+        <div class="face"><canvas id="led" aria-hidden="true"></canvas></div>
+        <div class="glow"></div>
+      </div>
+    </div>
+
+    <div class="copy" id="copy">
+      <h1 class="name" id="name">Mohit Bagri</h1>
+      <div class="slot">
+        <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    </div>
+  </div>
+</section>
+<script>
+(() => {
+  // coach detail along the rake: windows (lit, some with passengers), doors
+  const NS = "http://www.w3.org/2000/svg", bits = document.getElementById("coachBits");
+  const mk = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); bits.appendChild(e); return e; };
+  const xs = [];
+  for (let x = -700; x < 2400; x += 136) xs.push(x);
+  xs.forEach((x, i) => {
+    if (i % 4 === 3) { // door
+      mk("rect", { x: x - 6, y: 372, width: 112, height: 300, rx: 3, fill: "#c4b296", stroke: "#8f7f68", "stroke-width": 2 });
+      mk("line", { x1: x + 50, y1: 372, x2: x + 50, y2: 672, stroke: "#857560", "stroke-width": 2 });
+      mk("rect", { x: x + 8, y: 396, width: 32, height: 86, rx: 5, fill: "url(#lit)", opacity: .85 });
+      mk("rect", { x: x + 60, y: 396, width: 32, height: 86, rx: 5, fill: "url(#lit)", opacity: .85 });
+      return;
+    }
+    const cx = x + 50;
+    if (Math.abs(cx - 1010) < 40) return;
+    mk("rect", { x: cx - 52, y: 397, width: 104, height: 116, rx: 12, fill: "#a8977c" });
+    mk("rect", { x: cx - 46, y: 403, width: 92, height: 104, rx: 9, fill: "url(#lit)" });
+    mk("rect", { x: cx - 46, y: 467, width: 92, height: 40, fill: "#335a85", opacity: .9 });
+    if (i % 3 === 1) { // a seated passenger, soft
+      mk("circle", { cx: cx + (i % 2 ? 14 : -16), cy: 452, r: 13, fill: "#3b3436", opacity: .75 });
+      mk("path", { d: `M${cx + (i % 2 ? -12 : -42)},507 C${cx + (i % 2 ? -10 : -40)},478 ${cx + (i % 2 ? 4 : -26)},466 ${cx + (i % 2 ? 14 : -16)},466 C${cx + (i % 2 ? 26 : -4)},466 ${cx + (i % 2 ? 40 : 10)},478 ${cx + (i % 2 ? 42 : 12)},507 Z`, fill: "#4a4550", opacity: .7 });
+    }
+    mk("rect", { x: cx - 46, y: 403, width: 92, height: 104, rx: 9, fill: "none", stroke: "#2a2a2e", "stroke-width": 2.5 });
+  });
+  // roof AC units
+  for (let x = -700; x < 2400; x += 544) mk("rect", { x: x + 80, y: 334, width: 220, height: 14, rx: 4, fill: "#a99a83" });
+})();
+</script>
+<script>
+(async () => {
+  /* ---------- dot-matrix indicator ---------- */
+  const F = {
+    A:"01110 10001 10001 11111 10001 10001 10001",B:"11110 10001 10001 11110 10001 10001 11110",C:"01110 10001 10000 10000 10000 10001 01110",
+    D:"11110 10001 10001 10001 10001 10001 11110",E:"11111 10000 10000 11110 10000 10000 11111",F:"11111 10000 10000 11110 10000 10000 10000",
+    G:"01110 10001 10000 10111 10001 10001 01111",H:"10001 10001 10001 11111 10001 10001 10001",I:"01110 00100 00100 00100 00100 00100 01110",
+    J:"00111 00010 00010 00010 00010 10010 01100",K:"10001 10010 10100 11000 10100 10010 10001",L:"10000 10000 10000 10000 10000 10000 11111",
+    M:"10001 11011 10101 10101 10001 10001 10001",N:"10001 10001 11001 10101 10011 10001 10001",O:"01110 10001 10001 10001 10001 10001 01110",
+    P:"11110 10001 10001 11110 10000 10000 10000",Q:"01110 10001 10001 10001 10101 10010 01101",R:"11110 10001 10001 11110 10100 10010 10001",
+    S:"01111 10000 10000 01110 00001 00001 11110",T:"11111 00100 00100 00100 00100 00100 00100",U:"10001 10001 10001 10001 10001 10001 01110",
+    V:"10001 10001 10001 10001 10001 01010 00100",W:"10001 10001 10001 10101 10101 10101 01010",X:"10001 10001 01010 00100 01010 10001 10001",
+    Y:"10001 10001 01010 00100 00100 00100 00100",Z:"11111 00001 00010 00100 01000 10000 11111",
+    0:"01110 10001 10011 10101 11001 10001 01110",1:"00100 01100 00100 00100 00100 00100 01110",2:"01110 10001 00001 00010 00100 01000 11111",
+    3:"11111 00010 00100 00010 00001 10001 01110",4:"00010 00110 01010 10010 11111 00010 00010",5:"11111 10000 11110 00001 00001 10001 01110",
+    6:"00110 01000 10000 11110 10001 10001 01110",7:"11111 00001 00010 00100 01000 01000 01000",8:"01110 10001 10001 01110 10001 10001 01110",
+    9:"01110 10001 10001 01111 00001 00010 01100",":":"0 1 1 0 1 1 0",".":"0 0 0 0 0 1 1"," ":"000 000 000 000 000 000 000"
+  };
+  const COLS = 132, ROWS = 40;
+  const grid = new Uint8Array(COLS * ROWS);   // 0 off, 1 amber, 2 red
+  const put = (c, r, v) => { if (c >= 0 && c < COLS && r >= 0 && r < ROWS) grid[r * COLS + c] = v; };
+  const textW = (s, sc = 1) => [...s].reduce((w, ch) => w + ((F[ch] || F[" "]).split(" ")[0].length + 1) * sc, -sc);
+  const drawText = (s, c0, r0, v, sc = 1) => {
+    let c = c0;
+    for (const ch of s) {
+      const g = (F[ch] || F[" "]).split(" "), w = g[0].length;
+      g.forEach((row, ry) => [...row].forEach((b, rx) => { if (b === "1") for (let a = 0; a < sc; a++) for (let d = 0; d < sc; d++) put(c + rx * sc + a, r0 + ry * sc + d, v); }));
+      c += (w + 1) * sc;
+    }
+  };
+  // Devanagari header, sampled from the font into the LED grid
+  let deva = null;
+  try { await document.fonts.load('600 40px "Noto Sans Devanagari"'); } catch (e) {}
+  const sampleDeva = () => {
+    const h = 9, cv = document.createElement("canvas"), W = 80; cv.width = W * 8; cv.height = h * 8;
+    const x = cv.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, cv.width, cv.height);
+    x.fillStyle = "#fff"; x.font = `600 ${h * 8 * .78}px "Noto Sans Devanagari", sans-serif`; x.textBaseline = "alphabetic";
+    x.fillText("चर्चगेट", 0, h * 8 * .74);
+    const d = x.getImageData(0, 0, cv.width, cv.height).data, out = [];
+    let maxc = 0;
+    for (let r = 0; r < h; r++) for (let c = 0; c < W; c++) {
+      let sum = 0; for (let yy = 0; yy < 8; yy++) for (let xx = 0; xx < 8; xx++) sum += d[((r * 8 + yy) * cv.width + c * 8 + xx) * 4];
+      if (sum / 64 > 96) { out.push([c, r]); maxc = Math.max(maxc, c); }
+    }
+    return { px: out, w: maxc + 1 };
+  };
+  deva = sampleDeva();
+
+  const mumbaiTime = () => new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: false }).format(new Date());
+  let lang = 0;
+  const compose = () => {
+    grid.fill(0);
+    // header: station name, alternating English / Marathi as the real boards do
+    if (lang === 0) drawText("CHURCHGATE", 2, 1, 2);
+    else deva.px.forEach(([c, r]) => put(2 + c, r, 2));
+    const t = mumbaiTime().replace(/\s/g, "");
+    drawText(t, COLS - 2 - textW(t), 1, 1);
+    // the train: his name, double height
+    drawText("MOHIT BAGRI", Math.round((COLS - textW("MOHIT BAGRI", 2)) / 2), 12, 1, 2);
+    // footer row
+    drawText("AC", 2, 31, 1);
+    drawText("12", COLS - 2 - textW("12"), 31, 1);
+  };
+
+  const cv = document.getElementById("led"), ctx = cv.getContext("2d");
+  let pitch = 7, sprites = {};
+  const makeSprite = (col, glow) => {
+    const s = document.createElement("canvas"), n = Math.ceil(pitch * 3); s.width = s.height = n;
+    const x = s.getContext("2d"), c = n / 2;
+    if (glow) { const g = x.createRadialGradient(c, c, 0, c, c, n / 2); g.addColorStop(0, col + "55"); g.addColorStop(1, col + "00"); x.fillStyle = g; x.fillRect(0, 0, n, n); }
+    x.fillStyle = col; x.beginPath(); x.arc(c, c, pitch * .36, 0, Math.PI * 2); x.fill();
+    if (glow) { x.fillStyle = "#fff3d0"; x.globalAlpha = .55; x.beginPath(); x.arc(c - pitch * .08, c - pitch * .08, pitch * .14, 0, Math.PI * 2); x.fill(); }
+    return s;
+  };
+  const size = () => {
+    const w = cv.parentElement.clientWidth - parseFloat(getComputedStyle(cv.parentElement).paddingLeft) * 2;
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    pitch = w / COLS * dpr;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(pitch * ROWS);
+    cv.style.height = (cv.height / dpr) + "px";
+    sprites = { 0: makeSprite("#2a1c12", false), 1: makeSprite("#ffb02e", true), 2: makeSprite("#ff4a2a", true) };
+  };
+  // reveal sweep when the header changes language
+  let sweep = COLS;
+  const paint = () => {
+    ctx.fillStyle = "#0b0b0c"; ctx.fillRect(0, 0, cv.width, cv.height);
+    const n = sprites[0].width, o = n / 2 - pitch / 2;
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      let v = grid[r * COLS + c];
+      if (r < 10 && c > sweep) v = 0;
+      ctx.drawImage(sprites[v], c * pitch - o, r * pitch - o);
+    }
+  };
+  size(); compose(); paint();
+  addEventListener("resize", () => { size(); paint(); window.__layout && window.__layout(); });
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setInterval(() => {
+    lang = 1 - lang; compose();
+    if (reduce) { paint(); return; }
+    sweep = -1;
+    const step = () => { sweep += 3; paint(); if (sweep < 90) requestAnimationFrame(step); else { sweep = COLS; paint(); } };
+    step();
+  }, 4200);
+  setInterval(() => { compose(); paint(); }, 20000);
+  window.__boardReady = true;
+})();
+</script>
+<script>
+(() => {
+  const sec = document.getElementById("intro");
+  const board = document.getElementById("board"), hang = document.getElementById("hang");
+  const scene = document.getElementById("scene"), soft = document.getElementById("sceneSoft");
+  const copy = document.getElementById("copy"), name = document.getElementById("name");
+  const line = document.getElementById("line"), note = document.getElementById("note");
+  const sheen = document.getElementById("sheen");
+  const rods = [...document.querySelectorAll(".rod")];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  let target = 0, cur = 0, boardBottom = 400, nameH = 90;
+  const read = () => { const r = sec.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+  window.__layout = () => {
+    const b = board.getBoundingClientRect();
+    boardBottom = hang.offsetTop + parseFloat(getComputedStyle(hang).getPropertyValue("--rodH")) / 100 * innerHeight + board.offsetHeight;
+    nameH = name.offsetHeight + 18;
+  };
+  addEventListener("scroll", read, { passive: true }); addEventListener("resize", read);
+  read(); cur = target; setTimeout(window.__layout, 60); window.__layout();
+  const T = { x: 1010, y: 455 };
+  function frame(t) {
+    cur += (target - cur) * (reduce ? 1 : .085);
+    const p = cur, s = t / 1000;
+    const W = innerWidth, H = innerHeight, aspect = W / H, narrow = aspect < .9;
+    // 1. the board tips up and away on its rods
+    const f = ease(seg(p, .1, .42));
+    board.style.transform = `rotateX(${(-f * 84).toFixed(2)}deg)`;
+    rods.forEach(r => r.style.opacity = (1 - seg(p, .3, .46)).toFixed(3));
+    board.style.opacity = (1 - seg(p, .36, .46)).toFixed(3);
+    // 2. the scene comes into focus behind it
+    scene.style.opacity = f.toFixed(3); soft.style.opacity = (1 - f).toFixed(3);
+    // 3. then the camera walks up to his window
+    const z = ease(seg(p, .38, .9));
+    const w0 = narrow ? 760 : 1440, h0 = w0 / aspect;
+    const cx0 = narrow ? 900 : 720, cy0 = narrow ? 470 : 450;
+    const h1 = narrow ? 300 : 330, w1 = h1 * aspect;
+    const cx1 = narrow ? T.x - 6 : T.x - w1 * .2, cy1 = narrow ? T.y - h1 * .2 : 344 - h1 * .4 + h1 / 2;
+    const w = w0 * Math.pow(w1 / w0, z), k = (w0 - w) / (w0 - w1), h = w / aspect;
+    const cx = cx0 + (cx1 - cx0) * k, cy = cy0 + (cy1 - cy0) * k;
+    const vb = `${(cx - w / 2).toFixed(2)} ${(cy - h / 2).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)}`;
+    scene.setAttribute("viewBox", vb); scene.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    soft.setAttribute("viewBox", `${720 - w0 / 2} ${cy0 - h0 / 2} ${w0} ${h0}`); soft.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    // copy: under the board, then glides to the top as the board leaves
+    const topStart = boardBottom + (narrow ? 22 : 34), topEnd = narrow ? 26 : Math.max(40, H * .09);
+    const g = ease(seg(p, .2, .5));
+    copy.style.top = "0px";
+    copy.style.transform = `translateY(${(topStart - nameH + (topEnd - (topStart - nameH)) * g).toFixed(1)}px)`;
+    name.style.opacity = seg(g, .55, 1).toFixed(3);
+    const a = seg(p, .52, .64), b = seg(p, .74, .9);
+    line.style.opacity = 1 - a; line.style.transform = `translateY(${-a * 12}px)`;
+    note.style.opacity = b; note.style.transform = `translateY(${(1 - b) * 12}px)`;
+    if (!reduce) sheen.setAttribute("x", (-140 + ((s * 26) % 300)).toFixed(1));
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

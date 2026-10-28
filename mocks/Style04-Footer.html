@@ -1,0 +1,250 @@
+<!-- Direction 04: Ink line — Siddhivinayak at Prabhadevi drawn as a pen elevation on warm paper, its cluster of banded spires around the tiered gold shikhara, saffron flag moving; scrolling lifts the night's hatching into dawn while diyas burn at the door, and the invitation sits beside it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Write to me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1ead9;--paper2:#e9e0cb;--ink:#1d1a16;--ink2:#5b544a;--ink3:#8c8478;--acc:#e2782a;--acc-soft:#f2c38d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 -1.3 .78'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:300px}
+.serif{font-family:"Newsreader",Georgia,serif}
+h1,h2{font-family:"Newsreader",Georgia,serif;font-weight:400;letter-spacing:-.018em;line-height:.98;text-wrap:balance;font-optical-sizing:auto}
+p{text-wrap:pretty}
+a{color:inherit}
+.ilink{text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/100% 2px no-repeat;padding-bottom:.12em;transition:background-size .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.ilink:hover,.ilink:focus-visible{background-size:100% .5em}
+.cta{display:inline-flex;align-items:baseline;gap:.45em;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.45rem;text-decoration:none;color:var(--ink);position:relative;padding-bottom:.2em}
+.cta svg{position:absolute;left:-2%;bottom:-.25em;width:104%;height:.7em;overflow:visible}
+.cta svg path{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1)}
+.cta:hover svg path,.cta:focus-visible svg path{animation:redraw .8s cubic-bezier(.2,.7,.2,1)}
+.cta .arr{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cta:hover .arr,.cta:focus-visible .arr{transform:translateX(6px)}
+@keyframes redraw{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.foot{position:relative;height:210vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;z-index:3;left:clamp(24px,5.4vw,96px);top:clamp(28px,9vh,96px);width:min(31rem,38vw)}
+h2{font-size:clamp(2.8rem,5vw,5.4rem);font-weight:300}
+.line{margin-top:1.1rem;font-size:clamp(1.02rem,1.2vw,1.16rem);line-height:1.5;max-width:22rem}
+.act{margin-top:1.5rem;display:flex;flex-direction:column;gap:.35rem;align-items:flex-start}
+.mail{font-size:1rem;color:var(--ink2);text-decoration:none}
+.mail:hover{color:var(--ink)}
+blockquote{margin-top:clamp(1.8rem,5vh,3rem);font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.7vw,1.6rem);line-height:1.3;max-width:23rem;position:relative}
+blockquote::before{content:"";position:absolute;left:-1.1rem;top:.5em;width:.42rem;height:.42rem;border-radius:50%;background:var(--acc)}
+.reset{margin-top:.7rem;font-size:1rem;line-height:1.5;color:var(--ink2);max-width:23rem}
+.bar{position:absolute;z-index:3;left:clamp(24px,5.4vw,96px);right:clamp(24px,5.4vw,96px);bottom:clamp(18px,4vh,36px);display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline;font-size:.98rem}
+.bar .clock{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.12rem;margin-right:auto}
+.bar nav{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem}
+.bar .c{color:var(--ink2)}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.6s ease-in-out infinite alternate}
+@keyframes flick{0%{transform:scale(1,1)}40%{transform:scale(.9,1.12) skewX(3deg)}100%{transform:scale(1.05,.92) skewX(-2deg)}}
+.smoke{fill:none;stroke:#8c8478;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:60 140;animation:smoke 7s linear infinite}
+@keyframes smoke{from{stroke-dashoffset:200;opacity:0}25%{opacity:.8}to{stroke-dashoffset:0;opacity:0}}
+@media (max-width:760px){
+  .foot{height:auto}
+  .stage{position:relative;height:auto;overflow:visible;display:flex;flex-direction:column}
+  .copy{position:relative;left:auto;top:auto;width:auto;padding:40px 22px 0}
+  h2{font-size:clamp(2.4rem,11vw,3rem)}
+  #scene{position:relative;height:auto;aspect-ratio:760/820;order:2;margin-top:12px}
+  .bar{position:relative;order:3;left:auto;right:auto;bottom:auto;padding:12px 22px 32px}
+}
+</style>
+</head>
+<body>
+<!-- direction: 04 ink line / footer -->
+<div class="grain"></div>
+<footer class="foot" id="foot">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2"/></filter>
+        <radialGradient id="flood" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#e2782a" stop-opacity=".4"/><stop offset=".55" stop-color="#e2782a" stop-opacity=".12"/><stop offset="1" stop-color="#e2782a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="clearG" x1="0" y1="0" x2="1" y2="0"><stop offset=".36" stop-color="#000"/><stop offset=".5" stop-color="#fff"/></linearGradient>
+        <mask id="clear" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1840" height="1300"><rect x="-200" y="-200" width="1840" height="1300" fill="url(#clearG)"/><rect x="-200" y="740" width="1840" height="400" fill="url(#clearB)"/></mask>
+        <linearGradient id="clearB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".2" stop-color="#000" stop-opacity="1"/></linearGradient>
+        <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop offset=".3" stop-color="#e2782a" stop-opacity="0"/><stop offset="1" stop-color="#e2782a" stop-opacity=".16"/></linearGradient>
+      </defs>
+      <rect id="dawnwash" x="-200" y="-100" width="1840" height="1100" fill="url(#dawn)" opacity="0"/>
+      <g id="night" mask="url(#clear)"></g>
+      <g id="T" transform="translate(744,58) scale(.9)">
+        <ellipse id="floodlight" cx="350" cy="340" rx="420" ry="380" fill="url(#flood)"/>
+        <g id="blocks"></g>
+        <g id="temple" filter="url(#ink)"></g>
+        <path id="flag" fill="#e2782a" stroke="#1d1a16" stroke-width="1.6" stroke-linejoin="round"/>
+        <g id="front"></g>
+      </g>
+    </svg>
+    <div class="copy">
+      <h2>Got something to build?</h2>
+      <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+      <div class="act">
+        <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span class="arr">→</span><svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2,9 C40,4 80,12 120,7 C150,4 176,9 198,6"/></svg></a>
+        <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+      </div>
+      <blockquote>If you believe you can make it, you will. The rest is trusting God and doing the work.</blockquote>
+      <p class="reset">Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+    </div>
+    <div class="bar">
+      <span class="clock" id="clock">It's — in Mumbai.</span>
+      <nav>
+        <a class="ilink" href="https://github.com/Mohit-Bagri">GitHub</a>
+        <a class="ilink" href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+        <a class="ilink" href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+        <a class="ilink" href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+        <a class="ilink" href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+        <a class="ilink" href="mailto:mailmohitbagri@gmail.com">Email</a>
+      </nav>
+      <span class="c">© 2026 Mohit Bagri</span>
+    </div>
+  </div>
+</footer>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+const f1=n=>Math.round(n*10)/10;
+/* a hand-drawn segment: slight bow in the middle */
+function wob(x1,y1,x2,y2,r,j=1){const mx=(x1+x2)/2+(r()-.5)*j*2,my=(y1+y2)/2+(r()-.5)*j*2;return`M${f1(x1)},${f1(y1)}Q${f1(mx)},${f1(my)} ${f1(x2)},${f1(y2)}`}
+/* parallel hatching inside a clip */
+let _hid=0;
+function hatch(parent,o){const{box:[x,y,w,h],angle=45,gap=6,width=1,color='#1d1a16',op=1,seed=1,jit=.8,trim=0,clipPath,clipRect}=o;const r=rng(seed);
+  const g=el('g',{},parent);
+  let cid=o.clip;
+  if(!cid){cid='hc'+(++_hid);const defs=parent.ownerSVGElement?parent.ownerSVGElement.querySelector('defs'):parent.querySelector('defs');const cp=el('clipPath',{id:cid},defs);if(clipPath)el('path',{d:clipPath},cp);else el('rect',{x,y,width:w,height:h,rx:o.rx||0},cp)}
+  g.setAttribute('clip-path',`url(#${cid})`);
+  const a=angle*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,cx=x+w/2,cy=y+h/2,L=Math.hypot(w,h)/2+4;
+  let d='';for(let t=-L;t<=L;t+=gap*(.85+r()*.3)){const ox=cx+nx*t,oy=cy+ny*t;const l1=L*(1-trim*r()),l2=L*(1-trim*r());d+=wob(ox-dx*l1,oy-dy*l1,ox+dx*l2,oy+dy*l2,r,jit)}
+  el('path',{d,fill:'none',stroke:color,'stroke-width':width,opacity:op,'stroke-linecap':'round'},g);return g}
+function cross(parent,o){hatch(parent,o);return hatch(parent,Object.assign({},o,{angle:(o.angle||45)+90,seed:(o.seed||1)+7,clip:o._clip}))}
+function P(parent,d,o={}){return el('path',Object.assign({d,fill:'none',stroke:'#1d1a16','stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'},o),parent)}
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const smooth=(a,b,v)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)};
+function progressOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+
+const $=id=>document.getElementById(id);const INK='#1d1a16',GREY='#8c8478',GOLD='#e2782a',STONE='#f3ecdd',TAN='#e6d6b8';
+/* the clock */
+function tick(){const t=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date()).toLowerCase();$('clock').textContent=`It's ${t} in Mumbai.`}
+tick();setInterval(tick,15000);
+/* night hatching, lifted by scroll */
+const nightLayers=[];
+(()=>{const g=$('night');[[4,6,1],[42,5.6,2],[-44,5.2,3]].forEach(([a,gap,s])=>{const l=el('g',{},g);hatch(l,{box:[-100,-60,1640,1000],angle:a,gap,width:.85,seed:s,op:.4,color:'#2b2722',jit:4});nightLayers.push(l)})})();
+/* Prabhadevi blocks crowding round */
+(()=>{const g=$('blocks'),r=rng(3);
+  const B=[[-170,330,120],[-60,250,110],[-130,470,90],[600,300,120],[700,220,110],[640,420,150],[800,350,90]];
+  for(const[x,top,w]of B){el('rect',{x,y:top,width:w,height:800-top,fill:'#efe7d6'},g);P(g,`M${x},800V${top}H${x+w}V800`,{stroke:GREY,'stroke-width':1.2});
+    for(let y=top+18;y<790;y+=24)for(let wx=x+10;wx<x+w-14;wx+=22)P(g,`M${wx},${y}h12`,{stroke:GREY,'stroke-width':1.4,opacity:.8});
+    hatch(g,{box:[x+w*.7,top,w*.3,800-top],angle:80,gap:4,width:.8,color:GREY,seed:Math.floor(r()*999),op:.7})}
+})();
+/* ---------- the temple ---------- */
+const tg=$('temple');
+function kalash(g,cx,y,s){// pot-shaped gold finial sitting on y
+  el('path',{d:`M${cx-5*s},${y}C${cx-9*s},${y-6*s} ${cx-7*s},${y-13*s} ${cx},${y-14*s}C${cx+7*s},${y-13*s} ${cx+9*s},${y-6*s} ${cx+5*s},${y}Z`,fill:GOLD,stroke:INK,'stroke-width':Math.max(1,1.2*s/1.5)},g);
+  P(g,`M${cx-4*s},${y-14*s}h${8*s}M${cx},${y-14*s}V${y-22*s}`,{'stroke-width':Math.max(1,1.1*s/1.4)});
+  el('circle',{cx,cy:y-22*s,r:1.6*s,fill:GOLD,stroke:INK,'stroke-width':.9},g)}
+function spire(cx,yb,yt,w,seed){const g=el('g',{},tg),r=rng(seed);
+  const capH=30,top=yt+capH,x0=cx-w/2,x1=cx+w/2;
+  // shaft
+  el('rect',{x:x0,y:top,width:w,height:yb-top,fill:STONE},g);
+  // bands: tan stone, with dark recessed bands
+  let k=0;for(let y=yb-8;y>top+4;y-=12,k++){
+    if(k%2===0){el('path',{d:`M${x0},${y}Q${cx},${y+3} ${x1},${y}V${y-3.5}Q${cx},${y-.5} ${x0},${y-3.5}Z`,fill:'#2b2722',opacity:.78},g)}
+    else el('path',{d:`M${x0},${y}Q${cx},${y+3} ${x1},${y}V${y-7}Q${cx},${y-4} ${x0},${y-7}Z`,fill:TAN},g)}
+  hatch(g,{box:[cx+w*.12,top,w*.38,yb-top],angle:88,gap:2.6,width:.8,seed,op:.7});
+  P(g,`M${x0},${yb}V${top}M${x1},${yb}V${top}`,{'stroke-width':1.8});
+  // stepped cap: three steps, a small dome, then gold
+  let y=top,ww=w+6;for(let i=0;i<3;i++){const h=5+i;el('rect',{x:cx-ww/2,y:y-h,width:ww,height:h,fill:i===1?TAN:STONE,stroke:INK,'stroke-width':1.3},g);y-=h;ww*=.78}
+  el('path',{d:`M${cx-ww*.6},${y}Q${cx},${y-ww*.9} ${cx+ww*.6},${y}Z`,fill:STONE,stroke:INK,'stroke-width':1.3},g);
+  kalash(g,cx,y-ww*.42,Math.max(.8,w/34));
+}
+function shikhara(){const g=el('g',{},tg);const cx=350,yb=448,N=11,h=23;
+  for(let i=0;i<N;i++){const y0=yb-i*h,w=290-i*20,x0=cx-w/2;
+    const d=`M${x0},${y0}L${x0+3},${y0-h+5}Q${cx},${y0-h+1} ${x0+w-3},${y0-h+5}L${x0+w},${y0}Z`;
+    el('path',{d,fill:'#f0c48c'},g);
+    el('path',{d,fill:GOLD,opacity:.28},g);
+    // small carved niches along each tier
+    let nd='';for(let x=x0+10;x<x0+w-8;x+=13)nd+=`M${x},${y0-4}v${-(h-11)}`;P(g,nd,{'stroke-width':1,opacity:.7});
+    hatch(g,{clipPath:d,box:[cx+w*.15,y0-h,w*.36,h],angle:80,gap:3,width:.8,seed:40+i,op:.75});
+    P(g,`M${x0-4},${y0}H${x0+w+4}`,{'stroke-width':2.2});P(g,d,{'stroke-width':1.4});}
+  const yt=yb-N*h;
+  // amalaka and the great kalash
+  el('ellipse',{cx,cy:yt-6,rx:44,ry:10,fill:'#f0c48c',stroke:INK,'stroke-width':1.6},g);
+  let rd='';for(let a=-40;a<=40;a+=8)rd+=`M${cx+a},${yt-14+Math.abs(a)/10}V${yt+2-Math.abs(a)/10}`;P(g,rd,{'stroke-width':1});
+  el('path',{d:`M${cx-18},${yt-16}C${cx-30},${yt-34} ${cx-20},${yt-58} ${cx},${yt-62}C${cx+20},${yt-58} ${cx+30},${yt-34} ${cx+18},${yt-16}Z`,fill:GOLD,stroke:INK,'stroke-width':1.8},g);
+  hatch(g,{clipPath:`M${cx+2},${yt-16}C${cx+20},${yt-30} ${cx+22},${yt-50} ${cx},${yt-62}C${cx+20},${yt-58} ${cx+30},${yt-34} ${cx+18},${yt-16}Z`,box:[cx,yt-64,32,50],angle:70,gap:2.6,width:.8,seed:61});
+  P(g,`M${cx-12},${yt-62}h24M${cx-7},${yt-68}h14`,{'stroke-width':1.8});
+  el('path',{d:`M${cx-6},${yt-68}Q${cx},${yt-84} ${cx+6},${yt-68}Z`,fill:GOLD,stroke:INK,'stroke-width':1.4},g);
+  P(g,`M${cx},${yt-78}V${yt-196}`,{'stroke-width':2});
+  return{cx,poleTop:yt-196}}
+// back row of spires first, then the shikhara, then the front cluster
+[[262,448,200,30,1],[438,448,196,30,2],[300,448,160,26,3],[402,448,166,26,4]].forEach(a=>spire(...a));
+const SH=shikhara();
+// the shadowed band under the eaves with a row of small spire tips
+(()=>{const g=el('g',{},tg);el('rect',{x:120,y:448,width:460,height:26,fill:'#3b362f'},g);hatch(g,{box:[120,448,460,26],angle:20,gap:2.4,width:.9,seed:70,color:'#f3ecdd',op:.25});
+  for(let x=134;x<574;x+=20){el('path',{d:`M${x-5},448L${x},432L${x+5},448Z`,fill:STONE,stroke:INK,'stroke-width':1.2},g);el('circle',{cx:x,cy:430,r:2,fill:GOLD,stroke:INK,'stroke-width':.8},g)}
+  P(g,'M112,448H588M112,474H588',{'stroke-width':2.2})})();
+[[150,474,236,34,11],[200,474,214,38,12],[106,474,292,28,13],[550,474,232,34,14],[500,474,210,38,15],[594,474,288,28,16],[244,474,282,24,17],[456,474,284,24,18]].forEach(a=>spire(...a));
+// storeys below
+(()=>{const g=el('g',{},tg);el('rect',{x:96,y:474,width:508,height:330,fill:STONE},g);
+  const floors=[474,536,598,660];
+  floors.forEach((y,i)=>{P(g,`M88,${y}H612`,{'stroke-width':2});P(g,`M92,${y+6}H608`,{'stroke-width':1,opacity:.7});
+    if(i<3){for(let x=118;x<590;x+=34){if(i===1&&x>250&&x<450)continue;el('path',{d:`M${x},${y+52}V${y+26}Q${x+10},${y+14} ${x+20},${y+26}V${y+52}Z`,fill:'#3b362f',opacity:.85},g)}
+      let bd='';for(let x=96;x<604;x+=7)bd+=`M${x},${y+62}v-8`;P(g,bd,{'stroke-width':.9,opacity:.75});}});
+  hatch(g,{box:[470,474,134,330],angle:84,gap:3.4,width:.8,seed:80,op:.55});
+  P(g,'M96,800V474M604,800V474',{'stroke-width':2.2});
+  // name board
+  el('rect',{x:262,y:550,width:176,height:36,fill:STONE,stroke:INK,'stroke-width':1.6},g);
+  const t=el('text',{x:350,y:576,'text-anchor':'middle','font-family':'"Tiro Devanagari Marathi",serif','font-size':22,fill:INK},g);t.textContent='श्री सिद्धिविनायक';
+})();
+// the orange stepped dome over the entrance, lower and in front
+(()=>{const g=$('front');const cx=350;
+  el('rect',{x:282,y:686,width:136,height:118,fill:'#efe5d2'},g);
+  el('path',{d:'M314,804V730Q350,690 386,730V804Z',fill:'#3b362f'},g);
+  el('path',{d:'M322,804V734Q350,704 378,734V804Z',fill:'#f0c48c',opacity:.85},g);
+  P(g,'M282,804V686H418V804',{'stroke-width':2});
+  let y=686,w=150;for(let i=0;i<3;i++){const h=11;el('rect',{x:cx-w/2,y:y-h,width:w,height:h,fill:'#e89a55',stroke:INK,'stroke-width':1.5},g);hatch(g,{box:[cx+w*.15,y-h,w*.35,h],angle:80,gap:3,width:.8,seed:90+i,op:.6});y-=h;w-=30}
+  el('path',{d:`M${cx-34},${y}Q${cx-34},${y-36} ${cx},${y-40}Q${cx+34},${y-36} ${cx+34},${y}Z`,fill:GOLD,stroke:INK,'stroke-width':1.6},g);
+  hatch(g,{clipPath:`M${cx+6},${y}Q${cx+10},${y-30} ${cx},${y-40}Q${cx+34},${y-36} ${cx+34},${y}Z`,box:[cx,y-42,36,42],angle:70,gap:2.6,width:.8,seed:95});
+  kalash(g,cx,y-40,1.6);
+  // marigold festoons across the front
+  const r=rng(96);
+  const fest=(xa,xb,ya,sag)=>{for(let t=0;t<=1.0001;t+=.04){const x=xa+(xb-xa)*t,yy=ya+Math.sin(Math.PI*t)*sag;el('circle',{cx:f1(x),cy:f1(yy),r:3.4,fill:t*25%2<1?GOLD:'#f2b06a',stroke:INK,'stroke-width':.7},g)}};
+  fest(96,282,668,26);fest(418,604,668,26);fest(290,410,738,16);
+  for(const x of [290,410]){for(let y=740;y<790;y+=6)el('circle',{cx:x,cy:y,r:3,fill:GOLD,stroke:INK,'stroke-width':.7},g)}
+  // diyas at the step, and incense
+  for(let x=120;x<590;x+=38){if(x>270&&x<430)continue;el('path',{d:`M${x-9},800Q${x},810 ${x+9},800Z`,fill:'#c98a3c',stroke:INK,'stroke-width':1.2},g);
+    el('path',{class:'flame',style:`animation-delay:-${(r()*1.6).toFixed(2)}s`,d:`M${x},798C${x-4},792 ${x-2},786 ${x},780C${x+2},786 ${x+4},792 ${x},798Z`,fill:GOLD},g)}
+  for(const[x,d]of[[250,0],[258,2.3],[452,4.1]])el('path',{class:'smoke',style:`animation-delay:-${d}s`,d:`M${x},790C${x-10},760 ${x+12},740 ${x},710C${x-12},680 ${x+8},650 ${x-4},620`},g);
+  P(g,'M-300,804H1100',{'stroke-width':2.4});
+})();
+/* the flag, moving */
+const flag=$('flag');const FX=SH.cx,FY=SH.poleTop;
+function wave(t){const pts=[];const L=96,H=42;let d=`M${FX},${FY}`;
+  for(let i=1;i<=8;i++){const u=i/8,x=FX+u*L,y=FY+u*H*.5+Math.sin(t*2.2-u*4)*6*u;d+=`L${f1(x)},${f1(y)}`}
+  for(let i=8;i>=0;i--){const u=i/8,x=FX+u*L*.98,y=FY+H-u*H*.5+Math.sin(t*2.2-u*4+.4)*6*u;d+=`L${f1(x)},${f1(y)}`}
+  flag.setAttribute('d',d+'Z')}
+/* scroll and responsive */
+const svg=$('scene'),T=$('T'),dw=$('dawnwash'),fl=$('floodlight'),foot=$('foot');
+let mobile=false,last=-1;
+function layout(){mobile=innerWidth<=760;if(mobile){svg.setAttribute('viewBox','690 40 760 780');svg.setAttribute('preserveAspectRatio','xMidYMid meet')}else{svg.setAttribute('viewBox','0 0 1440 900');svg.setAttribute('preserveAspectRatio','xMidYMid slice')}last=-1}
+layout();addEventListener('resize',layout);
+function frame(now){const t=now/1000;if(!RM)wave(t);else if(!frame.w){wave(0);frame.w=1}
+  let p;if(mobile){const r=svg.getBoundingClientRect();p=clamp((innerHeight-r.top)/(innerHeight+r.height*.2))}else p=progressOf(foot);if(RM)p=1;
+  if(Math.abs(p-last)>1e-4){last=p;
+    nightLayers.forEach((l,i)=>l.setAttribute('opacity',(1-smooth(.05+i*.15,.35+i*.15,p)).toFixed(3)));
+    dw.setAttribute('opacity',smooth(.3,.85,p).toFixed(3));fl.setAttribute('opacity',(1-.6*smooth(.2,.8,p)).toFixed(3));}
+  requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

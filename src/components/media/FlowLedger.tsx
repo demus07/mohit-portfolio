@@ -1,57 +1,59 @@
 "use client";
 
-import { useTimeline } from "./useTimeline";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { useReducedMotion } from "@/lib/hooks";
 import s from "./FlowLedger.module.css";
 
-// Frame indexes of the loop.
-const RESET = 0;
-// 1: dashboard at rest
-const PRESS = 2;
-const SHEET = 3;
-const SCAN = 4;
-const FOUND = 5;
-const FILL = 6;
-const ADDED = 7;
-const INSIGHT = 8;
-const VEIL = 9;
+const BLUE = "#5B7CFA";
+const GREEN = "#3CCF91";
+const RED = "#F97066";
+const TEXT = "#E6E8EB";
+const MUTED = "#9BA1A6";
+const LINE = "#2D333B";
+const CARD = "#1C2128";
 
-const DURATIONS = [650, 2300, 450, 900, 1700, 1300, 450, 2300, 3200, 700];
+// Step n starts at STEPS[n] ms; the whole loop restarts every 12.4s.
+// 0 dashboard · 1 tap scan · 2 sheet up, scanning · 3 OCR highlights · 4 scanned
+// 5 tap "Use This Data" · 6 sheet down, entry lands · 7 insights · 8 screen fades · 9 back to start
+const STEPS = [0, 1600, 2000, 3900, 4700, 5700, 6100, 8400, 11000, 11400];
+const LOOP = 12400;
 
-const CAPTIONS = [
-  { label: "Dashboard", line: "Income, spend and health at a glance." },
-  { label: "Receipt scan", line: "On-device OCR reads the receipt." },
-  { label: "Auto-fill", line: "The total lands in the ledger by itself." },
-  { label: "Money leaks", line: "Insights flag spending that creeps up." },
-];
-
-const captionFor = (step: number) => (step <= PRESS ? 0 : step <= FOUND ? 1 : step <= ADDED ? 2 : 3);
-
-const RECEIPT: [string, string][] = [
-  ["Cappuccino", "240"],
-  ["Croissant", "246"],
-];
-
-const ICON = {
-  food: "M7 3v8a3 3 0 0 0 3 3v7M10 3v6M13 3v8a3 3 0 0 1-3 3M18 3c-1.5 1-2.5 3-2.5 6s1 4 2.5 4v8",
-  train: "M7 3h10a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2ZM5 10h14M8 21l2-4M16 21l-2-4",
-  cart: "M3 4h2l2.4 11h10.2L20 7H6.2M9 20h.01M17 20h.01",
-  up: "M4 17l6-6 4 4 7-8M15 7h6v6",
-  home: "M4 11 12 4l8 7v9h-5v-6H9v6H4Z",
-  chart: "M5 20V10M12 20V4M19 20v-7",
-  goal: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-5a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z",
-  user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9a7 7 0 0 1 14 0",
-  cam: "M4 8h3l2-3h6l2 3h3v11H4ZM12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-  check: "M5 12.5 10 17l9-10",
+const PATH = {
+  cam: "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3zM12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+  food: "M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3m0 0v7",
+  train: "M4 11V7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 0h16M8 22l2-4m6 4-2-4",
+  up: "M22 7l-8.5 8.5-5-5L2 17M16 7h6v6",
+  check: "M20 6 9 17l-5-5",
 };
 
-function Icon({ d, className }: { d: string; className?: string }) {
+const CAPTIONS: [string, string, string][] = [
+  ["01", "Dashboard", "Income, spend and health at a glance."],
+  ["02", "Receipt scan", "On-device OCR reads the receipt."],
+  ["03", "Auto-fill", "The total lands in the ledger by itself."],
+  ["04", "Money leaks", "Insights flag spending that creeps up."],
+];
+
+// [label, amount, highlight order]
+const RECEIPT: [string, string, number?][] = [
+  ["BEAN CAFE", "", 0],
+  ["Cappuccino", "240"],
+  ["Croissant", "246"],
+  ["TOTAL", "486", 1],
+];
+
+const tr = (ms = 500, delay = 0): CSSProperties => ({
+  transition: `transform ${ms}ms cubic-bezier(.2,.8,.2,1) ${delay}ms, opacity ${ms}ms ease ${delay}ms`,
+});
+
+function Icon({ d, c, size = "60%" }: { d: string; c: string; size?: string }) {
   return (
     <svg
-      className={className}
       viewBox="0 0 24 24"
+      width={size}
+      height={size}
       fill="none"
-      stroke="currentColor"
-      strokeWidth={2.2}
+      stroke={c}
+      strokeWidth={2.3}
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -60,220 +62,279 @@ function Icon({ d, className }: { d: string; className?: string }) {
   );
 }
 
-function Tx({
+// Rolls one figure out and the next in, like an odometer.
+function Flip({ from, to, on }: { from: string; to: string; on: boolean }) {
+  const face = (shown: boolean, dir: number): CSSProperties => ({
+    ...tr(450, 300),
+    opacity: shown ? 1 : 0,
+    transform: `translateY(${shown ? 0 : 70 * dir}%)`,
+  });
+  return (
+    <span className={s.flip}>
+      <span className={s.face} style={face(!on, -1)}>
+        {from}
+      </span>
+      <span className={s.face} style={face(on, 1)}>
+        {to}
+      </span>
+    </span>
+  );
+}
+
+function Stat({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className={s.stat}>
+      <span className={s.statLabel}>{label}</span>
+      <span className={s.statValue}>{children}</span>
+    </div>
+  );
+}
+
+function Txn({
   name,
   when,
   amount,
-  icon,
-  color,
-  className,
-  pos,
+  d,
+  c,
+  style,
 }: {
   name: string;
   when: string;
   amount: string;
-  icon: string;
-  color: string;
-  className?: string;
-  pos: number;
+  d: string;
+  c: string;
+  style?: CSSProperties;
 }) {
   return (
-    <div className={`${s.tx} ${className ?? ""}`} style={{ transform: `translateY(${pos * 100}%)` }}>
-      <div className={s.txInner}>
-        <span className={s.txIcon} style={{ color, background: `${color}22` }}>
-          <Icon d={icon} />
-        </span>
-        <span className={s.txText}>
-          <b>{name}</b>
-          <span>{when}</span>
-        </span>
-        <b className={s.txAmt}>−{amount}</b>
+    <div className={s.txn} style={style}>
+      <div className={s.txnIcon} style={{ background: `${c}22` }}>
+        <Icon d={d} c={c} />
       </div>
+      <div className={s.txnText}>
+        <div className={s.txnName} style={{ color: TEXT }}>
+          {name}
+        </div>
+        <div className={s.txnWhen}>{when}</div>
+      </div>
+      <span className={s.txnAmount} style={{ color: TEXT }}>
+        -{amount}
+      </span>
     </div>
   );
 }
 
 export function FlowLedgerMedia({ active }: { active: boolean }) {
-  const { step } = useTimeline(DURATIONS, active, INSIGHT);
+  const reduced = useReducedMotion();
+  const run = active && !reduced;
+  const [step, setStep] = useState(0);
 
-  const veil = step === RESET || step === VEIL;
-  const sheet = step >= SHEET && step <= FILL;
-  const scanning = step === SCAN;
-  const found = step === FOUND || step === FILL;
-  const added = step >= ADDED;
-  const insight = step >= INSIGHT;
-  const caption = captionFor(step);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- rewind to the dashboard
+    setStep(0);
+    if (!run) return;
+    let timers: ReturnType<typeof setTimeout>[] = [];
+    const cycle = () => {
+      timers = STEPS.map((at, i) => setTimeout(() => setStep(i), at));
+      timers.push(setTimeout(cycle, LOOP));
+    };
+    cycle();
+    return () => timers.forEach(clearTimeout);
+  }, [run]);
+
+  const sheet = step >= 2 && step <= 5;
+  const added = step >= 6 && step < 9;
+  const insights = step >= 7 && step < 9;
+  const caption = step >= 9 ? 0 : step >= 7 ? 3 : step >= 6 ? 2 : step >= 2 ? 1 : 0;
+  const highlight = step >= 3 && step <= 5;
+  const scanning = step === 2;
+  const tap = (on: boolean): CSSProperties => ({
+    ...tr(260),
+    opacity: on ? 1 : 0,
+    transform: `scale(${on ? 1 : 1.6})`,
+  });
 
   return (
-    <div
-      className={s.root}
-      role="img"
-      aria-label="FlowLedger, a personal finance app: a café receipt is scanned, its total fills into the ledger, and an insight flags rising food spending"
-    >
-      <div className={`${s.stage} ${veil ? s.veiled : ""}`} aria-hidden="true">
-        <div className={s.captions}>
-          {CAPTIONS.map((c, i) => (
-            <div key={c.label} className={`${s.caption} ${i === caption ? s.captionOn : ""}`}>
-              <span className={s.capLabel}>{c.label}</span>
-              <span className={s.capLine}>{c.line}</span>
+    <div className={s.root}>
+      <div className={s.glow} style={{ background: `radial-gradient(45% 70% at 24% 50%, ${BLUE}24, transparent 70%)` }} />
+
+      <div className={s.phone}>
+        <div className={s.screen} style={{ ...tr(400), opacity: step < 8 ? 1 : 0 }}>
+          {/* Dashboard */}
+          <div
+            className={s.page}
+            style={{ ...tr(700), transform: `translateX(${insights ? -30 : 0}%)`, opacity: insights ? 0 : 1 }}
+          >
+            <div className={s.title} style={{ color: TEXT }}>
+              Good Evening
             </div>
-          ))}
-        </div>
+            <div className={s.summary} style={{ background: `linear-gradient(135deg, ${BLUE}, #8B5CF6)` }}>
+              <div className={s.summaryTitle}>Quick Summary</div>
+              <div className={s.statRow}>
+                <Stat label="Income">₹85,000</Stat>
+                <Stat label="Expenses">
+                  <Flip from="₹42,380" to="₹42,866" on={added} />
+                </Stat>
+              </div>
+              <div className={s.rule} />
+              <div className={s.statRowFlat}>
+                <Stat label="Balance">
+                  <Flip from="₹42,620" to="₹42,134" on={added} />
+                </Stat>
+                <Stat label="Health">
+                  78<span className={s.outOf}>/100</span>
+                </Stat>
+              </div>
+            </div>
 
-        <div className={s.steps}>
-          {CAPTIONS.map((c, i) => (
-            <span key={c.label} className={`${s.stepDot} ${i === caption ? s.stepOn : ""}`}>
-              <i />
-              {c.label}
-            </span>
-          ))}
-        </div>
-
-        <div className={s.phone}>
-          <div className={s.screen}>
-            <div className={s.status}>
-              <span>9:41</span>
-              <span className={s.island} />
-              <span className={s.bars}>
-                <i />
-                <i />
-                <i />
+            <div className={s.scanBtn} style={{ borderColor: `${BLUE}55`, background: `${BLUE}1f`, color: TEXT }}>
+              <span className={s.scanIcon}>
+                <Icon d={PATH.cam} c={BLUE} size="100%" />
               </span>
+              Scan Receipt
+              <span className={s.tap} style={tap(step === 1)} />
             </div>
 
-            <div className={s.dash}>
-              <div className={s.greet}>
-                <div>
-                  <div className={s.hello}>Good Evening</div>
-                  <div className={s.sub}>Here’s your month so far</div>
-                </div>
-                <span className={s.avatar}>M</span>
-              </div>
-
-              <div className={s.summary}>
-                <div className={s.sumRow}>
-                  <div className={s.sumCell}>
-                    <span>Income</span>
-                    <b>₹85,000</b>
-                  </div>
-                  <div className={s.sumCell}>
-                    <span>Expenses</span>
-                    <b key={added ? "a" : "b"} className={s.rise}>
-                      {added ? "₹42,866" : "₹42,380"}
-                    </b>
-                  </div>
-                </div>
-                <div className={s.sumRule} />
-                <div className={s.sumRow}>
-                  <div className={s.sumCell}>
-                    <span>Balance</span>
-                    <b key={added ? "a" : "b"} className={s.rise}>
-                      {added ? "₹42,134" : "₹42,620"}
-                    </b>
-                  </div>
-                  <div className={s.sumCell}>
-                    <span>Health</span>
-                    <b>
-                      78<small>/100</small>
-                    </b>
-                  </div>
-                </div>
-              </div>
-
-              <div className={s.recentHead}>
-                <b>Recent</b>
-                <span>See All</span>
-              </div>
-              <div className={s.list}>
-                <Tx
+            <div className={s.recentHead}>
+              <span className={s.recentTitle} style={{ color: TEXT }}>
+                Recent
+              </span>
+              <span style={{ color: BLUE }}>See All</span>
+            </div>
+            <div className={s.recent}>
+              <div style={{ ...tr(700, 200), transform: `translateY(${added ? 0 : -6.2}cqw)` }}>
+                <Txn
                   name="Bean Cafe"
                   when="Just now"
                   amount="₹486"
-                  icon={ICON.food}
-                  color="#F97316"
-                  className={added ? s.txNew : s.txWaiting}
-                  pos={0}
+                  d={PATH.food}
+                  c="#F97316"
+                  style={{ ...tr(600, 400), opacity: added ? 1 : 0, background: `${BLUE}1f`, marginBottom: "0.6cqw" }}
                 />
-                <Tx name="Metro" when="Today" amount="₹500" icon={ICON.train} color="#3B82F6" pos={added ? 1 : 0} />
-                <Tx
-                  name="Big Basket"
-                  when="Yesterday"
-                  amount="₹1,240"
-                  icon={ICON.cart}
-                  color="#3CCF91"
-                  pos={added ? 2 : 1}
-                />
+                <Txn name="Metro" when="Today" amount="₹500" d={PATH.train} c="#3B82F6" style={{ background: CARD }} />
               </div>
-
-              <div className={s.slot}>
-                <div className={`${s.card} ${s.budget} ${insight ? "" : s.cardOn}`}>
-                  <div className={s.cardTop}>
-                    <span>Food &amp; Dining budget</span>
-                    <b>₹6,120 / ₹8,000</b>
-                  </div>
-                  <div className={s.meter}>
-                    <i />
-                  </div>
-                </div>
-                <div className={`${s.card} ${s.insight} ${insight ? s.cardOn : ""}`}>
-                  <span className={s.insIcon}>
-                    <Icon d={ICON.up} />
-                  </span>
-                  <div>
-                    <div className={s.insTitle}>Food &amp; Dining Up 42%</div>
-                    <div className={s.insLine}>Spending increased significantly vs last month.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <nav className={s.tabbar}>
-              <Icon d={ICON.home} className={s.tabOn} />
-              <Icon d={ICON.chart} />
-              <span className={`${s.fab} ${step === PRESS ? s.fabPressed : ""}`}>
-                <Icon d={ICON.cam} />
-              </span>
-              <Icon d={ICON.goal} />
-              <Icon d={ICON.user} />
-            </nav>
-
-            <div className={`${s.dim} ${sheet ? s.dimOn : ""}`} />
-
-            <div className={`${s.sheet} ${sheet ? s.sheetOn : ""}`}>
-              <span className={s.grab} />
-              <div className={s.sheetTitle}>Scan Receipt</div>
-              <div className={s.sheetSub}>Reading on device</div>
-
-              <div className={s.finder}>
-                <span className={s.corners} />
-                <div className={s.receipt}>
-                  <div className={s.rcHead}>BEAN CAFE</div>
-                  {RECEIPT.map(([item, amt]) => (
-                    <div key={item} className={s.rcRow}>
-                      <span>{item}</span>
-                      <span>{amt}</span>
-                    </div>
-                  ))}
-                  <div className={`${s.rcRow} ${s.rcTotal} ${found ? s.rcFound : ""}`}>
-                    <span>TOTAL</span>
-                    <span>486</span>
-                  </div>
-                </div>
-                <span className={`${s.scanLine} ${scanning ? s.scanOn : ""}`} />
-              </div>
-
-              <div className={`${s.detected} ${found ? s.detectedOn : ""}`}>
-                <span className={s.okIcon}>
-                  <Icon d={ICON.check} />
-                </span>
-                Total ₹486 · Food &amp; Dining
-              </div>
-
-              <span className={`${s.fillBtn} ${found ? s.fillReady : ""} ${step === FILL ? s.fillPressed : ""}`}>
-                Auto-fill
-              </span>
             </div>
           </div>
+
+          {/* Insights */}
+          <div
+            className={s.page}
+            style={{ ...tr(700), transform: `translateX(${insights ? 0 : 40}%)`, opacity: insights ? 1 : 0 }}
+          >
+            <div className={s.title} style={{ color: TEXT }}>
+              Insights
+            </div>
+            <div className={s.small} style={{ color: MUTED }}>
+              September 2026
+            </div>
+            <div className={s.insight} style={{ background: CARD, borderColor: `${RED}55` }}>
+              <div className={s.insightIcon} style={{ background: `${RED}22` }}>
+                <Icon d={PATH.up} c={RED} />
+              </div>
+              <div className={s.insightTitle} style={{ color: TEXT }}>
+                Food &amp; Dining Up 42%
+              </div>
+              <div className={s.insightBody} style={{ color: MUTED }}>
+                Spending increased significantly vs last month.
+              </div>
+            </div>
+          </div>
+
+          <div className={s.dim} style={{ ...tr(400), opacity: sheet ? 1 : 0 }} />
+
+          {/* Scan sheet */}
+          <div className={s.sheet} style={{ ...tr(550), transform: `translateY(${sheet ? 0 : 105}%)` }}>
+            <div className={s.handle} style={{ background: LINE }} />
+            <div className={s.sheetTitle} style={{ color: TEXT }}>
+              Scan Receipt
+            </div>
+            <div className={s.viewfinder} style={{ borderColor: LINE }}>
+              <div className={s.receipt}>
+                {RECEIPT.map(([label, amount, order], i) => (
+                  <div
+                    key={label}
+                    className={`${s.line} ${i % 3 ? "" : s.bold} ${i === 3 ? s.totalLine : ""}`}
+                  >
+                    <span>{label}</span>
+                    <span>{amount}</span>
+                    {order !== undefined && (
+                      <span
+                        className={s.ocr}
+                        style={{
+                          borderColor: BLUE,
+                          background: `${BLUE}22`,
+                          ...tr(350, 180 * order),
+                          opacity: highlight ? 1 : 0,
+                          transform: `scale(${highlight ? 1 : 1.08})`,
+                        }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div
+                className={s.beam}
+                style={{
+                  background: `linear-gradient(to bottom, transparent 75%, ${BLUE}33 97%, ${BLUE} 100%)`,
+                  transition: `transform ${scanning ? 1800 : 0}ms linear, opacity 300ms`,
+                  opacity: scanning ? 1 : 0,
+                  transform: `translateY(${scanning ? 0 : -100}%)`,
+                }}
+              />
+            </div>
+            <div className={s.status}>
+              <div className={s.statusLine} style={{ ...tr(300), opacity: step < 4 ? 1 : 0, color: MUTED }}>
+                Scanning...
+              </div>
+              <div
+                className={`${s.statusLine} ${s.statusDone}`}
+                style={{ ...tr(300, 100), opacity: step >= 4 ? 1 : 0, color: GREEN }}
+              >
+                <span className={s.checkIcon}>
+                  <Icon d={PATH.check} c={GREEN} size="100%" />
+                </span>
+                Scanned · ₹486
+              </div>
+            </div>
+            <div className={s.useBtn} style={{ background: BLUE, ...tr(300), opacity: step >= 4 ? 1 : 0.35 }}>
+              Use This Data
+              <span className={s.tap} style={tap(step === 5)} />
+            </div>
+          </div>
+        </div>
+        <div className={s.notch} />
+      </div>
+
+      <div className={s.side}>
+        <div className={s.brand}>
+          <svg viewBox="0 0 40 30" className={s.logo} fill="#ebe7dc">
+            <rect x="14" y="0" width="26" height="7" rx="3.5" />
+            <rect x="7" y="11" width="26" height="7" rx="3.5" />
+            <rect x="0" y="22" width="26" height="7" rx="3.5" />
+          </svg>
+          <span className={s.brandName}>FlowLedger</span>
+        </div>
+        <div className={s.captions}>
+          {CAPTIONS.map(([n, name, line], i) => (
+            <div
+              key={n}
+              className={s.caption}
+              style={{
+                ...tr(500, i === caption ? 150 : 0),
+                opacity: i === caption ? 1 : 0,
+                transform: `translateY(${i === caption ? 0 : i < caption ? -1.2 : 1.2}cqw)`,
+              }}
+            >
+              <div className={s.captionKicker}>
+                {n} · {name}
+              </div>
+              <div className={s.captionLine}>{line}</div>
+            </div>
+          ))}
+        </div>
+        <div className={s.progress}>
+          {CAPTIONS.map(([n], i) => (
+            <span key={n} className={s.bar} style={{ ...tr(400), opacity: i === caption ? 0.8 : 0.18 }} />
+          ))}
         </div>
       </div>
     </div>

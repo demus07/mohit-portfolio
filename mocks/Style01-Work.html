@@ -1,0 +1,173 @@
+<!-- Direction 01: Swiss editorial — a strict twelve-column spread: AuctionXI as the lead story with its real media and facts, the other seven as a serif index whose active line shows its real screenshot in a fixed plate. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --ink:#16202c; --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145;
+  --rule:rgba(22,32,44,.2); --mute:rgba(22,32,44,.6);
+  --serif:"Newsreader",Georgia,serif; --sans:"Inter Tight",system-ui,sans-serif;
+  --m:48px; --g:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:0 var(--m)}
+header.grid{padding-top:120px;padding-bottom:72px}
+h2{grid-column:1 / span 7;font-family:var(--serif);font-weight:350;font-size:clamp(48px,5.4vw,88px);line-height:.96;letter-spacing:-.024em;text-wrap:balance;font-variation-settings:"opsz" 72}
+.hline{grid-column:9 / span 4;align-self:end;font-size:clamp(16px,1.2vw,19px);line-height:1.5;max-width:34ch}
+/* lead story */
+.lead{padding-bottom:110px;row-gap:0}
+.lead .rule{grid-column:1 / -1;height:1px;background:var(--ink);margin-bottom:28px;transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.lead.in .rule{transform:scaleX(1)}
+.plate{grid-column:1 / span 8;position:relative;overflow:hidden;aspect-ratio:16/10;background:#dcd3c2}
+.plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+.plate .wipe{position:absolute;inset:0;background:var(--sea);transform-origin:right;transition:transform 1.2s cubic-bezier(.7,0,.2,1) .15s}
+.lead.in .plate .wipe{transform:scaleX(0)}
+.info{grid-column:9 / span 4;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:44px;height:44px;object-fit:contain}
+.brand h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,3.4vw,56px);line-height:1;letter-spacing:-.02em}
+.kind{margin-top:10px;font-size:15px;color:var(--mute)}
+.head{margin-top:28px;font-family:var(--serif);font-size:clamp(24px,2vw,30px);line-height:1.15;font-weight:400;text-wrap:balance}
+.desc{margin-top:12px;font-size:16px;line-height:1.5;max-width:40ch}
+.facts{margin-top:26px;list-style:none;border-top:1px solid var(--rule)}
+.facts li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px;line-height:1.45}
+.tech{margin-top:16px;font-size:14px;color:var(--mute);line-height:1.5}
+.go{margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;width:max-content}
+.go .dot{width:8px;height:8px;border-radius:50%;background:#2f9a5c;animation:pulse 2.4s ease-in-out infinite}
+.go .arr{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.go:hover .arr{transform:translateX(6px)} .go:hover{color:var(--sea)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* index */
+.index{padding-bottom:140px;align-items:start}
+.list{grid-column:1 / span 7;border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;column-gap:var(--g);padding:20px 0 18px;border-bottom:1px solid var(--rule);cursor:pointer;position:relative;outline:none}
+.row .nm{font-family:var(--serif);font-weight:350;font-size:clamp(34px,3.3vw,54px);line-height:1;letter-spacing:-.018em;transition:transform .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.row .ky{align-self:center;font-size:14px;color:var(--mute);text-align:right;white-space:nowrap}
+.row .hd{grid-column:1 / -1;margin-top:8px;font-size:15px;color:var(--mute);transition:color .3s}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;background:var(--sea);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.row.on .nm,.row:hover .nm,.row:focus-visible .nm{transform:translateX(14px);color:var(--sea)}
+.row.on .hd{color:var(--ink)}
+.row.on::before{transform:scaleX(1)}
+.row .mob{display:none}
+.side{grid-column:9 / span 4;position:sticky;top:48px}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#dcd3c2}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .6s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.shot img.on{opacity:1;transform:scale(1)}
+.cap{position:relative;margin-top:18px;min-height:150px}
+.cap div{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.cap div.on{opacity:1;transform:none;pointer-events:auto}
+.cap h4{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;text-wrap:balance}
+.cap p{margin-top:8px;font-size:15px;line-height:1.5;max-width:40ch}
+.cap .lk{margin-top:12px;display:flex;gap:18px;font-size:15px}
+.cap .lk a{border-bottom:1px solid var(--rule);transition:border-color .3s,color .3s}
+.cap .lk a:hover{color:var(--sea);border-color:var(--sea)}
+.cap .lk span{color:var(--mute)}
+@media (max-width:1100px){ .side{grid-column:8 / span 5} .list{grid-column:1 / span 7} }
+@media (max-width:760px){
+  :root{--m:20px;--g:12px}
+  .grid{grid-template-columns:1fr}
+  header.grid{padding-top:64px;padding-bottom:36px}
+  h2,.hline,.plate,.info,.list{grid-column:1}
+  h2{font-size:42px}
+  .hline{margin-top:16px}
+  .lead{padding-bottom:72px}
+  .info{margin-top:22px}
+  .go{padding-top:20px}
+  .side{display:none}
+  .row .nm{font-size:34px}
+  .row .mob{display:block;grid-column:1 / -1;max-height:0;overflow:hidden;transition:max-height .7s cubic-bezier(.2,.7,.2,1)}
+  .row.on .mob{max-height:520px}
+  .row .mob img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;margin-top:14px}
+  .row .mob p{margin-top:10px;font-size:15px;line-height:1.5}
+  .row .mob .lk{margin-top:8px;display:flex;gap:16px;font-size:15px}
+  .row .mob .lk a{border-bottom:1px solid var(--rule)}
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} .plate .wipe{display:none} .lead .rule{transform:none} }
+</style>
+</head>
+<body>
+<header class="grid">
+  <h2>Things I've built and shipped</h2>
+  <p class="hline">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+</header>
+
+<section class="grid lead" id="lead">
+  <div class="rule"></div>
+  <div class="plate"><img id="leadImg" src="media/auctionxi.png" alt="AuctionXI: live auction broadcast screen"><div class="wipe"></div></div>
+  <div class="info">
+    <div class="brand"><img src="assets/logo.webp" alt=""><h3>AuctionXI</h3></div>
+    <p class="kind">My own product, 2026</p>
+    <p class="head">Live player auctions for any sport</p>
+    <p class="desc">Real-time bidding, broadcast graphics and YouTube overlays, with no production team.</p>
+    <ul class="facts">
+      <li>Every bid lands on every screen at once, and the money always adds up.</li>
+      <li>Twenty broadcast scenes for the projector and the stream.</li>
+      <li>Auction-ready in under 20 minutes.</li>
+    </ul>
+    <p class="tech">Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth</p>
+    <a class="go" href="https://auction-xi.com" target="_blank" rel="noopener"><span class="dot"></span>Live <span class="arr">→</span></a>
+  </div>
+</section>
+
+<section class="grid index">
+  <div class="list" id="list"></div>
+  <aside class="side">
+    <div class="shot" id="shot"></div>
+    <div class="cap" id="cap"></div>
+  </aside>
+</section>
+<!-- direction: Style01 Work — editorial lead story and serif index with a fixed media plate -->
+<script>
+(() => {
+  const P = [
+    ['TexAgent','Client work, 2026','texagent','A bahi-khata for textile brokers','Bills, brokerage and follow-ups in one place, instead of a paper book.',[],'Private client project'],
+    ['Cache Karo','Command-line tool, 2026','cachekaro','Find the cache hogs, get the space back','Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']]],
+    ['Aether','AI web app, 2025','aether','News, YouTube and Reddit in one conversation','An assistant with 17+ tones, and an NLP pipeline that scores every article first.',[['Source','https://github.com/Mohit-Bagri/aether-news-trends']]],
+    ['FlowLedger','Mobile app, 2026','flowledger','Every rupee in, every rupee out','A local-first finance app in Flutter that scans receipts and catches money leaks.',[['Source','https://github.com/Mohit-Bagri/flowledger']]],
+    ['Space Shuttle VR','VR game, 2024','shuttle','Fix the shuttle, then fly it out','A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']]],
+    ['VeloType','Web app, 2026','velotype','A typing test built for feel','Themes, modes and live words per minute, with a caret that keeps up.',[['Live','https://velo-type.vercel.app']]],
+    ['Windmill VR','VR app, 2025','windmill','Breathe with the windmill','A calm VR app for Meta Quest, paced to a four-part breath.',[['Source','https://github.com/Mohit-Bagri/windmill-vr']]],
+  ];
+  const list = document.getElementById('list'), shot = document.getElementById('shot'), cap = document.getElementById('cap');
+  const links = (l, priv) => l.length ? l.map(([t,u]) => `<a href="${u}" target="_blank" rel="noopener">${t} →</a>`).join('') : `<span>${priv}</span>`;
+  const rows = [], imgs = [], caps = [];
+  P.forEach(([n,k,slug,h,line,l,priv], i) => {
+    const r = document.createElement('div'); r.className = 'row'; r.tabIndex = 0; r.setAttribute('role','button');
+    r.innerHTML = `<span class="nm">${n}</span><span class="ky">${k}</span><span class="hd">${h}</span>
+      <div class="mob"><img src="media/${slug}.png" alt="${n} screenshot" loading="lazy"><p>${line}</p><div class="lk">${links(l,priv)}</div></div>`;
+    list.appendChild(r); rows.push(r);
+    const im = new Image(); im.src = `media/${slug}.png`; im.alt = `${n} screenshot`; shot.appendChild(im); imgs.push(im);
+    const c = document.createElement('div'); c.innerHTML = `<h4>${h}</h4><p>${line}</p><div class="lk">${links(l,priv)}</div>`; cap.appendChild(c); caps.push(c);
+    const act = () => set(i);
+    r.addEventListener('mouseenter', () => { if (!mob.matches) act(); });
+    r.addEventListener('focus', act);
+    r.addEventListener('click', e => { if (e.target.closest('a')) return; act(); });
+  });
+  const mob = matchMedia('(max-width:760px)');
+  let on = -1;
+  function set(i){ if (i === on) return; on = i; rows.forEach((r,j) => r.classList.toggle('on', j===i)); imgs.forEach((m,j) => m.classList.toggle('on', j===i)); caps.forEach((c,j) => c.classList.toggle('on', j===i)); }
+  set(0);
+  // lead story: rule draws and the sea-blue wipe uncovers the media when it enters
+  const lead = document.getElementById('lead'), leadImg = document.getElementById('leadImg');
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting && lead.classList.add('in')), { threshold: .25 }).observe(lead);
+  // earned: the lead image settles from a slight scale as it travels through the viewport
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) (function loop(){
+    const r = lead.getBoundingClientRect();
+    const t = Math.min(1, Math.max(0, 1 - (r.top + r.height*.3) / innerHeight));
+    leadImg.style.transform = `scale(${(1.08 - .08*t).toFixed(4)}) translateY(${((1-t)*14).toFixed(1)}px)`;
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>

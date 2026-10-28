@@ -1,0 +1,263 @@
+<!-- Direction 02: Hoardings at dusk — walking north along Marine Drive as the light goes, each project's real media lit on an Art Deco hoarding by its own lamp, the sea and the sunset behind. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Hoardings at dusk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--cream:#efe2c6;--text:#f3e9d6;--muted:#b9b2a6;--serif:"Instrument Serif",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy)}
+body{color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.walk{position:relative;height:600vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--navy)}
+.stage>*{position:absolute}
+svg.full{inset:0;width:100%;height:100%;display:block}
+
+/* sky, built in layers so the afterglow can fade as we walk */
+.sky{inset:0;background:linear-gradient(to bottom,#0b1626 0%,#14223a 22%,#2a3150 40%,#5b3f55 50%,#a45a4c 56%,#e0844a 60.5%,#f2a145 62%)}
+.after{inset:0;background:radial-gradient(60% 28% at 30% 62%,rgba(255,196,120,.85),rgba(242,161,69,.25) 45%,rgba(242,161,69,0) 70%);will-change:opacity}
+.night{inset:0;background:linear-gradient(to bottom,#0b1626 0%,#0e1b2e 50%,#1b2238 62%);opacity:0;will-change:opacity}
+.stars{inset:0 0 40% 0;width:100%;height:60%}
+.far{left:0;top:0;width:100%;height:100%;will-change:transform}
+.sea{left:0;right:0;top:62%;height:12%;background:linear-gradient(to bottom,#2a2f45 0%,#1a2236 40%,#121b2c 100%)}
+.glints{left:0;top:62%;width:100%;height:12%;will-change:transform}
+.wall{left:0;right:0;top:73.5%;height:3%;background:linear-gradient(to bottom,#4a4650 0%,#2e2f3a 30%,#1d2230 100%)}
+.prom{left:0;right:0;top:76.5%;height:12%;background:linear-gradient(to bottom,#2a2a33,#1a1d27 70%,#14171f)}
+.kerb{left:0;right:0;top:88.8%;height:1.1%;background:repeating-linear-gradient(90deg,#d8b34a 0 70px,#15171c 70px 140px);filter:brightness(.42) saturate(.8);will-change:background-position}
+.road{left:0;right:0;top:90.1%;bottom:0;background:linear-gradient(to bottom,#14161c,#0b0d12)}
+.pool{will-change:transform}
+
+/* the moving promenade: hoardings and lamps */
+.track{position:absolute;left:0;top:0;height:100%;will-change:transform}
+.mw{inset:0;-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,0) 27%,#000 46%);mask-image:linear-gradient(to right,rgba(0,0,0,0) 27%,#000 46%)}
+.hoard{position:absolute;bottom:20%;width:var(--w);transform-origin:50% 100%}
+.hoard a.poster{display:block;position:relative;aspect-ratio:1506/940;overflow:hidden;background:#0c121c}
+.hoard img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) brightness(.96);transition:filter .6s ease}
+.hoard .lit{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(80% 60% at 50% -6%,rgba(255,214,150,.22),rgba(255,214,150,0) 70%),
+  linear-gradient(to bottom,rgba(13,26,43,0) 45%,rgba(13,26,43,.38) 100%);mix-blend-mode:normal;transition:opacity .6s ease}
+.hoard:hover img,.hoard.on img{filter:saturate(1) brightness(1.02)}
+.hoard:hover .lit{opacity:.7}
+.case{position:relative;padding:0 calc(var(--w)*.035)}
+.case::before,.case::after{content:"";position:absolute;top:0;bottom:0;width:calc(var(--w)*.035);
+  background:repeating-linear-gradient(90deg,#d9c8a3 0 2px,#a28c69 2px 4px,#c9b48d 4px 6px),#c9b48d}
+.case::before{left:0}.case::after{right:0}
+.case .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(255,210,150,.18),rgba(13,26,43,.62));z-index:2}
+.crown{position:relative;height:calc(var(--w)*.1);
+  clip-path:polygon(0 100%,0 62%,8% 62%,8% 40%,22% 40%,22% 18%,38% 18%,38% 0,62% 0,62% 18%,78% 18%,78% 40%,92% 40%,92% 62%,100% 62%,100% 100%);
+  background:repeating-conic-gradient(from -90deg at 50% 118%,#e8d9b6 0 3deg,#c7b18a 3deg 6deg),#d9c7a1}
+.crown::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,214,160,.35),rgba(13,26,43,.25))}
+.plinth{height:calc(var(--w)*.045);background:linear-gradient(to bottom,#c3ad86,#7c6a52);position:relative}
+.plinth::after{content:"";position:absolute;left:6%;right:6%;top:100%;height:calc(var(--w)*.02);background:#4f4538}
+.legs{position:absolute;left:16%;right:16%;top:100%;height:var(--leg);
+  background:linear-gradient(90deg,#1b1d24 0 2.6%,transparent 2.6% 97.4%,#1b1d24 97.4%)}
+.hood{position:absolute;left:8%;right:8%;top:calc(var(--w)*-.02);height:6px;z-index:3}
+.hood i{position:absolute;top:-10px;width:22px;height:8px;border-radius:2px 2px 6px 6px;background:#2a2a30}
+.hood i::after{content:"";position:absolute;left:3px;right:3px;bottom:-3px;height:4px;border-radius:50%;background:#ffe0a8}
+.cone{position:absolute;left:-4%;right:-4%;top:calc(var(--w)*.075);height:calc(var(--w)*.5);pointer-events:none;
+  background:linear-gradient(to bottom,rgba(255,210,150,.22),rgba(255,210,150,0));clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);mix-blend-mode:screen;z-index:3}
+.glow{position:absolute;left:-30%;right:-30%;bottom:calc(var(--leg)*-1 - 30px);height:80px;background:radial-gradient(50% 50% at 50% 50%,rgba(242,161,69,.28),rgba(242,161,69,0));pointer-events:none}
+
+.lamp{position:absolute;bottom:20%;width:2px}
+.lamp svg{position:absolute;bottom:0;left:-30px;overflow:visible}
+.halo{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(255,196,120,.55),rgba(242,161,69,.12) 50%,rgba(242,161,69,0));pointer-events:none;mix-blend-mode:screen;transition:opacity 1.2s ease}
+
+.taxi{left:0;bottom:2.6%;width:min(250px,38vw);will-change:transform;transform:translateX(-120%)}
+.taxi svg{width:100%;height:auto;display:block}
+
+/* text zone */
+.copy{left:clamp(16px,5.5vw,88px);top:clamp(28px,8vh,84px);width:min(420px,calc(100vw - 32px));z-index:5}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(46px,4.6vw,72px);line-height:.98;letter-spacing:-.01em;text-wrap:balance;max-width:10ch}
+.lede{font-size:clamp(15px,1.1vw,17px);line-height:1.5;color:var(--muted);max-width:40ch;margin-top:16px}
+.cap{position:relative;margin-top:clamp(18px,4vh,40px);min-height:190px}
+.c{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .6s ease;pointer-events:none}
+.c.on{opacity:1;transform:none;pointer-events:auto}
+.c .n{font-family:var(--serif);font-size:clamp(30px,2.6vw,40px);line-height:1;color:var(--sodium)}
+.c .n em{font-family:var(--sans);font-style:normal;font-size:14px;color:var(--muted);margin-left:10px;letter-spacing:0}
+.c h3{font-family:var(--sans);font-weight:500;font-size:17px;margin-top:10px;line-height:1.35}
+.c p{font-size:15px;line-height:1.5;color:var(--muted);max-width:40ch;margin-top:4px}
+.c ul{list-style:none;margin-top:8px}
+.c li{font-size:14px;line-height:1.45;color:#d9cfbf;padding-left:14px;position:relative;margin-top:3px}
+.c li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--sodium);opacity:.75}
+.c .t{font-size:13px;color:var(--muted);margin-top:8px}
+.c .ln{margin-top:10px;display:flex;gap:18px;font-size:15px;font-weight:500}
+.c .ln a{color:var(--sodium);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s ease;padding-bottom:2px}
+.c .ln a:hover{background-size:100% 1px}
+.c .ln span{color:var(--muted);font-weight:400}
+.after-walk{height:30vh;background:linear-gradient(#0d1a2b,#0b1524)}
+
+@media (max-width:820px){
+  .copy{top:20px;width:calc(100vw - 32px)}
+  h2{font-size:40px;max-width:none}
+  .lede{display:none}
+  .cap{margin-top:12px;min-height:170px}
+  .c ul,.c .t{display:none}
+  .mw{-webkit-mask-image:none;mask-image:none}
+  .hoard{bottom:22%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<!-- direction: Work 02 · Hoardings at dusk -->
+<section class="walk" id="walk">
+  <div class="stage" id="stage">
+    <div class="sky"></div>
+    <div class="after" id="after"></div>
+    <div class="night" id="night"></div>
+    <svg class="stars" id="stars" viewBox="0 0 1440 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+    <svg class="far" id="far" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+    <div class="sea"></div>
+    <svg class="glints" id="glints" viewBox="0 0 1440 108" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="wall"></div>
+    <div class="prom"></div>
+    <div class="kerb" id="kerb"></div>
+    <div class="road"></div>
+    <div class="mw"><div class="track" id="track"></div></div>
+    <div class="taxi" id="taxi" aria-hidden="true">
+      <svg viewBox="0 0 250 92">
+        <defs><linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a2e"/><stop offset="1" stop-color="#0b0b0e"/></linearGradient>
+        <linearGradient id="ty" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8bd3a"/><stop offset="1" stop-color="#9a7a1c"/></linearGradient></defs>
+        <!-- Premier Padmini: upright glasshouse, yellow roof, black body, round arches -->
+        <path d="M58 36 C 64 18 76 14 104 13 L 150 13 C 168 13 176 20 184 36 Z" fill="url(#ty)"/>
+        <path d="M70 34 C 75 22 84 19 104 19 L 124 19 L 124 34 Z M130 19 L 150 19 C 162 19 168 24 173 34 L 130 34 Z" fill="#1a2433"/>
+        <path d="M70 34 C 75 22 84 19 104 19 L 124 19 L 124 34 Z" fill="rgba(242,161,69,.18)"/>
+        <rect x="112" y="6" width="26" height="8" rx="2" fill="#e8bd3a"/>
+        <path d="M14 44 C 16 37 26 35 58 35 L 196 35 C 222 36 236 40 240 48 L 242 64 C 242 68 238 70 232 70 L 18 70 C 12 70 10 66 10 60 Z" fill="url(#tb)"/>
+        <path d="M14 52 H 241" stroke="#b9b2a6" stroke-width="1" opacity=".5"/>
+        <rect x="6" y="64" width="26" height="5" rx="2" fill="#9aa0a6"/><rect x="222" y="64" width="24" height="5" rx="2" fill="#9aa0a6"/>
+        <circle cx="240" cy="50" r="3.5" fill="#ffe7b0"/>
+        <path d="M30 70 a 22 22 0 0 1 44 0 Z M170 70 a 22 22 0 0 1 44 0 Z" fill="#06070a"/>
+        <circle cx="52" cy="72" r="16" fill="#0b0c0f"/><circle cx="52" cy="72" r="7" fill="#6d7075"/>
+        <circle cx="192" cy="72" r="16" fill="#0b0c0f"/><circle cx="192" cy="72" r="7" fill="#6d7075"/>
+        <ellipse cx="125" cy="90" rx="110" ry="3" fill="rgba(242,161,69,.12)"/>
+      </svg>
+    </div>
+    <div class="copy">
+      <h2>Things I've built and shipped</h2>
+      <p class="lede">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+      <div class="cap" id="cap" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+<div class="after-walk"></div>
+
+<script>
+const P=[
+ {s:'auctionxi',n:'AuctionXI',k:'My own product, 2026',h:'Live player auctions for any sport',l:'Real-time bidding, broadcast graphics and YouTube overlays, with no production team.',a:[['Live','https://auction-xi.com']],
+  f:['Every bid lands on every screen at once, and the money always adds up.','Twenty broadcast scenes for the projector and the stream.','Auction-ready in under 20 minutes.'],t:'Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth'},
+ {s:'texagent',n:'TexAgent',k:'Client work, 2026',h:'A bahi-khata for textile brokers',l:'Bills, brokerage and follow-ups in one place, instead of a paper book.',a:[],priv:1},
+ {s:'cachekaro',n:'Cache Karo',k:'Command-line tool, 2026',h:'Find the cache hogs, get the space back',l:'Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',a:[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']]},
+ {s:'aether',n:'Aether',k:'AI web app, 2025',h:'News, YouTube and Reddit in one conversation',l:'An assistant with 17+ tones, and an NLP pipeline that scores every article first.',a:[['Source','https://github.com/Mohit-Bagri/aether-news-trends']]},
+ {s:'flowledger',n:'FlowLedger',k:'Mobile app, 2026',h:'Every rupee in, every rupee out',l:'A local-first finance app in Flutter that scans receipts and catches money leaks.',a:[['Source','https://github.com/Mohit-Bagri/flowledger']]},
+ {s:'shuttle',n:'Space Shuttle VR',k:'VR game, 2024',h:'Fix the shuttle, then fly it out',l:'A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',a:[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']]},
+ {s:'velotype',n:'VeloType',k:'Web app, 2026',h:'A typing test built for feel',l:'Themes, modes and live words per minute, with a caret that keeps up.',a:[['Live','https://velo-type.vercel.app']]},
+ {s:'windmill',n:'Windmill VR',k:'VR app, 2025',h:'Breathe with the windmill',l:'A calm VR app for Meta Quest, paced to a four-part breath.',a:[['Source','https://github.com/Mohit-Bagri/windmill-vr']]}
+];
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const rnd=s=>()=>(s=(s*16807)%2147483647,(s-1)/2147483646);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* captions */
+const cap=document.getElementById('cap');
+P.forEach(p=>cap.insertAdjacentHTML('beforeend',`<div class="c"><div class="n">${p.n}<em>${p.k}</em></div><h3>${p.h}</h3><p>${p.l}</p>${p.f?`<ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="t">${p.t}</div>`:''}<div class="ln">${p.a.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}${p.priv?'<span>Private client project</span>':''}</div></div>`));
+const caps=[...cap.children];
+
+/* stars */
+const st=document.getElementById('stars');const r1=rnd(11);
+for(let i=0;i<90;i++){const c=el('circle',{cx:r1()*1440,cy:Math.pow(r1(),1.6)*330,r:(r1()*.9+.3).toFixed(2),fill:'#f3e9d6',opacity:(r1()*.5+.15).toFixed(2)},st);
+  if(!reduce&&i%3===0){const a=el('animate',{attributeName:'opacity',values:`${c.getAttribute('opacity')};.05;${c.getAttribute('opacity')}`,dur:(4+r1()*6).toFixed(1)+'s',repeatCount:'indefinite'},c)}}
+
+/* far: Malabar Hill and the far curve of the necklace, the setting-sun glow */
+const far=document.getElementById('far');
+el('defs',{},far).innerHTML=`<linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3550"/><stop offset="1" stop-color="#2a2a40"/></linearGradient>
+<radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd59a"/><stop offset=".35" stop-color="#f6a85a" stop-opacity=".7"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>`;
+el('circle',{cx:430,cy:560,r:120,fill:'url(#sun)',opacity:.55},far);
+el('path',{d:'M430 558 m-16 0 a16 16 0 0 1 32 0 Z',fill:'#ffe2b0',opacity:.9},far); // last of the sun on the horizon
+el('path',{d:'M980 558 C 1040 548 1080 520 1140 512 C 1210 504 1250 520 1310 516 C 1370 512 1420 530 1520 536 L 1520 560 L 980 560 Z',fill:'url(#hill)'},far);
+const rh=rnd(5);
+for(let x=1010;x<1500;x+=7){const h=6+rh()*24*(x>1100&&x<1360?1:.5);const b=556-(x>1080?Math.min(30,(x-1080)*.25):0)+(x>1360?(x-1360)*.12:0);
+  el('rect',{x,y:b-h,width:5.5,height:h+4,fill:'#2b2a40'},far);
+  if(rh()>.55)el('rect',{x:x+1.5,y:b-h+3+rh()*Math.max(1,h-6),width:1.4,height:1.4,fill:'#ffcf8a',opacity:.8},far)}
+// the necklace: a string of sodium lamps curving from left edge to the hill
+const lamps=el('g',{id:'necklace'},far);
+for(let i=0;i<60;i++){const t=i/59,x=-40+t*1060,y=566-Math.sin(t*Math.PI*.5)*8;el('circle',{cx:x,cy:y,r:1.6-t*.7,fill:'#ffc77a',opacity:.9},lamps)}
+
+/* glints on the sea, ambient */
+const gl=document.getElementById('glints');const rg=rnd(23);
+for(let i=0;i<140;i++){const x=rg()*1440,y=rg()*108,w=4+rg()*26*(1-y/140);
+  const near=Math.abs(x-430)<260;const l=el('rect',{x,y,width:w*(near?1.6:1),height:.9+y/90,fill:near?'#ffcf8a':'#e8a76a',opacity:0},gl);
+  if(!reduce)el('animate',{attributeName:'opacity',values:`0;${(near?.7:.28)*(1-y/160)};0`,dur:(2.5+rg()*4).toFixed(1)+'s',begin:(rg()*4).toFixed(1)+'s',repeatCount:'indefinite'},l);else l.setAttribute('opacity',.2)}
+
+/* the promenade track */
+const track=document.getElementById('track');
+let W,H,mobile,travel,items=[],lampEls=[];
+function lampSVG(h){return `<svg width="60" height="${h}" viewBox="0 0 60 ${h}"><path d="M30 ${h} V 22 C 30 10 36 6 46 6" stroke="#1d1f27" stroke-width="3" fill="none"/><rect x="26" y="${h-14}" width="8" height="14" fill="#1d1f27"/><path d="M40 3 h14 l-2 6 h-10 z" fill="#2a2b33"/><ellipse cx="47" cy="10" rx="5" ry="2" fill="#ffe0a8"/></svg>`}
+function build(){
+  W=innerWidth;H=innerHeight;mobile=W<820;
+  track.innerHTML='';items=[];lampEls=[];
+  const base=mobile?Math.min(W*.8,420):Math.min(H*.5,W*.34);
+  const gap=mobile?W*.34:Math.max(170,W*.13);
+  let x=mobile?W*.1:W*.44;
+  P.forEach((p,i)=>{
+    const w=i===0?base*1.28:base;
+    const leg=H*(mobile?.06:.055);
+    // lamp before each hoarding
+    if(i>0){const lx=x-gap*.5;const lh=Math.round(H*.56);const L=document.createElement('div');L.className='lamp';L.style.left=lx+'px';L.innerHTML=lampSVG(lh);track.appendChild(L);
+      const halo=document.createElement('div');halo.className='halo';const hs=150;Object.assign(halo.style,{left:(lx+17-hs/2)+'px',bottom:`calc(20% + ${lh-10-hs/2}px)`,width:hs+'px',height:hs+'px'});track.appendChild(halo);lampEls.push(halo)}
+    const d=document.createElement('div');d.className='hoard';d.style.setProperty('--w',w+'px');d.style.setProperty('--leg',leg+'px');d.style.left=x+'px';d.style.bottom=`calc(${mobile?22:20}% + ${leg}px)`;
+    d.innerHTML=`<div class="glow"></div><div class="hood">${[18,50,82].map(v=>`<i style="left:calc(${v}% - 11px)"></i>`).join('')}</div><div class="crown"></div>
+      <div class="case"><a class="poster" href="${p.a[0]?p.a[0][1]:'#'}" ${p.a[0]?'target="_blank" rel="noopener"':'tabindex="-1"'} aria-label="${p.n}"><img src="media/${p.s}.png" alt="${p.n}: ${p.h}"><span class="lit"></span></a><div class="shade" style="left:0;right:auto;width:calc(var(--w)*.035)"></div><div class="shade" style="right:0;left:auto;width:calc(var(--w)*.035)"></div></div>
+      <div class="plinth"><div class="legs"></div></div>`;
+    track.appendChild(d);items.push({el:d,x,w});
+    x+=w+gap;
+  });
+  const totalW=x;
+  const focus=mobile?W*.5:W*.66;
+  // travel: from start until the last hoarding's centre reaches the focus line
+  const last=items[items.length-1];
+  travel=Math.max(1,last.x+last.w/2-focus+(mobile?0:W*0)) - (items[0].x+items[0].w/2-focus);
+  track.style.width=totalW+'px';
+  document.getElementById('walk').style.height=(H+travel*1.15)+'px';
+  items.forEach((it,i)=>it.el.addEventListener('mouseenter',()=>{hoverI=i;show(i)}));
+  items.forEach((it,i)=>it.el.addEventListener('mouseleave',()=>{hoverI=-1}));
+  tick();
+}
+let cur=-1,hoverI=-1;
+function show(i){if(i===cur)return;cur=i;caps.forEach((c,j)=>c.classList.toggle('on',j===i));items.forEach((it,j)=>it.el.classList.toggle('on',j===i))}
+
+const walk=document.getElementById('walk'),after=document.getElementById('after'),night=document.getElementById('night'),far2=document.getElementById('far'),glints=document.getElementById('glints'),kerb=document.getElementById('kerb');
+function tick(){
+  const top=walk.offsetTop;const y=scrollY-top;const p=Math.min(1,Math.max(0,y/(travel*1.15)));
+  const focus=mobile?W*.5:W*.66;
+  const startShift=items[0].x+items[0].w/2-focus;
+  const tx=-(startShift+p*travel);
+  track.style.transform=`translate3d(${tx.toFixed(1)}px,0,0)`;
+  far2.style.transform=`translate3d(${(-p*W*.05).toFixed(1)}px,0,0)`;
+  glints.style.transform=`translate3d(${(-p*W*.12).toFixed(1)}px,0,0)`;
+  kerb.style.backgroundPosition=`${(tx*1.25).toFixed(1)}px 0`;
+  // dusk deepens as we walk
+  after.style.opacity=(1-p*.75).toFixed(3);night.style.opacity=(p*.55).toFixed(3);
+  lampEls.forEach(h=>h.style.opacity=(.55+p*.45).toFixed(2));
+  if(hoverI<0){let best=0,bd=1e9;items.forEach((it,i)=>{const c=it.x+it.w/2+tx;const d=Math.abs(c-focus);if(d<bd){bd=d;best=i}});show(best)}
+}
+let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;tick()})},{passive:true});
+addEventListener('resize',()=>{build()});
+build();
+
+/* ambient: a kaali-peeli passes now and then, along the road below everything */
+const taxi=document.getElementById('taxi');
+if(!reduce){let t0=performance.now()+1500;const dur=9000,every=16000;
+  (function loop(now){const t=((now-t0)%every+every)%every;const k=t/dur;
+    if(k<=1){const x=-0.2*W+k*(W*1.4);taxi.style.transform=`translate3d(${x.toFixed(1)}px,0,0)`}else taxi.style.transform='translate3d(-120%,0,0)';
+    requestAnimationFrame(loop)})(performance.now())}
+</script>
+</body>
+</html>

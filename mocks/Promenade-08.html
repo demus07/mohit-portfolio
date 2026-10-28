@@ -1,0 +1,279 @@
+<!-- Direction 08: Risograph print — Marine Drive pulled as a three-ink riso (sea blue, fluoro pink, yellow) on cream stock; scrolling feeds each ink through the drum until the print comes into (almost) register. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade — Risograph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --blue:#0078bf; --pink:#ff48b0; --yellow:#ffe800; --paper:#f3eee2; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:var(--paper); }
+  body { font-family:"Space Grotesk",system-ui,sans-serif; color:var(--blue); }
+  .track { height:400vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:var(--paper); isolation:isolate; }
+  canvas.ink { position:absolute; inset:0; width:100%; height:100%; mix-blend-mode:multiply; will-change:transform; }
+  .paper { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:multiply; opacity:.55; z-index:4; }
+  .copy { position:absolute; left:clamp(24px,6vw,92px); top:clamp(28px,9.5vh,96px); width:min(720px,50vw); z-index:5; mix-blend-mode:multiply; }
+  h1 { font-family:"DM Serif Display",Georgia,serif; font-weight:400; font-size:clamp(42px,4.9vw,78px); line-height:.96; letter-spacing:-0.01em; color:var(--blue); text-wrap:balance; }
+  h1 em { color:var(--pink); display:inline-block; transform:translate(var(--mx,0px), var(--my,0px)); }
+  .line { margin-top:24px; font-size:clamp(16px,1.15vw,18.5px); line-height:1.5; max-width:40ch; color:var(--blue); }
+  .aside { margin-top:28px; max-width:30ch; font-family:"DM Serif Display",serif; font-style:italic; font-size:clamp(21px,1.7vw,28px); line-height:1.22; color:var(--pink);
+    opacity:0; transform:translateY(16px); transition:opacity 1.1s ease, transform 1.3s cubic-bezier(.2,.7,.2,1); }
+  .aside.on { opacity:1; transform:none; }
+  #gull { position:absolute; inset:0; width:100%; height:100%; mix-blend-mode:multiply; z-index:3; pointer-events:none; }
+  @media (max-width:700px) {
+    .copy { width:auto; right:24px; top:26px; }
+    h1 { font-size:clamp(38px,11vw,48px); }
+    .line { margin-top:14px; font-size:15.5px; }
+    .aside { margin-top:14px; font-size:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage" id="stage">
+    <canvas class="ink" id="cY"></canvas>
+    <canvas class="ink" id="cP"></canvas>
+    <canvas class="ink" id="cB"></canvas>
+    <svg id="gull" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <g id="gulls" fill="#0078bf"></g>
+    </svg>
+    <svg class="paper" aria-hidden="true"><filter id="pf"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="8" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .78  0 0 0 0 .74  0 0 0 0 .66  0 0 0 -1.1 1"/></filter><rect width="100%" height="100%" filter="url(#pf)"/></svg>
+    <div class="copy" id="copy">
+      <h1>One year in, here's <em>what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: 08 risograph print -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  const ss = t => t*t*(3-2*t);
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const track = document.getElementById('track');
+  const C = { Y: document.getElementById('cY'), P: document.getElementById('cP'), B: document.getElementById('cB') };
+  const INK = { Y:'#ffe800', P:'#ff48b0', B:'#0078bf' };
+  const gullSvg = document.getElementById('gull');
+  let vb = {x:0,y:0,w:1440,h:900}, k = 1, dpr = 1;
+
+  // ---------- the scene, in 1440x900 units ----------
+  const HZ = 468;
+  const SUN = {x:880, y:236, r:92};
+  // the promenade curve: from under our feet (bottom right) round to Chowpatty (far, at the horizon)
+  const A = [1640, 860], Q = [1180, 474], Bf = [640, 470];
+  const curve = t => { const u = 1-t; return [u*u*A[0] + 2*u*t*Q[0] + t*t*Bf[0], u*u*A[1] + 2*u*t*Q[1] + t*t*Bf[1]]; };
+  let s = 21; const rnd = () => (s = s*16807 % 2147483647) / 2147483647;
+
+  // Deco blocks along the curve, far to near
+  const blocks = [];
+  { let t = 0.98; while (t > 0.02) {
+      const [x, y] = curve(t);
+      const sc = Math.pow(1 - t, 1.9)*1.15 + 0.06;
+      const w = (130 + rnd()*90) * sc, h = (180 + rnd()*110) * sc;
+      blocks.push({ x: x + 14*sc, y: y - 4*sc, w, h, sc, ink: rnd() < .5 ? 'P' : 'Y', round: rnd() < .55, tower: rnd() < .3, floors: 5 + Math.floor(rnd()*3) });
+      t -= (w / 1300) * (1.15 - t*.2) + .004;
+  } }
+  // tetrapods at the foot of our wall, bottom left
+  const tets = [];
+  for (let i = 0; i < 46; i++) {
+    const tt = Math.pow(rnd(), 1.6)*.55;
+    const [cx, cy] = curve(tt), sc = Math.pow(1 - tt, 1.9)*1.15 + 0.06;
+    const R = (40 + rnd()*16)*sc, x = cx - (30 + rnd()*90)*sc, y = cy + (4 + rnd()*20)*sc;
+    const legs = []; const a0 = rnd()*6.28;
+    for (let j = 0; j < 4; j++) { const a = a0 + j*1.5708 + (rnd()-.5)*.5; legs.push({ a, l: R*(j === 3 ? .55 : 1)*(0.8 + rnd()*.3) }); }
+    tets.push({ x, y, R, legs });
+  }
+  tets.sort((a,b) => a.y - b.y);
+
+  const legPath = (p, t, L) => {
+    const ca = Math.cos(L.a), sa = Math.sin(L.a), w0 = t.R*.34, w1 = t.R*.22;
+    const ex = t.x + ca*L.l, ey = t.y + sa*L.l*.8;
+    p.moveTo(t.x - sa*w0, t.y + ca*w0*.8);
+    p.lineTo(ex - sa*w1, ey + ca*w1*.8);
+    p.lineTo(ex + ca*w1*.25, ey + sa*w1*.2);
+    p.lineTo(ex + sa*w1, ey - ca*w1*.8);
+    p.lineTo(t.x + sa*w0, t.y - ca*w0*.8);
+    p.closePath();
+  };
+  const tetPath = t => { const p = new Path2D(); for (const L of t.legs) legPath(p, t, L); p.arc(t.x, t.y, t.R*.36, 0, 6.283); return p; };
+
+  const seaPath = () => { const p = new Path2D(); p.moveTo(-800, HZ); p.lineTo(Bf[0], HZ);
+    for (let i = 1; i <= 40; i++) { const t = 1 - i/40; const [x,y] = curve(t); p.lineTo(x, y); }
+    p.lineTo(2300, A[1]); p.lineTo(2300, 1000); p.lineTo(-800, 1000); p.closePath(); return p; };
+  const landPath = () => { const p = new Path2D(); p.moveTo(Bf[0], HZ);
+    for (let i = 1; i <= 40; i++) { const t = 1 - i/40; const [x,y] = curve(t); p.lineTo(x, y); }
+    p.lineTo(2300, A[1]); p.lineTo(2300, HZ); p.closePath(); return p; };
+  const hillPath = () => { const p = new Path2D(); p.moveTo(560, HZ); p.bezierCurveTo(620, 440, 690, 420, 760, 418); p.bezierCurveTo(820, 416, 880, 432, 940, HZ); p.closePath(); return p; };
+
+  // ---------- halftone ----------
+  function halftone(ctx, clip, tone, angle, cell, ink) {
+    ctx.save(); if (clip) ctx.clip(clip);
+    const ca = Math.cos(angle), sa = Math.sin(angle);
+    const x0 = vb.x - 40, y0 = vb.y - 40, x1 = vb.x + vb.w + 40, y1 = vb.y + vb.h + 40;
+    const cx = (x0 + x1)/2, cy = (y0 + y1)/2, R = Math.hypot(x1 - x0, y1 - y0)/2;
+    const n = Math.ceil(R / cell);
+    ctx.beginPath();
+    for (let i = -n; i <= n; i++) for (let j = -n; j <= n; j++) {
+      const x = cx + (i*ca - j*sa)*cell, y = cy + (i*sa + j*ca)*cell;
+      if (x < x0 || x > x1 || y < y0 || y > y1) continue;
+      const t = tone(x, y); if (t <= .02) continue;
+      const r = cell*.7*Math.sqrt(Math.min(t, 1.1));
+      ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, 6.283);
+    }
+    ctx.fillStyle = ink; ctx.fill(); ctx.restore();
+  }
+  // ink starves in places, and the drum leaves faint bands
+  function inkTexture(ctx) {
+    ctx.save(); ctx.setTransform(1,0,0,1,0,0);
+    ctx.globalCompositeOperation = 'destination-out';
+    const W = ctx.canvas.width, H = ctx.canvas.height;
+    for (let i = 0; i < 9000; i++) { ctx.globalAlpha = .15 + rnd()*.5; const r = rnd()*1.6*dpr; ctx.fillRect(rnd()*W, rnd()*H, r, r); }
+    for (let i = 0; i < 7; i++) { ctx.globalAlpha = .05 + rnd()*.06; ctx.fillRect(0, rnd()*H, W, (6 + rnd()*30)*dpr); }
+    ctx.restore();
+  }
+
+  function render() {
+    for (const key of 'YPB') {
+      const c = C[key], ctx = c.getContext('2d');
+      c.width = innerWidth*dpr; c.height = innerHeight*dpr;
+      ctx.setTransform(k*dpr, 0, 0, k*dpr, -vb.x*k*dpr, -vb.y*k*dpr);
+      const ink = INK[key];
+      const sea = seaPath(), land = landPath();
+      if (key === 'Y') {
+        // sky warms toward the horizon; sun solid; glitter on the water
+        const sky = new Path2D(); sky.rect(-800, -1200, 3200, HZ + 1200);
+        halftone(ctx, sky, (x,y) => .85*Math.pow(clamp((y - 250)/(HZ - 250), 0, 1), 1.4)*clamp((x - 560)/300, 0, 1) + .5*clamp(1 - Math.hypot(x - SUN.x, y - SUN.y)/260, 0, 1), 0, 7, ink);
+        ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(SUN.x, SUN.y, SUN.r, 0, 6.283); ctx.fill();
+        halftone(ctx, sea, (x,y) => { const d = Math.abs(x - SUN.x - (y - HZ)*.12) / (40 + (y - HZ)*.9); return clamp(1 - d, 0, 1)*.95; }, 0, 6, ink);
+        // promenade paving and the yellow blocks
+        halftone(ctx, land, () => .22, 0, 6, ink);
+        for (const b of blocks) if (b.ink === 'Y') { ctx.fillStyle = ink; ctx.fill(blockPath(b)); }
+        ctx.fillStyle = ink; for (const t of tets) { ctx.save(); ctx.translate(-t.R*.1, -t.R*.12); ctx.globalAlpha = .9; ctx.clip(tetPath(t)); ctx.fillRect(t.x - t.R*1.2, t.y - t.R, t.R*2.4, t.R*.55); ctx.restore(); }
+      }
+      if (key === 'P') {
+        const sky = new Path2D(); sky.rect(-800, -1200, 3200, HZ + 1200);
+        halftone(ctx, sky, (x,y) => .5*Math.pow(clamp(1 - (y + 200)/(HZ + 140), 0, 1), 1.1)*clamp((x - 620)/380, 0, 1)*clamp((y + 120)/220, 0, 1), 1.31, 7, ink);
+        // warm ring of haze around the sun
+        halftone(ctx, sky, (x,y) => { const d = Math.hypot(x - SUN.x, y - SUN.y); return d < SUN.r + 4 ? 0 : clamp(1 - (d - SUN.r)/170, 0, 1)*.45; }, 1.31, 6, ink);
+        ctx.fillStyle = ink; ctx.globalAlpha = .9; ctx.fill(hillPath()); ctx.globalAlpha = 1;
+        for (const b of blocks) if (b.ink === 'P') { ctx.save(); ctx.clip(blockPath(b)); halftone(ctx, null, () => .62, 1.31, 4 + b.sc*3, ink); ctx.restore(); }
+        // the sea wall: a pink band that runs the whole curve
+        ctx.strokeStyle = ink; ctx.lineCap = 'round';
+        for (let i = 0; i < 60; i++) { const t0 = i/60, t1 = (i+1)/60; const [x0,y0] = curve(t0), [x1,y1] = curve(t1); ctx.lineWidth = lerp(18, 1.2, Math.pow(t0,.6)); ctx.beginPath(); ctx.moveTo(x0, y0 - ctx.lineWidth*.4); ctx.lineTo(x1, y1 - ctx.lineWidth*.4); ctx.stroke(); }
+        for (const t of tets) halftone(ctx, tetPath(t), (x,y) => .3 + clamp((y - t.y)/t.R, 0, 1)*.5, 1.31, 5, ink);
+        // a sliver of reflected warmth near the horizon
+        halftone(ctx, sea, (x,y) => .38*clamp(1 - (y - HZ)/60, 0, 1), 1.31, 6, ink);
+      }
+      if (key === 'B') {
+        // sea: tone deepens toward us, knocked out where the sun lies on it
+        halftone(ctx, sea, (x,y) => {
+          let t = .14 + .62*Math.pow(clamp((y - HZ)/(900 - HZ), 0, 1), .9);
+          const d = Math.abs(x - SUN.x - (y - HZ)*.12) / (36 + (y - HZ)*.8);
+          t *= clamp(d*.9, .15, 1);
+          t *= .9 + .1*Math.sin(y*.09 + Math.sin(x*.006)*2);   // swell bands
+          return t;
+        }, .26, 6, ink);
+        // far hill and the Malabar towers, blue with distance
+        halftone(ctx, hillPath(), () => .42, .26, 5, ink);
+        ctx.fillStyle = ink; ctx.globalAlpha = .55;
+        [[640,392,10,40],[662,380,8,52],[700,396,12,30],[728,374,9,52],[760,388,11,40],[792,400,8,26]].forEach(r => ctx.fillRect(...r));
+        ctx.globalAlpha = 1;
+        // the blocks drawn in line: floors, eyebrows, curved corners
+        ctx.strokeStyle = ink;
+        for (const b of blocks) {
+          ctx.lineWidth = Math.max(.6, 2.2*b.sc); ctx.stroke(blockPath(b));
+          if (b.sc < .12) continue;
+          const fl = b.floors, fh = (b.h - (b.tower ? 0 : 0)) / (fl + 1);
+          for (let f = 1; f <= fl; f++) {
+            const y = b.y - f*fh;
+            ctx.lineWidth = Math.max(.6, 3.2*b.sc);
+            ctx.beginPath(); ctx.moveTo(b.x + b.w*.06, y); ctx.lineTo(b.x + b.w*.94, y); ctx.stroke();
+            ctx.lineWidth = Math.max(.5, 1.1*b.sc);
+            for (let wx = 0; wx < 4; wx++) { ctx.fillStyle = ink; ctx.globalAlpha = .7; ctx.fillRect(b.x + b.w*(.12 + wx*.21), y + fh*.32, b.w*.11, fh*.42); }
+            ctx.globalAlpha = 1;
+          }
+        }
+        // tetrapods: shadow side in blue
+        for (const t of tets) halftone(ctx, tetPath(t), (x,y) => .45 + clamp((x - t.x + (y - t.y))/ (t.R*1.6), -.3, .5), .26, 5, ink);
+        ctx.strokeStyle = ink; ctx.lineWidth = 1.6; for (const t of tets) ctx.stroke(tetPath(t));
+        // a lamp post on the near wall, the necklace's first bead
+        for (const tt of [.06, .2, .32]) { const [lx, ly] = curve(tt), sc = Math.pow(1 - tt, 1.9)*1.15 + 0.06; const top = ly - 300*sc; ctx.lineWidth = 5*sc; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(lx + 6*sc, ly - 6*sc); ctx.lineTo(lx + 6*sc, top + 30*sc); ctx.quadraticCurveTo(lx + 6*sc, top, lx - 24*sc, top); ctx.stroke(); ctx.fillRect(lx - 38*sc, top - 3*sc, 20*sc, 8*sc); }
+      }
+      inkTexture(ctx);
+    }
+  }
+  function blockPath(b) {
+    const p = new Path2D(), r = b.round ? Math.min(b.w*.28, b.h*.2) : 0;
+    const top = b.y - b.h;
+    p.moveTo(b.x, b.y);
+    if (r) { p.lineTo(b.x, top + r); p.quadraticCurveTo(b.x, top, b.x + r, top); }
+    else p.lineTo(b.x, top);
+    if (b.tower) { const tw = b.w*.26, tx = b.x + b.w*.52; p.lineTo(tx, top); p.lineTo(tx, top - b.h*.12); p.lineTo(tx + tw*.18, top - b.h*.12); p.lineTo(tx + tw*.18, top - b.h*.2); p.lineTo(tx + tw*.82, top - b.h*.2); p.lineTo(tx + tw*.82, top - b.h*.12); p.lineTo(tx + tw, top - b.h*.12); p.lineTo(tx + tw, top); }
+    p.lineTo(b.x + b.w, top); p.lineTo(b.x + b.w, b.y); p.closePath();
+    return p;
+  }
+
+  // ---------- gulls, in blue ink ----------
+  const gulls = [];
+  const gG = document.getElementById('gulls');
+  for (let i = 0; i < 3; i++) { const e = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gG.appendChild(e); gulls.push({ e, x0: rnd()*2000, y: 150 + i*70 + rnd()*40, sp: 18 + rnd()*14, s: 1.2 - i*.25, ph: rnd()*6 }); }
+
+  function fit() {
+    const a = innerWidth / innerHeight;
+    if (a >= 1) { vb.h = 900; vb.w = 900*a; vb.x = 720 - vb.w/2; vb.y = 0; }
+    else { vb.w = 760; vb.h = vb.w/a; vb.x = 1000 - vb.w/2; vb.y = 900 - vb.h; }
+    k = innerWidth / vb.w; dpr = Math.min(2, devicePixelRatio || 1);
+    gullSvg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    render();
+  }
+
+  // ---------- the press ----------
+  // each drum feeds from a different side, then settles a few pixels off true
+  const FEED = {
+    Y: { from:[-1.1, .05], at:[ 2, -1], win:[.0, .38] },
+    P: { from:[ 1.1, -.04], at:[-3,  2], win:[.16, .56] },
+    B: { from:[ .03, 1.05], at:[ 1,  3], win:[.32, .76] },
+  };
+  const aside = document.getElementById('aside');
+  const em = document.querySelector('h1 em');
+  let prog = 0, target = 0;
+  const read = () => { const r = track.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+  function frame(ms) {
+    prog += (target - prog) * (reduce ? 1 : .085);
+    const p = reduce ? 1 : prog, t = reduce ? 0 : ms/1000;
+    const W = innerWidth, H = innerHeight;
+    for (const key of 'YPB') {
+      const f = FEED[key];
+      const u = 1 - ss(clamp((p - f.win[0]) / (f.win[1] - f.win[0]), 0, 1));
+      // a little wobble as each sheet beds in
+      const jit = u > 0 && u < 1 ? Math.sin(t*9 + key.charCodeAt(0))*u*2 : 0;
+      C[key].style.transform = `translate3d(${(f.from[0]*W*u + f.at[0] + jit).toFixed(1)}px, ${(f.from[1]*H*u + f.at[1]).toFixed(1)}px, 0)`;
+    }
+    const mu = 1 - ss(clamp((p - .16)/.4, 0, 1));
+    em.style.setProperty('--mx', (-3 + mu*30).toFixed(1) + 'px');
+    em.style.setProperty('--my', (2 - mu*4).toFixed(1) + 'px');
+    for (const g of gulls) {
+      const x = 1900 - ((g.x0 + t*g.sp) % 1300);
+      const y = g.y + Math.sin(t*.4 + g.ph)*8;
+      const f = Math.sin(t*2.2 + g.ph)*.5;
+      const s = g.s*16;
+      g.e.setAttribute('d', `M${x - s} ${y - s*f*.6} Q ${x - s*.45} ${y - s*(.55 + f*.3)} ${x} ${y} Q ${x + s*.45} ${y - s*(.55 + f*.3)} ${x + s} ${y - s*f*.6} Q ${x + s*.4} ${y - s*.2} ${x} ${y + s*.12} Q ${x - s*.4} ${y - s*.2} ${x - s} ${y - s*f*.6} Z`);
+      g.e.setAttribute('opacity', (clamp((p - .5)*3, 0, 1)*clamp((x - 700)/160, 0, 1)).toFixed(2));
+    }
+    aside.classList.toggle('on', p > .82);
+    requestAnimationFrame(frame);
+  }
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { fit(); read(); }, 120); });
+  addEventListener('scroll', read, {passive:true});
+  fit(); read(); prog = target;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!-- Direction 10: Night ride — a late, near-empty AC local, cool tubes overhead and the city's sodium lights streaking past the glass; scroll walks down the aisle and sits you across from him. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--navy:#0d1a2b;--sodium:#f2a145}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:460vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--navy)}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.14;mix-blend-mode:overlay}
+.vig{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(7,12,22,.5),rgba(7,12,22,.18) 38%,transparent 55%),radial-gradient(120% 90% at 60% 50%,transparent 55%,rgba(5,10,20,.5))}
+.copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,104px);top:clamp(32px,10vh,108px);width:min(30rem,36vw)}
+h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(52px,6.4vw,110px);line-height:.92;letter-spacing:-.02em;margin:0 0 .38em;font-variation-settings:"opsz" 144}
+.line{font-size:clamp(16px,1.15vw,18px);line-height:1.6;max-width:40ch;margin:0 0 1.5em;color:rgba(239,232,218,.8)}
+.cta{font-size:clamp(16px,1.15vw,18px);font-weight:500;color:var(--sodium);text-decoration:none;display:inline-flex;gap:.5em;align-items:baseline;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1px}.cta:hover span{transform:translateX(6px)}
+.note{font-family:Fraunces,serif;font-style:italic;font-weight:300;font-size:clamp(22px,1.9vw,30px);line-height:1.3;max-width:19ch;margin:2.1em 0 0;opacity:0;transform:translateY(14px)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:26px;width:auto}
+  h1{font-size:50px}
+  .line{font-size:16px;margin-bottom:1em}
+  .note{font-size:20px;margin-top:.9em;max-width:26ch}
+}
+</style>
+</head>
+<body>
+<!-- direction: Opening 10 / Night ride -->
+<div class="track" id="track">
+  <div class="stage">
+    <canvas id="cv"></canvas>
+    <div class="vig"></div>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cv=document.getElementById('cv'), ctx=cv.getContext('2d'), track=document.getElementById('track'), note=document.getElementById('note');
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  let W=0,H=0,dpr=1;
+  function size(){dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;}
+  size(); addEventListener('resize',size);
+
+  // ---- him: the figure, rasterised once from vector (mirrored to face the window), plus a sodium-lit version
+  const FIG=`<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="2250" viewBox="0 0 400 900"><defs>
+  <pattern id="pin" width="5" height="40" patternUnits="userSpaceOnUse"><rect width="5" height="40" fill="#dfe6ea"/><rect x="2" width=".7" height="40" fill="#9b90c4" opacity=".6"/></pattern>
+  <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#9fb4c4" stop-opacity=".1"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#0d1a2b" stop-opacity=".45"/></linearGradient>
+  <linearGradient id="sk" x1="0" x2="1"><stop offset="0" stop-color="#c99a7c"/><stop offset=".6" stop-color="#a7795f"/><stop offset="1" stop-color="#6f4c3d"/></linearGradient></defs>
+  <g transform="translate(400 0) scale(-1 1)">
+  <path fill="#1f2733" d="M96,850 L104,540 C98,528 98,500 112,486 C124,476 150,472 176,470 L300,440 C314,470 318,500 312,530 C300,548 270,552 236,552 L156,552 L160,850Z"/>
+  <path fill="#141a24" d="M236,552 L156,552 L160,850 L148,850 L146,560Z" opacity=".6"/>
+  <path fill="#11151c" d="M88,846 L164,846 C168,868 154,882 132,882 L82,882 C72,882 70,866 80,858Z"/>
+  <path fill="#2b2420" d="M168,446 L312,430 L314,446 L170,462Z"/>
+  <path fill="url(#pin)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+  <path fill="url(#sh)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+  <path fill="#7c5545" d="M210,166 L242,164 L246,206 L212,212Z"/>
+  <path fill="#eef2f6" d="M204,206 C214,198 234,195 250,200 L254,216 C238,209 220,211 209,224Z"/>
+  <path fill="url(#sk)" d="M216,74 C250,70 274,94 272,124 C271,148 262,166 246,178 C236,186 222,190 210,192 L186,192 C178,188 175,182 174,176 C170,174 169,170 171,166 C167,164 166,160 169,157 C165,155 162,152 164,148 L159,143 C156,140 159,137 163,135 L166,126 C165,112 168,98 178,88 C188,78 202,75 216,74Z"/>
+  <g transform="translate(0 21.6) scale(1 .8)"><path fill="#141110" d="M171,108 C165,98 164,84 168,70 C166,60 170,50 178,44 L176,38 C186,34 196,30 208,32 L206,26 C222,26 238,32 250,42 C264,52 272,66 274,84 C278,100 276,122 270,140 C268,148 266,154 262,158 C258,140 254,128 248,122 C240,114 230,110 220,108 C208,104 196,102 186,104 C180,105 175,106 171,108Z"/>
+  <path fill="#2c2522" d="M172,94 C168,70 178,48 200,40 C222,34 244,42 258,58 C238,50 216,50 198,58 C184,66 178,80 176,98Z"/>
+  <path fill="none" stroke="#4a4140" stroke-width="1.3" stroke-linecap="round" d="M178,64 C190,46 214,38 240,44 M180,80 C196,60 226,54 256,64 M194,98 C212,82 240,80 268,92"/></g>
+  <ellipse cx="243" cy="134" rx="7" ry="11.5" fill="#94664f"/>
+  <path d="M165,116 C172,112 182,111 190,113" fill="none" stroke="#1b1513" stroke-width="3" stroke-linecap="round"/>
+  <path d="M172,130 C175,129.5 178,129.5 182,131" fill="none" stroke="#2a1d17" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M166,160 L172,161" stroke="#6b3c2d" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M163,120 L190,118 C192,126 192,134 189,141 L168,142 C164,135 163,127 163,120Z" fill="rgba(220,235,245,.16)" stroke="#2b2724" stroke-width="2.3"/>
+  <path d="M190,122 L244,127" stroke="#2b2724" stroke-width="2.2"/>
+  <path d="M168,124 L178,123" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+  <path fill="url(#pin)" d="M236,232 C262,246 266,292 244,336 L226,372 C214,384 192,382 188,366 C186,344 200,300 212,262 C218,246 224,236 236,232Z"/>
+  <path fill="#0d1a2b" opacity=".3" d="M236,232 C262,246 266,292 244,336 L226,372 C240,330 250,280 236,232Z"/>
+  <path fill="url(#sk)" d="M190,364 C186,320 180,260 176,214 L202,210 C206,260 212,320 214,362Z"/>
+  <path fill="url(#pin)" d="M185,326 C196,322 208,322 217,324 L219,350 C208,349 196,351 186,353Z"/>
+  <path fill="url(#sk)" d="M166,198 C166,188 174,183 186,184 L204,188 C211,193 210,206 205,214 L182,218 C172,216 166,208 166,198Z"/>
+  <path d="M171,192 C170,198 170,204 173,210 M179,188 C178,196 178,206 181,214" fill="none" stroke="#6f4c3d" stroke-width="1.2" opacity=".7"/>
+  </g></svg>`;
+  const fig=new Image(), figWarm=document.createElement('canvas'); let figReady=false;
+  fig.onload=()=>{figWarm.width=1000;figWarm.height=2250;const c=figWarm.getContext('2d');c.drawImage(fig,0,0);
+    c.globalCompositeOperation='source-atop';const g=c.createLinearGradient(0,0,1000,0);g.addColorStop(0,'rgba(242,161,69,0)');g.addColorStop(.55,'rgba(242,161,69,.15)');g.addColorStop(1,'rgba(255,170,80,.75)');c.fillStyle=g;c.fillRect(0,0,1000,2250);figReady=true;};
+  fig.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(FIG);
+  const M=.0016; // metres per figure unit
+  const HIM={z:8.42, faceX:1.68, headTop:1.40};
+
+  // ---- the coach in metres: x across, y up, z down the aisle
+  const BAY=1.8, NB=12, HW=1.8;
+  const cam={x:0,y:1.6,z:-1.2,sx:0,sy:0,f:900,yaw:0};
+  const toCam=(x,y,z)=>{const dx=x-cam.x,dz=z-cam.z,c=Math.cos(cam.yaw),s=Math.sin(cam.yaw);return [dx*c-dz*s, y-cam.y, dx*s+dz*c];};
+  function projC(c){return [W/2+cam.sx+c[0]*cam.f/c[2], H/2+cam.sy-c[1]*cam.f/c[2], c[2]];}
+  function proj(x,y,z){return projC(toCam(x,y,z));}
+  const NEAR=.08;
+  function clipNear(pts){const out=[];const zn=NEAR; const cp=pts.map(p=>toCam(...p));
+    for(let i=0;i<cp.length;i++){const a=cp[i],b=cp[(i+1)%cp.length];const ai=a[2]>=zn,bi=b[2]>=zn;
+      if(ai) out.push(a); if(ai!==bi){const t=(zn-a[2])/(b[2]-a[2]);out.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,zn]);}}
+    return out;}
+  function path(pts){const c=clipNear(pts); if(c.length<3) return false; ctx.beginPath(); c.forEach((p,i)=>{const s=projC(p); i?ctx.lineTo(s[0],s[1]):ctx.moveTo(s[0],s[1]);}); ctx.closePath(); return true;}
+  function fillPoly(pts,col){ if(path(pts)){ctx.fillStyle=col;ctx.fill();} }
+  // light falls off with distance from the camera end and pools under the lit tubes
+  const lit=(z)=>.42+.58*Math.exp(-Math.abs(z-HIM.z)/6);
+  const rgb=(r,g,b,k=1,a=1)=>`rgba(${Math.round(r*k)},${Math.round(g*k)},${Math.round(b*k)},${a})`;
+
+  // ---- outside: sodium lamps and the city, moving past
+  let seed=3; const rnd=()=>((seed=(seed*16807)%2147483647)/2147483647);
+  const lights=[];
+  for(let i=0;i<14;i++) lights.push({x:5.2,y:5.4,z:i*12+rnd()*3,k:'lamp'});
+  for(let i=0;i<10;i++) lights.push({x:-6.2,y:5.4,z:i*16+rnd()*4,k:'lamp'});
+  for(let i=0;i<280;i++){const side=rnd()<.6?1:-1;lights.push({x:side*(10+rnd()*60),y:-1+rnd()*18,z:rnd()*170,k:rnd()<.7?'win':'white',s:.3+rnd()*.6});}
+  const SPEED=13;
+
+  function drawOutside(dt,blur){
+    for(const L of lights){
+      if(!rm) L.z-=SPEED*dt; if(L.z<cam.z-2) L.z+=170;
+      const a0=proj(L.x,L.y,L.z), d1=a0[2]; if(d1<.3) continue;
+      const a=proj(L.x,L.y,L.z), b=proj(L.x,L.y,L.z+blur);
+      const w=(L.k==='lamp'?.35:.12*L.s)*cam.f/d1;
+      const col=L.k==='lamp'?'255,176,86':L.k==='win'?'242,161,69':'215,228,240';
+      const al=L.k==='lamp'?.9:(.35+.4*(L.s||.5))*Math.min(1,60/d1);
+      ctx.strokeStyle=`rgba(${col},${al*.18})`;ctx.lineWidth=w*3.2;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();
+      ctx.strokeStyle=`rgba(${col},${al})`;ctx.lineWidth=Math.max(.6,w);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();
+    }
+  }
+  function warmOnHim(){let s=0;for(const L of lights) if(L.k==='lamp'&&L.x>0){const d=L.z-HIM.z;s+=Math.exp(-(d*d)/5);} return Math.min(1,s);}
+
+  function windowQuad(side,k){const z0=k*BAY+.18,z1=k*BAY+BAY-.18,x=side*HW;return [[x,.95,z0],[x,.95,z1],[x,1.78,z1],[x,1.78,z0]];}
+
+  function drawShell(dt,blur){
+    // far end wall with the gangway door to the next coach
+    const ZE=NB*BAY;
+    fillPoly([[-HW,0,ZE],[HW,0,ZE],[HW,2.05,ZE],[1,2.35,ZE],[-1,2.35,ZE],[-HW,2.05,ZE]],rgb(70,84,96,lit(ZE)));
+    fillPoly([[-.45,0,ZE],[.45,0,ZE],[.45,1.95,ZE],[-.45,1.95,ZE]],rgb(46,56,66));
+    fillPoly([[-.32,.9,ZE],[.32,.9,ZE],[.32,1.75,ZE],[-.32,1.75,ZE]],rgb(150,170,170,.7));
+    for(let k=NB-1;k>=0;k--){
+      const z0=k*BAY,z1=z0+BAY,kz=lit(z0+BAY/2);
+      // floor with the tubes' sheen down the aisle
+      fillPoly([[-HW,0,z0],[HW,0,z0],[HW,0,z1],[-HW,0,z1]],rgb(26,32,42,kz));
+      fillPoly([[-.32,0,z0],[.32,0,z0],[.32,0,z1],[-.32,0,z1]],rgb(70,84,96,kz,.55));
+      // ceiling: sloped sides and flat centre
+      fillPoly([[-HW,2.05,z0],[-1,2.35,z0],[-1,2.35,z1],[-HW,2.05,z1]],rgb(58,68,80,kz));
+      fillPoly([[HW,2.05,z0],[1,2.35,z0],[1,2.35,z1],[HW,2.05,z1]],rgb(84,96,108,kz));
+      fillPoly([[-1,2.35,z0],[1,2.35,z0],[1,2.35,z1],[-1,2.35,z1]],rgb(112,124,134,kz));
+      // AC duct grille stripe
+      fillPoly([[-.18,2.349,z0],[.18,2.349,z0],[.18,2.349,z1],[-.18,2.349,z1]],rgb(96,108,118,kz));
+      // fluorescent tubes; one flickers near the far end
+      const on = !(k===9) || (Math.sin(performance.now()/90)>.2 && Math.sin(performance.now()/1300)>-.6);
+      [-.72,.72].forEach(x=>{ const o=on&&x>0&&k!==4; if(path([[x-.07,2.3,z0+.2],[x+.07,2.3,z0+.2],[x+.07,2.3,z1-.2],[x-.07,2.3,z1-.2]])){ctx.fillStyle=o?'rgba(225,242,250,.88)':'#4b5661';ctx.shadowColor='rgba(200,235,255,.7)';ctx.shadowBlur=o?12:0;ctx.fill();ctx.shadowBlur=0;}});
+      // walls
+      [-1,1].forEach(s=>{const x=s*HW, base=s<0?[60,72,84]:[80,94,106];
+        fillPoly([[x,0,z0],[x,0,z1],[x,.95,z1],[x,.95,z0]],rgb(base[0]*.8,base[1]*.8,base[2]*.8,kz));
+        fillPoly([[x,1.78,z0],[x,1.78,z1],[x,2.05,z1],[x,2.05,z0]],rgb(...base,kz));
+        fillPoly([[x,.95,z0],[x,.95,z0+.18],[x,1.78,z0+.18],[x,1.78,z0]],rgb(...base,kz));
+        fillPoly([[x,.95,z1-.18],[x,.95,z1],[x,1.78,z1],[x,1.78,z1-.18]],rgb(...base,kz));
+        fillPoly([[x,.9,z0],[x,.9,z1],[x,.95,z1],[x,.95,z0]],rgb(180,190,196,kz)); // sill
+        fillPoly(windowQuad(s,k),'#08111d');
+      });
+    }
+    // the city through every window, clipped to the glass
+    ctx.save(); ctx.beginPath(); let any=false;
+    for(let k=0;k<NB;k++) for(const s of [-1,1]){const c=clipNear(windowQuad(s,k)); if(c.length<3) continue; any=true; c.forEach((p,i)=>{const q=projC(p); i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]);}); ctx.closePath();}
+    if(any){ctx.clip(); ctx.globalCompositeOperation='lighter'; drawOutside(dt,blur); ctx.globalCompositeOperation='source-over';
+      // the coach's own tubes reflected in the glass
+      for(let k=0;k<NB;k++) for(const s of [-1,1]){const x=s*HW;fillPoly([[x,1.62,k*BAY+.2],[x,1.62,k*BAY+BAY-.2],[x,1.66,k*BAY+BAY-.2],[x,1.66,k*BAY+.2]],'rgba(200,230,255,.10)');}}
+    ctx.restore();
+  }
+
+  function seatBack(x0,x1,z,facing,kz){ // facing -1: cushions toward us; +1: we see its back
+    if(facing<0){
+      fillPoly([[x0,.45,z],[x1,.45,z],[x1,1.15,z],[x0,1.15,z]],rgb(46,80,134,kz));
+      fillPoly([[x0,1.1,z],[x1,1.1,z],[x1,1.15,z],[x0,1.15,z]],rgb(92,128,176,kz));
+      fillPoly([[x0,.45,z-.5],[x1,.45,z-.5],[x1,.45,z],[x0,.45,z]],rgb(60,98,152,kz));
+      fillPoly([[x0,.12,z-.5],[x1,.12,z-.5],[x1,.45,z-.5],[x0,.45,z-.5]],rgb(40,48,60,kz));
+    }else{
+      fillPoly([[x0,.45,z],[x1,.45,z],[x1,.45,z+.5],[x0,.45,z+.5]],rgb(60,98,152,kz));
+      fillPoly([[x0,.12,z],[x1,.12,z],[x1,1.15,z],[x0,1.15,z]],rgb(84,96,110,kz));
+      fillPoly([[x0,1.1,z],[x1,1.1,z],[x1,1.15,z],[x0,1.15,z]],rgb(150,162,170,kz));
+    }
+  }
+  function pole(x,z,kz){const a=proj(x,0,z),b=proj(x,2.3,z); if(a[2]<.35) return; const w=.034*cam.f/a[2];
+    ctx.strokeStyle=rgb(150,162,170,kz);ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();
+    ctx.strokeStyle='rgba(235,248,255,.55)';ctx.lineWidth=w*.25;ctx.beginPath();ctx.moveTo(a[0]-w*.2,a[1]);ctx.lineTo(b[0]-w*.2,b[1]);ctx.stroke();}
+  function rail(x,z0,z1,kz,T){
+    let a=toCam(x,2.02,z0), b=toCam(x,2.02,z1); const zn=.6;
+    if(a[2]<zn&&b[2]<zn) return;
+    if(a[2]<zn){const t=(zn-a[2])/(b[2]-a[2]); a=[a[0]+(b[0]-a[0])*t,a[1],zn];}
+    const fade=k=>clamp((k-1.2)/2.5);
+    const pa=projC(a), pb=projC(b);
+    ctx.strokeStyle=rgb(150,162,170,kz,fade(a[2]));ctx.lineWidth=Math.max(1,.025*cam.f/((a[2]+b[2])/2));ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();
+    // grab handles, swaying with the train
+    for(let z=z0+.3;z<z1;z+=.5){const sw=Math.sin(T*1.6+z*1.3)*.05;
+      const p=proj(x,2.02,z), q=proj(x+sw,1.8,z+sw*.3); const d=p[2]; if(d<1.2) continue; const r=.045*cam.f/d;
+      ctx.strokeStyle=rgb(205,214,220,kz,.9*fade(d));ctx.lineWidth=Math.max(.7,.012*cam.f/d);ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();
+      ctx.beginPath();ctx.ellipse(q[0],q[1]+r*.9,r*.8,r,0,0,Math.PI*2);ctx.stroke();}
+  }
+  function drawHim(kz){ if(!figReady) return;
+    const xl=HIM.faceX-(400-160)*M, yt=HIM.headTop+42*M, z=HIM.z;
+    const p=proj(xl,yt,z); if(p[2]<NEAR) return; const s=M*cam.f/p[2];
+    ctx.save(); const ex=p[0]+200*s, ey=p[1]+370*s; ctx.translate(ex,ey); ctx.rotate(.09); ctx.translate(-ex,-ey);
+    ctx.globalAlpha=1; ctx.drawImage(fig,p[0],p[1],400*s,900*s);
+    const w=warmOnHim(); ctx.globalAlpha=.25+.75*w; ctx.drawImage(figWarm,p[0],p[1],400*s,900*s); ctx.restore(); ctx.globalAlpha=1;
+  }
+  function drawInterior(T){
+    for(let k=NB-1;k>=0;k--){
+      const z0=k*BAY, kz=lit(z0+BAY/2);
+      // bench B (faces us) at the far side of the bay, then him, then bench A (its back to us)
+      seatBack(.45,1.74,z0+1.62,-1,kz); seatBack(-1.74,-.45,z0+1.62,-1,kz);
+      if(k===4) drawHim(kz);
+      seatBack(.45,1.74,z0+.2,1,kz); seatBack(-1.74,-.45,z0+.2,1,kz);
+      pole(.42,z0+.12,kz); pole(-.42,z0+.12,kz);
+      rail(.5,z0,z0+BAY,kz,T); rail(-.5,z0,z0+BAY,kz,T);
+    }
+  }
+
+  // camera path: from the end of the coach, down the aisle, to the seat across from him
+  const A={x:-.15,y:1.62,z:-1.6}, B={x:.5,y:1.2,z:7.42};
+  function setCamera(t){
+    const ph=W<700; cam.f=ph?H*.62:H*1.02;
+    cam.x=lerp(A.x,B.x,t); cam.y=lerp(A.y,B.y,t); cam.z=lerp(A.z,B.z,t); cam.yaw=lerp(0,ph?.62:.6,ease(seg(t,.3,1)));
+    cam.sx=0; cam.sy=0;
+    const hx=HIM.faceX-.12, hy=HIM.headTop-.12;
+    const nat=proj(hx,hy,HIM.z);
+    const tgt=[ph?W*.5:W*.64, ph?H*.66:H*.47];
+    const k=ease(t);
+    cam.sx=k*(tgt[0]-nat[0]); cam.sy=(1-k)*(ph?H*.08:0)+k*(tgt[1]-nat[1]);
+  }
+
+  let sp=null,last=performance.now();
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    const r=track.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight));
+    sp=sp===null||rm?p:sp+(p-sp)*Math.min(1,dt*5);
+    const t=ease(seg(sp,.03,.84));
+    setCamera(t);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle='#0d1a2b'; ctx.fillRect(0,0,W,H);
+    // a faint rocking of the coach
+    const T=now/1000, rock=rm?0:Math.sin(T*1.9)*.0025;
+    ctx.translate(W/2,H/2); ctx.rotate(rock); ctx.translate(-W/2,-H/2);
+    drawShell(dt,4.2);
+    drawInterior(T);
+    const n=seg(sp,.86,.97); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

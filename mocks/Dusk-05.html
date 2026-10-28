@@ -1,0 +1,266 @@
+<!-- Direction 05: Walking figure — Mohit walks the Marine Drive promenade at dusk in side elevation; your scroll is his stride, each bench he passes is a stop, the lamps behind him come on, and he stops at the last one. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk: The Walk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.dusk{position:relative;height:900vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#3b4a6b}
+svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.2;mix-blend-mode:overlay}
+.copy{position:absolute;z-index:5;left:clamp(24px,5.6vw,104px);top:clamp(44px,10vh,120px);width:min(30rem,36vw)}
+h2{font-family:"EB Garamond",serif;font-weight:400;font-size:clamp(46px,4.6vw,76px);line-height:1;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.stops{position:relative;margin-top:clamp(28px,5vh,52px)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;will-change:opacity,transform}
+.where{margin:0 0 .55rem;font-size:15.5px;font-weight:600;display:flex;gap:.55rem;align-items:baseline}
+.where .yr{color:#ffc27a;font-weight:500}
+.line{margin:0;font-family:"EB Garamond",serif;font-size:clamp(22px,1.7vw,27px);line-height:1.3;max-width:20em}
+.roles{font-size:14px;line-height:1.45}
+.roles .r{display:flex;flex-wrap:wrap;gap:.1rem .5rem;align-items:baseline;margin:0;padding:.52rem 0}
+.roles .r b{font-weight:600}
+.roles .r span{opacity:.7}
+.roles .r em{font-style:normal;color:#ffc27a;margin-left:auto}
+.roles ul{list-style:none;margin:0 0 .45rem;padding:0;font-size:13.5px;opacity:.92}
+.roles li{padding:.2rem 0 .2rem .95rem;position:relative}
+.roles li::before{content:"";position:absolute;left:0;top:.75em;width:6px;height:2px;background:#ffc27a}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;width:auto;top:36px}
+  h2{font-size:40px}
+  .stops{margin-top:18px}
+  .line{font-size:20px}
+  .where{font-size:14px}
+  .roles{font-size:12.5px}.roles ul{font-size:12px}.roles .r{padding:.3rem 0}
+  svg.scene{top:auto;height:56%}
+}
+</style>
+</head>
+<body>
+<section class="dusk" id="dusk">
+  <div class="stage" id="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse"><stop id="k0" offset="0"/><stop id="k1" offset=".6"/><stop id="k2" offset=".9"/><stop id="k3" offset="1"/></linearGradient>
+        <linearGradient id="gSea" x1="0" y1="558" x2="0" y2="680" gradientUnits="userSpaceOnUse"><stop id="w0" offset="0"/><stop id="w1" offset="1"/></linearGradient>
+        <radialGradient id="gSun"><stop offset="0" stop-color="#fff3d6"/><stop offset=".7" stop-color="#ffc471"/><stop offset="1" stop-color="#f58a4e"/></radialGradient>
+        <radialGradient id="gHalo"><stop offset="0" stop-color="#ffc77a" stop-opacity=".7"/><stop offset=".35" stop-color="#f6915a" stop-opacity=".22"/><stop offset="1" stop-color="#f6915a" stop-opacity="0"/></radialGradient>
+        <radialGradient id="gLamp"><stop offset="0" stop-color="#fff1cc"/><stop offset=".14" stop-color="#ffc56c" stop-opacity=".8"/><stop offset=".5" stop-color="#f2a145" stop-opacity=".16"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <radialGradient id="gPool"><stop offset="0" stop-color="#ffc06a" stop-opacity=".6"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="gWall" x1="0" y1="652" x2="0" y2="742" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#9c938a"/><stop offset=".08" stop-color="#6d6a6e"/><stop offset="1" stop-color="#4b4c57"/></linearGradient>
+        <linearGradient id="gWalk" x1="0" y1="740" x2="0" y2="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5a5a62"/><stop offset="1" stop-color="#2b2d37"/></linearGradient>
+        <linearGradient id="gShirt" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#e9e3ee"/><stop offset=".55" stop-color="#b8b3c7"/><stop offset="1" stop-color="#77738c"/></linearGradient>
+        <pattern id="stripes" width="3.2" height="10" patternUnits="userSpaceOnUse"><rect width="3.2" height="10" fill="url(#gShirt)"/><rect width=".6" height="10" fill="#9a8fc4" opacity=".55"/></pattern>
+        <filter id="seaTex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".003 .18" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .85  0 0 0 0 .7  0 0 0 1.8 -1"/></filter>
+        <filter id="b1"><feGaussianBlur stdDeviation="1.4"/></filter>
+        <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0"><stop offset=".36" stop-color="#000"/><stop offset=".5" stop-color="#fff"/></linearGradient>
+        <mask id="lampMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="900"><rect id="maskR" width="1440" height="900" fill="url(#fadeL)"/></mask>
+        <clipPath id="sky"><rect width="1440" height="559"/></clipPath>
+      </defs>
+      <rect width="1440" height="560" fill="url(#gSky)"/>
+      <g id="stars" opacity="0"></g>
+      <g clip-path="url(#sky)"><circle id="halo" cx="1180" r="360" fill="url(#gHalo)"/><circle id="sun" cx="1180" r="34" fill="url(#gSun)"/></g>
+      <g id="clouds" filter="url(#b1)" opacity=".8">
+        <path d="M820 300 C930 290 1120 290 1260 298 C1150 308 940 310 820 300Z" fill="#f0b292"/>
+        <path d="M1000 410 C1100 402 1280 402 1420 408 C1300 418 1110 418 1000 410Z" fill="#f4bc8e"/>
+      </g>
+      <!-- Malabar Hill at the north end, approaching very slowly -->
+      <g id="hill"><path d="M1200 559 C1250 546 1300 532 1360 529 C1420 526 1480 534 1560 545 L1600 559Z"/><rect x="1300" y="508" width="8" height="24"/><rect x="1322" y="500" width="10" height="30"/><rect x="1352" y="511" width="7" height="18"/><rect x="1390" y="504" width="9" height="25"/><rect x="1440" y="514" width="8" height="18"/></g>
+      <g id="hillLights" fill="#ffd18a" opacity="0"></g>
+      <rect y="558" width="1440" height="122" fill="url(#gSea)"/>
+      <rect y="558" width="1440" height="122" filter="url(#seaTex)" opacity=".22"/>
+      <g id="glit"></g>
+      <!-- lamps along the wall, behind the walkers -->
+      <g mask="url(#lampMask)"><g id="lamps"></g></g>
+      <!-- parapet -->
+      <rect y="652" width="1440" height="90" fill="url(#gWall)"/>
+      <rect y="651" width="1440" height="3" fill="#cdbfae" opacity=".6" id="lip"/>
+      <g id="joints" stroke="#3e3f48" stroke-width="1.2" opacity=".55"></g>
+      <rect id="wallNight" y="651" width="1440" height="92" fill="#0b1220" opacity="0"/>
+      <g id="wallPools"></g>
+      <rect y="740" width="1440" height="160" fill="url(#gWalk)"/>
+      <g id="tiles" stroke="#24262f" stroke-width="1" opacity=".5"></g>
+      <rect id="walkNight" y="740" width="1440" height="160" fill="#070c16" opacity="0"/>
+      <g id="pools"></g>
+      <g id="benches"></g>
+      <ellipse id="shadow" cy="806" rx="38" ry="4.5" fill="#0b0f18" opacity=".45"/>
+      <g id="fig"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+  </div>
+</section>
+<!-- direction: Dusk 05 · Walking figure -->
+<script>
+const STOPS=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const ROLES=`<div class="r"><b>Sypha AI</b><span>Software Engineer</span><em>Dec 2025 – now</em></div>
+<ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+<li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+<li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+<li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul>
+<div class="r"><b>AuctionXI</b><span>Founder</span><em>Apr 2026 – now</em></div>
+<div class="r"><b>TexAgent</b><span>Freelance developer</span><em>Sep 2026 – now</em></div>
+<div class="r"><b>MK Exim India</b><span>E-commerce, Amazon, TataCliQ and Sephora</span><em>Mar – Sep 2025</em></div>
+<div class="r"><b>Brahmani Gems</b><span>Web developer intern, Shopify</span><em>Jul – Aug 2024</em></div>`;
+const stopsEl=document.getElementById('stops');
+STOPS.forEach(([st,yr,l])=>{const a=document.createElement('article');a.className='stop';
+ a.innerHTML=`<p class="where"><span>${st}</span>${yr?`<span class="yr">${yr}</span>`:''}</p><p class="line">${l}</p>`;stopsEl.appendChild(a);});
+{const a=document.createElement('article');a.className='stop roles';a.innerHTML=ROLES;stopsEl.appendChild(a);}
+const stopEls=[...stopsEl.children];const N=stopEls.length;
+
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p&&p.appendChild(e);return e;};
+let seed=17;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const $=id=>document.getElementById(id);
+const D=820; // promenade distance between benches
+const GROUND=806;
+let FX=900;
+
+/* ---------- the world: benches, lamps, joints, tiles; drawn once, moved as groups ---------- */
+const world={benches:$('benches'),lamps:$('lamps'),pools:$('pools'),wallPools:$('wallPools'),joints:$('joints'),tiles:$('tiles')};
+const lampEls=[];
+function buildWorld(){
+ // stone slab benches facing the sea; each is a stop
+ for(let i=0;i<7;i++){const x=i*D;const g=mk('g',{},world.benches);
+  mk('rect',{x:x-78,y:752,width:12,height:28,fill:'#3b3c46'},g);mk('rect',{x:x+66,y:752,width:12,height:28,fill:'#3b3c46'},g);
+  mk('rect',{x:x-92,y:742,width:184,height:12,rx:2,fill:'#8b857e'},g);mk('rect',{x:x-92,y:742,width:184,height:2.5,fill:'#c4b8a8',opacity:.7},g);
+  mk('rect',{x:x-92,y:754,width:184,height:3,fill:'#2a2b33',opacity:.6},g);}
+ // lamps every half stop, standing at the wall
+ for(let j=-2;j<17;j++){const x=j*D/2+D/4;const g=mk('g',{},world.lamps);const top=430;
+  mk('path',{d:`M${x-8} 652 h16 l-3 -18 h-10Z`,fill:'#1b2130'},g);
+  mk('rect',{x:x-2.6,y:top+12,width:5.2,height:652-18-top-12,fill:'#1b2130'},g);
+  mk('path',{d:`M${x} ${top+14} C${x} ${top-4} ${x+20} ${top-8} ${x+30} ${top+2}`,stroke:'#1b2130','stroke-width':3,fill:'none'},g);
+  const glow=mk('circle',{cx:x+30,cy:top+8,r:70,fill:'url(#gLamp)',opacity:0},g);
+  mk('path',{d:`M${x+22} ${top+2} h16 l-2 6 h-12Z`,fill:'#1b2130'},g);
+  const lens=mk('rect',{x:x+24,y:top+7,width:12,height:3,rx:1,fill:'#4a4d5c'},g);
+  const wp=mk('ellipse',{cx:x+30,cy:690,rx:120,ry:40,fill:'url(#gPool)',opacity:0},world.wallPools);
+  const pool=mk('ellipse',{cx:x+30,cy:800,rx:170,ry:30,fill:'url(#gPool)',opacity:0},world.pools);
+  lampEls.push({x,glow,lens,pool,wp,j});}
+ for(let x=-D;x<8*D;x+=110)mk('path',{d:`M${x} 655 V742`},world.joints);
+ for(let x=-D;x<8*D;x+=90)mk('path',{d:`M${x} 742 L${x-60} 900`},world.tiles);
+ mk('path',{d:`M${-D} 770 H${8*D}`},world.tiles);mk('path',{d:`M${-D} 830 H${8*D}`},world.tiles);
+}
+buildWorld();
+for(let i=0;i<80;i++)mk('circle',{cx:600+rnd()*840,cy:rnd()*380,r:rnd()<.12?1.1:.6,fill:'#f4ead6',opacity:.3+rnd()*.6},$('stars'));
+for(let i=0;i<46;i++)mk('circle',{cx:1240+rnd()*320,cy:530+rnd()*26,r:.8,opacity:.5+rnd()*.5},$('hillLights'));
+const glits=[];for(let i=0;i<70;i++){const f=Math.pow(rnd(),1.4),w=(3+f*30)*(.4+rnd());glits.push([mk('rect',{x:1180+(rnd()-.5)*(14+f*160)-w/2,y:561+f*110,width:w,height:1+f*1.6,rx:1,fill:rnd()<.35?'#fff0c8':'#ffbf70'},$('glit')),rnd()*6.28]);}
+
+/* ---------- Mohit, side elevation, walking right ---------- */
+const F=$('fig');
+const skin='#a46f52',skinD='#7d5240',trou='#1d2433',trouD='#151a26',hair='#121318',shoe='#0f1118';
+function limb(parent,len,w0,w1,fill){return mk('path',{d:`M${-w0/2} 0 C${-w0/2} ${len*.5} ${-w1/2} ${len*.8} ${-w1/2} ${len} L${w1/2} ${len} C${w1/2} ${len*.8} ${w0/2} ${len*.5} ${w0/2} 0 Z`,fill},parent);}
+function leg(far){const hip=mk('g',{},F);const th=mk('g',{},hip);limb(th,47,17,12,far?trouD:trou);
+ const kn=mk('g',{transform:'translate(0 46)'},th);limb(kn,46,12.5,9.5,far?trouD:trou);
+ const ft=mk('g',{transform:'translate(0 45)'},kn);mk('path',{d:'M-6 -2 C-6 2 -5 5 -3 5 L15 5 C17 5 17 1 13 -1 L5 -4 Z',fill:shoe},ft);
+ return{hip,th,kn,ft};}
+function arm(far){const sh=mk('g',{},F);const up=mk('g',{},sh);
+ limb(up,20,13,11,far?'#8e8aa3':'url(#stripes)');mk('rect',{x:-5.6,y:17,width:11.2,height:4,rx:1.5,fill:far?'#7c7891':'#d8d2e0'},up); // rolled cuff
+ const el=mk('g',{transform:'translate(0 28)'},up);mk('rect',{x:-4.6,y:-8,width:9.2,height:10,rx:3,fill:far?skinD:skin},up);
+ limb(el,25,9,7,far?skinD:skin);mk('ellipse',{cx:.5,cy:28,rx:4.6,ry:5.6,fill:far?skinD:skin},el);
+ return{sh,up,el};}
+const legFar=leg(true),armFar=arm(true);
+const body=mk('g',{},F);
+mk('path',{d:'M-12 4 C-13 -18 -14 -40 -11 -58 C-8 -67 10 -67 13 -58 C15.5 -42 14 -18 12 4Z',fill:'url(#stripes)'},body);
+mk('path',{d:'M-12 0 H12 V6 H-12Z',fill:trou},body); // waistband
+mk('path',{d:'M-12 -2 H12 V1 H-12Z',fill:'#2a2a2a'},body); // belt
+const head=mk('g',{transform:'translate(2 -64)'},body);
+mk('path',{d:'M-3 0 V-9 H5 V0Z',fill:skinD},head); // neck
+mk('path',{d:'M-9 -18 C-11 -30 -4 -37 4 -36 C12 -35 15 -29 14.5 -23 L17.5 -18.5 L14.5 -17 C14.8 -14 14 -11 11 -10.5 L7 -10 C5 -7 2 -7 -2 -8 C-7 -10 -8.5 -14 -9 -18Z',fill:skin}, head);
+mk('path',{d:'M-10 -21 C-12 -33 -3 -42 7 -40 C11 -45 18 -40 15 -34 C17 -33 16 -29 13 -28 C10 -32 4 -31 1 -29 C0 -25 -3 -22 -4 -19 C-6 -21 -8 -22 -10 -21Z',fill:hair},head);
+mk('path',{d:'M3 -24 L15 -24',stroke:'#1a1a1f','stroke-width':1.2},head); // spectacle arm
+mk('rect',{x:11.5,y:-26.5,width:5,height:5,rx:1.5,fill:'none',stroke:'#1a1a1f','stroke-width':1.3},head);
+const glint=mk('rect',{x:12.6,y:-25.6,width:2.4,height:1.6,rx:.6,fill:'#ffd9a0',opacity:.0},head);
+mk('path',{d:'M-2 -21 C-1 -19 0 -18 2 -18',stroke:skinD,'stroke-width':1.2,fill:'none'},head); // ear
+const legNear=leg(false),armNear=arm(false);
+F.appendChild(armNear.sh);
+function pose(ph,amp,dir){
+ const S=Math.sin(ph),C=Math.cos(ph);
+ const bob=-2.6*amp*Math.cos(2*ph);
+ F.setAttribute('transform',`translate(${FX} ${GROUND}) scale(${dir*1.22} 1.22) translate(0 ${(-98+bob).toFixed(2)})`);
+ const set=(L,p)=>{const s=Math.sin(p),c=Math.cos(p);const th=-24*s*amp,kn=(4+40*Math.pow(Math.max(0,c),1.4))*amp+3;
+  L.hip.setAttribute('transform','translate(0 2)');L.th.setAttribute('transform',`rotate(${th.toFixed(2)})`);
+  L.kn.setAttribute('transform',`translate(0 46) rotate(${kn.toFixed(2)})`);L.ft.setAttribute('transform',`translate(0 45) rotate(${(-(th+kn)+ (c<0? -8*s*amp:0)).toFixed(2)})`);};
+ set(legNear,ph);set(legFar,ph+Math.PI);
+ const sa=(A,p)=>{const s=Math.sin(p);A.sh.setAttribute('transform','translate(1 -57)');A.up.setAttribute('transform',`rotate(${(20*s*amp+3).toFixed(2)})`);
+  A.el.setAttribute('transform',`translate(0 28) rotate(${(-(10+16*Math.max(0,-s))*amp-6).toFixed(2)})`);};
+ sa(armNear,ph+Math.PI);sa(armFar,ph);
+ body.setAttribute('transform',`rotate(${(2.5*amp).toFixed(2)})`);
+ $('shadow').setAttribute('cx',FX+4*dir);$('shadow').setAttribute('rx',(30+8*amp*Math.abs(Math.sin(ph))).toFixed(1));
+}
+
+/* ---------- motion ---------- */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sec=$('dusk');
+const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lerpC=(a,b,t)=>{const A=hex(a),B=hex(b);return `rgb(${A.map((v,i)=>Math.round(v+(B[i]-v)*t))})`;};
+const SKY=[['#3d5378','#8b7d9a','#efae84','#f9cf96'],['#0b1527','#17223a','#2e2f4a','#5b3d4c']];
+const SEA=[['#c99482','#4f5b75'],['#1b2236','#0a111d']];
+let target=0,sm=0,phase=0,amp=0,dir=1,prevOff=null,last=-1;
+function read(){const r=sec.getBoundingClientRect();const span=sec.offsetHeight-innerHeight;target=Math.min(1,Math.max(0,-r.top/span))*N;}
+function layout(){FX=innerWidth<700?720:900;$('maskR').setAttribute('fill',innerWidth<700?'#fff':'url(#fadeL)');}
+layout();
+function frame(t){
+ sm=RM?target:sm+(target-sm)*.085;if(Math.abs(target-sm)<.0004)sm=target;
+ const s=Math.min(sm,N-.0001);
+ stopEls.forEach((el,i)=>{const a=i===0?1:ss(i-.02,i+.14,s),b=i===N-1?1:1-ss(i+.86,i+.98,s);const o=Math.min(a,b);
+   el.style.opacity=o.toFixed(3);el.style.transform=`translateY(${((1-a)*14-(1-b)*14).toFixed(1)}px)`;el.style.visibility=o<.01?'hidden':'visible';});
+ // he walks toward each bench and is level with it mid-stop; after the last bench he slows and stops
+ const walkS=s<6.5?s:6.5+ (1-Math.pow(1-Math.min(1,(s-6.5)/1.2),2))*.16;
+ const off=(walkS-.5)*D+ D*.0;
+ const dv=prevOff===null?0:off-prevOff;prevOff=off;
+ if(Math.abs(dv)>.05)dir=dv>0?1:-1;
+ amp+= (Math.min(1,Math.abs(dv)/3)-amp)*.12; if(RM)amp=0;
+ phase+=dv/72;
+ const tx=FX-off;
+ ['benches','lamps','pools','wallPools','joints'].forEach(k=>world[k].setAttribute('transform',`translate(${tx.toFixed(1)} 0)`));
+ world.tiles.setAttribute('transform',`translate(${(tx%90).toFixed(1)} 0)`);
+ $('hill').setAttribute('transform',`translate(${(-off*.025).toFixed(1)} 0)`);$('hillLights').setAttribute('transform',`translate(${(-off*.025).toFixed(1)} 0)`);
+ pose(phase,amp,dir);
+ if(Math.abs(s-last)>.0005){last=s;
+  const n=ss(0,7.4,s);
+  ['k0','k1','k2','k3'].forEach((id,j)=>$(id).setAttribute('stop-color',lerpC(SKY[0][j],SKY[1][j],n)));
+  ['w0','w1'].forEach((id,j)=>$(id).setAttribute('stop-color',lerpC(SEA[0][j],SEA[1][j],n)));
+  $('stage').style.background=lerpC(SKY[0][0],SKY[1][0],n);
+  const sy=470+ss(0,6.2,s)*130;$('sun').setAttribute('cy',sy);$('halo').setAttribute('cy',sy);$('halo').setAttribute('opacity',(1-ss(4,6.5,s)).toFixed(2));
+  $('glit').setAttribute('opacity',(1-ss(3.5,6,s)).toFixed(2));
+  $('clouds').setAttribute('opacity',(.8-ss(2,7,s)*.6).toFixed(2));
+  $('stars').setAttribute('opacity',ss(4.5,7.5,s).toFixed(2));$('hillLights').setAttribute('opacity',ss(1.5,6,s).toFixed(2));
+  $('hill').setAttribute('fill',lerpC('#5e6680','#121a2a',n));
+  $('wallNight').setAttribute('opacity',(n*.62).toFixed(2));$('walkNight').setAttribute('opacity',(n*.6).toFixed(2));
+  $('lip').setAttribute('fill',lerpC('#d9c2a5','#3a3a48',n));
+  $('gShirt').children[0].setAttribute('stop-color',lerpC('#ece2e4','#c2a98f',n));
+  $('gShirt').children[2].setAttribute('stop-color',lerpC('#77738c','#2c2c40',n));
+  // lamps behind him have come on; the one ahead warms as he nears
+  lampEls.forEach(L=>{const wx=L.x+30; const reach=(walkS-.5)*D+FX- (FX) ; const d=wx-(off+ D*.0); // world x minus where he is
+    const k=ss(260,-120,d)*ss(0,1.2,s+.6); const col=k>.6?'#fff0c8':k>.15?'#d76a4a':'#4a4d5c';
+    L.glow.setAttribute('opacity',k.toFixed(2));L.pool.setAttribute('opacity',(k*(.35+.65*n)).toFixed(2));L.wp.setAttribute('opacity',(k*(.2+.4*n)).toFixed(2));L.lens.setAttribute('fill',col);});
+  glint.setAttribute('opacity',(.9*ss(0,2,s)).toFixed(2));
+ }
+ if(!RM){glits.forEach(([e,p])=>e.setAttribute('opacity',(.25+.75*Math.max(0,Math.sin(t/650+p))).toFixed(2)));}
+ requestAnimationFrame(frame);
+}
+addEventListener('scroll',read,{passive:true});
+addEventListener('resize',()=>{layout();read();});
+read();sm=target;requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!-- Direction 04: Art Deco elevations — the Marine Drive row drawn as ink elevations with pastel watercolour washes; scrolling walks you along the facades -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade, elevations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#efe8da; --ink:#23303d; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:var(--paper); color:var(--ink); }
+  body { font-family:"Jost",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .scroller { height:420vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:var(--paper); }
+  .paper { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .strip { position:absolute; left:0; bottom:0; height:100%; will-change:transform; }
+  .strip svg { height:100%; width:auto; display:block; }
+  .copy { position:absolute; left:6.2vw; top:9vh; max-width:600px; z-index:5; }
+  h1 { font-family:"Bodoni Moda",serif; font-weight:400; font-size:clamp(38px,4.1vw,66px); line-height:1.04; letter-spacing:-.01em; text-wrap:balance; }
+  h1 em { font-style:italic; }
+  .line { margin-top:20px; font-size:clamp(15.5px,1.12vw,17.5px); line-height:1.6; max-width:36ch; color:#3a4652; }
+  .aside { position:absolute; right:6.2vw; top:9vh; max-width:30ch; text-align:right; font-family:"Bodoni Moda",serif; font-style:italic; font-size:clamp(18px,1.4vw,22px); line-height:1.4; color:#7a4e3a; opacity:0; transform:translateY(10px); z-index:5; }
+  @media (max-width:700px){
+    .copy { left:20px; right:20px; top:48px; }
+    h1 { font-size:38px; }
+    .line { margin-top:12px; font-size:15.5px; }
+    .strip { height:74%; }
+    .aside { left:20px; right:20px; top:262px; bottom:auto; text-align:left; font-size:17px; }
+  }
+</style>
+</head>
+<body>
+<div class="scroller" id="scroller">
+  <div class="stage">
+    <svg class="paper" aria-hidden="true"><filter id="pp"><feTurbulence type="fractalNoise" baseFrequency=".02 .9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .48  0 0 0 0 .38  0 0 0 .09 0"/></filter><rect width="100%" height="100%" filter="url(#pp)"/></svg>
+    <div class="strip" id="strip"><svg id="drawing" aria-hidden="true" viewBox="0 0 4400 900" preserveAspectRatio="xMinYMax meet">
+      <defs>
+        <filter id="wash" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="7" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feMorphology in="d" operator="erode" radius="2.5" result="er"/>
+          <feComposite in="d" in2="er" operator="out" result="edge"/>
+          <feColorMatrix in="edge" type="matrix" values=".8 0 0 0 0  0 .75 0 0 0  0 0 .75 0 0  0 0 0 .55 0" result="edge2"/>
+          <feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="2" seed="2" result="g"/>
+          <feColorMatrix in="g" type="matrix" values="0 0 0 0 .4  0 0 0 0 .32  0 0 0 0 .25  0 0 0 -1.1 .5" result="gran"/>
+          <feComposite in="gran" in2="d" operator="in" result="gran2"/>
+          <feMerge><feMergeNode in="d"/><feMergeNode in="gran2"/><feMergeNode in="edge2"/></feMerge>
+        </filter>
+        <filter id="skyWash" x="-2%" y="-10%" width="104%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency=".006 .02" numOctaves="3" seed="12" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="40" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b9d0d8" stop-opacity="0"/><stop offset=".35" stop-color="#b9d0d8" stop-opacity=".55"/><stop offset="1" stop-color="#d6e2e0" stop-opacity=".35"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c6d8c" stop-opacity=".55"/><stop offset="1" stop-color="#2c6d8c" stop-opacity=".85"/></linearGradient>
+      </defs>
+      <rect x="-40" y="360" width="4480" height="460" fill="url(#sky)" filter="url(#skyWash)"/>
+      <g id="washes"></g>
+      <g id="ink" fill="none" stroke="#23303d" stroke-linecap="square"></g>
+      <g id="taxi"></g>
+      <g id="front"></g>
+    </svg></div>
+
+    <div class="copy">
+      <h1>One year in,<br><em>here's what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+    </div>
+    <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+  </div>
+</div>
+<!-- direction: Promenade 04, Art Deco elevations walked on scroll -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=id=>document.getElementById(id), clamp=(v,a,b)=>Math.min(b,Math.max(a,v)), range=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+  let seed=17; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const W=4400, BASE=796;
+  const washes=[], ink=[], front=[];
+  const f=n=>Math.round(n*10)/10;
+  const shade=(hex,k)=>'#'+hex.match(/\w\w/g).map(h=>Math.round(parseInt(h,16)*k).toString(16).padStart(2,'0')).join('');
+  // ink helpers (lines overshoot corners a touch, like a draughtsman's)
+  const L=(x1,y1,x2,y2,w=1.1,o=1)=>ink.push(`<path d="M${f(x1)} ${f(y1)}L${f(x2)} ${f(y2)}" stroke-width="${w}" opacity="${o}"/>`);
+  const box=(x,y,w,h,sw=1.1,o=1)=>{const e=3; L(x-e,y,x+w+e,y,sw,o); L(x-e,y+h,x+w+e,y+h,sw,o); L(x,y-e,x,y+h+e,sw,o); L(x+w,y-e,x+w,y+h+e,sw,o);};
+  const wash=(x,y,w,h,c,o=.9)=>washes.push(`<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(h)}" fill="${c}" opacity="${o}"/>`);
+
+  const pastels=['f1e1bd','f3d896','eebfae','cfe0cc','c8d9df','f2cca2','e9d9c9'];
+  let x=60; let bi=0;
+  while(x<W-200){
+    const floors=4+Math.floor(rnd()*2.4); const fh=58, gf=70;
+    const bays=4+Math.floor(rnd()*3); const bw=64;
+    const curvedL = rnd()<.5, curvedR = rnd()<.6;
+    const cw=46;
+    const w=bays*bw + (curvedL?cw:0) + (curvedR?cw:0) + 40;
+    const top=BASE-gf-floors*fh;
+    const kind=Math.floor(rnd()*3); const speed=rnd()<.5;
+    const col=pastels[bi%pastels.length]; bi++;
+    const c='#'+col, cs=shade(col,.82), cd=shade(col,.68);
+    // facade wash
+    wash(x,top,w,BASE-top,c,.92);
+    // curved corners: cylinder shading as graded wash + vertical hatching
+    if(curvedL){ wash(x,top,cw,BASE-top,cs,.55); wash(x,top,cw*.4,BASE-top,cd,.35); for(let i=0;i<7;i++){const hx=x+Math.pow(i/7,1.6)*cw; L(hx,top+6,hx,BASE-gf,.5,.45);} }
+    if(curvedR){ const rx=x+w-cw; wash(rx+cw*.35,top,cw*.65,BASE-top,cs,.6); wash(rx+cw*.75,top,cw*.25,BASE-top,cd,.4); for(let i=0;i<7;i++){const hx=rx+cw-Math.pow(i/7,1.6)*cw; L(hx,top+6,hx,BASE-gf,.5,.45);} }
+    box(x,top,w,BASE-top,1.4);
+    if(curvedL) L(x+cw,top,x+cw,BASE,.8,.7);
+    if(curvedR) L(x+w-cw,top,x+w-cw,BASE,.8,.7);
+    // floors
+    const fx0=x+(curvedL?cw:0)+20, fx1=x+w-(curvedR?cw:0)-20;
+    const balconyFloors=new Set(); for(let k=0;k<floors;k++) if(rnd()<.45) balconyFloors.add(k);
+    for(let k=0;k<floors;k++){
+      const yTop=top+k*fh;
+      // eyebrow sunshade over this floor's windows, wrapping the curved corners
+      const ey=yTop+10;
+      wash(x,ey+3,w,12,'#7c6f86',.2);     // its shadow, sun from the sea
+      L(x-6,ey,x+w+6,ey,1.1); L(x-6,ey+3,x+w+6,ey+3,.7);
+      // windows per bay
+      for(let b=0;b<bays;b++){
+        if(kind===0 && b===Math.floor(bays/2) && bays%2===1) continue;
+        const wx=fx0 + b*((fx1-fx0)/bays) + 10, ww=(fx1-fx0)/bays-20, wy=ey+12, wh=fh-28;
+        wash(wx,wy,ww,wh,'#5d6f7d',.18);
+        box(wx,wy,ww,wh,.9);
+        L(wx+ww/2,wy,wx+ww/2,wy+wh,.6,.8); L(wx,wy+wh*.38,wx+ww,wy+wh*.38,.5,.7);
+      }
+      // ribbon windows round the curve: mullions crowd toward the edge, which is how a curve reads in elevation
+      const curveWin=(cx0,dir)=>{ const wy=ey+12, wh=fh-28; wash(dir>0?cx0:cx0-cw+4, wy, cw-4, wh,'#5d6f7d',.2);
+        L(cx0,wy,cx0+dir*(cw-4),wy,.8); L(cx0,wy+wh,cx0+dir*(cw-4),wy+wh,.8);
+        for(let i=0;i<=6;i++){ const a=i/6*Math.PI/2; const mx=cx0+dir*Math.sin(a)*(cw-4); L(mx,wy,mx,wy+wh,.5,.75); } };
+      if(curvedL) curveWin(x+cw,-1);
+      if(curvedR) curveWin(x+w-cw,1);
+      // ribbon balcony
+      if(balconyFloors.has(k)){
+        const by=yTop+fh-14; wash(fx0-10,by,fx1-fx0+20,14,'#ffffff',.35); wash(fx0-10,by+14,fx1-fx0+20,8,'#7c6f86',.2);
+        box(fx0-10,by,fx1-fx0+20,14,.9); L(fx0-10,by+5,fx1+10,by+5,.5,.8); L(fx0-10,by+9,fx1+10,by+9,.5,.8);
+      }
+      if(k>0) L(x,yTop,x+w,yTop,.4,.35);
+    }
+    if(curvedL) ink.push(`<path d="M${f(x)} ${f(top+16)} Q${f(x)} ${f(top)} ${f(x+16)} ${f(top)}" stroke-width="1.2"/>`);
+    if(curvedR) ink.push(`<path d="M${f(x+w-16)} ${f(top)} Q${f(x+w)} ${f(top)} ${f(x+w)} ${f(top+16)}" stroke-width="1.2"/>`);
+    if(kind===0 && bays%2===1){ // stair bay: one tall window running up the facade
+      const bx=fx0+Math.floor(bays/2)*((fx1-fx0)/bays)+12, bww=(fx1-fx0)/bays-24, by0=top+20, by1=BASE-gf-6;
+      wash(bx-8,top-6,bww+16,BASE-gf-top+6,shade(col,.93),.9); box(bx-8,top-6,bww+16,BASE-gf-top+6,1);
+      wash(bx,by0,bww,by1-by0,'#5d6f7d',.24); box(bx,by0,bww,by1-by0,.9);
+      for(let yy=by0+14; yy<by1; yy+=14) L(bx,yy,bx+bww,yy,.45,.7);
+      L(bx+bww/3,by0,bx+bww/3,by1,.45,.7); L(bx+bww*2/3,by0,bx+bww*2/3,by1,.45,.7);
+    }
+    if(speed){ const sx0=x+(curvedL?cw:0)+10; for(let i=0;i<3;i++) L(sx0, top+5+i*4, sx0+70, top+5+i*4,.6,.8); }
+    // ground floor: compound wall and sunburst gate
+    const gy=BASE-gf;
+    L(x,gy,x+w,gy,1.1);
+    const gateX=x+w*(.3+rnd()*.4);
+    wash(gateX-30,gy+14,60,BASE-gy-14,'#3e4a56',.25);
+    box(gateX-30,gy+14,60,BASE-gy-14,1);
+    for(let i=0;i<=8;i++){ const a=Math.PI+i/8*Math.PI; L(gateX,gy+44,gateX+Math.cos(a)*26,gy+44+Math.sin(a)*26,.5,.85); }
+    ink.push(`<path d="M${f(gateX-26)} ${f(gy+44)} A26 26 0 0 1 ${f(gateX+26)} ${f(gy+44)}" stroke-width=".8"/>`);
+    L(gateX,gy+44,gateX,BASE,.6);
+    // compound wall in front
+    wash(x-10,BASE-26,w+20,26,shade(col,.9),.8); box(x-10,BASE-26,w+20,26,1);
+    for(let px=x-10; px<x+w+10; px+=58){ box(px,BASE-34,10,34,.8); }
+    // crown
+    if(kind===0){ // stepped central tower with speed lines and a flagpole
+      const tx=x+w/2, tw=90;
+      for(let s=0;s<3;s++){ const sw=tw-s*24, sh=18; const sy=top-(s+1)*sh; wash(tx-sw/2,sy,sw,sh,c,.95); box(tx-sw/2,sy,sw,sh,1); }
+      for(let i=0;i<3;i++) L(tx-34,top-10-i*4,tx+34,top-10-i*4,.5,.7);
+      L(tx,top-54,tx,top-96,.9); ink.push(`<path d="M${f(tx)} ${f(top-96)}L${f(tx+20)} ${f(top-90)}L${f(tx)} ${f(top-84)}" stroke-width=".8"/>`);
+    } else if(kind===1){ // parapet with porthole and fins over the curved corner
+      const cx=curvedR? x+w-cw/2 : x+(curvedL?cw/2:w-40);
+      wash(cx-30,top-46,60,46,c,.95); box(cx-30,top-46,60,46,1.1);
+      ink.push(`<circle cx="${f(cx)}" cy="${f(top-24)}" r="10" stroke-width=".9"/>`);
+      for(let i=-2;i<=2;i++) L(cx+i*9,top-46,cx+i*9,top-60,.8);
+    } else { // simple stepped parapet
+      wash(x+20,top-14,w-40,14,c,.95); box(x+20,top-14,w-40,14,1);
+      wash(x+w*.35,top-28,w*.3,14,c,.95); box(x+w*.35,top-28,w*.3,14,1);
+    }
+    // a rain tree now and then between blocks
+    x += w + 26 + rnd()*30;
+  }
+  // road line, parapet, sea, lamp posts
+  front.push(`<path d="M0 ${BASE+22}H${W}" stroke="#23303d" stroke-width="1.4"/>`);
+  front.push(`<rect x="0" y="${BASE+26}" width="${W}" height="30" fill="#d9ccb4" opacity=".85" filter="url(#wash)"/>`);
+  front.push(`<path d="M0 ${BASE+26}H${W}M0 ${BASE+56}H${W}" stroke="#23303d" stroke-width="1.2"/>`);
+  for(let px=0; px<W; px+=7){ front.push(`<path d="M${px} ${BASE+30}l-6 22" stroke="#23303d" stroke-width=".35" opacity=".5"/>`); }
+  front.push(`<rect x="-20" y="${BASE+56}" width="${W+40}" height="60" fill="url(#sea)" filter="url(#wash)"/>`);
+  for(let i=0;i<70;i++){ const sx=rnd()*W, sy=BASE+66+rnd()*34, sl=20+rnd()*60; front.push(`<path d="M${f(sx)} ${f(sy)}h${f(sl)}" stroke="#efe8da" stroke-width="1" opacity=".55"/>`); }
+  for(let px=180; px<W; px+=420){
+    front.push(`<g stroke="#23303d" fill="none"><path d="M${px} ${BASE+26}V500" stroke-width="3"/><path d="M${px} 506 C${px} 480 ${px+10} 470 ${px+34} 470" stroke-width="2"/>
+      <path d="M${px+28} 470 h22 l-4 8 h-14 Z" fill="#f2a145" fill-opacity=".55" stroke-width="1.2"/><path d="M${px-8} ${BASE+26}h16v-12h-16z" stroke-width="1.2" fill="#d9ccb4"/></g>`);
+  }
+  $('washes').innerHTML = `<g filter="url(#wash)">${washes.join('')}</g>`;
+  $('ink').innerHTML = ink.join('');
+  $('front').innerHTML = front.join('');
+
+  // the kaali-peeli: a Premier Padmini in side elevation
+  $('taxi').innerHTML = `<g id="cab">
+    <path d="M6 58 C4 44 10 38 26 36 L52 34 C62 20 72 12 92 10 L142 10 C160 12 170 22 178 34 L202 38 C214 40 220 46 220 58 Z" fill="#141518"/>
+    <path d="M52 34 C62 20 72 12 92 10 L142 10 C160 12 170 22 178 34 Z" fill="#f2c230"/>
+    <path d="M64 32 C70 22 78 16 94 15 L112 15 L112 32 Z M118 15 L140 15 C154 16 162 24 168 32 L118 32 Z" fill="#9fb6bf" opacity=".85"/>
+    <path d="M6 50 H220" stroke="#c9c2b0" stroke-width="1.4"/>
+    <rect x="0" y="54" width="14" height="5" rx="2" fill="#c9c2b0"/><rect x="210" y="54" width="14" height="5" rx="2" fill="#c9c2b0"/>
+    <circle cx="214" cy="46" r="4" fill="#f6e6b0"/>
+    <g class="wheel"><circle cx="50" cy="60" r="14" fill="#141518"/><circle cx="50" cy="60" r="7" fill="#c9c2b0"/><path d="M43 60H57M50 53V67" stroke="#141518" stroke-width="1.2"/></g>
+    <g class="wheel"><circle cx="178" cy="60" r="14" fill="#141518"/><circle cx="178" cy="60" r="7" fill="#c9c2b0"/><path d="M171 60H185M178 53V67" stroke="#141518" stroke-width="1.2"/></g>
+    <path d="M80 8 h24 v-6 h-24 z" fill="#f2c230" stroke="#141518" stroke-width="1"/>
+  </g>`;
+  const cab=document.getElementById('cab'), wheels=[...cab.querySelectorAll('.wheel')];
+
+  const strip=$('strip'), stage=strip.parentElement;
+  const scr=$('scroller'); let target=0,cur=0;
+  const read=()=>{const r=scr.getBoundingClientRect(); target=clamp(-r.top/(r.height-innerHeight),0,1);};
+  addEventListener('scroll',read,{passive:true}); read(); cur=target;
+  const aside=$('aside'); const t0=performance.now();
+  function tick(now){
+    cur+=(target-cur)*.085; const p=cur, t=reduce?0:(now-t0)/1000;
+    const sw=strip.getBoundingClientRect().width, vw=stage.clientWidth;
+    const walk=range(p,.02,.9);
+    strip.style.transform=`translate3d(${(-walk*(sw-vw)).toFixed(1)}px,0,0)`;
+    // the taxi drives the other way along the drive, wrapping off-frame
+    const cx = W - ((t*70) % (W+400));
+    cab.setAttribute('transform',`translate(${cx.toFixed(1)} ${BASE-58}) scale(-1 1) translate(-224 0)`);
+    wheels.forEach((w,i)=>w.setAttribute('transform',`rotate(${(-t*200)%360} ${i?178:50} 60)`));
+    const a=range(p,.86,.97); aside.style.opacity=a.toFixed(3); aside.style.transform=`translateY(${(1-a)*10}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!-- Direction 02: The crown alone — close on the gold kalash and the saffron flag against the night; scroll tilts the camera up the gold tiers until the kalash and flag arrive. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footer 02 · The crown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--mute:#9aa4b4}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#060c17;color:var(--paper)}
+body{font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.track{height:260vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(120% 70% at 72% 120%,#3a2a24 0%,#1a1f30 38%,#0b1424 62%,#060c17 100%)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+#stars circle{animation:tw 6s ease-in-out infinite alternate}
+@keyframes tw{to{opacity:.12}}
+.bloom{position:absolute;right:-6vw;top:0;width:90vh;height:120vh;background:radial-gradient(closest-side,rgba(255,190,90,.22),rgba(255,160,70,.07) 55%,transparent);will-change:transform,opacity}
+.crownWrap{position:absolute;left:calc(75% - 51.5vh);top:0;height:178vh;aspect-ratio:440/760;will-change:transform;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 80%),linear-gradient(to right,transparent 4%,#000 24%);mask-image:linear-gradient(to bottom,#000 55%,transparent 80%),linear-gradient(to right,transparent 4%,#000 24%);-webkit-mask-composite:source-in;mask-composite:intersect}
+#crown{width:100%;height:100%;filter:drop-shadow(0 0 22px rgba(255,186,90,.28))}
+.copy{position:absolute;left:7vw;top:14vh;width:min(32rem,40vw);z-index:5}
+h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(3rem,5.6vw,5.4rem);line-height:.98;letter-spacing:-.01em;text-wrap:balance;color:#fdf3dc}
+.line{margin-top:1.4rem;font-size:1.02rem;line-height:1.6;max-width:24em;color:#cfc9bb}
+.cta{display:inline-flex;gap:.55rem;margin-top:2.1rem;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2rem;color:var(--sodium);transition:color .3s}
+.cta span{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{color:#ffd28e}.cta:hover span{transform:translateX(.35em)}
+.mail{display:block;margin-top:.2rem;font-size:.95rem;color:var(--mute)}.mail:hover{color:var(--paper)}
+blockquote{margin-top:2.6rem;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.5rem;line-height:1.35;max-width:21em;color:#f3e2bf}
+.reset{margin-top:.7rem;font-size:.95rem;line-height:1.6;max-width:26em;color:var(--mute)}
+.clock{margin-top:1.4rem;font-size:.95rem;color:#e6bf86}
+.fade{opacity:0;will-change:opacity,transform}
+.foot{position:absolute;left:7vw;right:7vw;bottom:3.4vh;display:flex;flex-wrap:wrap;gap:.4rem 1.7rem;font-size:.9rem;color:var(--mute);z-index:5}
+.foot a{transition:color .3s}.foot a:hover{color:#ffd28e}
+.foot .c{margin-left:1.2rem;color:#6f7a8c}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:overlay;z-index:9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (max-width:760px){
+  .copy{left:16px;right:16px;width:auto;top:5vh}
+  h2{font-size:2.5rem}
+  .line{font-size:.94rem;margin-top:.7rem}
+  .cta{margin-top:.8rem;font-size:1.6rem}
+  .mail{font-size:.88rem}
+  blockquote{margin-top:1rem;font-size:1.15rem}
+  .reset{font-size:.86rem;margin-top:.35rem}
+  .clock{margin-top:.5rem;font-size:.88rem}
+  .crownWrap{height:105vh;left:calc(50% - 30.4vh);-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 80%);mask-image:linear-gradient(to bottom,#000 55%,transparent 80%)}
+  .bloom{right:-30vw}
+  .foot{left:16px;right:16px;bottom:14px;font-size:.84rem;gap:.3rem 1rem;background:linear-gradient(transparent,rgba(6,12,23,.9) 45%);padding-top:2rem}
+  .foot .c{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){#stars circle{animation:none}}
+</style>
+</head>
+<body>
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"></svg>
+    <div class="bloom" id="bloom"></div>
+    <div class="crownWrap" id="cw">
+      <svg id="crown" viewBox="280 34 440 760"></svg>
+    </div>
+    <div class="copy">
+      <h2>Got something to build?</h2>
+      <p class="line fade">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+      <div class="fade">
+        <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+        <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+      </div>
+      <blockquote class="fade">If you believe you can make it, you will. The rest is trusting God and doing the work.</blockquote>
+      <p class="reset fade">Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+      <p class="clock fade" id="clock">It's — in Mumbai.</p>
+    </div>
+    <nav class="foot fade">
+      <a href="https://github.com/Mohit-Bagri">GitHub</a>
+      <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+      <a href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+      <a href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+      <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+      <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+      <span class="c">© 2026 Mohit Bagri</span>
+    </nav>
+  </div>
+</div>
+<div class="grain"></div>
+<!-- direction: 02 the crown alone -->
+<script>
+/* ---------- Siddhivinayak temple generator (shared drawing) ---------- */
+function hx(h){h=h.replace('#','');return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}
+function mix(a,b,t){const A=hx(a),B=hx(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')}
+function templeSVG(P,id){
+  const f=n=>+(+n).toFixed(1);
+  const poly=(pts,fill,ex='')=>`<polygon points="${pts.map(p=>f(p[0])+','+f(p[1])).join(' ')}" fill="${fill}" ${ex}/>`;
+  const rect=(x,y,w,h,fill,ex='')=>`<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(h)}" fill="${fill}" ${ex}/>`;
+  const G=`url(#${id}g)`,CY=`url(#${id}c)`,FL=`url(#${id}f)`,OR=`url(#${id}o)`;
+  let o=`<defs>
+  <linearGradient id="${id}g" x1="0" x2="1"><stop offset="0" stop-color="${P.goldD}"/><stop offset=".3" stop-color="${P.goldH}"/><stop offset=".55" stop-color="${P.gold}"/><stop offset="1" stop-color="${P.goldD}"/></linearGradient>
+  <linearGradient id="${id}o" x1="0" x2="1"><stop offset="0" stop-color="${mix(P.orange,'#000000',.35)}"/><stop offset=".32" stop-color="${mix(P.orange,'#ffe0a0',.35)}"/><stop offset="1" stop-color="${mix(P.orange,'#000000',.4)}"/></linearGradient>
+  <linearGradient id="${id}c" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".3" stop-color="#fff" stop-opacity=".14"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>
+  <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${P.flood}" stop-opacity="${P.floodA}"/><stop offset="1" stop-color="${P.flood}" stop-opacity="0"/></linearGradient>
+  </defs>`;
+  function kalash(cx,y,s,gold){const g=gold||G;let k='';
+    k+=rect(cx-s*.26,y-s*.1,s*.52,s*.1,g);
+    k+=`<ellipse cx="${f(cx)}" cy="${f(y-s*.17)}" rx="${f(s*.4)}" ry="${f(s*.1)}" fill="${g}"/>`;
+    k+=`<circle cx="${f(cx)}" cy="${f(y-s*.43)}" r="${f(s*.22)}" fill="${g}"/>`;
+    k+=`<ellipse cx="${f(cx)}" cy="${f(y-s*.66)}" rx="${f(s*.13)}" ry="${f(s*.05)}" fill="${g}"/>`;
+    k+=`<circle cx="${f(cx)}" cy="${f(y-s*.76)}" r="${f(s*.08)}" fill="${g}"/>`;
+    k+=poly([[cx-s*.05,y-s*.8],[cx+s*.05,y-s*.8],[cx,y-s*1.18]],g);return k}
+  function spire(cx,base,h,w,kd){
+    const C=kd?Object.fromEntries(Object.entries(P).map(([a,v])=>[a,typeof v==='string'&&v[0]==='#'?mix(v,P.haze,kd):v])):P;
+    const gold=kd?C.gold:G;
+    let s='',top=base-h,tw=w*.8,bh=Math.max(6,w*.25),i=0;
+    const wAt=y=>w+(tw-w)*(base-y)/h;
+    const out=[[cx-w/2,base],[cx+w/2,base],[cx+tw/2,top],[cx-tw/2,top]];
+    s+=poly(out,C.s2);
+    for(let y=base;y>top+.5;y-=bh,i++){
+      const y2=Math.max(top,y-bh),a=wAt(y),b=wAt(y2);
+      s+=poly([[cx-a/2,y],[cx+a/2,y],[cx+b/2,y2],[cx-b/2,y2]],[C.s1,C.s2,C.s1,C.s3][i%4]);
+      s+=rect(cx-a/2,y-bh*.2,a,bh*.2,C.rec,'opacity=".7"');
+      if(i%4==2)s+=rect(cx-b/2-1.6,y2-1.2,b+3.2,2.8,C.s1)+rect(cx-b/2-1.6,y2+1.6,b+3.2,1.5,C.rec,'opacity=".65"');
+    }
+    s+=poly(out,CY)+poly(out,FL);
+    s+=`<path d="M${f(cx-w*.17)} ${base}L${f(cx-tw*.17)} ${f(top)}M${f(cx+w*.19)} ${base}L${f(cx+tw*.19)} ${f(top)}" stroke="${C.rec}" stroke-opacity=".22" stroke-width="1"/>`;
+    let c=top;
+    s+=rect(cx-tw*.64,c-3.6,tw*1.28,3.6,C.s1)+rect(cx-tw*.64,c,tw*1.28,1.8,C.rec,'opacity=".7"');c-=3.6;
+    s+=rect(cx-tw*.52,c-4.2,tw*1.04,4.2,C.s3);c-=4.2;
+    s+=rect(cx-tw*.42,c-3.4,tw*.84,3.4,C.s1);c-=3.4;
+    s+=`<path d="M${f(cx-tw*.4)} ${f(c)}Q${f(cx)} ${f(c-tw*.62)} ${f(cx+tw*.4)} ${f(c)}Z" fill="${C.s2}"/>`;
+    s+=`<path d="M${f(cx-tw*.4)} ${f(c)}Q${f(cx)} ${f(c-tw*.62)} ${f(cx+tw*.4)} ${f(c)}Z" fill="${CY}"/>`;
+    s+=kalash(cx,c-tw*.24,Math.max(9,tw*.8),gold);
+    return s}
+  const cx=500;
+  // rear row of spires (atmospheric)
+  [[122,330,34],[178,290,34],[228,232,30],[272,176,28]].forEach(([d,h,w])=>{o+=spire(cx-d,600,h,w,.38)+spire(cx+d,600,h,w,.38)});
+  // crown block, eave band, spire tips
+  o+=rect(cx-200,562,400,40,P.s2)+rect(cx-200,562,400,40,FL);
+  for(let x=cx-180;x<=cx+170;x+=30)o+=`<path d="M${x} 600V580a6 6 0 0 1 12 0V600Z" fill="${P.win}" opacity=".9"/>`;
+  o+=rect(cx-206,552,412,10,P.s1)+rect(cx-206,562,412,3,P.rec,'opacity=".7"');
+  o+=rect(cx-166,512,332,40,P.rec);
+  for(let x=cx-150;x<=cx+150;x+=20)o+=`<circle cx="${x}" cy="526" r="1.6" fill="${P.win}" opacity=".8"/>`;
+  for(let x=cx-156;x<=cx+156;x+=24){o+=poly([[x-5,552],[x+5,552],[x+3,536],[x-3,536]],P.s2)+poly([[x-3,536],[x+3,536],[x,528]],P.s1)+`<circle cx="${x}" cy="526" r="2.2" fill="${G}"/>`}
+  o+=rect(cx-176,505,352,8,P.s1)+rect(cx-176,513,352,3,P.rec);
+  // central stepped shikhara (gold)
+  const base=505,top=298,n=10,w0=226,w1=58,th=(base-top)/n;
+  o+=poly([[cx-w0/2,base],[cx+w0/2,base],[cx+w1/2,top],[cx-w1/2,top]],G);
+  for(let j=0;j<n;j++){const y=base-j*th,w=w0+(w1-w0)*j/(n-1);
+    o+=rect(cx-w/2,y-th,w,th,G);
+    for(let x=cx-w/2+6;x<cx+w/2-5;x+=10.5)o+=rect(x,y-th+5.5,2,th-8,P.goldD,'opacity=".38"');
+    o+=rect(cx-w/2-4.5,y-th,w+9,3.6,P.goldH,'opacity=".95"')+rect(cx-w/2-4.5,y-th+3.6,w+9,2.2,P.goldD,'opacity=".85"');}
+  o+=poly([[cx-w0/2,base],[cx+w0/2,base],[cx+w1/2,top],[cx-w1/2,top]],CY,'opacity=".55"');
+  // crown: neck, amalaka, big kalash, flag
+  o+=rect(cx-22,top-10,44,10,G)+`<ellipse cx="${cx}" cy="${top-15}" rx="40" ry="9" fill="${G}"/>`;
+  for(let k=-34;k<=34;k+=6.8)o+=`<path d="M${cx+k} ${top-22}Q${cx+k*1.1} ${top-15} ${cx+k} ${top-8}" stroke="${P.goldD}" stroke-width="1.2" fill="none" opacity=".55"/>`;
+  o+=rect(cx-15,top-28,30,8,G);
+  o+=`<ellipse cx="${cx}" cy="${top-48}" rx="25" ry="22" fill="${G}"/>`;
+  o+=rect(cx-11,top-74,22,6,G)+`<ellipse cx="${cx}" cy="${top-80}" rx="16" ry="5" fill="${G}"/>`;
+  o+=`<circle cx="${cx}" cy="${top-91}" r="8" fill="${G}"/><circle cx="${cx}" cy="${top-104}" r="5" fill="${G}"/>`;
+  o+=poly([[cx-3,top-108],[cx+3,top-108],[cx,top-134]],G);
+  o+=`<line x1="${cx}" y1="${top-128}" x2="${cx}" y2="${top-214}" stroke="${P.pole}" stroke-width="2.2"/>`;
+  o+=`<path id="${id}flag" fill="${P.flag}" d="M${cx+1} ${top-212}L${cx+104} ${top-190}L${cx+1} ${top-168}Z"/>`;
+  // front pairs of spires
+  [[300,130,30],[252,186,34],[204,246,38],[152,300,42]].forEach(([d,h,w])=>{o+=spire(cx-d,600,h,w,0)+spire(cx+d,600,h,w,0)});
+    // main multi-storey body
+  o+=rect(160,598,680,14,P.s1)+rect(160,612,680,5,P.rec,'opacity=".75"');
+  const storey=(y,h,inset,pitch)=>{let s=rect(170+inset,y,660-2*inset,h,P.s2)+rect(170+inset,y,660-2*inset,h,FL);
+    for(let x=196+inset;x<=804-inset;x+=pitch)s+=rect(x-3,y+6,6,h-10,P.s1,'opacity=".75"')+rect(x+3,y+6,2,h-10,P.rec,'opacity=".35"');
+    for(let x=196+inset+pitch/2;x<=804-inset;x+=pitch){s+=`<path d="M${x-7} ${y+h-20}V${y+36}l7-9 7 9V${y+h-20}Z" fill="${P.rec}" opacity=".9"/>`+`<path d="M${x-4.5} ${y+h-22}V${y+38}l4.5-6 4.5 6V${y+h-22}Z" fill="${P.win}" opacity="${P.winA}"/>`+rect(x-11,y+h-20,22,3.5,P.s1)+rect(x-11,y+20,22,3,P.s3,'opacity=".6"')}
+    s+=rect(162+inset,y+h-3,676-2*inset,9,P.s1)+rect(162+inset,y+h+6,676-2*inset,3,P.rec,'opacity=".7"');return s};
+  o+=storey(617,92,14,56)+storey(718,92,6,56)+storey(819,90,0,56);
+  o+=rect(162,914,676,90,P.s3)+rect(162,914,676,90,FL);
+  // entrance porch with the small orange stepped dome
+  o+=rect(408,880,184,124,P.s1)+`<path d="M452 1004V940a48 46 0 0 1 96 0V1004Z" fill="${P.door}"/>`;
+  o+=rect(398,872,204,10,P.s1)+rect(398,882,204,3,P.rec);
+  [[180,13],[150,13],[122,12],[96,11],[70,10]].reduce((y,[w,h])=>{o+=rect(cx-w/2,y-h,w,h,OR)+rect(cx-w/2-3,y-h,w+6,2.4,mix(P.orange,'#ffd9a0',.5));return y-h},872);
+  o+=`<path d="M${cx-30} 813Q${cx} 776 ${cx+30} 813Z" fill="${OR}"/>`;
+  o+=kalash(cx,786,22);
+  return o}
+/* flag waving */
+function waveFlag(el,cx,top,t,amp){if(!el)return;const px=cx+1,py=top-212,L=104,H=44,N=14;let a=[],b=[];
+  for(let i=0;i<=N;i++){const u=i/N,x=px+L*u*(1-.04*Math.sin(t*1.7+u*3)),w=amp*u*Math.sin(u*5.2-t*3.1)+amp*.4*u*Math.sin(u*9-t*4.3);
+    a.push([x,py+u*H*.5+w]);b.push([x,py+H-u*H*.5+w])}
+  el.setAttribute('d','M'+a.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L')+'L'+b.reverse().map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L')+'Z')}
+
+
+const LIT={s1:'#f2d7aa',s2:'#d2a571',s3:'#9c6a40',rec:'#3b2014',gold:'#e8ae3c',goldH:'#fff3c4',goldD:'#8a5410',orange:'#f06a1c',flood:'#ffc670',floodA:.6,win:'#ffc96e',winA:.7,door:'#ffb347',haze:'#0b1424',flag:'#ff7f18',pole:'#e0bd78'};
+document.getElementById('crown').innerHTML=templeSVG(LIT,'L');
+(function(){let s='',r=3;const rnd=()=>(r=(r*9301+49297)%233280)/233280;
+  for(let i=0;i<120;i++)s+=`<circle cx="${(rnd()*1440).toFixed(0)}" cy="${(rnd()*900).toFixed(0)}" r="${(rnd()*.9+.25).toFixed(2)}" fill="#efe6d2" opacity="${(rnd()*.55+.15).toFixed(2)}" style="animation-delay:-${(rnd()*6).toFixed(1)}s"/>`;
+  document.getElementById('stars').innerHTML=s})();
+function tick(){const s=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date()).replace(/\s?AM/,' am').replace(/\s?PM/,' pm');document.getElementById('clock').textContent=`It's ${s} in Mumbai.`}
+tick();setInterval(tick,15000);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cw=document.getElementById('cw'),bloom=document.getElementById('bloom'),flag=document.getElementById('Lflag');
+const fades=[...document.querySelectorAll('.fade')];
+let sp=-1;
+function frame(now){
+  const tr=document.getElementById('track'),max=tr.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,-tr.getBoundingClientRect().top/Math.max(1,max)));
+  sp=sp<0||reduce?p:sp+(p-sp)*.1;
+  const mob=innerWidth<=760;
+  const e=Math.min(1,sp/.7),k=1-Math.pow(1-e,3);
+  // camera tilts up: crown starts high (only gold tiers in frame), settles with kalash and flag in view
+  const y0=mob?8:-60,y1=mob?42:-7;
+  cw.style.transform=`translateY(${(y0+(y1-y0)*k).toFixed(2)}vh)`;
+  bloom.style.transform=`translateY(${(-20+20*k).toFixed(2)}vh)`;bloom.style.opacity=(.55+.45*k).toFixed(3);
+  fades.forEach((el,i)=>{const q=Math.min(1,Math.max(0,(sp-.42-i*.06)/.22));el.style.opacity=q.toFixed(3);el.style.transform=`translateY(${((1-q)*12).toFixed(1)}px)`});
+  waveFlag(flag,500,298,reduce?0:now/1000,reduce?3:7);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

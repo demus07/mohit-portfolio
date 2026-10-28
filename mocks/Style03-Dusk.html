@@ -1,0 +1,620 @@
+<!-- Direction 03: Low-poly 3D — dusk on the promenade: Mohit walks past seven lamp posts, each lamp a detour that lights as he passes, while the sun sinks and the Queen's Necklace comes on behind him. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Every detour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy: #0d1a2b; --sodium: #f2a145; --cream: #f4ead8; --soft: rgb(244 234 216 / .72); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--navy); color: var(--cream); }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; }
+  .track { position: relative; height: 900vh; }
+  .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .zone { position: absolute; left: clamp(20px, 5vw, 88px); top: clamp(28px, 9vh, 96px); width: min(30rem, 40vw); }
+  .zone > * { position: absolute; left: 0; top: 0; width: 100%; opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
+  .zone > .on { opacity: 1; transform: none; }
+  h2 { margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(2.6rem, 1.4rem + 3.2vw, 4.6rem); line-height: 1; letter-spacing: -.02em; color: var(--cream); max-width: 11ch; }
+  .stop h3 { margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(2.2rem, 1.3rem + 2.4vw, 3.8rem); line-height: 1.02; letter-spacing: -.015em; }
+  .stop h3 .y { color: var(--sodium); }
+  .stop p { margin: 1rem 0 0; font-size: clamp(1.02rem, .92rem + .3vw, 1.2rem); line-height: 1.55; max-width: 25rem; color: var(--soft); }
+  .roles { padding: 14vh clamp(20px, 5vw, 88px) 18vh; max-width: 1180px; }
+  .roles h3 { margin: 0 0 6vh; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(2rem, 1.3rem + 2vw, 3.2rem); letter-spacing: -.015em; }
+  .role { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 1rem 3rem; padding: 1.6rem 0; }
+  .role + .role { background: linear-gradient(90deg, rgb(242 161 69 / .35), rgb(242 161 69 / 0)) top / 100% 1px no-repeat; }
+  .role .org { font-family: Newsreader, Georgia, serif; font-size: 1.7rem; line-height: 1.1; }
+  .role .when { margin-top: .35rem; color: var(--soft); font-size: .98rem; }
+  .role .what { font-size: 1.08rem; color: var(--cream); line-height: 1.5; }
+  .role ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .6rem; }
+  .role li { color: var(--soft); line-height: 1.5; padding-left: 1.1rem; position: relative; }
+  .role li::before { content: ""; position: absolute; left: 0; top: .6em; width: .42rem; height: .42rem; background: var(--sodium); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  @media (max-width: 760px) {
+    .zone { top: 22px; right: 20px; width: auto; }
+    .role { grid-template-columns: 1fr; gap: .6rem; }
+  }
+</style>
+</head>
+<body>
+<section class="track" id="track">
+  <div class="stage">
+    <canvas id="c" aria-label="Low-poly Marine Drive at dusk; Mohit walks along the promenade past seven lamp posts that light one by one, the Queen's Necklace coming on across the bay."></canvas>
+    <div class="zone" id="zone">
+      <h2 class="on">Every detour was part of the path</h2>
+      <div class="stop"><h3>Ramrao Adik, <span class="y">2021</span></h3><p>My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building.</p></div>
+      <div class="stop"><h3>NFTs</h3><p>The worst call I've made. I listened to the hype instead of the people calling it out.</p></div>
+      <div class="stop"><h3>Everything else</h3><p>Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy.</p></div>
+      <div class="stop"><h3>MK Exim, <span class="y">2025</span></h3><p>One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech.</p></div>
+      <div class="stop"><h3>Graduated, <span class="y">2025</span></h3><p>Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did.</p></div>
+      <div class="stop"><h3>Sypha AI, <span class="y">2025</span></h3><p>So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload.</p></div>
+      <div class="stop"><h3>AuctionXI, <span class="y">2026</span></h3><p>My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step.</p></div>
+    </div>
+  </div>
+</section>
+<section class="roles">
+  <div class="role"><div><div class="org">Sypha AI</div><div class="when">Software Engineer · Dec 2025 – now</div></div>
+    <div><ul style="margin:0">
+      <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+      <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+      <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+      <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul></div></div>
+  <div class="role"><div><div class="org">AuctionXI</div><div class="when">Founder · Apr 2026 – now</div></div><div></div></div>
+  <div class="role"><div><div class="org">TexAgent</div><div class="when">Freelance developer · Sep 2026 – now</div></div><div></div></div>
+  <div class="role"><div><div class="org">MK Exim India</div><div class="when">E-commerce · Mar – Sep 2025</div></div><div class="what">Amazon, TataCliQ and Sephora</div></div>
+  <div class="role"><div><div class="org">Brahmani Gems</div><div class="when">Web developer intern · Jul – Aug 2024</div></div><div class="what">Shopify</div></div>
+</section>
+<!-- direction: Style 03 · Low-poly 3D · Dusk -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- Style 03 shared kit: low-poly helpers + the Mohit figure ---------- */
+const T = THREE;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const _mats = {};
+function mat(color, o = {}) {
+  const k = color + JSON.stringify(o);
+  if (!_mats[k]) _mats[k] = new T.MeshPhongMaterial(Object.assign({ color, flatShading: true, shininess: 0, specular: 0x000000 }, o));
+  return _mats[k];
+}
+function basic(color, o = {}) { return new T.MeshBasicMaterial(Object.assign({ color }, o)); }
+function hash3(x, y, z) {
+  const s = Math.sin(Math.round(x * 1000) * 12.9898 + Math.round(y * 1000) * 78.233 + Math.round(z * 1000) * 37.719) * 43758.5453;
+  return s - Math.floor(s);
+}
+// deform every vertex with a pure function of its position: keeps non-indexed geometry watertight
+function deform(g, fn) {
+  const p = g.attributes.position, v = new T.Vector3();
+  for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); fn(v); p.setXYZ(i, v.x, v.y, v.z); }
+  p.needsUpdate = true; g.computeVertexNormals(); return g;
+}
+function jitter(g, a, ay) {
+  return deform(g, v => {
+    const h1 = hash3(v.x, v.y, v.z), h2 = hash3(v.y + 3.1, v.z, v.x), h3 = hash3(v.z - 7.7, v.x, v.y);
+    v.x += (h1 - .5) * a; v.y += (h2 - .5) * (ay == null ? a : ay); v.z += (h3 - .5) * a;
+  });
+}
+function mesh(g, m, x = 0, y = 0, z = 0, parent) {
+  const o = new T.Mesh(g, m); o.position.set(x, y, z); if (parent) parent.add(o); return o;
+}
+function lerp(a, b, t) { return a + (b - a) * t; }
+function clamp(x, a = 0, b = 1) { return Math.min(b, Math.max(a, x)); }
+function smooth(a, b, x) { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); }
+function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+// text drawn to a canvas texture (station boards, LED, marathi)
+function textTex(lines, o = {}) {
+  const w = o.w || 512, h = o.h || 128, c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d'); x.fillStyle = o.bg || '#f2c230'; x.fillRect(0, 0, w, h);
+  x.fillStyle = o.color || '#1c1a17'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  lines.forEach((l, i) => { x.font = l.font; x.fillText(l.t, w / 2, l.y * h); });
+  if (o.dots) { // dot-matrix mask
+    const d = x.getImageData(0, 0, w, h); const g = o.dots;
+    for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) {
+      const i = (yy * w + xx) * 4; if ((xx % g) === g - 1 || (yy % g) === g - 1) { d.data[i] *= .15; d.data[i + 1] *= .15; d.data[i + 2] *= .15; }
+    } x.putImageData(d, 0, 0);
+  }
+  const t = new T.CanvasTexture(c); t.anisotropy = 4; return t;
+}
+
+// sky dome with a soft vertical gradient (stops: [[y01,color],...])
+function skyDome(stops, r = 900) {
+  const g = new T.SphereGeometry(r, 24, 16); const col = []; const p = g.attributes.position; const c = new T.Color();
+  const cs = stops.map(s => [s[0], new T.Color(s[1])]);
+  for (let i = 0; i < p.count; i++) {
+    const t = (p.getY(i) / r + 1) / 2; let k = 0; while (k < cs.length - 2 && t > cs[k + 1][0]) k++;
+    const a = cs[k], b = cs[k + 1]; c.copy(a[1]).lerp(b[1], clamp((t - a[0]) / (b[0] - a[0]))); col.push(c.r, c.g, c.b);
+  }
+  g.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+  const m = new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide, fog: false, depthWrite: false }));
+  m.renderOrder = -10; return m;
+}
+function recolorSky(sky, stops) {
+  const g = sky.geometry, p = g.attributes.position, col = g.attributes.color, r = g.parameters.radius, c = new T.Color();
+  const cs = stops.map(s => [s[0], s[1] instanceof T.Color ? s[1] : new T.Color(s[1])]);
+  for (let i = 0; i < p.count; i++) {
+    const t = (p.getY(i) / r + 1) / 2; let k = 0; while (k < cs.length - 2 && t > cs[k + 1][0]) k++;
+    const a = cs[k], b = cs[k + 1]; c.copy(a[1]).lerp(b[1], clamp((t - a[0]) / (b[0] - a[0]))); col.setXYZ(i, c.r, c.g, c.b);
+  }
+  col.needsUpdate = true;
+}
+
+// faceted sea: a jittered grid whose vertices bob; returns {mesh, tick(t)}
+function makeSea(w, d, sx, sz, color, amp = .25) {
+  const g = new T.PlaneGeometry(w, d, sx, sz); g.rotateX(-Math.PI / 2);
+  const p = g.attributes.position, base = Float32Array.from(p.array), ph = [];
+  for (let i = 0; i < p.count; i++) { const x = base[i * 3], z = base[i * 3 + 2]; base[i * 3] += (hash3(x, 1, z) - .5) * w / sx * .6; base[i * 3 + 2] += (hash3(z, 2, x) - .5) * d / sz * .6; ph.push(hash3(x, z, 3) * 6.28); }
+  const nonIdx = g.toNonIndexed(); // flat facets
+  const m = new T.Mesh(g, mat(color, { shininess: 30, specular: 0x334455 }));
+  function tick(t) {
+    for (let i = 0; i < p.count; i++) {
+      const x = base[i * 3], z = base[i * 3 + 2];
+      p.setXYZ(i, x, Math.sin(t * .9 + ph[i] + x * .05) * amp + Math.sin(t * .6 + z * .08) * amp * .6, z);
+    }
+    p.needsUpdate = true;
+  }
+  tick(0); return { mesh: m, tick };
+}
+
+// concrete tetrapod: four legs from a centre
+function tetrapod(s = 1, color = 0xb9b2a7) {
+  const g = new T.Group(); const leg = new T.CylinderGeometry(.22 * s, .42 * s, 1.15 * s, 6, 1); leg.translate(0, .58 * s, 0);
+  const dirs = [[0, 1, 0], [.943, -.333, 0], [-.471, -.333, .816], [-.471, -.333, -.816]];
+  dirs.forEach(d => { const m = new T.Mesh(leg, mat(color)); m.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), new T.Vector3(...d)); g.add(m); });
+  g.add(new T.Mesh(new T.IcosahedronGeometry(.45 * s, 0), mat(color)));
+  return g;
+}
+function palm(h = 6, lean = .15) {
+  const g = new T.Group(); let y = 0, x = 0;
+  for (let i = 0; i < 5; i++) { const s = mesh(new T.CylinderGeometry(.16 - i * .015, .2 - i * .015, h / 5, 5), mat(0x8a7560), x, y + h / 10, 0, g); s.rotation.z = -lean; y += h / 5 * Math.cos(lean); x += h / 5 * Math.sin(lean); }
+  for (let i = 0; i < 7; i++) {
+    const f = new T.ConeGeometry(.35, 2.6, 3); f.translate(0, 1.3, 0); f.scale(1, 1, .25);
+    const m = mesh(f, mat(i % 2 ? 0x5f8a5a : 0x6f9a63), x, y, 0, g); m.rotation.set(0, i / 7 * Math.PI * 2, 1.25 + (i % 3) * .12, 'YXZ');
+  }
+  return g;
+}
+function rainTree(s = 1, col = 0x6d8f5f) {
+  const g = new T.Group();
+  mesh(new T.CylinderGeometry(.18 * s, .3 * s, 2.4 * s, 5), mat(0x6e5a48), 0, 1.2 * s, 0, g);
+  [[0, 3.1, 0, 2.1], [1.3, 2.8, .3, 1.5], [-1.3, 2.9, -.2, 1.6], [.2, 3.0, 1.1, 1.3]].forEach(([x, y, z, r], i) => {
+    const c = jitter(new T.IcosahedronGeometry(r * s, 0), .35 * s); c.scale(1, .62, 1);
+    mesh(c, mat(i % 2 ? col : new T.Color(col).offsetHSL(0, 0, .05).getHex()), x * s, y * s, z * s, g);
+  });
+  return g;
+}
+// marine drive lamp post (curved arm), returns {group, bulb, glow}
+function lampPost(h = 5.2, lit = 0xffc46b) {
+  const g = new T.Group();
+  mesh(new T.CylinderGeometry(.07, .12, h, 6), mat(0x3c4652), 0, h / 2, 0, g);
+  mesh(new T.CylinderGeometry(.2, .24, .35, 6), mat(0x3c4652), 0, .18, 0, g);
+  const arm = mesh(new T.BoxGeometry(.9, .06, .06), mat(0x3c4652), .4, h - .05, 0, g); arm.rotation.z = .08;
+  const head = mesh(new T.CylinderGeometry(.08, .26, .2, 6), mat(0x3c4652), .85, h - .1, 0, g);
+  const bulb = mesh(new T.IcosahedronGeometry(.16, 0), basic(0x6a6560), .85, h - .25, 0, g);
+  const glow = new T.Sprite(new T.SpriteMaterial({ map: glowTex(), color: lit, transparent: true, opacity: 0, depthWrite: false, blending: T.AdditiveBlending }));
+  glow.scale.set(3.2, 3.2, 1); glow.position.set(.85, h - .3, 0); g.add(glow);
+  return { group: g, bulb, glow };
+}
+let _glow;
+function glowTex() {
+  if (_glow) return _glow; const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
+  const r = x.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(.25, 'rgba(255,255,255,.45)'); r.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = r; x.fillRect(0, 0, 128, 128); return (_glow = new T.CanvasTexture(c));
+}
+// 1930s Art Deco block: curved corner, eyebrow shades, ribbon balconies, stepped parapet
+function decoBlock(w = 8, h = 10, d = 6, color = 0xeadcc0, o = {}) {
+  const g = new T.Group(); const body = mat(color); const trim = mat(new T.Color(color).offsetHSL(0, -.05, .07).getHex());
+  const shade = mat(new T.Color(color).offsetHSL(0, 0, -.12).getHex());
+  mesh(new T.BoxGeometry(w - 1.2, h, d), body, -.6, h / 2, 0, g);
+  const corner = mesh(new T.CylinderGeometry(1.2, 1.2, h, 8, 1, false, 0, Math.PI / 2), body, w / 2 - 1.2, h / 2, d / 2 - 1.2, g);
+  mesh(new T.BoxGeometry(1.2, h, d - 1.2), body, w / 2 - .6, h / 2, -.6, g);
+  const floors = Math.floor(h / 2.2);
+  const win = o.win || mat(0x4d5866);
+  for (let f = 0; f < floors; f++) {
+    const y = 1.6 + f * 2.2;
+    mesh(new T.BoxGeometry(w + .2, .14, .7), trim, 0, y + .95, d / 2 + .2, g); // eyebrow
+    for (let i = 0; i < Math.floor((w - 2) / 1.6); i++) { const wm = mesh(new T.BoxGeometry(.9, 1.1, .05), win, -w / 2 + 1.1 + i * 1.6, y, d / 2 + .03, g); wm.userData.win = true; }
+    if (f % 2 === 1) mesh(new T.BoxGeometry(w * .55, .5, .5), trim, -w * .1, y - .75, d / 2 + .25, g); // ribbon balcony
+  }
+  mesh(new T.BoxGeometry(w * .4, 1, d * .6), trim, -w * .15, h + .5, 0, g);
+  mesh(new T.BoxGeometry(w * .2, .8, d * .4), trim, -w * .15, h + 1.4, 0, g);
+  return g;
+}
+
+
+/* ---------- stage: renderer + sticky scroll progress + pause offscreen ---------- */
+function makeStage(o) {
+  const canvas = o.canvas, R = new T.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  R.setPixelRatio(Math.min(devicePixelRatio, o.dpr || 1.6));
+  if (o.shadows) { R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap; }
+  const scene = new T.Scene(), cam = new T.PerspectiveCamera(o.fov || 35, 1, .1, 2000);
+  const st = { R, scene, cam, p: 0, pt: 0, t: 0, visible: true, frames: [], w: 1, h: 1 };
+  function size() { const w = canvas.clientWidth, h = canvas.clientHeight; st.w = w; st.h = h; R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); st.dirty = true; }
+  addEventListener('resize', size); size();
+  const track = o.track;
+  function prog() { const r = track.getBoundingClientRect(); const span = r.height - innerHeight; st.pt = clamp(-r.top / Math.max(1, span)); }
+  addEventListener('scroll', prog, { passive: true }); prog(); st.p = st.pt;
+  new IntersectionObserver(e => { st.visible = e[0].isIntersecting; }).observe(canvas);
+  let last = performance.now();
+  function loop(now) {
+    requestAnimationFrame(loop);
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    if (!st.visible) return;
+    const dp = st.pt - st.p; st.p += dp * (REDUCED ? 1 : Math.min(1, dt * 6));
+    if (!REDUCED) st.t += dt; else if (Math.abs(dp) < 1e-4 && !st.dirty) return;
+    st.dirty = false;
+    st.frames.forEach(f => f(st.p, st.t, dt));
+    R.render(scene, cam);
+  }
+  requestAnimationFrame(loop);
+  return st;
+}
+function camKeys(keys, p) { // keys: [[p, [px,py,pz], [tx,ty,tz], fov?], ...] -> eased interpolation
+  let i = 0; while (i < keys.length - 2 && p > keys[i + 1][0]) i++;
+  const a = keys[i], b = keys[i + 1], t = ease(clamp((p - a[0]) / (b[0] - a[0])));
+  const L = (u, v) => u.map((x, k) => lerp(x, v[k], t));
+  return { pos: L(a[1], b[1]), tgt: L(a[2], b[2]), fov: lerp(a[3] || 35, b[3] || 35, t) };
+}
+
+/* bake a static group into one mesh per (untextured) material: far fewer draw calls */
+function bake(root, o = {}) {
+  root.updateMatrixWorld(true);
+  const inv = new T.Matrix4().copy(root.matrixWorld).invert(), byMat = new Map(), keep = [];
+  root.traverse(m => {
+    if (!m.isMesh || m.isInstancedMesh) return;
+    if (m.material.map || m.material.transparent || m.userData.keep) { keep.push(m); return; }
+    let g = m.geometry.index ? m.geometry.toNonIndexed() : m.geometry.clone();
+    g.applyMatrix4(new T.Matrix4().multiplyMatrices(inv, m.matrixWorld));
+    if (!byMat.has(m.material)) byMat.set(m.material, []);
+    byMat.get(m.material).push(g.attributes.position.array);
+  });
+  const out = new T.Group(); out.position.copy(root.position); out.quaternion.copy(root.quaternion); out.scale.copy(root.scale);
+  byMat.forEach((arrs, material) => {
+    const n = arrs.reduce((s, a) => s + a.length, 0), pos = new Float32Array(n); let k = 0;
+    arrs.forEach(a => { pos.set(a, k); k += a.length; });
+    const g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3)); g.computeVertexNormals();
+    const mm = new T.Mesh(g, material); mm.castShadow = !!o.cast; mm.receiveShadow = !!o.receive; out.add(mm);
+  });
+  keep.forEach(m => { const w = m.matrixWorld.clone(); const mm = m; mm.parent.remove(mm); mm.matrix.multiplyMatrices(inv, w); mm.matrix.decompose(mm.position, mm.quaternion, mm.scale); out.add(mm); });
+  if (root.parent) { root.parent.add(out); root.parent.remove(root); }
+  return out;
+}
+// merge a few transformed geometries into one (for instancing)
+function mergeGeos(list) {
+  const arrs = list.map(([g, m]) => { const q = (g.index ? g.toNonIndexed() : g.clone()); q.applyMatrix4(m); return q.attributes.position.array; });
+  const n = arrs.reduce((s, a) => s + a.length, 0), pos = new Float32Array(n); let k = 0; arrs.forEach(a => { pos.set(a, k); k += a.length; });
+  const g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3)); g.computeVertexNormals(); return g;
+}
+function tetrapodGeo(s = 1) {
+  const leg = new T.CylinderGeometry(.22 * s, .42 * s, 1.15 * s, 6, 1); leg.translate(0, .58 * s, 0);
+  const dirs = [[0, 1, 0], [.943, -.333, 0], [-.471, -.333, .816], [-.471, -.333, -.816]];
+  const list = dirs.map(d => [leg, new T.Matrix4().makeRotationFromQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0, 1, 0), new T.Vector3(...d)))]);
+  list.push([new T.IcosahedronGeometry(.45 * s, 0), new T.Matrix4()]);
+  return mergeGeos(list);
+}
+
+/* ---------------- THE CHARACTER: low-poly Mohit ---------------- */
+const MOHIT_C = { skin: 0xa36d50, skinD: 0x8f573b, hair: 0x15110f, shirt: 0xf7f5fb, cuff: 0xe7e1f1, trouser: 0x2c3444, shoe: 0xf1ede6, sole: 0x5e5650,
+  mouth: 0x4a1d1a, teeth: 0xfffbf3, top: 0x1f1a1a, low: 0xc4c9d1, brow: 0x17110f, mous: 0x553629, eye: 0x150f0d };
+let _shirtTex;
+function shirtTex() {
+  if (_shirtTex) return _shirtTex;
+  const c = document.createElement('canvas'); c.width = 64; c.height = 64; const x = c.getContext('2d');
+  x.fillStyle = '#ffffff'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#b9aee0';
+  for (let i = 0; i < 64; i += 8) x.fillRect(i, 0, 1.2, 64);
+  const t = new T.CanvasTexture(c); t.wrapS = t.wrapT = T.RepeatWrapping; t.anisotropy = 8; return (_shirtTex = t);
+}
+function shirtMat(rep = 6) {
+  const t = shirtTex().clone(); t.needsUpdate = true; t.repeat.set(rep, 1);
+  return new T.MeshPhongMaterial({ color: MOHIT_C.shirt, map: t, flatShading: true, shininess: 0, specular: 0 });
+}
+function headShape(v) { // v on a radius-.5 sphere -> stylised head (face toward +z)
+  v.x *= .8; v.z *= .9; v.y *= 1.02;
+  if (v.y < -.04) { const t = (-v.y - .04) / .47; v.x *= 1 - .22 * t; v.y *= 1 - .08 * t; if (v.z < .1) v.z *= 1 - .3 * t; else v.z += .02 * t; }
+  if (v.z < -.1 && v.y > -.15) v.z *= 1.07;
+  return v;
+}
+function tri(a, b, c) { const g = new T.BufferGeometry().setFromPoints([a, b, c].map(p => new T.Vector3(...p))); g.computeVertexNormals(); return g; }
+function makeMohit(opt = {}) {
+  const C = MOHIT_C, expr = opt.expression || 'smile';
+  const root = new T.Group(); root.name = 'mohit';
+  const J = {};
+  const skin = mat(C.skin), trou = mat(C.trouser), dark = mat(C.top);
+  const shirt = shirtMat(7), shirtA = shirtMat(3);
+  const two = (c) => new T.MeshPhongMaterial({ color: c, flatShading: true, side: T.DoubleSide, shininess: 0 });
+  // --- hips / legs
+  J.hips = new T.Group(); J.hips.position.y = 2.65; root.add(J.hips);
+  const pel = new T.CylinderGeometry(.5, .48, .45, 8); pel.scale(1, 1, .72); mesh(pel, trou, 0, -.05, 0, J.hips);
+  ['L', 'R'].forEach((s, i) => {
+    const sx = i ? -1 : 1;
+    const hip = J['hip' + s] = new T.Group(); hip.position.set(.25 * sx, -.1, 0); J.hips.add(hip);
+    mesh(new T.CylinderGeometry(.235, .18, 1.24, 7).translate(0, -.6, 0), trou, 0, 0, 0, hip);
+    const kn = J['kn' + s] = new T.Group(); kn.position.y = -1.2; hip.add(kn);
+    mesh(new T.CylinderGeometry(.18, .145, 1.18, 7).translate(0, -.58, 0), trou, 0, 0, 0, kn);
+    const an = J['an' + s] = new T.Group(); an.position.y = -1.15; kn.add(an);
+    const shoe = new T.BoxGeometry(.29, .2, .58, 1, 2, 3);
+    deform(shoe, v => { const f = (v.z + .29) / .58; if (v.y > 0) v.y -= f * f * .09; v.x *= 1 - f * .18; if (v.z > .2 && v.y > -.05) v.z -= .04; });
+    mesh(shoe, mat(C.shoe), 0, -.1, .1, an);
+    mesh(new T.BoxGeometry(.3, .06, .6), mat(C.sole), 0, -.2, .1, an);
+  });
+  // --- torso (shirt, untucked)
+  J.spine = new T.Group(); J.hips.add(J.spine);
+  const tg = new T.CylinderGeometry(1, 1, 1.9, 8, 6);
+  deform(tg, v => {
+    const t = (v.y + .95) / 1.9;
+    let wx = t < .3 ? lerp(.56, .51, t / .3) : lerp(.51, .57, Math.min(1, (t - .3) / .45));
+    let dz = .32 + .05 * Math.sin(Math.min(t, .85) * Math.PI * .85);
+    if (t > .84) { const k = (t - .84) / .16; wx = lerp(wx, .4, k * k); dz = lerp(dz, .22, k * k); v.y -= (Math.abs(v.x) > .5 ? .06 * k : 0); }
+    v.x *= wx; v.z *= dz;
+  });
+  tg.translate(0, .95 - .2, 0);
+  mesh(tg, shirt, 0, 0, 0, J.spine);
+  mesh(new T.BoxGeometry(.035, 1.5, .02), mat(0xe4def0), 0, .58, .365, J.spine); // placket
+  for (let i = 0; i < 4; i++) mesh(new T.CylinderGeometry(.022, .022, .02, 6).rotateX(Math.PI / 2), mat(0xd6cfe4), 0, .02 + i * .36, .38, J.spine);
+  // open collar: a V of skin and two soft points
+  mesh(tri([-.13, 1.66, .2], [.13, 1.66, .2], [0, 1.32, .33]), two(C.skin), 0, 0, 0, J.spine);
+  const col = mesh(new T.CylinderGeometry(.19, .27, .13, 9, 1, true, Math.PI * .7, Math.PI * 1.6), two(0xfbfaff), 0, 1.7, -.03, J.spine);
+  [-1, 1].forEach(sx => mesh(tri([.0, 0, 0], [.19 * sx, -.02, -.07], [.05 * sx, -.3, .07]), two(0xfcfbff), .06 * sx, 1.72, .26, J.spine));
+  // --- arms
+  ['L', 'R'].forEach((s, i) => {
+    const sx = i ? -1 : 1;
+    const sh = J['sh' + s] = new T.Group(); sh.position.set(.62 * sx, 1.38, 0); J.spine.add(sh);
+        mesh(new T.CylinderGeometry(.15, .145, 1.02, 7).translate(0, -.48, 0), shirtA, 0, 0, 0, sh);
+    const cap = new T.SphereGeometry(.15, 7, 4, 0, Math.PI * 2, 0, Math.PI / 2); cap.scale(1, .7, 1); mesh(cap, shirtA, 0, -.02, 0, sh);
+    const el = J['el' + s] = new T.Group(); el.position.y = -1.0; sh.add(el);
+    mesh(new T.IcosahedronGeometry(.145, 0), shirtA, 0, 0, 0, el);
+    mesh(new T.CylinderGeometry(.145, .15, .18, 7).translate(0, -.08, 0), shirtA, 0, 0, 0, el);
+    mesh(new T.CylinderGeometry(.165, .16, .12, 7).translate(0, -.2, 0), mat(C.cuff), 0, 0, 0, el); // rolled cuff
+    mesh(new T.CylinderGeometry(.11, .08, .72, 6).translate(0, -.58, 0), skin, 0, 0, 0, el);
+    const wr = J['wr' + s] = new T.Group(); wr.position.y = -.92; el.add(wr);
+    const fist = new T.DodecahedronGeometry(.125, 0); fist.scale(.78, 1.1, 1.02);
+    mesh(fist, skin, 0, -.07, .01, wr);
+    mesh(new T.BoxGeometry(.06, .1, .06), skin, -.03 * sx, -.02, .09, wr).rotation.x = .3; // thumb
+  });
+  // --- neck + head
+  J.neck = new T.Group(); J.neck.position.y = 1.66; J.spine.add(J.neck);
+  mesh(new T.CylinderGeometry(.14, .16, .38, 7).translate(0, .1, 0), skin, 0, 0, 0, J.neck);
+  J.head = new T.Group(); J.head.position.set(0, .08, .02); J.neck.add(J.head);
+  const H = new T.Group(); H.position.set(0, .45, .04); H.scale.setScalar(1.05); J.head.add(H); J.face = H;
+  const headM = mesh(deform(new T.IcosahedronGeometry(.5, 2), headShape), skin, 0, 0, 0, H);
+  const ray = new T.Raycaster(); root.updateMatrixWorld(true);
+  const surf = (x, y) => { ray.set(new T.Vector3(x, y, 2).applyMatrix4(H.matrixWorld), new T.Vector3(0, 0, -1)); const h = ray.intersectObject(headM); return h.length ? H.worldToLocal(h[0].point).z : .4; };
+  // hair: same skull, grown out where hair grows, sunk in elsewhere. soft quiff swept up and back
+  const hair = deform(new T.IcosahedronGeometry(.5, 2), v => {
+    const n = v.clone().normalize();
+    const line = .07 + .35 * Math.pow(Math.max(n.z, 0), 1.3) - .56 * Math.max(-n.z, 0) + .06 * Math.abs(n.x) * Math.max(n.z, 0);
+    headShape(v);
+    if (n.y <= line) { v.multiplyScalar(.9); return; }
+    const top = Math.max(n.y, 0), fr = Math.max(n.z, 0);
+    const side = Math.abs(n.x) > .55 && n.y < .5;
+    v.multiplyScalar(side ? 1.025 : 1.04 + .03 * top);
+    v.y += .05 * top * top;
+    v.y += .2 * fr * Math.pow(top, 1.6);         // quiff lifts at the front
+    v.z += .05 * fr * Math.pow(top, 1.2);
+    if (n.z < -.2) v.multiplyScalar(.985);        // short at the back
+  });
+  jitter(hair, .03, .04);
+  mesh(hair, mat(C.hair), 0, 0, 0, H);
+  // ears
+  [-1, 1].forEach(sx => { const e = new T.IcosahedronGeometry(.09, 0); e.scale(.5, 1.15, .8); mesh(e, skin, .385 * sx, -.07, -.01, H).rotation.y = .35 * sx; });
+  // eyes + brows
+  const ey = .01, ex = .14;
+  [-1, 1].forEach(sx => {
+    const z = surf(ex * sx, ey);
+    const e = new T.IcosahedronGeometry(.036, 1); e.scale(.95, expr === 'smile' ? .78 : 1.1, .4);
+    const eye = new T.Group(); eye.position.set(ex * sx, ey, z - .004); H.add(eye); (J.eyes = J.eyes || []).push(eye);
+    mesh(e, mat(C.eye), 0, 0, 0, eye);
+    mesh(new T.IcosahedronGeometry(.008, 0), basic(0xffffff), .01, .012, .014, eye);
+    const b = mesh(new T.BoxGeometry(.11, .02, .025), mat(C.brow), ex * sx, .108, surf(ex * sx, .108) + .03, H);
+    b.rotation.z = (expr === 'pensive' ? .1 : -.05) * sx; b.rotation.y = -.28 * sx;
+  });
+  // nose: a small faceted wedge
+  const nz = surf(0, -.03);
+  const ng = new T.BufferGeometry().setFromPoints([
+    [0, .07, 0], [-.045, -.075, .0], [0, -.065, .07], [0, .07, 0], [0, -.065, .07], [.045, -.075, 0],
+    [-.045, -.075, 0], [0, -.095, .03], [0, -.065, .07], [0, -.065, .07], [0, -.095, .03], [.045, -.075, 0]].map(p => new T.Vector3(...p)));
+  ng.computeVertexNormals(); mesh(ng, mat(C.skin, { side: T.DoubleSide }), 0, -.03, nz - .012, H);
+  // moustache + mouth
+  const mz = surf(0, -.155);
+  const mu = new T.BoxGeometry(.12, .01, .014, 4, 1, 1); deform(mu, v => { v.z -= v.x * v.x * 2.4; v.y -= Math.abs(v.x) * .14; });
+  mesh(mu, mat(C.mous), 0, -.145, mz + .002, H);
+  if (expr === 'smile') {
+    const sh = new T.Shape(); sh.moveTo(-.105, .012); sh.quadraticCurveTo(0, -.012, .105, .012); sh.quadraticCurveTo(.075, -.075, 0, -.078); sh.quadraticCurveTo(-.075, -.075, -.105, .012);
+    const sg = new T.ShapeGeometry(sh, 8); deform(sg, v => { v.z -= v.x * v.x * 2.6; });
+    const my = -.195, sz = surf(0, my - .03);
+    mesh(sg, basic(C.mouth), 0, my, sz + .006, H);
+    const th = new T.Shape(); th.moveTo(-.095, .006); th.quadraticCurveTo(0, -.016, .095, .006); th.quadraticCurveTo(.06, -.03, 0, -.034); th.quadraticCurveTo(-.06, -.03, -.095, .006);
+    const tg2 = new T.ShapeGeometry(th, 8); deform(tg2, v => { v.z -= v.x * v.x * 2.6; });
+    mesh(tg2, basic(C.teeth), 0, my, sz + .009, H);
+  } else {
+    const mg = new T.BoxGeometry(.1, .014, .02, 4, 1, 1); deform(mg, v => { v.z -= v.x * v.x * 2.4; v.y += v.x * v.x * .5; });
+    mesh(mg, mat(0x5e2e26), 0, -.205, surf(0, -.205) + .002, H);
+  }
+  // glasses: thin rectangular frames, dark top rim, light lower rim, a touch oversized
+  const G = new T.Group(); H.add(G); J.glasses = G;
+  const gz = surf(0, .02) + .03;
+  const lens = new T.MeshPhongMaterial({ color: 0xe8f0f6, transparent: true, opacity: .14, shininess: 80, specular: 0xffffff, depthWrite: false });
+  [-1, 1].forEach(sx => {
+    const L = new T.Group(); L.position.set(.148 * sx, .02, gz - .018); L.rotation.y = .2 * sx; G.add(L);
+    const w = .19, h = .12;
+    mesh(new T.BoxGeometry(w + .012, .026, .024), dark, 0, h / 2, 0, L);
+    mesh(new T.BoxGeometry(w, .009, .014), mat(C.low), 0, -h / 2, 0, L);
+    mesh(new T.BoxGeometry(.01, h, .014), mat(C.low), w / 2, 0, 0, L);
+    mesh(new T.BoxGeometry(.01, h, .014), mat(C.low), -w / 2, 0, 0, L);
+    mesh(new T.PlaneGeometry(w, h), lens, 0, 0, 0, L);
+    const tmp = mesh(new T.BoxGeometry(.012, .016, .4), dark, sx * (w / 2 + .006), h / 2 - .008, -.2, L); tmp.rotation.y = -.16 * sx;
+  });
+  mesh(new T.BoxGeometry(.07, .016, .016), dark, 0, .072, gz, G);
+  // pose helpers
+  const api = { root, J, set(p) { for (const k in p) { const j = J[k]; if (!j) continue; const r = p[k]; j.rotation.set(r[0] || 0, r[1] || 0, r[2] || 0, r[3] || 'XYZ'); } }, aim };
+  const _a = new T.Vector3(), _q = new T.Quaternion(), down = new T.Vector3(0, -1, 0);
+  function aim(bone, target) { // point a limb's -Y at a world target
+    bone.parent.updateMatrixWorld(true); const pos = new T.Vector3().setFromMatrixPosition(bone.matrixWorld);
+    _a.copy(target).sub(pos).normalize(); bone.parent.getWorldQuaternion(_q); _a.applyQuaternion(_q.invert());
+    bone.quaternion.setFromUnitVectors(down, _a);
+  }
+  root.traverse(o => { if (o.isMesh && !o.material.transparent) o.castShadow = true; });
+  return api;
+}
+// standard poses
+function poseStand(m) {
+  m.set({ shL: [0, 0, .1], shR: [0, 0, -.1], elL: [-.12], elR: [-.12], hipL: [0], hipR: [0], knL: [0], knR: [0], spine: [0], neck: [0], head: [0] });
+}
+function poseWalk(m, t) {
+  const s = Math.sin(t), c = Math.cos(t);
+  m.set({
+    hipL: [-s * .45], hipR: [s * .45], knL: [Math.max(0, c) * .85 + .08], knR: [Math.max(0, -c) * .85 + .08],
+    anL: [-.05], anR: [-.05],
+    shL: [s * .38, 0, .1], shR: [-s * .38, 0, -.1], elL: [-.3 - Math.max(0, s) * .3], elR: [-.3 - Math.max(0, -s) * .3],
+    spine: [.05, -s * .07, 0], neck: [0, s * .05, 0], head: [.02, 0, 0]
+  });
+  m.J.hips.position.y = 2.65 - .07 + Math.abs(s) * .07;
+}
+// two-bone IK for an arm: shoulder -> elbow -> fist at target, elbow bent toward pole
+function ik2(m, s, target, pole) {
+  m.root.updateMatrixWorld(true);
+  const S = new T.Vector3().setFromMatrixPosition(m.J['sh' + s].matrixWorld);
+  const sc = m.root.getWorldScale(new T.Vector3()).x, a = 1.0 * sc, b = .99 * sc;
+  const u = target.clone().sub(S); const d = Math.min(u.length(), (a + b) * .999); u.normalize();
+  const cosA = (a * a + d * d - b * b) / (2 * a * d), sinA = Math.sqrt(Math.max(0, 1 - cosA * cosA));
+  const v = pole.clone().sub(S); v.sub(u.clone().multiplyScalar(v.dot(u))).normalize();
+  const E = S.clone().add(u.clone().multiplyScalar(a * cosA)).add(v.multiplyScalar(a * sinA));
+  m.aim(m.J['sh' + s], E); m.root.updateMatrixWorld(true);
+  m.aim(m.J['el' + s], S.clone().add(u.multiplyScalar(d))); m.root.updateMatrixWorld(true);
+}
+// seated facing +z, the window on his right (-x); right elbow on the sill, chin on his right fist, gaze out of the window
+function poseChin(m, o = {}) {
+  m.set({ hipL: [-1.52, 0, .06], hipR: [-1.5, 0, -.04], knL: [1.5], knR: [1.45], anL: [.05], anR: [0],
+    spine: [o.lean ?? .42, 0, o.side ?? .1], neck: [.22, 0, 0], head: [o.nod ?? .02, o.look ?? -.8, o.tilt ?? .12],
+    shL: [-.45, 0, .2], elL: [-1.0, 0, 0], wrL: [0, 0, 0], wrR: [0, 0, 0] });
+  m.root.updateMatrixWorld(true);
+  const chin = new T.Vector3(0, -.46, .22); m.J.face.localToWorld(chin);
+  const fwd = new T.Vector3(0, 0, .12).applyQuaternion(m.J.spine.getWorldQuaternion(new T.Quaternion())); chin.add(fwd);
+  const pole = new T.Vector3(o.poleX ?? -1.6, -1.5, o.poleZ ?? .3); m.J.spine.localToWorld(pole);
+  m.J.wrR.rotation.set(-.2, 0, 0);
+  ik2(m, 'R', chin, pole);
+  if (0 && window.DEBUGIK) { const w = new T.Vector3().setFromMatrixPosition(m.J.wrR.matrixWorld), e = new T.Vector3().setFromMatrixPosition(m.J.elR.matrixWorld), sh = new T.Vector3().setFromMatrixPosition(m.J.shR.matrixWorld); console.warn('IK', [chin, w, e, sh].map(v => v.toArray().map(n => n.toFixed(2)).join(',')).join(' | ')); }
+  m.J.wrR.rotation.set(-.2, 0, 0);
+  // settle the fist exactly under the chin: re-aim twice with the measured gap
+  for (let it = 0; it < 3; it++) {
+    m.root.updateMatrixWorld(true);
+    const sc = m.root.getWorldScale(new T.Vector3()).x;
+    const fist = new T.Vector3(0, -.07, .01); m.J.wrR.localToWorld(fist);
+    const chinW = new T.Vector3(0, -.5, .14); m.J.face.localToWorld(chinW);
+    const want = chinW.clone().add(new T.Vector3(0, -.13 * sc, 0)).add(new T.Vector3(0, 0, .04 * sc).applyQuaternion(m.J.spine.getWorldQuaternion(new T.Quaternion())));
+    const S0 = new T.Vector3().setFromMatrixPosition(m.J.shR.matrixWorld);
+    if (window.DEBUGIK) console.warn('it', it, 'gap', want.distanceTo(fist).toFixed(3), 'reach', (S0.distanceTo(want) / sc).toFixed(3));
+    chin.add(want.sub(fist));
+    ik2(m, 'R', chin, pole);
+  }
+}
+
+// tiny life: blink + breathing (call each frame)
+function mohitLife(m, t, base) {
+  const b = (t % 4.3) < .12 ? .12 : 1; m.J.eyes.forEach(e => e.scale.y = b);
+  m.J.spine.position.y = Math.sin(t * 1.6) * .012;
+}
+
+(function () {
+  const S = makeStage({ canvas: document.getElementById('c'), track: document.getElementById('track'), shadows: false, fov: 34 });
+  const { scene, cam } = S;
+  const fog = new T.Fog(0xe08a62, 60, 420); scene.fog = fog;
+  const skyA = [[0, '#e0956a'], [.5, '#eda06d'], [.512, '#c98580'], [.53, '#86688c'], [.56, '#47497a'], [1, '#26315c']];
+  const skyB = [[0, '#132036'], [.5, '#1b2a48'], [.512, '#26304f'], [.53, '#1f2a52'], [.56, '#16244a'], [1, '#0b1527']];
+  const sky = skyDome(skyA); scene.add(sky);
+  const hemi = new T.HemisphereLight(0xf7c9a5, 0x3a4566, .7); scene.add(hemi);
+  const key = new T.DirectionalLight(0xffb27a, .7); key.position.set(-20, 12, -60); scene.add(key);
+  const fillL = new T.DirectionalLight(0x8fa6d6, .35); fillL.position.set(10, 8, 40); scene.add(fillL);
+  const sun = mesh(new T.CircleGeometry(16, 12), basic(0xffd7a0, { fog: false }), 105, 30, -430, scene);
+
+  // sea + promenade + parapet + tetrapod tops
+  const seaG = new T.PlaneGeometry(1600, 500, 70, 22); seaG.rotateX(-Math.PI / 2);
+  jitter(seaG, 6, 0); const sea = mesh(seaG, mat(0x355f86, { shininess: 0, specular: 0x000000 }), 0, -3, -252, scene);
+  mesh(new T.BoxGeometry(600, 1, 12), mat(0xbfb1a3), 0, -.5, 5, scene);
+  for (let i = 0; i < 200; i++) mesh(new T.BoxGeometry(2.8, .02, 1.3), mat(i % 2 ? 0xbcae9f : 0xbaac9e), -150 + i * 2.9, .005, 1.2 + (i % 3) * 1.6, scene);
+  mesh(new T.BoxGeometry(600, .78, .5), mat(0xb0a497), 0, .39, -1.2, scene);
+  mesh(new T.BoxGeometry(600, .08, .62), mat(0xc9bdaf), 0, .8, -1.2, scene);
+  const tm = new T.InstancedMesh(tetrapodGeo(.9), mat(0x9b938a), 220), dm = new T.Object3D();
+  for (let i = 0; i < 220; i++) { dm.position.set(-150 + i * 1.6, -1.2 + (i % 2) * .4, -3 - (i % 3) * 1.2); dm.rotation.set(hash3(i, 1, 1) * 6, hash3(i, 2, 1) * 6, hash3(i, 3, 1) * 6); dm.updateMatrix(); tm.setMatrixAt(i, dm.matrix); }
+  scene.add(tm);
+
+  // the seven lamps (stops) + benches between them
+  const GAP = 12, X0 = 10, stops = [];
+  for (let i = 0; i < 7; i++) {
+    const l = lampPost(5.6, 0xffb35a); l.group.position.set(X0 + i * GAP, 0, -.6); l.group.rotation.y = Math.PI / 2; scene.add(l.group);
+    const pool = mesh(new T.CircleGeometry(3.2, 10).rotateX(-Math.PI / 2), new T.MeshBasicMaterial({ map: glowTex(), color: 0xffa64d, transparent: true, opacity: 0, depthWrite: false, blending: T.AdditiveBlending }), X0 + i * GAP, .03, 1.4, scene);
+    stops.push({ l, pool, x: X0 + i * GAP, on: 0 });
+    const b = new T.Group(); b.position.set(X0 + i * GAP + 7, 0, -.1); scene.add(b);
+    mesh(new T.BoxGeometry(2.4, .1, .55), mat(0x6c5b4d), 0, .5, 0, b); mesh(new T.BoxGeometry(2.4, .5, .08), mat(0x6c5b4d), 0, .82, -.28, b);
+    [-1, 1].forEach(s => mesh(new T.BoxGeometry(.1, .5, .5), mat(0x3d434b), s * 1.05, .25, 0, b));
+  }
+  const warm = new T.PointLight(0xffa956, 0, 14, 1.6); scene.add(warm);
+
+  // the Queen's Necklace across the bay: lamps that come on near to far
+  const curve = new T.QuadraticBezierCurve3(new T.Vector3(190, 0, -60), new T.Vector3(150, 0, -330), new T.Vector3(-40, 0, -330));
+  const N = 260, pos = new Float32Array(N * 3);
+  for (let i = 0; i < N; i++) { const p = curve.getPoint(i / (N - 1)); pos.set([p.x, 1.6, p.z], i * 3); }
+  const ng = new T.BufferGeometry(); ng.setAttribute('position', new T.BufferAttribute(pos, 3));
+  const pts = new T.Points(ng, new T.PointsMaterial({ color: 0xffbf6b, size: 5, map: glowTex(), transparent: true, depthWrite: false, blending: T.AdditiveBlending, fog: false }));
+  scene.add(pts); ng.setDrawRange(0, 0);
+  // the skyline along the curve, windows warming as night falls
+  const winM = new T.MeshBasicMaterial({ color: 0x2a3550 });
+  const city = new T.Group(); scene.add(city);
+  for (let i = 0; i < 30; i++) {
+    const t = .03 + i / 30 * .95, p = curve.getPoint(t), tan = curve.getTangent(t), n = new T.Vector3(-tan.z, 0, tan.x).normalize();
+    const b = decoBlock(14, 12 + hash3(i, 1, 4) * 12, 10, [0xd7b9a6, 0xcfa99a, 0xdcc3a4, 0xc9b2a8][i % 4], { win: winM });
+    b.position.copy(p).add(n.multiplyScalar(18)); b.lookAt(b.position.clone().sub(n)); city.add(b);
+  }
+  const hill = jitter(new T.IcosahedronGeometry(70, 1), 14); hill.scale(1.6, .45, 1); mesh(hill, mat(0x4b5a6a), -60, -8, -380, city);
+  const cityB = bake(city);
+
+  // Mohit, walking toward +x
+  const mo = makeMohit({ expression: 'smile' });
+  mo.root.scale.setScalar(.3); mo.root.rotation.y = Math.PI / 2; mo.root.position.set(0, 0, 1.7); scene.add(mo.root);
+  poseStand(mo);
+
+  const zone = [...document.getElementById('zone').children];
+  let lastX = 0, phase = 0, speed = 0;
+  const c1 = new T.Color(), stopsA = skyA.map(s => [s[0], new T.Color(s[1])]), stopsB = skyB.map(s => [s[0], new T.Color(s[1])]);
+  S.frames.push((p, t, dt) => {
+    const tall = S.w / S.h < .9;
+    // progress: 0..T0 title, then 7 equal stops
+    const T0 = .07, q = clamp((p - T0) / (1 - T0)) * 7; // 0..7
+    const idx = p < T0 ? -1 : Math.min(6, Math.floor(q));
+    zone.forEach((z, i) => z.classList.toggle('on', i === idx + 1));
+    // he walks from before lamp 0 to past lamp 6, pausing beside each lamp
+    const seg = Math.min(6.999, q), k = Math.floor(seg), f = seg - k;
+    const xm = p < T0 ? lerp(-8, X0 - 3.5, p / T0) : X0 + k * GAP - 3.5 + GAP * smooth(.45, 1, f);
+    mo.root.position.x = xm;
+    const dx = xm - lastX; lastX = xm;
+    speed = lerp(speed, Math.min(1, Math.abs(dx) / Math.max(dt, .001) / 2.4), .15);
+    phase += dx / .62;
+    if (speed > .03) { poseWalk(mo, phase); mo.set({ shL: [Math.sin(phase) * .38 * speed, 0, .1], shR: [-Math.sin(phase) * .38 * speed, 0, -.1], hipL: [-Math.sin(phase) * .45 * speed], hipR: [Math.sin(phase) * .45 * speed] }); }
+    else { poseStand(mo); mo.set({ head: [.0, .55, 0], neck: [0, .2, 0] }); } // pause: look out at the sea
+    mohitLife(mo, t);
+    // lamps: lit once he has reached them (the past stays lit)
+    stops.forEach((s, i) => {
+      const want = (p >= T0 && xm > s.x - 4.2) ? 1 : 0; s.on = lerp(s.on, want, .08);
+      s.l.glow.material.opacity = s.on * .95; s.l.bulb.material.color.setRGB(lerp(.42, 1, s.on), lerp(.4, .85, s.on), lerp(.38, .55, s.on)); s.pool.material.opacity = s.on * .55;
+    });
+    const near = stops[Math.max(0, Math.min(6, Math.round((xm - X0) / GAP)))]; warm.position.set(near.x + .8, 5, 1.5); warm.intensity = near.on * 1.2;
+    // dusk deepens; sun sinks; necklace lights near to far; city windows warm
+    const d = smooth(.0, 1, p);
+    recolorSky(sky, stopsA.map((s, i) => [s[0], c1.copy(s[1]).lerp(stopsB[i][1], d).clone()]));
+    fog.color.set(0xe08a62).lerp(new T.Color(0x16223b), d);
+    hemi.intensity = lerp(.7, .38, d); key.intensity = lerp(.7, .12, d); fillL.intensity = lerp(.35, .28, d);
+    sun.position.y = lerp(34, -24, smooth(0, .75, p));
+    ng.setDrawRange(0, Math.floor(N * smooth(.1, .95, p)));
+    winM.color.set(0x2a3550).lerp(new T.Color(0xf2b46a), smooth(.35, 1, p));
+    sea.material.color.set(0x355f86).lerp(new T.Color(0x16294a), d);
+    // camera trails him; he sits right of the text column
+    const ox = tall ? 0 : 2.2;
+    cam.position.set(xm - ox + Math.sin(t * .2) * .15, 6.0, tall ? 30 : 24);
+    cam.lookAt(xm - ox, tall ? .6 : .5, -40);
+    cam.fov = tall ? 40 : 24; cam.updateProjectionMatrix();
+    if (!tall) cam.setViewOffset(S.w, S.h, -.08 * S.w, 0, S.w, S.h); else cam.clearViewOffset();
+  });
+})();
+</script>
+</body>
+</html>

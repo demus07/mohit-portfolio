@@ -1,0 +1,320 @@
+<!-- Direction 08: Cinema marquee — an Eros-style Art Deco picture house at night, the marquee bill reading AuctionXI; scroll walks you through the doors to the screen, and the programme changes the film. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work: Picture House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--deep:#08111d;--sodium:#f2a145;--cream:#efe2c8;--paper:#efe8da;--dim:rgba(239,232,218,.66);--velvet:#3a0f16}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--deep);color:var(--paper)}
+body{font-family:"Josefin Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.track{height:900vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.layer{position:absolute;inset:0}
+.layer > svg{width:100%;height:100%;display:block}
+#outside{transform-origin:62.5% 76%;will-change:transform,opacity}
+#inside{opacity:0;will-change:opacity,transform}
+
+/* outside text */
+.zoneA{position:absolute;left:clamp(24px,5.5vw,88px);top:clamp(72px,12vh,120px);max-width:440px;z-index:5;transition:opacity .6s}
+h1,h2{font-family:"DM Serif Display",serif;font-weight:400;text-wrap:balance}
+h1{font-size:clamp(40px,4.4vw,66px);line-height:1}
+.zoneA p{font-size:18px;line-height:1.5;color:var(--dim);margin-top:18px;max-width:38ch}
+
+/* marquee letterboard (HTML so the type is crisp) */
+.board{position:absolute;left:50%;top:50%;width:560px;height:120px;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#16120c;text-align:center}
+.board .t1{font:700 50px/1 "Josefin Sans",sans-serif;letter-spacing:.14em;padding-left:.14em}
+.board .t2{font:600 19px/1 "Josefin Sans",sans-serif;letter-spacing:.12em}
+
+/* inside */
+.screenWrap{position:absolute;right:clamp(24px,5vw,80px);top:50%;width:min(58vw,calc((100vh - 220px)*1.6),900px);aspect-ratio:16/10;transform:translateY(-54%)}
+.screen{position:absolute;inset:0;overflow:hidden;background:#000}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.screen img.on{opacity:1}
+.screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 120% at 50% 50%,transparent 55%,rgba(0,0,0,.45));animation:flick 0.18s steps(2) infinite}
+@keyframes flick{0%{opacity:.92}100%{opacity:1}}
+.screen.cut img.on{animation:cut .5s ease}
+@keyframes cut{0%{filter:brightness(2.2) contrast(.6)}100%{filter:none}}
+.zoneB{position:absolute;left:clamp(24px,5.5vw,88px);top:clamp(64px,10vh,104px);width:min(380px,30vw);z-index:5}
+.kind{font-size:15px;color:var(--sodium)}
+.cap h2{font-size:clamp(36px,3.4vw,52px);line-height:1;margin-top:8px}
+.head{font-family:"DM Serif Display",serif;font-style:italic;font-size:21px;line-height:1.25;margin-top:10px}
+.line{font-size:16px;line-height:1.5;color:var(--dim);margin-top:12px;max-width:38ch}
+.facts{list-style:none;margin-top:12px;font-size:15px;line-height:1.45;color:var(--dim)}
+.facts li{margin-top:5px;padding-left:16px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--sodium)}
+.facts .tech{font-size:14px;color:rgba(239,232,218,.48)}
+.links{margin-top:14px;display:flex;gap:22px;font-size:16px}
+.links a{color:var(--sodium);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s;padding-bottom:2px}
+.links a:hover{background-size:100% 1px}
+.links span{color:var(--dim)}
+.cap{transition:opacity .45s ease;min-height:372px}
+.cap.fade{opacity:0}
+
+.prog{list-style:none;display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:22px;padding-top:16px;border-top:1px solid rgba(239,232,218,.14)}
+.prog button{all:unset;cursor:pointer;font-family:"DM Serif Display",serif;font-size:19px;line-height:1.3;color:rgba(239,232,218,.45);transition:color .3s;position:relative}
+.prog button:hover{color:var(--paper)}
+.prog button.on{color:var(--sodium)}
+.prog button:focus-visible{outline:1px solid var(--sodium);outline-offset:3px}
+
+.hint{position:absolute;left:clamp(24px,5.5vw,88px);bottom:30px;font-size:14px;color:rgba(239,232,218,.5);z-index:6;transition:opacity .5s}
+@media (max-width:820px){
+  .zoneA{max-width:calc(100vw - 48px);top:64px}
+  .zoneA p{font-size:16px}
+  .board{width:300px;height:70px}.board .t1{font-size:28px}.board .t2{font-size:11px}
+  #outside{transform-origin:50% 92%}
+  .screenWrap{left:16px;right:16px;width:auto;top:56px;transform:none}
+  .zoneB{top:calc(56px + (100vw - 32px)/1.6 + 22px);width:auto;right:24px}
+  .head{font-size:18px}.cap h2{font-size:32px}.line{font-size:15px}
+  .facts{font-size:14px;margin-top:8px}.facts .tech{display:none}
+  .hint{display:none}
+  .cap{min-height:0}.prog{gap:2px 14px;margin-top:14px;padding-top:10px}
+  .prog button{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){.bulb{animation:none!important}.screen::after{animation:none}#dust{display:none}}
+</style>
+</head>
+<body>
+<div class="track" id="track">
+ <div class="stage">
+
+  <!-- ===================== OUTSIDE: the picture house at night ===================== -->
+  <div class="layer" id="outside">
+   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true" id="facade">
+    <defs>
+      <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#060d18"/><stop offset=".6" stop-color="#0d1a2b"/><stop offset="1" stop-color="#1d2433"/></linearGradient>
+      <linearGradient id="stone" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f4cf94"/><stop offset=".35" stop-color="#d9b98c"/><stop offset=".75" stop-color="#8f7c66"/><stop offset="1" stop-color="#4a4350"/></linearGradient>
+      <linearGradient id="stoneSide" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c9a271"/><stop offset=".5" stop-color="#9a8268"/><stop offset="1" stop-color="#3b3644"/></linearGradient>
+      <linearGradient id="towerLight" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e8c891"/><stop offset=".55" stop-color="#b79c7c"/><stop offset="1" stop-color="#55505c"/></linearGradient>
+      <linearGradient id="door" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf86"/><stop offset="1" stop-color="#e88b3a"/></linearGradient>
+      <radialGradient id="spill" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#ffb760" stop-opacity=".55"/><stop offset="1" stop-color="#ffb760" stop-opacity="0"/></radialGradient>
+      <radialGradient id="halo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffb760" stop-opacity="0"/></radialGradient>
+      <filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .1 0"/></filter>
+      <filter id="neon" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <rect x="-200" y="-1400" width="1840" height="1402" fill="#060d18"/><rect width="1440" height="900" fill="url(#night)"/>
+    <!-- neighbouring blocks, low and dark -->
+    <path d="M0 520 H180 V470 H300 V540 H420 V900 H0Z" fill="#141c29"/>
+    <g fill="#f2a145" opacity=".5"><rect x="40" y="560" width="14" height="20"/><rect x="110" y="600" width="14" height="20"/><rect x="230" y="520" width="14" height="20"/><rect x="330" y="580" width="14" height="20"/></g>
+    <path d="M1300 500 H1440 V900 H1300Z" fill="#141c29"/>
+    <!-- side wings with curved corners -->
+    <path d="M440 900 V350 H560 V320 H1240 V350 H1310 Q1330 350 1330 380 V900Z" fill="url(#stoneSide)"/>
+    <path d="M440 900 V350 Q420 350 420 380 V900Z" fill="#5c4f48"/>
+    <!-- horizontal Deco banding on the wings -->
+    <g fill="#6d5a4a" opacity=".55"><rect x="440" y="380" width="890" height="4"/><rect x="440" y="400" width="890" height="2"/><rect x="440" y="416" width="890" height="2"/></g>
+    <!-- windows on the wings with eyebrow sunshades -->
+    <g>
+      <g fill="#2a2630"><rect x="480" y="440" width="60" height="70"/><rect x="580" y="440" width="60" height="70"/><rect x="1160" y="440" width="60" height="70"/><rect x="1240" y="440" width="60" height="70"/></g>
+      <g fill="#f6c98a" opacity=".8"><rect x="580" y="448" width="60" height="62"/></g>
+      <g fill="#a68d72"><rect x="474" y="430" width="72" height="8"/><rect x="574" y="430" width="72" height="8"/><rect x="1154" y="430" width="72" height="8"/><rect x="1234" y="430" width="72" height="8"/></g>
+    </g>
+    <!-- stepped central tower -->
+    <path d="M760 520 V250 H790 V200 H820 V150 H850 V110 H950 V150 H980 V200 H1010 V250 H1040 V520Z" fill="url(#towerLight)"/>
+    <!-- vertical fins -->
+    <g fill="#f2dfbd" opacity=".55"><rect x="872" y="120" width="8" height="390"/><rect x="896" y="114" width="8" height="396"/><rect x="920" y="120" width="8" height="390"/></g>
+    <g fill="#5a4b46" opacity=".6"><rect x="860" y="120" width="4" height="390"/><rect x="936" y="120" width="4" height="390"/></g>
+    <!-- neon outline on the tower crown -->
+    <path d="M850 112 H950 M820 152 H980 M790 202 H1010" stroke="#ff9f5a" stroke-width="2.5" filter="url(#neon)" class="neon"/>
+    <radialGradient id="wash2" cx=".5" cy="1" r=".9"><stop offset="0" stop-color="#ffc77a" stop-opacity=".45"/><stop offset="1" stop-color="#ffc77a" stop-opacity="0"/></radialGradient>
+    <rect x="420" y="250" width="910" height="650" fill="url(#wash2)" style="mix-blend-mode:soft-light"/>
+    <g fill="#fff3d8" opacity=".7"><circle cx="210" cy="90" r="1.2"/><circle cx="640" cy="60" r="1"/><circle cx="1180" cy="120" r="1.3"/><circle cx="1320" cy="70" r="1"/><circle cx="520" cy="190" r=".9"/><circle cx="1100" cy="40" r=".9"/></g>
+    <!-- marquee canopy -->
+    <path d="M580 560 L600 520 H1200 L1220 560Z" fill="#2c2420"/>
+    <rect x="580" y="560" width="640" height="150" fill="#1b1612"/>
+    <rect x="600" y="574" width="600" height="122" fill="#f4ecd9"/>
+    <rect x="600" y="574" width="600" height="122" fill="url(#spill)" opacity=".25"/>
+    <text x="900" y="640" text-anchor="middle" font-family="Josefin Sans" font-weight="700" font-size="52" letter-spacing="7" fill="#16120c">AUCTIONXI</text>
+    <text x="900" y="676" text-anchor="middle" font-family="Josefin Sans" font-weight="600" font-size="19" letter-spacing="2.6" fill="#3a2a1a">LIVE PLAYER AUCTIONS FOR ANY SPORT</text>
+    <g id="bulbs"></g>
+    <rect x="580" y="710" width="640" height="10" fill="#120e0b"/>
+    <!-- light under the canopy -->
+    <path d="M590 720 H1210 L1270 900 H530Z" fill="url(#spill)"/>
+    <!-- entrance doors -->
+    <g>
+      <rect x="660" y="740" width="480" height="160" fill="#2a1d14"/>
+      <g fill="url(#door)"><rect x="680" y="752" width="100" height="148"/><rect x="800" y="752" width="100" height="148"/><rect x="920" y="752" width="100" height="148"/><rect x="1040" y="752" width="80" height="148"/></g>
+      <g stroke="#6a4a2a" stroke-width="3"><path d="M730 752 V900 M850 752 V900 M970 752 V900 M1080 752 V900"/></g>
+      <g fill="#7a5532" opacity=".6"><circle cx="730" cy="826" r="10"/><circle cx="850" cy="826" r="10"/><circle cx="970" cy="826" r="10"/></g>
+    </g>
+    <!-- poster cases either side -->
+    <g><rect x="470" y="740" width="90" height="140" fill="#1f1812"/><rect x="478" y="748" width="74" height="124" fill="#f2a145" opacity=".18"/>
+       <rect x="1240" y="740" width="90" height="140" fill="#1f1812"/><rect x="1248" y="748" width="74" height="124" fill="#f2a145" opacity=".18"/></g>
+    <!-- a kaali-peeli Premier Padmini parked at the kerb -->
+    <g transform="translate(1180 836)">
+      <path d="M0 40 C0 24 8 18 26 16 L56 0 H128 L156 16 C176 18 186 24 186 40 V54 H0Z" fill="#111"/>
+      <path d="M26 16 L56 0 H128 L156 16Z" fill="#e8b928"/>
+      <path d="M62 4 H90 V16 H48Z M96 4 H124 L140 16 H96Z" fill="#33414f" opacity=".85"/>
+      <rect x="0" y="30" width="186" height="8" fill="#e8b928"/>
+      <circle cx="40" cy="56" r="13" fill="#0a0a0a"/><circle cx="148" cy="56" r="13" fill="#0a0a0a"/>
+      <rect x="80" y="-8" width="26" height="8" fill="#e8b928"/>
+    </g>
+    <!-- street -->
+    <rect x="0" y="892" width="1440" height="8" fill="#0b0f16"/>
+    <rect x="-200" y="-1400" width="1840" height="2300" filter="url(#g)"/>
+   </svg>
+  </div>
+
+  <div class="zoneA" id="zoneA">
+    <h1>Things I've built and shipped</h1>
+    <p>Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+  </div>
+
+  <!-- ===================== INSIDE: the auditorium ===================== -->
+  <div class="layer" id="inside">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="wash" cx=".62" cy=".45" r=".7"><stop offset="0" stop-color="#2a3550"/><stop offset=".5" stop-color="#121c2c"/><stop offset="1" stop-color="#070d16"/></radialGradient>
+        <linearGradient id="beamV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2d6" stop-opacity=".26"/><stop offset="1" stop-color="#fff2d6" stop-opacity=".04"/></linearGradient>
+        <linearGradient id="curtain" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#2a0a10"/><stop offset=".25" stop-color="#5a1820"/><stop offset=".5" stop-color="#2a0a10"/><stop offset=".75" stop-color="#4e141b"/><stop offset="1" stop-color="#2a0a10"/>
+        </linearGradient>
+        <pattern id="folds" width="44" height="900" patternUnits="userSpaceOnUse"><rect width="44" height="900" fill="url(#curtain)"/></pattern>
+        <filter id="g2"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="2"/><feColorMatrix values="0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .09 0"/></filter>
+      </defs>
+      <rect width="1440" height="900" fill="url(#wash)"/>
+      <!-- Deco proscenium ribs, receding -->
+      <g fill="none" stroke="#c9a46a" stroke-opacity=".16" stroke-width="3">
+        <path d="M440 900 V180 Q900 30 1440 180"/><path d="M400 900 V150 Q900 -10 1480 150"/><path d="M360 900 V120 Q900 -50 1520 120"/>
+      </g>
+      <!-- curtains drawn back -->
+      <path d="M470 120 H560 C540 300 560 600 520 820 H470Z" fill="url(#folds)"/>
+      <path d="M1440 120 H1360 C1380 300 1360 600 1400 820 H1440Z" fill="url(#folds)"/>
+      <!-- seats: rows of backs in silhouette, lit at the rim by the screen -->
+      <g id="seats"></g>
+      <!-- projector beam from the booth, top-left, toward the screen -->
+      <path id="beamP" d="M820 -10 L900 -10 L1360 170 L540 170Z" fill="url(#beamV)"/>
+      <rect width="1440" height="900" filter="url(#g2)"/>
+    </svg>
+    <canvas id="dust" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+    <div class="screenWrap" id="screenWrap"><div class="screen" id="screen"></div></div>
+    <div class="zoneB"><div class="cap" id="cap"></div><ul class="prog" id="prog"></ul></div>
+  </div>
+
+  <div class="hint" id="hint">Scroll to go in</div>
+ </div>
+</div>
+
+<script>
+const P=[
+ {s:"auctionxi",t:"AuctionXI",k:"My own product, 2026",h:"Live player auctions for any sport",l:"Real-time bidding, broadcast graphics and YouTube overlays, with no production team.",links:[["Live","https://auction-xi.com"]],
+  f:["Every bid lands on every screen at once, and the money always adds up.","Twenty broadcast scenes for the projector and the stream.","Auction-ready in under 20 minutes."],tech:"Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth"},
+ {s:"texagent",t:"TexAgent",k:"Client work, 2026",h:"A bahi-khata for textile brokers",l:"Bills, brokerage and follow-ups in one place, instead of a paper book.",links:[],priv:"Private client project"},
+ {s:"cachekaro",t:"Cache Karo",k:"Command-line tool, 2026",h:"Find the cache hogs, get the space back",l:"Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.",links:[["PyPI","https://pypi.org/project/cachekaro/"],["Source","https://github.com/Mohit-Bagri/cachekaro"]]},
+ {s:"aether",t:"Aether",k:"AI web app, 2025",h:"News, YouTube and Reddit in one conversation",l:"An assistant with 17+ tones, and an NLP pipeline that scores every article first.",links:[["Source","https://github.com/Mohit-Bagri/aether-news-trends"]]},
+ {s:"flowledger",t:"FlowLedger",k:"Mobile app, 2026",h:"Every rupee in, every rupee out",l:"A local-first finance app in Flutter that scans receipts and catches money leaks.",links:[["Source","https://github.com/Mohit-Bagri/flowledger"]]},
+ {s:"shuttle",t:"Space Shuttle VR",k:"VR game, 2024",h:"Fix the shuttle, then fly it out",l:"A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.",links:[["Source","https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game"]]},
+ {s:"velotype",t:"VeloType",k:"Web app, 2026",h:"A typing test built for feel",l:"Themes, modes and live words per minute, with a caret that keeps up.",links:[["Live","https://velo-type.vercel.app"]]},
+ {s:"windmill",t:"Windmill VR",k:"VR app, 2025",h:"Breathe with the windmill",l:"A calm VR app for Meta Quest, paced to a four-part breath.",links:[["Source","https://github.com/Mohit-Bagri/windmill-vr"]]}
+];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fitFacade(){const f=document.getElementById('facade'); if(innerWidth<820){f.setAttribute('viewBox','430 -1180 940 2080')}else{f.setAttribute('viewBox','0 0 1440 900')}}
+fitFacade(); addEventListener('resize',fitFacade);
+const NS='http://www.w3.org/2000/svg';
+
+// marquee bulbs around the letterboard
+const bulbs=document.getElementById('bulbs'); const bl=[];
+function bulb(x,y){const c=document.createElementNS(NS,'circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',4.2);c.setAttribute('fill','#ffe3ad');bulbs.appendChild(c);bl.push(c)}
+for(let x=590;x<=1210;x+=20)bulb(x,567);
+for(let y=587;y<=703;y+=20)bulb(1210,y);
+for(let x=1210;x>=590;x-=20)bulb(x,703);
+for(let y=683;y>=587;y-=20)bulb(590,y);
+let chase=0;
+setInterval(()=>{ if(reduce)return; chase=(chase+1)%3; bl.forEach((b,i)=>b.setAttribute('fill', i%3===chase?'#fff6e0':'#d9913e')); },260);
+
+// seats
+const seats=document.getElementById('seats');
+for(let r=0;r<4;r++){
+  const y=760+r*44, w=56+r*10, h=50+r*8, gap=8+r*2;
+  const g=document.createElementNS(NS,'g');
+  for(let x=-40+(r%2)*w/2; x<1480; x+=w+gap){
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d',`M${x} ${y+h} V${y+14} Q${x} ${y} ${x+14} ${y} H${x+w-14} Q${x+w} ${y} ${x+w} ${y+14} V${y+h}Z`);
+    p.setAttribute('fill', r===0?'#2a0d13':'#1a070c');
+    g.appendChild(p);
+    const rim=document.createElementNS(NS,'path');
+    rim.setAttribute('d',`M${x+6} ${y+2} H${x+w-6}`);rim.setAttribute('stroke','#c88f86');rim.setAttribute('stroke-opacity',(.32-r*.06).toFixed(2));rim.setAttribute('stroke-width',2);
+    g.appendChild(rim);
+  }
+  seats.appendChild(g);
+}
+
+// screen, captions, programme
+const screen=document.getElementById('screen'), cap=document.getElementById('cap'), prog=document.getElementById('prog');
+P.forEach((p,i)=>{
+  const im=new Image(); im.src=`media/${p.s}.png`; im.alt=`${p.t}: ${p.h}`; if(p.s==='texagent'){im.style.transform='scale(1.8)'} screen.appendChild(im);
+  const li=document.createElement('li'); li.innerHTML=`<button type="button">${p.t}</button>`; prog.appendChild(li);
+  li.firstChild.addEventListener('mouseenter',()=>pick(i,true));
+  li.firstChild.addEventListener('focus',()=>pick(i,true));
+  li.firstChild.addEventListener('click',()=>pick(i,true));
+});
+const imgs=[...screen.children], btns=[...prog.querySelectorAll('button')];
+let film=-1, manual=null;
+function render(p){
+  const links=p.links.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n} &rarr;</a>`).join('')+(p.priv?`<span>${p.priv}</span>`:'');
+  return `<div class="kind">${p.k}</div><h2>${p.t}</h2><div class="head">${p.h}</div><p class="line">${p.l}</p>${p.f?`<ul class="facts">${p.f.map(x=>`<li>${x}</li>`).join('')}<li class="tech">${p.tech}</li></ul>`:''}<div class="links">${links}</div>`;
+}
+function pick(i,isManual){
+  if(isManual) manual={i,at:scrollStep};
+  if(i===film) return;
+  film=i;
+  imgs.forEach((im,j)=>im.classList.toggle('on',j===i));
+  btns.forEach((b,j)=>b.classList.toggle('on',j===i));
+  screen.classList.remove('cut'); void screen.offsetWidth; screen.classList.add('cut');
+  cap.classList.add('fade');
+  setTimeout(()=>{cap.innerHTML=render(P[i]);cap.classList.remove('fade')},220);
+}
+pick(0);
+
+// dust in the projector beam
+const cv=document.getElementById('dust'), cx=cv.getContext('2d'); let motes=[];
+function sizeCv(){cv.width=innerWidth;cv.height=innerHeight;motes=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),v:.0002+Math.random()*.0005,r:.6+Math.random()*1.4}))}
+sizeCv(); addEventListener('resize',sizeCv);
+function dust(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  if(insideOn>0.05){
+    motes.forEach(m=>{
+      m.x+=m.v*.6; m.y+=Math.sin((m.x+m.r)*20)*.0006; if(m.x>1){m.x=0;m.y=Math.random()}
+      const Y=m.x*cv.height*.19, l=cv.width*(.57-.2*m.x), r=cv.width*(.625+.32*m.x), X=l+(r-l)*m.y;
+      cx.fillStyle=`rgba(255,240,210,${(.5*(1-m.x)*insideOn).toFixed(3)})`; cx.beginPath(); cx.arc(X,Y,m.r,0,6.28); cx.fill();
+    });
+  }
+  if(!reduce) requestAnimationFrame(dust);
+}
+
+// scroll
+const track=document.getElementById('track'), outside=document.getElementById('outside'), inside=document.getElementById('inside'), zoneA=document.getElementById('zoneA'), hint=document.getElementById('hint');
+let insideOn=0, scrollStep=0, last=-1;
+const sm=t=>t*t*(3-2*t);
+function tick(){
+  const len=track.offsetHeight-innerHeight, p=Math.min(1,Math.max(0,-track.getBoundingClientRect().top/len));
+  if(p!==last){
+    last=p;
+    // 0 - .2: approach and go through the doors
+    const a=sm(Math.min(1,p/.2));
+    outside.style.transform=`scale(${(1+a*a*5.5).toFixed(3)})`;
+    outside.style.opacity=(1-sm(Math.max(0,(p-.12)/.08))).toFixed(3);
+    zoneA.style.opacity=(1-Math.min(1,p/.06)).toFixed(3);
+    insideOn=sm(Math.max(0,Math.min(1,(p-.13)/.08)));
+    inside.style.opacity=insideOn.toFixed(3);
+    inside.style.transform=`scale(${(1.06-.06*insideOn).toFixed(4)})`;
+    inside.style.pointerEvents=insideOn>.5?'auto':'none';
+    hint.style.opacity=p<.02?1:0;
+    // .22 - 1: the programme, one film per step
+    const step=Math.min(7,Math.max(0,Math.floor((p-.22)/.78*8)));
+    if(step!==scrollStep){scrollStep=step; manual=null; pick(step,false)}
+    else if(!manual) pick(step,false);
+  }
+  requestAnimationFrame(tick);
+}
+tick(); dust();
+</script>
+<!-- direction: 08 cinema marquee -->
+</body>
+</html>

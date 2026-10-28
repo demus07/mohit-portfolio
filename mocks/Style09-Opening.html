@@ -1,0 +1,426 @@
+<!-- Direction 09: Blueprint — Churchgate drawn as a platform elevation in white line on blueprint blue; scroll pulls a detail view into the one lit window of the AC local, where Mohit sits with his chin on his fist. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohit Bagri · Churchgate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+/*COMMON:BEGIN*/
+:root{--bp:#143a63;--bp-deep:#0c2747;--navy:#0d1a2b;--ln:#e6effa;--ln2:rgba(230,239,250,.62);--ln3:rgba(230,239,250,.3);--ln4:rgba(230,239,250,.12);--na:#f2a145;--na2:rgba(242,161,69,.5);
+--serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bp-deep);color:var(--ln)}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.sheet{background-color:var(--bp);background-image:
+ radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(6,22,42,.55) 100%),
+ linear-gradient(rgba(230,239,250,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.075) 1px,transparent 1px),
+ linear-gradient(rgba(230,239,250,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.035) 1px,transparent 1px);
+ background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px;background-position:center,-1px -1px,-1px -1px,-1px -1px,-1px -1px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:soft-light;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+h1,h2,.voice{font-family:var(--serif);font-weight:300;letter-spacing:-.012em;line-height:1.04;margin:0;text-wrap:balance}
+h1,h2{font-size:clamp(40px,4.9vw,76px)}
+.lede{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--ln2);max-width:40ch;margin:.9em 0 0;text-wrap:pretty}
+.co{font-family:var(--sans);font-size:13px;fill:var(--ln2);color:var(--ln2);letter-spacing:.01em}
+.cta{display:inline-flex;gap:.5em;align-items:baseline;font-family:var(--sans);font-size:17px;color:var(--ln);text-decoration:none;padding:.15em 0;
+ background:linear-gradient(var(--na),var(--na)) 0 100%/0% 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.cta:hover,.cta:focus-visible{background-size:100% 1px;color:var(--na)}
+.cta .ar{transition:transform .4s cubic-bezier(.2,.7,.2,1)}.cta:hover .ar{transform:translateX(4px)}
+svg :is(path,rect,circle,line,polyline,ellipse){vector-effect:non-scaling-stroke}
+.s{fill:none;stroke:var(--ln);stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s2{fill:none;stroke:var(--ln2);stroke-width:.9;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s3{fill:none;stroke:var(--ln3);stroke-width:.8;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s4{fill:none;stroke:var(--ln4);stroke-width:.8;vector-effect:non-scaling-stroke}
+.dash{stroke-dasharray:6 5}
+.na{fill:none;stroke:var(--na);stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.occ{fill:var(--bp)}
+.t{font-family:var(--sans);font-size:13px;fill:var(--ln2)}
+/* Mohit */
+.m-fill{fill:var(--bp)}
+.m-l1,.m-l2,.m-l3,.m-hatch,.m-hatch path,.m-stripe path,.m-glass,.m-rim{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.m-fill.m-l1{fill:var(--bp)}
+.m-l1{stroke-width:var(--mw1,1.5)}.m-l2{stroke-width:var(--mw2,1.1)}.m-l3{stroke-width:var(--mw3,.8);opacity:.75}
+.m-hatch,.m-hatch path{stroke-width:.8;opacity:.6}.m-hair path{opacity:.5;stroke-width:.7}.m-stripe path{stroke-width:.6;opacity:.32}
+.m-glass{stroke-width:1;opacity:.85}.m-rim{stroke-width:var(--mrim,3.4)}.m-ink{fill:currentColor}
+.m-cons{fill:none;stroke:var(--na);stroke-width:.7;stroke-dasharray:4 4;vector-effect:non-scaling-stroke;opacity:.5}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/*COMMON:END*/
+.track{height:420vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.stage>svg.scene{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+@media (max-width:700px){.stage>svg.scene{top:28%;height:72%}}
+.copy{position:absolute;left:clamp(24px,5vw,80px);top:clamp(64px,11vh,110px);z-index:3;max-width:min(30rem,40vw)}
+.copy h1{font-size:clamp(44px,5.4vw,84px)}
+.note{position:absolute;z-index:3;left:clamp(24px,5vw,80px);bottom:clamp(56px,12vh,120px);max-width:22ch;opacity:0;transform:translateY(14px)}
+.note p{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(22px,2vw,30px);line-height:1.25;margin:0;color:var(--ln)}
+svg.lead{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.after{min-height:40vh;display:grid;place-items:center;color:var(--ln3);font-size:15px}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.4s cubic-bezier(.4,.1,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.mo{color:var(--ln)}
+#mwin-detail{opacity:0}
+@media (max-width:700px){
+ .copy{max-width:none;right:24px;top:56px}
+ .note{bottom:48px;right:24px;max-width:none}
+}
+</style></head>
+<body class="sheet">
+<div class="grain"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- MOHIT:BEGIN  (Style 09 blueprint character; one drawing, coordinates in portrait.jpg pixel space) -->
+<defs>
+  <clipPath id="m-shirt-clip"><path d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/></clipPath>
+  <clipPath id="m-pshirt-clip"><path d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/></clipPath>
+  <clipPath id="m-hair-clip"><path id="m-hair-shape" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422 C499,419 492,414 488,404 C485,396 482,390 480,386 L480,340 C472,334 460,330 449,334 L443,342 C439,352 433,362 429,369 C425,360 424,346 423,334 C415,320 401,313 385,309 C367,307 347,311 331,315 C321,313 313,309 311,302 Z"/></clipPath>
+</defs>
+
+<!-- ============ HEAD (shared by every pose) ============ -->
+<g id="m-head-base">
+  <path class="m-fill" d="M326,312 C320,322 317,334 315,346 C313,356 311,366 310,374 C309,380 312,385 317,388 C322,391 327,393 331,395 L332,412 C333,428 336,442 340,452 C344,460 350,463 357,462 C360,474 364,482 368,492 L506,452 L506,421 L521,300 L436,226 Z"/>
+  <path class="m-l2" d="M357,463 C360,474 364,482 368,491"/>
+  <path class="m-l2" d="M500,420 C502,430 504,438 506,448"/>
+  <path class="m-l3" d="M392,452 C404,468 420,474 440,474"/>
+  <path class="m-l1" d="M327,311 C321,321 318,330 317,336"/>
+  <path class="m-l3" d="M317,336 C315,346 313,356 311,366"/>
+  <path class="m-l1" d="M311,366 C309,374 309,381 314,385 C319,389 325,391 331,394"/>
+  <path class="m-l3" d="M323,389 C326,386 330,386 333,388"/>
+  <path class="m-l1" d="M339,447 C342,457 348,462 357,462 C372,460 388,454 402,447 C420,438 436,420 447,400"/>
+  <path class="m-l3" d="M366,388 C374,398 378,410 376,424"/>
+  <path class="m-fill m-l1" d="M444,340 C450,330 462,328 472,334 C480,340 482,354 478,368 C475,380 468,390 458,392 C452,393 448,388 447,382 C446,368 445,352 444,340 Z"/>
+  <path class="m-l3" d="M453,346 C458,340 468,342 470,352 C471,362 465,368 461,376 C459,380 456,381 454,379"/>
+  <use href="#m-hair-shape" class="m-fill"/>
+  <g clip-path="url(#m-hair-clip)" class="m-hatch m-hair">
+    <path d="M311.1,302.0 C339.0,296.5 378.0,299.1 413.7,309.4 C442.4,315.8 471.6,327.9 489.6,348.1 C506.2,369.3 511.0,399.0 507.0,422.0" stroke-dasharray="29 5 20 8 39 6 23 3" stroke-dashoffset="4"/>
+    <path d="M311.3,301.9 C337.4,294.5 378.1,297.0 415.6,307.4 C442.2,314.5 471.9,324.3 492.6,347.5 C506.0,367.5 509.9,399.1 507.0,422.0" stroke-dasharray="15 6 49 5 65 9 17 4" stroke-dashoffset="33"/>
+    <path d="M311.4,301.7 C336.6,295.4 376.2,294.6 416.6,302.3 C443.5,310.5 473.2,322.0 494.3,344.0 C507.1,366.9 511.2,401.2 507.0,422.0" stroke-dasharray="48 5 31 9 25 9 20 5" stroke-dashoffset="13"/>
+    <path d="M311.5,301.4 C335.5,291.8 374.8,291.3 414.2,299.5 C445.2,308.5 476.0,319.3 494.6,342.3 C507.7,366.4 511.6,401.4 507.0,422.0" stroke-dasharray="15 9 55 9 30 9 31 4" stroke-dashoffset="10"/>
+    <path d="M311.7,301.1 C334.1,292.3 375.4,287.8 415.1,299.4 C448.0,302.8 478.5,318.2 494.5,342.1 C506.7,366.3 512.2,400.3 507.0,422.0" stroke-dasharray="33 5 54 9 60 9 68 5" stroke-dashoffset="5"/>
+    <path d="M311.8,300.7 C335.3,289.7 373.6,287.7 416.2,294.9 C447.6,302.1 479.7,312.8 497.2,339.6 C508.5,365.2 511.8,399.5 507.0,422.0" stroke-dasharray="68 7 35 8 38 7 29 4" stroke-dashoffset="15"/>
+    <path d="M311.9,300.2 C332.3,290.1 371.9,285.2 414.7,293.0 C450.2,297.4 481.7,310.8 498.1,338.2 C508.6,366.8 512.0,399.6 507.0,422.0" stroke-dasharray="44 5 19 9 69 7 67 5" stroke-dashoffset="0"/>
+    <path d="M312.1,299.6 C333.7,288.1 372.6,281.1 417.4,288.6 C449.2,295.5 481.7,310.2 499.9,337.1 C508.6,363.4 511.8,399.7 507.0,422.0" stroke-dasharray="32 7 59 5 68 9 46 4" stroke-dashoffset="26"/>
+    <path d="M312.2,299.0 C332.0,288.7 370.6,278.7 416.7,285.3 C450.7,291.0 484.9,304.9 499.4,335.7 C511.4,363.7 514.1,399.0 507.0,422.0" stroke-dasharray="41 7 32 6 42 4 28 5" stroke-dashoffset="16"/>
+    <path d="M312.3,298.3 C331.4,286.9 371.2,277.5 415.5,282.2 C453.3,286.6 486.3,302.3 501.4,332.6 C509.8,362.4 513.2,400.2 507.0,422.0" stroke-dasharray="66 9 16 3 16 6 54 5" stroke-dashoffset="33"/>
+    <path d="M312.5,297.5 C329.5,283.9 369.0,276.6 416.9,282.0 C453.2,285.8 488.7,301.0 501.7,331.9 C513.2,361.4 514.1,400.1 507.0,422.0" stroke-dasharray="48 8 44 8 35 4 57 4" stroke-dashoffset="4"/>
+    <path d="M312.6,296.6 C328.3,284.3 368.7,271.8 417.6,277.6 C455.9,281.4 487.8,298.5 502.4,331.2 C511.8,363.0 514.7,400.4 507.0,422.0" stroke-dasharray="40 4 54 8 42 5 25 5" stroke-dashoffset="27"/>
+    <path d="M312.7,295.7 C329.0,281.1 367.3,271.0 417.7,274.6 C456.0,276.8 491.0,294.5 502.5,328.0 C513.1,361.5 512.9,400.8 507.0,422.0" stroke-dasharray="61 7 34 8 49 4 34 3" stroke-dashoffset="53"/>
+    <path d="M312.9,294.7 C326.5,282.1 364.6,269.8 417.6,273.5 C460.1,275.4 491.1,292.4 504.1,327.6 C512.9,359.9 513.5,398.9 507.0,422.0" stroke-dasharray="17 8 28 5 62 7 53 9" stroke-dashoffset="15"/>
+    <path d="M313.0,293.6 C327.4,281.5 364.7,266.8 417.4,269.2 C459.5,271.6 493.1,289.4 506.0,324.2 C514.3,361.4 513.5,398.8 507.0,422.0" stroke-dasharray="21 5 25 5 43 3 16 5" stroke-dashoffset="44"/>
+    <path d="M313.1,292.4 C326.0,277.5 363.3,264.9 418.0,265.4 C459.9,267.2 494.9,288.4 508.4,324.3 C516.3,360.7 516.4,401.3 507.0,422.0" stroke-dasharray="19 5 61 8 34 3 34 5" stroke-dashoffset="20"/>
+    <path d="M313.3,291.1 C325.6,276.4 362.5,260.8 418.1,263.4 C462.1,265.6 496.8,283.9 507.4,321.6 C516.1,358.9 515.5,399.1 507.0,422.0" stroke-dasharray="23 9 55 6 69 9 53 8" stroke-dashoffset="52"/>
+    <path d="M313.4,289.8 C322.9,275.9 361.1,259.4 417.1,261.2 C464.4,260.2 499.1,281.6 509.0,320.4 C517.2,359.2 516.7,399.1 507.0,422.0" stroke-dasharray="18 5 53 4 42 5 22 5" stroke-dashoffset="24"/>
+    <path d="M313.5,288.4 C322.4,274.8 359.6,257.2 418.1,258.7 C464.8,259.1 500.4,278.2 510.9,317.8 C517.1,356.1 514.9,401.3 507.0,422.0" stroke-dasharray="52 4 35 7 14 5 16 6" stroke-dashoffset="10"/>
+    <path d="M313.7,286.9 C320.0,273.0 359.0,253.5 419.3,256.3 C467.1,254.5 503.1,276.8 510.2,317.3 C517.2,356.0 516.1,399.7 507.0,422.0" stroke-dasharray="37 9 65 5 32 7 20 6" stroke-dashoffset="13"/>
+    <path d="M313.8,285.4 C319.5,273.2 360.1,252.7 417.0,252.4 C466.5,251.4 504.6,274.6 513.6,315.8 C517.6,355.0 516.8,400.5 507.0,422.0" stroke-dasharray="41 4 21 3 17 3 61 4" stroke-dashoffset="38"/>
+    <path d="M313.9,283.8 C318.7,271.1 358.8,249.7 419.0,249.1 C470.6,246.8 504.2,272.2 513.9,312.2 C517.8,354.5 517.5,401.2 507.0,422.0" stroke-dasharray="57 4 52 3 48 6 51 4" stroke-dashoffset="20"/>
+    <path d="M314.1,282.1 C317.7,269.5 357.6,247.7 419.9,247.6 C471.9,245.6 506.7,267.4 515.4,311.4 C519.4,355.1 519.1,400.2 507.0,422.0" stroke-dasharray="16 3 67 7 32 9 40 8" stroke-dashoffset="12"/>
+    <path d="M314.2,280.3 C318.9,270.6 354.8,245.2 420.2,244.1 C473.4,240.7 508.5,267.4 515.7,310.5 C521.6,353.0 516.7,401.1 507.0,422.0" stroke-dasharray="44 4 29 6 40 6 16 4" stroke-dashoffset="26"/>
+    <path d="M314.3,278.4 C316.9,267.1 356.0,242.7 418.1,239.8 C471.9,238.1 510.8,263.2 518.0,307.0 C519.8,352.3 518.6,399.1 507.0,422.0" stroke-dasharray="42 4 55 6 67 4 45 4" stroke-dashoffset="2"/>
+    <path d="M314.5,276.5 C316.2,266.9 354.3,242.1 420.2,238.8 C473.6,234.7 513.0,260.4 517.1,306.6 C520.5,353.7 519.1,398.8 507.0,422.0" stroke-dasharray="16 5 30 4 47 4 63 4" stroke-dashoffset="26"/>
+    <path d="M314.6,274.5 C316.2,265.7 352.3,239.2 420.8,234.2 C474.5,230.9 511.9,258.1 518.2,306.1 C521.2,350.6 518.9,398.9 507.0,422.0" stroke-dasharray="69 5 23 5 17 5 50 3" stroke-dashoffset="36"/>
+    <path d="M314.7,272.4 C313.3,263.6 351.0,237.0 421.0,231.4 C477.7,228.0 516.0,255.5 518.4,304.1 C521.9,350.0 517.9,401.0 507.0,422.0" stroke-dasharray="39 8 55 9 64 8 61 3" stroke-dashoffset="31"/>
+    <path d="M314.9,270.2 C313.6,262.8 351.2,234.9 418.6,229.5 C479.3,226.6 515.1,252.9 521.0,302.7 C523.0,351.2 520.9,399.5 507.0,422.0" stroke-dasharray="38 3 41 4 69 7 24 5" stroke-dashoffset="18"/>
+    <path d="M315.0,268.0 C312.0,263.2 348.6,233.4 419.4,225.9 C479.4,222.9 518.1,250.7 520.8,301.1 C525.0,350.5 519.2,399.3 507.0,422.0" stroke-dasharray="56 6 65 8 34 9 40 7" stroke-dashoffset="13"/>
+  </g>
+  <path class="m-l1" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422"/>
+  <path class="m-l2" d="M311,302 C318,310 326,313 334,313 C344,306 352,304 360,305 C370,303 380,304 388,308 C402,312 414,320 423,334 C424,346 425,360 429,369 C433,362 439,352 443,342"/>
+  <path class="m-l3" d="M334,313 C330,306 330,298 334,290 M360,305 C356,298 357,290 362,283"/>
+  <path class="m-l2" d="M452,227 C468,218 486,214 502,215 M490,236 C504,230 518,230 530,236 M508,252 C518,250 528,254 534,262 M330,259 C336,248 346,240 358,236 M372,234 C384,226 398,222 412,222"/>
+  <path class="m-l2" d="M325,326 C335,321 348,320 360,323"/>
+  <path class="m-fill" style="opacity:.35" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M327,331 L305,336 C302,348 302,362 305,371 C307,377 312,379 318,379 C323,379 326,376 326,370 C328,358 328,344 327,331"/>
+  <path class="m-l1" d="M327,332 C329,330 331,330 333,331"/>
+  <path class="m-rim" d="M333,331 L362,333 M305,336 L327,331"/>
+  <path class="m-l2" d="M362,333 L447,336"/>
+  <path class="m-l3" d="M342,341 L348,335 M345,348 L354,338 M309,345 L314,339"/>
+</g>
+
+<!-- construction underlay (optional, sections fade it in) -->
+<g id="m-construct" class="m-cons">
+  <circle cx="432" cy="318" r="98"/>
+  <path d="M300,351 L560,351 M300,462 L560,462 M300,226 L560,226 M318,330 L350,470"/>
+</g>
+
+<!-- smile (from the portrait): open grin, squinting eye -->
+<g id="m-face-smile">
+  <path class="m-fill" d="M331,394 C326,400 326,406 330,411 C334,422 336,436 340,448 L356,452 L372,410 Z"/>
+  <path class="m-l1" d="M331,394 C327,398 326,402 328,405 C330,408 330,410 330,412 C332,422 335,434 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399 M344,395 L346,399"/>
+  <path class="m-l2" d="M329,401 C340,403 354,404 366,400"/>
+  <path class="m-l1" d="M331,405 C338,411 348,413 358,411 C363,409 366,405 367,401"/>
+  <path class="m-l3" d="M334,405 C344,407 354,407 362,404"/>
+  <path class="m-l3" d="M368,390 C376,398 378,410 373,421"/>
+  <path class="m-l2" d="M337,350 C342,345 350,345 356,349"/>
+  <path class="m-l3" d="M339,355 C344,357 350,357 355,354"/>
+  <path class="m-l3" d="M356,358 C360,362 362,366 362,370"/>
+</g>
+
+<!-- pensive: closed mouth, eye looking out of the window -->
+<g id="m-face-calm">
+  <path class="m-l1" d="M331,394 C328,398 327,401 329,404 C332,406 332,409 330,412 C331,416 332,419 334,422 C335,431 337,440 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399"/>
+  <path class="m-l2" d="M330,410 C337,411 345,410 352,407"/>
+  <path class="m-l3" d="M335,425 C339,428 345,428 349,426"/>
+  <path class="m-l2" d="M334,349 C340,344 349,344 356,349"/>
+  <path class="m-l3" d="M335,346 C341,342 350,342 357,346"/>
+  <circle class="m-ink" cx="338.5" cy="351" r="2.7"/>
+  <path class="m-l3" d="M336,356 C342,358 349,357 354,354"/>
+</g>
+
+<!-- ============ POSE: turn (seen from behind, smiling over his shoulder) ============ -->
+<symbol id="mohit-turn" viewBox="150 200 560 800" overflow="visible">
+  <path class="m-fill m-l1" d="M190,948 C182,968 176,986 172,1000 L218,1000 C222,986 228,972 234,962"/>
+  <path class="m-fill" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/>
+  <g clip-path="url(#m-shirt-clip)" class="m-stripe">
+    <path d="M150,500 L700,470 M150,516 L700,486 M150,532 L700,502 M150,548 L700,518 M150,564 L700,534 M150,580 L700,550 M150,596 L700,566 M150,612 L700,582 M150,628 L700,598 M150,644 L700,614 M150,660 L700,630 M150,676 L700,646 M150,692 L700,662 M150,708 L700,678 M150,724 L700,694 M150,740 L700,710 M150,756 L700,726 M150,772 L700,742 M150,788 L700,758 M150,804 L700,774 M150,820 L700,790 M150,836 L700,806 M150,852 L700,822 M150,868 L700,838 M150,884 L700,854 M150,900 L700,870 M150,916 L700,886 M150,932 L700,902 M150,948 L700,918 M150,964 L700,934 M150,980 L700,950 M150,996 L700,966 M150,1012 L700,982"/>
+  </g>
+  <path class="m-l1" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876"/>
+  <path class="m-l1" d="M530,442 C560,460 590,486 606,502 C628,524 646,548 654,580 C660,640 664,720 668,800 C672,880 674,950 676,1000"/>
+  <path class="m-fill m-l1" d="M198,872 C220,866 246,872 264,884 L256,958 C232,962 206,956 186,946 Z"/>
+  <path class="m-l3" d="M194,900 C214,904 236,908 260,910 M190,926 C212,932 234,934 258,934"/>
+  <path class="m-l2" d="M420,534 C428,580 432,620 428,660 C410,720 380,780 352,850 C340,880 330,920 324,1000"/>
+  <path class="m-l3" d="M414,530 C470,526 540,524 622,528"/>
+  <path class="m-l3" d="M300,640 C320,660 340,700 350,740 M270,740 C290,770 310,800 320,840 M500,600 C520,680 524,760 520,860 M590,620 C600,700 606,800 604,900"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-smile"/>
+  <path class="m-fill m-l1" d="M428,424 C452,418 486,416 512,420 C520,426 527,434 532,446 C500,446 460,452 428,466 C406,476 384,480 362,476 C390,462 410,444 428,424 Z"/>
+  <path class="m-l3" d="M432,436 C462,430 494,430 520,436"/>
+</symbol>
+
+<!-- ============ POSE: pensive (at the train window, chin on his fist; cropped by the sill at y=612) ============ -->
+<symbol id="mohit-pensive" viewBox="250 200 420 412" overflow="visible">
+  <path class="m-fill" d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/>
+  <g clip-path="url(#m-pshirt-clip)" class="m-stripe">
+    <path d="M330,440 L340,612 M346,440 L356,612 M362,440 L372,612 M378,440 L388,612 M394,440 L404,612 M410,440 L420,612 M426,440 L436,612 M442,440 L452,612 M458,440 L468,612 M474,440 L484,612 M490,440 L500,612 M506,440 L516,612 M522,440 L532,612 M538,440 L548,612 M554,440 L564,612 M570,440 L580,612 M586,440 L596,612 M602,440 L612,612 M618,440 L628,612 M634,440 L644,612"/>
+  </g>
+  <path class="m-l1" d="M506,452 C540,470 600,490 630,520 C646,540 652,580 654,612"/>
+  <path class="m-l2" d="M566,486 C590,520 600,566 604,612"/>
+  <path class="m-l3" d="M470,520 C480,560 484,590 486,612"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-calm"/>
+  <path class="m-fill m-l1" d="M432,430 C458,422 490,418 512,424 C518,434 520,446 518,456 C500,464 484,478 470,498 C456,490 444,480 432,470 Z"/>
+  <path class="m-l3" d="M440,440 C464,432 490,430 512,434"/>
+  <path class="m-fill m-l1" d="M368,490 C380,480 400,470 420,468 L410,540 C394,526 380,508 368,490 Z"/>
+  <path class="m-l2" d="M410,540 C416,560 420,586 422,612"/>
+  <circle class="m-ink" cx="417" cy="566" r="2"/><circle class="m-ink" cx="420" cy="600" r="2"/>
+  <path class="m-fill" d="M322,500 C310,536 296,574 284,612 L330,612 C340,576 354,540 368,504 Z"/>
+  <path class="m-l1" d="M322,500 C310,536 296,574 284,612"/>
+  <path class="m-l1" d="M368,504 C354,540 340,576 330,612"/>
+  <path class="m-l3" d="M340,516 C332,540 322,566 314,590"/>
+  <path class="m-fill m-l1" d="M286,578 C302,574 324,576 342,582 L334,612 L276,612 Z"/>
+  <path class="m-l3" d="M282,594 C300,591 320,592 338,597"/>
+  <path class="m-fill m-l1" d="M360,457 C350,455 338,455 328,457 C320,458 314,462 313,467 C309,471 309,478 312,482 C307,486 307,493 311,497 C308,501 310,507 318,510 C330,514 352,514 368,507 C376,498 378,484 375,472 C372,464 367,459 360,457 Z"/>
+  <path class="m-l3" d="M312,482 C320,481 328,483 334,487 M311,497 C319,496 327,498 333,502 M313,467 C321,467 329,469 335,473"/>
+  <path class="m-l2" d="M375,472 C368,466 358,463 346,464"/>
+  <path class="m-l3" d="M348,472 C352,484 354,496 352,508"/>
+  <path class="m-l1" d="M250,612 L670,612"/>
+</symbol>
+<!-- MOHIT:END -->
+<defs>
+  <radialGradient id="glow" cx="50%" cy="55%" r="70%"><stop offset="0" stop-color="#f2a145" stop-opacity=".3"/><stop offset=".6" stop-color="#f2a145" stop-opacity=".08"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+  <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="rgba(230,239,250,.35)" stroke-width="1"/></pattern>
+  <pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse"><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="rgba(230,239,250,.28)" stroke-width=".8"/></pattern>
+  <pattern id="earth" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="14" stroke="rgba(230,239,250,.16)" stroke-width="1"/></pattern>
+  <clipPath id="mclip"><rect x="760" y="476" width="64" height="64" rx="7"/></clipPath>
+  <clipPath id="ledclip"><rect x="1066" y="228" width="228" height="34"/></clipPath>
+</defs>
+</svg>
+
+<section class="track" id="track">
+ <div class="stage">
+  <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-label="Churchgate platform elevation: the AC local at the buffer stops, one lit window with Mohit inside">
+   <g id="cam">
+    <!-- far: Western Railway HQ, gothic, domed central tower -->
+    <g class="far" opacity=".9">
+     <path class="s3" d="M300,432 L300,388 L340,388 L340,372 L352,360 L364,372 L364,388 L430,388 L430,350 L446,350 L446,336 C446,312 458,296 470,286 C482,296 494,312 494,336 L494,350 L510,350 L510,388 L576,388 L576,372 L588,360 L600,372 L600,388 L640,388 L640,432"/>
+     <path class="s4" d="M470,286 L470,272 M466,276 L474,276 M452,330 C460,320 480,320 488,330 M446,350 L494,350 M458,366 L458,380 C458,372 470,372 470,380 L470,366 M476,366 L476,380 C476,372 488,372 488,380 L488,366 M318,400 L318,420 C318,410 326,410 326,420 M384,400 L384,420 C384,410 392,410 392,420 M548,400 L548,420 C548,410 556,410 556,420 M614,400 L614,420 C614,410 622,410 622,420 M300,388 L640,388"/>
+     <path class="s4" d="M340,372 L340,350 M364,372 L364,350 M576,372 L576,350 M600,372 L600,350 M352,360 L352,346 M588,360 L588,346"/>
+    </g>
+    <!-- catenary over the open track -->
+    <path class="s3" d="M0,334 L560,334"/>
+    <path class="s4" d="M0,300 C120,312 260,312 380,300 C460,292 520,296 560,300 M60,306 L60,334 M140,309 L140,334 M220,310 L220,334 M300,307 L300,334 M380,300 L380,334 M460,296 L460,334"/>
+    <path class="s2" d="M28,260 L28,662 M22,260 L34,260 M28,300 L28,300 M28,296 L72,296"/>
+    <!-- canopy -->
+    <g id="canopy">
+     <path class="s" d="M540,150 L1440,150 M540,168 L1440,168 M540,150 L540,168"/>
+     <path class="s3" d="M540,196 L1440,196 M560,168 L580,196 L600,168 L620,196 L640,168 L660,196 L680,168 L700,196 L720,168 L740,196 L760,168 L780,196 L800,168 L820,196 L840,168 L860,196 L880,168 L900,196 L920,168 L940,196 L960,168 L980,196 L1000,168 L1020,196 L1040,168 L1060,196 L1080,168 L1100,196 L1120,168 L1140,196 L1160,168 L1180,196 L1200,168 L1220,196 L1240,168 L1260,196 L1280,168 L1300,196 L1320,168 L1340,196 L1360,168 L1380,196 L1400,168 L1420,196 L1440,168"/>
+     <path class="s4" d="M540,140 L1440,140"/>
+    </g>
+    <!-- the rake -->
+    <g id="rake">
+     <!-- buffer stop -->
+     <path class="s2" d="M44,600 L44,662 M44,612 L66,612 L66,640 L44,640 M66,618 L76,618 L76,634 L66,634"/>
+     <rect x="14" y="618" width="30" height="44" fill="url(#hatch)"/>
+     <!-- coach A, raked cab -->
+     <path class="occ" d="M86,642 L86,560 C86,520 100,478 128,446 L350,446 L350,642 Z"/>
+     <path class="s" d="M86,642 L86,560 C86,520 100,478 128,446 C132,440 138,436 146,434 L350,434 M350,434 L350,642 M86,642 L350,642"/>
+     <path class="s2" d="M96,548 C98,516 110,486 130,462 L170,462 L170,548 Z"/>
+     <path class="s3" d="M112,530 L152,476 M124,540 L166,486"/>
+     <rect x="104" y="566" width="40" height="10" class="na" style="stroke-width:.8"/>
+     <path class="s2" d="M180,470 L180,642 M236,470 L236,642 M208,470 L208,642"/>
+     <rect x="186" y="484" width="16" height="44" rx="3" class="s3"/><rect x="214" y="484" width="16" height="44" rx="3" class="s3"/>
+     <rect x="254" y="476" width="64" height="64" rx="7" class="s2" style="fill:rgba(6,22,42,.35)"/>
+     <!-- pantograph -->
+     <path class="s2" d="M230,434 L230,424 L300,424 L300,434 M240,424 L268,384 L246,338 M290,424 L268,384 L290,338 M232,336 L304,336 M238,336 L234,330 M298,336 L302,330"/>
+     <!-- coach B (his) -->
+     <path class="occ" d="M360,446 L912,446 L912,642 L360,642 Z"/>
+     <path class="s" d="M360,642 L360,446 C360,438 366,434 374,434 L898,434 C906,434 912,438 912,446 L912,642 Z"/>
+     <!-- coach C -->
+     <path class="occ" d="M922,446 L1460,446 L1460,642 L922,642 Z"/>
+     <path class="s" d="M922,642 L922,446 C922,438 928,434 936,434 L1460,434 M922,642 L1460,642"/>
+     <!-- gangways -->
+     <path class="s3" d="M350,470 L360,470 M350,620 L360,620 M353,470 L353,620 M357,470 L357,620 M912,470 L922,470 M912,620 L922,620 M915,470 L915,620 M919,470 L919,620"/>
+     <!-- roof AC units -->
+     <path class="s2" d="M452,434 L452,420 L566,420 L566,434 M700,434 L700,420 L814,420 L814,434 M1012,434 L1012,420 L1126,420 L1126,434 M1262,434 L1262,420 L1376,420 L1376,434"/>
+     <path class="s4" d="M466,422 L466,432 M480,422 L480,432 M494,422 L494,432 M508,422 L508,432 M522,422 L522,432 M536,422 L536,432 M550,422 L550,432 M714,422 L714,432 M728,422 L728,432 M742,422 L742,432 M756,422 L756,432 M770,422 L770,432 M784,422 L784,432 M798,422 L798,432 M1026,422 L1026,432 M1040,422 L1040,432 M1054,422 L1054,432 M1068,422 L1068,432 M1082,422 L1082,432 M1096,422 L1096,432 M1110,422 L1110,432 M1276,422 L1276,432 M1290,422 L1290,432 M1304,422 L1304,432 M1318,422 L1318,432 M1332,422 L1332,432 M1346,422 L1346,432 M1360,422 L1360,432"/>
+     <g id="band"><!-- band under windows (blue band, thin red line), skirt -->
+     <rect x="96" y="552" width="1364" height="14" fill="url(#hatch2)"/>
+     <path class="s2" d="M96,552 L1460,552 M96,566 L1460,566"/>
+     <path class="na" style="stroke-width:.7;opacity:.55" d="M96,571 L1460,571"/>
+     <rect x="86" y="608" width="1374" height="34" fill="url(#hatch)" opacity=".5"/>
+     <path class="s2" d="M86,608 L1460,608"/>
+     </g>
+     <!-- doors (closed, sliding) -->
+     <g id="doors" class="s2">
+      <path d="M380,462 L380,642 M436,462 L436,642 M408,462 L408,642 M380,462 L436,462"/>
+      <path d="M612,462 L612,642 M668,462 L668,642 M640,462 L640,642 M612,462 L668,462"/>
+      <path d="M844,462 L844,642 M900,462 L900,642 M872,462 L872,642 M844,462 L900,462"/>
+      <path d="M944,462 L944,642 M1000,462 L1000,642 M972,462 L972,642 M944,462 L1000,462"/>
+      <path d="M1176,462 L1176,642 M1232,462 L1232,642 M1204,462 L1204,642 M1176,462 L1232,462"/>
+      <path d="M1406,462 L1406,642 M1462,462 L1462,642 M1434,462 L1434,642 M1406,462 L1462,462"/>
+     </g>
+     <g class="s3 doorwin">
+      <rect x="386" y="484" width="16" height="44" rx="3"/><rect x="414" y="484" width="16" height="44" rx="3"/>
+      <rect x="618" y="484" width="16" height="44" rx="3"/><rect x="646" y="484" width="16" height="44" rx="3"/>
+      <rect x="850" y="484" width="16" height="44" rx="3"/><rect x="878" y="484" width="16" height="44" rx="3"/>
+      <rect x="950" y="484" width="16" height="44" rx="3"/><rect x="978" y="484" width="16" height="44" rx="3"/>
+      <rect x="1182" y="484" width="16" height="44" rx="3"/><rect x="1210" y="484" width="16" height="44" rx="3"/>
+      <rect x="1412" y="484" width="16" height="44" rx="3"/><rect x="1440" y="484" width="16" height="44" rx="3"/>
+     </g>
+     <!-- sealed tinted windows -->
+     <g id="wins">
+      <g style="fill:rgba(6,22,42,.38)" class="s2">
+       <rect x="456" y="476" width="64" height="64" rx="7"/><rect x="530" y="476" width="64" height="64" rx="7"/>
+       <rect x="686" y="476" width="64" height="64" rx="7"/>
+       <rect x="1020" y="476" width="64" height="64" rx="7"/><rect x="1094" y="476" width="64" height="64" rx="7"/>
+       <rect x="1250" y="476" width="64" height="64" rx="7"/><rect x="1324" y="476" width="64" height="64" rx="7"/>
+      </g>
+      <path class="s4" d="M262,530 L300,482 M464,530 L502,482 M538,530 L576,482 M694,530 L732,482 M1028,530 L1066,482 M1102,530 L1140,482 M1258,530 L1296,482 M1332,530 L1370,482 M276,536 L310,494 M478,536 L512,494 M552,536 L586,494 M708,536 L742,494 M1042,536 L1076,494 M1116,536 L1150,494 M1272,536 L1306,494 M1346,536 L1380,494"/>
+     </g>
+     <!-- his window: lit -->
+     <g id="mwin">
+      <rect x="760" y="476" width="64" height="64" rx="7" fill="#1a4672"/>
+      <rect x="752" y="468" width="80" height="80" fill="url(#glow)" clip-path="url(#mclip)"/>
+      <g clip-path="url(#mclip)">
+       <g id="mwin-detail">
+        <!-- the coach beyond him: opposite window, grab rail and straps -->
+        <rect x="770" y="488" width="46" height="34" rx="5" class="s4"/>
+        <path class="s3" d="M756,481.5 L830,481.5"/>
+        <g class="s3" id="straps">
+         <g class="strap" style="transform-origin:772px 481.5px"><path d="M772,481.5 L772,488 M769.5,488 L774.5,488 L774.5,492 C774.5,494 769.5,494 769.5,492 Z"/></g>
+         <g class="strap" style="transform-origin:790px 481.5px"><path d="M790,481.5 L790,488 M787.5,488 L792.5,488 L792.5,492 C792.5,494 787.5,494 787.5,492 Z"/></g>
+         <g class="strap" style="transform-origin:808px 481.5px"><path d="M808,481.5 L808,488 M805.5,488 L810.5,488 L810.5,492 C810.5,494 805.5,494 805.5,492 Z"/></g>
+        </g>
+        <use href="#mohit-pensive" class="mo" x="762" y="479.5" width="64" height="62.8" style="--bp:#16406b"/>
+       </g>
+       <path id="mwin-simple" class="s2" style="stroke:var(--na)" d="M793,540 C793,528 796,520 802,516 C798,512 797,500 803,494 C810,488 820,492 820,502 C820,510 816,514 812,516 C818,520 822,530 822,540"/>
+      </g>
+      <rect x="760" y="476" width="64" height="64" rx="7" class="s"/>
+      <rect x="757" y="473" width="70" height="70" rx="9" class="s3"/>
+     </g>
+     <!-- underframe -->
+     <path class="s3" d="M86,642 L86,652 L1460,652 M150,652 L150,660 M250,652 L250,660 M470,652 L470,660 M800,652 L800,660 M1030,652 L1030,660 M1360,652 L1360,660"/>
+    </g>
+    <!-- platform, foreground -->
+    <path class="s" d="M0,662 L1440,662"/>
+    <path class="na" d="M0,668 L1440,668" style="stroke-dasharray:14 6;opacity:.8"/>
+    <path class="s3" d="M0,676 L1440,676"/>
+    <rect x="0" y="700" width="1440" height="200" fill="url(#earth)"/>
+    <path class="s2" d="M0,700 L1440,700"/>
+    <!-- canopy columns in front of the train -->
+    <g id="cols">
+     <path class="occ" d="M594,196 L606,196 L606,662 L594,662 Z M974,196 L986,196 L986,662 L974,662 Z M1354,196 L1366,196 L1366,662 L1354,662 Z"/>
+     <path class="s" d="M594,196 L594,662 M606,196 L606,662 M974,196 L974,662 M986,196 L986,662 M1354,196 L1354,662 M1366,196 L1366,662"/>
+     <path class="s2" d="M594,240 C594,214 572,200 548,196 M606,240 C606,214 628,200 652,196 M974,240 C974,214 952,200 928,196 M986,240 C986,214 1008,200 1032,196 M1354,240 C1354,214 1332,200 1308,196 M1366,240 C1366,214 1388,200 1412,196"/>
+     <path class="s3" d="M590,646 L610,646 L610,662 L590,662 Z M970,646 L990,646 L990,662 L970,662 Z M1350,646 L1370,646 L1370,662 L1350,662 Z"/>
+    </g>
+    <!-- station board on the column: yellow board, Marathi + English -->
+    <g id="board">
+     <rect x="918" y="446" width="124" height="64" rx="2" class="occ"/>
+     <rect x="918" y="446" width="124" height="64" rx="2" class="na" style="stroke-width:1.1"/>
+     <text x="980" y="474" text-anchor="middle" font-family="Noto Sans Devanagari, IBM Plex Sans, sans-serif" font-size="17" fill="#f2a145">चर्चगेट</text>
+     <text x="980" y="498" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="500" font-size="13" letter-spacing="1.5" fill="#f2a145">CHURCHGATE</text>
+    </g>
+    <!-- platform indicator: black board, amber LED -->
+    <g id="led">
+     <path class="s2" d="M1100,168 L1100,224 M1260,168 L1260,224"/>
+     <rect x="1060" y="222" width="240" height="46" rx="2" fill="#071526"/>
+     <rect x="1060" y="222" width="240" height="46" rx="2" class="s2"/>
+     <g clip-path="url(#ledclip)"><g id="ledtext"><text x="1300" y="252" font-family="IBM Plex Sans, sans-serif" font-weight="500" font-size="20" letter-spacing="3" fill="#f2a145" style="filter:drop-shadow(0 0 3px rgba(242,161,69,.6))">CHURCHGATE · चर्चगेट · CHURCHGATE · चर्चगेट</text></g></g>
+    </g>
+    <!-- callout: the rake -->
+    <g id="dim" class="s3">
+     <path d="M360,404 L912,404 M360,398 L360,410 M912,398 L912,410 M360,404 L372,400 M360,404 L372,408 M912,404 L900,400 M912,404 L900,408"/>
+    </g>
+    <text class="t" x="636" y="396" text-anchor="middle">Western Railway AC local</text>
+    <!-- detail circle around his window -->
+    <circle id="detail" cx="792" cy="508" r="58" class="na dash" style="opacity:0"/>
+   </g>
+  </svg>
+  <svg class="lead" id="lead"><path id="leadpath" d="" fill="none" stroke="#f2a145" stroke-width="1" opacity="0"/><circle id="leaddot" r="3.5" fill="none" stroke="#f2a145" stroke-width="1" opacity="0"/></svg>
+  <div class="copy">
+   <h1>Mohit Bagri</h1>
+   <p class="lede">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+  </div>
+  <div class="note" id="note"><p>That's me. Can't wait to get home and fix what blocked production.</p></div>
+ </div>
+</section>
+<!-- direction: 09 Blueprint / Opening -->
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const track=document.getElementById('track'),scene=document.getElementById('scene'),cam=document.getElementById('cam');
+const det=document.getElementById('mwin-detail'),simple=document.getElementById('mwin-simple'),detail=document.getElementById('detail');
+const note=document.getElementById('note'),lp=document.getElementById('leadpath'),ld=document.getElementById('leaddot');
+const ledt=document.getElementById('ledtext'),straps=[...document.querySelectorAll('.strap')];
+const fade=[...document.querySelectorAll('#canopy,#cols,#board,#led,#dim,.far,text.t,#wins,#doors,.doorwin,#band')];
+const WX=792,WY=508,SYM=(x,y)=>({x:762+64*(x-250)/420,y:479.5+62.8*(y-200)/412});
+const P_END=SYM(298,428), P_LOW=SYM(246,600);
+let top=0,len=1,W=innerWidth,H=innerHeight,SW=W,SH=H,SY=0,cur=0,tgt=0;
+function measure(){top=track.offsetTop;len=track.offsetHeight-innerHeight;W=innerWidth;H=innerHeight;const r=scene.getBoundingClientRect();SW=r.width;SH=r.height;SY=r.top-scene.parentNode.getBoundingClientRect().top;}
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,map=(p,a,b)=>cl((p-a)/(b-a));
+function frame(t){
+  tgt=cl((scrollY-top)/len); cur+= (tgt-cur)*(RM?1:.12);
+  const p=cur, k=Math.max(SW/1440,SH/900), ox=(SW-1440*k)/2, oy=(SH-900*k)/2;
+  const z=ease(map(p,.1,.72)), mobile=W<700;
+  const S=1+(((mobile?Math.min(.5*SH,.86*SW):.72*SH)/(64*k))-1)*z;
+  const fx=mobile?SW*.5:SW*.64, fy=mobile?SH*.42:SH*.5;
+  const nx=ox+WX*k, ny=oy+WY*k, sx=nx+(fx-nx)*z, sy=ny+(fy-ny)*z;
+  const tx=(sx-ox)/k-WX*S, ty=(sy-oy)/k-WY*S;
+  cam.setAttribute('transform',`translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${S.toFixed(4)})`);
+  const toScr=q=>({x:ox+(tx+q.x*S)*k,y:SY+oy+(ty+q.y*S)*k});
+  const dIn=map(p,.18,.46); det.style.opacity=dIn; simple.style.opacity=1-dIn;
+  const fo=(1-map(p,.2,.42)).toFixed(3); fade.forEach(e=>e.style.opacity=fo);
+  detail.style.opacity=(map(p,.04,.12)*(1-map(p,.3,.42))).toFixed(3);
+  const n=map(p,.78,.92); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+  const e=toScr(P_END), r=note.getBoundingClientRect();
+  let d;
+  if(mobile){const lo=toScr(P_LOW); d=`M${lo.x},${r.top-10} L${lo.x},${lo.y} L${e.x},${e.y}`;}
+  else{const ay=r.top+20, mx=e.x-(e.y<ay?0:0)-60; d=`M${r.right+14},${ay} L${mx},${ay} L${e.x},${e.y}`;}
+  lp.setAttribute('d',d);
+  lp.style.opacity=n; lp.style.strokeDasharray=3000; lp.style.strokeDashoffset=3000*(1-n);
+  ld.setAttribute('cx',e.x); ld.setAttribute('cy',e.y); ld.style.opacity=map(p,.88,.94);
+  // ambient
+  if(!RM){
+    const ledx=-((t*.04)%560); ledt.setAttribute('transform',`translate(${ledx} 0)`);
+    straps.forEach((s,i)=>s.style.transform=`rotate(${Math.sin(t/900+i*1.3)*6}deg)`);
+  }
+  requestAnimationFrame(frame);
+}
+addEventListener('resize',measure);measure();requestAnimationFrame(frame);
+// draw-in on load
+document.querySelectorAll('#rake .s, #canopy .s, #cols .s, .far path').forEach((el,i)=>{el.setAttribute('pathLength','1');el.classList.add('draw');el.style.animationDelay=(i*25)+'ms';el.addEventListener('animationend',()=>{el.classList.remove('draw');el.removeAttribute('pathLength')},{once:true})});
+})();
+</script>
+</body></html>

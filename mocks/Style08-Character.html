@@ -1,0 +1,217 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Style08 Character</title>
+<style>html,body{margin:0;background:#07090d;height:100%}.row{display:flex;gap:20px;padding:20px;height:860px;align-items:center}
+.row svg{background:#0b0e14}</style></head><body>
+<svg class="defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- ===== Mohit, style 08: rim-lit film-still figure. Head faces right; key light (sodium) from the right, cool fill from behind. ===== -->
+    <linearGradient id="mSkin" gradientUnits="userSpaceOnUse" x1="140" y1="0" x2="296" y2="0">
+      <stop offset="0" stop-color="#140c09"/>
+      <stop offset=".45" stop-color="#3a2216"/>
+      <stop offset=".78" stop-color="#8a5636"/>
+      <stop offset="1" stop-color="#c7895a"/>
+    </linearGradient>
+    <linearGradient id="mSkinV" gradientUnits="userSpaceOnUse" x1="0" y1="110" x2="0" y2="330">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".7" stop-color="#000" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".45"/>
+    </linearGradient>
+    <linearGradient id="mHair" gradientUnits="userSpaceOnUse" x1="120" y1="80" x2="270" y2="150">
+      <stop offset="0" stop-color="#040507"/>
+      <stop offset=".75" stop-color="#09090b"/>
+      <stop offset="1" stop-color="#1e1510"/>
+    </linearGradient>
+    <linearGradient id="mShirt" gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="330" y2="0">
+      <stop offset="0" stop-color="#2a2a33"/>
+      <stop offset=".45" stop-color="#77717f"/>
+      <stop offset=".75" stop-color="#c9bfc9"/>
+      <stop offset="1" stop-color="#f4ebe6"/>
+    </linearGradient>
+    <linearGradient id="mArm" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="310" y2="0">
+      <stop offset="0" stop-color="#1d120c"/>
+      <stop offset=".6" stop-color="#6e4329"/>
+      <stop offset="1" stop-color="#c88a5b"/>
+    </linearGradient>
+    <pattern id="mPin" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(4)">
+      <rect width="7" height="7" fill="none"/>
+      <path d="M0 3.5H7" stroke="#8f7fb0" stroke-width=".7" opacity=".55"/>
+    </pattern>
+    <pattern id="mPinV" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-6)">
+      <path d="M3.5 0V7" stroke="#8f7fb0" stroke-width=".7" opacity=".5"/>
+    </pattern>
+
+    <!-- head shape (skin), facing right -->
+    <path id="mFace" d="M156 262 C134 236 122 206 124 178 C128 130 166 100 212 98 C246 98 264 120 266 150
+      C267 168 271 182 270 192 C269 199 270 204 274 210 C281 220 290 230 293 238 C295 245 290 249 284 249
+      C280 249 277 251 276 254 C279 259 281 264 279 267 C278 269 276 270 276 271 C279 274 279 279 275 283
+      C272 285 271 288 273 293 C277 300 274 309 263 311 C246 313 226 304 210 292 C202 286 196 280 192 272
+      C178 270 166 268 156 262 Z"/>
+    <path id="mHairP" d="M264 150 C266 140 270 132 273 122 C277 110 278 96 274 86 C270 76 260 70 246 70
+      C236 70 230 72 222 75 C210 77 198 80 188 84 C176 86 164 92 154 100 C136 114 124 136 120 162
+      C116 186 120 206 130 226 C136 236 142 242 150 246 C158 236 166 222 172 212 C178 204 186 200 196 199
+      C200 200 203 202 205 206 L208 226 L212 226 C212 214 214 200 216 188 C220 174 230 160 244 154
+      C252 151 258 150 264 150 Z"/>
+    <linearGradient id="mFadeBG" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="196" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <linearGradient id="mFadeFG" gradientUnits="userSpaceOnUse" x1="0" y1="130" x2="0" y2="162"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <mask id="mClipBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeBG)"/></mask>
+    <mask id="mClipFront" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeFG)"/></mask>
+    <mask id="mRimFace" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mFace" fill="#fff"/><use href="#mFace" fill="#000" transform="translate(-4.5 1.5)"/>
+    </mask>
+    <mask id="mRimHair" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(-3 3.5)"/>
+    </mask>
+    <mask id="mRimHairBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(3.5 2)"/>
+    </mask>
+    <linearGradient id="mRimG" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="0" y2="320">
+      <stop offset="0" stop-color="#ffd59a" stop-opacity=".5"/>
+      <stop offset=".35" stop-color="#ffd59a"/>
+      <stop offset=".8" stop-color="#ffbf73"/>
+      <stop offset="1" stop-color="#ffbf73" stop-opacity=".3"/>
+    </linearGradient>
+
+
+    <!-- HEAD: pensive (closed mouth, eyes looking out). Faces right. -->
+    <g id="m-head-base">
+      <use href="#mFace" fill="url(#mSkin)"/>
+      <use href="#mFace" fill="url(#mSkinV)"/>
+      <!-- soft modelling: cheekbone light, jaw shadow -->
+      <ellipse cx="248" cy="240" rx="16" ry="11" fill="#e0a070" opacity=".05"/>
+      <path d="M214 290 C230 302 248 310 262 311" fill="none" stroke="#1a0e08" stroke-width="5" opacity=".28" stroke-linecap="round"/>
+      <use href="#mFace" fill="url(#mRimG)" mask="url(#mRimFace)"/>
+      <!-- ear -->
+      <path d="M201 206 C187 197 172 205 172 222 C172 239 181 251 193 252 C199 252 203 246 201 238 Z" fill="#3a2217"/>
+      <path d="M195 212 C184 210 179 220 181 232 C183 241 189 245 194 242" fill="none" stroke="#160c08" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M187 222 C186 228 188 233 192 235" fill="none" stroke="#160c08" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <path d="M176 214 C173 224 175 238 182 246" fill="none" stroke="#7fa6cf" stroke-width="1.4" opacity=".45" stroke-linecap="round"/>
+      <path d="M279 246 C282 248 285 248 287 246" fill="none" stroke="#4a2a1a" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258.5 C276 261.5 269 261.5 263 260.5 Z" fill="#140b08" opacity=".7"/>
+      <!-- brow -->
+      <path d="M244 190 C252 184 263 182 273 185 L272 190 C263 188 254 189 246 194 Z" fill="#0b0807"/>
+      <!-- hair -->
+      <use href="#mHairP" fill="url(#mHair)"/>
+      <path d="M268 96 C246 82 204 84 166 102 M270 116 C238 106 196 104 150 124 M258 140 C232 128 196 128 160 146 M240 162 C220 152 194 154 176 168"
+        fill="none" stroke="#2c2b31" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+      <path d="M272 92 C262 78 236 76 206 84" fill="none" stroke="#ffcf8f" stroke-width="2" opacity=".3" stroke-linecap="round"/>
+      <g mask="url(#mClipFront)"><use href="#mHairP" fill="#ffcf8f" opacity=".85" mask="url(#mRimHair)"/></g>
+      <g mask="url(#mClipBack)"><use href="#mHairP" fill="#7fa6cf" opacity=".5" mask="url(#mRimHairBack)"/></g>
+      <path d="M150 246 C140 240 132 232 128 222" fill="none" stroke="#2a1a12" stroke-width="5" opacity=".6" stroke-linecap="round"/>
+      
+    </g>
+    <g id="m-glasses">
+      <!-- glasses: temple arm to the ear, near lens (slightly foreshortened), double bridge -->
+      <path d="M248 198 L198 204" stroke="#26272c" stroke-width="3" stroke-linecap="round"/>
+      <path d="M244 197.6 L214 201.4" stroke="#9a9ca4" stroke-width=".9" opacity=".55"/>
+      <path d="M249 197 L274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 Z" fill="#a8c4dc" opacity=".07"/>
+      <path d="M253 220 L262 196 L268 195.6 L259 220.6 Z" fill="#fff2dc" opacity=".13"/>
+      <path d="M247.6 201 C247.4 198.6 248.4 197.1 251 196.9 L274 195 C276.5 195 277.5 196.5 277.3 198.5" fill="none" stroke="#141418" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 L247.6 201" fill="none" stroke="#a9adb5" stroke-width="1.4" opacity=".8"/>
+      <path d="M274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.6 210" fill="none" stroke="#ffd59a" stroke-width=".9" opacity=".7"/>
+      <path d="M277 197.6 L281 197.4" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/>
+    
+    </g>
+    <g id="m-head">
+      <use href="#m-head-base"/>
+      <path class="m-mouth" d="M266 270.5 C270 271.5 273.5 271.5 277 270.5" fill="none" stroke="#3a1d14" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M269 278 C272 280 274.5 280 276 278" fill="none" stroke="#c78558" stroke-width="1.4" opacity=".55" stroke-linecap="round"/>
+      <!-- eye: looking out, lids a little lowered -->
+      <g class="m-eye">
+        <path d="M253 207.5 C258 203.5 265 203.5 269 206.5 C265 210 258 211 253 207.5 Z" fill="#d9bfa9" opacity=".75"/>
+        <circle cx="264.2" cy="207" r="3" fill="#120a07"/>
+        <circle cx="265.6" cy="206" r=".85" fill="#ffe6c2"/>
+        <path d="M251.5 206.5 C257 201 265 201 270 205" fill="none" stroke="#0d0806" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M255 211.5 C259.5 213 265 212.6 268.5 210.2" fill="none" stroke="#5b3523" stroke-width="1.1" opacity=".7"/>
+      </g>
+      <use href="#m-glasses"/>
+    </g>
+    <g id="m-head-smile">
+      <use href="#m-head-base"/>
+            <path d="M258 262 C265 259 273 259 280 262 C279 268 276 274 270 276 C265 276 261 271 258 262 Z" fill="#2a130c"/>
+      <path d="M261 263 C266 261.4 273 261.4 279.5 263 L278.9 266.6 C272 265.9 266 266 262 266.8 Z" fill="#e6dccf"/>
+      <path d="M262 274 C266 277.5 271 277.6 275 275.4" fill="none" stroke="#7a3f2b" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M250 258 C252 264 255 268 258 270" fill="none" stroke="#3a2015" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258 C276 260.5 269 260.8 263 260 Z" fill="#140b08" opacity=".75"/>
+      
+      <!-- crescent eye -->
+      <path d="M252 207 C257 202.6 265 202.6 270 206.4 C265 208.4 258 208.8 252 207 Z" fill="#2a160d"/>
+      <path d="M251.5 206.6 C257 201 265 201 270.5 205.4" fill="none" stroke="#0d0806" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M254.5 211 C259 213.4 264.5 213.2 269 210.6" fill="none" stroke="#3a2015" stroke-width="1.3"/>
+      <path d="M250 210 L246 213" stroke="#3a2015" stroke-width="1" opacity=".6"/>
+      <use href="#m-glasses"/>
+    </g>
+
+    <!-- SEATED at a window, chin on fist, facing right. Elbow rests on the sill below frame. viewBox 0 0 440 600 -->
+    <symbol id="m-seated" viewBox="0 0 440 600">
+      <!-- neck -->
+      <path d="M168 250 L232 294 C236 314 242 330 250 348 L164 352 C162 320 162 284 168 250 Z" fill="#1d110b"/>
+      <path d="M230 296 C234 316 240 332 248 348 L238 349 C232 332 228 314 224 296 Z" fill="#8a5636" opacity=".5"/>
+      <!-- torso, leaning in -->
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mShirt)"/>
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M92 400 C112 370 140 348 170 340 C140 372 118 430 112 490 C108 540 100 580 96 600 L60 600 C60 520 72 446 92 400 Z" fill="#06070a" opacity=".6"/>
+      <!-- collar -->
+      <path d="M160 326 C182 314 214 316 240 330 L252 352 C236 344 218 340 202 342 C188 340 174 344 164 350 Z" fill="#d6ccd4"/>
+      <path d="M160 326 C182 314 214 316 240 330" fill="none" stroke="#fff" stroke-width="1.4" opacity=".45"/>
+      <path d="M240 330 L266 368 L248 364 L236 344 Z" fill="#ece2e0"/>
+      <path d="M240 330 L266 368" stroke="#ffe0b8" stroke-width="1.4" opacity=".8"/>
+      <!-- head -->
+      <use href="#m-head"/>
+      <!-- upper arm (sleeve) from the shoulder down toward the elbow on the sill -->
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mShirt)"/>
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mPin)" opacity=".6"/>
+      <path d="M232 380 C252 430 276 520 296 600" fill="none" stroke="#ffd9a8" stroke-width="2" opacity=".5"/>
+      <path d="M150 368 C140 380 140 400 146 420 C160 470 180 540 196 600" fill="none" stroke="#050608" stroke-width="10" opacity=".4"/>
+      <!-- forearm rising to the fist -->
+      <path d="M262 600 C262 530 266 448 270 392 C272 370 274 352 278 340 L318 344 C316 366 312 392 310 414 C306 470 306 530 312 600 Z" fill="url(#mArm)"/>
+      <path d="M314 352 C312 380 308 410 306 440" fill="none" stroke="#ffcf8f" stroke-width="2.4" opacity=".55" stroke-linecap="round"/>
+      <!-- rolled cuff -->
+      <path d="M256 548 C276 538 300 536 318 540 L320 600 L254 600 Z" fill="#cbc2cf"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="#efe7ea"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="url(#mPin)"/>
+      <path d="M256 565 C278 555 300 553 319 558" fill="none" stroke="#6b6378" stroke-width="1.4" opacity=".7"/>
+      <path d="M256 548 C266 543 276 540 284 539 L284 600 L254 600 Z" fill="#0b0b10" opacity=".5"/>
+      <!-- fist: one clean shape under the chin -->
+      <path d="M254 312 C262 302 288 300 306 306 C318 310 322 322 320 334 C318 348 310 358 296 360
+        C282 362 270 360 262 354 C252 346 248 324 254 312 Z" fill="url(#mArm)"/>
+      <path d="M268 324 C278 322 296 322 312 326 M266 338 C278 336 296 336 310 340 M270 351 C280 350 292 350 302 352" fill="none" stroke="#3b2216" stroke-width="1.8" opacity=".6" stroke-linecap="round"/>
+      <path d="M316 314 C321 324 320 340 312 352" fill="none" stroke="#ffd59a" stroke-width="2.2" opacity=".8" stroke-linecap="round"/>
+      <path d="M256 314 C264 310 270 312 272 318 C266 328 258 332 252 330 Z" fill="#26150d" opacity=".55"/>
+      <!-- jaw resting: the chin redrawn over the fist, with its contact shadow -->
+      <path d="M258 311 C268 316 286 316 300 308 C290 304 268 304 258 311 Z" fill="#170d08" opacity=".55"/>
+      <path d="M273 293 C277 300 274 309 263 311 C252 312.5 240 309 230 303 C246 306 262 304 273 293 Z" fill="#6e4329"/>
+      <!-- warm rim down the front of the chest -->
+      <path d="M266 344 C292 352 312 378 322 414" fill="none" stroke="#ffd29a" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+      <path d="M146 336 C122 348 104 370 92 400" fill="none" stroke="#7fa6cf" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- STANDING, from behind, turning over his shoulder to smile (after the portrait). Faces left. viewBox 0 0 400 600 -->
+    <linearGradient id="mBackShirt" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="360" y2="0">
+      <stop offset="0" stop-color="#f1e6e0"/><stop offset=".3" stop-color="#b3a8b8"/>
+      <stop offset=".65" stop-color="#46434f"/><stop offset="1" stop-color="#14151a"/>
+    </linearGradient>
+    <symbol id="m-back" viewBox="0 0 400 600">
+      <path d="M176 250 L236 254 C238 280 240 300 244 322 L172 324 C174 300 174 276 176 250 Z" fill="#1d120c"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mBackShirt)"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mPin)" opacity=".7"/>
+      <path d="M80 378 C140 366 240 364 328 376" fill="none" stroke="#2a2833" stroke-width="1.4" opacity=".4"/>
+      <path d="M196 390 C190 450 198 530 192 600 M124 430 C134 480 126 550 120 600 M270 420 C280 480 276 540 282 600" fill="none" stroke="#1c1b24" stroke-width="6" opacity=".16" stroke-linecap="round"/>
+      <path d="M160 306 C186 294 226 294 252 304 L254 322 C228 314 190 314 162 322 Z" fill="#dcd2d8"/>
+      <path d="M160 306 C186 294 226 294 252 304" fill="none" stroke="#fff3e2" stroke-width="1.4" opacity=".6"/>
+      <g transform="translate(416 12) scale(-1 1)"><use href="#m-head-smile"/></g>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="#cfc3cc"/>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M62 404 C52 446 48 510 50 600" fill="none" stroke="#fff1de" stroke-width="2" opacity=".7"/>
+      <path d="M150 316 C104 330 70 356 60 400" fill="none" stroke="#ffd29a" stroke-width="2.4" opacity=".7" stroke-linecap="round"/>
+      <path d="M262 312 C306 322 334 348 342 390" fill="none" stroke="#7fa6cf" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="row">
+<svg viewBox="110 60 200 280" width="560" height="784"><use href="#m-head"/></svg>
+<svg width="400" height="560" viewBox="0 0 400 560"><use href="#m-seated" width="400" height="560"/></svg>
+<svg width="400" height="600" viewBox="0 0 400 600"><use href="#m-back" width="400" height="600"/></svg>
+</div></body></html>

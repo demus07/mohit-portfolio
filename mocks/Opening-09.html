@@ -1,0 +1,258 @@
+<!-- Direction 09: 1930s travel poster — an Art Deco railway poster of the AC local head-on, headlamp rays and sunburst between Eros and the Western Railway dome; scroll lets the poster become the world and turns the train to bring him to the window. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--ink:#14233c;--sodium:#f2a145;--sea:#2c6d8c;--cream:#f3e6c9;--red:#b5402f}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:"Josefin Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:460vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper);perspective:1800px;perspective-origin:50% 50%}
+.poster{position:absolute;inset:0;will-change:clip-path;perspective:1800px;perspective-origin:60% 50%;transform-style:preserve-3d}
+#bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rig{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face svg{display:block;overflow:visible}
+.front{left:-180px;top:-210px;width:360px;height:420px}
+.side{left:156px;top:-210px;width:1700px;height:420px;transform-origin:0 50%;transform:rotateY(90deg)}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.25;mix-blend-mode:multiply}
+.copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,104px);top:clamp(32px,10vh,108px);width:min(29rem,34vw)}
+h1{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(54px,6.4vw,112px);line-height:.92;letter-spacing:-.01em;margin:0 0 .36em}
+.line{font-size:clamp(16px,1.2vw,19px);line-height:1.55;max-width:40ch;margin:0 0 1.5em}
+.cta{font-size:clamp(16px,1.2vw,19px);font-weight:500;color:var(--red);text-decoration:none;display:inline-flex;gap:.5em;align-items:baseline;padding-bottom:4px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 1.5px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1.5px}.cta:hover span{transform:translateX(6px)}
+.note{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(22px,1.9vw,30px);line-height:1.28;max-width:19ch;margin:2em 0 0;opacity:0;transform:translateY(14px)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:26px;width:auto}
+  h1{font-size:50px}
+  .line{font-size:16px;margin-bottom:1em}
+  .note{font-size:20px;margin-top:.9em;max-width:26ch}
+}
+</style>
+</head>
+<body>
+<!-- direction: Opening 09 / 1930s travel poster -->
+<div class="track" id="track">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster">
+      <svg id="bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="sunG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f6b45a"/><stop offset=".85" stop-color="#f2a145"/><stop offset="1" stop-color="#e88f3a"/></radialGradient>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6ead0"/><stop offset=".55" stop-color="#f3e0bc"/><stop offset="1" stop-color="#f0d3a6"/></linearGradient>
+        </defs>
+        <g id="world">
+          <rect x="-600" y="-400" width="2640" height="1700" fill="url(#skyG)"/>
+          <g id="burst" fill="#ecd2a2" opacity=".75"></g>
+          <circle id="sun" cx="960" cy="470" r="200" fill="url(#sunG)"/>
+          <g fill="none" stroke="#f6ead0" stroke-width="5" opacity=".6"><circle cx="960" cy="470" r="232"/><circle cx="960" cy="470" r="262" stroke-width="2"/></g>
+          <!-- skyline: Eros (left), Western Railway HQ (right) — two tones of sea blue for depth -->
+          <g id="skyline">
+            <path fill="#7fa5b3" d="M-600,560 H330 V520 H360 V470 H392 V520 H430 V560 H1540 V512 H1580 V486 H1610 V512 H1660 V560 H2040 V640 H-600Z"/>
+            <path fill="#3f7d93" d="M560,640 V470 H592 V430 H616 V392 H636 V350 H652 V320 H668 V350 H684 V392 H704 V430 H728 V470 H760 V640Z"/>
+            <g fill="#f3e6c9" opacity=".55"><rect x="602" y="440" width="4" height="180"/><rect x="618" y="440" width="4" height="180"/><rect x="638" y="400" width="4" height="220"/><rect x="678" y="400" width="4" height="220"/><rect x="698" y="440" width="4" height="180"/><rect x="714" y="440" width="4" height="180"/></g>
+            <path fill="#3f7d93" d="M1150,640 V470 H1176 V440 L1190,420 L1204,440 V470 H1226 V402 C1226,350 1250,330 1270,322 V300 H1276 V322 C1296,330 1320,350 1320,402 V470 H1342 V440 L1356,420 L1370,440 V470 H1400 V640Z"/>
+            <g fill="#f3e6c9" opacity=".5"><path d="M1240,470 v-40 a8,8 0 0 1 16,0 v40z M1290,470 v-40 a8,8 0 0 1 16,0 v40z M1180,520 v-30 a6,6 0 0 1 12,0 v30z M1354,520 v-30 a6,6 0 0 1 12,0 v30z"/></g>
+          </g>
+          <!-- ground: platforms converging; fades away as the train turns -->
+          <g id="tracks">
+            <path fill="#d9b88a" d="M-600,1300 L870,620 H1050 L2520,1300Z"/>
+            <path fill="#2c3d55" d="M150,1300 L900,620 H1020 L1770,1300Z"/>
+            <path stroke="#e2b53a" stroke-width="10" d="M150,1300 L900,620 M1770,1300 L1020,620"/>
+            <path stroke="#a9b6c4" stroke-width="5" d="M560,1300 L930,640 M1360,1300 L990,640"/>
+          </g>
+          <g id="platformSide" opacity="0">
+            <rect x="-600" y="700" width="2640" height="600" fill="#d9b88a"/>
+            <rect x="-600" y="700" width="2640" height="14" fill="#e2b53a"/>
+            <rect x="-600" y="714" width="2640" height="6" fill="#b08a54"/>
+          </g>
+        </g>
+      </svg>
+      <div class="rig" id="rig">
+        <div class="face side">
+          <svg width="1700" height="420" viewBox="0 0 1700 420">
+            <defs>
+              <pattern id="pin" width="5" height="40" patternUnits="userSpaceOnUse"><rect width="5" height="40" fill="#f6f2f8"/><rect x="2" width=".8" height="40" fill="#a597cf" opacity=".6"/></pattern>
+              <linearGradient id="skinG" x1="0" x2="1"><stop offset="0" stop-color="#d79a6c"/><stop offset=".62" stop-color="#c0835c"/><stop offset=".63" stop-color="#9c6447"/><stop offset="1" stop-color="#8a573e"/></linearGradient>
+              <linearGradient id="inG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6ead0"/><stop offset="1" stop-color="#e9cf9f"/></linearGradient>
+              <g id="mohit">
+                <path fill="url(#pin)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+                <path fill="#14233c" opacity=".14" d="M262,214 C290,236 306,300 310,420 L272,420 C278,330 274,262 262,214Z"/>
+                <path fill="#8a573e" d="M210,166 L242,164 L246,206 L212,212Z"/>
+                <path fill="#fbf8fc" d="M204,206 C214,198 234,195 250,200 L254,216 C238,209 220,211 209,224Z"/>
+                <path fill="url(#skinG)" d="M216,74 C250,70 274,94 272,124 C271,148 262,166 246,178 C236,186 222,190 210,192 L186,192 C178,188 175,182 174,176 C170,174 169,170 171,166 C167,164 166,160 169,157 C165,155 162,152 164,148 L159,143 C156,140 159,137 163,135 L166,126 C165,112 168,98 178,88 C188,78 202,75 216,74Z"/>
+                <g class="hairg" transform="translate(0 21.6) scale(1 .8)"><path fill="#1a1512" d="M171,108 C165,98 164,84 168,70 C166,60 170,50 178,44 L176,38 C186,34 196,30 208,32 L206,26 C222,26 238,32 250,42 C264,52 272,66 274,84 C278,100 276,122 270,140 C268,148 266,154 262,158 C258,140 254,128 248,122 C240,114 230,110 220,108 C208,104 196,102 186,104 C180,105 175,106 171,108Z"/>
+                <path fill="none" stroke="#2c4366" stroke-width="2" stroke-linecap="round" d="M178,64 C190,46 214,38 240,44 M182,82 C198,62 226,56 256,66 M196,98 C214,84 240,82 266,94"/></g>
+                <ellipse cx="243" cy="134" rx="7" ry="11.5" fill="#9c6447"/>
+                <path d="M165,116 C172,112 182,111 190,113" fill="none" stroke="#14233c" stroke-width="3" stroke-linecap="round"/>
+                <path d="M172,129 C175,128 178,128 182,130" fill="none" stroke="#14233c" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M166,160 L172,161" stroke="#6b3c2d" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M163,120 L190,118 C192,126 192,134 189,141 L168,142 C164,135 163,127 163,120Z" fill="#f6ead0" fill-opacity=".25" stroke="#14233c" stroke-width="2.4"/>
+                <path d="M190,122 L244,127" stroke="#14233c" stroke-width="2.2"/>
+                <path fill="url(#pin)" d="M236,232 C262,246 266,292 244,336 L226,372 C214,384 192,382 188,366 C186,344 200,300 212,262 C218,246 224,236 236,232Z"/>
+                <path fill="#14233c" opacity=".14" d="M236,232 C262,246 266,292 244,336 L226,372 C240,330 250,280 236,232Z"/>
+                <path fill="url(#skinG)" d="M190,364 C186,320 180,260 176,214 L202,210 C206,260 212,320 214,362Z"/>
+                <path fill="url(#pin)" d="M185,326 C196,322 208,322 217,324 L219,350 C208,349 196,351 186,353Z"/>
+                <path fill="url(#skinG)" d="M166,198 C166,188 174,183 186,184 L204,188 C211,193 210,206 205,214 L182,218 C172,216 166,208 166,198Z"/>
+              </g>
+              <clipPath id="tw"><rect x="560" y="104" width="300" height="160" rx="16"/></clipPath>
+            </defs>
+            <!-- body -->
+            <path d="M0,40 C0,18 14,8 40,8 H1700 V410 H0Z" fill="#f3e6c9"/>
+            <rect x="0" y="8" width="1700" height="18" fill="#dccaa6"/>
+            <rect x="420" y="-6" width="340" height="16" rx="6" fill="#cdbb98"/><rect x="980" y="-6" width="300" height="16" rx="6" fill="#cdbb98"/>
+            <!-- cab door -->
+            <rect x="70" y="60" width="100" height="250" rx="6" fill="#e9d9b7"/><rect x="88" y="84" width="64" height="110" rx="8" fill="#14233c"/>
+            <!-- passenger doors -->
+            <rect x="920" y="44" width="170" height="366" fill="#ead9b6"/><path d="M1005,44 V410" stroke="#cdbb98" stroke-width="3"/>
+            <rect x="940" y="96" width="52" height="150" rx="8" fill="#14233c"/><rect x="1018" y="96" width="52" height="150" rx="8" fill="#14233c"/>
+            <rect x="1340" y="44" width="170" height="366" fill="#ead9b6"/><path d="M1425,44 V410" stroke="#cdbb98" stroke-width="3"/>
+            <rect x="1360" y="96" width="52" height="150" rx="8" fill="#14233c"/><rect x="1438" y="96" width="52" height="150" rx="8" fill="#14233c"/>
+            <!-- windows -->
+            <rect x="1140" y="104" width="300" height="160" rx="16" fill="#14233c"/>
+            <rect x="1580" y="104" width="300" height="160" rx="16" fill="#14233c"/>
+            <path d="M1160,104 h70 l-90,130z" fill="#f3e6c9" opacity=".12"/>
+            <!-- his window -->
+            <g clip-path="url(#tw)">
+              <rect x="560" y="104" width="300" height="160" fill="url(#inG)"/>
+              <rect x="560" y="104" width="300" height="8" fill="#fffaf0"/>
+              <rect x="572" y="138" width="80" height="70" fill="#7fa5b3"/>
+              <rect x="772" y="138" width="80" height="70" fill="#7fa5b3"/>
+              <rect x="572" y="186" width="80" height="22" fill="#3f7d93"/><rect x="772" y="186" width="80" height="22" fill="#3f7d93"/>
+              <rect x="752" y="104" width="6" height="160" fill="#c9b48c"/>
+              <path d="M790,214 c0,-14 6,-20 18,-20 h52 v70 h-70z" fill="#b5402f"/>
+              <use href="#mohit" transform="translate(600 92) scale(.66)"/>
+              <path d="M560,104 h80 l-80,110z" fill="#fff" opacity=".14"/>
+            </g>
+            <rect x="560" y="104" width="300" height="160" rx="16" fill="none" stroke="#dccaa6" stroke-width="6"/>
+            <!-- livery -->
+            <rect x="0" y="296" width="1700" height="6" fill="#b5402f"/>
+            <rect x="0" y="302" width="1700" height="40" fill="#2c6d8c"/>
+            <rect x="0" y="342" width="1700" height="68" fill="#14233c"/>
+            <rect x="0" y="410" width="1700" height="10" fill="#0b1424"/>
+            <g fill="#f3e6c9" opacity=".25"><rect x="0" y="318" width="1700" height="2"/></g>
+          </svg>
+        </div>
+        <div class="face front">
+          <svg width="360" height="420" viewBox="0 0 360 420">
+            <defs>
+              <pattern id="led" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.35" fill="#f2a145"/></pattern>
+              <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc" stop-opacity=".85"/><stop offset="1" stop-color="#fff6dc" stop-opacity="0"/></linearGradient>
+            </defs>
+            <!-- headlamp rays fan out, below and behind nothing -->
+            <g id="rays" opacity=".7">
+              <path d="M70,262 L-420,620 L-220,700Z" fill="url(#beam)"/>
+              <path d="M70,262 L-160,760 L60,780Z" fill="url(#beam)" opacity=".7"/>
+              <path d="M290,262 L780,620 L580,700Z" fill="url(#beam)"/>
+              <path d="M290,262 L520,760 L300,780Z" fill="url(#beam)" opacity=".7"/>
+            </g>
+            <path d="M24,410 V70 C24,30 50,8 90,8 H270 C310,8 336,30 336,70 V410Z" fill="#f3e6c9"/>
+            <path d="M24,410 V70 C24,30 50,8 90,8 H180 V410Z" fill="#fff" opacity=".18"/>
+            <!-- destination board -->
+            <rect x="74" y="28" width="212" height="40" rx="5" fill="#111418"/>
+            <text x="180" y="58" text-anchor="middle" font-family="Josefin Sans, sans-serif" font-weight="500" font-size="26" letter-spacing="2" fill="url(#led)">CHURCHGATE</text>
+            <!-- raked windscreen -->
+            <path d="M44,96 C44,84 52,80 64,80 H296 C308,80 316,84 316,96 L306,214 H54Z" fill="#14233c"/>
+            <path d="M178,80 H182 V214 H178Z" fill="#f3e6c9"/>
+            <path d="M64,84 h64 l-70,104z" fill="#f3e6c9" opacity=".12"/>
+            <path d="M120,210 L160,150 M240,210 L280,150" stroke="#f3e6c9" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+            <!-- headlamps -->
+            <circle cx="70" cy="262" r="20" fill="#14233c"/><circle cx="70" cy="262" r="13" fill="#fff6dc"/>
+            <circle cx="290" cy="262" r="20" fill="#14233c"/><circle cx="290" cy="262" r="13" fill="#fff6dc"/>
+            <!-- livery wraps the nose -->
+            <rect x="24" y="296" width="312" height="6" fill="#b5402f"/>
+            <rect x="24" y="302" width="312" height="40" fill="#2c6d8c"/>
+            <rect x="24" y="342" width="312" height="68" fill="#14233c"/>
+            <rect x="150" y="360" width="60" height="28" rx="4" fill="#0b1424"/><rect x="164" y="388" width="32" height="24" fill="#0b1424"/>
+            <g stroke="#f3e6c9" stroke-width="2" opacity=".35"><path d="M24,320 H336"/></g>
+          </svg>
+        </div>
+      </div>
+      <!-- the poster's printed border, which dissolves as the poster becomes the world -->
+      <svg id="border" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true"><rect id="borderR" fill="none" stroke="#f3e6c9" stroke-width="6"/><rect id="borderR2" fill="none" stroke="#14233c" stroke-width="1.5"/></svg>
+    </div>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .4  0 0 0 0 .32  0 0 0 0 .22  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg';
+  const track=document.getElementById('track'), poster=document.getElementById('poster'), rig=document.getElementById('rig'), note=document.getElementById('note');
+  const bg=document.getElementById('bg'), burst=document.getElementById('burst'), tracks=document.getElementById('tracks'), pside=document.getElementById('platformSide'), rays=document.getElementById('rays');
+  const bR=document.getElementById('borderR'), bR2=document.getElementById('borderR2'), world=document.getElementById('world');
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+
+  // sunburst wedges around the train head
+  for(let i=0;i<36;i+=2){const a0=i*10*Math.PI/180,a1=(i+1)*10*Math.PI/180,R=1800;
+    const p=document.createElementNS(NS,'path');p.setAttribute('d',`M0,0 L${R*Math.cos(a0)},${R*Math.sin(a0)} L${R*Math.cos(a1)},${R*Math.sin(a1)}Z`);burst.appendChild(p);}
+
+  // layout: poster rect, where the train head sits, where the window ends up
+  function layout(){
+    const W=innerWidth,H=innerHeight,ph=W<700;
+    const poster=ph?{x:20,y:H*.33,w:W-40,h:H*.62}:{x:W*.43,y:H*.08,w:W*.47,h:H*.84};
+    // svg slice mapping: viewBox 1440x900 -> screen
+    const s=Math.max(W/1440,H/900), ox=(W-1440*s)/2, oy=(H-900*s)/2;
+    return {W,H,ph,poster,s,ox,oy};
+  }
+
+  let sp=null,last=performance.now();
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    const r=track.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight));
+    sp=sp===null||rm?p:sp+(p-sp)*Math.min(1,dt*6);
+    const L=layout();
+    const open=ease(seg(sp,.04,.4)), turn=ease(seg(sp,.3,.86));
+
+    // the world inside the poster: framed at first, then full-bleed
+    const P=L.poster, ins=[P.y*(1-open), (L.W-P.x-P.w)*(1-open), (L.H-P.y-P.h)*(1-open), P.x*(1-open)];
+    poster.style.clipPath=`inset(${ins.map(v=>v.toFixed(1)+'px').join(' ')})`;
+    const bx=P.x*(1-open), by=P.y*(1-open), bw=L.W-ins[1]-ins[3], bh=L.H-ins[0]-ins[2];
+    [[bR,14],[bR2,24]].forEach(([el,m])=>{el.setAttribute('x',bx+m);el.setAttribute('y',by+m);el.setAttribute('width',Math.max(0,bw-2*m));el.setAttribute('height',Math.max(0,bh-2*m));el.setAttribute('opacity',(1-open).toFixed(3));});
+
+    // world scene: centred in the poster at first, settling to the full frame
+    const posterScale = L.ph ? P.h/700 : P.h/760;
+    const sceneScale = lerp(posterScale/L.s, 1.0, open);
+    const cxP=P.x+P.w/2, cyP=P.y+P.h*.56;
+    const headScreen=[lerp(cxP, L.ph? L.W*.5 : L.W*.66, open), lerp(cyP, L.H*.56, open)];
+    // world svg: scale around the train head (960,470 in viewBox)
+    const k=sceneScale*L.s;
+    world.setAttribute('transform',`translate(${((headScreen[0]-L.ox)/L.s).toFixed(2)} ${((headScreen[1]-L.oy)/L.s).toFixed(2)}) scale(${sceneScale.toFixed(4)}) translate(-960 -470)`);
+    tracks.setAttribute('opacity',(1-turn).toFixed(3));
+    pside.setAttribute('opacity',turn.toFixed(3));
+    rays.setAttribute('opacity',(.7*(1-turn)*(.85+.15*Math.sin(now/900))).toFixed(3));
+    if(!rm) burst.setAttribute('transform',`translate(960 470) rotate(${(now/1000*1.2)%360})`); else burst.setAttribute('transform','translate(960 470)');
+
+    // the train: turns from head-on to side-on; pivot slides from the nose to his window
+    const theta=-84*turn;
+    const pv=[lerp(0,156,turn), lerp(40,-26,turn), lerp(0,-710,turn)];
+    const endScale=L.ph? L.W/520 : Math.min(L.W/1440,L.H/900)*1.6;
+    const startScale=k*.95;
+    const sc=Math.exp(lerp(Math.log(startScale),Math.log(endScale),turn));
+    const scr=[lerp(headScreen[0], L.ph?L.W*.5:L.W*.64, turn)+Math.sin(Math.PI*turn)*(L.ph?0:L.W*.14), lerp(headScreen[1]+40*k, L.ph?L.H*.72:L.H*.6, turn)];
+    rig.style.transform=`translate3d(${scr[0].toFixed(1)}px,${scr[1].toFixed(1)}px,0) scale(${sc.toFixed(4)}) rotateY(${theta.toFixed(2)}deg) translate3d(${(-pv[0]).toFixed(1)}px,${(-pv[1]).toFixed(1)}px,${(-pv[2]).toFixed(1)}px)`;
+
+    const n=seg(sp,.86,.97); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

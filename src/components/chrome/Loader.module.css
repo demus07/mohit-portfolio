@@ -4,8 +4,8 @@
   z-index: 100;
   display: grid;
   place-items: center;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--fg);
   transition: transform 1s var(--ease);
 }
 .lifting {
@@ -22,7 +22,7 @@
   overflow: visible;
 }
 .track {
-  stroke: var(--ink-faint);
+  stroke: var(--fg-faint);
   stroke-width: 1.5;
   opacity: 0.4;
 }
@@ -33,7 +33,7 @@
 }
 .stop {
   fill: var(--paper);
-  stroke: var(--ink-faint);
+  stroke: var(--fg-faint);
   stroke-width: 1.5;
   transition:
     fill 0.3s var(--ease),
@@ -46,7 +46,7 @@
 .label {
   font-family: var(--sans);
   font-size: 22px;
-  fill: var(--ink-soft);
+  fill: var(--fg-soft);
 }
 .name {
   font-family: var(--serif);
@@ -74,5 +74,5 @@
   font-size: clamp(3rem, 2rem + 4vw, 6rem);
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--ink);
+  color: var(--fg);
 }

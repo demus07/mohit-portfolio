@@ -1,0 +1,263 @@
+<!-- Direction 03: The Queen's Necklace — Marine Drive's whole C-curve seen from Malabar Hill at golden hour; scrolling lowers the sun until the lamps come on, near to far -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade, the necklace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300,50;1,9..144,300,50&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#22252e; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:#1a2236; }
+  body { font-family:"Work Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .scroller { height:380vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#d9cdb3; }
+  svg.scene { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:overlay; opacity:.5; }
+  .copy { position:absolute; left:6.2vw; top:10vh; max-width:600px; z-index:5; color:var(--ink); }
+  h1 { font-family:"Fraunces",serif; font-weight:300; font-variation-settings:"SOFT" 50; font-size:clamp(42px,4.8vw,78px); line-height:1.02; letter-spacing:-.02em; text-wrap:balance; }
+  h1 em { font-style:italic; }
+  .line { margin-top:24px; font-size:clamp(15.5px,1.15vw,18px); line-height:1.6; max-width:36ch; opacity:.86; }
+  .aside { margin-top:20px; font-family:"Fraunces",serif; font-style:italic; font-weight:300; font-size:clamp(19px,1.5vw,24px); line-height:1.35; max-width:32ch; opacity:0; transform:translateY(12px); color:#f2c48a; }
+  @media (max-width:700px){
+    .copy { left:20px; right:20px; top:52px; }
+    h1 { font-size:40px; }
+    .line { margin-top:14px; font-size:15.5px; }
+    .aside { margin-top:12px; font-size:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="scroller" id="scroller">
+  <div class="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#cfc6b2"/><stop offset=".55" stop-color="#ecd9ae"/><stop offset=".95" stop-color="#f6d9a0"/>
+        </linearGradient>
+        <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5f6481"/><stop offset=".45" stop-color="#c98a78"/><stop offset=".8" stop-color="#f0a466"/><stop offset=".95" stop-color="#f7c47c"/>
+        </linearGradient>
+        <linearGradient id="skyC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0d1a2b"/><stop offset=".45" stop-color="#2c3352"/><stop offset=".8" stop-color="#7a5367"/><stop offset=".95" stop-color="#c9775a"/>
+        </linearGradient>
+        <radialGradient id="sunHalo" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff2cf" stop-opacity=".95"/><stop offset=".2" stop-color="#ffd890" stop-opacity=".55"/><stop offset=".55" stop-color="#f6ad62" stop-opacity=".18"/><stop offset="1" stop-color="#f6ad62" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="seaA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a6b4ad"/><stop offset=".3" stop-color="#6f97a3"/><stop offset="1" stop-color="#2c6d8c"/></linearGradient>
+        <linearGradient id="seaB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a67a"/><stop offset=".3" stop-color="#8d7a8a"/><stop offset="1" stop-color="#3a4c6a"/></linearGradient>
+        <linearGradient id="seaC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a26a5f"/><stop offset=".25" stop-color="#3a3a58"/><stop offset="1" stop-color="#101b2e"/></linearGradient>
+        <linearGradient id="path" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0c8" stop-opacity=".9"/><stop offset="1" stop-color="#ffd38e" stop-opacity="0"/></linearGradient>
+        <linearGradient id="landG" x1="0" y1="432" x2="0" y2="760" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#d9c8a2"/><stop offset=".25" stop-color="#b9a688"/><stop offset="1" stop-color="#7f705f"/></linearGradient>
+        <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2a145" stop-opacity=".8"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></linearGradient>
+        <clipPath id="aboveHorizon"><rect x="0" y="-600" width="1440" height="1032"/></clipPath>
+        <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3"/></filter>
+        <filter id="haze" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation=".6"/></filter>
+        <filter id="leaf" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="2" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="28" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <!-- sky, three lights -->
+      <rect y="-600" width="1440" height="1040" fill="#cfc6b2"/>
+      <rect y="-200" width="1440" height="640" fill="url(#skyA)"/>
+      <rect id="skyBr" y="-200" width="1440" height="640" fill="url(#skyB)" opacity="0"/>
+      <rect id="skyCr" y="-200" width="1440" height="640" fill="url(#skyC)" opacity="0"/>
+      <g id="kites" fill="#2a2a30" opacity=".75"></g>
+      <!-- the sun sinks behind the horizon -->
+      <g clip-path="url(#aboveHorizon)">
+        <g id="sun">
+          <circle r="190" fill="url(#sunHalo)"/>
+          <circle id="sunDisc" r="30" fill="#fff4d6"/>
+        </g>
+      </g>
+
+      <!-- sea -->
+      <rect y="432" width="1440" height="470" fill="url(#seaA)"/>
+      <rect id="seaBr" y="432" width="1440" height="470" fill="url(#seaB)" opacity="0"/>
+      <rect id="seaCr" y="432" width="1440" height="470" fill="url(#seaC)" opacity="0"/>
+      <g id="sunPath"></g>
+
+      <!-- Nariman Point, far end of the curve -->
+      <g id="far"></g>
+      <!-- city mass behind the drive -->
+      <g id="city"></g>
+      <!-- the drive: tetrapods, promenade, road, the Art Deco row -->
+      <g id="drive"></g>
+      <g id="dusk" fill="#232845" opacity="0"></g>
+      <g id="windows" fill="#f6b860" opacity="0"></g>
+      <g id="traffic"></g>
+      <g id="lamps"></g>
+      <!-- Malabar Hill foliage, foreground -->
+      <g id="fol" filter="url(#leaf)"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+    <div class="copy" id="copy">
+      <h1>One year in,<br><em>here's what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: Promenade 03, the Queen's Necklace from Malabar Hill -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg', $=id=>document.getElementById(id);
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)), range=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+  const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  let seed=5; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const el=(tag,a,p)=>{const e=document.createElementNS(NS,tag); for(const k in a) e.setAttribute(k,a[k]); p&&p.appendChild(e); return e;};
+  const lerpC=(a,b,t)=>{const pa=a.match(/\w\w/g).map(h=>parseInt(h,16)),pb=b.match(/\w\w/g).map(h=>parseInt(h,16));return `rgb(${pa.map((v,i)=>Math.round(v+(pb[i]-v)*t)).join(',')})`;};
+
+  // ---- the curve: sea edge of Marine Drive, near (Chowpatty) to far (Nariman Point)
+  const B=[[-60,850],[300,650],[760,478],[1160,440]];
+  const bez=(s)=>{const u=1-s;return [u*u*u*B[0][0]+3*u*u*s*B[1][0]+3*u*s*s*B[2][0]+s*s*s*B[3][0], u*u*u*B[0][1]+3*u*u*s*B[1][1]+3*u*s*s*B[2][1]+s*s*s*B[3][1]];};
+  const kAt=(y)=>Math.pow(clamp((y-432)/420,0,1),1.15)*1.05+.02;    // perspective scale from screen height
+  const N=400, P=[]; for(let i=0;i<=N;i++){const s=i/N, q=bez(s); P.push({s,x:q[0],y:q[1],k:kAt(q[1])});}
+  const at=(s)=>P[Math.round(clamp(s,0,1)*N)];
+  // land side = up/left of the curve (normal toward -y)
+  const off=(pt,d)=>[pt.x - 0.0*d, pt.y - d*pt.k];
+
+  const drive=$('drive'), dusk=$('dusk'), win=$('windows'), city=$('city'), far=$('far');
+  // land wedge behind everything on the city side
+  let land=`M-60 432 L1160 432 L1160 440`; for(let i=N;i>=0;i-=4){land+=` L${P[i].x.toFixed(1)} ${P[i].y.toFixed(1)}`;} land+=` L-60 900 Z`;
+  el('path',{d:land,fill:'url(#landG)'},city); el('path',{d:land,fill:'#232845',opacity:1,class:'duskLand'},dusk);
+
+  // hazy city mass between the drive and the horizon
+  for(let i=0;i<260;i++){
+    const x=rnd()*1180-40, yTop=432; const pt=P.reduce((b,q)=>Math.abs(q.x-x)<Math.abs(b.x-x)?q:b);
+    const baseY=pt.y-pt.k*70; if(baseY<=434) continue;
+    const kk=pt.k; const w=(14+rnd()*26)*Math.max(.25,kk), h=(20+rnd()*70)*Math.max(.18,kk)*(rnd()<.1?2:1);
+    const y=Math.max(x<820?424:398, Math.min(baseY-6, 432 + (baseY-432)*rnd()*.85 - h));
+    const hz=clamp((baseY-432)/300,0,1); const c=lerpC('d8c39c','c9a780',hz*.9+rnd()*.1); const sh=lerpC('cbb999','8a7563',hz);
+    el('rect',{x:x.toFixed(1),y:y.toFixed(1),width:w.toFixed(1),height:(baseY-y+2).toFixed(1),fill:c},city);
+    el('rect',{x:(x+w*.72).toFixed(1),y:y.toFixed(1),width:(w*.28).toFixed(1),height:(baseY-y+2).toFixed(1),fill:sh},city);
+    el('rect',{x:x.toFixed(1),y:y.toFixed(1),width:w.toFixed(1),height:(baseY-y+2).toFixed(1)},dusk);
+    if(rnd()<.5) for(let j=0;j<3;j++) el('rect',{x:(x+rnd()*w).toFixed(1),y:(y+rnd()*(baseY-y)).toFixed(1),width:(1+kk*2).toFixed(1),height:(1+kk*2).toFixed(1),opacity:(.4+rnd()*.6).toFixed(2)},win);
+  }
+  // Nariman Point towers
+  [[1072,388,16],[1092,370,14],[1110,398,22],[1136,380,12],[1150,404,18],[1046,402,18],[1172,414,16],[1024,410,14],[1192,420,12],[1210,424,22]].forEach(([x,y,w])=>{
+    el('rect',{x,y,width:w,height:440-y,fill:'#c2b49b'},far); el('rect',{x:x+w*.7,y,width:w*.3,height:440-y,fill:'#a99a86'},far); el('rect',{x,y,width:w,height:440-y},dusk);
+    for(let j=0;j<6;j++) el('rect',{x:x+2+rnd()*(w-4),y:y+3+rnd()*(436-y),width:1.4,height:1.4,opacity:.8},win);
+  });
+
+  // promenade, road, tetrapod edge as strips following the curve
+  const strip=(d0,d1,fill,parent=drive)=>{let d='';for(let i=0;i<=N;i+=2){const a=off(P[i],d0);d+=(i?' L':'M')+a[0].toFixed(1)+' '+a[1].toFixed(1);}for(let i=N;i>=0;i-=2){const a=off(P[i],d1);d+=` L${a[0].toFixed(1)} ${a[1].toFixed(1)}`;}d+=' Z';return el('path',{d,fill},parent);};
+  strip(-5,0,'#5d6266');            // tetrapods at the foot of the wall
+  strip(0,3,'#e7d7b6');             // sea wall face catching the sun
+  strip(3,14,'#cdbb9b');            // promenade
+  strip(14,40,'#5f5a58');           // the road
+  strip(40,46,'#b8a88e');           // footpath on the building side
+  const roadDusk = strip(-5,46,'#1a1e33',dusk);
+
+  // the Art Deco row along the drive, far to near so near occludes far
+  const pastel=['efe0bf','f2d9a9','eac7b2','e6d6bf','f1e4c6','e3cba5','ecd2c0','f0dcb0'];
+  const blocks=[]; let s=0.985;
+  while(s>0.02){
+    const pt=at(s); const k=pt.k; const len=.012+ (1-s)*.035*(0.6+rnd()*.7);
+    blocks.push({s0:Math.max(0,s-len), s1:s, h:(115+rnd()*55)*1, c:pastel[Math.floor(rnd()*pastel.length)], gap:.0012+rnd()*.002, tower:rnd()<.35});
+    s-=len+.002;
+  }
+  for(const b of blocks){
+    const A=at(b.s1), Bp=at(b.s0);           // A far edge, Bp near edge
+    const a0=off(A,48), b0=off(Bp,48);
+    const ha=b.h*A.k, hb=b.h*Bp.k;
+    const pts=`${a0[0]},${a0[1]} ${b0[0]},${b0[1]} ${b0[0]},${b0[1]-hb} ${a0[0]},${a0[1]-ha}`;
+    // sea-facing facade in golden light
+    el('polygon',{points:pts,fill:'#'+b.c},drive);
+    el('polygon',{points:pts},dusk);
+    // curved corner on the near end catching the sun
+    if (Bp.k>.18){ const w=Math.max(2,6*Bp.k); el('rect',{x:b0[0]-w,y:b0[1]-hb,width:w,height:hb,fill:'#fff3d8',opacity:.55},drive); }
+    // eyebrow sunshades: a shadow line under each floor
+    const floors=Math.round(b.h/22);
+    if (Bp.k>.12) for(let f=1;f<floors;f++){
+      const ya=a0[1]-ha*f/floors, yb=b0[1]-hb*f/floors;
+      el('line',{x1:a0[0],y1:ya,x2:b0[0],y2:yb,stroke:'#7d6248','stroke-width':Math.max(.6,2.2*Bp.k),opacity:.55},drive);
+      // windows that come on at dusk
+      const n=Math.max(2,Math.round((b0[0]-a0[0])/(16*Math.max(Bp.k,.2))));
+      for(let j=0;j<n;j++){ if(rnd()<.45) continue; const t=(j+.5)/n; const x=a0[0]+(b0[0]-a0[0])*t, y=ya+(yb-ya)*t+ (hb/floors)*.35;
+        el('rect',{x:x.toFixed(1),y:y.toFixed(1),width:(5*Bp.k+.8).toFixed(1),height:(7*Bp.k+.8).toFixed(1),opacity:(.55+rnd()*.45).toFixed(2)},win); }
+    }
+    // stepped Deco tower on some corners
+    if (b.tower && Bp.k>.08){ const w=(b0[0]-a0[0])*.22; const th=26*Bp.k; el('rect',{x:b0[0]-w,y:b0[1]-hb-th,width:w,height:th+1,fill:'#'+b.c},drive); el('rect',{x:b0[0]-w,y:b0[1]-hb-th,width:w,height:th+1},dusk); el('rect',{x:b0[0]-w*.6,y:b0[1]-hb-th*1.5,width:w*.4,height:th*.5+1,fill:'#'+b.c},drive); el('rect',{x:b0[0]-w*.6,y:b0[1]-hb-th*1.5,width:w*.4,height:th*.5+1},dusk);}
+    // roof line
+    el('line',{x1:a0[0],y1:a0[1]-ha,x2:b0[0],y2:b0[1]-hb,stroke:'#fff4dc','stroke-width':Math.max(.5,1.6*Bp.k),opacity:.7},drive);
+  }
+  // Chowpatty sand along the near end of the curve
+  { let d=''; const pts=[]; for(let i=0;i<=70;i++){ const pt=P[i]; const w=(1-i/70)*70*pt.k+2; pts.push([pt.x+w*.35, pt.y+w]); }
+    d='M'+P.slice(0,71).map(q=>q.x.toFixed(1)+' '+q.y.toFixed(1)).join(' L')+' L'+pts.reverse().map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' L')+' Z';
+    el('path',{d,fill:'#e6cd9c'},drive); el('path',{d},dusk);
+    const wet='M'+pts.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' L'); el('path',{d:wet,fill:'none',stroke:'#fff4dc','stroke-width':2,opacity:.6},drive); }
+
+  // lamps: the necklace, along the sea edge
+  const lamps=[]; const lg=$('lamps');
+  for(let i=0;i<70;i++){
+    const s=Math.pow(i/69,1.25)*.99+.005; const pt=at(s); const k=pt.k;
+    const pos=off(pt,6);
+    const h=26*k;
+    const g=el('g',{opacity:0},lg);
+    el('circle',{cx:pos[0],cy:pos[1]-h,r:(5+10*k).toFixed(1),fill:'#f2a145',opacity:.45,filter:'url(#glow)'},g);
+    el('circle',{cx:pos[0],cy:pos[1]-h,r:(.9+2.6*k).toFixed(1),fill:'#ffd9a0'},g);
+    if (k>.15) el('rect',{x:pos[0]-1.2*k,y:pos[1]+10*k,width:2.4*k+.4,height:22*k,fill:'url(#refl)',opacity:.6},g);
+    lamps.push({g,s});
+  }
+  // traffic along the road at dusk
+  const tr=$('traffic'), cars=[];
+  for(let i=0;i<46;i++){ const away=i%2===0; const c=el('circle',{r:1,fill: away? '#e2483a':'#fff1d0',opacity:0},tr); cars.push({c,away,ph:rnd(),v:.018+rnd()*.012,lane: away? 22:34}); }
+
+  // sun glitter path
+  const sp=$('sunPath'), glit=[];
+  for(let i=0;i<120;i++){ const y=436+Math.pow(rnd(),1.5)*420; const r=el('rect',{x:0,y,width:4,height:1.2+(y-432)/200,fill:'#ffe2a8',opacity:0},sp); glit.push({r,y,ox:(rnd()-.5),ph:rnd()*6.28,w:3+(y-432)/12*rnd()}); }
+
+  // black kites wheeling
+  const kites=[]; for(let i=0;i<3;i++){ const g=el('path',{d:'M-9 0 C-6 -3 -3 -2 0 0 C3 -2 6 -3 9 0 C6 -1 3 0 0 1 C-3 0 -6 -1 -9 0 Z'},$('kites')); kites.push({g,cx:980+i*90,cy:150+i*40,r:60+i*25,ph:i*2,sp:.12+i*.03}); }
+
+  // foliage of the hill in the foreground
+  const fol=$('fol');
+  const clump=(cx,cy,r,c)=>{ for(let i=0;i<14;i++){ const a=rnd()*6.28, d=r*Math.sqrt(rnd()); el('circle',{cx:cx+Math.cos(a)*d,cy:cy+Math.sin(a)*d*.7,r:r*(.3+rnd()*.35),fill:c},fol);} };
+  clump(1420,900,170,'#1d2a22'); clump(1260,930,140,'#22322a'); clump(-20,920,120,'#1d2a22'); clump(1380,830,60,'#33452f'); clump(1290,860,40,'#3a4a30'); clump(40,870,40,'#2e3d2b');
+
+  let SUNX=1330;
+  function frame(){ const sc=$('scene'), ar=innerWidth/innerHeight; SUNX = 1330; $('kites').style.display = ar<.9 ? 'none' : '';
+    if(ar<.9){ const h=560, w=h*ar; sc.setAttribute('viewBox',`${520-w/2} 200 ${w} ${h}`); } else sc.setAttribute('viewBox','0 0 1440 900'); }
+  frame(); addEventListener('resize',frame);
+
+  const scr=$('scroller'); let target=0,cur=0;
+  const read=()=>{const r=scr.getBoundingClientRect(); target=clamp(-r.top/(r.height-innerHeight),0,1);};
+  addEventListener('scroll',read,{passive:true}); read(); cur=target;
+  const sun=$('sun'), disc=$('sunDisc'), skyB=$('skyBr'), skyC=$('skyCr'), seaB=$('seaBr'), seaC=$('seaCr'), duskG=$('dusk'), copy=$('copy'), aside=$('aside');
+  const t0=performance.now();
+  function tick(now){
+    cur+=(target-cur)*.08; const p=cur, t=reduce?0:(now-t0)/1000;
+    const sunT=ease(range(p,0,.72));
+    const sx=SUNX-sunT*20, sy=170+sunT*278;
+    sun.setAttribute('transform',`translate(${sx} ${sy}) scale(1 ${(1-range(p,.5,.72)*.1).toFixed(3)})`);
+    disc.setAttribute('fill', lerpC('fff4d6','f47a3a',range(p,.25,.7)));
+    const b=range(p,.15,.55), c=range(p,.5,.92);
+    skyB.setAttribute('opacity',(b*(1-c*.0)).toFixed(3)); skyC.setAttribute('opacity',c.toFixed(3));
+    seaB.setAttribute('opacity',b.toFixed(3)); seaC.setAttribute('opacity',c.toFixed(3));
+    duskG.setAttribute('opacity',(b*.38 + c*.5).toFixed(3));
+    $('windows').setAttribute('opacity',range(p,.55,.85).toFixed(3));
+    // glitter path under the sun, warming and narrowing as it sets
+    const pathStrength=(1-range(p,.72,.9))*(.5+sunT*.5);
+    for(const g of glit){ const spread=40+(g.y-432)*.55*(1-sunT*.4); g.r.setAttribute('x',(sx+g.ox*spread*2 - g.w/2).toFixed(1)); g.r.setAttribute('width',g.w.toFixed(1)); g.r.setAttribute('opacity',(pathStrength*(.35+.5*Math.sin(t*1.1+g.ph))).toFixed(3)); g.r.setAttribute('fill', sunT>.5?'#ffb466':'#ffe8b8'); }
+    // the necklace lights near to far
+    for(const l of lamps){ const on=range(p,.58+l.s*.25,.62+l.s*.25); l.g.setAttribute('opacity',on.toFixed(3)); }
+    const traf=range(p,.6,.85);
+    for(const cr of cars){ let u=(cr.ph + t*cr.v)%1; const s=cr.away? u: 1-u; const pt=at(s); const pos=off(pt,cr.lane); cr.c.setAttribute('cx',pos[0].toFixed(1)); cr.c.setAttribute('cy',pos[1].toFixed(1)); cr.c.setAttribute('r',(.5+2*pt.k).toFixed(2)); cr.c.setAttribute('opacity',(traf*.9).toFixed(2)); }
+    for(const k of kites){ const a=t*k.sp+k.ph; k.g.setAttribute('transform',`translate(${(k.cx+Math.cos(a)*k.r).toFixed(1)} ${(k.cy+Math.sin(a)*k.r*.35).toFixed(1)}) rotate(${(Math.cos(a)*-12).toFixed(1)})`); k.g.setAttribute('fill', lerpC('2a2a30','0b0f1a',c)); }
+    // text turns from ink to paper as the sky darkens
+    copy.style.color = lerpC('22252e','efe8da',range(p,.45,.7));
+    const a=range(p,.8,.94); aside.style.opacity=a.toFixed(3); aside.style.transform=`translateY(${(1-a)*12}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

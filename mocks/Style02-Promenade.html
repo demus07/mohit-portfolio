@@ -1,0 +1,306 @@
+<!-- Direction 02: Photo collage — Marine Drive in the afternoon as torn sea-blue strips, pasted Art Deco blocks and halftone tetrapods; the real photograph of Mohit stands at the parapet turning back from the sea, a cutting chai steaming beside him. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade · Photo collage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --paper-hi:#f7f2e7; --news:#e6dfcf; --ink:#1b2230; --soft:rgb(27 34 48 / .68);
+  --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145; --tape:rgb(238 228 200 / .74);
+  --serif:"Instrument Serif", Georgia, serif; --sans:"Archivo", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .55 -.08'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.tape{position:absolute;width:110px;height:30px;background:
+  repeating-linear-gradient(90deg,rgb(255 255 255 / .12) 0 2px,transparent 2px 7px),var(--tape);
+  clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 24%,96% 38%,100% 52%,96% 66%,100% 80%,96% 92%,100% 100%,0 100%,4% 88%,0 76%,4% 62%,0 48%,4% 34%,0 20%);
+  mix-blend-mode:multiply;z-index:3}
+.reg{position:fixed;width:26px;height:26px;z-index:51;pointer-events:none;opacity:.5}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+.reg::before{left:12px;top:0;width:1px;height:26px}.reg::after{top:12px;left:0;height:1px;width:26px}
+.reg i{position:absolute;inset:6px;border:1px solid var(--ink);border-radius:50%}
+.reg.tl{top:16px;left:16px}.reg.tr{top:16px;right:16px}.reg.bl{bottom:16px;left:16px}.reg.br{bottom:16px;right:16px}
+.serif{font-family:var(--serif);font-weight:400}
+.ring{position:absolute;width:150px;height:150px;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(circle,transparent 58%,rgb(150 92 40 / .16) 61%,rgb(150 92 40 / .34) 64%,rgb(150 92 40 / .1) 67%,transparent 70%);
+  -webkit-mask:radial-gradient(circle at 70% 30%,transparent 18%,#000 42%)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+.scroller{height:230vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#f1ead9}
+#world{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+#world > svg{display:block;width:1440px;height:900px;overflow:visible}
+.strip{animation:swell 14s ease-in-out infinite alternate}
+.strip:nth-child(2n){animation-duration:18s;animation-delay:-6s}
+.strip:nth-child(3n){animation-duration:23s;animation-delay:-11s}
+@keyframes swell{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+.glint{animation:glint 6s ease-in-out infinite alternate}
+@keyframes glint{from{opacity:.35}to{opacity:.8}}
+.steam path{fill:none;stroke:#fffaf0;stroke-width:3;stroke-linecap:round;opacity:0;animation:steam 5.5s linear infinite}
+.steam path:nth-child(2){animation-delay:-1.8s}.steam path:nth-child(3){animation-delay:-3.6s}
+@keyframes steam{0%{transform:translateY(8px);opacity:0}25%{opacity:.85}100%{transform:translateY(-46px);opacity:0}}
+.spray{animation:spray 9s ease-out infinite}
+@keyframes spray{0%,62%{transform:translateY(16px) scale(.6);opacity:0}72%{opacity:.95}100%{transform:translateY(-34px) scale(1.05);opacity:0}}
+.spray{transform-box:fill-box;transform-origin:50% 100%}
+
+.copy{position:absolute;z-index:10;left:clamp(20px,5vw,80px);top:clamp(60px,10vh,104px);max-width:600px}
+.copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,5vw,76px);line-height:.98;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;max-width:13.5ch}
+.copy p{margin:0;max-width:40ch;font-size:clamp(17px,1.3vw,20px);line-height:1.5;font-variation-settings:"wdth" 92}
+.copy p span{background:var(--paper-hi);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:.14em .42em;line-height:1.78}
+
+.aside{position:absolute;z-index:9;width:250px;transform:rotate(3deg)}
+.aside .paper{position:relative;background:#fbf8ef;padding:26px 24px 22px;font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.15;color:var(--ink);
+ background-image:repeating-linear-gradient(transparent 0 27px,rgb(44 109 140 / .18) 27px 28px);background-position:0 20px;
+ clip-path:polygon(0 2%,9% 0,20% 2%,33% 0,47% 2%,60% 0,74% 2%,86% 0,100% 2%,100% 100%,0 100%)}
+.aside .tape{top:-12px;left:30px;width:84px;transform:rotate(-6deg)}
+.ring.two{z-index:2}
+@media (max-width:720px){
+  .copy{top:48px;right:20px}
+  .copy h2{font-size:44px;max-width:none}
+  .copy p{font-size:16px}
+  .aside{width:200px}
+  .aside .paper{font-size:20px;padding:22px 18px 18px}
+}
+@media (prefers-reduced-motion: reduce){.scroller{height:100vh}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<span class="reg tl"><i></i></span><span class="reg tr"><i></i></span><span class="reg bl"><i></i></span><span class="reg br"><i></i></span>
+<div class="scroller">
+ <div class="stage" id="stage">
+  <div id="world">
+   <svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <pattern id="dS" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(15)"><circle cx="3.5" cy="3.5" r="1.7" fill="#2c6d8c"/></pattern>
+     <pattern id="dW" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(15)"><circle cx="4" cy="4" r="2.2" fill="#fffaf0"/></pattern>
+     <pattern id="dN" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="1.2" fill="#1b2747"/></pattern>
+     <pattern id="dG" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><circle cx="3" cy="3" r="1.6" fill="#6f6b63"/></pattern>
+     <linearGradient id="skyF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#000"/></linearGradient>
+     <mask id="skyM"><rect width="1440" height="440" fill="url(#skyF)"/></mask>
+     <radialGradient id="glF" cx=".5" cy=".15" r=".5"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+     <mask id="glM"><rect x="80" y="430" width="760" height="230" fill="url(#glF)"/></mask>
+    </defs>
+    <rect width="1440" height="900" fill="#f1ead9"/>
+    <rect width="1440" height="440" fill="url(#dS)" mask="url(#skyM)" opacity=".22"/>
+    <g id="far"></g>
+    <g id="sea"></g>
+    <rect x="80" y="430" width="760" height="230" fill="url(#dW)" mask="url(#glM)" class="glint"/>
+    <g id="tetra"></g>
+    <g id="wall"></g>
+    <g id="chai" transform="translate(690 652) scale(.62)"></g>
+   </svg>
+  </div>
+  <div id="him" style="position:absolute;z-index:6"></div>
+  <span class="ring two" id="ring"></span>
+  <div class="copy" id="copy">
+   <h2>One year in, here's what I shipped</h2>
+   <p><span>An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</span></p>
+  </div>
+  <div class="aside" id="aside"><span class="tape"></span><div class="paper">9.45 CGPA taught me less than shipping did. Still early. Still building.</div></div>
+ </div>
+</div>
+<!-- direction: Style02 Promenade, photo collage -->
+<script>/* collage kit: seeded randomness and torn-paper edges */
+const KIT = (() => {
+  const rng = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+  // torn rectangle path: edges listed in `sides` are torn, others straight
+  function torn(x, y, w, h, o = {}) {
+    const amp = o.amp ?? 3, step = o.step ?? 9, r = rng(o.seed ?? 7), sides = o.sides ?? "tblr";
+    const pts = [];
+    const edge = (x0, y0, x1, y1, t, nx, ny) => {
+      const len = Math.hypot(x1 - x0, y1 - y0), n = Math.max(1, Math.round(len / step));
+      for (let i = 0; i < n; i++) {
+        const f = i / n, j = t ? (r() - .5) * 2 * amp + (r() < .12 ? amp * 1.6 : 0) : 0;
+        pts.push([x0 + (x1 - x0) * f + nx * j, y0 + (y1 - y0) * f + ny * j]);
+      }
+    };
+    edge(x, y, x + w, y, sides.includes("t"), 0, 1);
+    edge(x + w, y, x + w, y + h, sides.includes("r"), -1, 0);
+    edge(x + w, y + h, x, y + h, sides.includes("b"), 0, -1);
+    edge(x, y + h, x, y, sides.includes("l"), 1, 0);
+    return "M" + pts.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") + "Z";
+  }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return { rng, torn, clamp, seg, ease, reduce };
+})();
+</script>
+<script>/* Mohit, cut from the real photograph: tight photo mask, scissor-cut paper margin, misregistered halftone ghost. */
+(function(){
+  const MASK = "data:image/png;base64,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";
+  const CUT = "M427,212 L450,214 L483,228 L499,224 L516,241 L520,260 L530,275 L534,309 L532,382 L520,420 L546,445 L554,462 L622,522 L660,564 L664,577 L674,639 L676,758 L686,823 L686,862 L672,961 L660,1004 L270,1004 L267,990 L257,990 L250,1004 L151,1004 L148,995 L168,949 L182,875 L294,536 L308,506 L344,471 L328,454 L318,417 L288,375 L288,352 L304,335 L308,325 L298,308 L298,291 L306,275 L341,242 L427,212Z";
+  const TONES = {
+    day:   { m: "1.08 0.02 0 0 -0.02  0.01 1.03 0 0 -0.01  0 0.02 0.94 0 0  0 0 0 1 0", ghost: "#2c6d8c", paper: "#fcf9f2" },
+    dusk:  { m: "1.07 0.03 0 0 0  0.01 1.0 0 0 -0.01  0 0.02 0.88 0 0  0 0 0 1 0", ghost: "#f2a145", paper: "#f3e7d2" },
+    night: { m: "1.03 0.03 0 0 0  0.01 0.99 0.01 0 -0.01  0.01 0.03 0.92 0 0  0 0 0 1 0", ghost: "#f2a145", paper: "#efe2c8" }
+  };
+  let n = 0;
+  window.mohitSVG = function(o){
+    o = o || {};
+    const id = "mc" + (n++);
+    const t = TONES[o.tone || "day"];
+    const vb = o.vb || "140 200 560 810";
+    const ghost = o.ghost || t.ghost;
+    const gx = +(o.gx ?? 16), gy = +(o.gy ?? 12);
+    const src = o.src || "assets/portrait.jpg";
+    const box = o.box ? `x="${o.box[0]}" y="${o.box[1]}" width="${o.box[2]}" height="${o.box[3]}"` : "";
+    return `<svg ${box} viewBox="${vb}" preserveAspectRatio="${o.par || "xMidYMax meet"}" role="img" aria-label="Mohit Bagri, cut from a photograph">
+<defs>
+ <mask id="${id}k" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="1000"><image href="${MASK}" width="800" height="1000"/></mask>
+ <pattern id="${id}d" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(22)"><circle cx="4" cy="4" r="2.3" fill="${ghost}"/></pattern>
+ <filter id="${id}g" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${t.m}"/>
+  <feComponentTransfer><feFuncR type="linear" slope="1.06" intercept="-0.03"/><feFuncG type="linear" slope="1.06" intercept="-0.03"/><feFuncB type="linear" slope="1.06" intercept="-0.03"/></feComponentTransfer></filter>
+ <filter id="${id}p" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" values="0 0 0 0 .42  0 0 0 0 .34  0 0 0 0 .24  0 0 0 .5 -.12" result="c"/><feComposite in="c" in2="SourceGraphic" operator="in" result="g"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="g"/></feMerge></filter>
+</defs>
+${o.noGhost ? "" : `<path d="${CUT}" fill="url(#${id}d)" transform="translate(${gx} ${gy})" opacity=".9"/>`}
+<path d="${CUT}" fill="${t.paper}" filter="url(#${id}p)"/>
+<path d="${CUT}" fill="none" stroke="rgb(60 45 30 / .16)" stroke-width="1.6"/>
+<image href="${src}" width="800" height="1000" mask="url(#${id}k)" filter="url(#${id}g)"/>
+</svg>`;
+  };
+  window.mohitCut = el => { el.innerHTML = window.mohitSVG({ ...el.dataset, gx: el.dataset.gx, gy: el.dataset.gy }); };
+  document.querySelectorAll("[data-mohit]").forEach(window.mohitCut);
+})();
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const { torn, rng } = KIT;
+
+/* far shore: Malabar Hill, then the Deco blocks of the necklace curving toward us on the right */
+(function () {
+  let s = `
+           <path d="M500,432 C560,392 640,376 720,380 C790,384 840,404 900,432Z" fill="#8aa292"/>
+           <path d="M500,432 C560,392 640,376 720,380 C790,384 840,404 900,432Z" fill="url(#dN)" opacity=".18"/>`;
+  // tower blocks on the hill
+  const r = rng(9);
+  for (let i = 0; i < 9; i++) { const x = 560 + i * 34 + r() * 12, h = 18 + r() * 30; s += `<rect x="${x}" y="${412 - h * .35 + Math.abs(i - 4) * 3}" width="${12 + r() * 8}" height="${h * .35 + 14}" fill="${["#d9d1bf", "#c8c3b6", "#e2d6c0"][i % 3]}"/>`; }
+  // the curve of the drive: Deco blocks from far (small, left) to near (large, right)
+  const cols = ["#efe0bf", "#f1d98f", "#e8b8a6", "#d9e2cf", "#f3e6cf", "#eccda2", "#e6c3b8"];
+  const N = 12;
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1), sc = .36 + Math.pow(t, 1.7) * 1.5;
+    const x = 840 + Math.pow(t, 1.2) * 640, base = 436 + Math.pow(t, 2) * 112;
+    const w = 86 * sc, h = (96 + (i * 41) % 46) * sc, c = cols[i % cols.length];
+    const curved = i % 2 === 0, R = 18 * sc;
+    s += curved
+      ? `<path d="M${x},${base} V${base - h + R} A${R},${R} 0 0 1 ${x + R},${base - h} H${x + w} V${base}Z" fill="${c}"/>`
+      : `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" fill="${c}"/>`;
+    // stepped parapet tower
+    if (i % 3 === 1) s += `<rect x="${x + w * .62}" y="${base - h - 12 * sc}" width="${w * .26}" height="${12 * sc}" fill="${c}"/><rect x="${x + w * .68}" y="${base - h - 20 * sc}" width="${w * .14}" height="${8 * sc}" fill="${c}"/>`;
+    // windows with eyebrow sunshades, ribbon balcony at the corner
+    const rows = 5, rh = (h - 14 * sc) / rows;
+    for (let f = 0; f < rows; f++) {
+      const y = base - h + 10 * sc + f * rh;
+      s += `<rect x="${x + 4 * sc}" y="${y}" width="${w - 8 * sc}" height="${Math.max(1, 2.2 * sc)}" fill="#fbf6ea"/>`;
+      for (let k = 0; k < 4; k++) s += `<rect x="${x + (8 + k * 20) * sc}" y="${y + 3.5 * sc}" width="${10 * sc}" height="${rh * .5}" fill="#3d4352" opacity=".7"/>`;
+    }
+    if (curved) s += `<rect x="${x}" y="${base - h + R}" width="${5 * sc}" height="${h - R}" fill="#fbf6ea" opacity=".6"/>`;
+  }
+  // the drive and its sea wall along the curve
+  s += `<path d="M760,434 C1000,440 1240,480 1460,560 L1460,574 C1240,494 1000,452 760,442Z" fill="#8c8a84"/>
+        <path d="M760,442 C1000,452 1240,494 1460,574 L1460,584 C1240,506 1000,462 760,448Z" fill="#d8d2c4"/>`;
+  $("far").innerHTML = s;
+})();
+
+/* sea: torn strips, far to near */
+(function () {
+  const bands = [[430, 26, "#a9c8d0"], [452, 30, "#8fb8c6"], [478, 36, "#6aa0b5"], [508, 42, "#4f8ba5"], [544, 48, "#3c7c98"], [584, 56, "#2c6d8c"], [630, 70, "#245c78"]];
+  $("sea").innerHTML = bands.map(([y, h, c], i) => `<g class="strip"><path d="${torn(-40, y, 1520, h + 14, { amp: 2 + i * .4, step: 10 + i, seed: 100 + i, sides: "t" })}" fill="${c}"/></g>`).join("")
+    + `<rect x="-40" y="584" width="1520" height="130" fill="url(#dN)" opacity=".1"/>`;
+})();
+
+/* tetrapods: four-legged concrete armour, cut from grey paper with halftone shade */
+(function () {
+  const r = rng(33);
+  let s = "";
+  const leg = (cx, cy, a, L, w0, w1) => {
+    const ca = Math.cos(a), sa = Math.sin(a), ex = cx + ca * L, ey = cy + sa * L, nx = -sa, ny = ca;
+    return `<path d="M${cx + nx * w0},${cy + ny * w0} L${ex + nx * w1},${ey + ny * w1} A${w1},${w1} 0 0 1 ${ex - nx * w1},${ey - ny * w1} L${cx - nx * w0},${cy - ny * w0}Z"/>`;
+  };
+  for (let i = 0; i < 26; i++) {
+    const cx = -20 + (i % 13) * 118 + (i > 12 ? 58 : 0) + r() * 24, cy = (i > 12 ? 690 : 668) + r() * 10, sc = 1.05 + r() * .3, rot = r() * 6.28;
+    const tone = ["#c4c0b6", "#b3afa5", "#cfcbc1"][i % 3];
+    let legs = "";
+    [0, 2.094, 4.188].forEach(k => legs += leg(cx, cy, rot + k, 30 * sc, 21 * sc, 16 * sc));
+    s += `<g fill="${tone}">${legs}<circle cx="${cx}" cy="${cy}" r="${15 * sc}"/></g>
+          <g fill="url(#dG)" opacity=".6">${leg(cx, cy, rot + 2.094, 30 * sc, 21 * sc, 16 * sc)}</g>
+          <circle cx="${cx + 3}" cy="${cy + 3}" r="${17 * sc}" fill="#dedad0"/><circle cx="${cx + 3}" cy="${cy + 3}" r="${17 * sc}" fill="url(#dG)" opacity=".25"/>`;
+  }
+  // spray scraps that rise between the tetrapods now and then
+  [[260, 660], [620, 664], [1010, 668]].forEach(([x, y], i) => {
+    s += `<g class="spray" style="animation-delay:${-i * 3}s">${[[0, 0, 16, 10], [22, -14, 12, 8], [-14, -22, 10, 7], [8, -36, 9, 6], [34, -30, 7, 5], [-4, -50, 6, 4]].map(([dx, dy, w, h], j) => `<path d="${torn(x + dx, y - 20 + dy, w, h, { amp: 1.6, step: 3, seed: 300 + i * 9 + j })}" fill="#fbf8f0"/>`).join("")}</g>`;
+  });
+  $("tetra").innerHTML = s;
+})();
+
+/* the parapet and promenade */
+$("wall").innerHTML = `
+  <path d="${torn(-30, 690, 1500, 26, { amp: 1.5, step: 9, seed: 61, sides: "tb" })}" fill="#ddd6c6"/>
+  <path d="${torn(-30, 712, 1500, 84, { amp: 1.4, step: 9, seed: 62, sides: "b" })}" fill="#c9c1ae"/>
+  <rect x="-30" y="712" width="1500" height="84" fill="url(#dG)" opacity=".28"/>
+  <path d="${torn(-30, 792, 1500, 120, { amp: 2, step: 12, seed: 63, sides: "t" })}" fill="#a9a293"/>
+  <rect x="-30" y="800" width="1500" height="110" fill="url(#dN)" opacity=".08"/>`;
+
+/* cutting chai: a fluted glass on the parapet, cut out with a paper margin */
+$("chai").innerHTML = `
+  <path d="M-30,8 L30,8 L24,92 L-24,92Z" fill="#fbf8ef" transform="translate(0 0) scale(1.18) translate(0 -8)"/>
+  <path d="M-24,14 L24,14 L19,86 L-19,86Z" fill="#e8dcc6"/>
+  <path d="M-22,34 L22,34 L19,86 L-19,86Z" fill="#b8742f"/>
+  <path d="M-22,34 L22,34 L21.6,40 L-21.6,40Z" fill="#d79a52"/>
+  ${[-15, -7, 1, 9, 17].map(x => `<path d="M${x},16 L${x * .8},84" stroke="#fff" stroke-width="2" opacity=".55"/>`).join("")}
+  <path d="M-24,14 L24,14" stroke="#fff" stroke-width="2.5"/>
+  <g class="steam"><path d="M-8,4 C-16,-8 0,-16 -8,-30"/><path d="M4,2 C-4,-12 12,-18 4,-34"/><path d="M14,4 C8,-6 20,-14 12,-26"/></g>`;
+
+/* Mohit at the parapet */
+const him = $("him");
+him.innerHTML = mohitSVG({ vb: "140 200 560 800", tone: "day", gx: 18, gy: 12, par: "xMidYMax meet" });
+
+/* ---------- camera ---------- */
+const world = $("world"), stage = $("stage"), copy = $("copy"), aside = $("aside"), ring = $("ring");
+const strips = [...document.querySelectorAll("#sea .strip")];
+let W, H, s0, tx0, ty0, phone;
+function layout() {
+  W = stage.clientWidth; H = stage.clientHeight; phone = W < 720;
+  s0 = Math.max(W / 1440, H / 900);
+  tx0 = phone ? Math.min(0, Math.max(W - 1440 * s0, W * .5 - 900 * s0)) : (W - 1440 * s0) / 2;
+  ty0 = (H - 900 * s0) / 2;
+  world.style.transform = `translate(${tx0}px,${ty0}px) scale(${s0})`;
+  // him: lower right on desktop, centred on the phone
+  const hh = phone ? H * .62 : H * .9, hw = hh * 560 / 800;
+  Object.assign(him.style, { height: hh + "px", width: hw + "px", left: (phone ? (W - hw) / 2 + 20 : W * .6) + "px", bottom: "0px" });
+  him.firstElementChild.style.cssText = "width:100%;height:100%;display:block";
+  Object.assign(aside.style, phone ? { left: "14px", right: "auto", top: "auto", bottom: "36px" } : { left: (W * .6 - 290) + "px", top: H * .14 + "px", right: "auto", bottom: "auto" });
+  Object.assign(ring.style, { left: (tx0 + 650 * s0) + "px", top: (ty0 + 676 * s0) + "px", width: 120 * s0 + "px", height: 120 * s0 + "px" });
+  frame();
+}
+function frame() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = KIT.reduce ? 1 : (max > 0 ? scrollY / max : 0);
+  const rise = KIT.ease(KIT.seg(p, 0, .6));
+  him.style.transform = `translateY(${(1 - rise) * 26}%)`;
+  // walking along the wall: the far shore and sea drift at different speeds
+  world.style.transform = `translate(${tx0 - p * 60 * s0}px,${ty0}px) scale(${s0})`;
+  strips.forEach((g, i) => g.parentNode && (g.style.translate = `${-p * (i + 1) * 14}px 0`));
+  const a = KIT.ease(KIT.seg(p, .5, .8));
+  aside.style.opacity = a; aside.style.transform = `translateY(${(1 - a) * 40}px) rotate(${3 - a}deg)`;
+}
+let raf = 0;
+addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }, { passive: true });
+addEventListener("resize", layout);
+document.fonts && document.fonts.ready.then(layout);
+layout();
+</script>
+</body>
+</html>

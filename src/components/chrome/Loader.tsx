@@ -1,19 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WESTERN_LINE } from "@/lib/content";
 import s from "./Loader.module.css";
 
 /*
- * The way home, drawn as the counter runs to 100: the Western line from Churchgate to Bhayandar,
- * each station lighting as the line reaches it, the name settling underneath. Then the curtain lifts
- * onto the platform. Once a visit; a reload in the same tab goes straight in.
+ * A hairline drawn across as the counter runs to 100, the name settling underneath. Then the curtain
+ * lifts onto the platform. Once a visit; a reload in the same tab goes straight in.
  */
 
 const NAME = "Mohit Bagri";
 const DURATION = 2200;
 const W = 1000;
-const STOPS = WESTERN_LINE.map((name, i) => ({ name, x: Math.round((i / (WESTERN_LINE.length - 1)) * W) }));
 
 export function Loader() {
   const [progress, setProgress] = useState(0);
@@ -74,22 +71,9 @@ export function Loader() {
   return (
     <div className={`${s.loader}${phase === "lift" ? ` ${s.lifting}` : ""}`} aria-hidden="true">
       <div className={s.center}>
-        <svg className={s.line} viewBox="-40 -60 1080 140">
+        <svg className={s.line} viewBox="0 -4 1000 8">
           <line x1={0} y1={0} x2={W} y2={0} className={s.track} />
           <line x1={0} y1={0} x2={at} y2={0} className={s.run} />
-          {STOPS.map((st, i) => {
-            const end = i === 0 || i === STOPS.length - 1;
-            return (
-              <g key={st.name}>
-                <circle cx={st.x} cy={0} r={end ? 7 : 3.6} className={`${s.stop}${at >= st.x ? ` ${s.on}` : ""}`} />
-                {end && (
-                  <text x={st.x} y={i === 0 ? -22 : 38} textAnchor={i === 0 ? "start" : "end"} className={s.label}>
-                    {st.name}
-                  </text>
-                )}
-              </g>
-            );
-          })}
         </svg>
         <p className={s.name}>
           {[...NAME].map((ch, i) => (

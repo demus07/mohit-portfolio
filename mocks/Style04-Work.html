@@ -1,0 +1,220 @@
+<!-- Direction 04: Ink line — the work as an editorial spread on warm paper: a cutting chai steaming beside the title, AuctionXI in full with its real screen framed by a pen line that draws itself, and the other seven as an inked index whose real media appears as you point at it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1ead9;--paper2:#e9e0cb;--ink:#1d1a16;--ink2:#5b544a;--ink3:#8c8478;--acc:#e2782a;--acc-soft:#f2c38d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 -1.3 .78'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:300px}
+.serif{font-family:"Newsreader",Georgia,serif}
+h1,h2{font-family:"Newsreader",Georgia,serif;font-weight:400;letter-spacing:-.018em;line-height:.98;text-wrap:balance;font-optical-sizing:auto}
+p{text-wrap:pretty}
+a{color:inherit}
+.ilink{text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/100% 2px no-repeat;padding-bottom:.12em;transition:background-size .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.ilink:hover,.ilink:focus-visible{background-size:100% .5em}
+.cta{display:inline-flex;align-items:baseline;gap:.45em;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.45rem;text-decoration:none;color:var(--ink);position:relative;padding-bottom:.2em}
+.cta svg{position:absolute;left:-2%;bottom:-.25em;width:104%;height:.7em;overflow:visible}
+.cta svg path{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1)}
+.cta:hover svg path,.cta:focus-visible svg path{animation:redraw .8s cubic-bezier(.2,.7,.2,1)}
+.cta .arr{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cta:hover .arr,.cta:focus-visible .arr{transform:translateX(6px)}
+@keyframes redraw{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.wrap{width:min(1320px,100% - 2*clamp(22px,5.4vw,96px));margin:0 auto}
+header.top{position:relative;padding:clamp(56px,12vh,120px) 0 clamp(40px,8vh,80px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
+h2{font-size:clamp(2.6rem,5vw,5.2rem);font-weight:300;max-width:12ch}
+.lede{margin-top:1.2rem;font-size:clamp(1.02rem,1.2vw,1.16rem);line-height:1.5;max-width:24rem}
+.chai{width:clamp(130px,14vw,200px);height:auto;overflow:visible;margin-right:2vw}
+.steam path{fill:none;stroke:#1d1a16;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:30 90;animation:steam 4.6s linear infinite}
+.steam path:nth-child(2){animation-delay:-1.5s}.steam path:nth-child(3){animation-delay:-3s}
+@keyframes steam{from{stroke-dashoffset:120;opacity:0}20%{opacity:.8}to{stroke-dashoffset:0;opacity:0}}
+
+/* featured */
+.feat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);align-items:start;padding-bottom:clamp(60px,12vh,130px)}
+.feat .meta{font-size:.98rem;color:var(--ink2)}
+.feat .fname{display:block;font-family:"Newsreader",Georgia,serif;font-size:1.5rem;color:var(--ink);margin-bottom:.15rem}
+.feat .logo{display:block;height:30px;width:auto;margin-bottom:1.4rem;filter:grayscale(1) contrast(1.3) brightness(.25)}
+.feat h3{font-family:"Newsreader",Georgia,serif;font-weight:300;font-size:clamp(2.1rem,3.4vw,3.4rem);line-height:1.02;letter-spacing:-.015em;margin:.5rem 0 1rem;text-wrap:balance}
+.feat .one{font-size:1.08rem;line-height:1.5;max-width:24rem}
+.facts{list-style:none;margin:1.6rem 0;display:grid;gap:.85rem;max-width:25rem}
+.facts li{font-family:"Newsreader",Georgia,serif;font-size:1.22rem;line-height:1.3;padding-left:1.4rem;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:.62em;width:.7rem;height:1.5px;background:var(--acc)}
+.tech{font-size:.95rem;color:var(--ink2);line-height:1.5;max-width:25rem}
+.links{margin-top:1.4rem;display:flex;gap:1.4rem;font-size:1.02rem;font-weight:500}
+.frame{position:relative;padding:18px}
+.frame img{display:block;width:100%;height:auto;position:relative;z-index:1}
+.frame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.frame svg path{fill:none;stroke:#1d1a16;stroke-linecap:round;stroke-linejoin:round}
+
+/* index */
+.index{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4vw,72px);padding-bottom:clamp(80px,16vh,160px)}
+.index h4{font-family:"Hanken Grotesk",sans-serif;font-weight:500;font-size:1rem;color:var(--ink2);margin-bottom:.6rem}
+.rows{list-style:none}
+.row{position:relative;padding:1.15rem 0 1.25rem;cursor:default;opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.row.in{opacity:1;transform:none}
+.row .rule{position:absolute;left:0;right:0;top:0;height:8px;width:100%;overflow:visible}
+.row .rule path{fill:none;stroke:#1d1a16;stroke-width:1.2;opacity:.55}
+.row .name{font-family:"Newsreader",Georgia,serif;font-weight:300;font-size:clamp(1.9rem,2.8vw,2.7rem);line-height:1.05;letter-spacing:-.012em;display:inline-block;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.row .name::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.row.on .name{transform:translateX(10px)}
+.row.on .name::after{transform:scaleX(1)}
+.row .kind{font-size:.95rem;color:var(--ink2);margin-left:.9rem;white-space:nowrap}
+.row .head{font-size:1.04rem;line-height:1.45;margin-top:.35rem;max-width:30rem}
+.row .sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.2,.7,.2,1)}
+.row .sub>div{overflow:hidden}
+.row.on .sub{grid-template-rows:1fr}
+.row .sub p{font-size:.98rem;line-height:1.5;color:var(--ink2);max-width:30rem;padding-top:.35rem}
+.row .sub .links{margin-top:.6rem;font-size:.96rem}
+.row .thumb{display:none}
+.view{position:sticky;top:12vh;align-self:start}
+.view .frame{aspect-ratio:1506/940;padding:0;margin:18px}
+.view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.015);transition:opacity .7s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.view img.on{opacity:1;transform:none}
+.view .cap{margin:14px 18px 0;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.1rem;color:var(--ink2);min-height:1.5em}
+@media (max-width:860px){
+  header.top{grid-template-columns:1fr;gap:.6rem}
+  .chai{position:absolute;right:0;top:40px;width:96px;margin:0}
+  .feat,.index{grid-template-columns:1fr}
+  .feat .frame{order:-1}
+  .view{display:none}
+  .row .thumb{display:block;margin-top:.9rem;width:100%;height:auto}
+  .row .sub{grid-template-rows:1fr}
+}
+</style>
+</head>
+<body>
+<!-- direction: 04 ink line / work -->
+<div class="grain"></div>
+<main class="wrap">
+  <header class="top">
+    <div>
+      <h2>Things I've built and shipped</h2>
+      <p class="lede">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+    </div>
+    <svg class="chai" viewBox="0 0 200 260" aria-hidden="true">
+      <defs><clipPath id="glass"><path d="M50,92 L150,92 L138,236 Q137,244 128,244 L72,244 Q63,244 62,236 Z"/></clipPath>
+      <filter id="ink2"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs>
+      <g class="steam"><path d="M86,84 C76,64 96,52 86,32 C80,20 88,10 92,4"/><path d="M104,84 C114,62 94,48 106,28 C112,18 106,8 102,2"/><path d="M120,86 C128,70 116,58 124,42"/></g>
+      <g filter="url(#ink2)">
+        <g clip-path="url(#glass)"><rect x="40" y="118" width="120" height="140" fill="#c98a3c" opacity=".55"/><g id="teaH"></g></g>
+        <path d="M50,92 L150,92 L138,236 Q137,244 128,244 L72,244 Q63,244 62,236 Z" fill="none" stroke="#1d1a16" stroke-width="2.4" stroke-linejoin="round"/>
+        <ellipse cx="100" cy="92" rx="50" ry="7" fill="none" stroke="#1d1a16" stroke-width="2"/>
+        <ellipse cx="100" cy="118" rx="47" ry="6" fill="none" stroke="#1d1a16" stroke-width="1.4"/>
+        <g stroke="#1d1a16" stroke-width="1.3" fill="none" opacity=".8"><path d="M62,100 L70,232M76,101 L81,236M90,101 L93,238M104,101 L104,238M118,101 L115,238M132,100 L126,236M144,99 L134,232"/></g>
+        <path d="M58,250 Q100,262 142,250" stroke="#1d1a16" stroke-width="1.6" fill="none" opacity=".5"/>
+      </g>
+    </svg>
+  </header>
+
+  <section class="feat" id="feat">
+    <div>
+      <div class="meta"><span class="fname">AuctionXI</span>My own product, 2026</div>
+      <h3>Live player auctions for any sport</h3>
+      <p class="one">Real-time bidding, broadcast graphics and YouTube overlays, with no production team.</p>
+      <ul class="facts">
+        <li>Every bid lands on every screen at once, and the money always adds up.</li>
+        <li>Twenty broadcast scenes for the projector and the stream.</li>
+        <li>Auction-ready in under 20 minutes.</li>
+      </ul>
+      <p class="tech">Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth</p>
+      <div class="links"><a class="ilink" href="https://auction-xi.com">Live</a></div>
+    </div>
+    <div class="frame" id="featFrame">
+      <img src="media/auctionxi.png" alt="AuctionXI live auction screen: current bid and team purses" width="1506" height="940">
+      <svg id="featInk" preserveAspectRatio="none"></svg>
+    </div>
+  </section>
+
+  <section class="index">
+    <div>
+      <h4>And seven more</h4>
+      <ul class="rows" id="rows"></ul>
+    </div>
+    <div class="view" id="view">
+      <div class="frame" id="viewFrame"><svg id="viewInk" preserveAspectRatio="none"></svg></div>
+      <p class="cap" id="cap"></p>
+    </div>
+  </section>
+</main>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+const f1=n=>Math.round(n*10)/10;
+/* a hand-drawn segment: slight bow in the middle */
+function wob(x1,y1,x2,y2,r,j=1){const mx=(x1+x2)/2+(r()-.5)*j*2,my=(y1+y2)/2+(r()-.5)*j*2;return`M${f1(x1)},${f1(y1)}Q${f1(mx)},${f1(my)} ${f1(x2)},${f1(y2)}`}
+/* parallel hatching inside a clip */
+let _hid=0;
+function hatch(parent,o){const{box:[x,y,w,h],angle=45,gap=6,width=1,color='#1d1a16',op=1,seed=1,jit=.8,trim=0,clipPath,clipRect}=o;const r=rng(seed);
+  const g=el('g',{},parent);
+  let cid=o.clip;
+  if(!cid){cid='hc'+(++_hid);const defs=parent.ownerSVGElement?parent.ownerSVGElement.querySelector('defs'):parent.querySelector('defs');const cp=el('clipPath',{id:cid},defs);if(clipPath)el('path',{d:clipPath},cp);else el('rect',{x,y,width:w,height:h,rx:o.rx||0},cp)}
+  g.setAttribute('clip-path',`url(#${cid})`);
+  const a=angle*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),nx=-dy,ny=dx,cx=x+w/2,cy=y+h/2,L=Math.hypot(w,h)/2+4;
+  let d='';for(let t=-L;t<=L;t+=gap*(.85+r()*.3)){const ox=cx+nx*t,oy=cy+ny*t;const l1=L*(1-trim*r()),l2=L*(1-trim*r());d+=wob(ox-dx*l1,oy-dy*l1,ox+dx*l2,oy+dy*l2,r,jit)}
+  el('path',{d,fill:'none',stroke:color,'stroke-width':width,opacity:op,'stroke-linecap':'round'},g);return g}
+function cross(parent,o){hatch(parent,o);return hatch(parent,Object.assign({},o,{angle:(o.angle||45)+90,seed:(o.seed||1)+7,clip:o._clip}))}
+function P(parent,d,o={}){return el('path',Object.assign({d,fill:'none',stroke:'#1d1a16','stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'},o),parent)}
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const smooth=(a,b,v)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)};
+function progressOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+
+const $=id=>document.getElementById(id);
+const P2=(svg,d,w,o=1)=>el('path',{d,'stroke-width':w,opacity:o},svg);
+/* tea hatching inside the glass */
+(()=>{const g=$('teaH');const r=rng(5);let d='';for(let y=122;y<250;y+=4.2)d+=wob(40,y,160,y+r()*2,r,1);el('path',{d,stroke:'#1d1a16','stroke-width':.9,fill:'none',opacity:.55},g)})();
+/* a hand-drawn frame: two loose passes of the pen around the box, plus corner overshoot */
+function inkFrame(svg,w,h,seed,pad=0){svg.innerHTML='';svg.setAttribute('viewBox',`0 0 ${w} ${h}`);const r=rng(seed);
+  const j=()=>(r()-.5)*3;const a=pad,b=pad;const box=(o,ww)=>{const d=`M${a-o+j()},${b+j()} L${w-a+o+j()},${b+j()} M${w-a+j()},${b-o+j()} L${w-a+j()},${h-b+o+j()} M${w-a+o+j()},${h-b+j()} L${a-o+j()},${h-b+j()} M${a+j()},${h-b+o+j()} L${a+j()},${b-o+j()}`;return P2(svg,d,ww)};
+  const p1=box(10,2.2),p2=box(16,1);p2.setAttribute('transform','translate(5,6)');p2.setAttribute('opacity','.5');
+  // shading along two edges, as if the print sits a hair off the paper
+  let d='';for(let x=a+14;x<w-a+6;x+=7)d+=`M${x},${h-b+4}l6,${8}`;for(let y=b+14;y<h-b+6;y+=7)d+=`M${w-a+4},${y}l${8},6`;P2(svg,d,1,.55);
+  return [p1,p2]}
+/* featured: the frame draws itself as it comes up the page */
+let featPaths=[];
+function sizeFeat(){const f=$('featFrame'),rc=f.getBoundingClientRect();featPaths=inkFrame($('featInk'),rc.width,rc.height,7,18);featPaths.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.dataset.L=L})}
+/* index */
+const PROJ=[
+ ['TexAgent','Client work, 2026','A bahi-khata for textile brokers','Bills, brokerage and follow-ups in one place, instead of a paper book.',[],'texagent'],
+ ['Cache Karo','Command-line tool, 2026','Find the cache hogs, get the space back','Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']],'cachekaro'],
+ ['Aether','AI web app, 2025','News, YouTube and Reddit in one conversation','An assistant with 17+ tones, and an NLP pipeline that scores every article first.',[['Source','https://github.com/Mohit-Bagri/aether-news-trends']],'aether'],
+ ['FlowLedger','Mobile app, 2026','Every rupee in, every rupee out','A local-first finance app in Flutter that scans receipts and catches money leaks.',[['Source','https://github.com/Mohit-Bagri/flowledger']],'flowledger'],
+ ['Space Shuttle VR','VR game, 2024','Fix the shuttle, then fly it out','A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']],'shuttle'],
+ ['VeloType','Web app, 2026','A typing test built for feel','Themes, modes and live words per minute, with a caret that keeps up.',[['Live','https://velo-type.vercel.app']],'velotype'],
+ ['Windmill VR','VR app, 2025','Breathe with the windmill','A calm VR app for Meta Quest, paced to a four-part breath.',[['Source','https://github.com/Mohit-Bagri/windmill-vr']],'windmill']];
+const rows=$('rows'),vf=$('viewFrame'),cap=$('cap');const imgs=[];
+PROJ.forEach(([n,k,h,l,links,slug],i)=>{
+  const li=document.createElement('li');li.className='row';li.tabIndex=0;
+  li.innerHTML=`<svg class="rule" viewBox="0 0 600 8" preserveAspectRatio="none"><path d="${wob(0,4,600,4,rng(i+3),2.4)}"/></svg>
+  <span class="name">${n}</span><span class="kind">${k}</span><p class="head">${h}</p>
+  <div class="sub"><div><p>${l}</p>${links.length?`<div class="links">${links.map(([t,u])=>`<a class="ilink" href="${u}">${t}</a>`).join('')}</div>`:'<div class="links" style="color:var(--ink2);font-weight:400">Private client project</div>'}</div></div>
+  <img class="thumb" src="media/${slug}.png" alt="${n} screen" loading="lazy">`;
+  rows.appendChild(li);
+  const im=document.createElement('img');im.src=`media/${slug}.png`;im.alt=`${n} screen`;vf.insertBefore(im,vf.firstChild);imgs.push(im);
+  const on=()=>select(i);li.addEventListener('mouseenter',on);li.addEventListener('focus',on);
+});
+let cur=-1;function select(i){if(i===cur)return;cur=i;[...rows.children].forEach((r,k)=>r.classList.toggle('on',k===i));imgs.forEach((m,k)=>m.classList.toggle('on',k===i));cap.textContent=PROJ[i][2]}
+select(0);
+function sizeView(){const rc=vf.getBoundingClientRect();inkFrame($('viewInk'),rc.width,rc.height,11,0)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+[...rows.children].forEach((r,k)=>{r.style.transitionDelay=`${(k%3)*70}ms`;io.observe(r)});
+if(RM)[...rows.children].forEach(r=>r.classList.add('in'));
+function layout(){sizeFeat();sizeView();last=-1}
+let last=-1;
+function frame(){const f=$('featFrame').getBoundingClientRect();const p=RM?1:clamp((innerHeight-f.top)/(innerHeight*.75));
+  if(Math.abs(p-last)>1e-3){last=p;featPaths.forEach((path,k)=>{const L=+path.dataset.L;const q=clamp(p*1.15-k*.15);path.style.strokeDashoffset=L*(1-ease(q))})}
+  requestAnimationFrame(frame)}
+addEventListener('resize',layout);addEventListener('load',layout);layout();frame();
+</script>
+</body>
+</html>

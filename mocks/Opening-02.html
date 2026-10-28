@@ -1,0 +1,292 @@
+<!-- Direction 02: Window reflection — tight on one sealed AC-local window from the platform; Churchgate and the sky lie over him in the glass, and scrolling pulls the reflection away until he resolves. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..400&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#efe8da;color:#1c2830}
+  body{font-family:"Figtree",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .intro{position:relative;height:420vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#efe8da}
+  .cam{position:absolute;inset:0;transform-origin:68% 50%}
+  .layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #blurL{filter:blur(7px) saturate(.9)}
+  #refl{mix-blend-mode:screen}
+  .grain{position:absolute;inset:-50%;pointer-events:none;opacity:.16;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .22  0 0 0 0 .25  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:g 1.4s steps(4) infinite}
+  @keyframes g{0%{transform:translate(0,0)}25%{transform:translate(-2%,3%)}50%{transform:translate(3%,-1%)}75%{transform:translate(-1%,-2%)}}
+  .copy{position:absolute;z-index:4;left:clamp(24px,5.4vw,92px);top:clamp(36px,11vh,120px);width:min(25rem,33vw)}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:300;font-variation-settings:"opsz" 144;font-size:clamp(3rem,6vw,6rem);line-height:.92;letter-spacing:-.025em;color:#16303d;text-wrap:balance}
+  .slot{position:relative;margin-top:1.6rem;min-height:7.4em}
+  .line{font-size:clamp(1rem,1.15vw,1.12rem);line-height:1.55;color:#2f4652;max-width:21rem}
+  .note{position:absolute;inset:0;font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.7vw,1.65rem);line-height:1.3;color:#16303d;opacity:0}
+  .cta{display:inline-flex;gap:.5em;font-size:1.05rem;font-weight:500;color:#2c6d8c;text-decoration:none;padding-bottom:3px;
+    background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 1px;color:#16303d}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(5px)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;top:26px;width:auto}
+    h1{font-size:clamp(2.6rem,12.5vw,3.4rem)}
+    .slot{margin-top:1rem;min-height:6.6em}
+    .cam{transform-origin:50% 62%}
+  }
+  @media (prefers-reduced-motion:reduce){.grain{animation:none}}
+</style>
+</head>
+<body>
+<!-- direction: 02 window reflection -->
+<section class="intro" id="intro">
+  <div class="stage">
+    <div class="cam" id="cam">
+      <!-- shared defs live in the first svg -->
+      <svg class="layer" id="inside" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <clipPath id="win"><rect x="560" y="96" width="820" height="604" rx="34"/></clipPath>
+          <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f6ecd6"/><stop offset=".6" stop-color="#e9d6b4"/><stop offset="1" stop-color="#b9a07e"/>
+          </linearGradient>
+          <radialGradient id="lamp" cx="970" cy="120" r="520" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fffaf0" stop-opacity=".95"/><stop offset="1" stop-color="#fffaf0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="platformBeyond" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d9e4e2"/><stop offset="1" stop-color="#b8c8c4"/>
+          </linearGradient>
+          <pattern id="pin" width="5.5" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+            <line x1="1" y1="0" x2="1" y2="10" stroke="#9f8cc4" stroke-width=".9" stroke-opacity=".55"/>
+          </pattern>
+          <symbol id="mohit" viewBox="0 0 300 300">
+            <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="#f4eef2"/>
+            <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="url(#pin)"/>
+            <path d="M182,190 C228,200 258,232 270,300 L210,300 C210,258 202,220 182,190 Z" fill="#b9a7c6" opacity=".45"/>
+            <path d="M106,192 C80,200 56,218 42,246 C60,226 84,210 112,202 Z" fill="#ffffff" opacity=".7"/>
+            <path d="M134,138 L168,134 C168,154 170,170 176,188 L128,190 C133,174 135,156 134,138 Z" fill="#a26a48"/>
+            <path d="M134,148 C146,160 160,162 170,154 L169,144 Z" fill="#7a4b33" opacity=".25"/>
+            <path d="M124,190 C128,178 134,172 140,176 L150,212 L128,206 Z" fill="#fdfafa"/>
+            <path d="M178,190 C174,178 168,172 162,176 L150,212 L172,206 Z" fill="#ddd2e2"/>
+            <path d="M150,46 C124,45 106,58 101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C124,155 141,153 154,145 C164,138 171,125 174,110 C178,88 174,56 150,46 Z" fill="#b97e57"/>
+            <path d="M101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C109,130 107,110 111,88 Z" fill="#dcaa80" opacity=".85"/>
+            <path d="M154,145 C164,138 171,125 174,110 C172,128 160,146 138,152 Z" fill="#7a4b33" opacity=".7"/>
+            <path d="M101,112 C104,114 106,116 104,119" stroke="#8a5638" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <path d="M162,94 C170,88 179,94 177,106 C176,116 169,122 163,118 Z" fill="#a66d4a"/>
+            <path d="M167,99 C172,97 174,104 171,110" stroke="#7a4b33" stroke-width="2" fill="none"/>
+            <g transform="translate(0 14) scale(1 .84)"><path d="M101,84 C97,70 98,56 104,46 C106,40 109,36 112,33 C113,30 116,28 119,28 C124,23 132,20 140,20 C144,18 150,18 154,20 C162,20 170,23 176,28 C179,29 182,31 183,34 C191,43 194,60 190,78 C188,89 182,98 176,104 L170,94 C168,80 160,72 150,70 C136,68 120,72 107,80 Z" fill="#17110e"/>
+            <path d="M107,80 C120,72 136,68 150,70 C160,72 168,80 170,94 L164,96 C162,86 156,80 148,78 C134,77 120,80 110,86 Z" fill="#4a362b" opacity=".55"/>
+            <g stroke="#45362d" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".5">
+              <path d="M106,70 C108,54 116,40 130,32"/><path d="M114,68 C118,52 130,38 146,30"/><path d="M124,68 C130,52 144,40 162,34"/>
+              <path d="M136,68 C144,56 160,46 178,42"/><path d="M150,70 C160,62 174,58 186,58"/><path d="M162,78 C172,74 182,74 189,76"/>
+            </g>
+            <path d="M105,48 C110,36 122,26 138,22 C152,19 166,22 176,28" stroke="#9a8273" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/></g>
+            <path d="M163,92 C164,84 166,78 170,76 L170,94 Z" fill="#1a1411"/>
+            <path d="M104,84 C110,80 120,80 128,84" stroke="#1a1411" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <path d="M109,97 C113,99 118,99 122,97" stroke="#2a1a12" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M95,96 C97,97 99,97 100,96" stroke="#2a1a12" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M104,86 L133,86 C135,86 136,88 135,91 L133,101 C132,105 129,107 125,107 L110,107 C106,107 104,104 104,100 Z" fill="#e8f3f4" fill-opacity=".14" stroke="#3a3436" stroke-width="2.2"/>
+            <path d="M93,88 L99,87 L99,102 C97,105 95,105 94,104 Z" fill="#e8f3f4" fill-opacity=".12" stroke="#3a3436" stroke-width="1.8"/>
+            <path d="M99,89 L104,89" stroke="#3a3436" stroke-width="2"/>
+            <path d="M135,89 L164,96" stroke="#3a3436" stroke-width="2.2"/>
+            <path d="M108,89 L117,89" stroke="#fffaf0" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+            <path d="M104,132 C107,133 110,133 112,131" stroke="#6b3b28" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M82,300 C86,250 88,210 90,168 L126,166 C130,212 138,256 150,300 Z" fill="#a86f4c"/>
+            <path d="M82,300 C86,250 88,210 90,168 L102,168 C100,212 100,256 102,300 Z" fill="#c48d66"/>
+            <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="#f4eef2"/>
+            <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="url(#pin)"/>
+            <path d="M84,254 C102,248 128,248 142,254 L143,261 C128,255 102,255 84,262 Z" fill="#d6cbe0"/>
+            <path d="M87,168 C85,157 91,148 101,146 C111,144 123,146 127,154 C131,162 129,174 123,178 C113,182 97,182 89,178 Z" fill="#b97e57"/>
+            <path d="M91,158 C99,154 111,154 119,158" stroke="#7a4b33" stroke-width="1.8" fill="none" opacity=".8"/>
+            <path d="M89,168 C97,164 109,164 121,168" stroke="#7a4b33" stroke-width="1.6" fill="none" opacity=".6"/>
+            <path d="M87,168 C85,157 91,148 101,146 C97,154 95,164 97,178 C93,178 89,176 87,168 Z" fill="#dcaa80" opacity=".85"/>
+          </symbol>
+          <g id="interior">
+            <rect x="540" y="80" width="860" height="640" fill="url(#wall)"/>
+            <!-- ceiling with lamp strip -->
+            <path d="M540,80 L1400,80 L1400,150 L540,170 Z" fill="#f3ead8"/>
+            <rect x="560" y="140" width="840" height="7" rx="3" fill="#fffdf4"/>
+            <rect x="540" y="80" width="860" height="640" fill="url(#lamp)"/>
+            <!-- opposite windows: platform beyond, soft -->
+            <g>
+              <rect x="600" y="230" width="250" height="200" rx="18" fill="url(#platformBeyond)"/>
+              <rect x="980" y="230" width="250" height="200" rx="18" fill="url(#platformBeyond)"/>
+              <!-- green canopy column + yellow board seen through -->
+              <rect x="690" y="230" width="16" height="200" fill="#5e8a72" opacity=".8"/>
+              <rect x="1080" y="230" width="16" height="200" fill="#5e8a72" opacity=".8"/>
+              <rect x="1120" y="300" width="96" height="30" fill="#e8c13a" opacity=".85"/>
+              <rect x="980" y="230" width="250" height="34" fill="#7e8f8a" opacity=".6"/>
+              <rect x="600" y="230" width="250" height="34" fill="#7e8f8a" opacity=".6"/>
+            </g>
+            <!-- grab bar and handles -->
+            <rect x="540" y="196" width="860" height="5" fill="#c9c2b6"/>
+            <g fill="none" stroke="#7d8a94" stroke-width="5">
+              <path d="M650,201 L650,232 M638,232 C638,258 662,258 662,232 Z"/>
+              <path d="M1290,201 L1290,232 M1278,232 C1278,258 1302,258 1302,232 Z"/>
+            </g>
+            <!-- seat back, blue -->
+            <path d="M540,520 C760,500 1100,500 1400,520 L1400,720 L540,720 Z" fill="#355a7e"/>
+            <path d="M540,520 C760,500 1100,500 1400,520 L1400,530 C1100,512 760,512 540,532 Z" fill="#6f94b8"/>
+            <use href="#mohit" x="720" y="196" width="620" height="620"/>
+            <!-- sill shadow -->
+            <rect x="540" y="660" width="860" height="60" fill="#2a2a30" opacity=".18"/>
+          </g>
+        </defs>
+        <g clip-path="url(#win)"><use href="#interior"/></g>
+      </svg>
+      <svg class="layer" id="blurL" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g clip-path="url(#win)"><use href="#interior"/></g>
+      </svg>
+      <!-- glass tint -->
+      <svg class="layer" id="tint" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="tintG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#20414f"/><stop offset="1" stop-color="#162a33"/>
+          </linearGradient>
+        </defs>
+        <rect x="560" y="96" width="820" height="604" rx="34" fill="url(#tintG)"/>
+      </svg>
+      <!-- reflection of the platform and city, mirrored -->
+      <svg class="layer" id="refl" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <clipPath id="win2"><rect x="560" y="96" width="820" height="604" rx="34"/></clipPath>
+          <linearGradient id="rsky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7fb2c9"/><stop offset=".55" stop-color="#c9dfe3"/><stop offset="1" stop-color="#efe1c3"/>
+          </linearGradient>
+          <radialGradient id="rsun" cx="1240" cy="250" r="380" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff8e6"/><stop offset=".25" stop-color="#fbe9c4" stop-opacity=".6"/><stop offset="1" stop-color="#fbe9c4" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g clip-path="url(#win2)">
+          <g id="reflMove">
+            <rect x="200" y="0" width="1800" height="900" fill="url(#rsky)"/>
+            <rect x="200" y="0" width="1800" height="900" fill="url(#rsun)"/>
+            <g id="rclouds" fill="#ffffff" opacity=".5">
+              <path d="M0,220 C60,200 120,204 160,214 C200,196 260,196 300,214 C330,212 360,220 380,232 L0,232 Z"/>
+              <path d="M600,300 C640,288 680,290 710,298 C740,286 790,288 820,302 L600,304 Z"/>
+            </g>
+            <!-- Western Railway HQ, mirrored: domed tower -->
+            <g fill="#5d7f8f" opacity=".85">
+              <path d="M620,560 L620,470 L700,470 L700,452 L712,440 L724,452 L724,470 L770,470 L770,420 L782,404 L782,382 C782,362 794,346 812,340 L812,328 L816,316 L820,328 L820,340 C838,346 850,362 850,382 L850,404 L862,420 L862,470 L908,470 L908,452 L920,440 L932,452 L932,470 L1040,470 L1040,560 Z"/>
+            </g>
+            <!-- rain tree -->
+            <g fill="#4f7363" opacity=".8">
+              <path d="M1060,560 C1030,530 1050,488 1100,484 C1120,452 1180,450 1204,476 C1246,462 1300,482 1294,520 C1330,528 1326,566 1296,572 Z"/>
+            </g>
+            <!-- platform canopy eave across the top, and a green column -->
+            <path d="M200,96 L2000,96 L2000,150 L200,170 Z" fill="#3e5a63" opacity=".9"/>
+            <g fill="#3e5a63" opacity=".55">
+              <rect x="200" y="166" width="1800" height="6"/>
+            </g>
+            <rect x="760" y="150" width="34" height="560" fill="#2f5a47" opacity=".9"/>
+            <rect x="752" y="150" width="50" height="20" fill="#2f5a47" opacity=".9"/>
+            <!-- station board, mirrored as glass shows it -->
+            <g transform="translate(1180 250) scale(-1 1)">
+              <rect x="-160" y="0" width="320" height="96" fill="#e9c234"/>
+              <text x="0" y="42" text-anchor="middle" font-family="Noto Sans Devanagari, Mukta, sans-serif" font-size="34" font-weight="700" fill="#1b1b1b">चर्चगेट</text>
+              <text x="0" y="82" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="2" fill="#1b1b1b">CHURCHGATE</text>
+            </g>
+            <rect x="1060" y="346" width="6" height="210" fill="#2f5a47" opacity=".8"/>
+            <rect x="1294" y="346" width="6" height="210" fill="#2f5a47" opacity=".8"/>
+            <!-- yellow platform edge and the platform floor, reflected low -->
+            <rect x="200" y="640" width="1800" height="16" fill="#e8c13a" opacity=".8"/>
+            <rect x="200" y="656" width="1800" height="60" fill="#8e9b97" opacity=".8"/>
+            <!-- a passer-by, soft -->
+            <g fill="#2f4752" opacity=".7">
+              <circle cx="1350" cy="470" r="20"/><path d="M1318,640 C1318,560 1326,500 1350,494 C1374,500 1384,560 1384,640 Z"/>
+            </g>
+          </g>
+          <!-- glint -->
+          <rect id="glint" x="-400" y="0" width="160" height="900" fill="#ffffff" opacity=".22" transform="skewX(-24)"/>
+        </g>
+      </svg>
+      <!-- coach body with the window cut out -->
+      <svg class="layer" id="bodyL" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="paint" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f5efe2"/><stop offset=".6" stop-color="#ece3d2"/><stop offset="1" stop-color="#ddd1bd"/>
+          </linearGradient>
+          <linearGradient id="sunWash" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0" stop-color="#fff6df" stop-opacity=".55"/><stop offset="1" stop-color="#fff6df" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="gasket" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3d4247"/><stop offset="1" stop-color="#202428"/>
+          </linearGradient>
+        </defs>
+        <path fill-rule="evenodd" fill="url(#paint)" d="M-1200,-1600 L2640,-1600 L2640,2600 L-1200,2600 Z M594,96 L1346,96 Q1380,96 1380,130 L1380,666 Q1380,700 1346,700 L594,700 Q560,700 560,666 L560,130 Q560,96 594,96 Z"/>
+        <path fill-rule="evenodd" fill="url(#sunWash)" d="M-1200,-1600 L2640,-1600 L2640,2600 L-1200,2600 Z M594,96 L1346,96 Q1380,96 1380,130 L1380,666 Q1380,700 1346,700 L594,700 Q560,700 560,666 L560,130 Q560,96 594,96 Z"/>
+        <!-- rubber gasket -->
+        <rect x="552" y="88" width="836" height="620" rx="40" fill="none" stroke="url(#gasket)" stroke-width="16"/>
+        <rect x="542" y="78" width="856" height="640" rx="48" fill="none" stroke="#fffaf0" stroke-width="3" opacity=".8"/>
+        <path d="M546,716 Q560,728 600,728 L1340,728 Q1380,728 1394,716" stroke="#b4a68f" stroke-width="5" fill="none" opacity=".6"/>
+        <!-- panel seams, rivets -->
+        <g stroke="#c9bca6" stroke-width="2" opacity=".8">
+          <line x1="16" y1="-1600" x2="16" y2="760"/>
+          <line x1="1500" y1="-1600" x2="1500" y2="760"/>
+        </g>
+        <!-- blue band with thin red line, navy skirt -->
+        <rect x="-1200" y="760" width="3840" height="46" fill="#2e5f93"/>
+        <rect x="-1200" y="760" width="3840" height="6" fill="#4b7cad" opacity=".7"/>
+        <rect x="-1200" y="812" width="3840" height="5" fill="#c3343a"/>
+        <rect x="-1200" y="817" width="3840" height="1800" fill="#1d2747"/>
+      </svg>
+    </div>
+    <div class="grain"></div>
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <div class="slot">
+        <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    </div>
+  </div>
+</section>
+<script>
+(() => {
+  const sec = document.getElementById("intro");
+  const layers = [...document.querySelectorAll(".layer")];
+  const blurL = document.getElementById("blurL"), tint = document.getElementById("tint"), refl = document.getElementById("refl");
+  const reflMove = document.getElementById("reflMove"), glint = document.getElementById("glint"), clouds = document.getElementById("rclouds");
+  const cam = document.getElementById("cam"), line = document.getElementById("line"), note = document.getElementById("note");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  let target = 0, cur = 0, lastVB = "";
+  const read = () => { const r = sec.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+  const fit = () => {
+    const a = innerWidth / innerHeight;
+    // phones: frame the window, leave painted body above for the text
+    const vb = a < .9 ? `${970 - 620 * a} -440 ${1240 * a} 1240` : "0 0 1440 900";
+    if (vb !== lastVB) { layers.forEach(l => l.setAttribute("viewBox", vb)); lastVB = vb; }
+  };
+  addEventListener("scroll", read, { passive: true }); addEventListener("resize", () => { read(); fit(); });
+  read(); fit(); cur = target;
+  function frame(t) {
+    cur += (target - cur) * (reduce ? 1 : .085);
+    const p = cur, s = t / 1000;
+    const r = ease(seg(p, .1, .78));
+    // the reflection slides off along the glass and thins; tint lifts; focus resolves
+    reflMove.setAttribute("transform", `translate(${(-r * 520).toFixed(1)} 0)`);
+    refl.style.opacity = (0.8 - r * .74).toFixed(3);
+    tint.style.opacity = (0.5 - r * .42).toFixed(3);
+    blurL.style.opacity = (1 - ease(seg(p, .25, .82))).toFixed(3);
+    cam.style.transform = `scale(${(1 + ease(seg(p, .05, .9)) * .07).toFixed(4)})`;
+    const a = seg(p, .3, .48), b = seg(p, .6, .8);
+    line.style.opacity = 1 - a; line.style.transform = `translateY(${-a * 12}px)`;
+    note.style.opacity = b; note.style.transform = `translateY(${(1 - b) * 12}px)`;
+    if (!reduce) {
+      clouds.setAttribute("transform", `translate(${((s * 6) % 900).toFixed(1)} 0)`);
+      glint.setAttribute("x", (((s * 60) % 2600) - 600).toFixed(1));
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

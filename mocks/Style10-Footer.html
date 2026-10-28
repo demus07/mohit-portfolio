@@ -1,0 +1,253 @@
+<!-- Direction 10: Kinetic typography — Siddhivinayak at night is built from lines of type: every banded spire and every tier of the gold shikhara is a row of "श्री सिद्धिविनायक", set course by course as you scroll until the kalash and the saffron flag crown it and the invitation stands beside it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Got something to build?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Hanken+Grotesk:wght@400;500;600;800&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#0d1a2b;--sodium:#f2a145;--cream:#f3ecdf;--gold:#f0c060;--muted:#9aa6b4;--gut:clamp(24px,5.6vw,96px)}
+  html,body{background:var(--navy);color:var(--cream)}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .run{position:relative;height:320vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0a1524}
+  .stage > svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.2;mix-blend-mode:screen;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .55  0 0 0 0 .65  0 0 0 .35 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
+  .copy{position:absolute;z-index:4;left:var(--gut);top:clamp(40px,11vh,120px);width:min(26rem,32vw)}
+  h2{font-family:Fraunces,Georgia,serif;font-weight:340;font-variation-settings:"opsz" 144;font-size:clamp(2.8rem,5vw,5.2rem);line-height:.92;letter-spacing:-.03em;text-wrap:balance}
+  h2 .w{display:inline-block;will-change:transform,opacity}
+  .copy p{margin-top:1.3rem;font-size:clamp(1rem,1.15vw,1.12rem);line-height:1.5;color:#d6cfc2;max-width:22rem}
+  .cta{display:inline-flex;gap:.5em;margin-top:1.6rem;font-family:Fraunces,Georgia,serif;font-size:clamp(1.4rem,1.8vw,1.8rem);color:var(--sodium);text-decoration:none;padding-bottom:4px;
+    background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 1.5px}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(7px)}
+  .mail{display:block;margin-top:.5rem;font-size:1rem;color:var(--muted);text-decoration:none;transition:color .3s}
+  .mail:hover{color:var(--cream)}
+  .copy > *{will-change:transform,opacity}
+  .foot{position:relative;padding:12vh var(--gut) 6vh;display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;background:var(--navy)}
+  blockquote{font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:340;font-size:clamp(1.6rem,2.6vw,2.6rem);line-height:1.15;letter-spacing:-.015em;color:var(--cream);max-width:20ch}
+  .reset{margin-top:1.2rem;font-size:1.02rem;line-height:1.55;color:#cfc8ba;max-width:24rem}
+  .clock{font-family:Fraunces,Georgia,serif;font-size:clamp(1.3rem,1.8vw,1.8rem);color:var(--sodium)}
+  .links{margin-top:1.6rem;list-style:none;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem}
+  .links a{font-size:1rem;color:#d6cfc2;text-decoration:none;padding-bottom:2px;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0 1px no-repeat;transition:background-size .4s,color .3s}
+  .links a:hover,.links a:focus-visible{color:var(--cream);background-size:100% 1px}
+  .copyr{grid-column:1/-1;margin-top:5vh;padding-top:1.4rem;border-top:1px solid rgba(243,236,223,.1);font-size:.92rem;color:var(--muted)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;top:28px;width:auto}
+    h2{font-size:2.6rem}
+    .copy p{font-size:.98rem;margin-top:.8rem}
+    .cta{margin-top:1rem;font-size:1.35rem}
+    .foot{grid-template-columns:1fr;gap:2.5rem;padding:10vh 20px 5vh}
+  }
+</style>
+</head>
+<body>
+<section class="run" id="run">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1524"/><stop offset=".7" stop-color="#13233a"/><stop offset="1" stop-color="#1d2a40"/></linearGradient>
+        <radialGradient id="flood" cx="980" cy="560" r="520" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f2a145" stop-opacity=".38"/><stop offset=".5" stop-color="#f2a145" stop-opacity=".1"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b77f2c"/><stop offset=".45" stop-color="#ffe08a"/><stop offset="1" stop-color="#c38a33"/></linearGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2234"/><stop offset="1" stop-color="#0c1320"/></linearGradient>
+      </defs>
+      <rect x="-400" y="-200" width="2240" height="1100" fill="url(#sky)"/>
+      <rect id="floodR" x="-400" y="-200" width="2240" height="1100" fill="url(#flood)" opacity="0"/>
+      <g id="blocks"></g>
+      <g id="temple"></g>
+      <rect x="-400" y="820" width="2240" height="200" fill="url(#road)"/>
+      <g id="street"></g>
+    </svg>
+    <div class="grain"></div>
+    <div class="copy" id="copy">
+      <h2 id="ttl">Got something to build?</h2>
+      <p>I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+    </div>
+  </div>
+</section>
+<footer class="foot">
+  <div>
+    <blockquote>“If you believe you can make it, you will. The rest is trusting God and doing the work.”</blockquote>
+    <p class="reset">Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+  </div>
+  <div>
+    <p class="clock" id="clock">It's — in Mumbai.</p>
+    <ul class="links">
+      <li><a href="https://github.com/Mohit-Bagri" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://leetcode.com/u/mailmohitbagri/" target="_blank" rel="noopener">LeetCode</a></li>
+      <li><a href="https://www.instagram.com/mohit_.bagri/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+      <li><a href="mailto:mailmohitbagri@gmail.com">Email</a></li>
+    </ul>
+  </div>
+  <p class="copyr">© 2026 Mohit Bagri</p>
+</footer>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const WORD = 'श्री सिद्धिविनायक';
+  const DEV = 'Tiro Devanagari Marathi, serif';
+  const CX = 980, EAVE = 560, GROUND = 820;
+  const temple = document.getElementById('temple');
+  const rows = [];   // every course of type, built bottom-up on scroll
+  const course = (g, x, y, w, h, fill, ink, kind) => {
+    const r = el('g', { opacity: 0 }, g);
+    el('rect', { x: x - w / 2, y, width: w, height: h, fill }, r);
+    if (h >= 6 && kind !== 'recess') {
+      const t = el('text', { x: x - w / 2 + 1, y: y + h * .82, 'font-size': h * .92, 'font-family': DEV, fill: ink, textLength: Math.max(4, w - 2), lengthAdjust: 'spacingAndGlyphs' }, r);
+      t.textContent = w > 60 ? WORD : 'श्री';
+    }
+    rows.push({ g: r, y });
+    return r;
+  };
+
+  // Prabhadevi blocks around, lit windows
+  const blocks = document.getElementById('blocks');
+  [[-260, 600, 300], [60, 640, 220], [300, 590, 180], [480, 520, 160], [1330, 470, 170], [1480, 380, 260], [1640, 430, 200], [1800, 320, 240]].forEach(([x, y, w]) => {
+    el('rect', { x, y, width: w, height: GROUND - y, fill: '#142034' }, blocks);
+    for (let yy = y + 20; yy < GROUND - 20; yy += 26) for (let xx = x + 14; xx < x + w - 14; xx += 22)
+      if (((xx * 3 + yy * 7) % 11) < 3) el('rect', { x: xx, y: yy, width: 8, height: 10, fill: '#f2b56a', opacity: .55 }, blocks);
+  });
+
+  // palettes: floodlit stone and gold
+  const STONE = ['#f2e1c2', '#dcb787', '#a8774c'], INK = ['#cfa874', '#a77d4f', '#7a5232'];
+  const GOLD = ['#ffd77a', '#f0b44a', '#d99a30'], GINK = ['#d79a35', '#b87c22', '#a06a1c'];
+  const kalash = (g, x, y, s) => {
+    const k = el('g', { opacity: 0 }, g);
+    el('rect', { x: x - 5 * s, y: y - 3 * s, width: 10 * s, height: 3 * s, fill: '#c98f2e' }, k);
+    el('ellipse', { cx: x, cy: y - 8 * s, rx: 6 * s, ry: 5.5 * s, fill: 'url(#goldG)' }, k);
+    el('rect', { x: x - 2.5 * s, y: y - 16 * s, width: 5 * s, height: 3 * s, fill: '#f6cf6c' }, k);
+    el('path', { d: `M${x - 1.2 * s},${y - 16 * s} L${x},${y - 25 * s} L${x + 1.2 * s},${y - 16 * s}Z`, fill: '#ffe08a' }, k);
+    rows.push({ g: k, y: y - 1 });
+  };
+  // one banded cylindrical spire: courses of type, a stepped cap, a gold kalash
+  const spire = (g, x, w, top, dim) => {
+    let y = EAVE, i = 0;
+    while (y > top + 14) {
+      const h = i % 4 === 3 ? 3 : 9;
+      y -= h + 1;
+      if (h === 3) course(g, x, y, w + 2, h, '#3a2a22', '', 'recess');
+      else { const c = i % 4; course(g, x, y, w, h, dim ? STONE[Math.min(2, c + 1)] : STONE[c % 3], INK[c % 3]); }
+      i++;
+    }
+    course(g, x, y - 5, w + 6, 5, '#e4c79a', '', 'recess');
+    course(g, x, y - 9, w - 6, 4, '#c79a62', '', 'recess');
+    kalash(g, x, y - 9, Math.max(.8, w / 32));
+  };
+  const back = el('g', {}, temple), mid = el('g', {}, temple), front = el('g', {}, temple);
+  // back row: taller, narrower, a shade darker
+  [[-182, 22, 330], [-58, 24, 250], [58, 24, 250], [182, 22, 330], [-226, 20, 380], [226, 20, 380], [-138, 22, 285], [138, 22, 285]].forEach(([dx, w, top]) => spire(back, CX + dx, w, top, true));
+  // central shikhara: tiers of gold type narrowing upward
+  let y = EAVE, w = 190, i = 0;
+  while (w > 30) {
+    const h = i % 3 === 2 ? 4 : 11;
+    y -= h + 1;
+    if (h === 4) course(mid, CX, y, w + 6, h, '#7a5320', '', 'recess');
+    else course(mid, CX, y, w, h, GOLD[i % 3], GINK[i % 3]);
+    if (i % 3 === 2) w -= 16; i++;
+  }
+  const crownY = y;
+  course(mid, CX, y - 6, 42, 6, '#e9b34e', '', 'recess');
+  kalash(mid, CX, y - 6, 2.2);
+  // flag pole + saffron flag (animated)
+  const flagG = el('g', { opacity: 0 }, mid);
+  el('line', { x1: CX + 8, y1: crownY - 30, x2: CX + 8, y2: crownY - 130, stroke: '#d7b27a', 'stroke-width': 2.4 }, flagG);
+  const flag = el('path', { fill: '#f07a1a' }, flagG);
+  rows.push({ g: flagG, y: crownY - 60 });
+  // front row of spires flanking the shikhara
+  [[-254, 26, 440], [-210, 26, 395], [-164, 28, 350], [-120, 28, 320], [120, 28, 320], [164, 28, 350], [210, 26, 395], [254, 26, 440]].forEach(([dx, w, top]) => spire(front, CX + dx, w, top));
+  // the body: shadowed eave band with small spire tips, then the floodlit storeys
+  const body = el('g', {}, temple);
+  course(body, CX, EAVE, 560, 22, '#2a1d18', '', 'recess');
+  for (let x = CX - 260; x <= CX + 260; x += 20) { const tip = el('path', { d: `M${x - 5},${EAVE + 22} L${x},${EAVE + 8} L${x + 5},${EAVE + 22}Z`, fill: '#c8955c', opacity: 0 }, body); rows.push({ g: tip, y: EAVE + 8 }); }
+  for (let yy = EAVE + 22, k = 0; yy < GROUND; k++) {
+    const h = k % 3 === 2 ? 5 : 16;
+    const c = k % 3 === 2 ? '#7c5638' : (k % 2 ? '#ecd6b2' : '#f4e4c6');
+    course(body, CX, yy, k % 3 === 2 ? 580 : 540, h, c, k % 2 ? '#c49a6a' : '#d5b386', k % 3 === 2 ? 'recess' : '');
+    yy += h;
+  }
+  // the name, large and luminous across the facade
+  const nameG = el('g', { opacity: 0 }, body);
+  el('rect', { x: CX - 200, y: 600, width: 400, height: 54, fill: '#3a2618' }, nameG);
+  const nm = el('text', { x: CX, y: 640, 'text-anchor': 'middle', 'font-size': 34, 'font-family': DEV, fill: '#ffd88a' }, nameG); nm.textContent = WORD;
+  rows.push({ g: nameG, y: 660 });
+  // the small orange stepped dome over the entrance, its own finial
+  const dome = el('g', {}, temple);
+  [[96, 12], [80, 11], [64, 10], [48, 9], [32, 8]].forEach(([ww, hh], j) => course(dome, CX, 742 - j * 13, ww, hh + 1, j % 2 ? '#e2742a' : '#f08a34', '#b9561a', 'recess'));
+  kalash(dome, CX, 742 - 4 * 13, 1);
+  el('rect', { x: CX - 28, y: 760, width: 56, height: 60, fill: '#2a1608' }, dome);
+  const door = el('rect', { x: CX - 22, y: 766, width: 44, height: 54, fill: '#ffb85a', opacity: .0 }, dome);
+  rows.push({ g: door, y: 820 });
+
+  // street: marigold garlands strung across, a queue of diyas
+  const street = document.getElementById('street');
+  const garland = el('g', { opacity: 0 }, street);
+  for (let gx = CX - 270; gx < CX + 270; gx += 90)
+    for (let s = 0; s <= 1; s += .08) { const x = gx + s * 90, yy = 726 + Math.sin(s * Math.PI) * 22; el('circle', { cx: x, cy: yy, r: 3.2, fill: s * 10 % 2 < 1 ? '#f6a21a' : '#ffcb3d' }, garland); }
+  rows.push({ g: garland, y: 900 });
+  const diyas = [];
+  for (let k = 0; k < 9; k++) { const dx = CX - 240 + k * 60; const d = el('g', { opacity: 0 }, street); el('path', { d: `M${dx - 7},${846} Q${dx},${856} ${dx + 7},${846}Z`, fill: '#b5652a' }, d); const f = el('ellipse', { cx: dx, cy: 840, rx: 2.4, ry: 5, fill: '#ffd36b' }, d); diyas.push(f); rows.push({ g: d, y: 950 + k }); }
+
+  // build order: bottom to top
+  rows.sort((a, b) => b.y - a.y);
+  const N = rows.length; let shown = -1;
+
+  // title words fall into place
+  const ttl = document.getElementById('ttl');
+  ttl.innerHTML = ttl.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
+  const tws = [...ttl.querySelectorAll('.w')], rest = [...document.getElementById('copy').children].slice(1);
+  const run = document.getElementById('run'), floodR = document.getElementById('floodR'), scene = document.getElementById('scene');
+  function fit() {
+    const m = innerWidth <= 720;
+    scene.setAttribute('viewBox', m ? '640 160 680 740' : '0 0 1440 900');
+    scene.setAttribute('preserveAspectRatio', m ? 'xMidYMax meet' : 'xMidYMax slice');
+  }
+  addEventListener('resize', fit); fit();
+
+  function frame(now) {
+    const t = now / 1000;
+    const r = run.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - innerHeight));
+    const b = reduce ? 1 : clamp(p / .7);
+    const target = Math.floor(b * N * 1.0001);
+    if (target !== shown) {
+      rows.forEach((row, i) => { const v = i < target ? 1 : 0; if (row.v !== v) { row.v = v; row.g.style.transition = 'opacity .5s'; row.g.setAttribute('opacity', v); } });
+      shown = target;
+    }
+    floodR.setAttribute('opacity', (.2 + .8 * ease(clamp((p - .4) / .4))).toFixed(3));
+    // flag ripples in the sea breeze
+    const fx = CX + 8, fy = crownY - 130, L = 70;
+    let d = `M${fx},${fy}`;
+    for (let s = 0; s <= 1.0001; s += .1) d += ` L${fx + s * L},${fy + s * 20 + Math.sin(t * 3 - s * 5) * 5 * s * (reduce ? 0 : 1)}`;
+    for (let s = 1; s >= -0.0001; s -= .1) d += ` L${fx + s * L},${fy + 40 - s * 20 + Math.sin(t * 3 - s * 5) * 5 * s * (reduce ? 0 : 1)}`;
+    flag.setAttribute('d', d + 'Z');
+    diyas.forEach((f, k) => f.setAttribute('ry', (5 + (reduce ? 0 : Math.sin(t * 9 + k * 1.7) * .8)).toFixed(2)));
+    // copy arrives as the temple completes
+    tws.forEach((w, i) => { const q = ease(clamp((p - .05 - i * .04) / .2)); w.style.opacity = q; w.style.transform = `translateY(${(1 - q) * .6}em)`; });
+    rest.forEach((e, i) => { const q = ease(clamp((p - .3 - i * .06) / .2)); e.style.opacity = q; e.style.transform = `translateY(${(1 - q) * 12}px)`; });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  const clock = document.getElementById('clock');
+  const tick = () => { clock.textContent = `It's ${new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true }).format(new Date()).replace(/\s?(AM|PM)/i, (m, a) => ' ' + a.toLowerCase())} in Mumbai.`; };
+  tick(); setInterval(tick, 15000);
+})();
+</script>
+<!-- direction: Style 10 Kinetic typography / Footer -->
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!-- Direction 09: Blueprint — Marine Drive as a site plan of the Back Bay; a sight line from where he stands on the promenade turns the plan into the elevation of what he sees, and Mohit looks back over his shoulder. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohit Bagri · Marine Drive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+/*COMMON:BEGIN*/
+:root{--bp:#143a63;--bp-deep:#0c2747;--navy:#0d1a2b;--ln:#e6effa;--ln2:rgba(230,239,250,.62);--ln3:rgba(230,239,250,.3);--ln4:rgba(230,239,250,.12);--na:#f2a145;--na2:rgba(242,161,69,.5);
+--serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bp-deep);color:var(--ln)}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.sheet{background-color:var(--bp);background-image:
+ radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(6,22,42,.55) 100%),
+ linear-gradient(rgba(230,239,250,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.075) 1px,transparent 1px),
+ linear-gradient(rgba(230,239,250,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.035) 1px,transparent 1px);
+ background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px;background-position:center,-1px -1px,-1px -1px,-1px -1px,-1px -1px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:soft-light;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+h1,h2,.voice{font-family:var(--serif);font-weight:300;letter-spacing:-.012em;line-height:1.04;margin:0;text-wrap:balance}
+h1,h2{font-size:clamp(40px,4.9vw,76px)}
+.lede{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--ln2);max-width:40ch;margin:.9em 0 0;text-wrap:pretty}
+.co{font-family:var(--sans);font-size:13px;fill:var(--ln2);color:var(--ln2);letter-spacing:.01em}
+.cta{display:inline-flex;gap:.5em;align-items:baseline;font-family:var(--sans);font-size:17px;color:var(--ln);text-decoration:none;padding:.15em 0;
+ background:linear-gradient(var(--na),var(--na)) 0 100%/0% 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.cta:hover,.cta:focus-visible{background-size:100% 1px;color:var(--na)}
+.cta .ar{transition:transform .4s cubic-bezier(.2,.7,.2,1)}.cta:hover .ar{transform:translateX(4px)}
+svg :is(path,rect,circle,line,polyline,ellipse){vector-effect:non-scaling-stroke}
+.s{fill:none;stroke:var(--ln);stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s2{fill:none;stroke:var(--ln2);stroke-width:.9;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s3{fill:none;stroke:var(--ln3);stroke-width:.8;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s4{fill:none;stroke:var(--ln4);stroke-width:.8;vector-effect:non-scaling-stroke}
+.dash{stroke-dasharray:6 5}
+.na{fill:none;stroke:var(--na);stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.occ{fill:var(--bp)}
+.t{font-family:var(--sans);font-size:13px;fill:var(--ln2)}
+/* Mohit */
+.m-fill{fill:var(--bp)}
+.m-l1,.m-l2,.m-l3,.m-hatch,.m-hatch path,.m-stripe path,.m-glass,.m-rim{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.m-fill.m-l1{fill:var(--bp)}
+.m-l1{stroke-width:var(--mw1,1.5)}.m-l2{stroke-width:var(--mw2,1.1)}.m-l3{stroke-width:var(--mw3,.8);opacity:.75}
+.m-hatch,.m-hatch path{stroke-width:.8;opacity:.6}.m-hair path{opacity:.5;stroke-width:.7}.m-stripe path{stroke-width:.6;opacity:.32}
+.m-glass{stroke-width:1;opacity:.85}.m-rim{stroke-width:var(--mrim,3.4)}.m-ink{fill:currentColor}
+.m-cons{fill:none;stroke:var(--na);stroke-width:.7;stroke-dasharray:4 4;vector-effect:non-scaling-stroke;opacity:.5}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/*COMMON:END*/
+.track{height:380vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+#plan *{vector-effect:none}
+#plan .s,#plan .s2,#plan .s3,#plan .s4,#plan .na{stroke-width:1.1}
+#plan .s2{stroke-width:.9}#plan .s3,#plan .s4{stroke-width:.8}
+#elev{opacity:0}
+.copy{position:absolute;left:clamp(24px,5vw,80px);top:clamp(64px,11vh,110px);z-index:4;max-width:min(31rem,38vw)}
+.copy .lede{opacity:0;transform:translateY(12px)}
+.aside{position:absolute;z-index:4;left:clamp(24px,5vw,80px);bottom:clamp(48px,10vh,100px);max-width:30ch;margin:0;opacity:0;
+ font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(19px,1.5vw,23px);line-height:1.35;color:var(--ln)}
+.aside::before{content:"";display:block;width:56px;height:1px;background:var(--na);margin-bottom:16px}
+.who{--wx:0px;position:absolute;z-index:3;right:6vw;bottom:-9vh;height:88vh;width:calc(88vh*.7);opacity:0;color:var(--ln)}
+.who svg{width:100%;height:100%;display:block;overflow:visible}
+@media (max-width:700px){
+ .copy{max-width:none;right:24px;top:52px}
+ .who{right:auto;left:50%;--wx:-50%;height:58vh;width:calc(58vh*.7);bottom:-4vh}
+ .aside{bottom:auto;top:auto;display:none}
+ .copy .aside-m{display:block}
+}
+.aside-m{display:none;font-family:var(--serif);font-style:italic;font-weight:300;font-size:18px;line-height:1.35;margin:.9em 0 0;opacity:0}
+</style></head>
+<body class="sheet">
+<div class="grain"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- MOHIT:BEGIN  (Style 09 blueprint character; one drawing, coordinates in portrait.jpg pixel space) -->
+<defs>
+  <clipPath id="m-shirt-clip"><path d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/></clipPath>
+  <clipPath id="m-pshirt-clip"><path d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/></clipPath>
+  <clipPath id="m-hair-clip"><path id="m-hair-shape" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422 C499,419 492,414 488,404 C485,396 482,390 480,386 L480,340 C472,334 460,330 449,334 L443,342 C439,352 433,362 429,369 C425,360 424,346 423,334 C415,320 401,313 385,309 C367,307 347,311 331,315 C321,313 313,309 311,302 Z"/></clipPath>
+</defs>
+
+<!-- ============ HEAD (shared by every pose) ============ -->
+<g id="m-head-base">
+  <path class="m-fill" d="M326,312 C320,322 317,334 315,346 C313,356 311,366 310,374 C309,380 312,385 317,388 C322,391 327,393 331,395 L332,412 C333,428 336,442 340,452 C344,460 350,463 357,462 C360,474 364,482 368,492 L506,452 L506,421 L521,300 L436,226 Z"/>
+  <path class="m-l2" d="M357,463 C360,474 364,482 368,491"/>
+  <path class="m-l2" d="M500,420 C502,430 504,438 506,448"/>
+  <path class="m-l3" d="M392,452 C404,468 420,474 440,474"/>
+  <path class="m-l1" d="M327,311 C321,321 318,330 317,336"/>
+  <path class="m-l3" d="M317,336 C315,346 313,356 311,366"/>
+  <path class="m-l1" d="M311,366 C309,374 309,381 314,385 C319,389 325,391 331,394"/>
+  <path class="m-l3" d="M323,389 C326,386 330,386 333,388"/>
+  <path class="m-l1" d="M339,447 C342,457 348,462 357,462 C372,460 388,454 402,447 C420,438 436,420 447,400"/>
+  <path class="m-l3" d="M366,388 C374,398 378,410 376,424"/>
+  <path class="m-fill m-l1" d="M444,340 C450,330 462,328 472,334 C480,340 482,354 478,368 C475,380 468,390 458,392 C452,393 448,388 447,382 C446,368 445,352 444,340 Z"/>
+  <path class="m-l3" d="M453,346 C458,340 468,342 470,352 C471,362 465,368 461,376 C459,380 456,381 454,379"/>
+  <use href="#m-hair-shape" class="m-fill"/>
+  <g clip-path="url(#m-hair-clip)" class="m-hatch m-hair">
+    <path d="M311.1,302.0 C339.0,296.5 378.0,299.1 413.7,309.4 C442.4,315.8 471.6,327.9 489.6,348.1 C506.2,369.3 511.0,399.0 507.0,422.0" stroke-dasharray="29 5 20 8 39 6 23 3" stroke-dashoffset="4"/>
+    <path d="M311.3,301.9 C337.4,294.5 378.1,297.0 415.6,307.4 C442.2,314.5 471.9,324.3 492.6,347.5 C506.0,367.5 509.9,399.1 507.0,422.0" stroke-dasharray="15 6 49 5 65 9 17 4" stroke-dashoffset="33"/>
+    <path d="M311.4,301.7 C336.6,295.4 376.2,294.6 416.6,302.3 C443.5,310.5 473.2,322.0 494.3,344.0 C507.1,366.9 511.2,401.2 507.0,422.0" stroke-dasharray="48 5 31 9 25 9 20 5" stroke-dashoffset="13"/>
+    <path d="M311.5,301.4 C335.5,291.8 374.8,291.3 414.2,299.5 C445.2,308.5 476.0,319.3 494.6,342.3 C507.7,366.4 511.6,401.4 507.0,422.0" stroke-dasharray="15 9 55 9 30 9 31 4" stroke-dashoffset="10"/>
+    <path d="M311.7,301.1 C334.1,292.3 375.4,287.8 415.1,299.4 C448.0,302.8 478.5,318.2 494.5,342.1 C506.7,366.3 512.2,400.3 507.0,422.0" stroke-dasharray="33 5 54 9 60 9 68 5" stroke-dashoffset="5"/>
+    <path d="M311.8,300.7 C335.3,289.7 373.6,287.7 416.2,294.9 C447.6,302.1 479.7,312.8 497.2,339.6 C508.5,365.2 511.8,399.5 507.0,422.0" stroke-dasharray="68 7 35 8 38 7 29 4" stroke-dashoffset="15"/>
+    <path d="M311.9,300.2 C332.3,290.1 371.9,285.2 414.7,293.0 C450.2,297.4 481.7,310.8 498.1,338.2 C508.6,366.8 512.0,399.6 507.0,422.0" stroke-dasharray="44 5 19 9 69 7 67 5" stroke-dashoffset="0"/>
+    <path d="M312.1,299.6 C333.7,288.1 372.6,281.1 417.4,288.6 C449.2,295.5 481.7,310.2 499.9,337.1 C508.6,363.4 511.8,399.7 507.0,422.0" stroke-dasharray="32 7 59 5 68 9 46 4" stroke-dashoffset="26"/>
+    <path d="M312.2,299.0 C332.0,288.7 370.6,278.7 416.7,285.3 C450.7,291.0 484.9,304.9 499.4,335.7 C511.4,363.7 514.1,399.0 507.0,422.0" stroke-dasharray="41 7 32 6 42 4 28 5" stroke-dashoffset="16"/>
+    <path d="M312.3,298.3 C331.4,286.9 371.2,277.5 415.5,282.2 C453.3,286.6 486.3,302.3 501.4,332.6 C509.8,362.4 513.2,400.2 507.0,422.0" stroke-dasharray="66 9 16 3 16 6 54 5" stroke-dashoffset="33"/>
+    <path d="M312.5,297.5 C329.5,283.9 369.0,276.6 416.9,282.0 C453.2,285.8 488.7,301.0 501.7,331.9 C513.2,361.4 514.1,400.1 507.0,422.0" stroke-dasharray="48 8 44 8 35 4 57 4" stroke-dashoffset="4"/>
+    <path d="M312.6,296.6 C328.3,284.3 368.7,271.8 417.6,277.6 C455.9,281.4 487.8,298.5 502.4,331.2 C511.8,363.0 514.7,400.4 507.0,422.0" stroke-dasharray="40 4 54 8 42 5 25 5" stroke-dashoffset="27"/>
+    <path d="M312.7,295.7 C329.0,281.1 367.3,271.0 417.7,274.6 C456.0,276.8 491.0,294.5 502.5,328.0 C513.1,361.5 512.9,400.8 507.0,422.0" stroke-dasharray="61 7 34 8 49 4 34 3" stroke-dashoffset="53"/>
+    <path d="M312.9,294.7 C326.5,282.1 364.6,269.8 417.6,273.5 C460.1,275.4 491.1,292.4 504.1,327.6 C512.9,359.9 513.5,398.9 507.0,422.0" stroke-dasharray="17 8 28 5 62 7 53 9" stroke-dashoffset="15"/>
+    <path d="M313.0,293.6 C327.4,281.5 364.7,266.8 417.4,269.2 C459.5,271.6 493.1,289.4 506.0,324.2 C514.3,361.4 513.5,398.8 507.0,422.0" stroke-dasharray="21 5 25 5 43 3 16 5" stroke-dashoffset="44"/>
+    <path d="M313.1,292.4 C326.0,277.5 363.3,264.9 418.0,265.4 C459.9,267.2 494.9,288.4 508.4,324.3 C516.3,360.7 516.4,401.3 507.0,422.0" stroke-dasharray="19 5 61 8 34 3 34 5" stroke-dashoffset="20"/>
+    <path d="M313.3,291.1 C325.6,276.4 362.5,260.8 418.1,263.4 C462.1,265.6 496.8,283.9 507.4,321.6 C516.1,358.9 515.5,399.1 507.0,422.0" stroke-dasharray="23 9 55 6 69 9 53 8" stroke-dashoffset="52"/>
+    <path d="M313.4,289.8 C322.9,275.9 361.1,259.4 417.1,261.2 C464.4,260.2 499.1,281.6 509.0,320.4 C517.2,359.2 516.7,399.1 507.0,422.0" stroke-dasharray="18 5 53 4 42 5 22 5" stroke-dashoffset="24"/>
+    <path d="M313.5,288.4 C322.4,274.8 359.6,257.2 418.1,258.7 C464.8,259.1 500.4,278.2 510.9,317.8 C517.1,356.1 514.9,401.3 507.0,422.0" stroke-dasharray="52 4 35 7 14 5 16 6" stroke-dashoffset="10"/>
+    <path d="M313.7,286.9 C320.0,273.0 359.0,253.5 419.3,256.3 C467.1,254.5 503.1,276.8 510.2,317.3 C517.2,356.0 516.1,399.7 507.0,422.0" stroke-dasharray="37 9 65 5 32 7 20 6" stroke-dashoffset="13"/>
+    <path d="M313.8,285.4 C319.5,273.2 360.1,252.7 417.0,252.4 C466.5,251.4 504.6,274.6 513.6,315.8 C517.6,355.0 516.8,400.5 507.0,422.0" stroke-dasharray="41 4 21 3 17 3 61 4" stroke-dashoffset="38"/>
+    <path d="M313.9,283.8 C318.7,271.1 358.8,249.7 419.0,249.1 C470.6,246.8 504.2,272.2 513.9,312.2 C517.8,354.5 517.5,401.2 507.0,422.0" stroke-dasharray="57 4 52 3 48 6 51 4" stroke-dashoffset="20"/>
+    <path d="M314.1,282.1 C317.7,269.5 357.6,247.7 419.9,247.6 C471.9,245.6 506.7,267.4 515.4,311.4 C519.4,355.1 519.1,400.2 507.0,422.0" stroke-dasharray="16 3 67 7 32 9 40 8" stroke-dashoffset="12"/>
+    <path d="M314.2,280.3 C318.9,270.6 354.8,245.2 420.2,244.1 C473.4,240.7 508.5,267.4 515.7,310.5 C521.6,353.0 516.7,401.1 507.0,422.0" stroke-dasharray="44 4 29 6 40 6 16 4" stroke-dashoffset="26"/>
+    <path d="M314.3,278.4 C316.9,267.1 356.0,242.7 418.1,239.8 C471.9,238.1 510.8,263.2 518.0,307.0 C519.8,352.3 518.6,399.1 507.0,422.0" stroke-dasharray="42 4 55 6 67 4 45 4" stroke-dashoffset="2"/>
+    <path d="M314.5,276.5 C316.2,266.9 354.3,242.1 420.2,238.8 C473.6,234.7 513.0,260.4 517.1,306.6 C520.5,353.7 519.1,398.8 507.0,422.0" stroke-dasharray="16 5 30 4 47 4 63 4" stroke-dashoffset="26"/>
+    <path d="M314.6,274.5 C316.2,265.7 352.3,239.2 420.8,234.2 C474.5,230.9 511.9,258.1 518.2,306.1 C521.2,350.6 518.9,398.9 507.0,422.0" stroke-dasharray="69 5 23 5 17 5 50 3" stroke-dashoffset="36"/>
+    <path d="M314.7,272.4 C313.3,263.6 351.0,237.0 421.0,231.4 C477.7,228.0 516.0,255.5 518.4,304.1 C521.9,350.0 517.9,401.0 507.0,422.0" stroke-dasharray="39 8 55 9 64 8 61 3" stroke-dashoffset="31"/>
+    <path d="M314.9,270.2 C313.6,262.8 351.2,234.9 418.6,229.5 C479.3,226.6 515.1,252.9 521.0,302.7 C523.0,351.2 520.9,399.5 507.0,422.0" stroke-dasharray="38 3 41 4 69 7 24 5" stroke-dashoffset="18"/>
+    <path d="M315.0,268.0 C312.0,263.2 348.6,233.4 419.4,225.9 C479.4,222.9 518.1,250.7 520.8,301.1 C525.0,350.5 519.2,399.3 507.0,422.0" stroke-dasharray="56 6 65 8 34 9 40 7" stroke-dashoffset="13"/>
+  </g>
+  <path class="m-l1" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422"/>
+  <path class="m-l2" d="M311,302 C318,310 326,313 334,313 C344,306 352,304 360,305 C370,303 380,304 388,308 C402,312 414,320 423,334 C424,346 425,360 429,369 C433,362 439,352 443,342"/>
+  <path class="m-l3" d="M334,313 C330,306 330,298 334,290 M360,305 C356,298 357,290 362,283"/>
+  <path class="m-l2" d="M452,227 C468,218 486,214 502,215 M490,236 C504,230 518,230 530,236 M508,252 C518,250 528,254 534,262 M330,259 C336,248 346,240 358,236 M372,234 C384,226 398,222 412,222"/>
+  <path class="m-l2" d="M325,326 C335,321 348,320 360,323"/>
+  <path class="m-fill" style="opacity:.35" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M327,331 L305,336 C302,348 302,362 305,371 C307,377 312,379 318,379 C323,379 326,376 326,370 C328,358 328,344 327,331"/>
+  <path class="m-l1" d="M327,332 C329,330 331,330 333,331"/>
+  <path class="m-rim" d="M333,331 L362,333 M305,336 L327,331"/>
+  <path class="m-l2" d="M362,333 L447,336"/>
+  <path class="m-l3" d="M342,341 L348,335 M345,348 L354,338 M309,345 L314,339"/>
+</g>
+
+<!-- construction underlay (optional, sections fade it in) -->
+<g id="m-construct" class="m-cons">
+  <circle cx="432" cy="318" r="98"/>
+  <path d="M300,351 L560,351 M300,462 L560,462 M300,226 L560,226 M318,330 L350,470"/>
+</g>
+
+<!-- smile (from the portrait): open grin, squinting eye -->
+<g id="m-face-smile">
+  <path class="m-fill" d="M331,394 C326,400 326,406 330,411 C334,422 336,436 340,448 L356,452 L372,410 Z"/>
+  <path class="m-l1" d="M331,394 C327,398 326,402 328,405 C330,408 330,410 330,412 C332,422 335,434 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399 M344,395 L346,399"/>
+  <path class="m-l2" d="M329,401 C340,403 354,404 366,400"/>
+  <path class="m-l1" d="M331,405 C338,411 348,413 358,411 C363,409 366,405 367,401"/>
+  <path class="m-l3" d="M334,405 C344,407 354,407 362,404"/>
+  <path class="m-l3" d="M368,390 C376,398 378,410 373,421"/>
+  <path class="m-l2" d="M337,350 C342,345 350,345 356,349"/>
+  <path class="m-l3" d="M339,355 C344,357 350,357 355,354"/>
+  <path class="m-l3" d="M356,358 C360,362 362,366 362,370"/>
+</g>
+
+<!-- pensive: closed mouth, eye looking out of the window -->
+<g id="m-face-calm">
+  <path class="m-l1" d="M331,394 C328,398 327,401 329,404 C332,406 332,409 330,412 C331,416 332,419 334,422 C335,431 337,440 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399"/>
+  <path class="m-l2" d="M330,410 C337,411 345,410 352,407"/>
+  <path class="m-l3" d="M335,425 C339,428 345,428 349,426"/>
+  <path class="m-l2" d="M334,349 C340,344 349,344 356,349"/>
+  <path class="m-l3" d="M335,346 C341,342 350,342 357,346"/>
+  <circle class="m-ink" cx="338.5" cy="351" r="2.7"/>
+  <path class="m-l3" d="M336,356 C342,358 349,357 354,354"/>
+</g>
+
+<!-- ============ POSE: turn (seen from behind, smiling over his shoulder) ============ -->
+<symbol id="mohit-turn" viewBox="150 200 560 800" overflow="visible">
+  <path class="m-fill m-l1" d="M190,948 C182,968 176,986 172,1000 L218,1000 C222,986 228,972 234,962"/>
+  <path class="m-fill" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/>
+  <g clip-path="url(#m-shirt-clip)" class="m-stripe">
+    <path d="M150,500 L700,470 M150,516 L700,486 M150,532 L700,502 M150,548 L700,518 M150,564 L700,534 M150,580 L700,550 M150,596 L700,566 M150,612 L700,582 M150,628 L700,598 M150,644 L700,614 M150,660 L700,630 M150,676 L700,646 M150,692 L700,662 M150,708 L700,678 M150,724 L700,694 M150,740 L700,710 M150,756 L700,726 M150,772 L700,742 M150,788 L700,758 M150,804 L700,774 M150,820 L700,790 M150,836 L700,806 M150,852 L700,822 M150,868 L700,838 M150,884 L700,854 M150,900 L700,870 M150,916 L700,886 M150,932 L700,902 M150,948 L700,918 M150,964 L700,934 M150,980 L700,950 M150,996 L700,966 M150,1012 L700,982"/>
+  </g>
+  <path class="m-l1" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876"/>
+  <path class="m-l1" d="M530,442 C560,460 590,486 606,502 C628,524 646,548 654,580 C660,640 664,720 668,800 C672,880 674,950 676,1000"/>
+  <path class="m-fill m-l1" d="M198,872 C220,866 246,872 264,884 L256,958 C232,962 206,956 186,946 Z"/>
+  <path class="m-l3" d="M194,900 C214,904 236,908 260,910 M190,926 C212,932 234,934 258,934"/>
+  <path class="m-l2" d="M420,534 C428,580 432,620 428,660 C410,720 380,780 352,850 C340,880 330,920 324,1000"/>
+  <path class="m-l3" d="M414,530 C470,526 540,524 622,528"/>
+  <path class="m-l3" d="M300,640 C320,660 340,700 350,740 M270,740 C290,770 310,800 320,840 M500,600 C520,680 524,760 520,860 M590,620 C600,700 606,800 604,900"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-smile"/>
+  <path class="m-fill m-l1" d="M428,424 C452,418 486,416 512,420 C520,426 527,434 532,446 C500,446 460,452 428,466 C406,476 384,480 362,476 C390,462 410,444 428,424 Z"/>
+  <path class="m-l3" d="M432,436 C462,430 494,430 520,436"/>
+</symbol>
+
+<!-- ============ POSE: pensive (at the train window, chin on his fist; cropped by the sill at y=612) ============ -->
+<symbol id="mohit-pensive" viewBox="250 200 420 412" overflow="visible">
+  <path class="m-fill" d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/>
+  <g clip-path="url(#m-pshirt-clip)" class="m-stripe">
+    <path d="M330,440 L340,612 M346,440 L356,612 M362,440 L372,612 M378,440 L388,612 M394,440 L404,612 M410,440 L420,612 M426,440 L436,612 M442,440 L452,612 M458,440 L468,612 M474,440 L484,612 M490,440 L500,612 M506,440 L516,612 M522,440 L532,612 M538,440 L548,612 M554,440 L564,612 M570,440 L580,612 M586,440 L596,612 M602,440 L612,612 M618,440 L628,612 M634,440 L644,612"/>
+  </g>
+  <path class="m-l1" d="M506,452 C540,470 600,490 630,520 C646,540 652,580 654,612"/>
+  <path class="m-l2" d="M566,486 C590,520 600,566 604,612"/>
+  <path class="m-l3" d="M470,520 C480,560 484,590 486,612"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-calm"/>
+  <path class="m-fill m-l1" d="M432,430 C458,422 490,418 512,424 C518,434 520,446 518,456 C500,464 484,478 470,498 C456,490 444,480 432,470 Z"/>
+  <path class="m-l3" d="M440,440 C464,432 490,430 512,434"/>
+  <path class="m-fill m-l1" d="M368,490 C380,480 400,470 420,468 L410,540 C394,526 380,508 368,490 Z"/>
+  <path class="m-l2" d="M410,540 C416,560 420,586 422,612"/>
+  <circle class="m-ink" cx="417" cy="566" r="2"/><circle class="m-ink" cx="420" cy="600" r="2"/>
+  <path class="m-fill" d="M322,500 C310,536 296,574 284,612 L330,612 C340,576 354,540 368,504 Z"/>
+  <path class="m-l1" d="M322,500 C310,536 296,574 284,612"/>
+  <path class="m-l1" d="M368,504 C354,540 340,576 330,612"/>
+  <path class="m-l3" d="M340,516 C332,540 322,566 314,590"/>
+  <path class="m-fill m-l1" d="M286,578 C302,574 324,576 342,582 L334,612 L276,612 Z"/>
+  <path class="m-l3" d="M282,594 C300,591 320,592 338,597"/>
+  <path class="m-fill m-l1" d="M360,457 C350,455 338,455 328,457 C320,458 314,462 313,467 C309,471 309,478 312,482 C307,486 307,493 311,497 C308,501 310,507 318,510 C330,514 352,514 368,507 C376,498 378,484 375,472 C372,464 367,459 360,457 Z"/>
+  <path class="m-l3" d="M312,482 C320,481 328,483 334,487 M311,497 C319,496 327,498 333,502 M313,467 C321,467 329,469 335,473"/>
+  <path class="m-l2" d="M375,472 C368,466 358,463 346,464"/>
+  <path class="m-l3" d="M348,472 C352,484 354,496 352,508"/>
+  <path class="m-l1" d="M250,612 L670,612"/>
+</symbol>
+<!-- MOHIT:END -->
+<defs>
+  <pattern id="sea" width="26" height="12" patternUnits="userSpaceOnUse"><path d="M2,6 C6,3 10,3 14,6" fill="none" stroke="rgba(230,239,250,.2)" stroke-width=".8"/></pattern>
+  <pattern id="land" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="rgba(230,239,250,.1)" stroke-width="1"/></pattern>
+  <symbol id="tp" viewBox="-60 -60 120 120" overflow="visible">
+   <path class="occ" d="M15.1,-3.5 L10.4,-39.7 A9,4 2 0 1 -7.6,-40.3 L-14.9,-4.5 Z"/><path class="s2" d="M15.1,-3.5 L10.4,-39.7 A9,4 2 0 1 -7.6,-40.3 L-14.9,-4.5 Z"/><path class="s3" d="M10.4,-39.7 A9,4 2 0 0 -7.6,-40.3"/><path class="s3" d="M-11.6,-12.4 L-6.6,-12.2 M-10.4,-19.4 L-5.4,-19.2 M-9.3,-26.3 L-4.3,-26.2"/>
+   <path class="occ" d="M-10.6,-11.4 L-41.3,11.8 A9,4 242 0 1 -32.9,27.7 L3.5,15.1 Z"/><path class="s2" d="M-10.6,-11.4 L-41.3,11.8 A9,4 242 0 1 -32.9,27.7 L3.5,15.1 Z"/><path class="s3" d="M-41.3,11.8 A9,4 242 0 0 -32.9,27.7"/><path class="s3" d="M-5.0,16.2 L-7.3,11.8 M-11.6,18.7 L-13.9,14.3 M-18.2,21.2 L-20.5,16.8 M-24.8,23.7 L-27.1,19.3"/>
+   <path class="occ" d="M-3.5,15.1 L32.9,27.7 A9,4 118 0 1 41.3,11.8 L10.6,-11.4 Z"/><path class="s2" d="M-3.5,15.1 L32.9,27.7 A9,4 118 0 1 41.3,11.8 L10.6,-11.4 Z"/><path class="s3" d="M32.9,27.7 A9,4 118 0 0 41.3,11.8"/><path class="s3" d="M16.2,-5.0 L13.9,-0.5 M22.0,-0.9 L19.6,3.5 M27.7,3.2 L25.4,7.6 M33.5,7.3 L31.2,11.7"/>
+   <circle r="15" class="occ"/>
+   <path class="occ" d="M-15.4,1.9 L-14.5,24.2 A11,4 188 0 1 7.3,27.3 L14.3,6.0 Z"/><path class="s2" d="M-15.4,1.9 L-14.5,24.2 A11,4 188 0 1 7.3,27.3 L14.3,6.0 Z"/><path class="s3" d="M10.2,13.6 L5.3,12.9"/>
+  </symbol>
+  <path id="mdcurve" d="M640,812 C760,760 900,660 960,540 C1000,460 1010,380 980,300"/>
+</defs>
+</svg>
+
+<section class="track" id="track">
+ <div class="stage">
+  <!-- 1. site plan of the Back Bay -->
+  <svg class="layer" id="plan" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-label="Site plan of Marine Drive around the Back Bay">
+   <g id="pcam">
+    <rect x="0" y="0" width="1440" height="900" fill="url(#sea)" opacity=".9"/>
+    <!-- land east of the drive and Malabar Hill -->
+    <path class="occ" d="M1440,0 L700,0 C690,60 640,150 560,210 C520,240 500,262 520,282 C560,300 640,268 720,252 C820,232 920,240 980,300 C1010,380 1000,460 960,540 C900,660 760,760 640,812 C600,830 590,860 600,900 L1440,900 Z"/>
+    <path fill="url(#land)" d="M1440,0 L700,0 C690,60 640,150 560,210 C520,240 500,262 520,282 C560,300 640,268 720,252 C820,232 920,240 980,300 C1010,380 1000,460 960,540 C900,660 760,760 640,812 C600,830 590,860 600,900 L1440,900 Z"/>
+    <!-- shoreline + promenade (the Queen's Necklace) -->
+    <path class="s pd" d="M700,0 C690,60 640,150 560,210 C520,240 500,262 520,282 C560,300 640,268 720,252 C820,232 920,240 980,300 C1010,380 1000,460 960,540 C900,660 760,760 640,812 C600,830 590,860 600,900"/>
+    <path class="s2 pd" d="M650,826 C780,772 918,672 978,550 C1020,466 1028,380 998,296"/>
+    <path class="s3 pd" d="M662,840 C792,786 932,684 994,560 C1036,472 1044,382 1014,290"/>
+    <!-- tetrapod band along the sea face -->
+    <path class="s4 pd" d="M630,800 C752,748 890,650 948,534 C988,456 996,380 968,304" style="stroke-dasharray:2 5;stroke:rgba(230,239,250,.45)"/>
+    <!-- Art Deco row along the drive: blocks with curved corners -->
+    <g class="s3 pd" id="deco">
+     <path d="M676,852 L700,842 L716,880 L692,890 Z"/><path d="M712,836 L740,822 L758,856 C752,862 744,866 734,868 Z"/>
+     <path d="M760,812 L786,796 L806,826 L778,844 Z"/><path d="M800,786 L826,766 L848,794 C842,802 834,808 822,812 Z"/>
+     <path d="M846,752 L868,732 L892,756 L868,778 Z"/><path d="M884,716 L904,692 L930,712 C926,722 918,730 908,736 Z"/>
+     <path d="M918,672 L934,648 L962,664 L946,690 Z"/><path d="M944,628 L956,602 L986,614 C984,626 978,636 970,642 Z"/>
+     <path d="M964,580 L972,552 L1004,560 L996,590 Z"/><path d="M980,530 L986,502 L1018,506 C1018,518 1014,528 1010,536 Z"/>
+     <path d="M990,480 L992,450 L1026,452 L1024,484 Z"/><path d="M994,428 L992,398 L1026,396 C1028,408 1028,418 1026,428 Z"/>
+     <path d="M990,374 L984,346 L1016,338 L1022,368 Z"/>
+    </g>
+    <!-- Malabar Hill contours -->
+    <g class="s4 pd" style="stroke:rgba(230,239,250,.32)">
+     <path d="M600,210 C640,170 700,150 760,160 C800,170 800,200 760,214 C700,232 640,236 600,210 Z"/>
+     <path d="M640,200 C670,178 712,170 748,178 C770,186 764,202 738,208 C700,216 664,216 640,200 Z"/>
+     <path d="M676,194 C694,184 718,182 734,188 C740,194 730,200 714,202 C698,203 684,200 676,194 Z"/>
+     <path d="M570,226 C620,150 720,120 820,140 C880,154 880,210 840,232"/>
+    </g>
+    <!-- the Western line, ending at Churchgate -->
+    <path class="s2 pd" d="M1180,0 C1170,200 1150,420 1120,640 L1100,780"/>
+    <path class="s3 pd" d="M1190,0 C1180,200 1160,420 1130,640 L1110,780"/>
+    <path class="s3" d="M1092,780 L1118,780"/>
+    <circle cx="1105" cy="780" r="5" class="na" style="fill:var(--bp)"/>
+    <text class="t" x="1124" y="800">Churchgate</text>
+    <!-- labels -->
+    <text class="t" x="590" y="868" text-anchor="end">Nariman Point</text>
+    <text class="t" x="1000" y="282">Girgaon Chowpatty</text>
+    <text class="t" x="640" y="130">Malabar Hill</text>
+    <text class="t" style="font-size:14px;fill:var(--ln)"><textPath href="#mdcurve" startOffset="18%">Marine Drive · 3.6 km · the Queen's Necklace</textPath></text>
+    <!-- north arrow -->
+    <g transform="translate(1320 120)" class="s2"><circle r="26"/><path d="M0,-34 L8,10 L0,4 L-8,10 Z" style="fill:var(--ln3)"/></g>
+    <text class="t" x="1320" y="78" text-anchor="middle">N</text>
+    <!-- where he stands, and what he sees -->
+    <g id="spot">
+     <path id="cone" d="M958,520 L640,360 M958,520 L700,640" class="na" style="stroke-dasharray:5 5;opacity:0"/>
+     <path id="conefill" d="M958,520 L640,360 C620,440 640,560 700,640 Z" fill="#f2a145" opacity="0"/>
+     <circle id="pulse" cx="958" cy="520" r="14" class="na" style="opacity:0"/>
+     <circle id="dot" cx="958" cy="520" r="4.5" fill="#f2a145" style="opacity:0"/>
+    </g>
+   </g>
+  </svg>
+
+  <!-- 2. elevation: looking west from the promenade -->
+  <svg class="layer" id="elev" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-label="Elevation looking west from the promenade: parapet, tetrapods, the Arabian Sea">
+   <!-- sky construction -->
+   <path class="s4" d="M0,200 L1440,200 M0,320 L1440,320 M0,420 L1440,420"/>
+   <!-- far right: Malabar Hill, low -->
+   <path class="s3" d="M1040,520 C1100,500 1150,470 1220,462 C1290,456 1360,478 1440,470"/>
+   <path class="s4" d="M1150,474 L1150,440 L1166,440 L1166,470 M1200,464 L1200,420 L1214,420 L1214,462 M1260,460 L1260,432 L1278,432 L1278,462 M1330,466 L1330,446 L1344,446 L1344,470"/>
+   <!-- horizon -->
+   <path class="s" id="horizon" d="M0,520 L1440,520"/>
+   <!-- sea: wave lines that drift -->
+   <g id="waves" class="s3">
+    <path d="M-200,548 c40,-5 80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0 s80,5 120,0 s80,-5 120,0"/>
+    <path d="M-160,584 c50,-7 100,-7 150,0 s100,7 150,0 s100,-7 150,0 s100,7 150,0 s100,-7 150,0 s100,7 150,0 s100,-7 150,0 s100,7 150,0 s100,-7 150,0 s100,7 150,0 s100,-7 150,0 s100,7 150,0"/>
+    <path d="M-240,628 c60,-9 120,-9 180,0 s120,9 180,0 s120,-9 180,0 s120,9 180,0 s120,-9 180,0 s120,9 180,0 s120,-9 180,0 s120,9 180,0 s120,-9 180,0 s120,9 180,0 s120,-9 180,0"/>
+    <path d="M-120,536 c30,-3 60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0 s60,-3 90,0 s60,3 90,0"/>
+   </g>
+   <!-- tetrapods piled at the foot of the wall (back row first) -->
+   <g id="tps">
+    <use href="#tp" x="-20" y="610" width="120" height="120"/><use href="#tp" x="120" y="606" width="110" height="110" transform="rotate(8 175 660)"/>
+    <use href="#tp" x="260" y="612" width="120" height="120" transform="rotate(-10 320 672)"/><use href="#tp" x="410" y="604" width="110" height="110"/>
+    <use href="#tp" x="550" y="610" width="120" height="120" transform="rotate(12 610 670)"/><use href="#tp" x="700" y="606" width="112" height="112"/>
+    <use href="#tp" x="840" y="612" width="120" height="120" transform="rotate(-6 900 672)"/><use href="#tp" x="990" y="604" width="110" height="110" transform="rotate(10 1045 660)"/>
+    <use href="#tp" x="1130" y="610" width="120" height="120"/><use href="#tp" x="1280" y="606" width="112" height="112" transform="rotate(-12 1336 662)"/>
+    <use href="#tp" x="50" y="640" width="130" height="130" transform="rotate(-14 115 705)"/><use href="#tp" x="196" y="644" width="126" height="126" transform="rotate(6 259 707)"/>
+    <use href="#tp" x="340" y="640" width="130" height="130" transform="rotate(16 405 705)"/><use href="#tp" x="490" y="646" width="124" height="124"/>
+    <use href="#tp" x="630" y="640" width="130" height="130" transform="rotate(-8 695 705)"/><use href="#tp" x="776" y="644" width="126" height="126" transform="rotate(14 839 707)"/>
+    <use href="#tp" x="920" y="640" width="130" height="130"/><use href="#tp" x="1066" y="646" width="124" height="124" transform="rotate(-16 1128 708)"/>
+    <use href="#tp" x="1210" y="640" width="130" height="130" transform="rotate(8 1275 705)"/><use href="#tp" x="1350" y="644" width="126" height="126"/>
+   </g>
+   <!-- parapet and promenade -->
+   <path class="occ" d="M0,716 L1440,716 L1440,900 L0,900 Z"/>
+   <path class="s" d="M0,716 L1440,716 M0,728 L1440,728"/>
+   <path class="s2" d="M0,812 L1440,812"/>
+   <path class="s3" d="M640,728 L640,812 M880,728 L880,812 M1120,728 L1120,812 M1360,728 L1360,812"/>
+   <path class="s4" d="M0,836 L1440,836 M0,864 L1440,864 M0,892 L1440,892"/>
+  </svg>
+
+  <div class="who" id="who"><svg viewBox="150 200 560 800" preserveAspectRatio="xMidYMax meet"><use href="#mohit-turn" x="150" y="200" width="560" height="800"/></svg></div>
+
+  <div class="copy">
+   <h2>One year in, here's what I shipped</h2>
+   <p class="lede" id="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+   <p class="aside-m" id="asidem">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+  </div>
+  <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+ </div>
+</section>
+<!-- direction: 09 Blueprint / Promenade -->
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=id=>document.getElementById(id);
+const track=$('track'),plan=$('plan'),pcam=$('pcam'),elev=$('elev'),who=$('who'),line=$('line'),aside=$('aside'),asidem=$('asidem');
+const cone=$('cone'),conefill=$('conefill'),pulse=$('pulse'),dot=$('dot'),waves=$('waves'),horizon=$('horizon');
+const pds=[...document.querySelectorAll('#plan path.pd, #plan g.pd path')];
+const wv=[...waves.children],per=[240,300,360,180];
+pds.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p._L=L;});
+let top=0,len=1,cur=0;
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),map=(p,a,b)=>cl((p-a)/(b-a)),ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function measure(){top=track.offsetTop;len=track.offsetHeight-innerHeight;}
+function frame(t){
+  const tgt=cl((scrollY-top)/len); cur+=(tgt-cur)*(RM?1:.12); const p=cur;
+  // plan draws itself in on arrival (time) and is complete before the cut
+  const dr=RM?1:Math.min(1,t/2200);
+  pds.forEach((el,i)=>{const d=cl(dr*1.4-i*.02);el.style.strokeDashoffset=el._L*(1-ease(d));});
+  // spot + sight lines
+  const s=map(p,.06,.22); dot.style.opacity=s; pulse.style.opacity=s*(.35+.35*Math.sin(t/500));
+  pulse.setAttribute('r',14+4*Math.sin(t/500));
+  const c=map(p,.18,.36); cone.style.opacity=c; conefill.style.opacity=c*.12;
+  // the plan pushes into the sight line and hands over to the elevation
+  const z=ease(map(p,.34,.58));
+  pcam.setAttribute('transform',`translate(${958} ${520}) scale(${1+z*2.2}) rotate(${-z*18}) translate(${-958} ${-520})`);
+  plan.style.opacity=1-map(p,.42,.58);
+  elev.style.opacity=map(p,.46,.62);
+  horizon.style.transform=`scaleX(${map(p,.46,.62)})`;horizon.style.transformOrigin='720px 520px';
+  const w=ease(map(p,.56,.74)); who.style.opacity=w; who.style.transform=`translate(var(--wx),${(1-w)*6}vh)`;
+  const l=map(p,.62,.76); line.style.opacity=l; line.style.transform=`translateY(${(1-l)*12}px)`;
+  const a=map(p,.8,.94); aside.style.opacity=a; asidem.style.opacity=a; aside.style.transform=`translateY(${(1-a)*12}px)`;
+  if(!RM) wv.forEach((w,i)=>w.setAttribute('transform',`translate(${(t*(.008+i*.003))%per[i]} 0)`));
+  requestAnimationFrame(frame);
+}
+addEventListener('resize',measure);measure();requestAnimationFrame(frame);
+})();
+</script>
+</body></html>

@@ -1,0 +1,315 @@
+<!-- Direction 07: Deco geometric — Marine Drive in the afternoon as banded sky, scalloped sea and stacked tetrapods; Mohit stands at the parapet facing the bay, and scrolling turns him round to smile over his shoulder. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Marine Drive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--sea:#2c6d8c}
+*{box-sizing:border-box}
+html,body{margin:0;background:#e9e1cf;color:var(--navy)}
+body{font-family:"Josefin Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:340vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;z-index:3;left:clamp(28px,5.6vw,104px);top:clamp(40px,10vh,104px);width:min(34rem,40vw)}
+h2{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(44px,4.6vw,80px);line-height:.98;letter-spacing:-.012em;margin:0 0 .5em;text-wrap:balance}
+.line{font-size:clamp(17px,1.25vw,20px);line-height:1.55;max-width:36ch;margin:0;color:rgba(13,26,43,.84)}
+.aside{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(21px,1.6vw,27px);line-height:1.3;max-width:22ch;margin:1.4em 0 0;opacity:0;transform:translateY(14px)}
+.aside::before{content:"";display:block;width:48px;height:3px;background:var(--sodium);margin-bottom:18px}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.15;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:28px;width:auto}
+  h2{font-size:38px}
+  .line{font-size:16px}
+  .aside{font-size:19px;margin-top:.9em}
+  .aside::before{display:none}
+}
+</style>
+</head>
+<body>
+<!-- direction: Promenade / Style 07 Deco geometric -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="m7stripe" width="7" height="10" patternUnits="userSpaceOnUse"><rect width="7" height="10" fill="#f5f2f7"/><rect x="0" width="1.2" height="10" fill="#b5a5d4"/></pattern>
+  <pattern id="m7stripeS" width="7" height="10" patternUnits="userSpaceOnUse"><rect width="7" height="10" fill="#d9d3e3"/><rect x="0" width="1.2" height="10" fill="#9e8cc0"/></pattern>
+  <!-- PENSIVE: seated, 3/4 facing left, chin on fist -->
+  <symbol id="m7-pensive" viewBox="0 0 400 500">
+    <g transform="translate(0,-16)"><!-- torso -->
+    <path d="M86,520 C88,432 104,386 138,362 C166,344 198,336 236,334 C278,336 314,350 336,384 C350,410 356,460 358,520 Z" fill="url(#m7stripe)"/>
+    <path d="M272,338 C312,348 338,374 348,410 C354,440 358,470 358,520 L298,520 C300,440 294,384 272,338 Z" fill="url(#m7stripeS)"/>
+    <!-- neck -->
+    <path d="M214,258 L258,244 L260,330 C244,342 226,342 214,334 Z" fill="#9c6140"/>
+    <path d="M214,300 C228,312 246,310 260,298 L260,330 C244,342 226,342 214,334 Z" fill="#87513a"/>
+    <!-- collar -->
+    <path d="M208,316 L238,352 L218,380 L186,334 Z" fill="#fbf9fc"/>
+    <path d="M266,310 L240,352 L260,374 L290,330 Z" fill="#e4dfea"/>
+    <path d="M212,320 L238,354 L264,314 L260,330 C244,342 226,342 214,334 Z" fill="#87513a"/>
+    </g>
+    <g id="m7-head-pensive">
+      <!-- hair back mass -->
+      <path transform="translate(0,150) scale(1,.84) translate(0,-150)" d="M170,150 C162,126 162,100 174,82 C188,64 214,54 244,56 C278,58 302,80 308,112 C312,142 308,172 298,192 C292,202 282,206 270,204 L264,150 C250,140 232,136 214,136 C196,136 182,142 170,150 Z" fill="#141218"/>
+      <!-- face -->
+      <path d="M262,144 L266,222 C262,244 246,262 222,272 C206,278 188,278 178,272 C170,266 168,258 168,250 L165,238 C159,235 153,229 151,222 C152,215 158,210 162,204 C161,194 160,184 162,174 C163,156 168,146 178,140 C200,138 236,140 262,144 Z" fill="#c38458"/>
+      <path d="M234,144 L264,146 L266,222 C262,244 246,262 222,272 C230,252 236,232 234,212 C231,190 240,166 234,144 Z" fill="#a8694a"/>
+      <!-- sideburn -->
+      <path d="M240,138 L266,140 L270,204 C264,200 260,190 258,176 C256,160 250,148 240,138 Z" fill="#141218"/>
+      <!-- ear -->
+      <ellipse cx="276" cy="200" rx="12" ry="20" fill="#a8694a"/>
+      <path d="M274,188 C282,192 282,208 274,213" fill="none" stroke="#7d4a33" stroke-width="3" stroke-linecap="round"/>
+      <!-- hair front: soft quiff swept up and back -->
+      <g transform="translate(0,150) scale(1,.84) translate(0,-150)">
+      <path d="M168,150 C160,128 162,102 176,84 C190,66 216,58 240,60 C222,70 210,84 204,100 C226,92 254,92 280,104 C252,104 226,112 206,126 C192,132 178,140 168,150 Z" fill="#1c1a22"/>
+      <path d="M178,128 C182,104 196,84 222,70" fill="none" stroke="#45404f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M212,112 C232,100 258,98 286,106" fill="none" stroke="#3b3646" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M236,72 C262,68 286,80 298,100" fill="none" stroke="#3b3646" stroke-width="2.6" stroke-linecap="round"/>
+      </g>
+      <!-- cheek light / nose -->
+      <path d="M151,222 C156,228 162,232 170,230" fill="none" stroke="#8a5236" stroke-width="3" stroke-linecap="round"/>
+      <path d="M162,206 C166,214 168,220 164,226" fill="none" stroke="#d79a6c" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+      <!-- moustache -->
+      <path d="M162,238 C172,234 188,235 200,240 C188,242 174,243 164,243 Z" fill="#2a1d18" opacity=".5"/>
+      <!-- mouth (pensive) -->
+      <path d="M168,252 C176,253 186,253 194,250" fill="none" stroke="#6e3a2a" stroke-width="2.6" stroke-linecap="round"/>
+      <!-- brows -->
+      <path d="M188,162 C200,155 216,153 232,157 L231,163 C216,160 202,161 190,167 Z" fill="#15131a"/>
+      <path d="M158,165 C164,161 172,160 178,161 L177,166 C171,166 165,167 160,169 Z" fill="#15131a"/>
+      <!-- eyes -->
+      <path d="M194,181 C200,176 212,175 222,180" fill="none" stroke="#15131a" stroke-width="2.6" stroke-linecap="round"/>
+      <ellipse cx="202" cy="183" rx="5" ry="3.6" fill="#15131a"/>
+      <path d="M161,182 C164,179 170,178 174,180" fill="none" stroke="#15131a" stroke-width="2.2" stroke-linecap="round"/>
+      <ellipse cx="165" cy="183" rx="3.2" ry="3" fill="#15131a"/>
+      <!-- glasses -->
+      <path d="M236,174 L272,186" stroke="#1b1a20" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="186" y="167" width="52" height="33" rx="6" fill="#ffffff" fill-opacity=".13" stroke="#c9c5cf" stroke-width="2.2"/>
+      <rect x="154" y="168" width="26" height="31" rx="5" fill="#ffffff" fill-opacity=".13" stroke="#c9c5cf" stroke-width="2.2"/>
+      <path d="M186,176 L186,173 Q186,167 192,167 L232,167 Q238,167 238,173 L238,177" fill="none" stroke="#1b1a20" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M154,177 L154,174 Q154,168 160,168 L174,168 Q180,168 180,174 L180,177" fill="none" stroke="#1b1a20" stroke-width="4.5" stroke-linejoin="round"/>
+      <path d="M180,173 Q183,170 186,173" fill="none" stroke="#1b1a20" stroke-width="3"/>
+      <path d="M194,173 L208,194" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- forearm -->
+    <path d="M166,300 L208,300 L270,500 L214,500 Z" fill="#b57650"/>
+    <path d="M192,300 L208,300 L270,500 L246,500 Z" fill="#9c6140"/>
+    <!-- rolled sleeve -->
+    <path d="M196,420 L262,404 L276,452 L208,468 Z" fill="url(#m7stripe)"/>
+    <path d="M198,428 L264,412" stroke="#d5cee0" stroke-width="4"/>
+    <path d="M205,458 L272,442" stroke="#d5cee0" stroke-width="4"/>
+    <!-- fist under chin -->
+    <path d="M164,276 C170,268 184,266 198,268 L214,272 C224,276 226,286 222,296 L216,316 C212,324 204,328 194,326 L176,322 C166,320 160,312 160,302 C156,296 156,286 164,276 Z" fill="#c38458"/>
+    <path d="M196,270 L214,272 C224,276 226,286 222,296 L216,316 C212,324 204,328 196,326 C206,310 208,288 196,270 Z" fill="#a8694a"/>
+    <path d="M162,286 C170,284 176,288 176,294 M160,299 C168,297 176,300 176,307 M163,312 C171,310 178,314 178,320" fill="none" stroke="#8a5236" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M170,272 C182,268 200,270 212,276" fill="none" stroke="#8a5236" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+<g id="m7-head-smile-def"><g >
+      <!-- hair back mass -->
+      <path transform="translate(0,150) scale(1,.84) translate(0,-150)" d="M170,150 C162,126 162,100 174,82 C188,64 214,54 244,56 C278,58 302,80 308,112 C312,142 308,172 298,192 C292,202 282,206 270,204 L264,150 C250,140 232,136 214,136 C196,136 182,142 170,150 Z" fill="#141218"/>
+      <!-- face -->
+      <path d="M262,144 L266,222 C262,244 246,262 222,272 C206,278 188,278 178,272 C170,266 168,258 168,250 L165,238 C159,235 153,229 151,222 C152,215 158,210 162,204 C161,194 160,184 162,174 C163,156 168,146 178,140 C200,138 236,140 262,144 Z" fill="#c38458"/>
+      <path d="M234,144 L264,146 L266,222 C262,244 246,262 222,272 C230,252 236,232 234,212 C231,190 240,166 234,144 Z" fill="#a8694a"/>
+      <!-- sideburn -->
+      <path d="M240,138 L266,140 L270,204 C264,200 260,190 258,176 C256,160 250,148 240,138 Z" fill="#141218"/>
+      <!-- ear -->
+      <ellipse cx="276" cy="200" rx="12" ry="20" fill="#a8694a"/>
+      <path d="M274,188 C282,192 282,208 274,213" fill="none" stroke="#7d4a33" stroke-width="3" stroke-linecap="round"/>
+      <!-- hair front: soft quiff swept up and back -->
+      <g transform="translate(0,150) scale(1,.84) translate(0,-150)">
+      <path d="M168,150 C160,128 162,102 176,84 C190,66 216,58 240,60 C222,70 210,84 204,100 C226,92 254,92 280,104 C252,104 226,112 206,126 C192,132 178,140 168,150 Z" fill="#1c1a22"/>
+      <path d="M178,128 C182,104 196,84 222,70" fill="none" stroke="#45404f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M212,112 C232,100 258,98 286,106" fill="none" stroke="#3b3646" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M236,72 C262,68 286,80 298,100" fill="none" stroke="#3b3646" stroke-width="2.6" stroke-linecap="round"/>
+      </g>
+      <!-- cheek light / nose -->
+      <path d="M151,222 C156,228 162,232 170,230" fill="none" stroke="#8a5236" stroke-width="3" stroke-linecap="round"/>
+      <path d="M162,206 C166,214 168,220 164,226" fill="none" stroke="#d79a6c" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+      <!-- moustache -->
+      <path d="M162,239 C174,235 190,236 202,240 C190,241 176,242 164,242 Z" fill="#2a1d18" opacity=".38"/>
+      <!-- mouth (pensive) -->
+      <path d="M162,245 C176,250 194,249 206,241 C202,254 190,262 178,261 C169,260 163,253 162,245 Z" fill="#5a2a20"/><path d="M163,246 C176,251 194,250 205,242 C203,249 196,254 186,255 C176,256 167,252 163,246 Z" fill="#fbf7f0"/><path d="M170,262 C178,265 190,264 198,258" fill="none" stroke="#a8694a" stroke-width="2" stroke-linecap="round"/><path d="M206,236 C212,240 214,246 212,252" fill="none" stroke="#8a5236" stroke-width="2.4" stroke-linecap="round"/>
+      <!-- brows -->
+      <path d="M188,162 C200,155 216,153 232,157 L231,163 C216,160 202,161 190,167 Z" fill="#15131a"/>
+      <path d="M158,165 C164,161 172,160 178,161 L177,166 C171,166 165,167 160,169 Z" fill="#15131a"/>
+      <!-- eyes -->
+      <path d="M194,181 C200,176 212,175 222,180" fill="none" stroke="#15131a" stroke-width="2.6" stroke-linecap="round"/>
+      <ellipse cx="200" cy="184" rx="4.6" ry="3" fill="#15131a"/><path d="M194,190 C202,193 212,192 220,188" fill="none" stroke="#8a5236" stroke-width="2" stroke-linecap="round"/>
+      <path d="M161,182 C164,179 170,178 174,180" fill="none" stroke="#15131a" stroke-width="2.2" stroke-linecap="round"/>
+      <ellipse cx="165" cy="183" rx="3.2" ry="3" fill="#15131a"/>
+      <!-- glasses -->
+      <path d="M236,174 L272,186" stroke="#1b1a20" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="186" y="167" width="52" height="33" rx="6" fill="#ffffff" fill-opacity=".13" stroke="#c9c5cf" stroke-width="2.2"/>
+      <rect x="154" y="168" width="26" height="31" rx="5" fill="#ffffff" fill-opacity=".13" stroke="#c9c5cf" stroke-width="2.2"/>
+      <path d="M186,176 L186,173 Q186,167 192,167 L232,167 Q238,167 238,173 L238,177" fill="none" stroke="#1b1a20" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M154,177 L154,174 Q154,168 160,168 L174,168 Q180,168 180,174 L180,177" fill="none" stroke="#1b1a20" stroke-width="4.5" stroke-linejoin="round"/>
+      <path d="M180,173 Q183,170 186,173" fill="none" stroke="#1b1a20" stroke-width="3"/>
+      <path d="M194,173 L208,194" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+    </g></g>
+
+  <!-- BACK: standing at the parapet, seen from behind, turning to smile over his shoulder -->
+  <symbol id="m7-back-body" viewBox="0 0 400 600">
+    <path d="M52,600 L58,520 C56,436 68,376 98,344 C126,316 172,304 216,304 C262,304 306,318 332,346 C356,380 366,440 362,520 L368,600 Z" fill="url(#m7stripe)"/>
+    <path d="M240,306 C282,312 314,326 332,346 C356,380 366,440 362,520 L368,600 L262,600 C276,500 272,380 240,306 Z" fill="url(#m7stripeS)" opacity=".85"/>
+    <path d="M58,520 C56,436 68,376 98,344 C108,380 112,460 108,600 L52,600 Z" fill="url(#m7stripeS)" opacity=".7"/>
+    <path d="M106,392 C112,450 112,530 110,600" fill="none" stroke="#cfc6dc" stroke-width="3"/>
+    <path d="M320,392 C316,450 316,530 318,600" fill="none" stroke="#b3a6c6" stroke-width="3"/>
+    <path d="M118,370 C170,384 262,384 312,368" fill="none" stroke="#d5cee0" stroke-width="3"/>
+    <path d="M216,384 L216,600" stroke="#ddd6e6" stroke-width="2.5"/>
+    <!-- neck + collar band -->
+    <path d="M190,262 L228,212 L258,226 L258,304 C236,314 206,314 186,304 Z" fill="#9c6140"/>
+    <path d="M178,296 C202,282 246,280 268,292 L268,312 C246,302 202,304 178,316 Z" fill="#fbf9fc"/>
+    <path d="M178,316 C202,304 246,302 268,312" fill="none" stroke="#d5cee0" stroke-width="3"/>
+  </symbol>
+  <symbol id="m7-back" viewBox="0 0 400 600"><use href="#m7-back-body" width="400" height="600"/><g transform="translate(-30,-6)"><use href="#m7-head-smile-def"/></g></symbol>
+</defs></svg>
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="world" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <clipPath id="seaC"><rect x="-400" y="560" width="2240" height="200"/></clipPath>
+        <pattern id="pin7" width="7" height="10" patternUnits="userSpaceOnUse"><rect width="7" height="10" fill="#f5f2f7"/><rect width="1.2" height="10" fill="#b5a5d4"/></pattern>
+      </defs>
+      <!-- banded sky -->
+      <g id="sky">
+        <rect x="-400" y="-400" width="2240" height="1000" fill="#a8cad3"/>
+        <rect x="-400" y="250" width="2240" height="320" fill="#bcd5d6"/>
+        <rect x="-400" y="370" width="2240" height="200" fill="#d0dfd6"/>
+        <rect x="-400" y="460" width="2240" height="110" fill="#e2e4d2"/>
+        <rect x="-400" y="520" width="2240" height="50" fill="#ece5cf"/>
+      </g>
+      <!-- sun + fan -->
+      <g id="sun" transform="translate(1010 330)">
+        <g id="fan" opacity=".34"></g>
+        <circle r="150" fill="#f3dfa6" opacity=".55"/>
+        <circle r="104" fill="#f6d68a"/>
+        <circle r="70" fill="#f9e3a8"/>
+      </g>
+      <!-- stepped clouds -->
+      <g id="clouds" fill="#eef0e6" opacity=".9">
+        <path d="M0,0 h170 v-18 h-30 v-16 h-60 v16 h-50 v18 Z" transform="translate(380 210)"/>
+        <path d="M0,0 h230 v-22 h-50 v-20 h-80 v20 h-60 v22 Z" transform="translate(1180 150)"/>
+        <path d="M0,0 h130 v-16 h-40 v-14 h-50 v14 h-20 v16 Z" transform="translate(760 270)"/>
+      </g>
+      <!-- the bay: Malabar Hill and the far curve of blocks -->
+      <g id="bay">
+        <path d="M980,560 L1040,548 L1110,532 L1160,514 L1210,500 L1270,488 L1330,470 L1400,462 L1500,456 L1500,560 Z" fill="#8fa7a2"/>
+        <g fill="#7f9895"><rect x="1180" y="470" width="14" height="40"/><rect x="1240" y="446" width="16" height="50"/><rect x="1262" y="458" width="10" height="34"/><rect x="1320" y="430" width="18" height="46"/><rect x="1350" y="440" width="12" height="32"/><rect x="1420" y="418" width="20" height="46"/></g>
+        <g id="necklace" fill="#a9b8b0"></g>
+      </g>
+      <!-- sea -->
+      <rect x="-400" y="560" width="2240" height="240" fill="#2c6d8c"/>
+      <rect x="-400" y="560" width="2240" height="5" fill="#9cc0c6"/>
+      <g clip-path="url(#seaC)"><g id="waves"></g></g>
+      <!-- tetrapods at the foot of the wall -->
+      <g id="tetra"></g>
+      <!-- parapet (beyond him) -->
+      <g id="parapet">
+        <rect x="-400" y="742" width="2240" height="26" fill="#cfc4ad"/>
+        <rect x="-400" y="768" width="2240" height="72" fill="#bdb198"/>
+        <rect x="-400" y="768" width="2240" height="6" fill="#a99d84"/>
+        <rect x="-400" y="840" width="2240" height="80" fill="#d9cfb9"/>
+        <g id="steps" fill="#c9bea6"></g>
+      </g>
+      <!-- Mohit at the parapet -->
+      <g id="mohit" transform="translate(860 230) scale(.98)">
+        <use href="#m7-back-body" width="400" height="600"/>
+        <g id="smile" transform="translate(-30,-6)"><use href="#m7-head-smile-def"/></g>
+        <g id="away">
+          <path d="M190,262 L246,262 L258,304 C236,314 206,314 186,304 Z" fill="#9c6140"/>
+          <path d="M178,296 C202,282 246,280 268,292 L268,312 C246,302 202,304 178,316 Z" fill="#fbf9fc"/>
+          <path d="M178,316 C202,304 246,302 268,312" fill="none" stroke="#d5cee0" stroke-width="3"/>
+          <ellipse cx="150" cy="206" rx="11" ry="20" fill="#a8694a"/>
+          <ellipse cx="286" cy="206" rx="11" ry="20" fill="#9c6140"/>
+          <path d="M138,190 L160,196 M298,190 L276,196" stroke="#1b1a20" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M160,190 C152,130 176,92 218,88 C262,86 290,124 280,192 C276,226 260,258 218,264 C178,262 164,228 160,190 Z" fill="#141218"/>
+          <path d="M168,128 C180,96 206,78 230,78 C254,80 270,92 278,116 C256,100 232,96 210,100 C192,104 178,114 168,128 Z" fill="#1f1c25"/>
+          <g fill="none" stroke="#3b3646" stroke-width="2.6" stroke-linecap="round"><path d="M186,120 C200,108 230,104 256,112"/><path d="M176,160 C196,146 240,144 266,156"/><path d="M182,206 C202,196 236,196 258,206"/></g>
+          <path d="M196,248 C206,256 230,256 242,248" fill="none" stroke="#2a2633" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+      </g>
+    </svg>
+    <div class="copy">
+      <h2>One year in, here's what I shipped</h2>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+    <div class="grain"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const $ = id => document.getElementById(id);
+  // sun fan
+  const fan = $("fan");
+  for (let i = 0; i < 28; i++) {
+    const a0 = (i / 28) * Math.PI * 2, a1 = a0 + Math.PI / 56;
+    fan.insertAdjacentHTML("beforeend", `<path d="M0,0 L${Math.cos(a0) * 420},${Math.sin(a0) * 420} L${Math.cos(a1) * 420},${Math.sin(a1) * 420} Z" fill="#fbf0cf"/>`);
+  }
+  // necklace: little deco blocks along the curve toward Malabar Hill
+  const nk = $("necklace");
+  for (let i = 0; i < 26; i++) {
+    const t = i / 25, x = 620 + t * 420, y = 556 - Math.pow(t, 2.2) * 26, h = 6 + (1 - t) * 5;
+    nk.insertAdjacentHTML("beforeend", `<rect x="${x.toFixed(1)}" y="${(y - h).toFixed(1)}" width="${(12 - t * 5).toFixed(1)}" height="${h.toFixed(1)}"/>`);
+  }
+  // scalloped wave rows
+  const waves = $("waves"), rows = [];
+  const cols = ["#3a7e9b", "#2f7593", "#4a8ca6", "#357a97", "#5797ae"];
+  for (let r = 0; r < 7; r++) {
+    const y = 572 + r * r * 3.4 + r * 6, rad = 6 + r * 3.2, g = document.createElementNS(NS, "g");
+    let d = "";
+    for (let x = -480; x < 1900; x += rad * 2) d += `M${x},${y} A${rad},${rad} 0 0 1 ${x + rad * 2},${y} `;
+    g.innerHTML = `<path d="${d}" fill="none" stroke="${cols[r % 5]}" stroke-width="${1.6 + r * .5}"/>`;
+    waves.appendChild(g); rows.push({ g, sp: (r % 2 ? -1 : 1) * (4 + r * 2.2), w: rad * 2 });
+  }
+  // tetrapods: four legs from a centre, flat lit/shadow faces
+  const tet = $("tetra");
+  const leg = (ang, L, c) => { const a = ang * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a), px = -sa, py = ca;
+    const w0 = 15, w1 = 9, ex = ca * L, ey = sa * L;
+    return `<path d="M${px * w0},${py * w0} L${ex + px * w1},${ey + py * w1} A${w1},${w1} 0 0 0 ${ex - px * w1},${ey - py * w1} L${-px * w0},${-py * w0} Z" fill="${c}"/>`; };
+  const tp = (x, y, s, rot) => `<g transform="translate(${x} ${y}) scale(${s})">
+     ${leg(rot + 90, 40, "#6f685b")}${leg(rot + 210, 40, "#a39b8a")}${leg(rot + 330, 40, "#8a8273")}
+     <circle r="17" fill="#b3ab99"/><circle cx="-3" cy="-3" r="11" fill="#c4bca9"/></g>`;
+  let h = "";
+  for (let i = 0; i < 30; i++) h += tp(-40 + i * 52 + (i % 3) * 8, 690 + (i % 2) * 10, .78 + (i % 3) * .06, (i * 47) % 120);
+  for (let i = 0; i < 26; i++) h += tp(-20 + i * 60 + (i % 2) * 22, 724, 1, (i * 71) % 120);
+  tet.innerHTML = h;
+  const st = $("steps");
+  for (let x = -400; x < 1840; x += 120) st.insertAdjacentHTML("beforeend", `<rect x="${x}" y="774" width="3" height="66"/>`);
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const smile = $("smile"), track = $("track"), sun = $("sun"), away = $("away"), aside = $("aside"), clouds = $("clouds"), mohit = $("mohit");
+  let cur = 0, t0 = performance.now();
+  const clamp = v => Math.min(1, Math.max(0, v));
+  const sm = t => t * t * (3 - 2 * t);
+  function layout() {
+    const mob = innerWidth < 700;
+    mohit.setAttribute("transform", mob ? "translate(547 420) scale(.8)" : "translate(820 318) scale(1)");
+    sun.dataset.x = mob ? 735 : 1010; sun.dataset.y = mob ? 470 : 330; sun.dataset.k = mob ? .62 : 1;
+  }
+  addEventListener("resize", layout); layout();
+  function frame(now) {
+    const r = track.getBoundingClientRect();
+    const target = clamp(-r.top / (track.offsetHeight - innerHeight));
+    cur += (target - cur) * (reduce ? 1 : .1);
+    const turn = sm(clamp((cur - .18) / .32));
+    away.style.opacity = 1 - turn;
+    away.setAttribute("transform", `translate(${-8 * turn} 0)`);
+    smile.style.opacity = turn; smile.setAttribute("transform", `translate(${-30 + 8 * (1 - turn)} -6)`);
+    sun.setAttribute("transform", `translate(${sun.dataset.x} ${+sun.dataset.y + cur * 70}) scale(${sun.dataset.k})`);
+    const a = sm(clamp((cur - .55) / .25));
+    aside.style.opacity = a; aside.style.transform = `translateY(${14 * (1 - a)}px)`;
+    if (!reduce) {
+      const t = (now - t0) / 1000;
+      rows.forEach(o => o.g.setAttribute("transform", `translate(${((t * o.sp) % o.w).toFixed(2)} 0)`));
+      $("fan").setAttribute("transform", `rotate(${t * 1.5})`);
+      [...clouds.children].forEach((c, i) => { const b = [380, 1180, 760][i], y = [210, 150, 270][i]; const x = ((b + t * (5 + i * 2) + 400) % 2240) - 400; c.setAttribute("transform", `translate(${x.toFixed(1)} ${y})`); c.style.opacity = innerWidth < 700 ? 0 : clamp((x - 640) / 180); });
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

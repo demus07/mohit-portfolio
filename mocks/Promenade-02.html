@@ -1,0 +1,291 @@
+<!-- Direction 02: Tetrapods — backlit concrete armour at the foot of the Marine Drive wall, the afternoon sea beyond; scrolling brings in one swell that breaks into luminous spray -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promenade, tetrapods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#efe8da; --ink:#1c2a33; --sea:#2c6d8c; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:#e9dfcb; color:var(--ink); }
+  body { font-family:"Instrument Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .scroller { height:340vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; }
+  svg.scene { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .grain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:multiply; opacity:.55; }
+  .copy { position:absolute; left:6.2vw; top:10.5vh; max-width:600px; z-index:5; }
+  h1 { font-family:"Instrument Serif",serif; font-weight:400; font-size:clamp(44px,5.2vw,84px); line-height:.98; letter-spacing:-.012em; text-wrap:balance; }
+  h1 em { font-style:italic; color:#2c6d8c; }
+  .line { margin-top:26px; font-size:clamp(16px,1.2vw,18.5px); line-height:1.55; max-width:36ch; color:#2b3940; }
+  .aside { margin-top:20px; font-family:"Instrument Serif",serif; font-style:italic; font-size:clamp(20px,1.6vw,25px); line-height:1.3; max-width:34ch; color:#3f4d55; opacity:0; transform:translateY(12px); }
+  @media (max-width:700px){
+    .copy { left:20px; right:20px; top:52px; }
+    h1 { font-size:44px; }
+    .line { margin-top:14px; font-size:16px; }
+    .aside { margin-top:12px; font-size:19px; }
+  }
+</style>
+</head>
+<body>
+<div class="scroller" id="scroller">
+  <div class="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#dcd5c4"/><stop offset=".6" stop-color="#ece1c9"/><stop offset="1" stop-color="#f6e7c7"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx="1060" cy="250" r="560" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fffbef"/><stop offset=".08" stop-color="#fff3d6" stop-opacity=".95"/><stop offset=".35" stop-color="#f7dfb0" stop-opacity=".45"/><stop offset="1" stop-color="#f1d8a8" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#9db3b2"/><stop offset=".1" stop-color="#6f9aa6"/><stop offset=".5" stop-color="#3a7891"/><stop offset="1" stop-color="#245a73"/>
+        </linearGradient>
+        <radialGradient id="glare" cx="1060" cy="470" r="420" gradientTransform="translate(1060 470) scale(.55 1) translate(-1060 -470)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff6dd" stop-opacity=".95"/><stop offset=".4" stop-color="#f9e6bb" stop-opacity=".35"/><stop offset="1" stop-color="#f9e6bb" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="sprayFill" cx=".5" cy=".75" r=".75">
+          <stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#fdf6e6"/><stop offset="1" stop-color="#f6e2b8"/>
+        </radialGradient>
+        <filter id="foamy" x="-30%" y="-30%" width="160%" height="160%">
+          <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="3" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="22" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feGaussianBlur in="d" stdDeviation="2.2"/>
+        </filter>
+        <filter id="softFoam" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="1.6"/></filter>
+        <linearGradient id="pileShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c3a49" stop-opacity="0"/><stop offset=".25" stop-color="#18303b" stop-opacity=".85"/><stop offset="1" stop-color="#121e24"/></linearGradient>
+        <linearGradient id="shallow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b6681" stop-opacity="0"/><stop offset=".08" stop-color="#2b6681" stop-opacity=".75"/><stop offset=".3" stop-color="#245a73" stop-opacity=".9"/></linearGradient>
+        <filter id="mist" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="concrete" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="11" result="n"/>
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.25" result="speck"/>
+          <feComposite in="speck" in2="SourceAlpha" operator="in" result="s2"/>
+          <feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="2" seed="5" result="m"/>
+          <feColorMatrix in="m" type="matrix" values="0 0 0 0 .12  0 0 0 0 .13  0 0 0 0 .12  0 0 0 -1.6 .75" result="stain"/>
+          <feComposite in="stain" in2="SourceAlpha" operator="in" result="st2"/>
+          <feComponentTransfer in="s2" result="s3"><feFuncA type="linear" slope=".35"/></feComponentTransfer><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="st2"/><feMergeNode in="s3"/></feMerge>
+        </filter>
+        <linearGradient id="foamLine" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".2" stop-color="#fffaf0" stop-opacity=".9"/><stop offset=".8" stop-color="#fffaf0" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <rect y="-600" width="1440" height="1500" fill="#dcd5c4"/><rect width="1440" height="900" fill="url(#sky)"/>
+      <rect y="-600" width="1440" height="1500" fill="url(#sunGlow)"/>
+      <circle cx="1060" cy="250" r="34" fill="#fffcf2" opacity=".9"/>
+      <!-- a ship at anchor, far out -->
+      <g opacity=".45" fill="#6d7778" transform="translate(260 0)"><path d="M330 470 L330 463 L398 463 L404 458 L410 458 L410 463 L420 463 L416 470 Z"/><rect x="352" y="456" width="10" height="7"/></g>
+      <rect y="470" width="1440" height="430" fill="url(#seaG)"/>
+      <rect y="470" width="1440" height="430" fill="url(#glare)"/>
+      <g id="glints" fill="#fff7e2"></g>
+
+      <!-- the swell that comes in on scroll -->
+      <g id="swell" opacity="0">
+        <path id="swellBody" d="" fill="#21566e" opacity=".55"/>
+        <path id="swellCrest" d="" fill="none" stroke="url(#foamLine)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <!-- spray, behind the far row -->
+      <g id="sprayWrap" opacity="0">
+        <g id="spray" filter="url(#foamy)" fill="url(#sprayFill)"></g>
+        <g id="sprayMist" filter="url(#mist)" fill="#fff6e0" opacity=".7"></g>
+        <g id="drops" fill="#fffaf0"></g>
+      </g>
+
+      <g id="farRow" filter="url(#concrete)"></g>
+      <!-- sea water around the far row's feet -->
+      <rect y="612" width="1440" height="288" fill="url(#shallow)"/>
+      <g id="foam" fill="#fffaf0" filter="url(#softFoam)"></g>
+      <!-- deep shadow inside the pile -->
+      <path d="M0 690 C200 670 420 684 640 672 S1040 676 1440 668 L1440 900 L0 900 Z" fill="url(#pileShade)"/>
+      <g id="midRow" filter="url(#concrete)"></g>
+      <g id="nearRow" filter="url(#concrete)"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .32  0 0 0 0 .27  0 0 0 .24 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+
+    <div class="copy">
+      <h1>One year in,<br><em>here's what I shipped</em></h1>
+      <p class="line">An LLM gateway that replaced OpenRouter. A terminal tool 500+ developers open daily. A live auction SaaS I built alone.</p>
+      <p class="aside" id="aside">9.45 CGPA taught me less than shipping did. Still early. Still building.</p>
+    </div>
+  </div>
+</div>
+<!-- direction: Promenade 02, tetrapods and one breaking wave -->
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = id => document.getElementById(id);
+  const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
+  const range = (p,a,b)=>clamp((p-a)/(b-a),0,1);
+  const easeOut = t => 1-Math.pow(1-t,3);
+  const easeIO = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  let seed = 21; const rnd = () => (seed = (seed*16807)%2147483647)/2147483647;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS,tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+  const defs = document.querySelector('#scene defs');
+  const mix = (a,b,t)=>{ const pa=a.match(/\w\w/g).map(h=>parseInt(h,16)), pb=b.match(/\w\w/g).map(h=>parseInt(h,16)); return '#'+pa.map((v,i)=>Math.round(v+(pb[i]-v)*t).toString(16).padStart(2,'0')).join(''); };
+
+  // ---- tetrapods ----
+  const DIRS = [[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]].map(v=>v.map(c=>c/Math.sqrt(3)));
+  function rotM(a,b,c){
+    const ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
+    return [[cb*cc, -cb*sc, sb],[sa*sb*cc+ca*sc, -sa*sb*sc+ca*cc, -sa*cb],[-ca*sb*cc+sa*sc, ca*sb*sc+sa*cc, ca*cb]];
+  }
+  const mul = (m,v)=>[m[0][0]*v[0]+m[0][1]*v[1]+m[0][2]*v[2], m[1][0]*v[0]+m[1][1]*v[1]+m[1][2]*v[2], m[2][0]*v[0]+m[2][1]*v[1]+m[2][2]*v[2]];
+  let gid = 0;
+  function tetrapod(parent, cx, cy, L, haze, wet){
+    let legs;
+    if (rnd() < .72){
+      // resting pose: one leg up, three on the ground, a little tilt
+      const yaw = rnd()*6.28, h = Math.sqrt(8)/3;
+      legs = [[0,-1,0]].concat([0,1,2].map(k=>[h*Math.cos(yaw+k*2.094), 1/3, h*Math.sin(yaw+k*2.094)]));
+      const tm = rotM((rnd()-.5)*.6, 0, (rnd()-.5)*.6); legs = legs.map(d=>mul(tm,d));
+    } else { const m = rotM(rnd()*6.28, rnd()*6.28, rnd()*6.28); legs = DIRS.map(d=>mul(m,d)); }
+    // camera looks down on the pile a little
+    const pa = .38, cp = Math.cos(pa), sp = Math.sin(pa);
+    legs = legs.map(([x,y,z])=>[x, y*cp - z*sp, z*cp + y*sp]);
+    // keep it sitting: make sure one leg points roughly down-ish for weight
+    const r0 = L*.48, r1 = L*.31;
+    const base = mix(mix('#32393c','#262c2f',wet), '#c4c2b4', haze);
+    const top  = mix(mix('#5f6562','#4b5252',wet), '#d6d0bd', haze);
+    const low  = mix(mix('#1f2527','#171c1f',wet), '#b9b8ad', haze);
+    const rimC = mix('#ffe2a8','#f7ecd6', haze);
+    const g = el('g',{},parent);
+    const order = legs.map((d,i)=>({d,i})).sort((a,b)=>b.d[2]-a.d[2]); // far (z+) first
+    const drawLeg = (d) => {
+      const dx=d[0]*L, dy=d[1]*L, len=Math.hypot(d[0],d[1])||1e-3;
+      const ux=d[0]/len, uy=d[1]/len, nx=-uy, ny=ux;
+      const ax=cx, ay=cy, bx=cx+dx, by=cy+dy;
+      // gradient across the leg: upper side catches sky bounce
+      const id = 'tg'+(gid++);
+      const upSign = ny<0 ? 1 : -1; // which side of n faces up
+      const lg = el('linearGradient',{id, gradientUnits:'userSpaceOnUse', x1:ax-nx*r0*upSign, y1:ay-ny*r0*upSign, x2:ax+nx*r0*upSign, y2:ay+ny*r0*upSign},defs);
+      el('stop',{offset:0,'stop-color':low},lg); el('stop',{offset:.55,'stop-color':base},lg); el('stop',{offset:.92,'stop-color':top},lg); el('stop',{offset:1,'stop-color':rimC},lg);
+      const capRy = r1*Math.abs(d[2]);
+      const ang = Math.atan2(ny,nx)*180/Math.PI;
+      const quad = `M${ax+nx*r0} ${ay+ny*r0} L${bx+nx*r1} ${by+ny*r1} L${bx-nx*r1} ${by-ny*r1} L${ax-nx*r0} ${ay-ny*r0} Z`;
+      if (d[2] > 0){
+        el('ellipse',{cx:bx,cy:by,rx:r1,ry:Math.max(capRy,.5),transform:`rotate(${ang} ${bx} ${by})`,fill:`url(#${id})`},g);
+        el('path',{d:quad,fill:`url(#${id})`},g);
+      } else {
+        el('path',{d:quad,fill:`url(#${id})`},g);
+        // visible flat end face, in shade with a little sky on its top
+        el('ellipse',{cx:bx,cy:by,rx:r1,ry:Math.max(capRy,.5),transform:`rotate(${ang} ${bx} ${by})`,fill:mix(base,top,.35)},g);
+        el('ellipse',{cx:bx,cy:by,rx:r1,ry:Math.max(capRy,.5),transform:`rotate(${ang} ${bx} ${by})`,fill:'none',stroke:rimC,'stroke-width':Math.max(1,L*.012),'stroke-dasharray':`${r1*1.4} ${r1*10}`,'stroke-dashoffset':r1*.3*upSign,opacity:.55*(1-haze*.5)},g);
+      }
+      // rim light along the upper silhouette edge (sun behind, over the sea)
+      const ex1 = upSign>0 ? [ax+nx*r0, ay+ny*r0, bx+nx*r1, by+ny*r1] : [ax-nx*r0, ay-ny*r0, bx-nx*r1, by-ny*r1];
+      const upness = Math.abs(ny);
+      el('path',{d:`M${ex1[0]} ${ex1[1]} L${ex1[2]} ${ex1[3]}`,stroke:rimC,'stroke-width':Math.max(1.4,L*.03),'stroke-linecap':'round',opacity:(.25+.65*upness)*(1-haze*.4),fill:'none'},g);
+    };
+    order.filter(o=>o.d[2]>0).forEach(o=>drawLeg(o.d));
+    // central knuckle
+    el('circle',{cx,cy,r:r0*1.08,fill:mix(base,top,.25)},g);
+    el('path',{d:`M${cx-r0*.9} ${cy-r0*.5} A${r0*1.08} ${r0*1.08} 0 0 1 ${cx+r0*.9} ${cy-r0*.5}`,stroke:rimC,'stroke-width':Math.max(1,L*.016),fill:'none',opacity:.45*(1-haze*.4)},g);
+    order.filter(o=>o.d[2]<=0).forEach(o=>drawLeg(o.d));
+    // waterline darkening for the wet ones
+    return g;
+  }
+
+  // rows: far (sitting in the sea), mid, near (cut by the frame)
+  const far = $('farRow'), mid = $('midRow'), near = $('nearRow');
+  const items = [];
+  for (let x=-40; x<1500; x+= 30+rnd()*20) items.push({row:far, x, y:606+rnd()*18, L:20+rnd()*9, haze:.42, wet:.5});
+  for (let x=-60; x<1540; x+= 70+rnd()*40) items.push({row:mid, x, y:668+rnd()*26, L:38+rnd()*12, haze:.2, wet:.25});
+  for (let x=-20; x<1540; x+= 96+rnd()*50) items.push({row:mid, x, y:730+rnd()*30, L:54+rnd()*14, haze:.1, wet:.15});
+  const nearSpots = [[40,880,120],[330,900,104],[600,880,96],[820,905,110],[1060,840,150],[1330,890,124]];
+  nearSpots.forEach(([x,y,L])=>items.push({row:near, x:x+rnd()*20, y, L, haze:0, wet:.05}));
+  [far,mid,near].forEach(row=>items.filter(i=>i.row===row).sort((a,b)=>a.y-b.y).forEach(i=>tetrapod(row,i.x,i.y,i.L,i.haze,i.wet)));
+
+  // foam washing round the far row
+  const foam = $('foam'); const foams = [];
+  for (let i=0;i<26;i++){
+    const x = rnd()*1440, y = 622+rnd()*14, w = 14+rnd()*40;
+    const e = el('ellipse',{cx:x,cy:y,rx:w,ry:1+rnd()*1.6,opacity:0},foam);
+    foams.push({e, ph:rnd()*6.28, sp:.5+rnd()*.6});
+  }
+
+  // sea glints
+  const gl=[]; const glints=$('glints');
+  for (let i=0;i<140;i++){
+    const y = 474 + Math.pow(rnd(),1.4)*170, near = (y-470)/170;
+    const x = 1060 + (rnd()-.5)*(180 + near*520);
+    const w = 3+near*26*rnd();
+    const r = el('rect',{x,y,width:w,height:.8+near*1.5},glints);
+    const base = .25+.7*Math.max(0,1-Math.abs(x-1060)/(160+near*300));
+    gl.push({r,base,ph:rnd()*6.28,sp:.5+rnd()*1.2});
+  }
+
+  // spray plume: puffs arranged as a column that leans with the wind
+  const spray = $('spray'), mist = $('sprayMist'), drops = $('drops');
+  const SX = 1010, SY = 612;
+  for (let i=0;i<140;i++){
+    const th = -Math.PI/2 + (rnd()-.42)*1.25;            // fan, leaning with the onshore wind
+    const R = 190 + rnd()*150;
+    const r = R*Math.sqrt(rnd());
+    const x = SX + Math.cos(th)*r*1.1, y = SY + Math.sin(th)*r;
+    el('circle',{cx:x,cy:y,r:(6+rnd()*18)*(1-r/R*.45)},spray);
+  }
+
+  for (let i=0;i<5;i++) el('ellipse',{cx:SX+20+(rnd()-.5)*200, cy:SY-80-rnd()*140, rx:50+rnd()*50, ry:30+rnd()*40},mist);
+  const dropList=[];
+  for (let i=0;i<90;i++){
+    const a = -Math.PI/2 + (rnd()-.4)*1.3, v = 220+rnd()*260;
+    const c = el('circle',{r:1+rnd()*2.6, cx:SX, cy:SY},drops);
+    dropList.push({c, vx:Math.cos(a)*v*.7, vy:Math.sin(a)*v, x0:SX+(rnd()-.5)*120});
+  }
+
+  const swell=$('swell'), sb=$('swellBody'), sc=$('swellCrest'), sprayWrap=$('sprayWrap'), sprayG=$('spray');
+  function drawSwell(k){
+    // k 0..1 travels from the horizon to the far row; grows as it shoals
+    const y = 478 + easeIO(k)*130, amp = 3 + k*18, thick = 4 + k*26;
+    const x0 = 520 - k*200, x1 = 1440;
+    let d = `M${x0} ${y}`, c = `M${x0} ${y}`;
+    for (let x=x0; x<=x1; x+=40){ const yy = y - Math.sin((x-x0)/(x1-x0)*Math.PI)*amp - Math.sin(x*.02)*2; d+=` L${x} ${yy}`; c+=` L${x} ${yy}`; }
+    d += ` L${x1} ${y+thick} L${x0} ${y+thick*.3} Z`;
+    sb.setAttribute('d',d); sc.setAttribute('d',c); sc.setAttribute('stroke-width', 1.5+k*4);
+  }
+
+  function frame(){
+    const s=$('scene'), ar = innerWidth/innerHeight;
+    if (ar < .9){ const w = 900*ar*1.3, h = 900*1.3; s.setAttribute('viewBox', `${1010-w/2} ${900-h} ${w} ${h}`); s.setAttribute('preserveAspectRatio','xMidYMax slice'); }
+    else { s.setAttribute('viewBox','0 0 1440 900'); s.setAttribute('preserveAspectRatio','xMidYMid slice'); }
+  }
+  frame(); addEventListener('resize',frame);
+
+  const scr=$('scroller'); let target=0, cur=0;
+  const read=()=>{ const r=scr.getBoundingClientRect(); target=clamp(-r.top/(r.height-innerHeight),0,1); };
+  addEventListener('scroll',read,{passive:true}); read(); cur=target;
+  const aside=$('aside'); const t0=performance.now();
+  function tick(now){
+    cur += (target-cur)*.085;
+    const p=cur, t = reduce?0:(now-t0)/1000;
+    // swell 0.08 -> 0.44
+    const k = range(p,.08,.44);
+    swell.setAttribute('opacity', (k>0 && k<1 ? Math.min(1,k*5)*(1-range(p,.42,.46)) : 0).toFixed(3));
+    if (k>0 && k<1) drawSwell(k);
+    // spray 0.42 -> 0.95
+    const s = range(p,.42,.62), fade = range(p,.66,.96);
+    sprayWrap.setAttribute('opacity', (s>0 ? Math.min(1,s*4)*(1-fade*.92) : 0).toFixed(3));
+    const rise = easeOut(s);
+    sprayG.setAttribute('transform', `translate(${SX} ${SY + fade*-30}) scale(${(.55+rise*.45).toFixed(3)} ${(rise).toFixed(3)}) translate(${-SX} ${-SY})`);
+    mist.setAttribute('transform', `translate(${fade*30} ${-fade*40}) translate(${SX} ${SY}) scale(${(.4+rise*.6).toFixed(3)}) translate(${-SX} ${-SY})`);
+    const tau = range(p,.43,.8)*1.6;
+    for (const d of dropList){
+      const x = d.x0 + d.vx*tau*.5, y = SY + d.vy*tau + 300*tau*tau;
+      d.c.setAttribute('cx',x.toFixed(1)); d.c.setAttribute('cy',Math.min(y,SY).toFixed(1));
+    }
+    // ambient
+    for (const g of gl) g.r.setAttribute('opacity',(g.base*(.5+.5*Math.sin(t*g.sp+g.ph))).toFixed(3));
+    for (const f of foams){ const v = Math.sin(t*f.sp+f.ph); f.e.setAttribute('opacity', (Math.max(0,v)*.55 + (s>0&&s<1? s*(1-s)*1.6:0)).toFixed(3)); }
+    const a = range(p,.8,.95); aside.style.opacity=a.toFixed(3); aside.style.transform=`translateY(${(1-a)*12}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

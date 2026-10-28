@@ -1,0 +1,301 @@
+<!-- Direction 07: Wires and sky — looking up from the Churchgate platform at catenary wires, a snagged kite and pigeons against a pink dusk; scroll tilts the camera down past the pantograph to him at the window. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2340;--paper:#efe8da;--sodium:#f2a145;--sea:#2c6d8c}
+*{box-sizing:border-box}
+html,body{margin:0;background:#f1b6a6;color:var(--ink)}
+body{font-family:"Work Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:440vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.22;mix-blend-mode:multiply}
+.copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,104px);top:clamp(32px,10vh,108px);width:min(31rem,38vw)}
+h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(56px,7vw,120px);line-height:.9;letter-spacing:-.01em;margin:0 0 .34em}
+.line{font-size:clamp(16px,1.18vw,19px);line-height:1.6;max-width:40ch;margin:0 0 1.5em;color:rgba(29,35,64,.86)}
+.cta{font-size:clamp(16px,1.18vw,19px);font-weight:500;color:#7a2f3a;text-decoration:none;display:inline-flex;gap:.5em;align-items:baseline;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 1.5px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1.5px}.cta:hover span{transform:translateX(6px)}
+.note{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(24px,2vw,32px);line-height:1.25;max-width:19ch;margin:2em 0 0;opacity:0;transform:translateY(14px)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:26px;width:auto}
+  h1{font-size:54px}
+  .line{font-size:16px;margin-bottom:1em}
+  .note{font-size:22px;margin-top:.9em;max-width:26ch}
+}
+</style>
+</head>
+<body>
+<!-- direction: Opening 07 / Wires and sky -->
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="world" viewBox="0 -1250 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="-1700" x2="0" y2="300" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6e74a8"/><stop offset=".3" stop-color="#b393b8"/><stop offset=".58" stop-color="#eaa3a4"/><stop offset=".82" stop-color="#f6bc9b"/><stop offset="1" stop-color="#f9d6ab"/>
+        </linearGradient>
+        <radialGradient id="sun" cx="1250" cy="-120" r="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff0c8" stop-opacity=".9"/><stop offset=".3" stop-color="#ffd2a0" stop-opacity=".45"/><stop offset="1" stop-color="#ffd2a0" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="body" x1="0" y1="-240" x2="0" y2="240" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#f8eee8"/><stop offset=".6" stop-color="#eaddd9"/><stop offset="1" stop-color="#d6c6c8"/>
+        </linearGradient>
+        <linearGradient id="bodyLight" x1="0" x2="1">
+          <stop offset="0" stop-color="#8a7aa8" stop-opacity=".16"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#ffcf9a" stop-opacity=".22"/>
+        </linearGradient>
+        <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#cfc1c8"/><stop offset="1" stop-color="#a99aa8"/>
+        </linearGradient>
+        <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e6c3c4" stop-opacity=".5"/><stop offset=".35" stop-color="#3d4566" stop-opacity=".18"/><stop offset="1" stop-color="#1a2038" stop-opacity=".1"/>
+        </linearGradient>
+        <linearGradient id="interior" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d8dfe0"/><stop offset=".3" stop-color="#a8b4bd"/><stop offset="1" stop-color="#58637a"/>
+        </linearGradient>
+        <pattern id="pin" width="5" height="40" patternUnits="userSpaceOnUse">
+          <rect width="5" height="40" fill="#f1edf5"/><rect x="2" width=".7" height="40" fill="#a597cf" opacity=".6"/>
+        </pattern>
+        <linearGradient id="shirtShade" x1="0" x2="1">
+          <stop offset="0" stop-color="#ffc49a" stop-opacity=".2"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#3a3560" stop-opacity=".38"/>
+        </linearGradient>
+        <linearGradient id="skinG" x1="0" x2="1">
+          <stop offset="0" stop-color="#e3a77c"/><stop offset=".6" stop-color="#bf8460"/><stop offset="1" stop-color="#8b5c47"/>
+        </linearGradient>
+        <radialGradient id="warmPatch"><stop offset="0" stop-color="#ffc58f" stop-opacity=".35"/><stop offset="1" stop-color="#ffc58f" stop-opacity="0"/></radialGradient>
+        <filter id="cloudBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="grainF"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .5  0 0 0 .9 0"/></filter>
+        <clipPath id="winClip"><rect x="820" y="-62" width="360" height="132" rx="12"/></clipPath>
+
+        <g id="mohit">
+          <path fill="url(#pin)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="url(#shirtShade)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="#8a5c45" d="M210,166 L242,164 L246,206 L212,212Z"/>
+          <path fill="#f6f3f9" d="M204,206 C214,198 234,195 250,200 L254,216 C238,209 220,211 209,224Z"/>
+          <path fill="url(#skinG)" d="M216,74 C250,70 274,94 272,124 C271,148 262,166 246,178 C236,186 222,190 210,192 L186,192 C178,188 175,182 174,176 C170,174 169,170 171,166 C167,164 166,160 169,157 C165,155 162,152 164,148 L159,143 C156,140 159,137 163,135 L166,126 C165,112 168,98 178,88 C188,78 202,75 216,74Z"/>
+          <g class="hairg" transform="translate(0 21.6) scale(1 .8)"><path fill="#161211" d="M171,108 C165,98 164,84 168,70 C166,60 170,50 178,44 L176,38 C186,34 196,30 208,32 L206,26 C222,26 238,32 250,42 C264,52 272,66 274,84 C278,100 276,122 270,140 C268,148 266,154 262,158 C258,140 254,128 248,122 C240,114 230,110 220,108 C208,104 196,102 186,104 C180,105 175,106 171,108Z"/>
+          <path fill="#2f2622" d="M172,94 C168,70 178,48 200,40 C222,34 244,42 258,58 C238,50 216,50 198,58 C184,66 178,80 176,98Z"/>
+          <path fill="none" stroke="#4a3d36" stroke-width="1.3" stroke-linecap="round" d="M178,64 C190,46 214,38 240,44 M180,80 C196,60 226,54 256,64 M194,98 C212,82 240,80 268,92 M200,40 C212,34 226,34 238,38"/></g>
+          <ellipse cx="243" cy="134" rx="7" ry="11.5" fill="#a26d50"/>
+          <path d="M240,129 C244,127 247,132 244,138" fill="none" stroke="#6d4636" stroke-width="1.6"/>
+          <path d="M165,116 C172,112 182,111 190,113" fill="none" stroke="#1b1513" stroke-width="3" stroke-linecap="round"/>
+          <path d="M172,129 C175,128 178,128 182,130" fill="none" stroke="#2a1d17" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M166,160 L172,161" stroke="#6b3c2d" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M163,120 L190,118 C192,126 192,134 189,141 L168,142 C164,135 163,127 163,120Z" fill="rgba(255,220,210,.18)" stroke="#2b2724" stroke-width="2.3"/>
+          <path d="M190,122 L244,127" stroke="#2b2724" stroke-width="2.2"/>
+          <path d="M168,124 L178,123" stroke="#fff" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"/>
+          <path fill="url(#pin)" d="M236,232 C262,246 266,292 244,336 L226,372 C214,384 192,382 188,366 C186,344 200,300 212,262 C218,246 224,236 236,232Z"/>
+          <path fill="#3a3560" opacity=".22" d="M236,232 C262,246 266,292 244,336 L226,372 C240,330 250,280 236,232Z"/>
+          <path fill="url(#skinG)" d="M190,364 C186,320 180,260 176,214 L202,210 C206,260 212,320 214,362Z"/>
+          <path fill="url(#pin)" d="M185,326 C196,322 208,322 217,324 L219,350 C208,349 196,351 186,353Z"/>
+          <path fill="url(#skinG)" d="M166,198 C166,188 174,183 186,184 L204,188 C211,193 210,206 205,214 L182,218 C172,216 166,208 166,198Z"/>
+          <path d="M171,192 C170,198 170,204 173,210 M179,188 C178,196 178,206 181,214" fill="none" stroke="#7c5340" stroke-width="1.2" opacity=".7"/>
+        </g>
+      </defs>
+
+      <!-- sky -->
+      <rect x="-1200" y="-2600" width="3840" height="3400" fill="url(#sky)"/>
+      <rect x="-1200" y="-2600" width="3840" height="3400" fill="url(#sun)"/>
+      <!-- clouds: painted strokes, parallax slower than the wires -->
+      <g id="clouds" filter="url(#cloudBlur)">
+        <path d="M-200,-1180 C120,-1210 420,-1190 760,-1160 C520,-1150 220,-1150 -200,-1160Z" fill="#f6c2b6" opacity=".7"/>
+        <path d="M600,-980 C900,-1010 1300,-1000 1700,-960 C1300,-950 980,-955 600,-968Z" fill="#fbd0b4" opacity=".75"/>
+        <path d="M-100,-760 C300,-790 700,-780 980,-750 C640,-742 300,-744 -100,-748Z" fill="#f8c0aa" opacity=".6"/>
+        <path d="M900,-560 C1100,-580 1400,-575 1700,-548 C1400,-540 1160,-542 900,-550Z" fill="#ffe0bd" opacity=".7"/>
+        <path d="M-200,-330 C200,-360 520,-350 820,-320 C500,-312 160,-316 -200,-320Z" fill="#ffd9b6" opacity=".6"/>
+      </g>
+
+      <!-- distant birds drifting -->
+      <g id="flock" fill="none" stroke="#3a2f4a" stroke-width="2.2" stroke-linecap="round" opacity=".55"></g>
+
+      <!-- the far track's catenary, paler with distance -->
+      <g stroke="#7b6d8f" stroke-width="1.6" fill="none" opacity=".6">
+        <path d="M-200,-880 Q720,-760 1640,-880"/>
+        <path d="M-200,-800 H1640"/>
+        <path id="farDroppers" stroke-width="1"/>
+        <rect x="1080" y="-1080" width="12" height="900" fill="#8f7f9e" stroke="none"/>
+        <path d="M1086,-940 H880 M1086,-900 L960,-800" stroke-width="3"/>
+      </g>
+
+      <!-- OHE masts with cantilevers (behind the train) -->
+      <g fill="#2c2b44">
+        <rect x="52" y="-980" width="18" height="760"/><rect x="46" y="-990" width="30" height="12"/>
+        <rect x="1360" y="-980" width="18" height="760"/><rect x="1354" y="-990" width="30" height="12"/>
+      </g>
+      <g stroke="#2c2b44" fill="none" stroke-linecap="round">
+        <path d="M70,-640 H330 M70,-560 L330,-640 M300,-640 L300,-430 M300,-470 L360,-430" stroke-width="5"/>
+        <path d="M1360,-640 H1100 M1360,-560 L1100,-640 M1130,-640 L1130,-430 M1130,-470 L1070,-430" stroke-width="5"/>
+      </g>
+      <!-- insulators: brown discs -->
+      <g fill="#7a4b3a">
+        <g id="ins"><ellipse cx="0" cy="0" rx="4" ry="9"/><ellipse cx="7" cy="0" rx="4" ry="9"/><ellipse cx="14" cy="0" rx="4" ry="9"/><ellipse cx="21" cy="0" rx="4" ry="9"/></g>
+        <use href="#ins" transform="translate(92 -640)"/><use href="#ins" transform="translate(1316 -640)"/>
+        <use href="#ins" transform="translate(92 -590) rotate(-17)"/><use href="#ins" transform="translate(1316 -580) rotate(17)"/>
+      </g>
+
+      <!-- near catenary: messenger + contact wire, droppers -->
+      <g stroke="#26243b" fill="none">
+        <path d="M-300,-660 Q-120,-640 60,-640 Q720,-500 1370,-640 Q1550,-640 1740,-660" stroke-width="3"/>
+        <path d="M-300,-430 H1740" stroke-width="3.2"/>
+        <path id="droppers" stroke-width="1.4"/>
+      </g>
+      <!-- kite snagged on the contact wire, tail moving -->
+      <g id="kite" transform="translate(960 -800)">
+        <path d="M0,0 L-34,40 L0,96 L34,40Z" fill="#c4432f"/>
+        <path d="M0,0 L-34,40 L0,96Z" fill="#a8321f"/>
+        <path d="M0,0 V96 M-34,40 Q0,30 34,40" stroke="#5c1d14" stroke-width="1.5" fill="none"/>
+        <path id="kiteTail" d="M0,96 C10,130 -12,160 4,200" stroke="#e2b23a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M0,-2 L-3,-6 M0,-2 L3,-6" stroke="#26243b" stroke-width="1.5"/>
+      </g>
+      <!-- pigeons on the messenger wire -->
+      <g id="pigeons" fill="#4a4258">
+        <g data-x="1236"><path d="M0,0 C4,-14 16,-20 26,-14 C32,-20 38,-18 38,-12 C34,-10 30,-6 26,-2 C20,4 6,6 -6,8 Z"/><circle cx="34" cy="-15" r="1.2" fill="#f2a145"/><path d="M12,6 L12,12 M20,4 L20,12" stroke="#4a4258" stroke-width="1.6"/></g>
+        <g data-x="1296" data-flip="1"><path d="M0,0 C4,-14 16,-20 26,-14 C32,-20 38,-18 38,-12 C34,-10 30,-6 26,-2 C20,4 6,6 -6,8 Z"/><path d="M12,6 L12,12 M20,4 L20,12" stroke="#4a4258" stroke-width="1.6"/></g>
+        <g id="bob" data-x="1316"><path d="M0,0 C4,-14 16,-20 26,-14 C32,-20 38,-18 38,-12 C34,-10 30,-6 26,-2 C20,4 6,6 -6,8 Z"/><path d="M12,6 L12,12 M20,4 L20,12" stroke="#4a4258" stroke-width="1.6"/></g>
+      </g>
+
+      <!-- canopy roof edge, top right: we stand under it -->
+      <g>
+        <path d="M640,-2600 H2640 V-1010 L1500,-1060 L700,-1200 Z" fill="#33424a"/>
+        <path d="M700,-1200 L1500,-1060 L2640,-1010" stroke="#22303a" stroke-width="16" fill="none"/>
+        <path d="M700,-1200 L1500,-1060 L2640,-1010" stroke="#f6b896" stroke-width="2" fill="none" opacity=".6" transform="translate(0 9)"/>
+        <g stroke="#283740" stroke-width="3"><path d="M760,-1300 L800,-1190 M900,-1300 L940,-1166 M1040,-1300 L1080,-1140 M1180,-1300 L1220,-1116 M1320,-1300 L1360,-1092 M1460,-1300 L1500,-1068"/></g>
+        <path d="M1240,-1110 L1300,-2600 L1336,-2600 L1270,-1104 Z" fill="#2c5242"/>
+      </g>
+
+      <!-- the train -->
+      <g>
+        <g transform="translate(640 0)">
+        <g stroke="#2a2a3d" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M600,-262 H760" stroke-width="7"/>
+          <path id="panLower" d="M620,-262 L748,-350" stroke-width="7"/>
+          <path id="panUpper" d="M748,-350 L676,-424" stroke-width="5"/>
+          <path d="M630,-262 L740,-338" stroke-width="2.4"/>
+          <path d="M640,-428 H712 M640,-428 C630,-428 624,-420 620,-412 M712,-428 C722,-428 728,-420 732,-412" stroke-width="4"/>
+          <path d="M648,-424 H704" stroke="#b07e4a" stroke-width="2.5"/>
+        </g>
+        <g fill="#7a4b3a"><rect x="604" y="-260" width="10" height="18" rx="3"/><rect x="744" y="-260" width="10" height="18" rx="3"/></g>
+        </g>
+        <!-- roof + AC units -->
+        <path d="M-300,-212 C-300,-236 -290,-244 -260,-246 H1740 V-212Z" fill="url(#roof)"/>
+        <g fill="#b8aab6"><rect x="60" y="-282" width="380" height="38" rx="10"/><rect x="560" y="-282" width="380" height="38" rx="10"/></g>
+        <g stroke="#9a8b9a" stroke-width="2"><path d="M90,-270 H410 M90,-260 H410 M590,-270 H910 M590,-260 H910"/></g>
+        <g fill="#cfc2cc"><rect x="60" y="-282" width="380" height="6" rx="3"/><rect x="560" y="-282" width="380" height="6" rx="3"/></g>
+        <!-- body -->
+        <rect x="-300" y="-214" width="2040" height="460" fill="url(#body)"/>
+        <rect x="-300" y="-214" width="2040" height="460" fill="url(#bodyLight)"/>
+        <rect x="-300" y="-214" width="2040" height="5" fill="#fff" opacity=".7"/>
+        <g stroke="#d8cacb" stroke-width="1.5"><path d="M1240,-200 V98"/></g>
+        <!-- windows -->
+        <g fill="#2a2f48">
+          <rect x="-140" y="-62" width="360" height="132" rx="12"/><rect x="1300" y="-62" width="360" height="132" rx="12"/>
+        </g>
+        <g fill="url(#glass)"><rect x="-140" y="-62" width="360" height="132" rx="12"/><rect x="1300" y="-62" width="360" height="132" rx="12"/></g>
+        <!-- door -->
+        <rect x="300" y="-200" width="280" height="446" fill="#e7dbd8"/>
+        <path d="M440,-200 V246" stroke="#b9aab0" stroke-width="3"/>
+        <rect x="328" y="-40" width="88" height="150" rx="9" fill="#2a2f48"/><rect x="464" y="-40" width="88" height="150" rx="9" fill="#2a2f48"/>
+        <rect x="328" y="-40" width="88" height="150" rx="9" fill="url(#glass)"/><rect x="464" y="-40" width="88" height="150" rx="9" fill="url(#glass)"/>
+        <ellipse cx="1250" cy="-40" rx="520" ry="300" fill="url(#warmPatch)"/>
+        <!-- the window -->
+        <g clip-path="url(#winClip)">
+          <rect x="810" y="-70" width="380" height="150" fill="url(#interior)"/>
+          <rect x="810" y="-70" width="380" height="12" fill="#f4fbf7"/>
+          <rect x="820" y="-30" width="120" height="70" fill="#1c2540"/>
+          <rect x="1080" y="-30" width="110" height="70" fill="#1c2540"/>
+          <rect x="1004" y="-70" width="6" height="150" fill="#c9d1d6"/>
+          <path d="M1092,30 C1092,18 1098,14 1110,14 L1190,14 L1190,80 L1092,80Z" fill="#435f86"/>
+          <use href="#mohit" transform="translate(880 -64) scale(.5)"/>
+          <!-- the pink sky and wires reflected in the glass -->
+          <rect x="820" y="-62" width="360" height="132" fill="url(#glass)"/>
+          <path d="M820,-50 Q1000,-20 1180,-50" stroke="#2a2840" stroke-width="1.2" fill="none" opacity=".35"/>
+          <path d="M820,-22 H1180" stroke="#2a2840" stroke-width="1.2" opacity=".3"/>
+          <path d="M820,-62 L900,-62 L820,30Z" fill="#fff" opacity=".1"/>
+        </g>
+        <rect x="820" y="-62" width="360" height="132" rx="12" fill="none" stroke="#c9bcc2" stroke-width="5"/>
+        <!-- red line, blue band, navy skirt -->
+        <rect x="-300" y="98" width="2040" height="5" fill="#b23b3a"/>
+        <rect x="-300" y="103" width="2040" height="52" fill="#2b5c96"/>
+        <rect x="300" y="103" width="280" height="52" fill="#2b5c96" opacity=".85"/>
+        <rect x="-300" y="155" width="2040" height="91" fill="#1b2546"/>
+        <rect x="-300" y="244" width="2040" height="16" fill="#120f20"/>
+        <rect x="-300" y="258" width="2040" height="14" fill="#d9ad3a"/>
+        <rect x="-300" y="272" width="2040" height="500" fill="#b8a2a0"/>
+      </g>
+      <rect x="-1200" y="-2600" width="3840" height="3400" filter="url(#grainF)" opacity=".18" style="mix-blend-mode:multiply" pointer-events="none"/>
+    </svg>
+
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('world'), track=document.getElementById('track'), note=document.getElementById('note');
+  const clouds=document.getElementById('clouds'), flock=document.getElementById('flock'), tail=document.getElementById('kiteTail'), kite=document.getElementById('kite'), bob=document.getElementById('bob');
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+
+  // droppers under the sagging messenger wire
+  const msg=x=> x<60 ? -640 : x>1370 ? -640 : (()=>{const t=(x-60)/1310;return (1-t)*(1-t)*-640+2*(1-t)*t*-500+t*t*-640;})();
+  let d=''; for(let x=110;x<1340;x+=78) d+=`M${x},${msg(x).toFixed(1)} V-430 `;
+  document.getElementById('droppers').setAttribute('d',d);
+  let fd=''; for(let x=-140;x<1640;x+=90){const t=(x+200)/1840; const y=(1-t)*(1-t)*-880+2*(1-t)*t*-640+t*t*-880; fd+=`M${x},${y.toFixed(1)} V-800 `;}
+  document.getElementById('farDroppers').setAttribute('d',fd);
+
+  document.querySelectorAll('#pigeons [data-x]').forEach(g=>{const x=+g.dataset.x;g.dataset.y=(msg(x+16)-12).toFixed(1);g.setAttribute('transform',`translate(${x} ${g.dataset.y})${g.dataset.flip?' scale(-1 1)':''}`);});
+  // flock: crows drifting across, wrapping off-frame
+  const birds=Array.from({length:7},(_,i)=>{const p=document.createElementNS(NS,'path');flock.appendChild(p);return {p,x:-300+i*70+Math.random()*60,y:-760+Math.random()*60+i*6,s:.6+Math.random()*.6,ph:Math.random()*6};});
+
+  const CAM={
+    wide:{x:720,y:-800,w:1440,fx:.5,fy:.5},
+    close:{x:1000,y:4,w:700,fx:.64,fy:.56},
+    wideP:{x:820,y:-760,w:760,fx:.5,fy:.5},
+    closeP:{x:1000,y:4,w:420,fx:.5,fy:.72}
+  };
+  function camera(t){
+    const ph=innerWidth<700, A=ph?CAM.wideP:CAM.wide, B=ph?CAM.closeP:CAM.close;
+    const w=Math.exp(lerp(Math.log(A.w),Math.log(B.w),t)), h=w*innerHeight/innerWidth;
+    return [lerp(A.x,B.x,t)-lerp(A.fx,B.fx,t)*w, lerp(A.y,B.y,t)-lerp(A.fy,B.fy,t)*h, w, h];
+  }
+
+  let sp=null, last=performance.now();
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    const r=track.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight));
+    sp = sp===null||rm ? p : sp+(p-sp)*Math.min(1,dt*6);
+    const t=ease(seg(sp,.03,.8));
+    const vb=camera(t); svg.setAttribute('viewBox',vb.map(v=>v.toFixed(2)).join(' '));
+    // sky is far: it moves less than the wires as the camera tilts
+    const cy0=camera(0)[1];
+    clouds.setAttribute('transform',`translate(0 ${((vb[1]-cy0)*.55).toFixed(1)})`);
+    flock.setAttribute('transform',`translate(0 ${((vb[1]-cy0)*.4).toFixed(1)})`);
+    const n=seg(sp,.84,.97); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+    const T=rm?0:now/1000;
+    birds.forEach(b=>{ if(!rm){b.x+=dt*(26+b.s*18); if(b.x>1800) b.x=-400;}
+      const f=Math.sin(T*5*b.s+b.ph)*6*b.s, w=12*b.s;
+      b.p.setAttribute('d',`M${(b.x-w).toFixed(1)},${(b.y+f*.4).toFixed(1)} Q${(b.x-w/2).toFixed(1)},${(b.y-f).toFixed(1)} ${b.x.toFixed(1)},${b.y.toFixed(1)} Q${(b.x+w/2).toFixed(1)},${(b.y-f).toFixed(1)} ${(b.x+w).toFixed(1)},${(b.y+f*.4).toFixed(1)}`);});
+    const s1=Math.sin(T*1.7)*14, s2=Math.sin(T*1.7+1.3)*20;
+    tail.setAttribute('d',`M0,96 C${(10+s1*.5).toFixed(1)},130 ${(-12+s1).toFixed(1)},160 ${(4+s2).toFixed(1)},200`);
+    kite.setAttribute('transform',`translate(960 -800) rotate(${(Math.sin(T*.9)*4).toFixed(2)})`);
+    bob.setAttribute('transform',`translate(1316 ${(+bob.dataset.y+Math.max(0,Math.sin(T*2.3))*-2).toFixed(1)})`);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

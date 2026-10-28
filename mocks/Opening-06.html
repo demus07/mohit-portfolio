@@ -1,0 +1,322 @@
+<!-- Direction 06: Monsoon evening — rain on a sealed AC-local window at Churchgate, sodium lamps smeared by water; scroll closes in and wipes the condensation to find him pondering inside. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe8da;--navy:#0d1a2b;--sodium:#f2a145;--sea:#2c6d8c}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.track{height:460vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--navy)}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block}
+#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.bokeh{position:absolute;inset:0;pointer-events:none;opacity:0}
+.bokeh i{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(242,161,69,.55),rgba(242,161,69,.18) 62%,rgba(242,161,69,0));will-change:transform}
+.grain{position:absolute;inset:-50%;pointer-events:none;opacity:.16;mix-blend-mode:overlay}
+.copy{position:absolute;z-index:4;left:clamp(24px,5.6vw,104px);top:clamp(32px,10vh,108px);width:min(31rem,38vw)}
+h1{font-family:Newsreader,serif;font-weight:300;font-size:clamp(52px,6.6vw,112px);line-height:.92;letter-spacing:-.02em;margin:0 0 .38em}
+.line{font-size:clamp(16px,1.2vw,19px);line-height:1.55;max-width:40ch;margin:0 0 1.5em;color:rgba(239,232,218,.82)}
+.cta{font-size:clamp(16px,1.2vw,19px);color:var(--sodium);text-decoration:none;display:inline-flex;gap:.5em;align-items:baseline;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) 0 100%/0% 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1px}.cta:hover span{transform:translateX(6px)}
+.note{font-family:Newsreader,serif;font-style:italic;font-weight:300;font-size:clamp(22px,1.9vw,30px);line-height:1.3;max-width:19ch;margin:2.2em 0 0;opacity:0;transform:translateY(14px);color:var(--paper)}
+.hint{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);font-size:14px;color:rgba(239,232,218,.55);transition:opacity .6s}
+.after{height:40vh;background:var(--navy)}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;top:26px;width:auto}
+  h1{font-size:48px}
+  .line{font-size:16px;margin-bottom:1em}
+  .note{font-size:20px;margin-top:1em;max-width:24ch}
+}
+@media (prefers-reduced-motion:reduce){.cta span{transition:none}}
+</style>
+</head>
+<body>
+<!-- direction: Opening 06 / Monsoon evening -->
+<div class="track" id="track">
+  <div class="stage">
+    <svg id="world" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="pin" width="5" height="40" patternUnits="userSpaceOnUse">
+          <rect width="5" height="40" fill="#e7e3ee"/><rect x="2" width=".7" height="40" fill="#a597cf" opacity=".55"/>
+        </pattern>
+        <linearGradient id="shirtShade" x1="0" x2="1">
+          <stop offset="0" stop-color="#f2a145" stop-opacity=".22"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#1b2a44" stop-opacity=".45"/>
+        </linearGradient>
+        <linearGradient id="skinG" x1="0" x2="1">
+          <stop offset="0" stop-color="#d79a6e"/><stop offset=".6" stop-color="#b47b58"/><stop offset="1" stop-color="#7c5340"/>
+        </linearGradient>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#070f1a"/><stop offset="1" stop-color="#132438"/>
+        </linearGradient>
+        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#56616c"/><stop offset=".5" stop-color="#47525e"/><stop offset="1" stop-color="#3a4552"/>
+        </linearGradient>
+        <radialGradient id="lampPool" cx=".5" cy="0" r=".9">
+          <stop offset="0" stop-color="#f2a145" stop-opacity=".55"/><stop offset=".55" stop-color="#f2a145" stop-opacity=".12"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="lampGlow">
+          <stop offset="0" stop-color="#ffe2b0"/><stop offset=".12" stop-color="#f6b25e" stop-opacity=".9"/><stop offset=".4" stop-color="#f2a145" stop-opacity=".25"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="interior" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#cfd9d6"/><stop offset=".25" stop-color="#9fb0b3"/><stop offset="1" stop-color="#4f5f6c"/>
+        </linearGradient>
+        <linearGradient id="tint" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0b1a26" stop-opacity=".55"/><stop offset="1" stop-color="#0b1a26" stop-opacity=".25"/>
+        </linearGradient>
+        <linearGradient id="wet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1b2738"/><stop offset="1" stop-color="#0b1422"/>
+        </linearGradient>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
+        <filter id="soft2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="fogblur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="4.5"/></filter>
+        <filter id="wipeEdge" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+        <clipPath id="bodyClip"><rect x="-1400" y="236" width="4200" height="360"/></clipPath>
+        <clipPath id="winClip"><rect x="700" y="332" width="182" height="108" rx="7"/></clipPath>
+
+        <!-- Mohit: seated, profile facing left, chin on fist -->
+        <g id="mohit">
+          <path fill="url(#pin)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="url(#shirtShade)" d="M200,205 C232,198 266,212 284,234 C302,266 308,330 310,420 L166,420 C168,350 166,290 180,244 C186,224 192,212 200,205Z"/>
+          <path fill="#8a5c45" d="M210,166 L242,164 L246,206 L212,212Z"/>
+          <path fill="#f3f1f7" d="M204,206 C214,198 234,195 250,200 L254,216 C238,209 220,211 209,224Z"/>
+          <path fill="url(#skinG)" d="M216,74 C250,70 274,94 272,124 C271,148 262,166 246,178 C236,186 222,190 210,192 L186,192 C178,188 175,182 174,176 C170,174 169,170 171,166 C167,164 166,160 169,157 C165,155 162,152 164,148 L159,143 C156,140 159,137 163,135 L166,126 C165,112 168,98 178,88 C188,78 202,75 216,74Z"/>
+          <g class="hairg" transform="translate(0 21.6) scale(1 .8)"><path fill="#161211" d="M171,108 C165,98 164,84 168,70 C166,60 170,50 178,44 L176,38 C186,34 196,30 208,32 L206,26 C222,26 238,32 250,42 C264,52 272,66 274,84 C278,100 276,122 270,140 C268,148 266,154 262,158 C258,140 254,128 248,122 C240,114 230,110 220,108 C208,104 196,102 186,104 C180,105 175,106 171,108Z"/>
+          <path fill="#2f2622" d="M172,94 C168,70 178,48 200,40 C222,34 244,42 258,58 C238,50 216,50 198,58 C184,66 178,80 176,98Z"/>
+          <path fill="none" stroke="#4a3d36" stroke-width="1.3" stroke-linecap="round" d="M178,64 C190,46 214,38 240,44 M180,80 C196,60 226,54 256,64 M194,98 C212,82 240,80 268,92 M200,40 C212,34 226,34 238,38"/></g>
+          <ellipse cx="243" cy="134" rx="7" ry="11.5" fill="#a26d50"/>
+          <path d="M240,129 C244,127 247,132 244,138" fill="none" stroke="#6d4636" stroke-width="1.6"/>
+          <path d="M165,116 C172,112 182,111 190,113" fill="none" stroke="#1b1513" stroke-width="3" stroke-linecap="round"/>
+          <path d="M172,129 C175,128 178,128 182,130" fill="none" stroke="#2a1d17" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M166,160 L172,161" stroke="#6b3c2d" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M163,120 L190,118 C192,126 192,134 189,141 L168,142 C164,135 163,127 163,120Z" fill="rgba(240,230,210,.14)" stroke="#2b2724" stroke-width="2.3"/>
+          <path d="M190,122 L244,127" stroke="#2b2724" stroke-width="2.2"/>
+          <path d="M168,124 L178,123" stroke="#fff" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/>
+          <path fill="url(#pin)" d="M236,232 C262,246 266,292 244,336 L226,372 C214,384 192,382 188,366 C186,344 200,300 212,262 C218,246 224,236 236,232Z"/>
+          <path fill="#1b2a44" opacity=".28" d="M236,232 C262,246 266,292 244,336 L226,372 C240,330 250,280 236,232Z"/>
+          <path fill="url(#skinG)" d="M190,364 C186,320 180,260 176,214 L202,210 C206,260 212,320 214,362Z"/>
+          <path fill="url(#pin)" d="M185,326 C196,322 208,322 217,324 L219,350 C208,349 196,351 186,353Z"/>
+          <path fill="#1b2a44" opacity=".2" d="M185,344 C196,342 208,342 219,343 L219,350 C208,349 196,351 186,353Z"/>
+          <path fill="url(#skinG)" d="M166,198 C166,188 174,183 186,184 L204,188 C211,193 210,206 205,214 L182,218 C172,216 166,208 166,198Z"/>
+          <path d="M171,192 C170,198 170,204 173,210 M179,188 C178,196 178,206 181,214" fill="none" stroke="#7c5340" stroke-width="1.2" opacity=".7"/>
+        </g>
+
+        <!-- interior seen through the target window -->
+        <g id="inside">
+          <rect x="690" y="320" width="200" height="130" fill="url(#interior)"/>
+          <rect x="690" y="320" width="200" height="10" fill="#f4fbf6" opacity=".9"/>
+          <!-- far windows (other side of coach): night, orange city -->
+          <rect x="694" y="352" width="70" height="46" fill="#0e1b2b"/>
+          <rect x="820" y="352" width="70" height="46" fill="#0e1b2b"/>
+          <circle cx="712" cy="384" r="3" fill="#f2a145" opacity=".8"/><circle cx="740" cy="376" r="2" fill="#f2a145" opacity=".6"/>
+          <circle cx="852" cy="380" r="2.5" fill="#f2a145" opacity=".7"/><circle cx="874" cy="372" r="1.6" fill="#ffd9a0" opacity=".7"/>
+          <!-- grab pole -->
+          <rect x="790" y="320" width="4" height="130" fill="#c9d1d3"/><rect x="793" y="320" width="1" height="130" fill="#fff" opacity=".7"/>
+          <!-- seat back -->
+          <path d="M836,408 C836,396 842,392 852,392 L896,392 L896,450 L836,450Z" fill="#3c5a78"/>
+          <path d="M836,408 C836,396 842,392 852,392 L896,392 L896,398 L846,398 C840,400 838,404 838,410Z" fill="#6c8aa8"/>
+          <use href="#mohit" transform="translate(690 328) scale(.42)"/>
+        </g>
+      </defs>
+
+      <g id="scene">
+        <!-- night beyond, far canopy -->
+        <rect x="-1400" y="-1400" width="4200" height="1700" fill="url(#sky)"/>
+        <!-- far platform lights beyond the roof line -->
+        <g opacity=".7">
+          <circle cx="160" cy="232" r="22" fill="url(#lampGlow)"/><circle cx="560" cy="226" r="16" fill="url(#lampGlow)"/><circle cx="1010" cy="230" r="18" fill="url(#lampGlow)"/><circle cx="1360" cy="228" r="20" fill="url(#lampGlow)"/>
+        </g>
+        <!-- canopy underside -->
+        <path d="M-1400,-1400 H2800 V150 H-1400Z" fill="#0a131f"/>
+        <rect x="-1400" y="150" width="4200" height="90" fill="#0b1522"/>
+        <path d="M-1400,236 V214 H2800 V236Z" fill="#121d2b"/>
+        <g fill="#f2a145"><circle cx="40" cy="200" r="1.6"/><circle cx="300" cy="196" r="1.2"/><circle cx="690" cy="202" r="1.5"/><circle cx="880" cy="194" r="1.1"/><circle cx="1290" cy="199" r="1.4"/></g>
+        <g stroke="#1d2a3a" stroke-width="3">
+          <path d="M-200,150 L-60,60 L80,150 M240,150 L380,60 L520,150 M680,150 L820,60 L960,150 M1120,150 L1260,60 L1400,150 M1560,150 L1700,60 L1840,150"/>
+        </g>
+        <rect x="-1400" y="140" width="4200" height="12" fill="#1a2533"/>
+        <!-- hanging sodium lamps -->
+        <g>
+          <rect x="417" y="150" width="2" height="22" fill="#2a3442"/><rect x="398" y="170" width="40" height="7" rx="3" fill="#2a3442"/><rect x="402" y="176" width="32" height="3" fill="#ffd79a"/>
+          <rect x="1177" y="150" width="2" height="22" fill="#2a3442"/><rect x="1158" y="170" width="40" height="7" rx="3" fill="#2a3442"/><rect x="1162" y="176" width="32" height="3" fill="#ffd79a"/>
+        </g>
+
+        <!-- the coach -->
+        <g>
+          <path d="M-1400,262 C-1400,250 -1390,246 -1380,246 H2800 V600 H-1400Z" fill="url(#body)"/>
+          <!-- roof line and AC units -->
+          <rect x="-1400" y="236" width="4200" height="14" fill="#3a444f"/>
+          <rect x="140" y="222" width="260" height="16" rx="5" fill="#2f3943"/><rect x="760" y="222" width="260" height="16" rx="5" fill="#2f3943"/><rect x="1380" y="222" width="260" height="16" rx="5" fill="#2f3943"/>
+          <!-- window band -->
+          <g fill="#0c1823">
+            <rect x="260" y="332" width="182" height="108" rx="7"/><rect x="480" y="332" width="182" height="108" rx="7"/><rect x="920" y="332" width="182" height="108" rx="7"/><rect x="1300" y="332" width="182" height="108" rx="7"/><rect x="-180" y="332" width="182" height="108" rx="7"/>
+          </g>
+          <!-- faint interiors in other windows -->
+          <g opacity=".35">
+            <rect x="264" y="336" width="174" height="10" fill="#cfe0dc"/><rect x="484" y="336" width="174" height="10" fill="#cfe0dc"/><rect x="924" y="336" width="174" height="10" fill="#cfe0dc"/><rect x="1304" y="336" width="174" height="10" fill="#cfe0dc"/>
+            <rect x="560" y="340" width="3" height="100" fill="#9eb0b4"/><rect x="1000" y="340" width="3" height="100" fill="#9eb0b4"/>
+          </g>
+          <!-- doors -->
+          <g>
+            <rect x="60" y="270" width="150" height="322" fill="#4d5864"/><rect x="134" y="270" width="2" height="322" fill="#2a333d"/>
+            <rect x="78" y="300" width="44" height="120" rx="5" fill="#0c1823"/><rect x="148" y="300" width="44" height="120" rx="5" fill="#0c1823"/>
+            <rect x="1130" y="270" width="150" height="322" fill="#4d5864"/><rect x="1204" y="270" width="2" height="322" fill="#2a333d"/>
+            <rect x="1148" y="300" width="44" height="120" rx="5" fill="#0c1823"/><rect x="1218" y="300" width="44" height="120" rx="5" fill="#0c1823"/>
+          </g>
+          <!-- red line, blue band, navy skirt -->
+          <rect x="-1400" y="462" width="4200" height="3" fill="#a83a35"/>
+          <rect x="-1400" y="466" width="4200" height="40" fill="#24548a"/>
+          <rect x="-1400" y="506" width="4200" height="88" fill="#18233d"/>
+          <rect x="60" y="462" width="150" height="132" fill="#4d5864"/><rect x="1130" y="462" width="150" height="132" fill="#4d5864"/>
+          <rect x="60" y="466" width="150" height="40" fill="#24548a" opacity=".7"/><rect x="1130" y="466" width="150" height="40" fill="#24548a" opacity=".7"/>
+          <!-- lamp light pooling on the wet body -->
+          <g clip-path="url(#bodyClip)"><ellipse cx="418" cy="230" rx="420" ry="360" fill="url(#lampPool)"/>
+          <ellipse cx="1178" cy="230" rx="420" ry="360" fill="url(#lampPool)"/></g>
+          <!-- rain sheen running down the body -->
+          <g stroke="#cfd8e2" stroke-opacity=".08" stroke-width="2">
+            <path d="M250,250 V600 M318,250 V600 M470,250 V600 M676,250 V600 M905,250 V600 M1046,250 V600 M1290,250 V600 M1500,250 V600"/>
+          </g>
+        </g>
+
+        <!-- the target window -->
+        <g clip-path="url(#winClip)">
+          <use href="#inside"/>
+          <rect x="700" y="332" width="182" height="108" fill="url(#tint)"/>
+          <!-- condensation layer, wiped by scroll -->
+          <g mask="url(#fogMask)">
+            <use href="#inside" filter="url(#fogblur)"/>
+            <rect x="700" y="332" width="182" height="108" fill="#b9c4cc" opacity=".46"/>
+            <rect x="700" y="332" width="182" height="108" fill="url(#tint)" opacity=".5"/>
+            <g id="mist" fill="#e8eef2" opacity=".55"></g>
+          </g>
+          <g id="drops"></g>
+          <path d="M700,332 L760,332 L700,400Z" fill="#fff" opacity=".04"/>
+        </g>
+        <rect x="700" y="332" width="182" height="108" rx="7" fill="none" stroke="#1f2a35" stroke-width="3"/>
+        <mask id="fogMask" maskUnits="userSpaceOnUse" x="690" y="320" width="210" height="130">
+          <rect x="690" y="320" width="210" height="130" fill="#fff"/>
+          <path id="wipe" filter="url(#wipeEdge)" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" fill="none" stroke="#000" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"
+            d="M716,350 C770,338 832,340 870,352 C820,370 760,370 718,386 C770,396 830,390 868,404 C820,420 768,424 720,428"/>
+        </mask>
+
+        <!-- wet platform, yellow edge, reflections -->
+        <rect x="-1400" y="594" width="4200" height="10" fill="#0a0f17"/>
+        <rect x="-1400" y="604" width="4200" height="1400" fill="url(#wet)"/>
+        <rect x="-1400" y="604" width="4200" height="12" fill="#b38d2c"/>
+        <rect x="-1400" y="616" width="4200" height="3" fill="#6b5420"/>
+        <g opacity=".5" filter="url(#soft)">
+          <rect x="404" y="630" width="28" height="260" fill="#f2a145" opacity=".55"/>
+          <rect x="1164" y="630" width="28" height="260" fill="#f2a145" opacity=".55"/>
+          <rect x="260" y="640" width="182" height="60" fill="#3a5068" opacity=".35"/>
+          <rect x="700" y="640" width="182" height="60" fill="#8fa3a8" opacity=".25"/>
+        </g>
+        <!-- foreground columns (green steel), nearer occludes -->
+        <g>
+          <rect x="-80" y="150" width="26" height="1800" fill="#1d3a2f"/>
+          <rect x="1336" y="150" width="30" height="1800" fill="#1d3a2f"/><rect x="1336" y="150" width="7" height="1800" fill="#f2a145" opacity=".22"/>
+        </g>
+      </g>
+    </svg>
+    <div class="bokeh" id="bokeh"></div>
+    <canvas id="rain"></canvas>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <p class="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+      <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+    </div>
+    <div class="hint" id="hint">Scroll</div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const svg = document.getElementById('world'), track = document.getElementById('track');
+  const wipe = document.getElementById('wipe'), note = document.getElementById('note'), hint = document.getElementById('hint');
+  const bokeh = document.getElementById('bokeh');
+  const clamp = (v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t;
+  const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  const seg = (p,a,b)=>clamp((p-a)/(b-a));
+
+  // condensation mist dots + glass drops
+  const NS='http://www.w3.org/2000/svg', mist=document.getElementById('mist'), dropsG=document.getElementById('drops');
+  let seed=7; const rnd=()=>((seed=(seed*16807)%2147483647)/2147483647);
+  for(let i=0;i<170;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('cx',700+rnd()*182);c.setAttribute('cy',332+rnd()*108);c.setAttribute('r',.25+rnd()*.7);mist.appendChild(c);}
+  const drops=[];
+  for(let i=0;i<34;i++){
+    const g=document.createElementNS(NS,'g'); const r=.7+rnd()*1.9;
+    g.innerHTML=`<circle r="${r}" fill="#0c1823" opacity=".35"/><circle r="${r*.8}" cy="${-r*.15}" fill="none" stroke="#e9eef2" stroke-opacity=".55" stroke-width="${r*.28}"/><circle r="${r*.25}" cx="${-r*.35}" cy="${-r*.4}" fill="#fff" opacity=".85"/>`;
+    const run = rnd()<.22;
+    const d={g,x:700+rnd()*182,y:332+rnd()*108,v:run?(6+rnd()*14):0,trail:null};
+    if(run){const t=document.createElementNS(NS,'path');t.setAttribute('stroke','#dfe7ec');t.setAttribute('stroke-opacity','.18');t.setAttribute('stroke-width',r*.9);t.setAttribute('fill','none');dropsG.appendChild(t);d.trail=t;}
+    dropsG.appendChild(g); drops.push(d);
+  }
+  // bokeh
+  const bk=[[.78,.18,240],[.9,.62,320],[.62,.9,200],[.98,.3,160],[.7,.5,120]].map(([x,y,s])=>{const i=document.createElement('i');i.style.cssText=`left:${x*100}%;top:${y*100}%;width:${s}px;height:${s}px;margin:${-s/2}px`;bokeh.appendChild(i);return i;});
+
+  // cameras: focus point in world, view width, where focus sits on screen
+  const CAM = {
+    wide:  {x:720,y:420,w:1440,fx:.5,fy:.47},
+    close: {x:792,y:388,w:300,fx:.66,fy:.56},
+    wideP: {x:790,y:420,w:820,fx:.5,fy:.58},
+    closeP:{x:790,y:388,w:236,fx:.5,fy:.7}
+  };
+  function camera(t){
+    const ph = innerWidth<700, A=ph?CAM.wideP:CAM.wide, B=ph?CAM.closeP:CAM.close;
+    const w=Math.exp(lerp(Math.log(A.w),Math.log(B.w),t)), h=w*innerHeight/innerWidth;
+    const x=lerp(A.x,B.x,t), y=lerp(A.y,B.y,t), fx=lerp(A.fx,B.fx,t), fy=lerp(A.fy,B.fy,t);
+    return [x-fx*w, y-fy*h, w, h];
+  }
+
+  // rain canvas
+  const cv=document.getElementById('rain'), cx=cv.getContext('2d'); let W=0,H=0,dpr=1, streaks=[];
+  function size(){dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(W*H/5200); streaks=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,l:10+Math.random()*30,v:.9+Math.random()*1.4,z:Math.random()}));}
+  size(); addEventListener('resize',size);
+
+  let sp=null, last=performance.now();
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    const r=track.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight));
+    sp = sp===null||rm ? p : sp+(p-sp)*Math.min(1,dt*7);
+    const z=ease(seg(sp,.04,.55));
+    svg.setAttribute('viewBox',camera(z).map(v=>v.toFixed(2)).join(' '));
+    wipe.setAttribute('stroke-dashoffset',(1-ease(seg(sp,.55,.86))).toFixed(4));
+    const n=seg(sp,.84,.97); note.style.opacity=n; note.style.transform=`translateY(${(1-n)*14}px)`;
+    hint.style.opacity = sp>.02?0:1;
+    bokeh.style.opacity = .25+z*.75;
+    bk.forEach((b,i)=>{b.style.transform=`translate(${Math.sin(now/4000+i)*14}px,${Math.cos(now/5200+i*2)*10}px) scale(${.7+z*.6})`;});
+    // glass drops: some run, leaving a trail; wrap off the bottom edge
+    drops.forEach(d=>{
+      if(d.v && !rm){d.y+=d.v*dt*(.6+Math.sin(now/300+d.x)*.4); if(d.y>446){d.y=326;}
+        d.trail.setAttribute('d',`M${d.x.toFixed(1)},${Math.max(332,d.y-22).toFixed(1)} L${d.x.toFixed(1)},${d.y.toFixed(1)}`);}
+      d.g.setAttribute('transform',`translate(${d.x.toFixed(1)} ${d.y.toFixed(1)})`);
+    });
+    // rain: falls in front, thins as we press to the glass
+    cx.clearRect(0,0,W,H);
+    const dens=1-z*.55;
+    cx.lineCap='round';
+    for(let i=0;i<streaks.length;i++){const s=streaks[i]; if(i/streaks.length>dens) break;
+      if(!rm){s.y+=s.v*(700+s.z*900)*dt; s.x-=s.v*90*dt; if(s.y>H+40){s.y=-40;s.x=Math.random()*W*1.1;} if(s.x<-20)s.x+=W;}
+      const warm = s.x>W*.55 ? .5 : .15;
+      cx.strokeStyle=`rgba(${Math.round(lerp(190,242,warm))},${Math.round(lerp(205,190,warm))},${Math.round(lerp(220,150,warm))},${.08+s.z*.22})`;
+      cx.lineWidth=.6+s.z*1.1;
+      cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(s.x+s.l*.12,s.y-s.l);cx.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

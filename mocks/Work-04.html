@@ -1,0 +1,194 @@
+<!-- Direction 04: Gallery wall — a quiet Kala Ghoda-style gallery: the works hung on warm lime plaster under brass picture lights that come on as you reach them, museum labels in sans, AuctionXI as the large piece by the wall text. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Gallery wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--wall:#c9b99d;--wall-lit:#f1e4ca;--ink:#29231d;--soft:#5e5346;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;--sea:#2c6d8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#bfae91}
+body{position:relative;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:radial-gradient(120% 60% at 50% 0%,#cfc0a5 0%,#c4b397 55%,#b5a386 100%) #c4b397}
+a{color:inherit}
+.plaster{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55;mix-blend-mode:multiply}
+.room{position:relative;z-index:1;width:min(1440px,100%);margin:0 auto;padding:0 clamp(16px,5.5vw,96px)}
+/* ceiling: a slim cove of light along the top */
+.cove{position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(to bottom,rgba(255,240,214,.55),rgba(255,240,214,0));z-index:1;pointer-events:none}
+
+/* wall text in vinyl */
+.walltext{position:relative;padding-top:clamp(56px,12vh,120px);max-width:440px;z-index:2}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(46px,4.6vw,74px);line-height:.98;letter-spacing:-.01em;color:#2b241d;text-wrap:balance;max-width:9ch}
+.lede{font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--soft);max-width:36ch;margin-top:20px}
+
+/* hang */
+.hang{position:relative}
+.work{position:absolute;--lit:0}
+.work .pool{position:absolute;left:50%;top:-75%;width:170%;height:230%;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(42% 36% at 50% 36%,rgba(255,236,200,.95),rgba(255,229,186,.5) 40%,rgba(255,225,180,0) 100%);
+  opacity:calc(.08 + var(--lit)*.92);transition:opacity 1.6s ease;mix-blend-mode:soft-light}
+.work .pool2{position:absolute;left:50%;top:-60%;width:140%;height:160%;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(40% 32% at 50% 40%,rgba(255,240,215,.5),rgba(255,240,215,0) 100%);opacity:calc(var(--lit)*.9);transition:opacity 1.8s ease}
+.work .lamp{position:absolute;left:50%;top:calc(var(--fw)*-.075);width:36%;transform:translateX(-50%);height:calc(var(--fw)*.075);z-index:3}
+.lamp .tube{position:absolute;left:0;right:0;top:0;height:max(9px,calc(var(--fw)*.016));border-radius:6px;background:linear-gradient(to bottom,#e9cf8f,#a9843d 55%,#6b5122)}
+.lamp .arm{position:absolute;left:50%;top:6px;width:3px;height:calc(100% - 4px);transform:translateX(-50%);background:linear-gradient(90deg,#8a6b2e,#d8bb79,#8a6b2e)}
+.lamp .glow{position:absolute;left:4%;right:4%;top:calc(max(9px,var(--fw)*.016) - 2px);height:6px;border-radius:50%;background:rgba(255,240,205,calc(var(--lit)*.95));filter:blur(2px);transition:background 1.6s ease}
+.frame{position:relative;display:block;width:var(--fw);padding:calc(var(--fw)*.012);background:linear-gradient(to bottom,#3a2a1d,#20160f);z-index:2;text-decoration:none}
+.mat{padding:calc(var(--fw)*.055);background:linear-gradient(to bottom,#f7f0e2,#e6dbc6)}
+.mat .img{position:relative;aspect-ratio:1506/940;overflow:hidden;background:#111}
+.mat img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(calc(.62 + var(--lit)*.38)) saturate(calc(.7 + var(--lit)*.3));transition:filter 1.6s ease}
+/* light falls from the lamp: the top of the frame gets more of it */
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(255,236,200,calc(var(--lit)*.18)),rgba(30,20,10,calc(.32 - var(--lit)*.12)));transition:background 1.6s ease}
+.work:hover{--lit:1.18}
+.work:hover .frame{transform:translateY(-2px)}
+.frame{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.label{position:absolute;width:min(260px,30vw);font-size:13.5px;line-height:1.5;color:#3a3128;z-index:2}
+.label .n{font-family:var(--serif);font-size:24px;font-weight:500;line-height:1.05;color:#231d17}
+.label .k{color:var(--soft);margin-top:2px}
+.label .h{font-weight:600;margin-top:10px;color:#2b241d}
+.label p{margin-top:4px}
+.label ul{list-style:none;margin-top:8px}
+.label li{margin-top:5px;padding-left:12px;position:relative}
+.label li::before{content:"";position:absolute;left:0;top:.65em;width:5px;height:1px;background:#3a3128}
+.label .t{color:var(--soft);margin-top:8px}
+.label .ln{display:flex;gap:16px;margin-top:10px;font-weight:600}
+.label .ln a{text-decoration:none;color:#244f63;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s ease;padding-bottom:1px}
+.label .ln a:hover{background-size:100% 1px}
+.label .ln span{font-weight:400;color:var(--soft)}
+.label{opacity:calc(.45 + var(--lit)*.55);transition:opacity 1.4s ease}
+
+/* floor */
+.floor{position:relative;z-index:1;height:46vh;min-height:320px;margin-top:4vh}
+.floor svg{position:absolute;inset:0;width:100%;height:100%}
+
+@media (max-width:820px){
+  .hang{height:auto!important;display:flex;flex-direction:column;gap:84px;padding:90px 0 40px}
+  .work,.label{position:relative!important;left:auto!important;top:auto!important}
+  .work{--fw:calc(100vw - 32px)!important}
+  .label{width:100%;margin-top:-56px}
+  .walltext{padding-top:48px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<!-- direction: Work 04 · Gallery wall -->
+<svg class="plaster" id="plaster" aria-hidden="true" preserveAspectRatio="none">
+  <filter id="lime" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".011 .016" numOctaves="5" seed="8" result="n"/>
+    <feDiffuseLighting in="n" surfaceScale="2.4" lighting-color="#fff4e0" diffuseConstant="1.1" result="l"><feDistantLight azimuth="250" elevation="58"/></feDiffuseLighting>
+    <feColorMatrix in="l" values=".9 0 0 0 .04  0 .86 0 0 .03  0 0 .8 0 .02  0 0 0 0 1"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#lime)"/>
+</svg>
+<div class="cove"></div>
+<div class="room">
+  <header class="walltext">
+    <h2>Things I've built and shipped</h2>
+    <p class="lede">Products I run, client work, web and mobile apps, AI, VR and command-line tools.</p>
+  </header>
+  <section class="hang" id="hang"></section>
+</div>
+<div class="floor" aria-hidden="true"><svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMin slice" id="floor"></svg></div>
+
+<script>
+const P=[
+ {s:'auctionxi',n:'AuctionXI',k:'My own product, 2026',h:'Live player auctions for any sport',l:'Real-time bidding, broadcast graphics and YouTube overlays, with no production team.',a:[['Live','https://auction-xi.com']],
+  f:['Every bid lands on every screen at once, and the money always adds up.','Twenty broadcast scenes for the projector and the stream.','Auction-ready in under 20 minutes.'],t:'Next.js, TypeScript, Postgres, Drizzle, Pusher, NextAuth'},
+ {s:'texagent',n:'TexAgent',k:'Client work, 2026',h:'A bahi-khata for textile brokers',l:'Bills, brokerage and follow-ups in one place, instead of a paper book.',a:[],priv:1},
+ {s:'cachekaro',n:'Cache Karo',k:'Command-line tool, 2026',h:'Find the cache hogs, get the space back',l:'Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.',a:[['PyPI','https://pypi.org/project/cachekaro/'],['Source','https://github.com/Mohit-Bagri/cachekaro']]},
+ {s:'aether',n:'Aether',k:'AI web app, 2025',h:'News, YouTube and Reddit in one conversation',l:'An assistant with 17+ tones, and an NLP pipeline that scores every article first.',a:[['Source','https://github.com/Mohit-Bagri/aether-news-trends']]},
+ {s:'flowledger',n:'FlowLedger',k:'Mobile app, 2026',h:'Every rupee in, every rupee out',l:'A local-first finance app in Flutter that scans receipts and catches money leaks.',a:[['Source','https://github.com/Mohit-Bagri/flowledger']]},
+ {s:'shuttle',n:'Space Shuttle VR',k:'VR game, 2024',h:'Fix the shuttle, then fly it out',l:'A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.',a:[['Source','https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game']]},
+ {s:'velotype',n:'VeloType',k:'Web app, 2026',h:'A typing test built for feel',l:'Themes, modes and live words per minute, with a caret that keeps up.',a:[['Live','https://velo-type.vercel.app']]},
+ {s:'windmill',n:'Windmill VR',k:'VR app, 2025',h:'Breathe with the windmill',l:'A calm VR app for Meta Quest, paced to a four-part breath.',a:[['Source','https://github.com/Mohit-Bagri/windmill-vr']]}
+];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const hang=document.getElementById('hang');
+/* hanging plan, in units of the room width (designed at 1248 inner width).
+   x,y = frame top-left; w = frame width; lx,ly = label position relative to the frame; centre line ~ eye level */
+const PLAN=[
+ {r:0,x:.43,w:.57,lab:'feature'},   // AuctionXI, beside the wall text
+ {r:1,x:.04,w:.42,lab:'right'},
+ {r:2,x:.00,w:.30,lab:'below'},{r:2,x:.50,w:.36,lab:'below'},
+ {r:3,x:.42,w:.50,lab:'left'},
+ {r:4,x:.06,w:.36,lab:'below'},{r:4,x:.60,w:.30,lab:'below'},
+ {r:5,x:.30,w:.40,lab:'right'}
+];
+function label(p){return `<div class="n">${p.n}</div><div class="k">${p.k}</div><div class="h">${p.h}</div><p>${p.l}</p>${p.f?`<ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="t">${p.t}</div>`:''}<div class="ln">${p.a.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}${p.priv?'<span>Private client project</span>':''}</div>`}
+const works=[];
+P.forEach((p,i)=>{
+  const w=document.createElement('div');w.className='work';
+  const href=p.a[0]?p.a[0][1]:null;
+  w.innerHTML=`<div class="pool"></div><div class="pool2"></div><div class="lamp"><div class="arm"></div><div class="tube"></div><div class="glow"></div></div>
+   <${href?'a':'div'} class="frame" ${href?`href="${href}" target="_blank" rel="noopener"`:''} aria-label="${p.n}"><div class="mat"><div class="img"><img src="media/${p.s}.png" alt="${p.n}: ${p.h}" loading="${i<2?'eager':'lazy'}"></div></div></${href?'a':'div'}>`;
+  const L=document.createElement('div');L.className='label';L.innerHTML=label(p);
+  hang.appendChild(w);hang.appendChild(L);works.push({w,L,plan:PLAN[i]});
+  w.addEventListener('mouseenter',()=>L.style.setProperty('--lit',1.18));
+  w.addEventListener('mouseleave',()=>L.style.removeProperty('--lit'));
+});
+function layout(){
+  const W=hang.clientWidth;const mobile=innerWidth<=820;
+  if(mobile){works.forEach(o=>{o.w.style.cssText='';o.L.style.cssText=''});hang.style.height='';sizePlaster();return}
+  const wt=document.querySelector('.walltext');const lw=Math.min(270,W*.21);
+  let y=-(wt.offsetHeight)+Math.max(70,innerHeight*.1);let row=-1,rowBottom=y;
+  works.forEach((o,i)=>{const pl=o.plan;
+    if(pl.r!==row){row=pl.r;y=(i===0?y:rowBottom+Math.max(130,W*.11));rowBottom=y}
+    const fw=pl.w*W;const fh=fw*(940/1506)+fw*.024+fw*.11;const x=pl.x*W;
+    o.w.style.cssText=`--fw:${fw}px;left:${x}px;top:${y}px`;
+    let lx,ly,ww=lw;
+    if(pl.lab==='feature'){lx=0;ww=Math.min(300,x-60);o.L.style.cssText=`left:0;top:0;width:${ww}px`;ly=wt.offsetHeight+y+40-(wt.offsetHeight)+ (fh-o.L.offsetHeight)}
+    else if(pl.lab==='right'){lx=x+fw+40;o.L.style.cssText=`left:0;top:0;width:${ww}px`;ly=y+fh-o.L.offsetHeight}
+    else if(pl.lab==='left'){lx=x-ww-40;o.L.style.cssText=`left:0;top:0;width:${ww}px`;ly=y+fh-o.L.offsetHeight}
+    else {ww=Math.min(fw,300);lx=x;o.L.style.cssText=`left:0;top:0;width:${ww}px`;ly=y+fh+26}
+    if(pl.lab==='feature'){ly=Math.max(36,y+fh-o.L.offsetHeight)}
+    o.L.style.left=lx+'px';o.L.style.top=ly+'px';
+    rowBottom=Math.max(rowBottom,y+fh,ly+o.L.offsetHeight);
+  });
+  hang.style.height=(rowBottom+60)+'px';
+  sizePlaster();
+}
+/* AuctionXI shares the first screen with the wall text: pull the hang up so the piece sits beside it */
+function sizePlaster(){const s=document.getElementById('plaster');s.style.height=document.documentElement.scrollHeight+'px'}
+
+/* lights come on as you walk up to each work */
+function light(){
+  const vh=innerHeight;
+  works.forEach(o=>{const r=o.w.getBoundingClientRect();const c=r.top+r.height*.5;
+    const on=c<vh*.88&&r.bottom>vh*.04;
+    if(on&&!o.on){o.on=true;o.w.style.setProperty('--lit',1);o.L.style.setProperty('--lit',1)}
+  })
+}
+let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;light()})},{passive:true});
+addEventListener('resize',()=>{layout();light()});
+layout();
+if(reduce){works.forEach(o=>{o.w.style.setProperty('--lit',1);o.L.style.setProperty('--lit',1)})}
+setTimeout(light,250);
+
+/* floor: skirting, polished kota stone catching the lamps, and a teak bench */
+const NS='http://www.w3.org/2000/svg',fl=document.getElementById('floor');
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+el('defs',{},fl).innerHTML=`<linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d6455"/><stop offset=".25" stop-color="#5a5246"/><stop offset="1" stop-color="#3e382f"/></linearGradient>
+ <linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9dcc3"/><stop offset="1" stop-color="#b8a685"/></linearGradient>
+ <radialGradient id="refl" cx="50%" cy="0%" r="60%"><stop offset="0" stop-color="#ffe9c4" stop-opacity=".32"/><stop offset="1" stop-color="#ffe9c4" stop-opacity="0"/></radialGradient>
+ <linearGradient id="teak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a33"/><stop offset="1" stop-color="#4b2f19"/></linearGradient>`;
+el('rect',{x:0,y:110,width:1440,height:290,fill:'url(#fg)'},fl);
+el('rect',{x:0,y:96,width:1440,height:16,fill:'url(#sk)'},fl);
+for(let i=0;i<9;i++){const x=-200+i*230;el('path',{d:`M${x+80} 112 L${x-120+i*10} 400`,stroke:'#2e2a24',opacity:.35,'stroke-width':1},fl)}
+el('path',{d:'M0 180 H1440 M0 270 H1440',stroke:'#2e2a24',opacity:.25},fl);
+const cp=el('clipPath',{id:'fc'},fl);el('rect',{x:0,y:112,width:1440,height:300},cp);const rg=el('g',{'clip-path':'url(#fc)'},fl);
+[[300,1],[860,1.2],[1180,.8]].forEach(([x,s])=>el('ellipse',{cx:x,cy:112,rx:260*s,ry:150,fill:'url(#refl)'},rg));
+// bench
+const b=el('g',{},fl);
+el('rect',{x:560,y:196,width:360,height:20,rx:2,fill:'url(#teak)'},b);
+el('rect',{x:560,y:196,width:360,height:3,fill:'#b98455',opacity:.7},b);
+el('rect',{x:584,y:214,width:14,height:70,fill:'#3b2414'},b);el('rect',{x:882,y:214,width:14,height:70,fill:'#3b2414'},b);
+el('rect',{x:600,y:226,width:282,height:6,fill:'#3b2414'},b);
+el('ellipse',{cx:740,cy:290,rx:200,ry:10,fill:'#2a241d',opacity:.35},b);
+</script>
+</body>
+</html>

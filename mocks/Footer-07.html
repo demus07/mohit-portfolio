@@ -1,0 +1,268 @@
+<!-- Direction 07: Rain at night — the floodlit temple doubled in a wet Prabhadevi road, umbrellas drifting under sodium light. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siddhivinayak in Rain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--mute:#b6b2ab}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--paper)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{height:260vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+svg.art{position:absolute;inset:0;width:100%;height:100%;display:block}
+canvas#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0 40%,#000 52%);mask-image:linear-gradient(90deg,transparent 0 40%,#000 52%)}
+@media (max-width:720px){canvas#rain{-webkit-mask-image:linear-gradient(180deg,transparent 0 46%,#000 58%);mask-image:linear-gradient(180deg,transparent 0 46%,#000 58%)}}
+.copy{position:absolute;left:clamp(28px,6vw,96px);top:clamp(56px,11vh,120px);width:min(460px,40vw);z-index:3}
+.clock{font-size:15px;color:var(--sodium);letter-spacing:.01em;margin-bottom:26px}
+h2{font-family:Newsreader,serif;font-weight:400;font-size:clamp(44px,4.6vw,74px);line-height:1.02;letter-spacing:-.015em;text-wrap:balance}
+.line{margin-top:20px;font-size:18px;line-height:1.5;color:#d9d3c8;max-width:24em}
+.act{margin-top:34px;display:flex;flex-wrap:wrap;align-items:baseline;gap:14px 26px}
+.cta{font-family:Newsreader,serif;font-size:27px;color:var(--sodium);position:relative}
+.cta::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform-origin:left;transform:scaleX(.25);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover::after{transform:scaleX(1)}
+.mail{font-size:15px;color:var(--mute);transition:color .3s}
+.mail:hover{color:var(--paper)}
+.belief{margin-top:52px;opacity:0;transform:translateY(14px)}
+.belief blockquote{font-family:Newsreader,serif;font-style:italic;font-size:21px;line-height:1.42;color:#ece4d6;max-width:21em}
+.belief p{margin-top:12px;font-size:15px;line-height:1.5;color:var(--mute);max-width:26em}
+.foot{position:absolute;left:clamp(28px,6vw,96px);right:clamp(28px,6vw,96px);bottom:26px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:#9aa0a8;z-index:3;opacity:0}
+.foot a{transition:color .3s}.foot a:hover{color:var(--sodium)}
+.foot .c{margin-left:auto}
+.t-stone{fill:#f3dcae}.t-sh{fill:#5b3416;opacity:.34}.t-hi{fill:#fff4dc;opacity:.35}.t-band{fill:#6e4223}.t-tan{fill:#d9ae74}
+.t-gold{fill:#f7c548}.t-goldsh{fill:#b77a12;opacity:.55}.t-lip{fill:#ffe7a2}.t-goldd{fill:#8b5710}.t-rib{stroke:#9b6514;stroke-width:1.2;fill:none;opacity:.55}
+.t-eave{fill:#2a170c}.t-wall{fill:#ecc994}.t-wall2{fill:#e9bd86}.t-win{fill:#5a3218}.t-winl{fill:#ffcf7a}.t-door{fill:url(#doorglow)}
+.t-orange{fill:#ea7a2c}.t-orangesh{fill:#a8441a;opacity:.5}.t-olip{fill:#ffb36b}.t-pole{stroke:#3b2a1a;stroke-width:3;fill:none}.t-flag{fill:#f2671c}
+@media (max-width:720px){
+ .page{height:220vh}
+ .copy{left:20px;right:20px;top:34px;width:auto}
+ h2{font-size:40px}.line{font-size:16px;margin-top:12px}.clock{margin-bottom:14px;font-size:14px}
+ .act{margin-top:18px}.cta{font-size:23px}
+ .belief{margin-top:22px}.belief blockquote{font-size:17px}.belief p{font-size:14px;margin-top:6px}
+ .foot{left:20px;right:20px;bottom:16px;font-size:13px;gap:6px 16px}
+ .foot .c{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){canvas#rain{display:none}}
+.t-tier{fill:#eec171}.t-tiersh{fill:#7d4f14;opacity:.45}.t-tierlip{fill:#ffe3a4}.t-cwall{fill:#3e2e24}.t-ccope{fill:#7a5c44}
+#temple .t-stone,#temple .t-tier,#temple .t-tierlip,#temple .t-orange,#temple .t-wall,#temple .t-wall2,#temple .t-cwall{stroke:#3a2416;stroke-opacity:.5;stroke-width:1;stroke-linejoin:round}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+ <div class="stage">
+  <svg class="art" id="art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Siddhivinayak temple at night in the rain, floodlit gold, reflected in the wet road, people with umbrellas">
+   <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+     <stop offset="0" stop-color="#08111f"/><stop offset=".5" stop-color="#132238"/><stop offset=".78" stop-color="#2e2f3f"/><stop offset="1" stop-color="#5b4537"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="1000" cy="560" r="520" gradientUnits="userSpaceOnUse">
+     <stop offset="0" stop-color="#f2a145" stop-opacity=".42"/><stop offset=".55" stop-color="#f2a145" stop-opacity=".12"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="doorglow" cx=".5" cy=".7" r=".7"><stop offset="0" stop-color="#fff0b8"/><stop offset=".5" stop-color="#f6b24a"/><stop offset="1" stop-color="#9a4f12"/></radialGradient>
+    <radialGradient id="lamp" r=".5"><stop offset="0" stop-color="#ffbe6a" stop-opacity=".75"/><stop offset=".4" stop-color="#f2a145" stop-opacity=".22"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1e27"/><stop offset="1" stop-color="#0b111c"/></linearGradient>
+    <linearGradient id="reffade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".55" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <mask id="refmask"><rect x="0" y="800" width="1600" height="260" fill="url(#reffade)"/></mask>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3349" stop-opacity="0"/><stop offset="1" stop-color="#6a5440" stop-opacity=".55"/></linearGradient>
+    <filter id="wet" x="0" y="0" width="1" height="1.2">
+     <feTurbulence type="fractalNoise" baseFrequency="0.004 0.09" numOctaves="2" seed="4" result="n"/>
+     <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G" result="d"/>
+     <feGaussianBlur in="d" stdDeviation="1.6 3"/>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .09 0"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+   </defs>
+   <rect width="1600" height="1000" fill="url(#sky)"/>
+   <g id="cam">
+    <!-- far towers of Prabhadevi in rain haze -->
+    <g fill="#1f2a3e" opacity=".85" id="far"></g>
+    <rect y="380" width="1600" height="420" fill="url(#haze)"/>
+    <circle cx="1000" cy="560" r="520" fill="url(#aura)"/>
+    <g id="temple" transform="translate(650 100) scale(.7)"></g>
+    <!-- near blocks -->
+    <g id="near"></g>
+    <!-- road -->
+    <rect y="798" width="1600" height="400" fill="url(#road)"/>
+    <g mask="url(#refmask)" filter="url(#wet)" opacity=".9">
+     <g transform="translate(0 1600) scale(1 -1)">
+      <circle cx="1000" cy="560" r="520" fill="url(#aura)"/>
+      <use href="#temple"/>
+      <use href="#near"/>
+      <circle cx="1390" cy="560" r="160" fill="url(#lamp)"/>
+     </g>
+    </g>
+    <rect y="796" width="1600" height="5" fill="#3d3530"/>
+    <!-- sodium lamp -->
+    <g id="lampg">
+     <path d="M1374 1000V560q0-30 30-32h40" stroke="#121a26" stroke-width="7" fill="none"/>
+     <rect x="1432" y="522" width="34" height="11" rx="4" fill="#ffd28a"/>
+     <circle cx="1450" cy="560" r="190" fill="url(#lamp)"/>
+     <ellipse cx="1440" cy="880" rx="260" ry="34" fill="#f2a145" opacity=".14" filter="url(#soft)"/>
+    </g>
+    <g id="walkers"></g>
+   </g>
+   <rect width="1600" height="1000" filter="url(#grain)" opacity=".7"/>
+  </svg>
+  <canvas id="rain"></canvas>
+
+  <div class="copy">
+   <p class="clock" id="clock">It's — in Mumbai.</p>
+   <h2>Got something to build?</h2>
+   <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+   <div class="act">
+    <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me →</a>
+    <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+   </div>
+   <figure class="belief" id="belief">
+    <blockquote>If you believe you can make it, you will. The rest is trusting God and doing the work.</blockquote>
+    <p>Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+   </figure>
+  </div>
+  <nav class="foot" id="foot">
+   <a href="https://github.com/Mohit-Bagri">GitHub</a>
+   <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+   <a href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+   <a href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+   <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+   <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+   <span class="c">© 2026 Mohit Bagri</span>
+  </nav>
+ </div>
+</div>
+<!-- direction: 07 rain at night -->
+<script>
+/* ---------- Siddhivinayak, drawn on a 1000x1000 grid, ground at y=1000 ---------- */
+function buildTemple(){
+  const out=[];const f=n=>Math.round(n*10)/10;
+  const ord=y=>Math.max(0,Math.min(1,(1000-y)/900)).toFixed(3);
+  const P=(d,c,y)=>out.push(`<path class="${c}" d="${d}" pathLength="1" style="--o:${ord(y)}"/>`);
+  const trap=(cx,y0,h0,y1,h1)=>`M${f(cx-h0)} ${f(y0)}L${f(cx+h0)} ${f(y0)}L${f(cx+h1)} ${f(y1)}L${f(cx-h1)} ${f(y1)}Z`;
+  const quad=(a0,b0,y0,a1,b1,y1)=>`M${f(a0)} ${f(y0)}L${f(b0)} ${f(y0)}L${f(b1)} ${f(y1)}L${f(a1)} ${f(y1)}Z`;
+  const ell=(cx,cy,rx,ry)=>`M${f(cx-rx)} ${f(cy)}a${f(rx)} ${f(ry)} 0 1 0 ${f(2*rx)} 0a${f(rx)} ${f(ry)} 0 1 0 ${f(-2*rx)} 0Z`;
+  const kal=(cx,y,s)=>`M${f(cx-s*.5)} ${f(y)}L${f(cx+s*.5)} ${f(y)}L${f(cx+s*.36)} ${f(y-s*.16)}C${f(cx+s*.95)} ${f(y-s*.3)} ${f(cx+s*.9)} ${f(y-s*1.1)} ${f(cx+s*.26)} ${f(y-s*1.2)}L${f(cx+s*.2)} ${f(y-s*1.36)}L${f(cx+s*.46)} ${f(y-s*1.44)}L${f(cx+s*.12)} ${f(y-s*1.56)}Q${f(cx)} ${f(y-s*2.5)} ${f(cx-s*.12)} ${f(y-s*1.56)}L${f(cx-s*.46)} ${f(y-s*1.44)}L${f(cx-s*.2)} ${f(y-s*1.36)}L${f(cx-s*.26)} ${f(y-s*1.2)}C${f(cx-s*.9)} ${f(y-s*1.1)} ${f(cx-s*.95)} ${f(y-s*.3)} ${f(cx-s*.36)} ${f(y-s*.16)}Z`;
+  const arch=(x,y,w,h)=>`M${f(x)} ${f(y+h)}V${f(y+w/2)}A${f(w/2)} ${f(w/2)} 0 0 1 ${f(x+w)} ${f(y+w/2)}V${f(y+h)}Z`;
+  function spire(cx,w,top,base){
+    const hb=w/2,ht=w*.4,L=y=>ht+(hb-ht)*(y-top)/(base-top);
+    P(trap(cx,base,hb,top,ht),'t-stone',base);
+    P(quad(cx+hb*.2,cx+hb,base,cx+ht*.2,cx+ht,top),'t-sh',base);
+    P(quad(cx-hb*.74,cx-hb*.46,base,cx-ht*.74,cx-ht*.46,top),'t-hi',base);
+    const seg=Math.max(w*.82,13);
+    for(let y=top+w*.5;y<base-seg*.5;y+=seg){const h=L(y);
+      P(trap(cx,y-seg*.36,h,y-seg*.46,h),'t-tan',y);
+      P(trap(cx,y+seg*.2,h*1.1,y,h*1.1),'t-band',y);}
+    const m=w*.13,c=top;
+    P(trap(cx,c,ht*1.36,c-m,ht*1.36),'t-band',c);
+    P(trap(cx,c-m,ht*1.12,c-m-w*.24,ht*.82),'t-stone',c);
+    P(trap(cx,c-m-w*.24,ht*.9,c-m-w*.31,ht*.9),'t-band',c);
+    P(trap(cx,c-m-w*.31,ht*.78,c-m-w*.46,ht*.5),'t-tan',c);
+    P(ell(cx,c-m-w*.49,ht*.72,w*.07),'t-gold',c);
+    P(kal(cx,c-m-w*.53,w*.3),'t-gold',c);
+  }
+  function stepped(cx,base,top,h0,h1,n,cl,dome){
+    for(let i=0;i<n;i++){
+      const t0=i/n,t1=(i+1)/n,y0=base-(base-top)*t0,y1=base-(base-top)*t1,th=y0-y1;
+      const a=dome?h1+(h0-h1)*Math.cos(t0*Math.PI/2*.92):h1+(h0-h1)*Math.pow(1-t0,1.12);
+      P(trap(cx,y0,a*.92,y1+th*.26,a*.86),cl[0],y0);
+      P(quad(cx+a*.34,cx+a*.92,y0,cx+a*.3,cx+a*.86,y1+th*.26),cl[1],y0);
+      P(trap(cx,y1+th*.26,a,y1,a*.95),cl[2],y1);
+      if(cl[3]) for(const k of [-.6,-.2,.2,.6]) P(`M${f(cx+a*.9*k)} ${f(y0)}L${f(cx+a*.86*k)} ${f(y1+th*.26)}`,cl[3],y0);
+    }
+  }
+  const CX=500;
+  // two side groups of banded spires; in each, the tallest stand at the outer edge
+  [[-110,30,452],[112,30,458],[-150,32,424],[152,32,430],[-192,32,392],[196,32,398],[-232,32,362],[236,32,368],[-268,30,338],[272,30,344]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  [[-304,30,316,746],[306,30,322,746]].forEach(([dx,w,t,bs])=>spire(CX+dx,w,t,bs));
+  // the central shikhara: eight tiers narrowing upward
+  stepped(CX,580,300,150,34,8,['t-tier','t-tiersh','t-tierlip','t-rib']);
+  P(ell(CX,296,42,8),'t-goldd',296);P(ell(CX,290,32,7),'t-gold',290);
+  P(kal(CX,284,36),'t-gold',284);
+  P(`M${CX+40} 300V96`,'t-pole',300);
+  // dark band under the eaves, with its row of seven small spires
+  P(trap(CX,668,198,580,180),'t-eave',668);
+  for(let i=0;i<7;i++){const x=CX-150+i*50;P(trap(x,668,9,616,7),'t-stone',668);P(trap(x,616,8.6,600,1.6),'t-tan',616);P(ell(x,597,3.4,3.4),'t-gold',597);}
+  // front ring
+  [[-172,36,470],[174,36,476],[-252,34,430],[256,34,436]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  // upper storey
+  P(`M236 746V666H764V746Z`,'t-wall',746);
+  for(let x=252;x<750;x+=28) P(arch(x,682,13,38),(x*7%5===1)?'t-winl':'t-win',720);
+  P(trap(CX,672,276,664,276),'t-band',672);
+  // main block
+  P(`M180 1000V746H820V1000Z`,'t-wall',1000);
+  P(trap(CX,754,332,744,332),'t-band',754);P(trap(CX,838,326,830,326),'t-band',838);P(trap(CX,918,326,910,326),'t-band',918);
+  for(const r of [[762,56],[846,54]]) for(let x=196;x<806;x+=30){ if(x>360&&x<578) continue; P(arch(x,r[0],14,r[1]),((x+r[0])%7===2)?'t-winl':'t-win',r[0]+r[1]);}
+  for(let x=198;x<806;x+=44){ if(x>350&&x<590) continue; P(arch(x,930,22,70),'t-win',1000);}
+  // entrance porch and the small orange stepped dome
+  const EX=468;
+  P(`M${EX-92} 1000V876H${EX+92}V1000Z`,'t-wall2',1000);
+  P(arch(EX-32,910,64,90),'t-door',1000);
+  P(trap(EX,884,106,870,106),'t-band',884);
+  stepped(EX,870,756,104,16,6,['t-orange','t-orangesh','t-olip'],true);
+  P(ell(EX,754,18,4.5),'t-gold',754);P(kal(EX,750,19),'t-gold',750);
+  // the low compound wall, sloping across the front
+  P(`M-60 1000L-60 984L1060 956L1060 1000Z`,'t-cwall',1000);
+  P(`M-60 984L1060 956L1060 949L-60 977Z`,'t-ccope',1000);
+  out.push(`<path id="flag" class="t-flag" d="" style="--o:1"/>`);
+  return out.join('');
+}
+const FLAG={x:540,y:96,L:80,H:46};
+function flagD(t){const {L,H}=FLAG;const X=FLAG.x,Y=FLAG.y;const w1=Math.sin(t*2.3)*H*.14,w2=Math.sin(t*2.3+1.4)*H*.18,tx=L*(.94+.06*Math.sin(t*1.2)),ny=Math.sin(t*1.7)*H*.08;
+ return `M${X} ${Y}Q${X+L*.5} ${Y+w1} ${X+tx} ${Y+H*.06+w1*.6}L${X+L*.55} ${Y+H*.5+ny}L${X+tx*.97} ${Y+H*.96+w2*.6}Q${X+L*.5} ${Y+H+w2} ${X} ${Y+H}Z`;}
+function mumbaiTime(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true}).formatToParts(new Date());const g=k=>(p.find(x=>x.type===k)||{}).value;return `${g('hour')}:${g('minute')} ${(g('dayPeriod')||'').toLowerCase()}`;}
+
+/* ---------- scene ---------- */
+const NS='http://www.w3.org/2000/svg';
+document.getElementById('temple').innerHTML=buildTemple();
+function blocks(id,list,col,lit){let s='';for(const [x,y,w] of list){s+=`<rect x="${x}" y="${y}" width="${w}" height="${800-y}" fill="${col}"/>`;
+ if(lit) for(let r=0;r<Math.floor((780-y)/38);r++)for(let c=0;c<Math.floor((w-16)/28);c++){const k=x<620?3:(r*13+c*7+x)%17;s+=`<rect x="${x+12+c*28}" y="${y+18+r*38}" width="12" height="15" fill="${k===0?'#f2b766':k===5?'#9fb4c8':'#1a2436'}" opacity="${k===0?.9:k===5?.35:1}"/>`;}}
+ document.getElementById(id).innerHTML=s;}
+blocks('far',[[40,300,120],[300,250,90],[520,330,110],[1260,240,100],[1440,310,130],[1120,350,70]],'#1c2639',false);
+blocks('near',[[0,700,180],[170,730,160],[330,690,150],[480,650,150],[1270,600,120],[1390,520,210]],'#121b2b',true);
+// umbrellas
+const walkers=document.getElementById('walkers');const W=[];
+function person(sc,col){return `<g transform="scale(${sc})"><path d="M-46 -118Q0 -168 46 -118Q38 -112 31 -117Q23 -110 15 -116Q8 -110 0 -116Q-8 -110 -15 -116Q-23 -110 -31 -117Q-38 -112 -46 -118Z" fill="${col}"/><path d="M0 -150V-120" stroke="${col}" stroke-width="2"/><path d="M0 -118V-84" stroke="#0a0f18" stroke-width="2.4"/><circle cx="2" cy="-104" r="8" fill="#0a0f18"/><path d="M-12 -94Q2 -100 14 -94L18 -40H-14Z" fill="#0b111b"/><path class="lg" d="M-8 -42L-12 0M8 -42L12 0" stroke="#0b111b" stroke-width="7" stroke-linecap="round"/></g>`}
+[[0.95,'#141820',870,0],[0.78,'#3a1f22',845,.37],[1.08,'#10141c',905,.62],[0.7,'#1a2230',832,.84]].forEach(([sc,c,y,ph])=>{
+ const g=document.createElementNS(NS,'g');g.innerHTML=person(sc,c)+`<ellipse cx="0" cy="${4}" rx="${40*sc}" ry="4" fill="#f2a145" opacity=".08"/>`;walkers.appendChild(g);W.push({g,y,ph,sc});});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const flag=document.getElementById('flag');
+const art=document.getElementById('art'),cam=document.getElementById('cam');
+const mq=matchMedia('(max-width:720px)');
+function setView(){art.setAttribute('viewBox',mq.matches?'560 -640 880 1640':'0 0 1600 1000');}
+setView();mq.addEventListener('change',setView);
+// rain
+const cv=document.getElementById('rain'),cx=cv.getContext('2d');let drops=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight;drops=Array.from({length:Math.round(innerWidth*innerHeight/5200)},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,l:8+Math.random()*16,v:9+Math.random()*9,a:.08+Math.random()*.22}));}
+size();addEventListener('resize',size);
+let p=0;
+function onScroll(){const el=document.getElementById('page');const max=el.offsetHeight-innerHeight;p=Math.max(0,Math.min(1,scrollY/max));}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const belief=document.getElementById('belief'),foot=document.getElementById('foot');
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function frame(ts){const t=ts/1000;
+ flag.setAttribute('d',flagD(reduce?0:t));
+ const e=ease(p);
+ cam.setAttribute('transform',`translate(0 ${(-e*(mq.matches?30:46)).toFixed(1)})`);
+ const b=Math.max(0,Math.min(1,(p-.3)/.3)),fo=Math.max(0,Math.min(1,(p-.6)/.25));
+ belief.style.opacity=b;belief.style.transform=`translateY(${(1-b)*14}px)`;foot.style.opacity=fo;
+ // walkers: right to left, fading before they reach the text column
+ const vw=mq.matches?{x0:560,x1:1440}:{x0:700,x1:1640};
+ W.forEach((w,i)=>{const span=vw.x1-vw.x0+120;const u=((reduce?w.ph:(t*0.012*(1+i*.15))+w.ph)%1);const x=vw.x1+60-u*span;
+  const fade=Math.min(1,(x-vw.x0)/140,(vw.x1+60-x)/60);const bob=Math.sin(t*5+i)*1.5;
+  w.g.setAttribute('transform',`translate(${x.toFixed(1)} ${(w.y+bob).toFixed(1)})`);w.g.style.opacity=Math.max(0,fade);});
+ // rain, thinning as the invitation settles
+ cx.clearRect(0,0,cv.width,cv.height);
+ if(!reduce){const n=Math.round(drops.length*(1-.55*e));cx.lineWidth=1;
+  for(let i=0;i<n;i++){const d=drops[i];d.y+=d.v;d.x-=d.v*.12;if(d.y>cv.height){d.y=-20;d.x=Math.random()*cv.width*1.1;}
+   const lampish=d.x>cv.width*.8&&d.y<cv.height*.85;cx.strokeStyle=lampish?`rgba(255,196,120,${d.a+.15})`:`rgba(190,205,225,${d.a})`;
+   cx.beginPath();cx.moveTo(d.x,d.y);cx.lineTo(d.x+d.l*.12,d.y-d.l);cx.stroke();}}
+ requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+function tick(){document.getElementById('clock').textContent=`It's ${mumbaiTime()} in Mumbai.`;}tick();setInterval(tick,15000);
+</script>
+</body>
+</html>

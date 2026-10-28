@@ -1,0 +1,450 @@
+<!-- Direction 06: Bollywood hand-painted poster — Churchgate at sunset painted like a 1970s release poster, a sunburst behind the AC local; scroll dollies into the one lit window where the hero sits, chin on fist, and the tagline is his thought. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4e6c8;--navy:#17204a;--ink:#1a1420;--saffron:#ef7d22;--marigold:#f7c548;--crimson:#b3123f;--plum:#4b1638;--teal:#2aa6a4;--sodium:#f2a145;--cream:#fbf1dc}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:"Hind",system-ui,sans-serif;color:var(--cream);background:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  /* painted sign-writer lettering: fill + hand-cut block extrude, part of the letterform not a drop shadow */
+  .paint{font-family:"Rozha One",Georgia,serif;font-weight:400;color:var(--marigold);line-height:.98;letter-spacing:-.005em;
+    text-shadow:1px 1px 0 var(--ex1,#c2241f),2px 2px 0 var(--ex1,#c2241f),3px 3px 0 var(--ex1,#c2241f),4px 4px 0 var(--ex1,#c2241f),5px 5px 0 var(--ex2,#5c0b26),6px 6px 0 var(--ex2,#5c0b26),7px 7px 0 var(--ex2,#5c0b26)}
+  .voice{font-family:"Rozha One",Georgia,serif;font-weight:400}
+  .fact{font-family:"Hind",system-ui,sans-serif;font-weight:500;font-size:clamp(1.02rem,.9rem + .35vw,1.22rem);line-height:1.45}
+  /* poster paper: tooth + faint halftone, fixed over everything */
+  .print{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.42;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .35  0 0 0 -1.4 1.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .print::after{content:"";position:absolute;inset:0;opacity:.35;
+    background-image:radial-gradient(rgba(60,20,30,.5) .7px,transparent 1.2px);background-size:5px 5px}
+  .brush{position:fixed;inset:0;pointer-events:none;z-index:49;mix-blend-mode:soft-light;opacity:.18;background-size:100% 100%;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.004 .09' numOctaves='3' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -.35'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>")}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  body{background:#2a0f2e}
+  .intro{position:relative;height:560vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .copy{position:absolute;left:clamp(20px,5vw,84px);top:clamp(64px,11vh,120px);max-width:min(640px,52vw);z-index:5;will-change:transform,opacity}
+  .copy h1{font-size:clamp(3.6rem,2rem + 6.4vw,8.6rem)}
+  .copy p{margin-top:clamp(18px,2.6vh,30px);max-width:24ch;color:var(--cream);font-size:clamp(1.1rem,.95rem + .45vw,1.42rem);line-height:1.42;font-weight:500}
+  .note{position:absolute;left:clamp(20px,5vw,84px);top:clamp(40px,7vh,72px);max-width:min(860px,64vw);z-index:5;opacity:0;will-change:transform,opacity}
+  .note p{font-size:clamp(1.9rem,1.1rem + 1.9vw,3rem);--ex1:#7a1230;--ex2:#2a0718;color:var(--cream);text-wrap:balance}
+  .note a{display:inline-block;margin-top:18px;font-weight:600;font-size:1.12rem;color:var(--marigold);text-decoration:none;padding-bottom:3px;background:linear-gradient(var(--marigold),var(--marigold)) 0 100%/0 2px no-repeat;transition:background-size .35s ease}
+  .note a:hover{background-size:100% 2px}
+  .cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;width:2px;height:46px;background:linear-gradient(var(--marigold),transparent);animation:cue 2.4s ease-in-out infinite}
+  @keyframes cue{0%,100%{opacity:.25;transform:translate(-50%,0)}50%{opacity:.9;transform:translate(-50%,8px)}}
+  .after{height:40vh;background:#2a0f2e}
+  @media (max-width:720px){
+    .copy{max-width:none;right:20px;top:56px}
+    .copy p{max-width:30ch}
+    .note{max-width:none;right:20px;top:44px}
+  }
+</style>
+</head>
+<body>
+<div class="print"></div><div class="brush"></div>
+<section class="intro" id="intro">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a1446"/><stop offset=".3" stop-color="#a61e4d"/><stop offset=".55" stop-color="#e2502c"/><stop offset=".72" stop-color="#f59a2f"/><stop offset=".86" stop-color="#f9cf5a"/>
+        </linearGradient>
+        <radialGradient id="sunG"><stop offset="0" stop-color="#fff4c4"/><stop offset=".55" stop-color="#ffd760"/><stop offset="1" stop-color="#f7a531"/></radialGradient>
+        <radialGradient id="halo"><stop offset="0" stop-color="#ffe08a" stop-opacity=".75"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffd9b8"/><stop offset=".25" stop-color="#fbeee0"/><stop offset="1" stop-color="#e9ddd6"/>
+        </linearGradient>
+        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3b2440"/><stop offset=".45" stop-color="#1f3346"/><stop offset=".62" stop-color="#e88a5a"/><stop offset=".7" stop-color="#25384a"/><stop offset="1" stop-color="#14202e"/>
+        </linearGradient>
+        <linearGradient id="lit" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff0c8"/><stop offset=".5" stop-color="#f7cf86"/><stop offset="1" stop-color="#e59a52"/>
+        </linearGradient>
+        <linearGradient id="plat" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b5726a"/><stop offset="1" stop-color="#6b2a43"/>
+        </linearGradient>
+        <linearGradient id="wind" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#1b2338"/><stop offset=".55" stop-color="#4a3050"/><stop offset=".8" stop-color="#f19a5c"/><stop offset="1" stop-color="#2a2a40"/>
+        </linearGradient>
+        <clipPath id="heroClip"><rect x="845" y="604" width="62" height="56" rx="5"/></clipPath>
+      </defs>
+
+      <!-- FAR: sky, sunburst, skyline -->
+      <g id="far">
+        <rect x="-800" y="-600" width="3040" height="2100" fill="url(#sky)"/>
+        <g id="rays" opacity=".22"></g>
+        <circle cx="700" cy="560" r="330" fill="url(#halo)"/>
+        <circle cx="700" cy="560" r="128" fill="url(#sunG)"/>
+        <!-- painted cloud bars across the sun, poster style -->
+        <g fill="#c33a3e" opacity=".85">
+          <path d="M470 500 C560 492 640 496 760 492 C820 490 880 494 930 498 C880 504 820 506 760 506 C660 508 560 508 470 500 Z"/>
+          <path d="M560 532 C640 526 720 528 840 530 C800 538 700 540 560 532 Z"/>
+          <path d="M190 330 C300 318 420 320 520 326 C430 334 300 338 190 330 Z" fill="#7d1a48"/>
+          <path d="M960 270 C1080 258 1200 260 1320 268 C1220 276 1080 278 960 270 Z" fill="#7d1a48"/>
+        </g>
+        <!-- kites circling, Mumbai's black kites -->
+        <g id="kites" fill="#3a0f2c">
+          <path id="k1" d="M0 0 C-10 -6 -20 -5 -28 1 C-18 -1 -10 1 -2 4 L0 7 L2 4 C10 1 18 -1 28 1 C20 -5 10 -6 0 0 Z"/>
+          <path id="k2" d="M0 0 C-7 -4 -14 -3 -19 1 C-12 -1 -7 1 -1 3 L0 5 L1 3 C7 1 12 -1 19 1 C14 -3 7 -4 0 0 Z"/>
+        </g>
+        <!-- Western Railway HQ: Gothic stone, domed central tower -->
+        <g fill="#5d1c46">
+          <path d="M230 600 V492 h26 v-20 l13 -16 l13 16 v20 h40 v-26 l10 -12 l10 12 v26 h48 V470 h-8 l18 -30 l18 30 h-8 v22 h12 V428 h-6 l10 -24 v-30 h4 l16 -22 v-18 c0 -18 14 -34 22 -40 c8 6 22 22 22 40 v18 l16 22 h4 v30 l10 24 h-6 v64 h12 v-22 h-8 l18 -30 l18 30 h-8 v22 h48 v-26 l10 -12 l10 12 v26 h40 v-20 l13 -16 l13 16 v20 h26 V600 Z"/>
+          <path d="M422 326 l8 -26 l8 26 Z"/><rect x="428" y="290" width="4" height="14"/>
+        </g>
+        <g fill="#f3a65a" opacity=".55">
+          <path d="M412 360 h36 v4 h-36 Z M408 400 h44 v3 h-44 Z"/>
+          <path d="M424 330 c0-14 6-26 6-26 c0 0 6 12 6 26 Z" opacity=".7"/>
+        </g>
+        <g fill="#3a1236" opacity=".9" id="wrwin"></g>
+        <!-- Eros cinema: cream Art Deco, stepped tower, seen against the sun -->
+        <g fill="#6a2048">
+          <path d="M1070 600 V520 c0 -10 8 -18 18 -18 h60 V470 h10 V440 h8 V410 h6 V384 h8 v26 h6 v30 h8 v30 h10 v32 h60 c10 0 18 8 18 18 V600 Z"/>
+        </g>
+        <g fill="#f2a76a" opacity=".5"><rect x="1090" y="530" width="120" height="3"/><rect x="1090" y="546" width="120" height="3"/><rect x="1172" y="420" width="4" height="78"/></g>
+        <!-- Wankhede floodlight -->
+        <g fill="#5a1a44"><path d="M985 600 L993 392 h6 L1007 600 Z"/><rect x="970" y="366" width="52" height="30" rx="3"/></g>
+        <g fill="#f6c86b" opacity=".35"><rect x="975" y="371" width="42" height="20"/></g>
+        <!-- rain trees -->
+        <g fill="#47143a">
+          <path d="M600 600 C590 560 610 532 646 530 C662 510 700 508 716 526 C746 520 772 540 770 568 C790 580 786 600 770 600 Z"/>
+          <path d="M800 600 C796 578 812 562 836 562 C850 548 880 552 888 570 C906 574 910 590 904 600 Z"/>
+          <path d="M-20 600 C-30 560 0 530 40 534 C60 512 110 516 120 540 C150 540 168 566 160 600 Z"/>
+        </g>
+      </g>
+
+      <!-- NEAR: catenary, the rake, platform, canopy -->
+      <g id="near">
+        <!-- overhead equipment -->
+        <g stroke="#3a0f2c" fill="none">
+          <path d="M-300 522 H1800" stroke-width="2"/><path d="M-300 512 C200 518 400 518 900 512 S1500 506 1800 512" stroke-width="1.2"/>
+          <path d="M150 790 V470 M650 790 V470 M1150 790 V470" stroke-width="7"/>
+          <path d="M120 478 H230 M620 478 H730 M1120 478 H1230" stroke-width="4"/>
+        </g>
+        <g id="train"></g>
+        <!-- hero window interior: lit, him inside -->
+        <g clip-path="url(#heroClip)">
+          <rect x="845" y="604" width="62" height="56" fill="url(#lit)"/>
+          <rect x="845" y="606" width="62" height="3" fill="#fffbe6"/>
+          <path d="M880 612 h28 v40 h-28 Z" fill="#c9774a" opacity=".55"/>
+          <path d="M882 640 h30 v24 h-30 Z" fill="#2d6e8a" opacity=".85"/>
+          <path d="M852 609 v8 M868 609 v8" stroke="#8a5a3a" stroke-width="1"/>
+          <circle cx="852" cy="619" r="2.6" fill="none" stroke="#8a5a3a" stroke-width="1"/>
+          <g id="hero" transform="translate(842.5 591.5) scale(.162)"></g>
+          <!-- sunset reflection lying on the glass -->
+          <path d="M845 660 L877 604 L887 604 L855 660 Z" fill="#fff6e0" opacity=".18"/>
+          <path d="M865 660 L897 604 L901 604 L869 660 Z" fill="#fff6e0" opacity=".14"/>
+        </g>
+        <rect x="843" y="602" width="66" height="60" rx="6" fill="none" stroke="#c9c2c4" stroke-width="2.2"/>
+        <!-- near platform -->
+        <path d="M-400 786 H1840 V1300 H-400 Z" fill="url(#plat)"/>
+        <rect x="-400" y="786" width="2240" height="14" fill="#f3c232"/>
+        <rect x="-400" y="800" width="2240" height="3" fill="#7a3a2a" opacity=".5"/>
+        <g id="slabs" stroke="#5a1d38" stroke-width="1" opacity=".35"></g>
+        <!-- canopy on green steel columns, right edge of frame -->
+        <g>
+          <path d="M880 -20 H1700 V58 H880 Z" fill="#3c1f3a"/>
+          <path d="M880 58 H1700 V70 H880 Z" fill="#2b7a5a"/>
+          <path d="M880 70 H1700 V76 H880 Z" fill="#f2a145" opacity=".55"/>
+          <g fill="#2f8a62">
+            <rect x="1010" y="70" width="16" height="740"/><rect x="1370" y="70" width="16" height="740"/>
+            <path d="M1010 70 L960 70 L1010 120 Z M1026 70 L1076 70 L1026 120 Z M1370 70 L1320 70 L1370 120 Z M1386 70 L1436 70 L1386 120 Z"/>
+          </g>
+          <g fill="#f7b46a" opacity=".55"><rect x="1010" y="70" width="4" height="740"/><rect x="1370" y="70" width="4" height="740"/></g>
+          <!-- station board, Marathi + English -->
+          <path d="M1120 76 V108 M1270 76 V108" stroke="#22222a" stroke-width="3"/>
+          <rect x="1090" y="108" width="210" height="88" rx="4" fill="#f5c62c"/>
+          <rect x="1096" y="114" width="198" height="76" rx="2" fill="none" stroke="#1a1420" stroke-width="2"/>
+          <text x="1195" y="148" text-anchor="middle" font-family="Rozha One, serif" font-size="30" fill="#1a1420">चर्चगेट</text>
+          <text x="1195" y="180" text-anchor="middle" font-family="Hind, sans-serif" font-weight="600" font-size="24" letter-spacing="2" fill="#1a1420">CHURCHGATE</text>
+        </g>
+      </g>
+    </svg>
+
+    <div class="copy" id="copy">
+      <h1 class="paint">Mohit Bagri</h1>
+      <p>Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+    </div>
+    <div class="note" id="note">
+      <p class="paint">That's me. Can't wait to get home and fix what blocked production.</p>
+      <a href="mailto:mailmohitbagri@gmail.com">Write to me →</a>
+    </div>
+    <div class="cue" id="cue"></div>
+  </div>
+</section>
+<!-- direction: Style06 Opening, Bollywood hand-painted poster -->
+<script>
+/* Mohit, hand-painted poster hero. MOHIT({mood:'pensive'|'smile', fist:bool, rim:'#hex', id:'m1'}) -> SVG <g> markup in a 400x500 box.
+   Head turned three-quarters to the viewer's left (as in his portrait), key light from the left, coloured rim light behind. */
+function MOHIT(o){
+  o=Object.assign({mood:'smile',fist:false,rim:'#5fd3d6',id:'m'},o||{});
+  const id=o.id, R=o.rim;
+  const SK='#b9784f', SK2='#94573b', SK3='#6b3a2a', SKH='#dca07a', SKL='#ecbd95';
+  const SH='#f3f0f7', SH2='#c7bfe0', SH3='#9389bf';
+  const HR='#120f14', HR2='#262634', HRG='#56658e';
+  const smile=o.mood==='smile';
+  return `
+<defs>
+  <pattern id="${id}stripe" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+    <rect width="7" height="7" fill="none"/><rect y="0" width="7" height="1.1" fill="#8f84c4" opacity=".45"/>
+  </pattern>
+  <linearGradient id="${id}skinL" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="${SKH}"/><stop offset=".55" stop-color="${SK}"/><stop offset="1" stop-color="${SK2}"/>
+  </linearGradient>
+  <filter id="${id}paint" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/>
+  </filter>
+</defs>
+<g filter="url(#${id}paint)">
+  <!-- torso / shirt -->
+  <path d="M38 500 C44 440 70 398 120 378 C150 366 176 356 190 340 L284 318 C300 340 330 356 352 372 C384 396 398 440 404 500 Z" fill="${SH}"/>
+  <path d="M38 500 C44 440 70 398 120 378 C150 366 176 356 190 340 L284 318 C300 340 330 356 352 372 C384 396 398 440 404 500 Z" fill="url(#${id}stripe)"/>
+  <!-- shirt shadow planes (lavender) -->
+  <path d="M262 352 C300 372 330 400 350 440 C362 466 368 486 370 500 L404 500 C398 440 384 396 352 372 C330 356 300 340 284 318 Z" fill="${SH2}"/>
+  <path d="M300 380 C326 410 340 450 344 500 L370 500 C366 470 356 430 330 398 Z" fill="${SH3}" opacity=".55"/>
+  <path d="M120 378 C92 392 70 420 58 460 C70 440 92 420 118 410 Z" fill="${SH2}" opacity=".8"/>
+  <!-- rim on the back of the shoulder -->
+  <path d="M352 372 C384 396 398 440 404 500 L398 500 C392 446 378 404 348 380 Z" fill="${R}" opacity=".85"/>
+  <!-- neck -->
+  <path d="M188 300 C190 324 188 340 184 352 C214 366 262 356 288 330 C282 312 278 290 276 266 Z" fill="${SK2}"/>
+  <path d="M188 300 C200 320 236 324 270 300 L276 266 C258 292 222 312 188 300 Z" fill="${SK3}" opacity=".7"/>
+  <path d="M276 270 C280 296 284 314 290 330 L284 332 C278 312 274 292 272 272 Z" fill="${R}" opacity=".8"/>
+  <!-- open collar -->
+  <path d="M184 350 C196 372 214 388 226 404 C236 380 238 366 236 356 C218 360 198 358 184 350 Z" fill="${SK2}"/>
+  <path d="M172 338 C176 360 190 386 218 412 C214 386 208 366 200 350 C192 346 182 342 172 338 Z" fill="${SH}"/>
+  <path d="M172 338 C176 360 190 386 218 412 C214 392 206 372 196 356 Z" fill="${SH2}" opacity=".5"/>
+  <path d="M236 356 C252 352 274 342 290 326 C304 344 316 362 324 380 C300 384 270 392 232 410 C238 392 240 372 236 356 Z" fill="${SH}"/>
+  <path d="M290 326 C304 344 316 362 324 380 C312 382 298 384 286 388 C296 370 296 348 290 326 Z" fill="${SH2}"/>
+  <!-- ear -->
+  <path d="M266 204 C280 192 298 198 296 220 C294 240 286 256 270 262 C266 242 264 222 266 204 Z" fill="${SK}"/>
+  <path d="M272 214 C282 208 290 214 288 226 C286 238 280 246 274 248 C278 236 278 224 272 214 Z" fill="${SK3}" opacity=".75"/>
+  <path d="M292 206 C298 214 298 232 290 248 C286 256 280 260 274 262 C286 252 294 232 292 206 Z" fill="${R}" opacity=".85"/>
+  <!-- face base -->
+  <path d="M150 134 C136 150 129 168 129 186 C129 195 135 200 135 207 C135 215 131 223 131 232 L132 248 C134 256 137 262 140 268 C138 276 140 284 146 291 C147 301 151 313 161 321 C173 331 191 331 206 325 C231 315 253 299 267 279 C275 263 278 241 276 220 L280 150 C260 120 190 115 150 134 Z" fill="url(#${id}skinL)"/>
+  <!-- painted shadow planes: temple, cheek, under jaw -->
+  <path d="M276 220 C278 241 275 263 267 279 C253 299 231 315 206 325 C224 312 238 296 246 276 C254 256 258 236 256 214 C262 206 270 206 276 220 Z" fill="${SK2}"/>
+  <path d="M230 160 C252 160 268 172 278 186 L276 220 C268 206 258 204 252 210 C248 190 242 174 230 160 Z" fill="${SK2}" opacity=".85"/>
+  <path d="M246 276 C238 296 224 312 206 325 C222 322 236 314 248 304 C254 296 252 286 246 276 Z" fill="${SK3}" opacity=".55"/>
+  
+  <!-- key-light highlights: forehead, cheekbone, chin -->
+  <path d="M156 160 C170 154 190 152 208 156 C192 160 174 166 160 176 C156 172 154 166 156 160 Z" fill="${SKL}" opacity=".6"/>
+  <path d="M146 232 C158 226 176 228 186 236 C176 244 160 246 148 242 Z" fill="${SKL}" opacity=".7"/>
+  <path d="M164 306 C172 300 186 300 194 306 C188 316 176 318 166 314 Z" fill="${SKL}" opacity=".6"/>
+  <!-- rim along jaw and cheek -->
+  <path d="M276 220 C278 241 275 263 267 279 C255 297 238 310 218 320 C240 306 258 288 268 266 C274 250 274 234 272 220 Z" fill="${R}" opacity=".9"/>
+  <!-- sideburn -->
+  <path d="M252 168 C260 170 268 178 270 190 L268 228 C262 220 258 206 256 194 C254 184 252 176 252 168 Z" fill="${HR}"/>
+  <!-- eye sockets -->
+  <path d="M182 196 C196 190 222 190 236 198 C232 212 214 218 196 214 C188 210 184 204 182 196 Z" fill="${SK2}" opacity=".7"/>
+  <path d="M138 199 C146 195 158 195 166 200 C162 211 150 214 141 210 Z" fill="${SK2}" opacity=".6"/>
+  ${smile?`
+  <!-- eyes, smiling: crescents, cheeks lifted -->
+  <path d="M189 208 C199 201 215 201 227 207 C216 210 200 211 189 208 Z" fill="#f1e6dc"/>
+  <path d="M196 207 C198 202 206 202 208 206 C206 210 199 210 196 207 Z" fill="#2a1912"/>
+  <path d="M186 208 C198 198 218 198 230 206" fill="none" stroke="${HR}" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M191 213 C203 210 216 210 226 211" fill="none" stroke="${SK3}" stroke-width="1.8" stroke-linecap="round" opacity=".8"/>
+  <path d="M194 218 C204 222 216 221 224 216" fill="none" stroke="${SK2}" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+  <path d="M144 208 C149 204 156 204 161 207 C155 210 149 210 144 208 Z" fill="#f1e6dc"/>
+  <path d="M145 207 C147 204 151 204 152 207 C151 209 147 209 145 207 Z" fill="#2a1912"/>
+  <path d="M141 208 C147 201 156 201 163 206" fill="none" stroke="${HR}" stroke-width="2.8" stroke-linecap="round"/>
+  `:`
+  <!-- eyes, pensive (lids lowered, looking out) -->
+  <path d="M188 208 C198 202 216 202 228 207 C216 212 200 213 188 208 Z" fill="#efe4da"/>
+  <path d="M192 206 C195 202 204 202 206 207 C204 212 195 212 192 206 Z" fill="#2a1912"/>
+  <path d="M186 207 C198 200 218 200 230 206" fill="none" stroke="${HR}" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M187 203 C200 196 216 196 228 201" fill="none" stroke="${SK3}" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+  <path d="M143 208 C148 204 156 204 161 207 C155 211 148 211 143 208 Z" fill="#efe4da"/>
+  <path d="M143 207 C145 204 150 204 151 207 C150 210 145 210 143 207 Z" fill="#2a1912"/>
+  <path d="M141 207 C147 202 156 202 163 206" fill="none" stroke="${HR}" stroke-width="2.8" stroke-linecap="round"/>
+  `}
+  <!-- brows -->
+  <path d="M180 189 C194 180 214 178 236 184 C232 188 214 186 196 190 C190 191 184 192 180 189 Z" fill="${HR}"/>
+  <path d="M136 192 C142 186 152 184 164 186 C158 190 148 191 140 195 Z" fill="${HR}"/>
+  <!-- nose -->
+  <path d="M164 204 C160 222 146 236 130 247 C125 252 128 259 135 258 C139 263 148 263 154 257 C152 248 158 236 168 226 Z" fill="${SK}"/>
+  <path d="M164 206 C160 222 152 234 141 245 C149 236 157 222 160 206 Z" fill="${SKL}" opacity=".9"/>
+  <path d="M135 258 C139 263 148 263 154 257 C150 255 143 255 138 254 Z" fill="${SK3}" opacity=".8"/>
+  <path d="M152 257 C156 250 160 242 168 236 C170 246 164 256 152 257 Z" fill="${SK2}"/>
+  ${smile?`
+  <!-- moustache + open smile -->
+  <path d="M140 270 C150 265 166 265 182 270 C170 272 154 273 140 270 Z" fill="${HR}" opacity=".55"/>
+  <path d="M138 277 C154 280 176 280 194 274 C190 292 172 304 156 302 C146 300 140 290 138 277 Z" fill="#4a1d1a"/>
+  <path d="M141 279 C156 282 176 282 191 277 C189 284 186 287 182 289 C168 291 152 290 143 286 Z" fill="#fbf6ef"/>
+  <path d="M150 297 C158 301 172 300 180 295 C174 302 160 304 150 297 Z" fill="#c4584e" opacity=".8"/>
+  <path d="M136 276 C138 272 141 271 143 273" fill="none" stroke="${SK3}" stroke-width="2" stroke-linecap="round"/>
+  <path d="M192 272 C198 270 202 274 200 280" fill="none" stroke="${SK3}" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M196 268 C210 276 214 294 206 306" fill="none" stroke="${SK2}" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  `:`
+  <!-- moustache + closed, thoughtful mouth -->
+  <path d="M140 270 C150 265 166 265 180 270 C168 272 154 273 140 270 Z" fill="${HR}" opacity=".55"/>
+  <path d="M143 279 C150 276 158 278 162 279 C168 277 176 278 180 282 C168 284 154 284 143 279 Z" fill="#8a4436"/>
+  <path d="M143 281 C152 283 168 284 180 282" fill="none" stroke="#4a2019" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M147 284 C154 292 170 292 177 284 C168 287 156 287 147 284 Z" fill="#a85a48"/>
+  <path d="M154 287 C160 289 166 289 170 287" stroke="#d98e78" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+  <path d="M150 296 C158 299 166 299 172 296" fill="none" stroke="${SK3}" stroke-width="1.4" opacity=".6"/>
+  `}
+  <!-- hair: volume on top swept up and back, short faded sides -->
+  <path d="M144 156 C134 134 138 106 150 86 C158 70 170 58 186 52 C196 48 204 54 214 52 C226 52 236 60 248 62 C262 66 274 72 284 80 C294 90 300 102 302 116 C306 132 304 146 301 158 C297 178 292 194 286 208 L274 200 C270 186 262 176 254 170 C246 160 240 150 232 146 C214 140 186 140 164 148 C156 151 150 153 144 156 Z" fill="${HR}"/>
+  <path d="M246 156 C258 166 270 184 274 200 L286 208 C292 192 297 174 300 156 C288 148 266 146 246 156 Z" fill="${HR2}"/>
+  <path d="M296 98 C306 116 308 138 304 160 C300 180 294 196 288 208 C296 184 300 146 296 98 Z" fill="${R}" opacity=".7"/>
+  <!-- painted gloss strokes, swept up and back -->
+  <path d="M150 142 C146 116 158 88 184 62" fill="none" stroke="${HRG}" stroke-width="5" stroke-linecap="round"/>
+  <path d="M168 134 C170 108 188 84 216 66" fill="none" stroke="${HRG}" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+  <path d="M190 126 C200 108 222 94 248 88" fill="none" stroke="${HRG}" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <path d="M214 122 C230 108 252 102 276 104" fill="none" stroke="${HRG}" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+  <path d="M162 92 C172 74 190 62 210 58" fill="none" stroke="#9aaad0" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+  <path d="M232 64 C244 62 256 66 266 74" fill="none" stroke="#9aaad0" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+  <!-- glasses: dark top rim, pale lower rim -->
+  <path d="M243 199 L270 206" stroke="#1b1a22" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M176 192 C196 186 224 186 244 190 L242 214 C238 224 222 228 204 226 C188 224 178 216 176 204 Z" fill="#cfe6f0" opacity=".16"/>
+  <path d="M176 204 C178 216 188 224 204 226 C222 228 238 224 242 214" fill="none" stroke="#c9ccd6" stroke-width="2.2"/>
+  <path d="M176 204 L176 192 C196 186 224 186 244 190 L242 214" fill="none" stroke="#1b1a22" stroke-width="3.6" stroke-linejoin="round"/>
+  <path d="M134 196 C144 192 158 191 168 193 L167 214 C164 221 152 223 142 221 C136 218 134 212 134 204 Z" fill="#cfe6f0" opacity=".14"/>
+  <path d="M134 204 C134 212 136 218 142 221 C152 223 164 221 167 214" fill="none" stroke="#c9ccd6" stroke-width="1.8"/>
+  <path d="M134 204 L134 196 C144 192 158 191 168 193 L167 214" fill="none" stroke="#1b1a22" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M168 195 C171 192 174 192 176 194" fill="none" stroke="#1b1a22" stroke-width="2.6"/>
+  <path d="M190 220 L214 192" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+  <path d="M206 222 L222 202" stroke="#fff" stroke-width="1.6" opacity=".3" stroke-linecap="round"/>
+  ${o.fist?`
+  <!-- forearm and fist under the chin -->
+  <path d="M152 366 C146 404 136 452 126 500 L200 500 C202 452 206 404 210 368 Z" fill="${SK}"/>
+  <path d="M184 366 C192 410 194 456 190 500 L200 500 C202 452 206 404 210 368 Z" fill="${SK2}"/>
+  <path d="M152 368 C148 400 142 434 136 466 C146 432 154 400 162 370 Z" fill="${SKL}" opacity=".55"/>
+  <!-- rolled sleeve -->
+  <path d="M104 470 C130 456 186 452 222 462 L232 500 L96 500 Z" fill="${SH}"/>
+  <path d="M104 470 C130 456 186 452 222 462 L232 500 L96 500 Z" fill="url(#${id}stripe)"/>
+  <path d="M104 470 C130 462 186 458 222 462 L224 474 C190 468 132 470 102 482 Z" fill="${SH2}"/>
+  <path d="M186 466 C200 478 214 488 230 500 L232 500 L222 462 Z" fill="${SH2}"/>
+  <!-- fist: one clean shape, knuckles toward us -->
+  <path d="M146 334 C150 318 172 312 196 316 C216 320 226 334 222 352 C219 368 204 378 184 378 C162 378 146 368 144 352 C143 346 144 340 146 334 Z" fill="${SK}"/>
+  <path d="M196 316 C216 320 226 334 222 352 C219 368 204 378 184 378 C204 368 212 352 210 334 C208 326 202 320 196 316 Z" fill="${SK2}"/>
+  <path d="M150 330 C160 320 180 318 196 322 C186 326 170 330 158 340 Z" fill="${SKL}" opacity=".8"/>
+  <path d="M158 346 C166 352 178 354 190 352 M160 360 C168 365 180 366 192 364" fill="none" stroke="${SK3}" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  <path d="M148 336 C156 340 168 340 176 334" fill="none" stroke="${SK3}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
+  <path d="M222 340 C224 352 220 366 208 374" fill="none" stroke="${R}" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+  `:''}
+</g>`;
+}
+
+const NS='http://www.w3.org/2000/svg';
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// sunburst
+(()=>{let s='';for(let i=0;i<28;i++){const a=i/28*Math.PI*2,b=a+Math.PI/28;
+  s+=`<path d="M700 560 L${700+1900*Math.cos(a)} ${560+1900*Math.sin(a)} L${700+1900*Math.cos(b)} ${560+1900*Math.sin(b)} Z" fill="#fff1b8"/>`;}
+  $('rays').innerHTML=s;})();
+// WR HQ windows
+(()=>{let s='';for(let x=242;x<620;x+=18){if(x>392&&x<470)continue;s+=`<path d="M${x} 590 v-26 c0-5 3-9 5-10 c2 1 5 5 5 10 v26 Z"/><path d="M${x} 548 v-18 c0-4 3-7 5-8 c2 1 5 4 5 8 v18 Z"/>`;}
+  $('wrwin').innerHTML=s;})();
+// platform slabs
+(()=>{let s='';for(let x=-400;x<1840;x+=70)s+=`<path d="M${x} 803 L${720+(x-720)*2.2} 1300"/>`;s+='<path d="M-400 850 H1840 M-400 930 H1840"/>';$('slabs').innerHTML=s;})();
+
+// the AC local: white body, sealed tinted windows, blue band + red line, navy skirt, closed doors, roof AC, pantograph, raked cab
+(()=>{
+  let s='';
+  const starts=[-520,-100,320,740];
+  starts.forEach((x0,ci)=>{
+    const L=412;
+    s+=`<rect x="${x0}" y="566" width="${L}" height="14" rx="6" fill="#d9c9c4"/>`;
+    s+=`<rect x="${x0+40}" y="556" width="70" height="12" rx="3" fill="#cdbfbd"/><rect x="${x0+170}" y="556" width="70" height="12" rx="3" fill="#cdbfbd"/><rect x="${x0+300}" y="556" width="70" height="12" rx="3" fill="#cdbfbd"/>`;
+    s+=`<rect x="${x0+40}" y="556" width="70" height="3" fill="#ffd2a6"/><rect x="${x0+170}" y="556" width="70" height="3" fill="#ffd2a6"/><rect x="${x0+300}" y="556" width="70" height="3" fill="#ffd2a6"/>`;
+    s+=`<rect x="${x0}" y="578" width="${L}" height="160" rx="3" fill="url(#body)"/>`;
+    s+=`<rect x="${x0}" y="580" width="${L}" height="8" fill="#ffc79a" opacity=".7"/>`;
+    s+=`<rect x="${x0}" y="666" width="${L}" height="24" fill="#2156a6"/><rect x="${x0}" y="666" width="${L}" height="4" fill="#4c7fd0"/>`;
+    s+=`<rect x="${x0}" y="690" width="${L}" height="4" fill="#d72a2e"/>`;
+    s+=`<rect x="${x0}" y="736" width="${L}" height="36" fill="#1d2550"/><rect x="${x0}" y="736" width="${L}" height="3" fill="#3d4a86"/>`;
+    s+=`<rect x="${x0}" y="772" width="${L}" height="16" fill="#181420"/>`;
+    // doors (closed, sliding pair)
+    [40,330].forEach(d=>{
+      s+=`<rect x="${x0+d}" y="586" width="52" height="148" rx="2" fill="#efe3dc"/><path d="M${x0+d+26} 586 V734" stroke="#9b8f96" stroke-width="1.6"/>`;
+      s+=`<rect x="${x0+d+5}" y="600" width="16" height="44" rx="3" fill="url(#glass)"/><rect x="${x0+d+31}" y="600" width="16" height="44" rx="3" fill="url(#glass)"/>`;
+      s+=`<rect x="${x0+d}" y="666" width="52" height="24" fill="#2156a6"/><rect x="${x0+d}" y="690" width="52" height="4" fill="#d72a2e"/>`;
+      s+=`<path d="M${x0+d-1} 586 V734 M${x0+d+53} 586 V734" stroke="#a89aa0" stroke-width="1.4"/>`;
+    });
+    // windows
+    [105,175,245].forEach((w,wi)=>{
+      if(ci===3&&wi===0) return; // hero window drawn separately
+      s+=`<rect x="${x0+w}" y="604" width="62" height="56" rx="5" fill="url(#glass)"/>`;
+      s+=`<rect x="${x0+w-2}" y="602" width="66" height="60" rx="6" fill="none" stroke="#c9c2c4" stroke-width="2.2"/>`;
+      s+=`<path d="M${x0+w+8} 660 L${x0+w+38} 604 L${x0+w+46} 604 L${x0+w+16} 660 Z" fill="#ffd9b0" opacity=".16"/>`;
+      if((ci+wi)%2===0) s+=`<path d="M${x0+w+18} 660 c0-14 6-22 14-22 c-6-2-8-8-8-13 c0-7 5-11 10-11 c5 0 10 4 10 11 c0 5-2 11-8 13 c8 0 14 8 14 22 Z" fill="#0f1722" opacity=".55"/>`;
+    });
+    s+=`<rect x="${x0+L}" y="590" width="8" height="180" fill="#2a1d2c"/>`;
+  });
+  // pantograph on the second coach
+  s+=`<g stroke="#2a1a28" stroke-width="2.4" fill="none"><path d="M420 556 L450 536 L420 524 M480 556 L450 536 L480 524"/><path d="M404 523 H496" stroke-width="3"/></g>`;
+  // raked cab
+  const c=1152;
+  s+=`<path d="M${c} 566 H${c+50} C${c+86} 568 ${c+112} 600 ${c+124} 650 L${c+132} 700 V772 H${c} Z" fill="url(#body)"/>`;
+  s+=`<path d="M${c+52} 592 C${c+80} 596 ${c+100} 622 ${c+110} 664 H${c+52} Z" fill="url(#wind)"/>`;
+  s+=`<path d="M${c+60} 600 L${c+70} 600 L${c+62} 660 L${c+56} 660 Z" fill="#fff" opacity=".25"/>`;
+  s+=`<rect x="${c+6}" y="574" width="96" height="14" rx="2" fill="#120e14"/>`;
+  s+=`<text id="led" x="${c+54}" y="585" text-anchor="middle" font-family="Hind, sans-serif" font-weight="600" font-size="10.5" letter-spacing="1.6" fill="#ffb02e">CHURCHGATE</text>`;
+  s+=`<rect x="${c}" y="666" width="${126}" height="24" fill="#2156a6"/><rect x="${c}" y="690" width="128" height="4" fill="#d72a2e"/>`;
+  s+=`<path d="M${c} 736 H${c+132} V772 H${c} Z" fill="#1d2550"/>`;
+  s+=`<rect x="${c+8}" y="600" width="38" height="56" rx="4" fill="url(#glass)"/>`;
+  s+=`<circle id="lamp" cx="${c+118}" cy="716" r="7" fill="#fff6d0"/><circle cx="${c+118}" cy="716" r="22" fill="#ffe7a0" opacity=".25" id="lampHalo"/>`;
+  s+=`<rect x="${c}" y="772" width="132" height="16" fill="#181420"/>`;
+  $('train').innerHTML=s;
+})();
+
+$('hero').innerHTML=MOHIT({mood:'pensive',fist:true,id:'h',rim:'#ff8a5c'});
+
+// camera
+const intro=$('intro'),far=$('far'),near=$('near'),copy=$('copy'),note=$('note'),cue=$('cue'),rays=$('rays');
+const WIN={x:876,y:632};
+let t=0,tt=0;
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+function cam(){
+  const phone=innerWidth<720;
+  // visible viewBox region with slice
+  const ar=innerWidth/innerHeight, vbW=ar>1.6?1440:900*ar, vbH=ar>1.6?1440/ar:900;
+  const ox=720,oy=450;
+  const k=ease(clamp(tt/0.82));
+  const s1=phone?5.2:6;
+  const start=phone?{x:880,y:500}:{x:720,y:450};
+  const target=phone?{x:ox,y:oy+vbH*.17}:{x:ox+vbW*.2,y:oy+vbH*.18};
+  const s=Math.exp(Math.log(s1)*k);
+  const cx=start.x+(WIN.x-start.x)*k, cy=start.y+(WIN.y-start.y)*k;
+  const Sx=ox+(target.x-ox)*k, Sy=oy+(target.y-oy)*k;
+  near.setAttribute('transform',`translate(${Sx} ${Sy}) scale(${s}) translate(${-cx} ${-cy})`);
+  const sf=1+(s-1)*.12, fx=start.x+(WIN.x-start.x)*k*.4, fy=start.y+(WIN.y-start.y)*k*.4;
+  far.setAttribute('transform',`translate(${Sx} ${Sy}) scale(${sf}) translate(${-fx} ${-fy})`);
+  const a=clamp((tt-.12)/.26);
+  copy.style.opacity=1-a; copy.style.transform=`translateY(${-a*40}px)`;
+  const b=clamp((tt-.8)/.14);
+  note.style.opacity=b; note.style.transform=`translateY(${(1-b)*30}px)`;
+  cue.style.visibility=tt>.04?'hidden':'visible';
+}
+function progress(){const r=intro.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(64,now-last);last=now;
+  t=progress(); tt+= reduce? (t-tt) : (t-tt)*Math.min(1,dt/120);
+  cam();
+  if(!reduce){
+    const T=now/1000;
+    rays.setAttribute('transform',`rotate(${T*1.6} 700 560)`);
+    const k1=$('k1'),k2=$('k2');
+    k1.setAttribute('transform',`translate(${520+170*Math.cos(T*.18)} ${250+50*Math.sin(T*.18)}) rotate(${Math.sin(T*.18)*10})`);
+    k2.setAttribute('transform',`translate(${900+120*Math.cos(-T*.14+2)} ${190+40*Math.sin(-T*.14+2)}) rotate(${Math.cos(T*.14)*12})`);
+    $('lampHalo').setAttribute('opacity',.22+.08*Math.sin(T*2));
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

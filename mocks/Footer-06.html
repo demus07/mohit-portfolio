@@ -1,0 +1,222 @@
+<!-- Direction 06: Gold ink drawing — Siddhivinayak as an architect's elevation in gold ink on navy paper, drawn from the ground up as you scroll. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Ink Elevation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--ink:#e2b65a;--inkdim:#9c8150;--paper:#efe8da}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--paper)}
+body{font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{height:340vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+svg.art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;left:clamp(28px,6vw,100px);top:clamp(60px,12vh,130px);width:min(440px,36vw);z-index:2}
+.clock{font-size:14px;color:var(--inkdim);margin-bottom:30px}
+h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(50px,5.2vw,84px);line-height:.98;letter-spacing:-.01em;color:#f4e6c4;text-wrap:balance}
+.line{margin-top:22px;font-size:17px;line-height:1.6;color:#c9c3b6;max-width:24em}
+.act{margin-top:36px;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 26px}
+.cta{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:30px;color:var(--ink);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s cubic-bezier(.2,.7,.2,1);padding-bottom:2px}
+.cta:hover{background-size:100% 1px}
+.mail{font-size:14px;color:#a7a196;transition:color .3s}.mail:hover{color:var(--ink)}
+.belief{margin-top:56px;opacity:0;transition:none}
+.belief blockquote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:24px;line-height:1.36;color:#efdcae;max-width:19em}
+.belief p{margin-top:14px;font-size:14px;line-height:1.6;color:#a7a196;max-width:28em}
+.foot{position:absolute;left:clamp(28px,6vw,100px);right:clamp(28px,6vw,100px);bottom:28px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13.5px;color:#8f8a80;opacity:0;z-index:2}
+.foot a{transition:color .3s}.foot a:hover{color:var(--ink)}.foot .c{margin-left:auto}
+/* the drawing */
+#temple path{fill:none;stroke:var(--ink);stroke-width:1.15px;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;
+ --d:clamp(0, (var(--p) - var(--o)*.72)*3.6, 1);stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--d))}
+#temple .t-stone,#temple .t-wall,#temple .t-wall2,#temple .t-band{fill:#13223a;fill-opacity:var(--d)}
+#temple .t-sh,#temple .t-hi,#temple .t-goldsh,#temple .t-orangesh{display:none}
+#temple .t-tan,#temple .t-rib{stroke-width:.7px;opacity:.55}
+#temple .t-win,#temple .t-winl{stroke-width:.8px;opacity:.75}
+#temple .t-band{stroke-width:.9px}
+#temple .t-eave{fill:#0f1b2e;fill-opacity:var(--d)}
+#temple .t-gold,#temple .t-lip{fill:color-mix(in srgb,#e2b65a calc(var(--f)*26%),#13223a);fill-opacity:var(--d)}
+#temple .t-orange,#temple .t-olip{fill:color-mix(in srgb,#e9792d calc(var(--f)*24%),#13223a);fill-opacity:var(--d)}
+#temple .t-door{fill:url(#door);fill-opacity:var(--f)}
+#temple .t-pole{stroke-width:1.4px}
+#temple .t-flag{stroke-dasharray:none;fill:#f06a1f;fill-opacity:var(--f);stroke:#f06a1f;stroke-opacity:var(--d)}
+.cons{stroke:var(--inkdim);stroke-width:.8px;vector-effect:non-scaling-stroke;fill:none}
+.sheet text{font-family:"Tiro Devanagari Marathi",serif;fill:var(--ink)}
+@media (max-width:720px){
+ .page{height:300vh}
+ .copy{left:22px;right:22px;top:36px;width:auto}
+ h2{font-size:44px}.line{font-size:15.5px;margin-top:12px}.clock{margin-bottom:14px}
+ .act{margin-top:16px}.cta{font-size:25px}
+ .belief{margin-top:20px}.belief blockquote{font-size:19px}.belief p{font-size:13px;margin-top:6px}
+ .foot{left:22px;right:22px;bottom:16px;font-size:12.5px;gap:6px 16px}.foot .c{margin-left:0}
+}
+#temple .t-tiersh{display:none}
+#temple .t-tier,#temple .t-tierlip{fill:color-mix(in srgb,#e2b65a calc(var(--f)*20%),#13223a);fill-opacity:var(--d)}
+#temple .t-cwall,#temple .t-ccope{fill:#13223a;fill-opacity:var(--d)}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+ <div class="stage">
+  <svg class="art" id="art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice" role="img" aria-label="An architectural elevation of Siddhivinayak temple drawn in gold ink on navy paper">
+   <defs>
+    <radialGradient id="vig" cx=".64" cy=".55" r=".75"><stop offset="0" stop-color="#16263d"/><stop offset=".6" stop-color="#0f1d31"/><stop offset="1" stop-color="#0c182a"/></radialGradient>
+    <radialGradient id="warm" cx="1060" cy="600" r="460" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e2b65a" stop-opacity=".14"/><stop offset="1" stop-color="#e2b65a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="door" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#ffe3a0"/><stop offset=".6" stop-color="#e2b65a" stop-opacity=".6"/><stop offset="1" stop-color="#e2b65a" stop-opacity="0"/></radialGradient>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V7" stroke="#e2b65a" stroke-width="1" opacity=".55"/></pattern>
+    <filter id="paper" x="0" y="0" width="1" height="1"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 .8  0 0 0 0 .6  0 0 0 .07 0"/></filter>
+    <filter id="fibre" x="0" y="0" width="1" height="1"><feTurbulence type="fractalNoise" baseFrequency=".004 .09" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .2  0 0 0 0 .35  0 0 0 .35 0"/></filter>
+   </defs>
+   <rect x="-200" y="-800" width="2000" height="2000" fill="#0f1d31"/><rect width="1600" height="1000" fill="url(#vig)"/>
+   <rect width="1600" height="1000" filter="url(#fibre)" opacity=".18"/>
+   <circle id="warmc" cx="1060" cy="600" r="460" fill="url(#warm)" opacity="0"/>
+   <g class="sheet" id="sheet">
+    <!-- construction: axis, ground, height rule -->
+    <path class="cons" id="axis" d="M1060 150V990" stroke-dasharray="10 6 2 6" opacity=".45"/>
+    <path class="cons" d="M620 940H1520" opacity=".7"/>
+    <path class="cons" d="M640 946H1500" opacity=".3"/>
+    <g opacity=".5"><path class="cons" d="M1452 940V194M1444 940H1460M1444 194H1460"/>
+     <path class="cons" d="M1452 520l-4 10h8z" /></g>
+    <g id="temple" transform="translate(650 120) scale(.82)"></g>
+    <text x="1060" y="978" text-anchor="middle" font-size="22" id="label" opacity="0">श्री सिद्धिविनायक</text>
+   </g>
+   <rect x="-200" y="-800" width="2000" height="2000" filter="url(#paper)"/>
+  </svg>
+
+  <div class="copy">
+   <p class="clock" id="clock">It's — in Mumbai.</p>
+   <h2>Got something to build?</h2>
+   <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+   <div class="act">
+    <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me →</a>
+    <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+   </div>
+   <figure class="belief" id="belief">
+    <blockquote>If you believe you can make it, you will. The rest is trusting God and doing the work.</blockquote>
+    <p>Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+   </figure>
+  </div>
+  <nav class="foot" id="foot">
+   <a href="https://github.com/Mohit-Bagri">GitHub</a>
+   <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+   <a href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+   <a href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+   <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+   <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+   <span class="c">© 2026 Mohit Bagri</span>
+  </nav>
+ </div>
+</div>
+<!-- direction: 06 gold ink drawing -->
+<script>
+/* ---------- Siddhivinayak, drawn on a 1000x1000 grid, ground at y=1000 ---------- */
+function buildTemple(){
+  const out=[];const f=n=>Math.round(n*10)/10;
+  const ord=y=>Math.max(0,Math.min(1,(1000-y)/900)).toFixed(3);
+  const P=(d,c,y)=>out.push(`<path class="${c}" d="${d}" pathLength="1" style="--o:${ord(y)}"/>`);
+  const trap=(cx,y0,h0,y1,h1)=>`M${f(cx-h0)} ${f(y0)}L${f(cx+h0)} ${f(y0)}L${f(cx+h1)} ${f(y1)}L${f(cx-h1)} ${f(y1)}Z`;
+  const quad=(a0,b0,y0,a1,b1,y1)=>`M${f(a0)} ${f(y0)}L${f(b0)} ${f(y0)}L${f(b1)} ${f(y1)}L${f(a1)} ${f(y1)}Z`;
+  const ell=(cx,cy,rx,ry)=>`M${f(cx-rx)} ${f(cy)}a${f(rx)} ${f(ry)} 0 1 0 ${f(2*rx)} 0a${f(rx)} ${f(ry)} 0 1 0 ${f(-2*rx)} 0Z`;
+  const kal=(cx,y,s)=>`M${f(cx-s*.5)} ${f(y)}L${f(cx+s*.5)} ${f(y)}L${f(cx+s*.36)} ${f(y-s*.16)}C${f(cx+s*.95)} ${f(y-s*.3)} ${f(cx+s*.9)} ${f(y-s*1.1)} ${f(cx+s*.26)} ${f(y-s*1.2)}L${f(cx+s*.2)} ${f(y-s*1.36)}L${f(cx+s*.46)} ${f(y-s*1.44)}L${f(cx+s*.12)} ${f(y-s*1.56)}Q${f(cx)} ${f(y-s*2.5)} ${f(cx-s*.12)} ${f(y-s*1.56)}L${f(cx-s*.46)} ${f(y-s*1.44)}L${f(cx-s*.2)} ${f(y-s*1.36)}L${f(cx-s*.26)} ${f(y-s*1.2)}C${f(cx-s*.9)} ${f(y-s*1.1)} ${f(cx-s*.95)} ${f(y-s*.3)} ${f(cx-s*.36)} ${f(y-s*.16)}Z`;
+  const arch=(x,y,w,h)=>`M${f(x)} ${f(y+h)}V${f(y+w/2)}A${f(w/2)} ${f(w/2)} 0 0 1 ${f(x+w)} ${f(y+w/2)}V${f(y+h)}Z`;
+  function spire(cx,w,top,base){
+    const hb=w/2,ht=w*.4,L=y=>ht+(hb-ht)*(y-top)/(base-top);
+    P(trap(cx,base,hb,top,ht),'t-stone',base);
+    P(quad(cx+hb*.2,cx+hb,base,cx+ht*.2,cx+ht,top),'t-sh',base);
+    P(quad(cx-hb*.74,cx-hb*.46,base,cx-ht*.74,cx-ht*.46,top),'t-hi',base);
+    const seg=Math.max(w*.82,13);
+    for(let y=top+w*.5;y<base-seg*.5;y+=seg){const h=L(y);
+      P(trap(cx,y-seg*.36,h,y-seg*.46,h),'t-tan',y);
+      P(trap(cx,y+seg*.2,h*1.1,y,h*1.1),'t-band',y);}
+    const m=w*.13,c=top;
+    P(trap(cx,c,ht*1.36,c-m,ht*1.36),'t-band',c);
+    P(trap(cx,c-m,ht*1.12,c-m-w*.24,ht*.82),'t-stone',c);
+    P(trap(cx,c-m-w*.24,ht*.9,c-m-w*.31,ht*.9),'t-band',c);
+    P(trap(cx,c-m-w*.31,ht*.78,c-m-w*.46,ht*.5),'t-tan',c);
+    P(ell(cx,c-m-w*.49,ht*.72,w*.07),'t-gold',c);
+    P(kal(cx,c-m-w*.53,w*.3),'t-gold',c);
+  }
+  function stepped(cx,base,top,h0,h1,n,cl,dome){
+    for(let i=0;i<n;i++){
+      const t0=i/n,t1=(i+1)/n,y0=base-(base-top)*t0,y1=base-(base-top)*t1,th=y0-y1;
+      const a=dome?h1+(h0-h1)*Math.cos(t0*Math.PI/2*.92):h1+(h0-h1)*Math.pow(1-t0,1.12);
+      P(trap(cx,y0,a*.92,y1+th*.26,a*.86),cl[0],y0);
+      P(quad(cx+a*.34,cx+a*.92,y0,cx+a*.3,cx+a*.86,y1+th*.26),cl[1],y0);
+      P(trap(cx,y1+th*.26,a,y1,a*.95),cl[2],y1);
+      if(cl[3]) for(const k of [-.6,-.2,.2,.6]) P(`M${f(cx+a*.9*k)} ${f(y0)}L${f(cx+a*.86*k)} ${f(y1+th*.26)}`,cl[3],y0);
+    }
+  }
+  const CX=500;
+  // two side groups of banded spires; in each, the tallest stand at the outer edge
+  [[-110,30,452],[112,30,458],[-150,32,424],[152,32,430],[-192,32,392],[196,32,398],[-232,32,362],[236,32,368],[-268,30,338],[272,30,344]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  [[-304,30,316,746],[306,30,322,746]].forEach(([dx,w,t,bs])=>spire(CX+dx,w,t,bs));
+  // the central shikhara: eight tiers narrowing upward
+  stepped(CX,580,300,150,34,8,['t-tier','t-tiersh','t-tierlip','t-rib']);
+  P(ell(CX,296,42,8),'t-goldd',296);P(ell(CX,290,32,7),'t-gold',290);
+  P(kal(CX,284,36),'t-gold',284);
+  P(`M${CX+40} 300V96`,'t-pole',300);
+  // dark band under the eaves, with its row of seven small spires
+  P(trap(CX,668,198,580,180),'t-eave',668);
+  for(let i=0;i<7;i++){const x=CX-150+i*50;P(trap(x,668,9,616,7),'t-stone',668);P(trap(x,616,8.6,600,1.6),'t-tan',616);P(ell(x,597,3.4,3.4),'t-gold',597);}
+  // front ring
+  [[-172,36,470],[174,36,476],[-252,34,430],[256,34,436]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  // upper storey
+  P(`M236 746V666H764V746Z`,'t-wall',746);
+  for(let x=252;x<750;x+=28) P(arch(x,682,13,38),(x*7%5===1)?'t-winl':'t-win',720);
+  P(trap(CX,672,276,664,276),'t-band',672);
+  // main block
+  P(`M180 1000V746H820V1000Z`,'t-wall',1000);
+  P(trap(CX,754,332,744,332),'t-band',754);P(trap(CX,838,326,830,326),'t-band',838);P(trap(CX,918,326,910,326),'t-band',918);
+  for(const r of [[762,56],[846,54]]) for(let x=196;x<806;x+=30){ if(x>360&&x<578) continue; P(arch(x,r[0],14,r[1]),((x+r[0])%7===2)?'t-winl':'t-win',r[0]+r[1]);}
+  for(let x=198;x<806;x+=44){ if(x>350&&x<590) continue; P(arch(x,930,22,70),'t-win',1000);}
+  // entrance porch and the small orange stepped dome
+  const EX=468;
+  P(`M${EX-92} 1000V876H${EX+92}V1000Z`,'t-wall2',1000);
+  P(arch(EX-32,910,64,90),'t-door',1000);
+  P(trap(EX,884,106,870,106),'t-band',884);
+  stepped(EX,870,756,104,16,6,['t-orange','t-orangesh','t-olip'],true);
+  P(ell(EX,754,18,4.5),'t-gold',754);P(kal(EX,750,19),'t-gold',750);
+  // the low compound wall, sloping across the front
+  P(`M-60 1000L-60 984L1060 956L1060 1000Z`,'t-cwall',1000);
+  P(`M-60 984L1060 956L1060 949L-60 977Z`,'t-ccope',1000);
+  out.push(`<path id="flag" class="t-flag" d="" style="--o:1"/>`);
+  return out.join('');
+}
+const FLAG={x:540,y:96,L:80,H:46};
+function flagD(t){const {L,H}=FLAG;const X=FLAG.x,Y=FLAG.y;const w1=Math.sin(t*2.3)*H*.14,w2=Math.sin(t*2.3+1.4)*H*.18,tx=L*(.94+.06*Math.sin(t*1.2)),ny=Math.sin(t*1.7)*H*.08;
+ return `M${X} ${Y}Q${X+L*.5} ${Y+w1} ${X+tx} ${Y+H*.06+w1*.6}L${X+L*.55} ${Y+H*.5+ny}L${X+tx*.97} ${Y+H*.96+w2*.6}Q${X+L*.5} ${Y+H+w2} ${X} ${Y+H}Z`;}
+function mumbaiTime(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true}).formatToParts(new Date());const g=k=>(p.find(x=>x.type===k)||{}).value;return `${g('hour')}:${g('minute')} ${(g('dayPeriod')||'').toLowerCase()}`;}
+
+
+
+const tg=document.getElementById('temple');tg.innerHTML=buildTemple();
+const flag=document.getElementById('flag');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const art=document.getElementById('art');const mq=matchMedia('(max-width:720px)');
+function setView(){art.setAttribute('viewBox',mq.matches?'580 -600 960 1688':'0 0 1600 1000');}
+setView();mq.addEventListener('change',setView);
+let p=reduce?1:0;
+const page=document.getElementById('page');
+function onScroll(){if(reduce)return;const max=page.offsetHeight-innerHeight;p=Math.max(0,Math.min(1,scrollY/max));}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const belief=document.getElementById('belief'),foot=document.getElementById('foot'),label=document.getElementById('label'),warm=document.getElementById('warmc');
+const cl=(v)=>Math.max(0,Math.min(1,v));
+let shown=-1;
+function frame(ts){const t=ts/1000;
+ const d=cl(p/.68), fi=cl((p-.62)/.28);
+ if(Math.abs(d-shown)>.0005||fi>0){tg.style.setProperty('--p',d.toFixed(4));tg.style.setProperty('--f',fi.toFixed(3));shown=d;}
+ flag.setAttribute('d',flagD(reduce?0:t*.8));
+ label.setAttribute('opacity',(cl((p-.55)/.2)*.8).toFixed(3));
+ warm.setAttribute('opacity',fi.toFixed(3));
+ const b=cl((p-.66)/.18);belief.style.opacity=b;belief.style.transform=`translateY(${(1-b)*12}px)`;
+ foot.style.opacity=cl((p-.82)/.14);
+ requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+function tick(){document.getElementById('clock').textContent=`It's ${mumbaiTime()} in Mumbai.`;}tick();setInterval(tick,15000);
+</script>
+</body>
+</html>

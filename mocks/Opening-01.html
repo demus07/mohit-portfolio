@@ -1,0 +1,434 @@
+<!-- Direction 01: Golden hour panorama — a wide, low frame at Churchgate: the long white AC rake across the lower third under a vast warm sky, one window glowing, and the scroll dollies in until it is only him. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe8da; --ink:#2a2018; --sea:#2c6d8c; --sun:#f2a145;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#f3c98f;color:var(--ink)}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .intro{position:relative;height:460vh}
+  .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .grain{position:absolute;inset:-50%;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .18  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:grain 1.2s steps(4) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,-1%)}}
+  .vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 62% 60%,transparent 55%,rgba(60,26,10,.28) 100%);opacity:0;transition:none}
+  .wash{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 12% 14%,rgba(244,196,138,.62),rgba(244,196,138,0) 70%)}
+  .copy{position:absolute;left:clamp(24px,5.2vw,88px);top:clamp(28px,9vh,96px);width:min(30rem,40vw);z-index:3}
+  h1{font-family:"Newsreader",Georgia,serif;font-weight:400;font-size:clamp(3rem,6.4vw,6.4rem);line-height:.95;letter-spacing:-.02em;color:#2b1b10;text-wrap:balance}
+  .slot{position:relative;margin-top:1.4rem;min-height:6.5em;max-width:22rem}
+  .line,.note{font-size:clamp(1rem,1.2vw,1.18rem);line-height:1.5;color:#3d2b1d}
+  .note{position:absolute;inset:0;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(1.3rem,1.75vw,1.7rem);line-height:1.32;color:#2b1b10;opacity:0}
+  .line{will-change:opacity,transform}
+  .note{will-change:opacity,transform}
+  .cta{display:inline-flex;gap:.5em;align-items:baseline;margin-top:.4rem;font-size:1.05rem;font-weight:500;color:#2b1b10;text-decoration:none;
+    background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:3px;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+  .cta span{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover,.cta:focus-visible{background-size:100% 1px}
+  .cta:hover span,.cta:focus-visible span{transform:translateX(5px)}
+  .tail{height:40vh;background:linear-gradient(#e9b77b,#efe8da)}
+  @media (max-width:720px){
+    .copy{left:20px;right:20px;top:28px;width:auto}
+    h1{font-size:clamp(2.7rem,13vw,3.6rem)}
+    .slot{min-height:7.2em}
+  }
+  @media (prefers-reduced-motion:reduce){ .grain{animation:none} }
+</style>
+</head>
+<body>
+<!-- direction: 01 golden hour panorama -->
+<section class="intro" id="intro">
+  <div class="stage">
+    <svg id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e8a571"/>
+          <stop offset=".35" stop-color="#f1bb80"/>
+          <stop offset=".62" stop-color="#f8d29a"/>
+          <stop offset=".75" stop-color="#fbe0ad"/>
+          <stop offset="1" stop-color="#f6cf96"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx="1170" cy="560" r="620" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff6d8" stop-opacity="1"/>
+          <stop offset=".08" stop-color="#ffe7aa" stop-opacity=".95"/>
+          <stop offset=".3" stop-color="#ffc77a" stop-opacity=".45"/>
+          <stop offset="1" stop-color="#f6a466" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f7cf95" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fbdcaa" stop-opacity=".9"/>
+        </linearGradient>
+        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff3df"/>
+          <stop offset=".55" stop-color="#f6e6cc"/>
+          <stop offset="1" stop-color="#d9c2a6"/>
+        </linearGradient>
+        <linearGradient id="bodyLight" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#8a6a7a" stop-opacity=".22"/>
+          <stop offset=".55" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fff2c8" stop-opacity=".35"/>
+        </linearGradient>
+        <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d79a6c"/>
+          <stop offset=".45" stop-color="#7e5c55"/>
+          <stop offset="1" stop-color="#3a3240"/>
+        </linearGradient>
+        <linearGradient id="glassSheen" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffe6b8" stop-opacity="0"/>
+          <stop offset=".48" stop-color="#ffe6b8" stop-opacity="0"/>
+          <stop offset=".5" stop-color="#ffe6b8" stop-opacity=".45"/>
+          <stop offset=".56" stop-color="#ffe6b8" stop-opacity="0"/>
+          <stop offset="1" stop-color="#ffe6b8" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="interior" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff1cf"/>
+          <stop offset=".5" stop-color="#f3cf93"/>
+          <stop offset="1" stop-color="#c98e57"/>
+        </linearGradient>
+        <radialGradient id="lampPool" cx=".55" cy="0" r="1">
+          <stop offset="0" stop-color="#fff8e2" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#fff8e2" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="platform" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b58a73"/>
+          <stop offset="1" stop-color="#7b5a55"/>
+        </linearGradient>
+        <linearGradient id="shadowUnder" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3b2733" stop-opacity=".75"/>
+          <stop offset="1" stop-color="#3b2733" stop-opacity="0"/>
+        </linearGradient>
+        <pattern id="pin" width="5.5" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+          <rect width="5.5" height="10" fill="none"/>
+          <line x1="1" y1="0" x2="1" y2="10" stroke="#9f8cc4" stroke-width=".9" stroke-opacity=".6"/>
+        </pattern>
+        <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff0c4" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fff0c4" stop-opacity=".7"/>
+        </linearGradient>
+        <clipPath id="winClip"><rect x="-19" y="-19" width="38" height="38" rx="4"/></clipPath>
+
+        <!-- Mohit: seated, elbow on the sill, chin on his fist, looking out -->
+        <symbol id="mohit" viewBox="0 0 300 300">
+          <!-- torso -->
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="#f4eef2"/>
+          <path d="M18,300 C26,240 58,204 106,192 C126,187 162,186 182,190 C228,200 258,232 270,300 Z" fill="url(#pin)"/>
+          <path d="M182,190 C228,200 258,232 270,300 L210,300 C210,258 202,220 182,190 Z" fill="#b9a7c6" opacity=".45"/>
+          <path d="M106,192 C80,200 56,218 42,246 C60,226 84,210 112,202 Z" fill="#ffffff" opacity=".7"/>
+          <!-- neck -->
+          <path d="M134,138 L168,134 C168,154 170,170 176,188 L128,190 C133,174 135,156 134,138 Z" fill="#a26a48"/>
+          <path d="M134,148 C146,160 160,162 170,154 L169,144 Z" fill="#7a4b33" opacity=".25"/>
+          <!-- collar -->
+          <path d="M124,190 C128,178 134,172 140,176 L150,212 L128,206 Z" fill="#fdfafa"/>
+          <path d="M178,190 C174,178 168,172 162,176 L150,212 L172,206 Z" fill="#ddd2e2"/>
+          <!-- head -->
+          <path d="M150,46 C124,45 106,58 101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C124,155 141,153 154,145 C164,138 171,125 174,110 C178,88 174,56 150,46 Z" fill="#b97e57"/>
+          <path d="M101,80 L99,94 C97,100 93,106 92,112 C92,116 97,118 101,118 C101,123 103,127 102,131 C103,137 106,144 113,148 C109,130 107,110 111,88 Z" fill="#dcaa80" opacity=".85"/>
+          <path d="M154,145 C164,138 171,125 174,110 C172,128 160,146 138,152 Z" fill="#7a4b33" opacity=".7"/>
+          <path d="M101,112 C104,114 106,116 104,119" stroke="#8a5638" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- ear -->
+          <path d="M162,94 C170,88 179,94 177,106 C176,116 169,122 163,118 Z" fill="#a66d4a"/>
+          <path d="M167,99 C172,97 174,104 171,110" stroke="#7a4b33" stroke-width="2" fill="none"/>
+          <!-- hair, short, swept up and back -->
+          <g transform="translate(0 14) scale(1 .84)"><path d="M101,84 C97,70 98,56 104,46 C106,40 109,36 112,33 C113,30 116,28 119,28 C124,23 132,20 140,20 C144,18 150,18 154,20 C162,20 170,23 176,28 C179,29 182,31 183,34 C191,43 194,60 190,78 C188,89 182,98 176,104 L170,94 C168,80 160,72 150,70 C136,68 120,72 107,80 Z" fill="#17110e"/>
+            <path d="M107,80 C120,72 136,68 150,70 C160,72 168,80 170,94 L164,96 C162,86 156,80 148,78 C134,77 120,80 110,86 Z" fill="#4a362b" opacity=".55"/>
+            <g stroke="#45362d" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".5">
+              <path d="M106,70 C108,54 116,40 130,32"/><path d="M114,68 C118,52 130,38 146,30"/><path d="M124,68 C130,52 144,40 162,34"/>
+              <path d="M136,68 C144,56 160,46 178,42"/><path d="M150,70 C160,62 174,58 186,58"/><path d="M162,78 C172,74 182,74 189,76"/>
+            </g>
+            <path d="M105,48 C110,36 122,26 138,22 C152,19 166,22 176,28" stroke="#9a8273" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/></g>
+            <path d="M163,92 C164,84 166,78 170,76 L170,94 Z" fill="#1a1411"/>
+          <!-- brow -->
+          <path d="M104,84 C110,80 120,80 128,84" stroke="#1a1411" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <!-- eyes, lowered, thinking -->
+          <path d="M109,97 C113,99 118,99 122,97" stroke="#2a1a12" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M95,96 C97,97 99,97 100,96" stroke="#2a1a12" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- glasses -->
+          <path d="M104,86 L133,86 C135,86 136,88 135,91 L133,101 C132,105 129,107 125,107 L110,107 C106,107 104,104 104,100 Z" fill="#fff4dc" fill-opacity=".16" stroke="#3a3436" stroke-width="2.4"/>
+          <path d="M93,88 L99,87 L99,102 C97,105 95,105 94,104 Z" fill="#fff4dc" fill-opacity=".12" stroke="#3a3436" stroke-width="2"/>
+          <path d="M99,89 L104,89" stroke="#3a3436" stroke-width="2"/>
+          <path d="M135,89 L164,96" stroke="#3a3436" stroke-width="2.2"/>
+          <path d="M108,89 L117,89" stroke="#fffaf0" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+          <!-- mouth -->
+          <path d="M104,132 C107,133 110,133 112,131" stroke="#6b3b28" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- forearm rising from the sill -->
+          <path d="M82,300 C86,250 88,210 90,168 L126,166 C130,212 138,256 150,300 Z" fill="#a86f4c"/>
+          <path d="M82,300 C86,250 88,210 90,168 L102,168 C100,212 100,256 102,300 Z" fill="#c48d66"/>
+          <!-- rolled sleeve -->
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="#f4eef2"/>
+          <path d="M76,300 C78,284 80,268 84,254 C102,248 128,248 142,254 C146,268 150,286 154,300 Z" fill="url(#pin)"/>
+          <path d="M84,254 C102,248 128,248 142,254 L143,261 C128,255 102,255 84,262 Z" fill="#d6cbe0"/>
+          <!-- fist under the chin -->
+          <path d="M87,168 C85,157 91,148 101,146 C111,144 123,146 127,154 C131,162 129,174 123,178 C113,182 97,182 89,178 Z" fill="#b97e57"/>
+          <path d="M91,158 C99,154 111,154 119,158" stroke="#7a4b33" stroke-width="1.8" fill="none" opacity=".8"/>
+          <path d="M89,168 C97,164 109,164 121,168" stroke="#7a4b33" stroke-width="1.6" fill="none" opacity=".6"/>
+          <path d="M87,168 C85,157 91,148 101,146 C97,154 95,164 97,178 C93,178 89,176 87,168 Z" fill="#dcaa80" opacity=".85"/>
+        </symbol>
+      </defs>
+
+      <!-- SKY -->
+      <rect x="-2000" y="-600" width="5440" height="4000" fill="url(#sky)"/>
+      <rect x="-2000" y="-600" width="5440" height="4000" fill="url(#sunGlow)"/>
+      <!-- high cloud ribbons lit from below -->
+      <g id="clouds" opacity=".7">
+        <path d="M-100,210 C120,196 300,204 520,190 C640,183 760,190 900,184 L900,192 C760,200 640,196 520,204 C300,218 120,214 -100,222 Z" fill="#fbe3b7"/>
+        <path d="M600,300 C780,290 960,296 1180,286 C1300,281 1420,288 1600,282 L1600,288 C1420,296 1300,292 1180,296 C960,306 780,302 600,310 Z" fill="#fde9c2"/>
+        <path d="M-60,120 C160,112 360,118 560,108 L560,113 C360,124 160,121 -60,128 Z" fill="#f6cfa0" opacity=".8"/>
+      </g>
+      <!-- sun -->
+      <circle cx="1170" cy="560" r="34" fill="#fff8e4"/>
+      <circle cx="1170" cy="560" r="52" fill="#fff3cf" opacity=".35"/>
+
+      <!-- kites gliding (ambient) -->
+      <g id="kites" fill="#6b4234" opacity=".55">
+        <path class="kite" d="M0,0 C6,-4 12,-4 16,0 C20,-4 26,-4 32,0 C26,-1 20,1 16,3 C12,1 6,-1 0,0 Z"/>
+        <path class="kite" d="M0,0 C5,-3 9,-3 12,0 C15,-3 19,-3 24,0 C19,-1 15,1 12,2 C9,1 5,-1 0,0 Z"/>
+        <path class="kite" d="M0,0 C4,-3 7,-3 10,0 C13,-3 16,-3 20,0 C16,-1 13,1 10,2 C7,1 4,-1 0,0 Z"/>
+      </g>
+
+      <!-- FAR CITY in atmospheric haze -->
+      <g fill="#e8a982" opacity=".75">
+        <!-- Wankhede floodlight masts, far right -->
+        <path d="M1352,520 L1356,330 L1360,520 Z"/>
+        <rect x="1340" y="318" width="34" height="18" rx="2" transform="rotate(-8 1357 327)"/>
+        <path d="M1420,520 L1423,350 L1427,520 Z"/>
+        <rect x="1408" y="340" width="30" height="16" rx="2" transform="rotate(-8 1423 348)"/>
+        <!-- distant towers -->
+        <rect x="-40" y="430" width="70" height="120"/>
+        <rect x="40" y="460" width="50" height="90"/>
+        <rect x="1250" y="440" width="60" height="110"/>
+      </g>
+      <!-- Western Railway HQ: Gothic stone, domed central tower -->
+      <g fill="#d9926f" opacity=".85">
+        <path d="M150,555 L150,470 L196,470 L196,452 L206,440 L216,452 L216,470 L300,470 L300,446 L312,432 L324,446 L324,470 L338,470
+                 L338,420 L350,404 L350,380 C350,360 362,344 380,338 L380,326 L384,316 L388,326 L388,338 C406,344 418,360 418,380 L418,404 L430,420 L430,470
+                 L444,470 L444,446 L456,432 L468,446 L468,470 L552,470 L552,452 L562,440 L572,452 L572,470 L620,470 L620,555 Z"/>
+      </g>
+      <g fill="#c98466" opacity=".55">
+        <rect x="160" y="484" width="6" height="16"/><rect x="176" y="484" width="6" height="16"/><rect x="228" y="484" width="6" height="16"/><rect x="244" y="484" width="6" height="16"/>
+        <rect x="260" y="484" width="6" height="16"/><rect x="276" y="484" width="6" height="16"/><rect x="480" y="484" width="6" height="16"/><rect x="496" y="484" width="6" height="16"/>
+        <rect x="512" y="484" width="6" height="16"/><rect x="528" y="484" width="6" height="16"/><rect x="584" y="484" width="6" height="16"/><rect x="600" y="484" width="6" height="16"/>
+        <path d="M370,420 L370,400 C370,392 378,388 384,388 C390,388 398,392 398,400 L398,420 Z"/>
+      </g>
+      <!-- Eros: cream Art Deco with stepped tower -->
+      <g fill="#e09c76" opacity=".85">
+        <path d="M880,555 L880,476 C880,466 888,460 898,460 L1000,460 L1000,430 L1012,430 L1012,408 L1022,408 L1022,388 L1030,388 L1030,370 L1040,370 L1040,388 L1048,388 L1048,408 L1058,408 L1058,430 L1070,430 L1070,460 L1120,460 L1120,555 Z"/>
+      </g>
+      <g stroke="#cf8b68" stroke-width="2" opacity=".6">
+        <line x1="1035" y1="396" x2="1035" y2="456"/><line x1="1027" y1="414" x2="1027" y2="456"/><line x1="1043" y1="414" x2="1043" y2="456"/>
+        <line x1="890" y1="480" x2="990" y2="480"/><line x1="890" y1="492" x2="990" y2="492"/>
+      </g>
+      <!-- rain trees, nearer, a touch darker -->
+      <g fill="#c07a62" opacity=".8">
+        <path d="M640,560 C620,540 630,512 664,508 C676,486 716,482 734,500 C760,488 800,500 798,528 C820,534 818,560 800,566 Z"/>
+        <path d="M720,566 L722,540 L728,540 L730,566 Z"/>
+        <path d="M1130,566 C1112,546 1124,522 1150,520 C1164,500 1198,500 1210,516 C1236,508 1262,522 1256,546 C1274,552 1268,568 1250,570 Z"/>
+      </g>
+      <rect x="-2000" y="420" width="5440" height="160" fill="url(#haze)"/>
+
+      <!-- catenary masts and wires -->
+      <g stroke="#6f4a42" fill="none" opacity=".75" vector-effect="non-scaling-stroke">
+        <path d="M-40,548 L1600,548" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+        <path d="M-40,556 C200,566 400,566 600,556 C800,566 1000,566 1200,556 C1350,564 1500,564 1600,558" stroke-width=".8" vector-effect="non-scaling-stroke"/>
+        <path d="M-40,520 L1600,520" stroke-width=".7" opacity=".6" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g fill="#6f4a42" opacity=".8">
+        <rect x="596" y="500" width="6" height="110"/><rect x="560" y="510" width="80" height="4"/>
+        <rect x="1196" y="500" width="6" height="110"/><rect x="1160" y="510" width="80" height="4"/>
+        <rect x="-4" y="500" width="6" height="110"/>
+      </g>
+
+      <!-- TRAIN: Western Railway AC local, the rake across the lower third -->
+      <g id="train">
+        <!-- shadow under -->
+        <rect x="80" y="720" width="2400" height="40" fill="url(#shadowUnder)"/>
+        <!-- cab: raked front at the left -->
+        <path d="M120,612 C122,598 132,590 150,588 L260,586 L260,724 L118,724 C112,700 112,640 120,612 Z" fill="url(#body)"/>
+        <path d="M126,606 C130,598 138,594 152,593 L206,592 L206,646 L122,646 C121,630 122,618 126,606 Z" fill="#2c2734"/>
+        <path d="M134,604 L200,598 L200,612 L130,618 Z" fill="#ffd7a0" opacity=".25"/>
+        <!-- amber LED destination -->
+        <rect x="150" y="597" width="44" height="9" rx="1" fill="#1a1416"/>
+        <g fill="#ffb347"><rect x="153" y="600" width="38" height="3" opacity=".9"/></g>
+        <!-- headlamp -->
+        <circle cx="126" cy="690" r="4" fill="#fff6dc"/>
+        <!-- pantograph on the cab roof -->
+        <g stroke="#4b3a3c" stroke-width="2" fill="none">
+          <path d="M190,584 L210,566 L230,584"/>
+          <path d="M196,566 L226,566" stroke-width="2.4"/>
+          <path d="M210,566 L214,556"/>
+        </g>
+        <!-- coaches -->
+        <g id="coaches"></g>
+        <!-- cab nose band -->
+        <path d="M114,664 L260,664 L260,678 L113,678 Z" fill="#2e5f93"/>
+        <rect x="113" y="680" width="147" height="2.2" fill="#c3343a"/>
+        <path d="M113,682 L260,682 L260,710 L118,710 C114,700 113,690 113,682 Z" fill="#1d2747"/>
+        <rect x="118" y="710" width="142" height="14" fill="#2a2629"/>
+      </g>
+
+      <!-- THE window (target of the dolly) -->
+      <g id="win" transform="translate(980 626)">
+        <rect x="-22" y="-22" width="44" height="44" rx="5" fill="#d8c6ac"/>
+        <rect x="-28" y="-28" width="56" height="56" rx="18" fill="#ffd27a" opacity=".1"/>
+        <g clip-path="url(#winClip)">
+          <rect x="-40" y="-30" width="80" height="60" fill="url(#interior)"/>
+          <!-- far wall windows of the coach -->
+          <rect x="-15" y="-11" width="13" height="11" rx="1.5" fill="#f8c98b" opacity=".75"/>
+          <rect x="4" y="-11" width="13" height="11" rx="1.5" fill="#f8c98b" opacity=".75"/>
+          <!-- ceiling light strip -->
+          <rect x="-40" y="-17" width="80" height="1.3" fill="#fffbe9"/>
+          <rect x="-40" y="-22" width="80" height="30" fill="url(#lampPool)" opacity=".6"/>
+          <!-- seat back -->
+          <path d="M-40,6 C-20,4 10,4 40,7 L40,30 L-40,30 Z" fill="#3c5c80" opacity=".9"/>
+          <path d="M-40,6 C-20,4 10,4 40,7 L40,8.5 C10,6 -20,6 -40,8 Z" fill="#7aa0c2" opacity=".7"/>
+          <g id="mohitWrap"><use href="#mohit" x="-26" y="-20" width="48" height="48"/></g>
+          <!-- reflection on glass -->
+          <rect id="sheen" x="-90" y="-30" width="120" height="60" fill="url(#glassSheen)"/>
+          <rect x="-40" y="-30" width="80" height="60" fill="#ffd9a0" opacity=".07"/>
+        </g>
+        <rect x="-19" y="-19" width="38" height="38" rx="4" fill="none" stroke="#3c3036" stroke-width=".7"/>
+      </g>
+
+      <!-- PLATFORM foreground -->
+      <path d="M-2000,724 L3440,724 L3440,740 L-2000,740 Z" fill="#4b3c3f"/>
+      <g stroke="#cfa48a" stroke-width="2"><line x1="-2000" y1="736" x2="3440" y2="736"/></g>
+      <path d="M-2000,762 L3440,762 L3440,3000 L-2000,3000 Z" fill="url(#platform)"/>
+      <rect x="-2000" y="752" width="5440" height="12" fill="#f1c232"/>
+      <rect x="-2000" y="752" width="5440" height="3" fill="#ffe680"/>
+      <!-- long low shadows of columns across the platform -->
+      <g fill="#5a3f45" opacity=".35">
+        <path d="M120,764 L156,764 L-300,900 L-380,900 Z"/>
+        <path d="M720,764 L756,764 L300,900 L220,900 Z"/>
+      </g>
+      <rect x="-2000" y="764" width="5440" height="2300" fill="#ffcf8a" opacity=".12"/>
+    </svg>
+    <div class="vignette" id="vig"></div>
+    <div class="wash"></div>
+    <div class="grain"></div>
+
+    <div class="copy">
+      <h1>Mohit Bagri</h1>
+      <div class="slot">
+        <p class="line" id="line">Software engineer at Sypha AI and founder of AuctionXI. I build things and learn how they work.</p>
+        <p class="note" id="note">That's me. Can't wait to get home and fix what blocked production.</p>
+      </div>
+      <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const coaches = document.getElementById("coaches");
+  // build coaches procedurally: body, windows (tinted, sky-reflecting), doors, bands, roof AC units
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || coaches).appendChild(e); return e; };
+  const coachW = 440, y0 = 586;
+  for (let c = 0; c < 6; c++) {
+    const x = 260 + c * (coachW + 6);
+    mk("rect", { x, y: y0, width: coachW, height: 138, fill: "url(#body)" });
+    mk("rect", { x, y: y0, width: coachW, height: 138, fill: "url(#bodyLight)" });
+    // roof line + AC units
+    mk("rect", { x, y: y0 - 4, width: coachW, height: 6, rx: 3, fill: "#e9dcc6" });
+    mk("rect", { x: x + 20, y: y0 - 12, width: 100, height: 9, rx: 3, fill: "#d7c8b2" });
+    mk("rect", { x: x + 230, y: y0 - 12, width: 100, height: 9, rx: 3, fill: "#d7c8b2" });
+    // doors (closed, sliding) at ~1/6, 1/2 and 5/6
+    for (const dx of [40, 205, 370]) {
+      mk("rect", { x: x + dx, y: y0 + 8, width: 30, height: 124, rx: 2, fill: "#eadcc4", stroke: "#b9a58c", "stroke-width": 1 });
+      mk("line", { x1: x + dx + 15, y1: y0 + 8, x2: x + dx + 15, y2: y0 + 132, stroke: "#9c8873", "stroke-width": 1 });
+      mk("rect", { x: x + dx + 4, y: y0 + 18, width: 9, height: 34, rx: 2, fill: "url(#glass)" });
+      mk("rect", { x: x + dx + 17, y: y0 + 18, width: 9, height: 34, rx: 2, fill: "url(#glass)" });
+    }
+    // windows
+    for (const wx of [86, 140, 252, 306]) {
+      const cx = x + wx + 22, cy = 630;
+      if (Math.abs(cx - 980) < 4) continue; // the glowing one is drawn separately
+      mk("rect", { x: x + wx, y: y0 + 18, width: 44, height: 44, rx: 5, fill: "#d8c6ac" });
+      mk("rect", { x: x + wx + 3, y: y0 + 21, width: 38, height: 38, rx: 4, fill: "url(#glass)" });
+      mk("path", { d: `M${x + wx + 3},${y0 + 46} L${x + wx + 41},${y0 + 32} L${x + wx + 41},${y0 + 38} L${x + wx + 3},${y0 + 52} Z`, fill: "#ffd9a6", opacity: .18 });
+    }
+    // bands: blue with thin red line, navy skirt
+    mk("rect", { x, y: 664, width: coachW, height: 14, fill: "#2e5f93" });
+    mk("rect", { x, y: 680, width: coachW, height: 2.2, fill: "#c3343a" });
+    mk("rect", { x, y: 682, width: coachW, height: 28, fill: "#1d2747" });
+    mk("rect", { x, y: 710, width: coachW, height: 14, fill: "#2a2629" });
+    // bogies
+    for (const bx of [50, coachW - 110]) {
+      mk("rect", { x: x + bx, y: 712, width: 60, height: 12, rx: 3, fill: "#1a1517" });
+      mk("circle", { cx: x + bx + 14, cy: 724, r: 9, fill: "#231c1e" });
+      mk("circle", { cx: x + bx + 46, cy: 724, r: 9, fill: "#231c1e" });
+    }
+    // warm rim light on the coach end facing the sun
+    mk("rect", { x: x + coachW - 3, y: y0, width: 3, height: 124, fill: "#fff1c8", opacity: .7 });
+  }
+  // the target window sits in coach 2 at wx=140: x = 260+446+140 = 846 .. centre 868? adjust
+})();
+</script>
+<script>
+(() => {
+  const svg = document.getElementById("scene");
+  const sec = document.getElementById("intro");
+  const line = document.getElementById("line"), note = document.getElementById("note"), vig = document.getElementById("vig");
+  const kites = [...document.querySelectorAll(".kite")];
+  const sheen = document.getElementById("sheen");
+  const mohit = document.getElementById("mohitWrap");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const T = { x: 980, y: 626 };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  let target = 0, cur = 0;
+  const read = () => { const r = sec.getBoundingClientRect(); target = clamp(-r.top / (r.height - innerHeight), 0, 1); };
+  addEventListener("scroll", read, { passive: true }); addEventListener("resize", read); read(); cur = target;
+
+  function frame(t) {
+    cur += (target - cur) * (reduce ? 1 : .09);
+    if (Math.abs(target - cur) < 1e-4) cur = target;
+    const p = cur;
+    const W = innerWidth, H = innerHeight, aspect = W / H, narrow = aspect < 1;
+    // start frame: wide panorama. On phones start on a slice centred near the window.
+    const w0 = narrow ? 700 : 1440, h0 = w0 / aspect;
+    const cx0 = narrow ? 860 : 720, cy0 = narrow ? 470 + h0 * .08 : 900 - h0 / 2;
+    // end frame: window fills the right/lower part; text keeps the left/top zone
+    const w1 = narrow ? 70 : 176 * Math.max(1, 1.6 / aspect), h1 = w1 / aspect;
+    const cx1 = narrow ? T.x : T.x - w1 * .2, cy1 = narrow ? T.y - h1 * .12 : 648 + 3 - h1 / 2;
+    const z = ease(seg(p, .08, .86));
+    const w = w0 * Math.pow(w1 / w0, z), h = w / aspect;
+    const k = (w0 - w) / (w0 - w1 || 1);
+    const cx = cx0 + (cx1 - cx0) * k, cy = cy0 + (cy1 - cy0) * k;
+    svg.setAttribute("viewBox", `${(cx - w / 2).toFixed(2)} ${(cy - h / 2).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)}`);
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    const a = seg(p, .18, .4), b = seg(p, .8, .95);
+    line.style.opacity = 1 - a; line.style.transform = `translateY(${-a * 14}px)`;
+    note.style.opacity = b; note.style.transform = `translateY(${(1 - b) * 14}px)`;
+    vig.style.opacity = z;
+
+    if (!reduce) {
+      const s = t / 1000;
+      kites.forEach((k, i) => {
+        const sp = [22, 15, 30][i], base = [190, 260, 140][i];
+        const x = ((s * sp + i * 520) % 1900) - 200;
+        const y = base + Math.sin(s * .3 + i) * 18;
+        k.setAttribute("transform", `translate(${x} ${y}) rotate(${Math.sin(s * .5 + i) * 6})`);
+      });
+      sheen.setAttribute("x", (-110 + ((s * 9) % 160)).toFixed(2));
+      mohit.setAttribute("transform", `translate(0 ${(Math.sin(s * 1.1) * .25).toFixed(3)})`);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

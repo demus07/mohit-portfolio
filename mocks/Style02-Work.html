@@ -1,0 +1,234 @@
+<!-- Direction 02: Photo collage — the work as a scrapbook spread: AuctionXI's real screen printed large and taped down with its facts on torn strips, then the other seven prints walk past on a long strip of paper as you scroll. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Photo collage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --paper-hi:#f7f2e7; --news:#e6dfcf; --ink:#1b2230; --soft:rgb(27 34 48 / .68);
+  --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145; --tape:rgb(238 228 200 / .74);
+  --serif:"Instrument Serif", Georgia, serif; --sans:"Archivo", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:multiply;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .55 -.08'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.tape{position:absolute;width:110px;height:30px;background:
+  repeating-linear-gradient(90deg,rgb(255 255 255 / .12) 0 2px,transparent 2px 7px),var(--tape);
+  clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 24%,96% 38%,100% 52%,96% 66%,100% 80%,96% 92%,100% 100%,0 100%,4% 88%,0 76%,4% 62%,0 48%,4% 34%,0 20%);
+  mix-blend-mode:multiply;z-index:3}
+.reg{position:fixed;width:26px;height:26px;z-index:51;pointer-events:none;opacity:.5}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+.reg::before{left:12px;top:0;width:1px;height:26px}.reg::after{top:12px;left:0;height:1px;width:26px}
+.reg i{position:absolute;inset:6px;border:1px solid var(--ink);border-radius:50%}
+.reg.tl{top:16px;left:16px}.reg.tr{top:16px;right:16px}.reg.bl{bottom:16px;left:16px}.reg.br{bottom:16px;right:16px}
+.serif{font-family:var(--serif);font-weight:400}
+.ring{position:absolute;width:150px;height:150px;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(circle,transparent 58%,rgb(150 92 40 / .16) 61%,rgb(150 92 40 / .34) 64%,rgb(150 92 40 / .1) 67%,transparent 70%);
+  -webkit-mask:radial-gradient(circle at 70% 30%,transparent 18%,#000 42%)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+html,body{background:#e8e0cd}
+.pad{padding-inline:clamp(20px,5vw,80px)}
+.wrapP{position:relative}
+.back{position:absolute;inset:-7% -5% -12% 8%;background:radial-gradient(circle,rgb(255 250 240 / .22) 1.6px,transparent 2px) 0 0/7px 7px,#2c6d8c;transform:rotate(-3.2deg);z-index:0}
+.back.n{inset:auto -8% -20% 30%;height:34%;background:radial-gradient(circle,rgb(27 39 71 / .5) 1px,transparent 1.4px) 0 0/5px 5px,#e6dfcf;transform:rotate(2.4deg)}
+.wrapP .print{z-index:1}
+header{padding-top:clamp(72px,12vh,128px);position:relative}
+header h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,5.2vw,84px);line-height:.98;letter-spacing:-.015em;margin:0 0 20px;max-width:13ch;text-wrap:balance}
+header p{margin:0;max-width:40ch;font-size:clamp(17px,1.3vw,20px);font-variation-settings:"wdth" 92}
+header p span{background:var(--paper-hi);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:.14em .42em;line-height:1.78}
+
+/* featured */
+.feat{position:relative;display:grid;grid-template-columns:minmax(300px,4.2fr) 7.8fr;gap:clamp(28px,4vw,72px);align-items:start;padding-top:clamp(48px,8vh,96px);padding-bottom:clamp(80px,12vh,140px)}
+.print{position:relative;background:#fffdf8;padding:clamp(10px,1.1vw,16px) clamp(10px,1.1vw,16px) clamp(34px,3.6vw,54px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.print img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;filter:saturate(1.02) contrast(1.02)}
+.print::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(120% 90% at 30% 20%,transparent 60%,rgb(120 90 50 / .1))}
+.feat .print{transform:rotate(1.4deg)}
+.feat .print .tape.a{top:-14px;left:-28px;transform:rotate(-34deg)}
+.feat .print .tape.b{top:-12px;right:-26px;transform:rotate(30deg)}
+.feat .print .tape.c{bottom:-12px;right:22%;transform:rotate(-4deg);width:90px}
+.feat .print .ghost{display:none;position:absolute;inset:0;transform:translate(14px,12px);z-index:-1;
+  background:radial-gradient(circle,#2c6d8c 1.9px,transparent 2.3px) 0 0/8px 8px;opacity:.85}
+.ft{position:relative;padding-top:8px}
+.logo{display:inline-block;background:#121417;padding:14px 18px 12px;transform:rotate(-2.5deg);clip-path:polygon(0 4%,100% 0,98% 100%,2% 96%)}
+.logo img{display:block;height:34px;width:auto}
+.kind{margin:22px 0 6px;font-size:16px;color:var(--soft);font-variation-settings:"wdth" 88}
+.ft h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3vw,48px);line-height:1.02;margin:0 0 14px;max-width:17ch;text-wrap:balance}
+.ft .line{margin:0 0 24px;max-width:40ch}
+.facts{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:10px}
+.facts li{background:#fbf8ef;padding:9px 14px 9px 14px;font-size:16px;line-height:1.4;max-width:40ch;
+  clip-path:polygon(0 6%,3% 0,30% 4%,60% 0,100% 5%,99% 50%,100% 96%,70% 100%,35% 96%,0 100%,1% 50%)}
+.facts li:nth-child(1){transform:rotate(-.8deg) translateX(6px)}
+.facts li:nth-child(2){transform:rotate(.7deg)}
+.facts li:nth-child(3){transform:rotate(-.4deg) translateX(14px)}
+.stub{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px;color:var(--soft);max-width:48ch;margin-bottom:24px;font-variation-settings:"wdth" 85}
+.stub span:first-child{color:var(--ink)}
+.go{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:17px;background:var(--sodium);color:#1b1408;padding:10px 18px 10px 16px;transform:rotate(-1.5deg);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 64%,4% 56%,0 48%);transition:transform .35s}
+.go:hover,.go:focus-visible{transform:rotate(0) translateY(-2px)}
+.go .ar{transition:transform .35s}.go:hover .ar{transform:translateX(4px)}
+.ring.w1{left:-40px;bottom:-30px}
+
+/* the strip of seven */
+.rest{position:relative;height:var(--h,520vh)}
+.rest .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.band{position:absolute;left:0;right:0;top:58%;height:30%;pointer-events:none}
+.track{display:flex;align-items:flex-start;gap:clamp(48px,5vw,90px);padding-inline:clamp(20px,5vw,80px);will-change:transform;position:relative}
+.card{flex:0 0 clamp(320px,30vw,470px);position:relative}
+.card .print{transform:rotate(var(--r))}
+.card:hover .print{transform:rotate(0) translateY(-6px)}
+.card .tape{top:-13px;left:50%;margin-left:-55px;transform:rotate(var(--t))}
+.cap{position:relative;margin-top:18px;background:#fbf8ef;padding:18px 20px 18px;transform:rotate(calc(var(--r) * -.6));
+  clip-path:polygon(0 3%,8% 0,22% 3%,40% 0,58% 3%,75% 0,90% 3%,100% 0,100% 100%,0 100%)}
+.cap h4{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1;margin:0 0 4px}
+.cap .kind{margin:0 0 10px;font-size:14.5px}
+.cap .hl{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.2;margin:0 0 6px}
+.cap p{margin:0 0 10px;font-size:15.5px;line-height:1.45;max-width:40ch}
+.links{display:flex;gap:16px;font-size:15px;font-weight:600}
+.links a{text-decoration:none;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0 3px no-repeat;transition:background-size .35s}
+.links a:hover,.links a:focus-visible{background-size:100% 3px}
+.links .priv{font-weight:400;color:var(--soft)}
+.end{flex:0 0 1px}
+@media (max-width:860px){
+  .feat{grid-template-columns:1fr}
+  .feat .ft{order:2}
+  .rest{height:auto}
+  .rest .stick{position:relative;height:auto;padding-block:40px 80px}
+  .track{flex-direction:column;gap:56px;transform:none!important}
+  .card{flex:none;width:100%}
+  .band{display:none}
+  header h2{font-size:44px}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<span class="reg tl"><i></i></span><span class="reg tr"><i></i></span><span class="reg bl"><i></i></span><span class="reg br"><i></i></span>
+
+<header class="pad">
+ <h2>Things I've built and shipped</h2>
+ <p><span>Products I run, client work, web and mobile apps, AI, VR and command-line tools.</span></p>
+</header>
+
+<section class="feat pad" id="feat">
+ <div class="ft">
+  <div class="logo"><img src="assets/logo.webp" alt="AuctionXI"></div>
+  <p class="kind">My own product, 2026</p>
+  <h3>Live player auctions for any sport</h3>
+  <p class="line">Real-time bidding, broadcast graphics and YouTube overlays, with no production team.</p>
+  <ul class="facts">
+   <li>Every bid lands on every screen at once, and the money always adds up.</li>
+   <li>Twenty broadcast scenes for the projector and the stream.</li>
+   <li>Auction-ready in under 20 minutes.</li>
+  </ul>
+  <div class="stub"><span>Next.js</span><span>TypeScript</span><span>Postgres</span><span>Drizzle</span><span>Pusher</span><span>NextAuth</span></div>
+  <a class="go" href="https://auction-xi.com" target="_blank" rel="noopener">Live <span class="ar">→</span></a>
+ </div>
+ <div class="wrapP"><span class="back n"></span><span class="back"></span>
+ <div class="print" id="featPrint"><span class="ghost"></span><span class="tape a"></span><span class="tape b"></span><span class="tape c"></span>
+  <img src="media/auctionxi.png" alt="AuctionXI live auction screen">
+ </div></div>
+ <span class="ring w1"></span>
+</section>
+
+<section class="rest" id="rest">
+ <div class="stick">
+  <svg class="band" id="band" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <div class="track" id="track"></div>
+ </div>
+</section>
+<!-- direction: Style02 Work, photo collage -->
+<script>/* collage kit: seeded randomness and torn-paper edges */
+const KIT = (() => {
+  const rng = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+  // torn rectangle path: edges listed in `sides` are torn, others straight
+  function torn(x, y, w, h, o = {}) {
+    const amp = o.amp ?? 3, step = o.step ?? 9, r = rng(o.seed ?? 7), sides = o.sides ?? "tblr";
+    const pts = [];
+    const edge = (x0, y0, x1, y1, t, nx, ny) => {
+      const len = Math.hypot(x1 - x0, y1 - y0), n = Math.max(1, Math.round(len / step));
+      for (let i = 0; i < n; i++) {
+        const f = i / n, j = t ? (r() - .5) * 2 * amp + (r() < .12 ? amp * 1.6 : 0) : 0;
+        pts.push([x0 + (x1 - x0) * f + nx * j, y0 + (y1 - y0) * f + ny * j]);
+      }
+    };
+    edge(x, y, x + w, y, sides.includes("t"), 0, 1);
+    edge(x + w, y, x + w, y + h, sides.includes("r"), -1, 0);
+    edge(x + w, y + h, x, y + h, sides.includes("b"), 0, -1);
+    edge(x, y + h, x, y, sides.includes("l"), 1, 0);
+    return "M" + pts.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") + "Z";
+  }
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return { rng, torn, clamp, seg, ease, reduce };
+})();
+</script>
+<script>
+const P = [
+ ["TexAgent", "texagent", "Client work, 2026", "A bahi-khata for textile brokers", "Bills, brokerage and follow-ups in one place, instead of a paper book.", []],
+ ["Cache Karo", "cachekaro", "Command-line tool, 2026", "Find the cache hogs, get the space back", "Disk analysis and safe cleanup on macOS, Linux and Windows. One line to install.", [["PyPI", "https://pypi.org/project/cachekaro/"], ["Source", "https://github.com/Mohit-Bagri/cachekaro"]]],
+ ["Aether", "aether", "AI web app, 2025", "News, YouTube and Reddit in one conversation", "An assistant with 17+ tones, and an NLP pipeline that scores every article first.", [["Source", "https://github.com/Mohit-Bagri/aether-news-trends"]]],
+ ["FlowLedger", "flowledger", "Mobile app, 2026", "Every rupee in, every rupee out", "A local-first finance app in Flutter that scans receipts and catches money leaks.", [["Source", "https://github.com/Mohit-Bagri/flowledger"]]],
+ ["Space Shuttle VR", "shuttle", "VR game, 2024", "Fix the shuttle, then fly it out", "A room-scale game for Meta Quest: hands-on tasks aboard, then pilot it to the final portal.", [["Source", "https://github.com/Mohit-Bagri/spaceshuttletasks-vr-game"]]],
+ ["VeloType", "velotype", "Web app, 2026", "A typing test built for feel", "Themes, modes and live words per minute, with a caret that keeps up.", [["Live", "https://velo-type.vercel.app"]]],
+ ["Windmill VR", "windmill", "VR app, 2025", "Breathe with the windmill", "A calm VR app for Meta Quest, paced to a four-part breath.", [["Source", "https://github.com/Mohit-Bagri/windmill-vr"]]],
+];
+const R = [-2.2, 1.6, -1.1, 2.1, -1.7, 1.2, -2.4], T = [-5, 4, -3, 6, -4, 3, -6];
+const track = document.getElementById("track");
+track.innerHTML = P.map(([t, slug, kind, hl, line, links], i) => `
+ <article class="card" style="--r:${R[i]}deg;--t:${T[i]}deg;margin-top:${[0, 46, 12, 60, 4, 40, 18][i]}px">
+  <div class="print"><span class="tape"></span><img src="media/${slug}.png" alt="${t}" loading="lazy"></div>
+  <div class="cap">
+   <h4>${t}</h4><p class="kind">${kind}</p>
+   <p class="hl">${hl}</p><p>${line}</p>
+   <div class="links">${links.length ? links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${l} →</a>`).join("") : `<span class="priv">Private client project</span>`}</div>
+  </div>
+ </article>`).join("") + `<div class="end"></div>`;
+
+document.querySelectorAll(".back").forEach((b, k) => { const r = KIT.rng(17 + k); const pts = []; const n = 34; for (let i = 0; i <= n; i++) pts.push(`${i / n * 100}% ${r() * 2.2}%`); for (let i = 0; i <= 10; i++) pts.push(`${100 - r() * 1.2}% ${i * 10}%`); for (let i = n; i >= 0; i--) pts.push(`${i / n * 100}% ${100 - r() * 2.6}%`); for (let i = 10; i >= 0; i--) pts.push(`${r() * 1.2}% ${i * 10}%`); b.style.clipPath = `polygon(${pts.join(",")})`; });
+// a torn sea strip runs behind the prints, the horizon of the walk
+const band = document.getElementById("band");
+band.innerHTML = `
+ <path d="${KIT.torn(-20, 40, 1480, 60, { amp: 3, step: 10, seed: 3, sides: "tb" })}" fill="#8fb8c6"/>
+ <path d="${KIT.torn(-20, 90, 1480, 90, { amp: 3, step: 12, seed: 4, sides: "t" })}" fill="#2c6d8c"/>
+ <path d="${KIT.torn(-20, 168, 1480, 110, { amp: 2.5, step: 10, seed: 5, sides: "t" })}" fill="#ddd6c6"/>`;
+
+const rest = document.getElementById("rest"), feat = document.getElementById("featPrint");
+let span = 0, wide = true;
+function layout() {
+  wide = innerWidth > 860;
+  if (!wide) { rest.style.removeProperty("--h"); return; }
+  span = track.scrollWidth - innerWidth;
+  rest.style.setProperty("--h", (innerHeight + span * 1.1) + "px");
+  frame();
+}
+function frame() {
+  // featured print settles into place as it arrives
+  const fr = feat.getBoundingClientRect();
+  const a = KIT.ease(KIT.clamp(1 - (fr.top - innerHeight * .25) / (innerHeight * .7)));
+  feat.style.transform = KIT.reduce ? "rotate(1.4deg)" : `translate(${(1 - a) * 60}px,${(1 - a) * 30}px) rotate(${1.4 + (1 - a) * 3}deg)`;
+  if (!wide) return;
+  const r = rest.getBoundingClientRect();
+  const p = KIT.clamp(-r.top / (r.height - innerHeight));
+  track.style.transform = `translate3d(${-p * span}px,0,0)`;
+  band.style.transform = `translateX(${-p * 80}px)`;
+}
+let raf = 0;
+addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }, { passive: true });
+addEventListener("resize", layout);
+addEventListener("load", layout);
+layout();
+</script>
+</body>
+</html>

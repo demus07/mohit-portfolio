@@ -9,6 +9,25 @@ import s from "./Nav.module.css";
 export function Nav() {
   const [hidden, setHidden] = useState(false);
   const [solid, setSolid] = useState(false);
+  const [dark, setDark] = useState<boolean | null>(null);
+
+  // the theme: whatever the system says until someone picks, then what they picked
+  useEffect(() => {
+    const html = document.documentElement;
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const read = () => setDark(html.dataset.theme ? html.dataset.theme === "dark" : mq.matches);
+    read();
+    mq.addEventListener("change", read);
+    return () => mq.removeEventListener("change", read);
+  }, []);
+  const flip = () => {
+    const next = !dark;
+    document.documentElement.dataset.theme = next ? "dark" : "light";
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {}
+    setDark(next);
+  };
 
   useEffect(() => {
     let last = window.scrollY;
@@ -31,11 +50,15 @@ export function Nav() {
         Mohit Bagri
       </a>
       <div className={s.links}>
+        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href={PERSON.resume} target="_blank" rel="noreferrer">
           Resume
         </a>
+        <button type="button" className={s.theme} onClick={flip} aria-pressed={dark ?? false} aria-label="Night mode">
+          {dark ? "Day" : "Night"}
+        </button>
         <a className={s.cta} href={mailto("Hello Mohit")}>
           Write to me <span aria-hidden="true">→</span>
         </a>

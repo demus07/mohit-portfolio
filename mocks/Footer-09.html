@@ -1,0 +1,219 @@
+<!-- Direction 09: Devanagari — "श्री सिद्धिविनायक" lights up letter by letter like a temple sign, the floodlit temple small beneath it, the invitation plain below. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shree Siddhivinayak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--gold:#f6cf72;--paper:#efe8da;--mute:#9aa1ab}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--paper)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{height:280vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;
+ background:radial-gradient(120% 70% at 50% 62%,#1b2b45 0%,#101f34 45%,#0a1525 100%)}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .6 0 0 0 0 .6 0 0 0 0 .7 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.clock{position:absolute;left:clamp(24px,5vw,80px);top:28px;font-size:14px;color:var(--sodium);z-index:2}
+.word{position:relative;z-index:1;margin-top:clamp(56px,10vh,110px);text-align:center;font-family:"Tiro Devanagari Marathi",serif;
+ font-size:clamp(70px,10.4vw,190px);line-height:1.15;white-space:nowrap;letter-spacing:.005em}
+.word span{display:inline-block;color:var(--gold);padding:1em 1.2em;margin:-1em -1.2em;
+ text-shadow:0 0 18px rgba(255,190,90,.55),0 0 60px rgba(242,161,69,.45),0 0 140px rgba(242,161,69,.3);
+ -webkit-mask-image:linear-gradient(90deg,#000 0,#000 var(--r),rgba(0,0,0,.14) calc(var(--r) + 9%),rgba(0,0,0,.14) 100%);
+ mask-image:linear-gradient(90deg,#000 0,#000 var(--r),rgba(0,0,0,.14) calc(var(--r) + 9%),rgba(0,0,0,.14) 100%);--r:-10%}
+.temple{position:relative;flex:1;min-height:0}
+.temple svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.bottom{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr 1fr;gap:28px 8vw;padding:6px clamp(24px,5vw,80px) 0}
+h2{font-family:"Tiro Devanagari Marathi",serif;font-weight:400;font-size:clamp(34px,3vw,48px);line-height:1.05;letter-spacing:-.005em;text-wrap:balance}
+.line{margin-top:10px;font-size:16.5px;line-height:1.5;color:#cfd1d4;max-width:25em}
+.act{margin-top:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 24px}
+.cta{font-family:"Tiro Devanagari Marathi",serif;font-size:25px;color:var(--sodium);background:linear-gradient(currentColor,currentColor) 0 100%/28% 1px no-repeat;padding-bottom:2px;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover{background-size:100% 1px}
+.mail{font-size:14.5px;color:var(--mute);transition:color .3s}.mail:hover{color:var(--paper)}
+.belief{align-self:end}
+.belief blockquote{font-family:"Tiro Devanagari Marathi",serif;font-style:italic;font-size:20px;line-height:1.45;color:#eadfca;max-width:22em}
+.belief p{margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--mute);max-width:28em}
+.fade{opacity:0;transform:translateY(12px)}
+.foot{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:#8b929c;padding:22px clamp(24px,5vw,80px) 22px}
+.foot a{transition:color .3s}.foot a:hover{color:var(--sodium)}.foot .c{margin-left:auto}
+.t-stone{fill:#f3dcae}.t-sh{fill:#5b3416;opacity:.34}.t-hi{fill:#fff4dc;opacity:.35}.t-band{fill:#6e4223}.t-tan{fill:#d9ae74}
+.t-gold{fill:#f7c548}.t-goldsh{fill:#b77a12;opacity:.55}.t-lip{fill:#ffe7a2}.t-goldd{fill:#8b5710}.t-rib{stroke:#9b6514;stroke-width:1.2;fill:none;opacity:.55}
+.t-eave{fill:#2a170c}.t-wall{fill:#ecc994}.t-wall2{fill:#e9bd86}.t-win{fill:#5a3218}.t-winl{fill:#ffcf7a}.t-door{fill:#ffd88a}
+.t-orange{fill:#ea7a2c}.t-orangesh{fill:#a8441a;opacity:.5}.t-olip{fill:#ffb36b}.t-pole{stroke:#3b2a1a;stroke-width:3;fill:none}.t-flag{fill:#f2671c}
+@media (max-width:720px){
+ .page{height:240vh}
+ .clock{left:20px;top:20px;font-size:13px}
+ .word{margin-top:54px;font-size:17vw;white-space:normal;line-height:1.12}
+ .bottom{grid-template-columns:1fr;gap:14px;padding:0 20px}
+ h2{font-size:32px}.line{font-size:15px}.cta{font-size:22px}.act{margin-top:10px}
+ .belief blockquote{font-size:16.5px}.belief p{font-size:13px}
+ .foot{padding:14px 20px 16px;font-size:12.5px;gap:4px 14px}.foot .c{margin-left:0}
+}
+.t-tier{fill:#eec171}.t-tiersh{fill:#7d4f14;opacity:.45}.t-tierlip{fill:#ffe3a4}.t-cwall{fill:#2a1f1a}.t-ccope{fill:#5e4636}
+#temple .t-stone,#temple .t-tier,#temple .t-tierlip,#temple .t-orange,#temple .t-wall,#temple .t-wall2,#temple .t-cwall{stroke:#3a2416;stroke-opacity:.5;stroke-width:1;stroke-linejoin:round}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+ <div class="stage">
+  <p class="clock" id="clock">It's — in Mumbai.</p>
+  <div class="word" lang="mr" aria-label="Shree Siddhivinayak"><span id="word">श्री सिद्धिविनायक</span></div>
+  <div class="temple">
+   <svg id="art" viewBox="-200 40 1400 1000" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Siddhivinayak temple, small and floodlit gold at night">
+    <defs>
+     <radialGradient id="aura" cx="500" cy="560" r="560" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f2a145" stop-opacity=".38"/><stop offset=".6" stop-color="#f2a145" stop-opacity=".08"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+     <filter id="sil" x="-5%" y="-5%" width="110%" height="110%"><feFlood flood-color="#0b1626"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+     <radialGradient id="dglow"><stop offset="0" stop-color="#ffc66a" stop-opacity=".9"/><stop offset=".35" stop-color="#f2a145" stop-opacity=".35"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+     <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1424"/><stop offset="1" stop-color="#0d1a2b" stop-opacity="0"/></linearGradient>
+    </defs>
+    <circle id="auraC" cx="500" cy="560" r="560" fill="url(#aura)" opacity="0"/>
+    <g id="city"></g>
+    <g id="temple"></g>
+    <use href="#temple" id="dark" filter="url(#sil)"/>
+    <rect x="-4000" y="1000" width="9000" height="400" fill="url(#ground)"/>
+    <g id="diyas"></g>
+   </svg>
+  </div>
+  <div class="bottom">
+   <div class="fade" id="inv">
+    <h2>Got something to build?</h2>
+    <p class="line">I'm open to full-time roles, freelance work and the occasional wild idea.</p>
+    <div class="act">
+     <a class="cta" href="mailto:mailmohitbagri@gmail.com">Write to me →</a>
+     <a class="mail" href="mailto:mailmohitbagri@gmail.com">mailmohitbagri@gmail.com</a>
+    </div>
+   </div>
+   <figure class="belief fade" id="belief">
+    <blockquote>If you believe you can make it, you will. The rest is trusting God and doing the work.</blockquote>
+    <p>Siddhivinayak, where I go when I feel low or high. It's where I reset.</p>
+   </figure>
+  </div>
+  <nav class="foot fade" id="foot">
+   <a href="https://github.com/Mohit-Bagri">GitHub</a>
+   <a href="https://www.linkedin.com/in/mohit-bagri-1a2099354/">LinkedIn</a>
+   <a href="https://leetcode.com/u/mailmohitbagri/">LeetCode</a>
+   <a href="https://www.instagram.com/mohit_.bagri/">Instagram</a>
+   <a href="https://drive.google.com/file/d/1tvUUDXIiEy1aDDjIlC_ISVji06-NrZrF/view?usp=sharing">Resume</a>
+   <a href="mailto:mailmohitbagri@gmail.com">Email</a>
+   <span class="c">© 2026 Mohit Bagri</span>
+  </nav>
+ </div>
+</div>
+<!-- direction: 09 devanagari -->
+<script>
+/* ---------- Siddhivinayak, drawn on a 1000x1000 grid, ground at y=1000 ---------- */
+function buildTemple(){
+  const out=[];const f=n=>Math.round(n*10)/10;
+  const ord=y=>Math.max(0,Math.min(1,(1000-y)/900)).toFixed(3);
+  const P=(d,c,y)=>out.push(`<path class="${c}" d="${d}" pathLength="1" style="--o:${ord(y)}"/>`);
+  const trap=(cx,y0,h0,y1,h1)=>`M${f(cx-h0)} ${f(y0)}L${f(cx+h0)} ${f(y0)}L${f(cx+h1)} ${f(y1)}L${f(cx-h1)} ${f(y1)}Z`;
+  const quad=(a0,b0,y0,a1,b1,y1)=>`M${f(a0)} ${f(y0)}L${f(b0)} ${f(y0)}L${f(b1)} ${f(y1)}L${f(a1)} ${f(y1)}Z`;
+  const ell=(cx,cy,rx,ry)=>`M${f(cx-rx)} ${f(cy)}a${f(rx)} ${f(ry)} 0 1 0 ${f(2*rx)} 0a${f(rx)} ${f(ry)} 0 1 0 ${f(-2*rx)} 0Z`;
+  const kal=(cx,y,s)=>`M${f(cx-s*.5)} ${f(y)}L${f(cx+s*.5)} ${f(y)}L${f(cx+s*.36)} ${f(y-s*.16)}C${f(cx+s*.95)} ${f(y-s*.3)} ${f(cx+s*.9)} ${f(y-s*1.1)} ${f(cx+s*.26)} ${f(y-s*1.2)}L${f(cx+s*.2)} ${f(y-s*1.36)}L${f(cx+s*.46)} ${f(y-s*1.44)}L${f(cx+s*.12)} ${f(y-s*1.56)}Q${f(cx)} ${f(y-s*2.5)} ${f(cx-s*.12)} ${f(y-s*1.56)}L${f(cx-s*.46)} ${f(y-s*1.44)}L${f(cx-s*.2)} ${f(y-s*1.36)}L${f(cx-s*.26)} ${f(y-s*1.2)}C${f(cx-s*.9)} ${f(y-s*1.1)} ${f(cx-s*.95)} ${f(y-s*.3)} ${f(cx-s*.36)} ${f(y-s*.16)}Z`;
+  const arch=(x,y,w,h)=>`M${f(x)} ${f(y+h)}V${f(y+w/2)}A${f(w/2)} ${f(w/2)} 0 0 1 ${f(x+w)} ${f(y+w/2)}V${f(y+h)}Z`;
+  function spire(cx,w,top,base){
+    const hb=w/2,ht=w*.4,L=y=>ht+(hb-ht)*(y-top)/(base-top);
+    P(trap(cx,base,hb,top,ht),'t-stone',base);
+    P(quad(cx+hb*.2,cx+hb,base,cx+ht*.2,cx+ht,top),'t-sh',base);
+    P(quad(cx-hb*.74,cx-hb*.46,base,cx-ht*.74,cx-ht*.46,top),'t-hi',base);
+    const seg=Math.max(w*.82,13);
+    for(let y=top+w*.5;y<base-seg*.5;y+=seg){const h=L(y);
+      P(trap(cx,y-seg*.36,h,y-seg*.46,h),'t-tan',y);
+      P(trap(cx,y+seg*.2,h*1.1,y,h*1.1),'t-band',y);}
+    const m=w*.13,c=top;
+    P(trap(cx,c,ht*1.36,c-m,ht*1.36),'t-band',c);
+    P(trap(cx,c-m,ht*1.12,c-m-w*.24,ht*.82),'t-stone',c);
+    P(trap(cx,c-m-w*.24,ht*.9,c-m-w*.31,ht*.9),'t-band',c);
+    P(trap(cx,c-m-w*.31,ht*.78,c-m-w*.46,ht*.5),'t-tan',c);
+    P(ell(cx,c-m-w*.49,ht*.72,w*.07),'t-gold',c);
+    P(kal(cx,c-m-w*.53,w*.3),'t-gold',c);
+  }
+  function stepped(cx,base,top,h0,h1,n,cl,dome){
+    for(let i=0;i<n;i++){
+      const t0=i/n,t1=(i+1)/n,y0=base-(base-top)*t0,y1=base-(base-top)*t1,th=y0-y1;
+      const a=dome?h1+(h0-h1)*Math.cos(t0*Math.PI/2*.92):h1+(h0-h1)*Math.pow(1-t0,1.12);
+      P(trap(cx,y0,a*.92,y1+th*.26,a*.86),cl[0],y0);
+      P(quad(cx+a*.34,cx+a*.92,y0,cx+a*.3,cx+a*.86,y1+th*.26),cl[1],y0);
+      P(trap(cx,y1+th*.26,a,y1,a*.95),cl[2],y1);
+      if(cl[3]) for(const k of [-.6,-.2,.2,.6]) P(`M${f(cx+a*.9*k)} ${f(y0)}L${f(cx+a*.86*k)} ${f(y1+th*.26)}`,cl[3],y0);
+    }
+  }
+  const CX=500;
+  // two side groups of banded spires; in each, the tallest stand at the outer edge
+  [[-110,30,452],[112,30,458],[-150,32,424],[152,32,430],[-192,32,392],[196,32,398],[-232,32,362],[236,32,368],[-268,30,338],[272,30,344]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  [[-304,30,316,746],[306,30,322,746]].forEach(([dx,w,t,bs])=>spire(CX+dx,w,t,bs));
+  // the central shikhara: eight tiers narrowing upward
+  stepped(CX,580,300,150,34,8,['t-tier','t-tiersh','t-tierlip','t-rib']);
+  P(ell(CX,296,42,8),'t-goldd',296);P(ell(CX,290,32,7),'t-gold',290);
+  P(kal(CX,284,36),'t-gold',284);
+  P(`M${CX+40} 300V96`,'t-pole',300);
+  // dark band under the eaves, with its row of seven small spires
+  P(trap(CX,668,198,580,180),'t-eave',668);
+  for(let i=0;i<7;i++){const x=CX-150+i*50;P(trap(x,668,9,616,7),'t-stone',668);P(trap(x,616,8.6,600,1.6),'t-tan',616);P(ell(x,597,3.4,3.4),'t-gold',597);}
+  // front ring
+  [[-172,36,470],[174,36,476],[-252,34,430],[256,34,436]].forEach(([dx,w,t])=>spire(CX+dx,w,t,668));
+  // upper storey
+  P(`M236 746V666H764V746Z`,'t-wall',746);
+  for(let x=252;x<750;x+=28) P(arch(x,682,13,38),(x*7%5===1)?'t-winl':'t-win',720);
+  P(trap(CX,672,276,664,276),'t-band',672);
+  // main block
+  P(`M180 1000V746H820V1000Z`,'t-wall',1000);
+  P(trap(CX,754,332,744,332),'t-band',754);P(trap(CX,838,326,830,326),'t-band',838);P(trap(CX,918,326,910,326),'t-band',918);
+  for(const r of [[762,56],[846,54]]) for(let x=196;x<806;x+=30){ if(x>360&&x<578) continue; P(arch(x,r[0],14,r[1]),((x+r[0])%7===2)?'t-winl':'t-win',r[0]+r[1]);}
+  for(let x=198;x<806;x+=44){ if(x>350&&x<590) continue; P(arch(x,930,22,70),'t-win',1000);}
+  // entrance porch and the small orange stepped dome
+  const EX=468;
+  P(`M${EX-92} 1000V876H${EX+92}V1000Z`,'t-wall2',1000);
+  P(arch(EX-32,910,64,90),'t-door',1000);
+  P(trap(EX,884,106,870,106),'t-band',884);
+  stepped(EX,870,756,104,16,6,['t-orange','t-orangesh','t-olip'],true);
+  P(ell(EX,754,18,4.5),'t-gold',754);P(kal(EX,750,19),'t-gold',750);
+  // the low compound wall, sloping across the front
+  P(`M-60 1000L-60 984L1060 956L1060 1000Z`,'t-cwall',1000);
+  P(`M-60 984L1060 956L1060 949L-60 977Z`,'t-ccope',1000);
+  out.push(`<path id="flag" class="t-flag" d="" style="--o:1"/>`);
+  return out.join('');
+}
+const FLAG={x:540,y:96,L:80,H:46};
+function flagD(t){const {L,H}=FLAG;const X=FLAG.x,Y=FLAG.y;const w1=Math.sin(t*2.3)*H*.14,w2=Math.sin(t*2.3+1.4)*H*.18,tx=L*(.94+.06*Math.sin(t*1.2)),ny=Math.sin(t*1.7)*H*.08;
+ return `M${X} ${Y}Q${X+L*.5} ${Y+w1} ${X+tx} ${Y+H*.06+w1*.6}L${X+L*.55} ${Y+H*.5+ny}L${X+tx*.97} ${Y+H*.96+w2*.6}Q${X+L*.5} ${Y+H+w2} ${X} ${Y+H}Z`;}
+function mumbaiTime(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true}).formatToParts(new Date());const g=k=>(p.find(x=>x.type===k)||{}).value;return `${g('hour')}:${g('minute')} ${(g('dayPeriod')||'').toLowerCase()}`;}
+
+
+
+document.getElementById('temple').innerHTML=buildTemple();
+const flag=document.getElementById('flag');
+// Prabhadevi as a low strip of dark blocks and a few lit windows, running off both edges
+(function(){let s='',x=-3200,i=0;while(x<4200){const w=90+((i*53)%120),h=110+((i*97)%170);if(x<130||x>870){
+  s+=`<rect x="${x}" y="${1000-h}" width="${w}" height="${h}" fill="#0e192b"/>`;
+  for(let r=0;r<Math.floor((h-20)/34);r++)for(let c=0;c<Math.floor((w-14)/26);c++){if(Math.abs(Math.sin(r*12.9898+c*78.233+i*37.719)*43758.5453)%1<.11)s+=`<rect x="${x+10+c*26}" y="${1000-h+16+r*34}" width="10" height="13" fill="#f2b766" opacity=".75"/>`;}}
+  x+=w+6;i++;}
+ document.getElementById('city').innerHTML=s;})();
+// diyas along the temple's front step
+const D=[];(function(){const g=document.getElementById('diyas');let s='';for(let k=0;k<9;k++){const x=210+k*72.5;s+=`<g transform="translate(${x} 997)"><circle r="34" fill="url(#dglow)" class="dg"/><path d="M-5 0Q0 4 5 0Z" fill="#5a2a0c"/><path class="fl" d="M0 -11Q3.4 -3 0 0Q-3.4 -3 0 -11Z" fill="#ffe08a"/></g>`;}
+ g.innerHTML=s;g.querySelectorAll('.fl').forEach((e,i)=>D.push({e,g:e.parentNode.querySelector('.dg'),ph:i*1.7}));})();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let p=0;const page=document.getElementById('page');
+function onScroll(){const max=page.offsetHeight-innerHeight;p=Math.max(0,Math.min(1,scrollY/max));}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const word=document.getElementById('word'),dark=document.getElementById('dark'),aura=document.getElementById('auraC');
+const fades=[['inv',.42,.2],['belief',.55,.2],['foot',.7,.2]].map(([id,a,b])=>[document.getElementById(id),a,b]);
+const cl=v=>Math.max(0,Math.min(1,v));
+function frame(ts){const t=reduce?0:ts/1000;
+ flag.setAttribute('d',flagD(t));
+ // the sign lights left to right, then the floodlights come on
+ const r=reduce?1:cl(p/.38);word.style.setProperty('--r',(-10+r*115).toFixed(1)+'%');
+ const lit=reduce?1:cl((p-.18)/.3);dark.style.opacity=(1-lit*.96).toFixed(3);aura.setAttribute('opacity',lit.toFixed(3));
+ for(const d of D){const f=.8+.2*Math.sin(t*7+d.ph)*Math.sin(t*3.1+d.ph*2);d.e.setAttribute('transform',`scale(${(.9+.15*f).toFixed(3)} ${(.85+.3*f).toFixed(3)})`);d.g.setAttribute('opacity',(.55+.35*f).toFixed(3));}
+ for(const [el,a,b] of fades){const k=reduce?1:cl((p-a)/b);el.style.opacity=k;el.style.transform=`translateY(${((1-k)*12).toFixed(1)}px)`;}
+ requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+function tick(){document.getElementById('clock').textContent=`It's ${mumbaiTime()} in Mumbai.`;}tick();setInterval(tick,15000);
+</script>
+</body>
+</html>

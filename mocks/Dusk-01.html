@@ -1,0 +1,242 @@
+<!-- Direction 01: Queen's Necklace lighting — seen from Malabar Hill, the curve of sodium lamps lights near to far, one stretch per stop, while Marine Drive's windows come on and the sky goes from dusk to night. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk: Queen's Necklace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1a2b;--sodium:#f2a145;--paper:#efe8da;--mute:#b9b3a6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy);color:var(--paper)}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.dusk{position:relative;height:900vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#141c33}
+svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:-10%;pointer-events:none;opacity:.16;mix-blend-mode:overlay;will-change:transform}
+.copy{position:absolute;z-index:5;left:clamp(24px,5.6vw,104px);top:clamp(44px,10vh,120px);width:min(31rem,38vw)}
+h2{font-family:Newsreader,serif;font-weight:350;font-size:clamp(42px,4.3vw,70px);line-height:1.02;letter-spacing:-.012em;margin:0;text-wrap:balance}
+.stops{position:relative;margin-top:clamp(28px,5vh,52px)}
+.stop{position:absolute;left:0;top:0;width:100%;opacity:0;will-change:opacity,transform}
+.where{margin:0 0 .7rem;font-size:17px;font-weight:500;display:flex;gap:.6rem;align-items:baseline}
+.where .yr{color:var(--sodium);font-weight:500}
+.line{margin:0;font-family:Newsreader,serif;font-size:clamp(21px,1.6vw,25px);line-height:1.38;font-weight:330;max-width:21em;color:#f3ede2}
+.roles{font-size:15px;line-height:1.45}
+.roles .r{display:flex;flex-wrap:wrap;gap:.15rem .55rem;align-items:baseline;margin:0;padding:.62rem 0}
+.roles .r b{font-weight:600;color:var(--paper)}
+.roles .r span{color:var(--mute)}
+.roles .r em{font-style:normal;color:var(--sodium);margin-left:auto}
+.roles ul{list-style:none;margin:.1rem 0 .5rem;padding:0;color:#ddd6c8;font-size:14.5px}
+.roles li{padding:.22rem 0 .22rem 1rem;position:relative;max-width:33em}
+.roles li::before{content:"";position:absolute;left:0;top:.82em;width:5px;height:5px;border-radius:50%;background:var(--sodium);opacity:.7}
+.roles .r+.r{box-shadow:none}
+.lamp-core{transition:fill 1.2s ease}
+.win{opacity:0;transition:opacity 1.6s ease}
+.win.on{opacity:1}
+@media (max-width:700px){
+  .copy{left:20px;right:20px;width:auto;top:40px}
+  h2{font-size:36px}
+  .stops{margin-top:22px}
+  .line{font-size:18px}
+  .where{font-size:15px}
+  .roles{font-size:13px}.roles ul{font-size:12.5px}.roles .r{padding:.38rem 0}
+  svg.scene{top:auto;height:62%}
+}
+@media (prefers-reduced-motion:reduce){.win{transition:none}}
+</style>
+</head>
+<body>
+<section class="dusk" id="dusk">
+  <div class="stage">
+    <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyD" x1="0" y1="0" x2="0" y2="430" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#232c4d"/><stop offset=".42" stop-color="#55456a"/>
+          <stop offset=".72" stop-color="#b8656a"/><stop offset=".9" stop-color="#e9895a"/><stop offset="1" stop-color="#f4ab68"/>
+        </linearGradient>
+        <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="430" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#060e1c"/><stop offset=".6" stop-color="#0d1a2b"/><stop offset=".92" stop-color="#1f2b46"/><stop offset="1" stop-color="#3a3550"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx="250" cy="424" r="520" gradientUnits="userSpaceOnUse" gradientTransform="translate(250 424) scale(1 .42) translate(-250 -424)">
+          <stop offset="0" stop-color="#ffd08a" stop-opacity=".95"/><stop offset=".25" stop-color="#f29a55" stop-opacity=".55"/><stop offset="1" stop-color="#f29a55" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="cityGlow" cx="1120" cy="440" r="420" gradientUnits="userSpaceOnUse" gradientTransform="translate(1120 440) scale(1 .35) translate(-1120 -440)">
+          <stop offset="0" stop-color="#f2a145" stop-opacity=".55"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="seaD" x1="0" y1="420" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#d7865f"/><stop offset=".08" stop-color="#8d5e66"/><stop offset=".4" stop-color="#3a3b58"/><stop offset="1" stop-color="#161d33"/>
+        </linearGradient>
+        <linearGradient id="seaN" x1="0" y1="420" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#2a2f48"/><stop offset=".15" stop-color="#121d31"/><stop offset="1" stop-color="#070d18"/>
+        </linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ffe2a8"/><stop offset=".18" stop-color="#ffbd66" stop-opacity=".75"/><stop offset=".5" stop-color="#f2a145" stop-opacity=".18"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+        <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc370" stop-opacity=".85"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></linearGradient>
+        <filter id="ripple" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.0025 0.11" numOctaves="2" seed="7"/>
+          <feColorMatrix values="0 0 0 0 1  0 0 0 0 .86  0 0 0 0 .7  0 0 0 1.6 -.85"/>
+        </filter>
+        <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+        <filter id="haze"><feGaussianBlur stdDeviation="6"/></filter>
+        <clipPath id="seaClip"><rect x="0" y="421" width="1440" height="480"/></clipPath>
+      </defs>
+      <!-- sky -->
+      <rect width="1440" height="430" fill="url(#skyD)"/>
+      <rect id="skyNight" width="1440" height="430" fill="url(#skyN)" opacity="0"/>
+      <g id="stars" opacity="0"></g>
+      <path id="moon" d="M1262 118a26 26 0 1 0 22 40a21 21 0 1 1 -22 -40z" fill="#f4e7cf" opacity="0"/>
+      <rect id="sunG" x="-300" y="200" width="1300" height="230" fill="url(#sunGlow)"/>
+      <!-- sea -->
+      <rect y="420" width="1440" height="480" fill="url(#seaD)"/>
+      <rect id="seaNight" y="420" width="1440" height="480" fill="url(#seaN)" opacity="0"/>
+      <rect id="sunSea" x="-200" y="420" width="1000" height="160" fill="url(#sunGlow)" opacity=".6"/>
+      <g clip-path="url(#seaClip)"><rect id="rip" y="420" width="1440" height="480" filter="url(#ripple)" opacity=".12"/></g>
+      <!-- anchored ships far out -->
+      <g id="ships" fill="#ffd9a0"><circle cx="128" cy="419.3" r="1"/><circle cx="141" cy="419.5" r=".7"/><circle cx="356" cy="419.6" r=".9"/><circle cx="530" cy="419.4" r=".8"/></g>
+      <!-- far city glow + skyline -->
+      <rect id="cityG" x="680" y="300" width="900" height="200" fill="url(#cityGlow)" opacity="0"/>
+      <g id="far"></g>
+      <g id="farRefl" clip-path="url(#seaClip)"></g>
+      <!-- near land -->
+      <path id="land" fill="#0e1425"/>
+      <g id="near"></g>
+      <path id="road" fill="none" stroke="#2a2e3f" stroke-width="1"/>
+      <g id="lamps"></g>
+      <g id="cars"></g>
+    </svg>
+    <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+    <div class="copy">
+      <h2>Every detour was part of the path</h2>
+      <div class="stops" id="stops"></div>
+    </div>
+  </div>
+</section>
+<!-- direction: Dusk 01 · Queen's Necklace lighting -->
+<script>
+const STOPS=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const ROLES=`<div class="r"><b>Sypha AI</b><span>Software Engineer</span><em>Dec 2025 – now</em></div>
+<ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+<li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+<li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+<li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul>
+<div class="r"><b>AuctionXI</b><span>Founder</span><em>Apr 2026 – now</em></div>
+<div class="r"><b>TexAgent</b><span>Freelance developer</span><em>Sep 2026 – now</em></div>
+<div class="r"><b>MK Exim India</b><span>E-commerce, Amazon, TataCliQ and Sephora</span><em>Mar – Sep 2025</em></div>
+<div class="r"><b>Brahmani Gems</b><span>Web developer intern, Shopify</span><em>Jul – Aug 2024</em></div>`;
+const stopsEl=document.getElementById('stops');
+STOPS.forEach(([st,yr,l])=>{const a=document.createElement('article');a.className='stop';
+ a.innerHTML=`<p class="where"><span>${st}</span>${yr?`<span class="yr">${yr}</span>`:''}</p><p class="line">${l}</p>`;stopsEl.appendChild(a);});
+{const a=document.createElement('article');a.className='stop roles';a.innerHTML=ROLES;stopsEl.appendChild(a);}
+const stopEls=[...stopsEl.children];const N=stopEls.length;
+
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p&&p.appendChild(e);return e;};
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const HZ=418;const sc=y=>Math.max(.012,(y-HZ)/520);
+
+/* road: near arm from bottom, off right, far arm back to Nariman Point */
+const nearD="M500 960 C880 770 1230 610 1520 505";
+const farD ="M1520 478 C1260 452 1010 440 772 433";
+const road=document.getElementById('road');road.setAttribute('d',nearD+" "+farD);
+document.getElementById('land').setAttribute('d',"M500 960 C880 770 1230 610 1520 505 L1520 960Z");
+function samplePath(d){const p=mk('path',{d});const L=p.getTotalLength();const pts=[];for(let i=0;i<=600;i++){const q=p.getPointAtLength(L*i/600);pts.push([q.x,q.y]);}return pts;}
+const nearPts=samplePath(nearD),farPts=samplePath(farD);
+function placeAlong(pts,spacing){const out=[];let acc=spacing*.5;for(let i=1;i<pts.length;i++){const[x0,y0]=pts[i-1],[x1,y1]=pts[i];acc+=Math.hypot(x1-x0,y1-y0)/sc((y0+y1)/2);if(acc>=spacing){acc-=spacing;out.push([x1,y1]);}}return out;}
+const lampsAt=[...placeAlong(nearPts,240).filter(p=>p[0]<1446),...placeAlong(farPts,240).filter(p=>p[0]<1446)];
+
+/* far skyline along far arm */
+const far=document.getElementById('far'),farRefl=document.getElementById('farRefl');
+const wins=[];
+function yFar(x){let best=farPts[0];for(const p of farPts)if(Math.abs(p[0]-x)<Math.abs(best[0]-x))best=p;return best[1];}
+for(let x=772;x<1446;){const y=yFar(x);const s=sc(y);const towers=x<900;
+ const w=(towers?9+rnd()*10:12+rnd()*16)*(.6+s*6);const h=towers?(30+rnd()*46)*(x<840?1.2:.8):(9+rnd()*9)*(1+s*9);
+ const top=y-h-1.5;const hz=Math.min(1,(x-772)/700);const shade=towers?'#171c31':`rgb(${30+hz*14|0},${33+hz*12|0},${54+hz*12|0})`;
+ mk('rect',{x,y:top,width:w+.6,height:h+1.5,fill:shade},far);
+ if(!towers&&rnd()<.4)mk('rect',{x:x+w*.3,y:top-h*.25,width:w*.3,height:h*.25+.5,fill:shade},far);
+ if(towers&&rnd()<.5)mk('rect',{x:x+w*.25,y:top-6,width:w*.5,height:6.5,fill:shade},far);
+ // windows
+ const cols=Math.max(1,Math.floor(w/3.2)),rows=Math.max(1,Math.floor(h/3.4));
+ for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){if(rnd()<.45)continue;const wx=x+1.2+c*(w-1.6)/cols,wy=top+2+r*(h-2)/rows;
+  wins.push([mk('rect',{class:'win',x:wx.toFixed(1),y:wy.toFixed(1),width:1.1,height:1.1,fill:rnd()<.8?'#ffc777':'#f6e6c4'},far),rnd()*7.2]);}
+ x+=w+rnd()*1.5;}
+/* Nariman Point slab, the tallest thing at the far end */
+mk('rect',{x:792,y:358,width:16,height:76,fill:'#111729'},far);
+for(let r=0;r<20;r++)for(let c=0;c<4;c++)if(rnd()>.4)wins.push([mk('rect',{class:'win',x:794+c*3.6,y:361+r*3.6,width:1.4,height:1.4,fill:'#ffd28a'},far),rnd()*7]);
+
+/* near Art Deco blocks below the near arm: seen from the hill, roofs sit below the road */
+const near=document.getElementById('near');
+function roadY(x){let best=nearPts[0];for(const p of nearPts)if(Math.abs(p[0]-x)<Math.abs(best[0]-x))best=p;return best[1];}
+for(let r=0;r<3;r++){for(let t=.04+r*.03;t<.99;){const p=nearPts[Math.floor(t*600)];const s=sc(p[1]);
+ const w=(90+rnd()*90)*s*(1+r*.25),x=p[0]+(10+r*60)*s;const base=p[1]+(70+r*110)*s;
+ const cap=base-(roadY(x)+12*s+(r?60*s*r:0));const h=Math.max(16*s,Math.min(cap,(60+r*70+rnd()*60)*s));const top=base-h;
+ const col=['#1b2136','#171d31','#131a2c'][r];const g=mk('g',{},near);const R=Math.min(w*.2,h*.25);
+ const curved=rnd()<.6;
+ mk('path',{d:curved?`M${x} ${base+300} V${top+R} Q${x} ${top} ${x+R} ${top} H${x+w} V${base+300}Z`:`M${x} ${base+300} V${top} H${x+w} V${base+300}Z`,fill:col},g);
+ if(rnd()<.5)mk('rect',{x:x+w*.3,y:top-h*.12,width:w*.22,height:h*.12+1,fill:col},g);
+ const fl=Math.max(2,Math.round(h/(13*s+2)));const cols=Math.max(3,Math.round(w/(15*s+3)));
+ for(let f=0;f<fl+6;f++){const wy=top+5*s+f*(h/fl);if(wy>905)break;
+   mk('rect',{x:x+w*.03,y:wy-1.5*s,width:w*.94,height:Math.max(.6,1.8*s),fill:'#262d47'},g);
+   for(let c=0;c<cols;c++){if(rnd()<.32)continue;const cw=w*.9/cols;
+    wins.push([mk('rect',{class:'win',x:(x+w*.06+c*cw).toFixed(1),y:(wy+1.4*s).toFixed(1),width:(cw*.5).toFixed(1),height:(h/fl*.42).toFixed(1),fill:rnd()<.75?'#f6b266':'#f1dcb6'},g),rnd()*7.4]);}}
+ t+=(w/(sc(p[1])*1)+8)/2400+.035;}}
+/* lamps */
+const lampsG=document.getElementById('lamps');const lamps=[];
+lampsAt.forEach(([x,y],i)=>{const s=sc(y);const g=mk('g',{},lampsG);const isFar=y<500;
+ const ph=isFar?Math.max(3,95*s):95*s;const top=y-ph;
+ if(s>.05)mk('path',{d:`M${x} ${y} V${top} q0 ${-6*s} ${-9*s} ${-8*s}`,stroke:'#2b3044',"stroke-width":Math.max(.6,2.6*s),fill:'none'},g);
+ const hx=s>.05?x-9*s:x,hy=s>.05?top-8*s:top;
+ const glow=mk('circle',{cx:hx,cy:hy,r:Math.max(6,70*s),fill:'url(#glow)',opacity:0},g);
+ const pool=s>.08?mk('ellipse',{cx:hx,cy:y+4*s,rx:80*s,ry:16*s,fill:'url(#glow)',opacity:0},g):null;
+ const core=mk('circle',{class:'lamp-core',cx:hx,cy:hy,r:Math.max(.9,4*s),fill:'#4a4f63'},g);
+ let refl=null;if(isFar){refl=mk('rect',{x:hx-.8,y:y+3,width:1.6,height:14+60*s*8,fill:'url(#refl)',opacity:0},farRefl);}
+ lamps.push({glow,pool,core,refl,grp:Math.min(6,Math.floor(i/lampsAt.length*7))});
+});
+
+/* cars: tail lights and headlights along the curve */
+const carsG=document.getElementById('cars');const allPts=[...nearPts,...farPts];const cars=[];
+for(let i=0;i<22;i++){const dir=i%2;cars.push({u:rnd(),v:(.006+rnd()*.006)*(dir?1:-1),el:mk('circle',{r:1,fill:dir?'#ff5a3c':'#fff1d0',opacity:.9},carsG)});}
+
+/* stars */
+const stars=document.getElementById('stars');for(let i=0;i<70;i++){const x=640+rnd()*800,y=rnd()*300;mk('circle',{cx:x,cy:y,r:rnd()<.12?1.1:.6,fill:'#f4ead6',opacity:.35+rnd()*.6},stars);}
+
+/* scroll */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sec=document.getElementById('dusk');const $=id=>document.getElementById(id);
+const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+let target=0,sm=0,last=-1;
+function read(){const r=sec.getBoundingClientRect();const span=sec.offsetHeight-innerHeight;target=Math.min(1,Math.max(0,-r.top/span))*N;}
+function frame(t){
+ sm=RM?target:sm+(target-sm)*.1;if(Math.abs(target-sm)<.0005)sm=target;
+ const s=Math.min(sm,N-.0001);
+ stopEls.forEach((el,i)=>{const a=i===0?1:ss(i-.02,i+.14,s),b=i===N-1?1:1-ss(i+.86,i+.98,s);const o=Math.min(a,b);
+   el.style.opacity=o.toFixed(3);el.style.transform=`translateY(${((1-a)*14-(1-b)*14).toFixed(1)}px)`;el.style.visibility=o<.01?'hidden':'visible';});
+ if(Math.abs(s-last)>.0005){last=s;
+   const night=ss(0,7.6,s);document.querySelector('.stage').style.background=`rgb(${[35+(6-35)*night,44+(14-44)*night,77+(28-77)*night].map(Math.round)})`;$('skyNight').setAttribute('opacity',night.toFixed(3));$('seaNight').setAttribute('opacity',(night*.95).toFixed(3));
+   $('sunG').setAttribute('opacity',(1-ss(0,5,s)).toFixed(3));$('sunSea').setAttribute('opacity',(.6*(1-ss(0,4.5,s))).toFixed(3));
+   $('stars').setAttribute('opacity',ss(4.5,7.8,s).toFixed(3));$('moon').setAttribute('opacity',(.85*ss(5.5,7.8,s)).toFixed(3));
+   $('cityG').setAttribute('opacity',(.9*ss(1,7.5,s)).toFixed(3));
+   lamps.forEach(L=>{const k=Math.min(1,Math.max(0,(s-L.grp)*1.7+.35));L.glow.setAttribute('opacity',k.toFixed(3));L.pool&&L.pool.setAttribute('opacity',(k*.5).toFixed(3));
+     L.core.setAttribute('fill',k>.5?'#fff0cc':'#4a4f63');L.refl&&L.refl.setAttribute('opacity',(k*.75).toFixed(3));});
+   for(const[w,th] of wins){const on=s>=th;if(on!==w._on){w._on=on;w.classList.toggle('on',on);}}
+ }
+ if(!RM){const dt=.016;cars.forEach(c=>{c.u=(c.u+c.v*dt+1)%1;const p=allPts[Math.floor(c.u*(allPts.length-1))];const s2=sc(p[1]);
+    if(p[0]>1442){c.el.setAttribute('opacity',0);return;}c.el.setAttribute('cx',p[0]);c.el.setAttribute('cy',p[1]+(c.v>0?-1:1)*3*s2);c.el.setAttribute('r',Math.max(.5,2.6*s2));c.el.setAttribute('opacity',.85);});
+   }
+ requestAnimationFrame(frame);
+}
+const fitPhone=()=>document.getElementById('scene').setAttribute('preserveAspectRatio',innerWidth<700?'xMaxYMid slice':'xMidYMid slice');fitPhone();
+addEventListener('scroll',read,{passive:true});addEventListener('resize',()=>{fitPhone();read();});read();sm=target;requestAnimationFrame(frame);
+</script>
+</body>
+</html>

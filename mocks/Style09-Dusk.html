@@ -1,0 +1,354 @@
+<!-- Direction 09: Blueprint — a long elevation of the promenade at dusk, drawn as a route sheet: scroll walks the drawing past seven lamp posts, each detour lights one, the sheet sinks to navy, and Mohit is waiting under the last lamp; the roles follow as the drawing's revision table. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohit Bagri · Dusk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+/*COMMON:BEGIN*/
+:root{--bp:#143a63;--bp-deep:#0c2747;--navy:#0d1a2b;--ln:#e6effa;--ln2:rgba(230,239,250,.62);--ln3:rgba(230,239,250,.3);--ln4:rgba(230,239,250,.12);--na:#f2a145;--na2:rgba(242,161,69,.5);
+--serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bp-deep);color:var(--ln)}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.sheet{background-color:var(--bp);background-image:
+ radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(6,22,42,.55) 100%),
+ linear-gradient(rgba(230,239,250,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.075) 1px,transparent 1px),
+ linear-gradient(rgba(230,239,250,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(230,239,250,.035) 1px,transparent 1px);
+ background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px;background-position:center,-1px -1px,-1px -1px,-1px -1px,-1px -1px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:soft-light;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+h1,h2,.voice{font-family:var(--serif);font-weight:300;letter-spacing:-.012em;line-height:1.04;margin:0;text-wrap:balance}
+h1,h2{font-size:clamp(40px,4.9vw,76px)}
+.lede{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--ln2);max-width:40ch;margin:.9em 0 0;text-wrap:pretty}
+.co{font-family:var(--sans);font-size:13px;fill:var(--ln2);color:var(--ln2);letter-spacing:.01em}
+.cta{display:inline-flex;gap:.5em;align-items:baseline;font-family:var(--sans);font-size:17px;color:var(--ln);text-decoration:none;padding:.15em 0;
+ background:linear-gradient(var(--na),var(--na)) 0 100%/0% 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.cta:hover,.cta:focus-visible{background-size:100% 1px;color:var(--na)}
+.cta .ar{transition:transform .4s cubic-bezier(.2,.7,.2,1)}.cta:hover .ar{transform:translateX(4px)}
+svg :is(path,rect,circle,line,polyline,ellipse){vector-effect:non-scaling-stroke}
+.s{fill:none;stroke:var(--ln);stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s2{fill:none;stroke:var(--ln2);stroke-width:.9;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s3{fill:none;stroke:var(--ln3);stroke-width:.8;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.s4{fill:none;stroke:var(--ln4);stroke-width:.8;vector-effect:non-scaling-stroke}
+.dash{stroke-dasharray:6 5}
+.na{fill:none;stroke:var(--na);stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.occ{fill:var(--bp)}
+.t{font-family:var(--sans);font-size:13px;fill:var(--ln2)}
+/* Mohit */
+.m-fill{fill:var(--bp)}
+.m-l1,.m-l2,.m-l3,.m-hatch,.m-hatch path,.m-stripe path,.m-glass,.m-rim{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.m-fill.m-l1{fill:var(--bp)}
+.m-l1{stroke-width:var(--mw1,1.5)}.m-l2{stroke-width:var(--mw2,1.1)}.m-l3{stroke-width:var(--mw3,.8);opacity:.75}
+.m-hatch,.m-hatch path{stroke-width:.8;opacity:.6}.m-hair path{opacity:.5;stroke-width:.7}.m-stripe path{stroke-width:.6;opacity:.32}
+.m-glass{stroke-width:1;opacity:.85}.m-rim{stroke-width:var(--mrim,3.4)}.m-ink{fill:currentColor}
+.m-cons{fill:none;stroke:var(--na);stroke-width:.7;stroke-dasharray:4 4;vector-effect:non-scaling-stroke;opacity:.5}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/*COMMON:END*/
+.track{height:860vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.stage svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.copy{position:absolute;z-index:3;left:clamp(24px,5vw,80px);top:clamp(56px,9vh,96px);width:min(34rem,42vw)}
+.copy h2{font-size:clamp(32px,3.2vw,50px)}
+.stops{position:relative;margin-top:clamp(22px,4vh,40px);height:15.5em}
+.stop{position:absolute;inset:0;opacity:0;transform:translateY(14px)}
+.stop .st{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.3vw,36px);line-height:1.1;margin:0;display:flex;align-items:baseline;gap:.5em;flex-wrap:wrap}
+.stop .yr{font-family:var(--sans);font-size:.55em;color:var(--na);letter-spacing:.02em}
+.stop p{color:var(--ln2);max-width:40ch;margin:.7em 0 0;font-size:clamp(16px,1.2vw,18px)}
+.roles{background:var(--navy);padding:clamp(90px,14vh,150px) 0 clamp(90px,14vh,150px);position:relative}
+.roles .wrap{width:min(1100px,calc(100% - 2*clamp(24px,5vw,80px)));margin:0 auto}
+.roles h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,2.6vw,40px);margin:0 0 36px}
+.rv{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,3fr) minmax(0,2fr);gap:0 32px;padding:22px 0;border-top:1px solid rgba(230,239,250,.12);align-items:baseline;opacity:0;transform:translateY(16px);transition:opacity .8s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv:last-child{border-bottom:1px solid rgba(230,239,250,.12)}
+.rv .org{font-family:var(--serif);font-weight:300;font-size:clamp(22px,1.8vw,28px)}
+.rv .ttl{color:var(--ln)}.rv .dt{color:var(--na);font-size:15px;text-align:right}
+.rv ul{grid-column:1/-1;margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 40px}
+.rv li{color:var(--ln2);padding-left:22px;position:relative;max-width:46ch}
+.rv li::before{content:"";position:absolute;left:0;top:.75em;width:12px;height:1px;background:var(--na2)}
+@media (max-width:760px){
+ .copy{width:auto;right:24px;top:48px}
+ .rv{grid-template-columns:1fr}.rv .dt{text-align:left;margin-top:4px}.rv ul{grid-template-columns:1fr}
+}
+</style></head>
+<body class="sheet">
+<div class="grain"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- MOHIT:BEGIN  (Style 09 blueprint character; one drawing, coordinates in portrait.jpg pixel space) -->
+<defs>
+  <clipPath id="m-shirt-clip"><path d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/></clipPath>
+  <clipPath id="m-pshirt-clip"><path d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/></clipPath>
+  <clipPath id="m-hair-clip"><path id="m-hair-shape" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422 C499,419 492,414 488,404 C485,396 482,390 480,386 L480,340 C472,334 460,330 449,334 L443,342 C439,352 433,362 429,369 C425,360 424,346 423,334 C415,320 401,313 385,309 C367,307 347,311 331,315 C321,313 313,309 311,302 Z"/></clipPath>
+</defs>
+
+<!-- ============ HEAD (shared by every pose) ============ -->
+<g id="m-head-base">
+  <path class="m-fill" d="M326,312 C320,322 317,334 315,346 C313,356 311,366 310,374 C309,380 312,385 317,388 C322,391 327,393 331,395 L332,412 C333,428 336,442 340,452 C344,460 350,463 357,462 C360,474 364,482 368,492 L506,452 L506,421 L521,300 L436,226 Z"/>
+  <path class="m-l2" d="M357,463 C360,474 364,482 368,491"/>
+  <path class="m-l2" d="M500,420 C502,430 504,438 506,448"/>
+  <path class="m-l3" d="M392,452 C404,468 420,474 440,474"/>
+  <path class="m-l1" d="M327,311 C321,321 318,330 317,336"/>
+  <path class="m-l3" d="M317,336 C315,346 313,356 311,366"/>
+  <path class="m-l1" d="M311,366 C309,374 309,381 314,385 C319,389 325,391 331,394"/>
+  <path class="m-l3" d="M323,389 C326,386 330,386 333,388"/>
+  <path class="m-l1" d="M339,447 C342,457 348,462 357,462 C372,460 388,454 402,447 C420,438 436,420 447,400"/>
+  <path class="m-l3" d="M366,388 C374,398 378,410 376,424"/>
+  <path class="m-fill m-l1" d="M444,340 C450,330 462,328 472,334 C480,340 482,354 478,368 C475,380 468,390 458,392 C452,393 448,388 447,382 C446,368 445,352 444,340 Z"/>
+  <path class="m-l3" d="M453,346 C458,340 468,342 470,352 C471,362 465,368 461,376 C459,380 456,381 454,379"/>
+  <use href="#m-hair-shape" class="m-fill"/>
+  <g clip-path="url(#m-hair-clip)" class="m-hatch m-hair">
+    <path d="M311.1,302.0 C339.0,296.5 378.0,299.1 413.7,309.4 C442.4,315.8 471.6,327.9 489.6,348.1 C506.2,369.3 511.0,399.0 507.0,422.0" stroke-dasharray="29 5 20 8 39 6 23 3" stroke-dashoffset="4"/>
+    <path d="M311.3,301.9 C337.4,294.5 378.1,297.0 415.6,307.4 C442.2,314.5 471.9,324.3 492.6,347.5 C506.0,367.5 509.9,399.1 507.0,422.0" stroke-dasharray="15 6 49 5 65 9 17 4" stroke-dashoffset="33"/>
+    <path d="M311.4,301.7 C336.6,295.4 376.2,294.6 416.6,302.3 C443.5,310.5 473.2,322.0 494.3,344.0 C507.1,366.9 511.2,401.2 507.0,422.0" stroke-dasharray="48 5 31 9 25 9 20 5" stroke-dashoffset="13"/>
+    <path d="M311.5,301.4 C335.5,291.8 374.8,291.3 414.2,299.5 C445.2,308.5 476.0,319.3 494.6,342.3 C507.7,366.4 511.6,401.4 507.0,422.0" stroke-dasharray="15 9 55 9 30 9 31 4" stroke-dashoffset="10"/>
+    <path d="M311.7,301.1 C334.1,292.3 375.4,287.8 415.1,299.4 C448.0,302.8 478.5,318.2 494.5,342.1 C506.7,366.3 512.2,400.3 507.0,422.0" stroke-dasharray="33 5 54 9 60 9 68 5" stroke-dashoffset="5"/>
+    <path d="M311.8,300.7 C335.3,289.7 373.6,287.7 416.2,294.9 C447.6,302.1 479.7,312.8 497.2,339.6 C508.5,365.2 511.8,399.5 507.0,422.0" stroke-dasharray="68 7 35 8 38 7 29 4" stroke-dashoffset="15"/>
+    <path d="M311.9,300.2 C332.3,290.1 371.9,285.2 414.7,293.0 C450.2,297.4 481.7,310.8 498.1,338.2 C508.6,366.8 512.0,399.6 507.0,422.0" stroke-dasharray="44 5 19 9 69 7 67 5" stroke-dashoffset="0"/>
+    <path d="M312.1,299.6 C333.7,288.1 372.6,281.1 417.4,288.6 C449.2,295.5 481.7,310.2 499.9,337.1 C508.6,363.4 511.8,399.7 507.0,422.0" stroke-dasharray="32 7 59 5 68 9 46 4" stroke-dashoffset="26"/>
+    <path d="M312.2,299.0 C332.0,288.7 370.6,278.7 416.7,285.3 C450.7,291.0 484.9,304.9 499.4,335.7 C511.4,363.7 514.1,399.0 507.0,422.0" stroke-dasharray="41 7 32 6 42 4 28 5" stroke-dashoffset="16"/>
+    <path d="M312.3,298.3 C331.4,286.9 371.2,277.5 415.5,282.2 C453.3,286.6 486.3,302.3 501.4,332.6 C509.8,362.4 513.2,400.2 507.0,422.0" stroke-dasharray="66 9 16 3 16 6 54 5" stroke-dashoffset="33"/>
+    <path d="M312.5,297.5 C329.5,283.9 369.0,276.6 416.9,282.0 C453.2,285.8 488.7,301.0 501.7,331.9 C513.2,361.4 514.1,400.1 507.0,422.0" stroke-dasharray="48 8 44 8 35 4 57 4" stroke-dashoffset="4"/>
+    <path d="M312.6,296.6 C328.3,284.3 368.7,271.8 417.6,277.6 C455.9,281.4 487.8,298.5 502.4,331.2 C511.8,363.0 514.7,400.4 507.0,422.0" stroke-dasharray="40 4 54 8 42 5 25 5" stroke-dashoffset="27"/>
+    <path d="M312.7,295.7 C329.0,281.1 367.3,271.0 417.7,274.6 C456.0,276.8 491.0,294.5 502.5,328.0 C513.1,361.5 512.9,400.8 507.0,422.0" stroke-dasharray="61 7 34 8 49 4 34 3" stroke-dashoffset="53"/>
+    <path d="M312.9,294.7 C326.5,282.1 364.6,269.8 417.6,273.5 C460.1,275.4 491.1,292.4 504.1,327.6 C512.9,359.9 513.5,398.9 507.0,422.0" stroke-dasharray="17 8 28 5 62 7 53 9" stroke-dashoffset="15"/>
+    <path d="M313.0,293.6 C327.4,281.5 364.7,266.8 417.4,269.2 C459.5,271.6 493.1,289.4 506.0,324.2 C514.3,361.4 513.5,398.8 507.0,422.0" stroke-dasharray="21 5 25 5 43 3 16 5" stroke-dashoffset="44"/>
+    <path d="M313.1,292.4 C326.0,277.5 363.3,264.9 418.0,265.4 C459.9,267.2 494.9,288.4 508.4,324.3 C516.3,360.7 516.4,401.3 507.0,422.0" stroke-dasharray="19 5 61 8 34 3 34 5" stroke-dashoffset="20"/>
+    <path d="M313.3,291.1 C325.6,276.4 362.5,260.8 418.1,263.4 C462.1,265.6 496.8,283.9 507.4,321.6 C516.1,358.9 515.5,399.1 507.0,422.0" stroke-dasharray="23 9 55 6 69 9 53 8" stroke-dashoffset="52"/>
+    <path d="M313.4,289.8 C322.9,275.9 361.1,259.4 417.1,261.2 C464.4,260.2 499.1,281.6 509.0,320.4 C517.2,359.2 516.7,399.1 507.0,422.0" stroke-dasharray="18 5 53 4 42 5 22 5" stroke-dashoffset="24"/>
+    <path d="M313.5,288.4 C322.4,274.8 359.6,257.2 418.1,258.7 C464.8,259.1 500.4,278.2 510.9,317.8 C517.1,356.1 514.9,401.3 507.0,422.0" stroke-dasharray="52 4 35 7 14 5 16 6" stroke-dashoffset="10"/>
+    <path d="M313.7,286.9 C320.0,273.0 359.0,253.5 419.3,256.3 C467.1,254.5 503.1,276.8 510.2,317.3 C517.2,356.0 516.1,399.7 507.0,422.0" stroke-dasharray="37 9 65 5 32 7 20 6" stroke-dashoffset="13"/>
+    <path d="M313.8,285.4 C319.5,273.2 360.1,252.7 417.0,252.4 C466.5,251.4 504.6,274.6 513.6,315.8 C517.6,355.0 516.8,400.5 507.0,422.0" stroke-dasharray="41 4 21 3 17 3 61 4" stroke-dashoffset="38"/>
+    <path d="M313.9,283.8 C318.7,271.1 358.8,249.7 419.0,249.1 C470.6,246.8 504.2,272.2 513.9,312.2 C517.8,354.5 517.5,401.2 507.0,422.0" stroke-dasharray="57 4 52 3 48 6 51 4" stroke-dashoffset="20"/>
+    <path d="M314.1,282.1 C317.7,269.5 357.6,247.7 419.9,247.6 C471.9,245.6 506.7,267.4 515.4,311.4 C519.4,355.1 519.1,400.2 507.0,422.0" stroke-dasharray="16 3 67 7 32 9 40 8" stroke-dashoffset="12"/>
+    <path d="M314.2,280.3 C318.9,270.6 354.8,245.2 420.2,244.1 C473.4,240.7 508.5,267.4 515.7,310.5 C521.6,353.0 516.7,401.1 507.0,422.0" stroke-dasharray="44 4 29 6 40 6 16 4" stroke-dashoffset="26"/>
+    <path d="M314.3,278.4 C316.9,267.1 356.0,242.7 418.1,239.8 C471.9,238.1 510.8,263.2 518.0,307.0 C519.8,352.3 518.6,399.1 507.0,422.0" stroke-dasharray="42 4 55 6 67 4 45 4" stroke-dashoffset="2"/>
+    <path d="M314.5,276.5 C316.2,266.9 354.3,242.1 420.2,238.8 C473.6,234.7 513.0,260.4 517.1,306.6 C520.5,353.7 519.1,398.8 507.0,422.0" stroke-dasharray="16 5 30 4 47 4 63 4" stroke-dashoffset="26"/>
+    <path d="M314.6,274.5 C316.2,265.7 352.3,239.2 420.8,234.2 C474.5,230.9 511.9,258.1 518.2,306.1 C521.2,350.6 518.9,398.9 507.0,422.0" stroke-dasharray="69 5 23 5 17 5 50 3" stroke-dashoffset="36"/>
+    <path d="M314.7,272.4 C313.3,263.6 351.0,237.0 421.0,231.4 C477.7,228.0 516.0,255.5 518.4,304.1 C521.9,350.0 517.9,401.0 507.0,422.0" stroke-dasharray="39 8 55 9 64 8 61 3" stroke-dashoffset="31"/>
+    <path d="M314.9,270.2 C313.6,262.8 351.2,234.9 418.6,229.5 C479.3,226.6 515.1,252.9 521.0,302.7 C523.0,351.2 520.9,399.5 507.0,422.0" stroke-dasharray="38 3 41 4 69 7 24 5" stroke-dashoffset="18"/>
+    <path d="M315.0,268.0 C312.0,263.2 348.6,233.4 419.4,225.9 C479.4,222.9 518.1,250.7 520.8,301.1 C525.0,350.5 519.2,399.3 507.0,422.0" stroke-dasharray="56 6 65 8 34 9 40 7" stroke-dashoffset="13"/>
+  </g>
+  <path class="m-l1" d="M311,302 C312,262 350,232 420,226 C480,222 518,250 522,300 C524,350 520,400 507,422"/>
+  <path class="m-l2" d="M311,302 C318,310 326,313 334,313 C344,306 352,304 360,305 C370,303 380,304 388,308 C402,312 414,320 423,334 C424,346 425,360 429,369 C433,362 439,352 443,342"/>
+  <path class="m-l3" d="M334,313 C330,306 330,298 334,290 M360,305 C356,298 357,290 362,283"/>
+  <path class="m-l2" d="M452,227 C468,218 486,214 502,215 M490,236 C504,230 518,230 530,236 M508,252 C518,250 528,254 534,262 M330,259 C336,248 346,240 358,236 M372,234 C384,226 398,222 412,222"/>
+  <path class="m-l2" d="M325,326 C335,321 348,320 360,323"/>
+  <path class="m-fill" style="opacity:.35" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M333,331 L362,333 C363,348 363,362 360,372 C358,378 352,380 345,380 C340,380 336,378 335,372 C333,358 332,344 333,331 Z"/>
+  <path class="m-glass" d="M327,331 L305,336 C302,348 302,362 305,371 C307,377 312,379 318,379 C323,379 326,376 326,370 C328,358 328,344 327,331"/>
+  <path class="m-l1" d="M327,332 C329,330 331,330 333,331"/>
+  <path class="m-rim" d="M333,331 L362,333 M305,336 L327,331"/>
+  <path class="m-l2" d="M362,333 L447,336"/>
+  <path class="m-l3" d="M342,341 L348,335 M345,348 L354,338 M309,345 L314,339"/>
+</g>
+
+<!-- construction underlay (optional, sections fade it in) -->
+<g id="m-construct" class="m-cons">
+  <circle cx="432" cy="318" r="98"/>
+  <path d="M300,351 L560,351 M300,462 L560,462 M300,226 L560,226 M318,330 L350,470"/>
+</g>
+
+<!-- smile (from the portrait): open grin, squinting eye -->
+<g id="m-face-smile">
+  <path class="m-fill" d="M331,394 C326,400 326,406 330,411 C334,422 336,436 340,448 L356,452 L372,410 Z"/>
+  <path class="m-l1" d="M331,394 C327,398 326,402 328,405 C330,408 330,410 330,412 C332,422 335,434 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399 M344,395 L346,399"/>
+  <path class="m-l2" d="M329,401 C340,403 354,404 366,400"/>
+  <path class="m-l1" d="M331,405 C338,411 348,413 358,411 C363,409 366,405 367,401"/>
+  <path class="m-l3" d="M334,405 C344,407 354,407 362,404"/>
+  <path class="m-l3" d="M368,390 C376,398 378,410 373,421"/>
+  <path class="m-l2" d="M337,350 C342,345 350,345 356,349"/>
+  <path class="m-l3" d="M339,355 C344,357 350,357 355,354"/>
+  <path class="m-l3" d="M356,358 C360,362 362,366 362,370"/>
+</g>
+
+<!-- pensive: closed mouth, eye looking out of the window -->
+<g id="m-face-calm">
+  <path class="m-l1" d="M331,394 C328,398 327,401 329,404 C332,406 332,409 330,412 C331,416 332,419 334,422 C335,431 337,440 339,447"/>
+  <path class="m-hatch" d="M324,392 L327,396 M329,392 L332,397 M334,393 L337,398 M339,394 L342,399"/>
+  <path class="m-l2" d="M330,410 C337,411 345,410 352,407"/>
+  <path class="m-l3" d="M335,425 C339,428 345,428 349,426"/>
+  <path class="m-l2" d="M334,349 C340,344 349,344 356,349"/>
+  <path class="m-l3" d="M335,346 C341,342 350,342 357,346"/>
+  <circle class="m-ink" cx="338.5" cy="351" r="2.7"/>
+  <path class="m-l3" d="M336,356 C342,358 349,357 354,354"/>
+</g>
+
+<!-- ============ POSE: turn (seen from behind, smiling over his shoulder) ============ -->
+<symbol id="mohit-turn" viewBox="150 200 560 800" overflow="visible">
+  <path class="m-fill m-l1" d="M190,948 C182,968 176,986 172,1000 L218,1000 C222,986 228,972 234,962"/>
+  <path class="m-fill" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876 L262,890 C300,880 330,900 322,960 L322,1000 L676,1000 C674,950 672,880 668,800 C664,720 660,640 654,580 C646,548 628,524 606,502 C590,486 560,460 530,442 C520,430 470,424 428,424 Z"/>
+  <g clip-path="url(#m-shirt-clip)" class="m-stripe">
+    <path d="M150,500 L700,470 M150,516 L700,486 M150,532 L700,502 M150,548 L700,518 M150,564 L700,534 M150,580 L700,550 M150,596 L700,566 M150,612 L700,582 M150,628 L700,598 M150,644 L700,614 M150,660 L700,630 M150,676 L700,646 M150,692 L700,662 M150,708 L700,678 M150,724 L700,694 M150,740 L700,710 M150,756 L700,726 M150,772 L700,742 M150,788 L700,758 M150,804 L700,774 M150,820 L700,790 M150,836 L700,806 M150,852 L700,822 M150,868 L700,838 M150,884 L700,854 M150,900 L700,870 M150,916 L700,886 M150,932 L700,902 M150,948 L700,918 M150,964 L700,934 M150,980 L700,950 M150,996 L700,966 M150,1012 L700,982"/>
+  </g>
+  <path class="m-l1" d="M362,474 C345,486 332,496 322,510 C306,540 296,580 284,620 C270,670 254,720 236,780 C222,830 206,860 196,876"/>
+  <path class="m-l1" d="M530,442 C560,460 590,486 606,502 C628,524 646,548 654,580 C660,640 664,720 668,800 C672,880 674,950 676,1000"/>
+  <path class="m-fill m-l1" d="M198,872 C220,866 246,872 264,884 L256,958 C232,962 206,956 186,946 Z"/>
+  <path class="m-l3" d="M194,900 C214,904 236,908 260,910 M190,926 C212,932 234,934 258,934"/>
+  <path class="m-l2" d="M420,534 C428,580 432,620 428,660 C410,720 380,780 352,850 C340,880 330,920 324,1000"/>
+  <path class="m-l3" d="M414,530 C470,526 540,524 622,528"/>
+  <path class="m-l3" d="M300,640 C320,660 340,700 350,740 M270,740 C290,770 310,800 320,840 M500,600 C520,680 524,760 520,860 M590,620 C600,700 606,800 604,900"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-smile"/>
+  <path class="m-fill m-l1" d="M428,424 C452,418 486,416 512,420 C520,426 527,434 532,446 C500,446 460,452 428,466 C406,476 384,480 362,476 C390,462 410,444 428,424 Z"/>
+  <path class="m-l3" d="M432,436 C462,430 494,430 520,436"/>
+</symbol>
+
+<!-- ============ POSE: pensive (at the train window, chin on his fist; cropped by the sill at y=612) ============ -->
+<symbol id="mohit-pensive" viewBox="250 200 420 412" overflow="visible">
+  <path class="m-fill" d="M368,492 L506,452 C540,470 600,490 630,520 C646,540 652,580 654,612 L330,612 C334,580 340,540 352,512 Z"/>
+  <g clip-path="url(#m-pshirt-clip)" class="m-stripe">
+    <path d="M330,440 L340,612 M346,440 L356,612 M362,440 L372,612 M378,440 L388,612 M394,440 L404,612 M410,440 L420,612 M426,440 L436,612 M442,440 L452,612 M458,440 L468,612 M474,440 L484,612 M490,440 L500,612 M506,440 L516,612 M522,440 L532,612 M538,440 L548,612 M554,440 L564,612 M570,440 L580,612 M586,440 L596,612 M602,440 L612,612 M618,440 L628,612 M634,440 L644,612"/>
+  </g>
+  <path class="m-l1" d="M506,452 C540,470 600,490 630,520 C646,540 652,580 654,612"/>
+  <path class="m-l2" d="M566,486 C590,520 600,566 604,612"/>
+  <path class="m-l3" d="M470,520 C480,560 484,590 486,612"/>
+  <use href="#m-head-base"/>
+  <use href="#m-face-calm"/>
+  <path class="m-fill m-l1" d="M432,430 C458,422 490,418 512,424 C518,434 520,446 518,456 C500,464 484,478 470,498 C456,490 444,480 432,470 Z"/>
+  <path class="m-l3" d="M440,440 C464,432 490,430 512,434"/>
+  <path class="m-fill m-l1" d="M368,490 C380,480 400,470 420,468 L410,540 C394,526 380,508 368,490 Z"/>
+  <path class="m-l2" d="M410,540 C416,560 420,586 422,612"/>
+  <circle class="m-ink" cx="417" cy="566" r="2"/><circle class="m-ink" cx="420" cy="600" r="2"/>
+  <path class="m-fill" d="M322,500 C310,536 296,574 284,612 L330,612 C340,576 354,540 368,504 Z"/>
+  <path class="m-l1" d="M322,500 C310,536 296,574 284,612"/>
+  <path class="m-l1" d="M368,504 C354,540 340,576 330,612"/>
+  <path class="m-l3" d="M340,516 C332,540 322,566 314,590"/>
+  <path class="m-fill m-l1" d="M286,578 C302,574 324,576 342,582 L334,612 L276,612 Z"/>
+  <path class="m-l3" d="M282,594 C300,591 320,592 338,597"/>
+  <path class="m-fill m-l1" d="M360,457 C350,455 338,455 328,457 C320,458 314,462 313,467 C309,471 309,478 312,482 C307,486 307,493 311,497 C308,501 310,507 318,510 C330,514 352,514 368,507 C376,498 378,484 375,472 C372,464 367,459 360,457 Z"/>
+  <path class="m-l3" d="M312,482 C320,481 328,483 334,487 M311,497 C319,496 327,498 333,502 M313,467 C321,467 329,469 335,473"/>
+  <path class="m-l2" d="M375,472 C368,466 358,463 346,464"/>
+  <path class="m-l3" d="M348,472 C352,484 354,496 352,508"/>
+  <path class="m-l1" d="M250,612 L670,612"/>
+</symbol>
+<!-- MOHIT:END -->
+<defs>
+ <radialGradient id="lampglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f2a145" stop-opacity=".55"/><stop offset=".35" stop-color="#f2a145" stop-opacity=".16"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+ <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2a145" stop-opacity=".2"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></linearGradient>
+ <symbol id="lamp" viewBox="-80 -400 160 420" overflow="visible">
+  <!-- light (hidden until lit) -->
+  <g class="lit">
+   <path d="M44,-300 L-10,0 L130,0 Z" fill="url(#cone)"/>
+   <circle cx="58" cy="-306" r="70" fill="url(#lampglow)"/>
+  </g>
+  <!-- post -->
+  <path class="occ" d="M-12,0 L-12,-18 L-7,-24 L-5,-300 L5,-300 L7,-24 L12,-18 L12,0 Z"/>
+  <path class="s" d="M-12,0 L-12,-18 L-7,-24 L-5,-300 M5,-300 L7,-24 L12,-18 L12,0 M-12,-18 L12,-18 M-7,-24 L7,-24"/>
+  <path class="s" d="M-5,-300 C-6,-330 10,-344 34,-340 C48,-338 56,-330 58,-318 M5,-300 C4,-322 16,-332 34,-330 C44,-329 50,-324 52,-318"/>
+  <path class="s2" d="M44,-318 L72,-318 L66,-302 L50,-302 Z"/>
+  <path class="s3" d="M-5,-260 L5,-260 M-5,-200 L5,-200 M-6,-140 L6,-140"/>
+ </symbol>
+</defs>
+</svg>
+
+<section class="track" id="track">
+ <div class="stage">
+  <svg class="scene" id="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-label="Elevation of the promenade at dusk with seven lamp posts">
+   <rect id="night" x="-10" y="-10" width="1460" height="920" fill="#0d1a2b" opacity="0"/>
+   <!-- far: the curve of the bay and its lamps (parallax) -->
+   <g id="far">
+    <path class="s3" d="M-200,560 C400,548 1200,540 1900,528 C2600,516 3300,512 4200,520"/>
+    <path class="s4" d="M3000,520 C3200,480 3420,460 3700,470 C3900,478 4060,500 4200,510"/>
+    <g id="necklace"></g>
+   </g>
+   <path class="s" d="M-10,560 L1450,560" id="horizon"/>
+   <g id="waves" class="s4"><path d="M-300,600 c60,-6 120,-6 180,0 s120,6 180,0 s120,-6 180,0 s120,6 180,0 s120,-6 180,0 s120,6 180,0 s120,-6 180,0 s120,6 180,0 s120,-6 180,0 s120,6 180,0 s120,-6 180,0"/><path d="M-240,640 c80,-8 160,-8 240,0 s160,8 240,0 s160,-8 240,0 s160,8 240,0 s160,-8 240,0 s160,8 240,0 s160,-8 240,0 s160,8 240,0"/></g>
+   <g id="world">
+    <!-- parapet -->
+    <path class="occ" d="M-200,690 L5600,690 L5600,900 L-200,900 Z"/>
+    <path class="s" d="M-200,690 L5600,690 M-200,702 L5600,702"/>
+    <path class="s3" d="M-200,770 L5600,770"/>
+    <g id="joints" class="s4"></g>
+    <g id="lamps"></g>
+    <!-- route strip: chainage along the promenade -->
+    <path class="s2" d="M-200,812 L5600,812"/>
+    <g id="chain"></g>
+    <!-- Mohit, under the last lamp -->
+    <g id="him" style="opacity:0;color:var(--ln)"><use href="#mohit-turn" x="4090" y="438" width="300" height="428.6"/></g>
+    <path class="occ" d="M-200,836 L5600,836 L5600,920 L-200,920 Z"/>
+    <path class="s2" d="M-200,836 L5600,836"/>
+   </g>
+  </svg>
+  <div class="copy">
+   <h2>Every detour was part of the path</h2>
+   <div class="stops" id="stops"></div>
+  </div>
+ </div>
+</section>
+
+<section class="roles" id="roles">
+ <div class="wrap">
+  <div class="rv"><div class="org">Sypha AI</div><div class="ttl">Software Engineer</div><div class="dt">Dec 2025 – now</div>
+   <ul><li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li><li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li><li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li><li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li></ul></div>
+  <div class="rv"><div class="org">AuctionXI</div><div class="ttl">Founder</div><div class="dt">Apr 2026 – now</div></div>
+  <div class="rv"><div class="org">TexAgent</div><div class="ttl">Freelance developer</div><div class="dt">Sep 2026 – now</div></div>
+  <div class="rv"><div class="org">MK Exim India</div><div class="ttl">E-commerce, Amazon, TataCliQ and Sephora</div><div class="dt">Mar – Sep 2025</div></div>
+  <div class="rv"><div class="org">Brahmani Gems</div><div class="ttl">Web developer intern, Shopify</div><div class="dt">Jul – Aug 2024</div></div>
+ </div>
+</section>
+<!-- direction: 09 Blueprint / Dusk -->
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const S=[
+ ["Ramrao Adik","2021","My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building."],
+ ["NFTs","","The worst call I've made. I listened to the hype instead of the people calling it out."],
+ ["Everything else","","Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy."],
+ ["MK Exim","2025","One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech."],
+ ["Graduated","2025","Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did."],
+ ["Sypha AI","2025","So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload."],
+ ["AuctionXI","2026","My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."]
+];
+const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+const X0=760,DX=540,LX=i=>X0+i*DX;
+const lamps=$('lamps'),chain=$('chain'),stops=$('stops'),joints=$('joints'),neck=$('necklace');
+S.forEach((s,i)=>{
+  const u=document.createElementNS(NS,'use');u.setAttribute('href','#lamp');u.setAttribute('x',LX(i)-80);u.setAttribute('y',690-400);u.setAttribute('width',160);u.setAttribute('height',420);u.classList.add('lampi');lamps.appendChild(u);
+  chain.insertAdjacentHTML('beforeend',`<path class="s2" d="M${LX(i)},804 L${LX(i)},820"/><circle cx="${LX(i)}" cy="812" r="3.5" class="na ck" style="fill:#0d1a2b"/><text class="t" x="${LX(i)+12}" y="830">${s[0]}${s[1]?', '+s[1]:''}</text>`);
+  stops.insertAdjacentHTML('beforeend',`<div class="stop"><h3 class="st">${s[0]}${s[1]?`<span class="yr">${s[1]}</span>`:''}</h3><p>${s[2]}</p></div>`);
+});
+let jd='';for(let x=-200;x<5600;x+=180)jd+=`M${x},702 L${x},770 `;joints.innerHTML=`<path d="${jd}"/>`;
+// the far necklace: lamp points along the curve of the bay
+const curve=document.querySelector('#far path');const CL=curve.getTotalLength();const beads=[];
+for(let i=0;i<70;i++){const p=curve.getPointAtLength(CL*(i/69));const c=document.createElementNS(NS,'circle');c.setAttribute('cx',p.x);c.setAttribute('cy',p.y-3);c.setAttribute('r',1.6);c.setAttribute('fill','#f2a145');c.style.opacity=0;neck.appendChild(c);beads.push(c);}
+const lampEls=[...lamps.children],stopEls=[...stops.children],cks=[...chain.querySelectorAll('.ck')];
+const track=$('track'),world=$('world'),far=$('far'),night=$('night'),him=$('him'),waves=$('waves'),scene=$('scene');
+let top=0,len=1,cur=0,W=innerWidth,H=innerHeight;
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),map=(p,a,b)=>cl((p-a)/(b-a)),sm=t=>t*t*(3-2*t);
+function measure(){top=track.offsetTop;len=track.offsetHeight-innerHeight;W=innerWidth;H=innerHeight;}
+function frame(t){
+  const tgt=cl((scrollY-top)/len);cur+=(tgt-cur)*(RM?1:.1);const p=cur;
+  // stop index as a continuous value that rests on each lamp (eased between)
+  const N=S.length,raw=map(p,.04,.9)*(N-1),base=Math.floor(raw),fr=raw-base,f=base+sm(cl((fr-.25)/.5));
+  // where the active lamp sits on screen: right of the text on desktop, centred on phones
+  const k=Math.max(W/1440,H/900),vis=W/k,left=720-vis/2;
+  const focus=W<760?left+vis*.5:left+vis*.68;
+  const endShift=map(p,.86,.98)*(W<760?-300:-200);
+  const tx=focus-LX(Math.min(f,N-1))+endShift;
+  world.setAttribute('transform',`translate(${tx.toFixed(1)} 0)`);
+  far.setAttribute('transform',`translate(${(tx*.22).toFixed(1)} 0)`);
+  const lit=raw+.5;
+  lampEls.forEach((l,i)=>l.style.setProperty('--lit',cl((lit-i)*3).toFixed(3)));
+  const nm=map(p,0,.95),mix=(a,b)=>Math.round(a+(b-a)*nm);
+  scene.style.setProperty('--bp',`rgb(${mix(20,14)},${mix(58,31)},${mix(99,52)})`);
+  cks.forEach((c,i)=>c.style.fill=(lit-i)>0?'#f2a145':'#0d1a2b');
+  const nb=Math.floor(map(p,.02,.95)*beads.length);beads.forEach((b,i)=>b.style.opacity=i<nb?(.55+.35*Math.sin(t/700+i)):0);
+  night.setAttribute('opacity',(map(p,0,.95)*.92).toFixed(3));
+  stopEls.forEach((s,i)=>{const d=Math.abs(raw-i);const o=cl(1-(d-.18)/.32);s.style.opacity=o;s.style.transform=`translateY(${(raw<i?1:-1)*(1-o)*14}px)`;});
+  const h=map(p,.84,.96);him.style.opacity=h;him.setAttribute('transform',`translate(0 ${(1-h)*18})`);
+  if(!RM)waves.setAttribute('transform',`translate(${(t*.01)%180} 0)`);
+  requestAnimationFrame(frame);
+}
+addEventListener('resize',measure);measure();requestAnimationFrame(frame);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach((r,i)=>{r.style.transitionDelay=(i*.08)+'s';io.observe(r)});
+})();
+</script>
+<style>
+/* lamp light follows --lit through the use element */
+.lampi{--lit:0}
+#lamp .lit{opacity:var(--lit)}
+</style>
+</body></html>

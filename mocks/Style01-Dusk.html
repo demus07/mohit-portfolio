@@ -1,0 +1,282 @@
+<!-- Direction 01: Swiss editorial — dusk as a navy field and one sodium-orange numeral; a strip-map rule along the foot carries Mohit's head through seven stops while the Queen's Necklace lights beneath it, then the roles set as a plain table. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri — Dusk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8da; --ink:#16202c; --sea:#2c6d8c; --navy:#0d1a2b; --sodium:#f2a145;
+  --rule:rgba(239,232,218,.18); --mute:rgba(239,232,218,.6);
+  --serif:"Newsreader",Georgia,serif; --sans:"Inter Tight",system-ui,sans-serif;
+  --m:48px; --g:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--paper)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.run{position:relative;height:640vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:var(--m) var(--m) 0}
+h2{grid-column:1 / span 5;grid-row:1;font-family:var(--serif);font-weight:350;font-size:clamp(40px,4.2vw,68px);line-height:1;letter-spacing:-.02em;text-wrap:balance;font-variation-settings:"opsz" 72}
+.big{grid-column:6 / span 7;grid-row:1 / span 2;position:relative;align-self:center;height:min(42vh,340px);margin-top:4vh}
+.big span{position:absolute;right:0;bottom:0;font-family:var(--serif);font-weight:300;font-size:min(30vh,clamp(140px,19vw,300px));line-height:.8;letter-spacing:-.04em;color:var(--sodium);white-space:nowrap;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.2,1);font-variant-numeric:lining-nums;font-variation-settings:"opsz" 72}
+.big span.word{font-size:min(20vh,clamp(96px,11vw,190px));font-style:italic}
+.big span.on{opacity:1;transform:none;transition-delay:.28s}
+.big span:not(.on){transition-duration:.3s,.4s}
+.big span.gone{opacity:0;transform:translateY(-40px)}
+.stop{grid-column:1 / span 5;grid-row:2;align-self:end;position:relative;height:200px;margin-bottom:200px}
+.stop div{position:absolute;left:0;bottom:0;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.stop div.on{opacity:1;transform:none;transition-delay:.28s}
+.stop div:not(.on){transition-duration:.25s,.3s}
+.stop h3{font-family:var(--sans);font-weight:500;font-size:17px;color:var(--sodium)}
+.stop p{margin-top:10px;font-family:var(--serif);font-size:clamp(20px,1.6vw,25px);line-height:1.32;max-width:34ch;text-wrap:pretty}
+.strip{position:absolute;left:0;right:0;bottom:0;height:200px}
+.strip svg{width:100%;height:100%;display:block;overflow:visible}
+.lbl{font-family:var(--sans);font-size:13px;fill:var(--mute)}
+.lbl.on{fill:var(--paper)}
+/* roles */
+.roles{padding:120px var(--m) 140px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.roles h4{grid-column:1 / span 4;font-family:var(--serif);font-weight:350;font-size:clamp(32px,2.8vw,44px);line-height:1.05;letter-spacing:-.015em}
+.tbl{grid-column:5 / span 8;border-top:1px solid var(--paper)}
+.r{display:grid;grid-template-columns:5fr 4fr 3fr;column-gap:var(--g);padding:22px 0;border-bottom:1px solid var(--rule)}
+.r .co{font-family:var(--serif);font-size:clamp(24px,2vw,32px);line-height:1.1}
+.r .ro{font-size:16px;line-height:1.4;padding-top:6px}
+.r .dt{font-size:15px;color:var(--mute);text-align:right;padding-top:7px}
+.r ul{grid-column:1 / -1;list-style:none;margin-top:16px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);row-gap:12px}
+.r li{font-size:15px;line-height:1.5;color:rgba(239,232,218,.82);padding-left:18px;position:relative;max-width:46ch}
+.r li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--sodium)}
+@media (max-width:760px){
+  :root{--m:20px;--g:12px}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;padding-top:28px}
+  h2{grid-column:1;font-size:36px}
+  .big{grid-column:1;grid-row:2;height:30vh;margin:0}
+  .big span{right:auto;left:0;font-size:120px}
+  .big span.word{font-size:54px}
+  .stop{grid-column:1;grid-row:3;height:190px;margin-bottom:150px}
+  .stop p{font-size:19px}
+  .strip{height:140px}
+  .lbl{display:none}
+  .roles{grid-template-columns:1fr;padding-top:80px}
+  .roles h4,.tbl{grid-column:1}
+  .tbl{margin-top:24px}
+  .r{grid-template-columns:1fr auto}
+  .r .ro{grid-column:1;grid-row:2;padding-top:4px}
+  .r .dt{grid-row:1;grid-column:2}
+  .r ul{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){ .big span,.stop div{transition:opacity .2s} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><style>.mb-ln{stroke:var(--mb-ink,#16202c);stroke-width:var(--mb-w,3);stroke-linecap:round;stroke-linejoin:round;fill:none}.mb-pin{stroke:var(--mb-pin,#a596c8);stroke-width:1.6;fill:none}.mb-skin{fill:var(--mb-skin,#cf9a74)}.mb-eye{transform-box:fill-box;transform-origin:center;animation:mbblink 6s infinite}@keyframes mbblink{0%,95%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@media (prefers-reduced-motion:reduce){.mb-eye{animation:none}}</style><defs>
+<pattern id="mb-pinsH" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)"><line x1="0" y1="0" x2="9" y2="0" class="mb-pin"/></pattern><pattern id="mb-pins" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)"><line x1="0" y1="0" x2="0" y2="9" class="mb-pin"/></pattern>
+<g id="mb-hair">
+  <path class="mb-ln" style="fill:var(--mb-hair,#16202c)" d="M326,306 C316,292 314,270 326,256 C338,242 356,236 372,230 C400,220 432,218 456,222 C474,224 492,230 504,240 C512,236 518,240 516,248 C528,268 530,300 525,334 C522,366 514,394 496,416 C488,404 478,394 468,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <g class="mb-ln" style="stroke:var(--mb-strand,#5d6a78)">
+    <path d="M332,270 C352,250 394,238 440,236 C462,236 480,240 494,247"/>
+    <path d="M346,290 C372,268 414,258 458,258 C480,259 498,266 512,276"/>
+    <path d="M452,300 C474,294 498,298 518,310"/>
+  </g>
+</g>
+<g id="mb-face-base">
+  <!-- forehead, nose, upper lip -->
+  <path class="mb-ln" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386"/>
+  <!-- jaw to ear -->
+  <path class="mb-ln" d="M338,444 C344,454 356,460 372,460 C394,460 416,450 432,432 C440,422 446,410 450,400"/>
+  <path class="mb-ln" d="M325,381 C329,377 334,378 336,383"/>
+  <!-- ear -->
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M448,342 C452,328 472,324 479,338 C485,352 480,376 468,388 C460,394 452,392 449,386"/>
+  <path class="mb-ln" d="M460,348 C469,346 471,358 465,368"/>
+  <!-- glasses -->
+  <g class="mb-ln">
+    <path d="M334,336 L368,333 C371,333 372,335 372,338 L370,370 C369,376 365,379 359,379 L346,379 C340,379 337,375 336,370 Z"/>
+    <path d="M327,340 L308,341 C305,341 304,344 304,347 L306,379 C307,385 311,388 316,388"/>
+    <path d="M327,340 C330,338 332,337 334,336"/>
+    <path d="M372,337 L450,333"/>
+  </g>
+  <path style="fill:var(--mb-ink,#16202c)" d="M306,339 L369,331 C373,331 374,334 373,338 L334,341.5 L305,345 Z"/>
+</g>
+<g id="mb-face-smile">
+  <path class="mb-skin" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386 C331,392 333,398 334,402 C332,414 334,432 338,444 C344,454 356,460 372,460 C394,460 416,450 432,432 C450,424 476,418 494,414 C486,402 476,394 466,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <use href="#mb-face-base"/>
+  <path class="mb-ln" d="M329,386 C331,392 333,398 334,402 C332,414 334,432 338,446"/>
+  <path style="fill:var(--mb-ink,#16202c)" d="M330,389 C342,384 358,386 370,392 C358,393.5 344,393.5 331,393 Z"/>
+  <path class="mb-ln" style="fill:var(--mb-paper,#f7f2ea)" d="M335,399 C348,397 362,399 374,404 C366,415 350,418 340,411 Z"/>
+  <path class="mb-ln" d="M381,391 C387,400 386,410 379,418"/>
+  <path class="mb-ln" d="M346,355 C352,348 362,348 368,354"/><path class="mb-ln" d="M344,326 C354,320 366,320 376,325"/>
+</g>
+<g id="mb-face-pensive">
+  <path class="mb-skin" d="M326,306 C320,318 318,332 320,344 C318,354 314,364 310,374 C308,379 310,384 316,385 C320,386 325,385 329,386 C331,392 331,398 329,402 C333,404 334,407 331,410 C332,422 334,432 338,444 C344,454 356,460 372,460 C394,460 416,450 418,452 L421,480 C440,488 470,478 494,452 L494,414 C486,402 476,394 466,388 L446,390 C444,368 442,348 437,334 C430,322 418,314 404,311 C380,306 352,304 326,306 Z"/>
+  <use href="#mb-face-base"/>
+  <path class="mb-ln" d="M329,386 C331,392 331,398 329,402 C333,404 334,407 331,410 C332,422 334,436 338,446"/>
+  <path style="fill:var(--mb-ink,#16202c)" d="M330,389 C340,386 352,387 360,391 C350,392.5 340,392.5 331,392.5 Z"/>
+  <path class="mb-ln" d="M331,404 C338,404 346,405 352,403"/>
+  <path class="mb-ln" d="M345,354 C351,348 361,348 367,352"/><path class="mb-ln" d="M343,327 C353,323 365,324 375,329"/>
+  <circle class="mb-eye" cx="350" cy="355" r="2.6" style="fill:var(--mb-ink,#16202c)"/>
+</g>
+<g id="mb-body-pensive">
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M290,720 C292,640 300,580 340,546 C372,524 400,512 420,478 L497,436 C506,446 513,456 516,468 C566,478 612,494 636,514 C656,540 662,620 664,720 Z"/>
+  <path fill="url(#mb-pins)" d="M290,720 C292,640 300,580 340,546 C372,524 400,512 420,478 C440,486 470,476 494,452 C504,456 512,462 516,468 C566,478 612,492 636,512 C656,540 662,620 664,720 Z"/>
+  <g class="mb-ln">
+    <path d="M292,720 C292,640 302,580 340,546"/>
+    <path d="M516,468 C566,478 612,494 636,514 C656,542 662,620 664,720"/>
+    <path d="M420,478 C440,488 472,478 494,452"/><path d="M418,452 L421,478"/><path d="M494,414 L499,440"/>
+    <path d="M497,434 C506,444 513,456 516,468 L452,532"/>
+    <path d="M494,452 C484,480 470,506 452,532"/>
+    <path d="M596,566 C602,612 604,664 602,720"/>
+  </g>
+</g>
+<g id="mb-arm-pensive">
+  <path style="fill:var(--mb-skin,#cf9a74)" d="M364,530 C356,566 346,606 340,644 L432,638 C426,600 418,560 406,520 Z"/>
+  <path class="mb-ln" d="M364,530 C356,566 346,606 340,644"/><path class="mb-ln" d="M406,520 C418,560 426,600 432,638"/>
+  <path id="mb-cuffP" style="fill:var(--mb-paper,#f7f2ea)" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path fill="url(#mb-pins)" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path class="mb-ln" d="M338,642 C368,632 404,630 432,636 C438,654 440,676 438,692 C404,688 364,690 330,698 C330,680 332,660 338,642 Z"/>
+  <path class="mb-ln" d="M334,670 C368,662 404,660 437,664"/>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M330,696 L438,692 L446,720 L322,720 Z"/><path fill="url(#mb-pins)" d="M330,696 L438,692 L446,720 L322,720 Z"/>
+  <path class="mb-ln" d="M330,696 L322,720"/><path class="mb-ln" d="M438,692 L446,720"/>
+  <g transform="translate(366 470) scale(1.12) translate(-366 -470)">
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M334,456 C356,450 384,450 400,456 C410,470 412,500 404,522 C398,532 388,538 376,538 C360,540 344,538 336,532 C326,528 326,516 334,514 C324,510 322,496 330,492 C320,488 320,474 328,470 C322,466 324,457 334,456 Z"/>
+  <path class="mb-ln" d="M334,514 C340,514 346,513 352,511"/>
+  <path class="mb-ln" d="M330,492 C338,492 344,491 350,489"/>
+  <path class="mb-ln" d="M328,470 C336,471 342,470 348,468"/>
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M402,478 C388,470 368,466 352,466 C344,467 342,474 348,478 C364,482 384,486 400,494"/>
+</g></g>
+<g id="mb-body-back">
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M410,440 C440,432 470,420 496,410 L512,446 L404,486 Z"/>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M362,478 C420,452 480,430 536,446 C600,488 650,520 656,590 C662,700 668,820 676,1000 L170,1000 L188,884 C204,760 222,640 252,556 C276,510 320,492 362,478 Z"/>
+  <path fill="url(#mb-pinsH)" d="M362,478 C420,452 480,430 536,446 C600,488 650,520 656,590 C662,700 668,820 676,1000 L170,1000 L188,884 C204,760 222,640 252,556 C276,510 320,492 362,478 Z"/>
+  <g class="mb-ln">
+    <path d="M540,448 C600,486 646,520 656,590 C662,700 668,820 676,1000"/>
+    <path d="M364,478 C320,492 276,512 252,556 C226,630 208,760 190,880"/>
+    <path d="M372,466 C420,446 470,428 512,430 C524,432 532,440 538,448"/>
+    <path d="M362,480 C420,462 486,454 540,462"/>
+    <path d="M416,528 C460,520 540,520 606,540"/>
+    <path d="M416,520 C410,620 386,750 300,904"/>
+  </g>
+  <path style="fill:var(--mb-paper,#f7f2ea)" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path fill="url(#mb-pinsH)" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path class="mb-ln" d="M186,878 C220,872 262,880 300,900 L290,946 C258,954 222,956 192,948 Z"/>
+  <path class="mb-ln" d="M190,912 C224,912 262,916 296,924"/>
+  <path class="mb-ln" style="fill:var(--mb-skin,#cf9a74)" d="M196,950 C192,970 182,988 172,1000 L238,1000 C244,988 252,970 262,954"/>
+</g>
+
+<symbol id="mb-pensive" viewBox="250 200 440 520"><use href="#mb-body-pensive"/><use href="#mb-hair"/><use href="#mb-face-pensive"/><use href="#mb-arm-pensive"/></symbol>
+<symbol id="mb-turn" viewBox="140 200 560 800"><use href="#mb-body-back"/><use href="#mb-hair"/><use href="#mb-face-smile"/></symbol>
+<symbol id="mb-head" viewBox="290 205 250 265"><use href="#mb-hair"/><use href="#mb-face-smile"/></symbol>
+<symbol id="mb-head-pensive" viewBox="290 205 250 265"><use href="#mb-hair"/><use href="#mb-face-pensive"/></symbol>
+</defs></svg>
+<div class="run" id="run">
+  <div class="stage">
+    <h2>Every detour was part of the path</h2>
+    <div class="big" id="big"></div>
+    <div class="stop" id="stop"></div>
+    <div class="strip"><svg id="strip" aria-label="Seven stops on one line, Mohit travelling it, the Queen's Necklace below"></svg></div>
+  </div>
+</div>
+<section class="roles">
+  <h4>Where I've worked</h4>
+  <div class="tbl">
+    <div class="r"><span class="co">Sypha AI</span><span class="ro">Software Engineer</span><span class="dt">Dec 2025 – now</span>
+      <ul>
+        <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+        <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+        <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+        <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+      </ul></div>
+    <div class="r"><span class="co">AuctionXI</span><span class="ro">Founder</span><span class="dt">Apr 2026 – now</span></div>
+    <div class="r"><span class="co">TexAgent</span><span class="ro">Freelance developer</span><span class="dt">Sep 2026 – now</span></div>
+    <div class="r"><span class="co">MK Exim India</span><span class="ro">E-commerce, Amazon, TataCliQ and Sephora</span><span class="dt">Mar – Sep 2025</span></div>
+    <div class="r"><span class="co">Brahmani Gems</span><span class="ro">Web developer intern, Shopify</span><span class="dt">Jul – Aug 2024</span></div>
+  </div>
+</section>
+<!-- direction: Style01 Dusk — sodium numerals on navy, strip-map rule with Mohit travelling it -->
+<script>
+(() => {
+  const S = [
+    ['Ramrao Adik','2021','My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building.'],
+    ['NFTs','','The worst call I\'ve made. I listened to the hype instead of the people calling it out.'],
+    ['Everything else','','Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy.'],
+    ['MK Exim','2025','One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech.'],
+    ['Graduated','2025','Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did.'],
+    ['Sypha AI','2025','So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload.'],
+    ['AuctionXI','2026','My own product, and the thing I\'m proudest of. It taught me what code alone can\'t: getting users, keeping them, taking the friction out of every step.'],
+  ];
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+  const big = document.getElementById('big'), stop = document.getElementById('stop');
+  const bigs = S.map(([n, y]) => { const s = document.createElement('span'); s.textContent = y || n; if (!y) s.className = 'word'; big.appendChild(s); return s; });
+  const stops = S.map(([n, , l]) => { const d = document.createElement('div'); d.innerHTML = `<h3>${n}</h3><p>${l}</p>`; stop.appendChild(d); return d; });
+  const svg = document.getElementById('strip');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, x0, x1, ly, rings = [], lbls = [], lights = [], prog, mk, done;
+  function build() {
+    const r = svg.getBoundingClientRect(); W = r.width; H = r.height;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = '';
+    const m = W < 760 ? 20 : 48; x0 = m + 36; x1 = W - m - 36; ly = H * .5;
+    // city: Queen's Necklace as a thin strip of lamps along the foot
+    const cg = el('g', {}, svg); lights = [];
+    const n = Math.round(W / 9);
+    for (let i = 0; i < n; i++) {
+      const t = i / (n - 1), x = t * W, y = H - 26 - Math.sin(t * Math.PI) * 18;
+      lights.push({ c: el('circle', { cx: x.toFixed(1), cy: y.toFixed(1), r: 1.6, fill: '#ffcf7a', opacity: .08 }, cg), t, ph: (i * 2.399) % 6.28 });
+    }
+    el('path', { d: `M0,${H - 14} Q${W / 2},${H - 50} ${W},${H - 14}`, fill: 'none', stroke: 'rgba(239,232,218,.14)', 'stroke-width': 1 }, svg);
+    // the line
+    el('line', { x1: x0, y1: ly, x2: x1, y2: ly, stroke: 'rgba(239,232,218,.3)', 'stroke-width': 1.5 }, svg);
+    done = el('line', { x1: x0, y1: ly, x2: x0, y2: ly, stroke: '#f2a145', 'stroke-width': 3 }, svg);
+    rings = []; lbls = [];
+    S.forEach(([nm], i) => {
+      const x = x0 + (x1 - x0) * i / (S.length - 1);
+      rings.push(el('circle', { cx: x, cy: ly, r: 7, fill: '#0d1a2b', stroke: '#efe8da', 'stroke-width': 1.5 }, svg));
+      const t = el('text', { x, y: ly + 34, 'text-anchor': i === 0 ? 'start' : i === S.length - 1 ? 'end' : 'middle', class: 'lbl' }, svg);
+      if (i === 0) t.setAttribute('x', x - 7); if (i === S.length - 1) t.setAttribute('x', x + 7);
+      t.textContent = nm; lbls.push(t);
+    });
+    // Mohit: his head in a sodium disc, riding the line
+    mk = el('g', {}, svg);
+    el('line', { x1: 0, y1: -14, x2: 0, y2: 0, stroke: '#f2a145', 'stroke-width': 1.5 }, mk);
+    el('circle', { cx: 0, cy: 0, r: 4.5, fill: '#f2a145' }, mk);
+    const hd = el('g', { transform: 'translate(0 -48)' }, mk);
+    el('circle', { cx: 0, cy: 0, r: 34, fill: '#f2a145' }, hd);
+    const cp = el('clipPath', { id: 'mkc' }, hd); el('circle', { cx: 0, cy: 0, r: 34 }, cp);
+    const g = el('g', { 'clip-path': 'url(#mkc)' }, hd);
+    el('use', { href: '#mb-head', x: -40, y: -38, width: 80, height: 85 }, g);
+    mk.hd = hd;
+  }
+  const run = document.getElementById('run');
+  let top0, span, cur = 0, on = -1, tm = 0, last = performance.now();
+  const measure = () => { top0 = run.getBoundingClientRect().top + scrollY; span = run.offsetHeight - innerHeight; build(); };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  function tick(now) {
+    const dt = Math.min(50, now - last); last = now; if (!reduce) tm += dt;
+    const tgt = clamp((scrollY - top0) / span, 0, 1);
+    cur += (tgt - cur) * (reduce ? 1 : .1);
+    // seven steps; the marker eases between stations rather than sliding uniformly
+    const f = cur * (S.length - 1 + .6) - .3, k = clamp(Math.round(f), 0, S.length - 1);
+    const seg = clamp(f, 0, S.length - 1), base = Math.floor(seg), fr = seg - base;
+    const e = fr < .5 ? 0 : (fr - .5) / .5, ee = e * e * (3 - 2 * e);
+    const pos = clamp(base + ee, 0, S.length - 1);
+    const mx = x0 + (x1 - x0) * pos / (S.length - 1);
+    mk.setAttribute('transform', `translate(${mx.toFixed(1)} ${ly.toFixed(1)})`);
+    mk.hd.setAttribute('transform', `translate(0 ${(-50 + Math.sin(tm / 260) * 1.6 * (fr > .5 && fr < .98 ? 1 : 0)).toFixed(2)})`);
+    done.setAttribute('x2', mx.toFixed(1));
+    if (k !== on) {
+      bigs.forEach((s, i) => { s.classList.toggle('on', i === k); s.classList.toggle('gone', i < k); });
+      stops.forEach((s, i) => s.classList.toggle('on', i === k));
+      on = k;
+    }
+    rings.forEach((r, i) => { const p = i <= pos + .01; r.setAttribute('fill', p ? '#f2a145' : '#0d1a2b'); r.setAttribute('stroke', p ? '#f2a145' : '#efe8da'); });
+    lbls.forEach((t, i) => t.classList.toggle('on', i === k));
+    const lit = pos / (S.length - 1);
+    lights.forEach(L => { const a = L.t <= lit + .02 ? .7 + .3 * Math.sin(tm / 1400 + L.ph) : .08; L.c.setAttribute('opacity', a.toFixed(2)); });
+    requestAnimationFrame(tick);
+  }
+  addEventListener('resize', measure); measure(); requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

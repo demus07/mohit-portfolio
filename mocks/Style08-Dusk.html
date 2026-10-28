@@ -1,0 +1,480 @@
+<!-- Direction 08: Dark cinematic minimal — a single tracking shot along the Marine Drive promenade at dusk: Mohit walks, each detour lights one lamp, the Queen's Necklace comes on behind him, then the roles roll as end credits. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohit Bagri · Dusk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06080c; --navy:#0d1a2b; --sodium:#f2a145; --sodium-hi:#ffcf8f; --cream:#ece4d6; --mute:#8a93a1; --moon:#a9c0d6;
+  --serif:"Instrument Serif", "Newsreader", Georgia, serif; --sans:"Hanken Grotesk", system-ui, sans-serif;
+  --bar:max(84px, calc((100vh - 100vw / 2.39) / 2));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink)}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.serif{font-family:var(--serif);font-weight:400}
+.cta{display:inline-flex;align-items:baseline;gap:.5em;font-family:var(--sans);font-size:15px;letter-spacing:.01em;color:var(--sodium);
+  padding-bottom:3px;background:linear-gradient(var(--sodium),var(--sodium)) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1),color .3s}
+.cta:hover,.cta:focus-visible{background-size:100% 1px;color:var(--sodium-hi)}
+.cta .arr{display:inline-block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cta:hover .arr{transform:translateX(5px)}
+/* film grain + vignette: fixed, above everything, never intercepts input */
+.grain{position:fixed;inset:-60px;z-index:90;pointer-events:none;opacity:.11;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -.35'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  animation:grain .9s steps(5) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-31px,17px)}40%{transform:translate(23px,-29px)}60%{transform:translate(-13px,-41px)}80%{transform:translate(37px,11px)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
+/* letterbox */
+.bar{position:absolute;left:0;right:0;height:var(--bar);background:#000;z-index:20}
+.bar.top{top:0}.bar.bot{bottom:0}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}*{transition-duration:.01s!important}}
+
+.pin{position:relative;height:820vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#05070b}
+.cam{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0}
+.cam svg{display:block;overflow:visible}
+.bar.top{display:flex;align-items:flex-end;padding:0 64px 26px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.4vw,54px);line-height:1;letter-spacing:-.005em}
+.bar.bot{padding:0 64px}
+.sub{position:absolute;left:50%;top:50%;width:min(760px,calc(100% - 48px));transform:translate(-50%,-50%);text-align:center}
+.stop{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);opacity:0}
+.stop .st{font-size:14px;color:var(--sodium);margin-bottom:8px;letter-spacing:.01em}
+.stop .ln{font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.75vw,27px);line-height:1.3;color:var(--cream);max-width:52ch;margin:0 auto}
+.ticks{position:absolute;right:64px;bottom:calc(var(--bar) + 18px);display:flex;gap:10px;z-index:21}
+.ticks i{width:6px;height:6px;border-radius:50%;background:#2a2e35;transition:background .5s,box-shadow .5s}
+.ticks i.on{background:var(--sodium);box-shadow:0 0 10px rgba(242,161,69,.8)}
+/* end credits */
+.credits{position:relative;padding:22vh 24px 30vh;text-align:center}
+.credits h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:26px;color:#8a93a1;margin-bottom:9vh}
+.role{margin:0 auto 9vh;max-width:640px}
+.role .co{font-family:var(--serif);font-size:clamp(34px,3vw,46px);line-height:1}
+.role .rl{font-size:15px;color:#a9a397;margin-top:10px}
+.role ul{list-style:none;margin:26px auto 0;display:grid;gap:14px;max-width:44ch;text-align:left}
+.role li{font-size:15px;line-height:1.55;color:#cfc7ba;padding-left:18px;position:relative}
+.role li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--sodium)}
+.credits .role{opacity:.25;transform:translateY(24px);transition:opacity 1.2s,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.credits .role.in{opacity:1;transform:none}
+@media (max-width:760px){
+  :root{--bar:150px}
+  .bar.top{padding:0 22px 20px;align-items:flex-end}
+  h2{font-size:34px;max-width:12ch}
+  .bar.bot{padding:0 18px}
+  .ticks{right:22px}
+}
+</style>
+</head>
+<body>
+<svg class="defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- ===== Mohit, style 08: rim-lit film-still figure. Head faces right; key light (sodium) from the right, cool fill from behind. ===== -->
+    <linearGradient id="mSkin" gradientUnits="userSpaceOnUse" x1="140" y1="0" x2="296" y2="0">
+      <stop offset="0" stop-color="#140c09"/>
+      <stop offset=".45" stop-color="#3a2216"/>
+      <stop offset=".78" stop-color="#8a5636"/>
+      <stop offset="1" stop-color="#c7895a"/>
+    </linearGradient>
+    <linearGradient id="mSkinV" gradientUnits="userSpaceOnUse" x1="0" y1="110" x2="0" y2="330">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".7" stop-color="#000" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".45"/>
+    </linearGradient>
+    <linearGradient id="mHair" gradientUnits="userSpaceOnUse" x1="120" y1="80" x2="270" y2="150">
+      <stop offset="0" stop-color="#040507"/>
+      <stop offset=".75" stop-color="#09090b"/>
+      <stop offset="1" stop-color="#1e1510"/>
+    </linearGradient>
+    <linearGradient id="mShirt" gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="330" y2="0">
+      <stop offset="0" stop-color="#2a2a33"/>
+      <stop offset=".45" stop-color="#77717f"/>
+      <stop offset=".75" stop-color="#c9bfc9"/>
+      <stop offset="1" stop-color="#f4ebe6"/>
+    </linearGradient>
+    <linearGradient id="mArm" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="310" y2="0">
+      <stop offset="0" stop-color="#1d120c"/>
+      <stop offset=".6" stop-color="#6e4329"/>
+      <stop offset="1" stop-color="#c88a5b"/>
+    </linearGradient>
+    <pattern id="mPin" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(4)">
+      <rect width="7" height="7" fill="none"/>
+      <path d="M0 3.5H7" stroke="#8f7fb0" stroke-width=".7" opacity=".55"/>
+    </pattern>
+    <pattern id="mPinV" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-6)">
+      <path d="M3.5 0V7" stroke="#8f7fb0" stroke-width=".7" opacity=".5"/>
+    </pattern>
+
+    <!-- head shape (skin), facing right -->
+    <path id="mFace" d="M156 262 C134 236 122 206 124 178 C128 130 166 100 212 98 C246 98 264 120 266 150
+      C267 168 271 182 270 192 C269 199 270 204 274 210 C281 220 290 230 293 238 C295 245 290 249 284 249
+      C280 249 277 251 276 254 C279 259 281 264 279 267 C278 269 276 270 276 271 C279 274 279 279 275 283
+      C272 285 271 288 273 293 C277 300 274 309 263 311 C246 313 226 304 210 292 C202 286 196 280 192 272
+      C178 270 166 268 156 262 Z"/>
+    <path id="mHairP" d="M264 150 C266 140 270 132 273 122 C277 110 278 96 274 86 C270 76 260 70 246 70
+      C236 70 230 72 222 75 C210 77 198 80 188 84 C176 86 164 92 154 100 C136 114 124 136 120 162
+      C116 186 120 206 130 226 C136 236 142 242 150 246 C158 236 166 222 172 212 C178 204 186 200 196 199
+      C200 200 203 202 205 206 L208 226 L212 226 C212 214 214 200 216 188 C220 174 230 160 244 154
+      C252 151 258 150 264 150 Z"/>
+    <linearGradient id="mFadeBG" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="196" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <linearGradient id="mFadeFG" gradientUnits="userSpaceOnUse" x1="0" y1="130" x2="0" y2="162"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <mask id="mClipBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeBG)"/></mask>
+    <mask id="mClipFront" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400"><rect width="400" height="400" fill="url(#mFadeFG)"/></mask>
+    <mask id="mRimFace" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mFace" fill="#fff"/><use href="#mFace" fill="#000" transform="translate(-4.5 1.5)"/>
+    </mask>
+    <mask id="mRimHair" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(-3 3.5)"/>
+    </mask>
+    <mask id="mRimHairBack" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+      <use href="#mHairP" fill="#fff"/><use href="#mHairP" fill="#000" transform="translate(3.5 2)"/>
+    </mask>
+    <linearGradient id="mRimG" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="0" y2="320">
+      <stop offset="0" stop-color="#ffd59a" stop-opacity=".5"/>
+      <stop offset=".35" stop-color="#ffd59a"/>
+      <stop offset=".8" stop-color="#ffbf73"/>
+      <stop offset="1" stop-color="#ffbf73" stop-opacity=".3"/>
+    </linearGradient>
+
+
+    <!-- HEAD: pensive (closed mouth, eyes looking out). Faces right. -->
+    <g id="m-head-base">
+      <use href="#mFace" fill="url(#mSkin)"/>
+      <use href="#mFace" fill="url(#mSkinV)"/>
+      <!-- soft modelling: cheekbone light, jaw shadow -->
+      <ellipse cx="248" cy="240" rx="16" ry="11" fill="#e0a070" opacity=".05"/>
+      <path d="M214 290 C230 302 248 310 262 311" fill="none" stroke="#1a0e08" stroke-width="5" opacity=".28" stroke-linecap="round"/>
+      <use href="#mFace" fill="url(#mRimG)" mask="url(#mRimFace)"/>
+      <!-- ear -->
+      <path d="M201 206 C187 197 172 205 172 222 C172 239 181 251 193 252 C199 252 203 246 201 238 Z" fill="#3a2217"/>
+      <path d="M195 212 C184 210 179 220 181 232 C183 241 189 245 194 242" fill="none" stroke="#160c08" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M187 222 C186 228 188 233 192 235" fill="none" stroke="#160c08" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <path d="M176 214 C173 224 175 238 182 246" fill="none" stroke="#7fa6cf" stroke-width="1.4" opacity=".45" stroke-linecap="round"/>
+      <path d="M279 246 C282 248 285 248 287 246" fill="none" stroke="#4a2a1a" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258.5 C276 261.5 269 261.5 263 260.5 Z" fill="#140b08" opacity=".7"/>
+      <!-- brow -->
+      <path d="M244 190 C252 184 263 182 273 185 L272 190 C263 188 254 189 246 194 Z" fill="#0b0807"/>
+      <!-- hair -->
+      <use href="#mHairP" fill="url(#mHair)"/>
+      <path d="M268 96 C246 82 204 84 166 102 M270 116 C238 106 196 104 150 124 M258 140 C232 128 196 128 160 146 M240 162 C220 152 194 154 176 168"
+        fill="none" stroke="#2c2b31" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+      <path d="M272 92 C262 78 236 76 206 84" fill="none" stroke="#ffcf8f" stroke-width="2" opacity=".3" stroke-linecap="round"/>
+      <g mask="url(#mClipFront)"><use href="#mHairP" fill="#ffcf8f" opacity=".85" mask="url(#mRimHair)"/></g>
+      <g mask="url(#mClipBack)"><use href="#mHairP" fill="#7fa6cf" opacity=".5" mask="url(#mRimHairBack)"/></g>
+      <path d="M150 246 C140 240 132 232 128 222" fill="none" stroke="#2a1a12" stroke-width="5" opacity=".6" stroke-linecap="round"/>
+      
+    </g>
+    <g id="m-glasses">
+      <!-- glasses: temple arm to the ear, near lens (slightly foreshortened), double bridge -->
+      <path d="M248 198 L198 204" stroke="#26272c" stroke-width="3" stroke-linecap="round"/>
+      <path d="M244 197.6 L214 201.4" stroke="#9a9ca4" stroke-width=".9" opacity=".55"/>
+      <path d="M249 197 L274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 Z" fill="#a8c4dc" opacity=".07"/>
+      <path d="M253 220 L262 196 L268 195.6 L259 220.6 Z" fill="#fff2dc" opacity=".13"/>
+      <path d="M247.6 201 C247.4 198.6 248.4 197.1 251 196.9 L274 195 C276.5 195 277.5 196.5 277.3 198.5" fill="none" stroke="#141418" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M277.3 198.5 L276.4 214 C276 218 273.6 220 270 220.3 L253 221.2 C249.5 221.3 247.4 219.3 247.3 216 L247.6 201" fill="none" stroke="#a9adb5" stroke-width="1.4" opacity=".8"/>
+      <path d="M274 195 C276.5 195 277.5 196.5 277.3 198.5 L276.6 210" fill="none" stroke="#ffd59a" stroke-width=".9" opacity=".7"/>
+      <path d="M277 197.6 L281 197.4" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/>
+    
+    </g>
+    <g id="m-head">
+      <use href="#m-head-base"/>
+      <path class="m-mouth" d="M266 270.5 C270 271.5 273.5 271.5 277 270.5" fill="none" stroke="#3a1d14" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M269 278 C272 280 274.5 280 276 278" fill="none" stroke="#c78558" stroke-width="1.4" opacity=".55" stroke-linecap="round"/>
+      <!-- eye: looking out, lids a little lowered -->
+      <g class="m-eye">
+        <path d="M253 207.5 C258 203.5 265 203.5 269 206.5 C265 210 258 211 253 207.5 Z" fill="#d9bfa9" opacity=".75"/>
+        <circle cx="264.2" cy="207" r="3" fill="#120a07"/>
+        <circle cx="265.6" cy="206" r=".85" fill="#ffe6c2"/>
+        <path d="M251.5 206.5 C257 201 265 201 270 205" fill="none" stroke="#0d0806" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M255 211.5 C259.5 213 265 212.6 268.5 210.2" fill="none" stroke="#5b3523" stroke-width="1.1" opacity=".7"/>
+      </g>
+      <use href="#m-glasses"/>
+    </g>
+    <g id="m-head-smile">
+      <use href="#m-head-base"/>
+            <path d="M258 262 C265 259 273 259 280 262 C279 268 276 274 270 276 C265 276 261 271 258 262 Z" fill="#2a130c"/>
+      <path d="M261 263 C266 261.4 273 261.4 279.5 263 L278.9 266.6 C272 265.9 266 266 262 266.8 Z" fill="#e6dccf"/>
+      <path d="M262 274 C266 277.5 271 277.6 275 275.4" fill="none" stroke="#7a3f2b" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M250 258 C252 264 255 268 258 270" fill="none" stroke="#3a2015" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <path d="M262 257 C268 254.5 274 254.5 279 258 C276 260.5 269 260.8 263 260 Z" fill="#140b08" opacity=".75"/>
+      
+      <!-- crescent eye -->
+      <path d="M252 207 C257 202.6 265 202.6 270 206.4 C265 208.4 258 208.8 252 207 Z" fill="#2a160d"/>
+      <path d="M251.5 206.6 C257 201 265 201 270.5 205.4" fill="none" stroke="#0d0806" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M254.5 211 C259 213.4 264.5 213.2 269 210.6" fill="none" stroke="#3a2015" stroke-width="1.3"/>
+      <path d="M250 210 L246 213" stroke="#3a2015" stroke-width="1" opacity=".6"/>
+      <use href="#m-glasses"/>
+    </g>
+
+    <!-- SEATED at a window, chin on fist, facing right. Elbow rests on the sill below frame. viewBox 0 0 440 600 -->
+    <symbol id="m-seated" viewBox="0 0 440 600">
+      <!-- neck -->
+      <path d="M168 250 L232 294 C236 314 242 330 250 348 L164 352 C162 320 162 284 168 250 Z" fill="#1d110b"/>
+      <path d="M230 296 C234 316 240 332 248 348 L238 349 C232 332 228 314 224 296 Z" fill="#8a5636" opacity=".5"/>
+      <!-- torso, leaning in -->
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mShirt)"/>
+      <path d="M146 336 C176 324 220 326 252 336 C292 348 316 380 324 420 C332 470 334 540 336 600 L60 600
+        C60 520 72 446 92 400 C106 368 122 348 146 336 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M92 400 C112 370 140 348 170 340 C140 372 118 430 112 490 C108 540 100 580 96 600 L60 600 C60 520 72 446 92 400 Z" fill="#06070a" opacity=".6"/>
+      <!-- collar -->
+      <path d="M160 326 C182 314 214 316 240 330 L252 352 C236 344 218 340 202 342 C188 340 174 344 164 350 Z" fill="#d6ccd4"/>
+      <path d="M160 326 C182 314 214 316 240 330" fill="none" stroke="#fff" stroke-width="1.4" opacity=".45"/>
+      <path d="M240 330 L266 368 L248 364 L236 344 Z" fill="#ece2e0"/>
+      <path d="M240 330 L266 368" stroke="#ffe0b8" stroke-width="1.4" opacity=".8"/>
+      <!-- head -->
+      <use href="#m-head"/>
+      <!-- upper arm (sleeve) from the shoulder down toward the elbow on the sill -->
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mShirt)"/>
+      <path d="M150 368 C176 352 214 356 232 380 C252 430 276 520 296 600 L196 600 C180 540 160 470 146 420 C140 400 140 380 150 368 Z" fill="url(#mPin)" opacity=".6"/>
+      <path d="M232 380 C252 430 276 520 296 600" fill="none" stroke="#ffd9a8" stroke-width="2" opacity=".5"/>
+      <path d="M150 368 C140 380 140 400 146 420 C160 470 180 540 196 600" fill="none" stroke="#050608" stroke-width="10" opacity=".4"/>
+      <!-- forearm rising to the fist -->
+      <path d="M262 600 C262 530 266 448 270 392 C272 370 274 352 278 340 L318 344 C316 366 312 392 310 414 C306 470 306 530 312 600 Z" fill="url(#mArm)"/>
+      <path d="M314 352 C312 380 308 410 306 440" fill="none" stroke="#ffcf8f" stroke-width="2.4" opacity=".55" stroke-linecap="round"/>
+      <!-- rolled cuff -->
+      <path d="M256 548 C276 538 300 536 318 540 L320 600 L254 600 Z" fill="#cbc2cf"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="#efe7ea"/>
+      <path d="M256 548 C276 538 300 536 318 540 L319 558 C300 553 278 555 256 565 Z" fill="url(#mPin)"/>
+      <path d="M256 565 C278 555 300 553 319 558" fill="none" stroke="#6b6378" stroke-width="1.4" opacity=".7"/>
+      <path d="M256 548 C266 543 276 540 284 539 L284 600 L254 600 Z" fill="#0b0b10" opacity=".5"/>
+      <!-- fist: one clean shape under the chin -->
+      <path d="M254 312 C262 302 288 300 306 306 C318 310 322 322 320 334 C318 348 310 358 296 360
+        C282 362 270 360 262 354 C252 346 248 324 254 312 Z" fill="url(#mArm)"/>
+      <path d="M268 324 C278 322 296 322 312 326 M266 338 C278 336 296 336 310 340 M270 351 C280 350 292 350 302 352" fill="none" stroke="#3b2216" stroke-width="1.8" opacity=".6" stroke-linecap="round"/>
+      <path d="M316 314 C321 324 320 340 312 352" fill="none" stroke="#ffd59a" stroke-width="2.2" opacity=".8" stroke-linecap="round"/>
+      <path d="M256 314 C264 310 270 312 272 318 C266 328 258 332 252 330 Z" fill="#26150d" opacity=".55"/>
+      <!-- jaw resting: the chin redrawn over the fist, with its contact shadow -->
+      <path d="M258 311 C268 316 286 316 300 308 C290 304 268 304 258 311 Z" fill="#170d08" opacity=".55"/>
+      <path d="M273 293 C277 300 274 309 263 311 C252 312.5 240 309 230 303 C246 306 262 304 273 293 Z" fill="#6e4329"/>
+      <!-- warm rim down the front of the chest -->
+      <path d="M266 344 C292 352 312 378 322 414" fill="none" stroke="#ffd29a" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+      <path d="M146 336 C122 348 104 370 92 400" fill="none" stroke="#7fa6cf" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- STANDING, from behind, turning over his shoulder to smile (after the portrait). Faces left. viewBox 0 0 400 600 -->
+    <linearGradient id="mBackShirt" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="360" y2="0">
+      <stop offset="0" stop-color="#f1e6e0"/><stop offset=".3" stop-color="#b3a8b8"/>
+      <stop offset=".65" stop-color="#46434f"/><stop offset="1" stop-color="#14151a"/>
+    </linearGradient>
+    <symbol id="m-back" viewBox="0 0 400 600">
+      <path d="M176 250 L236 254 C238 280 240 300 244 322 L172 324 C174 300 174 276 176 250 Z" fill="#1d120c"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mBackShirt)"/>
+      <path d="M150 316 C178 304 228 304 262 312 C306 322 334 348 342 390 C350 440 346 520 350 600 L50 600
+        C54 520 52 446 60 400 C68 356 104 328 150 316 Z" fill="url(#mPin)" opacity=".7"/>
+      <path d="M80 378 C140 366 240 364 328 376" fill="none" stroke="#2a2833" stroke-width="1.4" opacity=".4"/>
+      <path d="M196 390 C190 450 198 530 192 600 M124 430 C134 480 126 550 120 600 M270 420 C280 480 276 540 282 600" fill="none" stroke="#1c1b24" stroke-width="6" opacity=".16" stroke-linecap="round"/>
+      <path d="M160 306 C186 294 226 294 252 304 L254 322 C228 314 190 314 162 322 Z" fill="#dcd2d8"/>
+      <path d="M160 306 C186 294 226 294 252 304" fill="none" stroke="#fff3e2" stroke-width="1.4" opacity=".6"/>
+      <g transform="translate(416 12) scale(-1 1)"><use href="#m-head-smile"/></g>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="#cfc3cc"/>
+      <path d="M60 400 C50 446 46 510 48 600 L92 600 C90 524 92 464 98 424 Z" fill="url(#mPinV)" opacity=".55"/>
+      <path d="M62 404 C52 446 48 510 50 600" fill="none" stroke="#fff1de" stroke-width="2" opacity=".7"/>
+      <path d="M150 316 C104 330 70 356 60 400" fill="none" stroke="#ffd29a" stroke-width="2.4" opacity=".7" stroke-linecap="round"/>
+      <path d="M262 312 C306 322 334 348 342 390" fill="none" stroke="#7fa6cf" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<section class="pin" id="pin">
+  <div class="stage">
+    <div class="cam" id="cam">
+      <svg viewBox="0 0 1600 900" width="1600" height="900">
+        <defs>
+          <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#121b2e"/><stop offset=".55" stop-color="#2c3350"/><stop offset=".8" stop-color="#6e5059"/><stop offset=".93" stop-color="#c9814c"/><stop offset="1" stop-color="#e3a05f"/>
+          </linearGradient>
+          <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#03050a"/><stop offset=".6" stop-color="#0a1222"/><stop offset=".86" stop-color="#1c2131"/><stop offset=".96" stop-color="#4a2e26"/><stop offset="1" stop-color="#5e3828"/>
+          </linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2b33"/><stop offset=".3" stop-color="#121722"/><stop offset="1" stop-color="#06080d"/></linearGradient>
+          <linearGradient id="seaB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14161c"/><stop offset="1" stop-color="#030406"/></linearGradient>
+          <radialGradient id="lampGlow"><stop offset="0" stop-color="#fff0cf"/><stop offset=".08" stop-color="#ffcf8f" stop-opacity=".9"/><stop offset=".3" stop-color="#f2a145" stop-opacity=".28"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+          <radialGradient id="poolG"><stop offset="0" stop-color="#f2a145" stop-opacity=".45"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></radialGradient>
+          <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2a145" stop-opacity=".5"/><stop offset="1" stop-color="#f2a145" stop-opacity="0"/></linearGradient>
+          <filter id="b3"><feGaussianBlur stdDeviation="3"/></filter>
+          <linearGradient id="trouser" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#090b10"/><stop offset="1" stop-color="#1b1f2a"/></linearGradient>
+          <linearGradient id="shirtW" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5d6074"/><stop offset=".7" stop-color="#a8a6b8"/><stop offset="1" stop-color="#efe1d2"/></linearGradient>
+          <!-- Marine Drive lamp post: slim pole, a swan-neck arm, the lantern -->
+          <g id="post">
+            <path d="M-3 0 V-318 C-3 -336 6 -344 22 -344 H34" fill="none" stroke="#0a0c11" stroke-width="6"/>
+            <path d="M-8 0 H8 V-14 H-8 Z" fill="#0a0c11"/>
+            <path d="M26 -350 H50 L46 -340 H30 Z" fill="#0a0c11"/>
+          </g>
+        </defs>
+        <rect width="1600" height="560" fill="url(#skyA)"/>
+        <rect id="skyB" width="1600" height="560" fill="url(#skyB)" opacity="0"/>
+        <!-- far side of the bay: Malabar Hill and the curve, with the necklace -->
+        <g id="far">
+          <path d="M760 556 L860 548 L980 540 L1100 532 L1200 522 C1260 500 1320 488 1380 486 C1440 486 1500 494 1560 504 L1640 512 V560 H760 Z" fill="#141826"/>
+          <g fill="#141826"><rect x="1300" y="470" width="12" height="22"/><rect x="1330" y="462" width="10" height="28"/><rect x="1400" y="466" width="14" height="24"/><rect x="1460" y="474" width="10" height="20"/></g>
+          <g id="necklace"></g>
+        </g>
+        <rect y="556" width="1600" height="160" fill="url(#sea)"/>
+        <rect id="seaB" y="556" width="1600" height="160" fill="url(#seaB)" opacity="0"/>
+        <g id="necklaceRefl" opacity=".55"></g>
+        <!-- the travelling layer: parapet, posts, pools -->
+        <g id="track">
+          <g id="reflections"></g>
+          <rect x="-400" y="690" width="7400" height="82" fill="#0c0e14"/>
+          <rect x="-400" y="690" width="7400" height="2" fill="#6a5646" opacity=".7"/>
+          <rect x="-400" y="770" width="7400" height="160" fill="#08090d"/>
+          <rect x="-400" y="770" width="7400" height="3" fill="#000" opacity=".6"/>
+          <g id="pools"></g>
+          <g id="posts"></g>
+          <g id="benches"></g>
+        </g>
+        <!-- his long shadow and Mohit, walking -->
+        <ellipse cx="640" cy="842" rx="46" ry="5" fill="#000" opacity=".6"/>
+        <g id="walker" transform="translate(640 718)">
+          <g id="armB"></g><g id="legB"></g>
+          <path id="torso" fill="url(#shirtW)"/>
+          <g id="legF"></g>
+          <path d="M-20 -6 Q0 2 18 -6 L18 6 Q0 12 -20 6 Z" fill="#0b0d12"/>
+          <g transform="translate(-29 -151) scale(.147)"><use href="#m-head"/></g>
+          <path id="collar" d="M-9 -100 L5 -102 L11 -93 L-3 -95 Z" fill="#f1e8e2"/>
+          <g id="armF"></g>
+        </g>
+      </svg>
+    </div>
+    <div class="bar top"><h2>Every detour was part of the path</h2></div>
+    <div class="ticks" id="ticks"></div>
+    <div class="bar bot"><div class="sub" id="subs"></div></div>
+  </div>
+</section>
+
+<section class="credits" id="credits">
+  <h3>The roles</h3>
+  <div class="role"><div class="co">Sypha AI</div><div class="rl">Software Engineer · Dec 2025 – now</div>
+    <ul>
+      <li>Built Sypha Gateway. It replaced OpenRouter across every Sypha product and cut its 5% markup.</li>
+      <li>Built an AI CLI that 500+ developers use daily, across 20+ providers and self-hosted models.</li>
+      <li>Turned trackers, MIS reports and PDFs into a 21-sheet P&amp;L workbook. Days of reconciliation, one upload.</li>
+      <li>Unblocked a Kotlin plugin stuck in production for two months by tracing 21 cascading issues.</li>
+    </ul></div>
+  <div class="role"><div class="co">AuctionXI</div><div class="rl">Founder · Apr 2026 – now</div></div>
+  <div class="role"><div class="co">TexAgent</div><div class="rl">Freelance developer · Sep 2026 – now</div></div>
+  <div class="role"><div class="co">MK Exim India</div><div class="rl">E-commerce, Amazon, TataCliQ and Sephora · Mar – Sep 2025</div></div>
+  <div class="role"><div class="co">Brahmani Gems</div><div class="rl">Web developer intern, Shopify · Jul – Aug 2024</div></div>
+</section>
+<div class="grain"></div><div class="vignette"></div>
+<!-- direction: 08 Dark cinematic minimal / Dusk -->
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+/* progress of a tall pinned section: 0 when its top hits the viewport top, 1 when its bottom hits the viewport bottom */
+function secProgress(el) { const r = el.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight)); }
+function loop(fn) { let last = performance.now(); const f = now => { fn(now, Math.min(64, now - last)); last = now; requestAnimationFrame(f); }; requestAnimationFrame(f); }
+
+const NS = 'http://www.w3.org/2000/svg';
+const mk = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.appendChild(e); return e; };
+const STOPS = [
+  ['Ramrao Adik, 2021', 'My first real code was a blog that tracked patch notes for games I played. It got taken down over copyright. First lesson in building.'],
+  ['NFTs', "The worst call I've made. I listened to the hype instead of the people calling it out."],
+  ['Everything else', 'Blogging, Google Ads and SEO, Meta Ads, an agency, dropshipping. For about a year I stopped coding and turned into a finance guy.'],
+  ['MK Exim, 2025', 'One person led hundreds across warehouse, finance, e-commerce and media, and walked me through how it all connected. The biggest room for growth was in tech.'],
+  ['Graduated, 2025', 'Computer Engineering, 9.45 CGPA. Grades taught me less than shipping did.'],
+  ['Sypha AI, 2025', 'So I came back to engineering for good. An LLM gateway, an AI CLI 500+ developers use, and days of finance work turned into one upload.'],
+  ['AuctionXI, 2026', "My own product, and the thing I'm proudest of. It taught me what code alone can't: getting users, keeping them, taking the friction out of every step."],
+];
+const subs = document.getElementById('subs'), ticks = document.getElementById('ticks');
+const subEls = STOPS.map(([st, ln]) => { const d = document.createElement('div'); d.className = 'stop'; d.innerHTML = `<div class="st">${st}</div><p class="ln">${ln}</p>`; subs.appendChild(d); return d; });
+const tickEls = STOPS.map(() => { const i = document.createElement('i'); ticks.appendChild(i); return i; });
+/* the walk: 7 lamps, one per stop, spaced along the parapet */
+const HX = 640, GAP = 560, FIRST = 1060, N = 7;
+const posts = document.getElementById('posts'), pools = document.getElementById('pools'), refls = document.getElementById('reflections'), benches = document.getElementById('benches');
+const lamps = [];
+for (let i = -2; i < N + 3; i++) {
+  const x = FIRST + i * GAP, real = i >= 0 && i < N;
+  const pr = mk('rect', { x: x + 26, y: 556, width: 22, height: 150, fill: 'url(#refl)', filter: 'url(#b3)', opacity: 0 }, refls);
+  const pool = mk('ellipse', { cx: x + 38, cy: 808, rx: 280, ry: 50, fill: 'url(#poolG)', opacity: 0 }, pools);
+  mk('use', { href: '#post', x, y: 690 }, posts);
+  const glow = mk('circle', { cx: x + 38, cy: 346, r: 150, fill: 'url(#lampGlow)', opacity: 0 }, posts);
+  const bulb = mk('rect', { x: x + 31, y: 340, width: 14, height: 4, rx: 2, fill: '#3a3226' }, posts);
+  lamps.push({ i, real, pr, pool, glow, bulb, x });
+  // a concrete bench between posts, facing the sea
+  mk('path', { d: `M${x + 250} 786 h130 v9 h-130z M${x + 262} 795 v28 h8 v-28z M${x + 360} 795 v28 h8 v-28z`, fill: '#07080c' }, benches);
+}
+/* the necklace: lights along the far curve, revealed with the stops */
+const neck = document.getElementById('necklace'), neckR = document.getElementById('necklaceRefl'), beads = [];
+for (let j = 0; j < 90; j++) {
+  const f = j / 89, x = 780 + f * 840, y = 552 - Math.pow(f, 1.4) * 44 + Math.sin(f * 9) * 1.5;
+  const b = mk('circle', { cx: x, cy: y, r: 1.4 + (1 - f) * .8, fill: '#ffc77e', opacity: 0 }, neck);
+  const r = j % 3 ? null : mk('rect', { x: x - 1, y: 562, width: 2, height: 20 - f * 12, fill: '#f2a145', opacity: 0, filter: 'url(#b3)' }, neckR);
+  beads.push({ b, r, f });
+}
+/* walker parts */
+const legF = document.getElementById('legF'), legB = document.getElementById('legB'), armF = document.getElementById('armF'), armB = document.getElementById('armB'), torso = document.getElementById('torso');
+function limb(g, ox, oy, a1, l1, a2, l2, w1, w2, w3, c1, c2, splitAt) {
+  // two tapered segments from (ox,oy); angles in degrees from straight down
+  const r = d => d * Math.PI / 180;
+  const kx = ox + Math.sin(r(a1)) * l1, ky = oy + Math.cos(r(a1)) * l1;
+  const ex = kx + Math.sin(r(a2)) * l2, ey = ky + Math.cos(r(a2)) * l2;
+  const seg = (x1, y1, x2, y2, wa, wb) => { const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; return `M${x1 + nx * wa} ${y1 + ny * wa} L${x2 + nx * wb} ${y2 + ny * wb} A${wb} ${wb} 0 0 1 ${x2 - nx * wb} ${y2 - ny * wb} L${x1 - nx * wa} ${y1 - ny * wa} A${wa} ${wa} 0 0 1 ${x1 + nx * wa} ${y1 + ny * wa}Z`; };
+  g.innerHTML = '';
+  mk('path', { d: seg(ox, oy, kx, ky, w1, w2), fill: c1 }, g);
+  mk('path', { d: seg(kx, ky, ex, ey, w2, w3), fill: c2 }, g);
+  return { ex, ey, kx, ky };
+}
+function pose(ph, still) {
+  const s = Math.sin(ph), c = Math.cos(ph);
+  const sw = still ? 0 : 1;
+  // legs: hip at (0,0); thigh 62, shin 60
+  const lf = limb(legF, 0, 0, 24 * s * sw, 62, 24 * s * sw - Math.max(0, -c) * 30 * sw, 60, 9, 7, 5.5, '#151923', '#10131b');
+  const lb = limb(legB, 0, 0, -24 * s * sw, 62, -24 * s * sw - Math.max(0, c) * 30 * sw, 60, 9, 7, 5.5, '#0a0c12', '#080a0e');
+  // shoes
+  mk('path', { d: `M${lf.ex - 6} ${lf.ey + 2} h22 q4 0 4 5 h-26z`, fill: '#050608' }, legF);
+  mk('path', { d: `M${lb.ex - 6} ${lb.ey + 2} h22 q4 0 4 5 h-26z`, fill: '#040506' }, legB);
+  // arms: shoulder (2,-92); upper (sleeve) 40, forearm (skin) 38
+  limb(armF, 2, -92, -20 * s * sw, 40, -20 * s * sw - 18, 38, 7, 6, 5, '#b4b0c2', '#7a4a2e');
+  limb(armB, 2, -92, 20 * s * sw, 40, 20 * s * sw - 18, 38, 7, 6, 5, '#4e5062', '#3a2318');
+  const bob = still ? 0 : Math.abs(c) * 2.4;
+  torso.setAttribute('d', `M-12 ${-100 + bob} C0 ${-106 + bob} 12 ${-104 + bob} 17 ${-96 + bob} C25 -78 22 -46 19 -14 L21 6 L-20 6 L-20 -20 C-25 -56 -25 -86 -12 ${-100 + bob} Z`);
+  document.getElementById('walker').setAttribute('transform', `translate(640 ${718 - bob})`);
+}
+/* camera + story */
+const cam = document.getElementById('cam'), pin = document.getElementById('pin'), skyB = document.getElementById('skyB'), seaB = document.getElementById('seaB'), track = document.getElementById('track');
+const topbar = document.querySelector('.bar.top'), botbar = document.querySelector('.bar.bot');
+let W, H, frame, k0;
+function measure() { W = innerWidth; H = innerHeight; const tb = topbar.getBoundingClientRect().height, bb = botbar.getBoundingClientRect().height; frame = { top: tb, h: H - tb - bb }; k0 = Math.max(W / 1600, frame.h / 900); }
+let lastD = null, idleT = 0;
+function render() {
+  const p = secProgress(pin);
+  const q = clamp((p - .03) / .9);                       // walk progress
+  const D = q * (FIRST + (N - 1) * GAP + 260 - HX);       // distance walked
+  track.setAttribute('transform', `translate(${-D} 0)`);
+  const stopF = q * N, idx = Math.min(N - 1, Math.floor(stopF));
+  lamps.forEach(l => {
+    const sx = l.x + 38 - D, on = l.real && sx < HX + 160 ? sstep(HX + 160, HX - 40, sx) : 0;
+    l.glow.setAttribute('opacity', on); l.pool.setAttribute('opacity', on); l.pr.setAttribute('opacity', on * .9);
+    l.bulb.setAttribute('fill', on > .5 ? '#fff0cf' : '#3a3226');
+  });
+  subEls.forEach((e, i) => { const local = stopF - i; const o = p < .02 ? 0 : (i === idx ? sstep(0, .14, local) * (i === N - 1 ? 1 : 1 - sstep(.86, 1, local)) : 0); e.style.opacity = o; e.style.transform = `translateY(calc(-50% + ${(1 - o) * 8}px))`; });
+  tickEls.forEach((t, i) => t.classList.toggle('on', i <= idx && p > .02));
+  const dark = sstep(0, 1, q); skyB.setAttribute('opacity', dark); seaB.setAttribute('opacity', dark * .9);
+  beads.forEach(b => { const o = sstep(b.f * .9, b.f * .9 + .1, q * 1.05); b.b.setAttribute('opacity', o); b.r && b.r.setAttribute('opacity', o * .6); });
+  // camera fit, slight drift up as the night arrives
+  const mobile = W < 760, k = k0 * (mobile ? 1.25 : 1);
+  const tx = mobile ? W * .5 - HX * k : Math.min(0, (W - 1600 * k) / 2), ty = frame.top + frame.h - 900 * k + (mobile ? 40 * k : 0);
+  cam.style.transform = `translate3d(${tx}px,${Math.min(frame.top, ty)}px,0) scale(${k})`;
+  const still = RM;
+  pose(D / 46, still);
+  lastD = D;
+}
+measure(); addEventListener('resize', () => { measure(); render(); }); addEventListener('scroll', render, { passive: true }); render();
+/* credits roll in */
+const roles = document.querySelectorAll('.role');
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { rootMargin: '0px 0px -15% 0px' });
+roles.forEach(r => io.observe(r));
+/* ambient: lit lamps breathe, the necklace twinkles */
+if (!RM) loop(now => { const s = now / 1000; beads.forEach((b, j) => { if (j % 7 === 0) b.b.setAttribute('r', 1.4 + Math.max(0, Math.sin(s * 1.7 + j)) * .9); }); });
+</script>
+</body>
+</html>
