@@ -1,0 +1,35 @@
+.bar {
+  display: none;
+}
+@media (max-width: 759px) {
+  .bar {
+    position: fixed;
+    z-index: 40;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 8px 8px 18px;
+    border-radius: 999px;
+    background: var(--navy);
+    color: var(--moon);
+    font-family: var(--serif);
+    font-size: 17px;
+    transform: translateY(140%);
+    transition: transform 0.6s var(--ease);
+  }
+  .shown {
+    transform: none;
+  }
+  .bar a {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--sodium);
+    color: var(--navy);
+    padding: 11px 18px;
+    border-radius: 999px;
+  }
+}

@@ -1,0 +1,61 @@
+.route {
+  position: relative;
+  background: #e9e3d3;
+}
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 0;
+  background: #e9e3d3;
+}
+.stops {
+  display: grid;
+}
+.stop {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
+}
+.stop[data-on] {
+  opacity: 1;
+  transform: none;
+}
+
+.boardName {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0.01em;
+  fill: var(--board-ink);
+}
+.boardYear {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 15px;
+  fill: #3a3410;
+}
+.cabBoard {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  fill: #f2a145;
+}
+
+@media (max-width: 759px) {
+  .stage {
+    height: 100svh;
+    background: #e3e2d6;
+  }
+  .stage :global(.zone) {
+    padding-top: 72px;
+  }
+  .stage :global(.scene-art) {
+    height: 50svh;
+    margin-top: auto;
+  }
+}

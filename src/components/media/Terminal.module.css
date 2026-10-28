@@ -1,0 +1,172 @@
+.root {
+  --t-ground: #14161a;
+  --t-bar: #1b1e23;
+  --t-fg: #e7e6e1;
+  --t-dim: #8b9099;
+  --t-purple: #b796ff;
+  --t-yellow: #ffd46e;
+  --t-green: #8edc8f;
+  --t-red: #ff7d7d;
+  --t-user: #6fd6a8;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  container-type: size;
+  background: radial-gradient(120% 90% at 50% 0%, #22262d 0%, #101215 70%);
+}
+
+.window {
+  position: absolute;
+  inset: clamp(8px, 3.2cqmin, 26px);
+  display: flex;
+  flex-direction: column;
+  border-radius: clamp(6px, 1.4cqmin, 12px);
+  background: var(--t-ground);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 18px 50px -20px rgb(0 0 0 / 0.7);
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: clamp(8.5px, min(3cqw, 3.2cqh), 15px);
+  line-height: 1.55;
+  color: var(--t-fg);
+}
+
+.bar {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.3em;
+  background: var(--t-bar);
+  border-bottom: 1px solid rgb(255 255 255 / 0.05);
+}
+.dots {
+  position: absolute;
+  left: 0.9em;
+  display: flex;
+  gap: 0.45em;
+}
+.dots i {
+  width: 0.78em;
+  height: 0.78em;
+  border-radius: 50%;
+  background: #ff5f57;
+  opacity: 0.85;
+}
+.dots i:nth-child(2) {
+  background: #febc2e;
+}
+.dots i:nth-child(3) {
+  background: #28c840;
+}
+.title {
+  font-size: 0.86em;
+  color: var(--t-dim);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.8em 1.1em 1em;
+  will-change: transform;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.line {
+  white-space: pre;
+  min-height: 1.55em;
+  animation: lineIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes lineIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+.fg {
+  color: var(--t-fg);
+}
+.dim {
+  color: var(--t-dim);
+}
+.purple {
+  color: var(--t-purple);
+}
+.yellow {
+  color: var(--t-yellow);
+}
+.green {
+  color: var(--t-green);
+}
+.red {
+  color: var(--t-red);
+}
+.user {
+  color: var(--t-user);
+}
+.bold {
+  font-weight: 700;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.15em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background: var(--t-fg);
+  animation: blink 1.05s steps(1, end) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.bannerWrap {
+  padding: 0.5em 0 0.6em;
+}
+.banner {
+  line-height: 1;
+  color: var(--t-purple);
+  text-shadow: 0 0 12px rgb(183 150 255 / 0.35);
+}
+.bannerRow:nth-child(2) {
+  color: #c9a6ff;
+}
+.bannerRow:nth-child(3) {
+  color: #d8b8ff;
+}
+.bannerWrap > .dim {
+  margin-top: 0.45em;
+}
+
+.still .buffer,
+.still .line,
+.still .caret {
+  transition: none;
+  animation: none;
+}
+
+/* Off screen: hold every CSS loop where it is. */
+.paused,
+.paused * {
+  animation-play-state: paused !important;
+}

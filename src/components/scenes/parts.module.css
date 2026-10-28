@@ -1,0 +1,33 @@
+.drift {
+  animation: drift var(--dur) linear var(--delay) infinite;
+}
+@keyframes drift {
+  0% {
+    transform: translateX(var(--from));
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--to));
+    opacity: 0;
+  }
+}
+
+.gull {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: beat var(--beat) ease-in-out infinite alternate;
+}
+@keyframes beat {
+  to {
+    transform: scaleY(0.45);
+  }
+}
+
+/* Loops only run while their scene is on screen. */
+[data-still] .drift,
+[data-still] .gull {
+  animation-play-state: paused;
+}

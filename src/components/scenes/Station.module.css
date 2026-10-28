@@ -1,0 +1,338 @@
+/* ───────── The concourse ───────── */
+.concourse {
+  background: #b8ae99;
+  color: var(--ink);
+}
+
+/* The departure board: amber light on black, hung from the roof. */
+.board {
+  position: absolute;
+  z-index: 4;
+  left: 56.4%;
+  top: 25%;
+  width: 34%;
+  background: #0f1112;
+  color: #f2a145;
+  padding: 16px 22px 18px;
+  font-family: var(--sans);
+}
+.boardHead {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: clamp(14px, 1.1vw, 17px);
+  color: #f6e4bf;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  background: linear-gradient(#f2a14533, #f2a14533) 0 100% / 100% 1px no-repeat;
+}
+.rows {
+  display: grid;
+}
+.row {
+  display: grid;
+  grid-template-columns: 3.4em 1fr 1.6em 1.8em;
+  gap: 10px;
+  align-items: baseline;
+  padding: 5px 0;
+  font-weight: 700;
+  font-size: clamp(14px, 1.15vw, 18px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 10px rgb(242 161 69 / 0.45);
+  transition: color 0.3s var(--ease);
+}
+.row:hover {
+  color: #ffd79a;
+}
+.dest {
+  text-transform: uppercase;
+}
+.fast,
+.cars {
+  text-align: right;
+}
+/* the first train blinks, as the next departure always does */
+.row:first-child,
+li:first-child .row {
+  animation: next 2.4s ease-in-out infinite;
+}
+@keyframes next {
+  50% {
+    opacity: 0.55;
+  }
+}
+[data-still] .row {
+  animation-play-state: paused;
+}
+
+.walker {
+  animation: walk var(--dur) linear var(--delay) infinite;
+}
+@keyframes walk {
+  from {
+    transform: translateX(var(--from));
+  }
+  to {
+    transform: translateX(var(--to));
+  }
+}
+.legA,
+.legB {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: stride 0.9s ease-in-out infinite alternate;
+}
+.legB {
+  animation-delay: -0.9s;
+}
+@keyframes stride {
+  from {
+    transform: rotate(-14deg);
+  }
+  to {
+    transform: rotate(14deg);
+  }
+}
+[data-still] .walker,
+[data-still] .legA,
+[data-still] .legB {
+  animation-play-state: paused;
+}
+
+/* ───────── The platforms ─────────
+ * Text in the top-left zone under the platform's board; the hoarding on the right.
+ */
+.platform {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: clamp(32px, 5vw, 96px);
+  align-items: start;
+  padding: clamp(130px, 16vh, 190px) var(--m) clamp(120px, 15vh, 170px);
+  background:
+    linear-gradient(180deg, #d9cfba 0%, #ece4d2 30%, #eee6d5 100%);
+  color: var(--ink);
+  overflow: clip;
+}
+.platform:nth-of-type(even) {
+  background: linear-gradient(180deg, #d4cab4 0%, #e8e0cc 30%, #ebe2cf 100%);
+}
+
+/* the roof edge, in shade, with a fan turning slowly under it */
+.roof {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 46px;
+  background:
+    repeating-linear-gradient(90deg, #5e625d 0 22px, #555954 22px 26px),
+    #5e625d;
+}
+.roof::after {
+  content: "";
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 70px;
+  background: linear-gradient(#00000014, #0000);
+}
+.fan {
+  position: absolute;
+  right: 18%;
+  top: 46px;
+  width: 4px;
+  height: 46px;
+  background: #3e423f;
+}
+.fan::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3e423f 0 6deg,
+    transparent 6deg 114deg,
+    #3e423f 114deg 126deg,
+    transparent 126deg 234deg,
+    #3e423f 234deg 246deg,
+    transparent 246deg
+  );
+  mask: radial-gradient(circle, #000 0 10px, #000c 11px 100%);
+  transform: scaleY(0.22) rotate(0deg);
+  animation: fan 1.6s linear infinite;
+}
+@keyframes fan {
+  to {
+    transform: scaleY(0.22) rotate(360deg);
+  }
+}
+
+.text {
+  display: grid;
+  gap: 16px;
+  max-width: 34rem;
+}
+.sign {
+  justify-self: start;
+  background: var(--board);
+  color: var(--board-ink);
+  padding: 12px 26px 13px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.sign::before,
+.sign::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  width: 3px;
+  height: clamp(84px, 11vh, 140px);
+  background: #3a3a3a;
+}
+.sign::before {
+  left: 16%;
+}
+.sign::after {
+  right: 16%;
+}
+.signName {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.kind {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.headline {
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 3.2rem);
+  max-width: 16ch;
+}
+.facts {
+  display: grid;
+  gap: 8px;
+  max-width: 40ch;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.facts li {
+  padding-left: 18px;
+  position: relative;
+}
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+}
+.tech {
+  font-size: 14px;
+  color: var(--ink-faint);
+  max-width: 44ch;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.note {
+  font-size: 14px;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* The hoarding: the work, lit from a lamp above. */
+.hoarding {
+  position: relative;
+  margin-top: clamp(40px, 7vh, 90px);
+  background: #26292b;
+  padding: 10px;
+}
+.hoarding::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 100%;
+  height: 14px;
+  background: #3a3e40;
+  border-radius: 3px 3px 0 0;
+}
+.hoarding::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: -40px;
+  height: 140px;
+  background: radial-gradient(ellipse at 50% 0%, #fff4d455, #fff4d400 70%);
+  pointer-events: none;
+}
+.screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #111;
+}
+
+/* the platform's yellow edge, and the drop to the rails */
+.edge {
+  position: absolute;
+  inset: auto 0 0;
+  height: 54px;
+  background:
+    linear-gradient(#f0d24a, #f0d24a) 0 0 / 100% 6px no-repeat,
+    linear-gradient(#cfc6b3, #cfc6b3) 0 6px / 100% 14px no-repeat,
+    linear-gradient(#8b8273, #8b8273) 0 20px / 100% 34px no-repeat;
+}
+.edge::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 12px;
+  height: 4px;
+  background: #c9c6bf;
+}
+
+@media (max-width: 759px) {
+  .concourse {
+    background: #a8a08d;
+  }
+  .board {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0 20px 24px;
+    order: 1;
+  }
+  .concourse :global(.scene-art) {
+    order: 2;
+    height: 34svh;
+  }
+  .platform {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 120px 20px 110px;
+  }
+  .fan {
+    right: 12%;
+  }
+  .hoarding {
+    margin-top: 0;
+  }
+  .screen {
+    aspect-ratio: 4 / 5;
+  }
+}

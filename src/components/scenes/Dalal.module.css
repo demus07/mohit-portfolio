@@ -1,0 +1,142 @@
+.dalal {
+  background: var(--paper);
+}
+.scene {
+  background: #c8d8dc;
+}
+
+.bse {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  fill: #4b4637;
+}
+.tickText {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 26px;
+  white-space: pre;
+}
+.tick {
+  animation: tick var(--dur, 60s) linear infinite;
+}
+@keyframes tick {
+  to {
+    transform: translateX(var(--run, -3000px));
+  }
+}
+.steam {
+  animation: steam 4.2s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scaleY(0.7);
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-34px) scaleY(1.15);
+  }
+}
+[data-still] .tick,
+[data-still] .steam {
+  animation-play-state: paused;
+}
+
+/* The record, on paper: the main job in full, the rest on a line each. */
+.record {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 120px);
+  padding: clamp(80px, 12vh, 140px) var(--m) clamp(100px, 14vh, 160px);
+  align-items: start;
+}
+.company {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.companyLink span {
+  font-size: 0.5em;
+  vertical-align: 0.5em;
+  display: inline-block;
+  transition: transform 0.4s var(--ease);
+}
+.companyLink:hover span {
+  transform: translate(3px, -3px);
+}
+.role {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.points {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+  max-width: 46ch;
+}
+.points li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 16.5px;
+  line-height: 1.5;
+}
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 1px;
+  background: var(--ink-soft);
+}
+.rest {
+  display: grid;
+  margin-top: 6px;
+}
+.rest li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  padding: 18px 0;
+  background: linear-gradient(var(--ink-faint), var(--ink-faint)) 0 100% / 100% 1px no-repeat;
+  opacity: 0.999;
+}
+.rest li:first-child {
+  padding-top: 0;
+}
+.restName {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+.restWhen {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.restRole {
+  grid-column: 1 / -1;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 759px) {
+  .scene {
+    background: #c3d6dc;
+  }
+  .record {
+    grid-template-columns: 1fr;
+    padding: 64px 20px 96px;
+  }
+}

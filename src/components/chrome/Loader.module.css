@@ -1,0 +1,78 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  transition: transform 1s var(--ease);
+}
+.lifting {
+  transform: translateY(-100%);
+}
+.center {
+  width: min(760px, 86vw);
+  display: grid;
+  gap: 34px;
+  justify-items: center;
+}
+.line {
+  width: 100%;
+  overflow: visible;
+}
+.track {
+  stroke: var(--ink-faint);
+  stroke-width: 1.5;
+  opacity: 0.4;
+}
+.run {
+  stroke: var(--sea);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.stop {
+  fill: var(--paper);
+  stroke: var(--ink-faint);
+  stroke-width: 1.5;
+  transition:
+    fill 0.3s var(--ease),
+    stroke 0.3s var(--ease);
+}
+.on {
+  fill: var(--sea);
+  stroke: var(--sea);
+}
+.label {
+  font-family: var(--sans);
+  font-size: 22px;
+  fill: var(--ink-soft);
+}
+.name {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
+  letter-spacing: -0.02em;
+}
+.name span {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
+}
+.name .in {
+  opacity: 1;
+  transform: none;
+}
+.count {
+  position: absolute;
+  right: var(--m);
+  bottom: 24px;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 2rem + 4vw, 6rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}

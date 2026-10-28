@@ -1,0 +1,325 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  container-type: size;
+  background: radial-gradient(circle at 20% 15%, #1d0530 0%, #0a0214 70%);
+  color: #f3f1ff;
+}
+
+.app {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgb(25 10 40 / 0.5);
+  font-family: var(--sans);
+  font-size: clamp(10px, min(2.9cqw, 3.1cqh), 14px);
+  line-height: 1.42;
+}
+
+.head {
+  flex: none;
+  padding: 0.75em 1em 0.65em;
+  text-align: center;
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+  line-height: 1.2;
+}
+.brand {
+  font-size: 1.45em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, #cbb9ff, #8fc3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sub {
+  margin-top: 0.2em;
+  font-size: 0.88em;
+  color: rgb(243 241 255 / 0.62);
+}
+@container (max-width: 420px) {
+  .sub {
+    display: none;
+  }
+}
+
+.feed {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1.4em);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 1.4em);
+}
+.list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 1.2em 1.3em 1em;
+  will-change: transform;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.list > * {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+.bot {
+  align-self: flex-start;
+  max-width: 86%;
+  padding: 0.65em 1em;
+  border-radius: 1.3em 1.3em 1.3em 0.35em;
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+.name {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #7db9ff;
+  text-shadow: 0 0 6px rgb(125 176 255 / 0.45);
+}
+.lead {
+  font-style: normal;
+  color: #cbb9ff;
+}
+.user {
+  align-self: flex-end;
+  max-width: 76%;
+  padding: 0.6em 1em;
+  border-radius: 1.3em 1.3em 0.35em 1.3em;
+  background: linear-gradient(180deg, #7d4cff, #6a3dff);
+  box-shadow: 0 6px 18px -8px rgb(125 76 255 / 0.7);
+}
+
+.dots {
+  display: flex;
+  gap: 0.35em;
+  padding: 0.9em 1.1em;
+}
+.dots i {
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: #cbb9ff;
+  animation: dot 1.1s ease-in-out infinite;
+}
+.dots i:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.dots i:nth-child(3) {
+  animation-delay: 0.36s;
+}
+@keyframes dot {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.card {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  width: min(86%, 30em);
+  margin-left: 0.6em;
+  padding: 0.55em 0.8em 0.55em 0.6em;
+  border-radius: 0.9em;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.07);
+}
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.3em;
+  height: 2.3em;
+  border-radius: 0.7em;
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+.icon svg {
+  width: 1.35em;
+  height: 1.35em;
+}
+.cardText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.cardTitle,
+.cardMeta {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cardTitle {
+  font-weight: 600;
+}
+.cardMeta {
+  font-size: 0.82em;
+  color: rgb(243 241 255 / 0.55);
+}
+
+.brief {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  max-width: 86%;
+  margin-left: 0.6em;
+  padding: 0.7em 1em;
+  border-radius: 0.9em;
+  border: 1px solid rgb(203 185 255 / 0.25);
+  background: linear-gradient(135deg, rgb(125 76 255 / 0.16), rgb(125 185 255 / 0.08));
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.04em;
+}
+.briefHead {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.76em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #cbb9ff;
+}
+
+.tones {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.55em 1.3em 0.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+  mask-image: linear-gradient(to right, #000 85%, transparent);
+}
+.toneLabel {
+  font-size: 0.78em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(243 241 255 / 0.45);
+  margin-right: 0.15em;
+}
+.chip {
+  flex: none;
+  padding: 0.28em 0.8em;
+  border-radius: 999px;
+  font-size: 0.86em;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.03);
+  color: rgb(243 241 255 / 0.7);
+  transition:
+    background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chipOn {
+  background: rgb(125 76 255 / 0.32);
+  border-color: rgb(203 185 255 / 0.55);
+  color: #fff;
+}
+.chipMore {
+  color: rgb(243 241 255 / 0.45);
+  border-style: dashed;
+}
+
+.input {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0.6em 1.1em 0.9em;
+  padding: 0.35em 0.4em 0.35em 0.5em;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.09);
+}
+.mic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  color: rgb(243 241 255 / 0.55);
+}
+.mic svg {
+  width: 1.15em;
+  height: 1.15em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.field {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.placeholder {
+  color: rgb(243 241 255 / 0.4);
+}
+.caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.18em;
+  background: #cbb9ff;
+}
+.send {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #7d4cff, #6a3dff);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.send svg {
+  width: 1em;
+  height: 1em;
+  fill: #fff;
+}
+.sendOn {
+  transform: scale(0.88);
+  box-shadow: 0 0 0 0.4em rgb(125 76 255 / 0.25);
+}
+
+.still .list,
+.still .list > *,
+.still .dots i,
+.still .chip {
+  transition: none;
+  animation: none;
+}
+
+/* Off screen: hold every CSS loop where it is. */
+.paused,
+.paused * {
+  animation-play-state: paused !important;
+}
