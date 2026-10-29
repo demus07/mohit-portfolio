@@ -670,3 +670,237 @@
     background: linear-gradient(color-mix(in srgb, var(--bg) 86%, transparent) 0, color-mix(in srgb, var(--bg) 60%, transparent) 62%, transparent 82%);
   }
 }
+
+/* ───────── His departure board, above the platforms ───────── */
+.board h2 {
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  max-width: 12ch;
+}
+.board .line {
+  margin-top: 1.2rem;
+  max-width: 34rem;
+}
+.departures {
+  margin: clamp(36px, 7vh, 64px) 0 clamp(70px, 13vh, 130px);
+}
+.row .facts.small {
+  margin: 0.8rem 0 0;
+  gap: 0.45rem;
+}
+.row .facts.small li {
+  font-family: var(--sans);
+  font-size: 0.96rem;
+  line-height: 1.45;
+  color: var(--soft);
+}
+.row .note {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--soft);
+}
+
+/* ───────── The line: his story, one station at a time ───────── */
+#pathTitle {
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.8s var(--ease);
+}
+#pathTitle[data-away] {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.role .when {
+  margin-top: 0;
+  font-size: 0.98rem;
+  color: var(--soft);
+}
+.role h3 {
+  margin-top: 0.5rem;
+  font-size: clamp(1.9rem, 2.7vw, 2.7rem);
+  line-height: 1.04;
+}
+.role .body {
+  margin-top: 0.9rem;
+  font-size: 1.04rem;
+  line-height: 1.55;
+  max-width: 32rem;
+}
+
+/* ───────── Off the clock: his scenes, sliding past ───────── */
+.otc-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.otc-track {
+  display: flex;
+  align-items: stretch;
+  gap: 2.4rem;
+  height: 76vh;
+  padding-left: var(--m);
+  will-change: transform;
+}
+.otc-head {
+  flex: none;
+  width: min(30rem, 32vw);
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 2.6rem;
+}
+.otc-head h2 {
+  font-size: clamp(2.6rem, 4.4vw, 4.6rem);
+}
+.otc-tail {
+  flex: none;
+  width: var(--m);
+}
+.otc-card {
+  flex: none;
+  width: min(60vw, 960px);
+  display: flex;
+  flex-direction: column;
+}
+.otc-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #0d1424;
+}
+.otc-card figcaption {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 1.6rem;
+  align-items: baseline;
+  opacity: 0.45;
+  transition: opacity 0.7s var(--ease);
+}
+.otc-card[data-on] figcaption {
+  opacity: 1;
+}
+.otc-card .t {
+  flex: none;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  line-height: 1.1;
+}
+.otc-card .b {
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--soft);
+}
+.otc-stack {
+  padding: clamp(80px, 14vh, 140px) 22px clamp(60px, 10vh, 100px);
+  display: grid;
+  gap: 2.6rem;
+}
+.otc-stack .otc-head {
+  width: auto;
+  padding: 0;
+}
+.otc-card.is-stacked {
+  width: auto;
+}
+.otc-card.is-stacked .otc-frame {
+  flex: none;
+  aspect-ratio: 4 / 5;
+}
+.otc-card.is-stacked figcaption {
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ───────── Belief: Siddhivinayak at first light ───────── */
+.belief {
+  position: relative;
+  isolation: isolate;
+  min-height: 150svh;
+  overflow: hidden;
+  background: #070b16;
+  color: #efe8d8;
+}
+.belief-garland {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+}
+.belief-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 42% at 50% 34%, rgb(7 11 22 / 0.62), rgb(7 11 22 / 0.25) 60%, transparent 80%);
+}
+.belief-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: clamp(8rem, 20vh, 13rem) 22px 0;
+  text-align: center;
+}
+.belief blockquote {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4.8vw, 4.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+.belief blockquote span {
+  display: block;
+  text-wrap: balance;
+}
+.belief-copy p {
+  margin: 1.8rem auto 0;
+  max-width: 26rem;
+  font-size: 1.04rem;
+  line-height: 1.55;
+  color: rgb(239 232 216 / 0.72);
+  text-wrap: balance;
+}
+
+@media (max-width: 759px) {
+  .departures {
+    margin: 28px 0 56px;
+  }
+  .board h2 {
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+  }
+  .role h3 {
+    margin-top: 0.3rem;
+    font-size: 1.45rem;
+  }
+  .role .body {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .journey {
+    top: 64px;
+  }
+  .belief {
+    min-height: 115svh;
+  }
+  .belief-garland {
+    height: 84px;
+  }
+}
+@media (min-width: 760px) {
+  .path .journey {
+    top: 34%;
+  }
+}
+.board .lead {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  max-width: 20ch;
+}

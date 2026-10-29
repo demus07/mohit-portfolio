@@ -5,6 +5,22 @@
 @theme {
   --font-sans: var(--font-schibsted), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-deva: var(--font-noto-deva), sans-serif;
+
+  /* his mumbai-local palette, for the scenes and the departure board taken from that branch */
+  --color-night: #070b16;
+  --color-night-2: #0d1424;
+  --color-night-3: #141d33;
+  --color-chalk: #efe8d8;
+  --color-haze: #8d93a6;
+  --color-rail: rgb(239 232 216 / 0.1);
+  --color-sodium: #f4a640;
+  --color-signboard: #f3c623;
+  --color-ink: #111111;
+  --color-wr: #7a1f3d;
+  --color-mi: #1d4ea8;
+  --color-diya: #ffcf7a;
 }
 @keyframes blink {
   50% {
@@ -43,72 +59,76 @@
   color-scheme: dark;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  background: var(--bg);
-}
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
-  transition:
-    background-color 0.6s var(--ease),
-    color 0.6s var(--ease);
-}
-a {
-  color: inherit;
-}
-button {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
-  cursor: pointer;
-}
-canvas {
-  display: block;
-}
-::selection {
-  background: var(--acc);
-  color: var(--bg);
-}
-:focus-visible {
-  outline: 2px solid var(--acc);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
+/* The page's own base rules live in Tailwind's base layer, so the utilities on his project pieces and
+ * scenes (padding, margins, type) still win over them, as they did on his site. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    background: var(--bg);
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    transition:
+      background-color 0.6s var(--ease),
+      color 0.6s var(--ease);
+  }
+  a {
+    color: inherit;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  canvas {
+    display: block;
+  }
+  ::selection {
+    background: var(--acc);
+    color: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--acc);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
 
-/* ───────── Type ─────────
- * The serif is his voice, the sans states facts. Headlines balance over two lines at most.
- */
-h1,
-h2,
-h3 {
-  font-family: var(--serif);
-  font-weight: 300;
-  letter-spacing: -0.022em;
-  line-height: 0.98;
-  text-wrap: balance;
-}
-p,
-li {
-  text-wrap: pretty;
+  /* ───────── Type ─────────
+   * The serif is his voice, the sans states facts. Headlines balance over two lines at most.
+   */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    letter-spacing: -0.022em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+  p,
+  li {
+    text-wrap: pretty;
+  }
 }
 
 /* The one action: an underline in the light's colour that fills up behind the words on hover. */

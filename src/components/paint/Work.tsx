@@ -1,8 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { FEATURED, PROJECTS, type Project } from "@/lib/content";
+import { platforms, projects, type Project } from "@/lib/content";
 import { ProjectMedia } from "@/components/media/project-media";
+import { DepartureBoard } from "@/components/line/platforms/departure-board";
+import { platformAnchor } from "@/components/line/platforms/shared";
+
+// AuctionXI takes the hall; the other seven are the rest of the board.
+const [FEATURED, ...REST] = projects;
+// the headline is the first sentence of his description, the rest stays as the line beneath it
+const firstSentence = (t: string) => t.split(/(?<=\.)\s+/)[0];
+const afterFirst = (t: string) => t.split(/(?<=\.)\s+/).slice(1).join(" ");
+const linksOf = (p: Project): [string, string][] => [
+  ...(p.live ? ([["Live", p.live]] as [string, string][]) : []),
+  ...(p.github ? ([["Source", p.github]] as [string, string][]) : []),
+];
 
 // Plays while it is on screen, and only loads once it is close.
 function useSeen<T extends Element>(margin = "0px") {
@@ -36,7 +48,7 @@ function RowMedia({ p }: { p: Project }) {
   const [ref, { near, on }] = useSeen<HTMLDivElement>("-20% 0px");
   return (
     <div ref={ref} className="shot thumb">
-      {narrow && near && <ProjectMedia media={p.media} active={on} />}
+      {narrow && near && p.media && <ProjectMedia media={p.media} active={on} />}
     </div>
   );
 }
@@ -66,17 +78,20 @@ export function Work() {
     return () => clearTimeout(id);
   }, []);
   const [stage, seen] = useSeen<HTMLElement>();
+
+
   const [index, indexSeen] = useSeen<HTMLDivElement>();
 
   return (
     <>
       <section className="auction" id="work" ref={stage}>
+        <span id={platformAnchor(0)} className="sr-only" />
         <div className="stage">
           <div className="scene">
             <div className="cam" id="roomCam">
               <canvas id="room" role="img" aria-label="A dark hall, the AuctionXI live board on the projector screen and Mohit watching it from the front row." />
               <div className="screen" id="screen">
-                {seen.near && <ProjectMedia media={FEATURED.media} active={seen.on} />}
+                {seen.near && FEATURED.media && <ProjectMedia media={FEATURED.media} active={seen.on} />}
               </div>
             </div>
             <canvas id="roomFront" aria-hidden="true" />
@@ -88,19 +103,18 @@ export function Work() {
             </div>
             <div className="feat" id="aucCopy">
               <p className="meta">
-                <b>{FEATURED.name}</b>
-                {FEATURED.kind}
+                <b>{FEATURED.title}</b>
+                {FEATURED.type}, {FEATURED.period}
               </p>
-              <h3>{FEATURED.head}</h3>
-              <p className="one">{FEATURED.line}</p>
+              <h3>{firstSentence(FEATURED.description)}</h3>
+              <p className="one">{afterFirst(FEATURED.description)}</p>
               <ul className="facts">
-                {FEATURED.facts.map((f) => (
+                {FEATURED.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
-              <p className="tech">{FEATURED.tech}</p>
               <div className="links">
-                {FEATURED.links.map(([t, u]) => (
+                {linksOf(FEATURED).map(([t, u]) => (
                   <a key={u} className="tlink" href={u}>
                     {t}
                   </a>
@@ -112,48 +126,70 @@ export function Work() {
       </section>
 
       <section className="work">
-        <div className="index" ref={index}>
-          <div>
-            <h4>And seven more</h4>
-            <ul className="rows">
-              {PROJECTS.map((p, i) => (
-                <li
-                  key={p.name}
-                  className="row"
-                  tabIndex={0}
-                  data-on={on === i ? "" : undefined}
-                  onMouseEnter={() => setOn(i)}
-                  onFocus={() => setOn(i)}
-                >
-                  <span className="name">{p.name}</span>
-                  <span className="kind">{p.kind}</span>
-                  <p className="head">{p.head}</p>
-                  <div className="sub">
-                    <div>
-                      <p>{p.line}</p>
-                      <div className="links">
-                        {p.links.length ? (
-                          p.links.map(([t, u]) => (
-                            <a key={u} className="tlink" href={u}>
-                              {t}
-                            </a>
-                          ))
-                        ) : (
-                          <span className="private">Private client project</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <RowMedia p={p} />
-                </li>
-              ))}
-            </ul>
+        {/* a departure board row jumps to its platform and picks it in the index */}
+        <div
+          className="board"
+          id="platforms"
+          onClick={(e) => {
+            const href = (e.target as HTMLElement).closest("a")?.getAttribute("href") ?? "";
+            const m = /^#pf-(\d+)$/.exec(href);
+            if (m && +m[1] > 1) setOn(+m[1] - 2);
+          }}
+        >
+          {/* the hall above already carries the title, so the board opens on his line about it */}
+          <p className="lead">{platforms.intro.split(". ")[0]}.</p>
+          <div className="departures">
+            <DepartureBoard projects={projects} />
           </div>
+        </div>
+        <div className="index" ref={index}>
+          <ul className="rows">
+            {REST.map((p, i) => (
+              <li
+                key={p.id}
+                id={platformAnchor(i + 1)}
+                className="row"
+                tabIndex={0}
+                data-on={on === i ? "" : undefined}
+                onMouseEnter={() => setOn(i)}
+                onFocus={() => setOn(i)}
+              >
+                <span className="name">{p.title}</span>
+                <span className="kind">
+                  {p.type}, {p.period}
+                </span>
+                <p className="head">{firstSentence(p.description)}</p>
+                <div className="sub">
+                  <div>
+                    {afterFirst(p.description) && <p>{afterFirst(p.description)}</p>}
+                    <ul className="facts small">
+                      {p.features.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                    <div className="links">
+                      {linksOf(p).length ? (
+                        linksOf(p).map(([t, u]) => (
+                          <a key={u} className="tlink" href={u}>
+                            {t}
+                          </a>
+                        ))
+                      ) : (
+                        <span className="private">{p.note}</span>
+                      )}
+                    </div>
+                    {p.liveNote && <p className="note">{p.liveNote}</p>}
+                  </div>
+                </div>
+                <RowMedia p={p} />
+              </li>
+            ))}
+          </ul>
           <div className="view">
             <div className="shot" key={on}>
-              {indexSeen.near && <ProjectMedia media={PROJECTS[on].media} active={indexSeen.on} />}
+              {indexSeen.near && REST[on].media && <ProjectMedia media={REST[on].media!} active={indexSeen.on} />}
             </div>
-            <p className="cap">{PROJECTS[on].head}</p>
+            <p className="cap">{REST[on].title}</p>
           </div>
         </div>
       </section>

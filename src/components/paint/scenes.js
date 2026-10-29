@@ -658,7 +658,11 @@ export function mount() {
    * pulls out; the scenery thickens from creek and tin roofs to water tanks to Deco blocks and rain trees.
    */
   const roleEls = [...document.querySelectorAll("#journey .role")];
-  const NAMES = roleEls.map((e) => e.querySelector(".co").textContent);
+  const NAMES = roleEls.map((e) => e.dataset.name);
+  const DEVA = roleEls.map((e) => e.dataset.deva || "");
+  const pathTitle = $("pathTitle");
+  // canvas needs the real family names next/font loaded, not the names on Google Fonts
+  const family = (v, fallback) => getComputedStyle(document.documentElement).getPropertyValue(v).trim() || fallback;
   const pathSec = $("experience");
   let activeRole = -2;
 
@@ -766,14 +770,20 @@ export function mount() {
       for (let y = top + 18 * k; y < bot - 16 * k; y += 12 * k) c.fillRect(px + 9 * k, y, pw - 14 * k, 1.2 * k);
       if (dark) for (let y = top + 24 * k; y < bot - 20 * k; y += 34 * k) glow(c, px + pw / 2, y, 30 * k, "255,214,150", 0.35);
       c.fillStyle = dark ? "#2e353e" : "#a8a197"; c.fillRect(roadX, top + 30 * k, px + pw - roadX, 10 * k);
-      const name = NAMES[i];
-      c.font = `600 ${15 * k}px "Hanken Grotesk", system-ui, sans-serif`;
-      const tw = c.measureText(name).width, bx = px + pw + 18 * k, by = top + (bot - top) * 0.42, bw = tw + 22 * k, bh = 30 * k;
+      // the board as Western Railway paints them: Marathi above, English below, black on yellow
+      const name = NAMES[i].toUpperCase(), deva = DEVA[i];
+      const enFont = `800 ${13 * k}px ${family("--font-hanken", "system-ui")}`, dvFont = `700 ${12 * k}px ${family("--font-noto-deva", "sans-serif")}`;
+      c.font = enFont; const tw1 = c.measureText(name).width;
+      c.font = dvFont; const tw2 = deva ? c.measureText(deva).width : 0;
+      const tw = Math.max(tw1, tw2), bx = px + pw + 18 * k, by = top + (bot - top) * 0.4, bw = tw + 24 * k, bh = (deva ? 46 : 30) * k;
       if (dark) glow(c, bx + bw / 2, by + bh / 2, bw * 0.9, "255,214,150", 0.3);
       if (!dark) { c.fillStyle = P.shadow; c.fillRect(bx + 3 * k, by + 4 * k, bw, bh); }
       c.fillStyle = "#151515"; c.fillRect(bx - 2 * k, by - 2 * k, bw + 4 * k, bh + 4 * k);
       c.fillStyle = "#f5c518"; c.fillRect(bx, by, bw, bh);
-      c.fillStyle = "#151515"; c.textBaseline = "middle"; c.fillText(name, bx + 11 * k, by + bh / 2 + 1 * k);
+      c.fillStyle = "#151515"; c.textBaseline = "middle"; c.textAlign = "center";
+      if (deva) { c.font = dvFont; c.fillText(deva, bx + bw / 2, by + bh * 0.32); }
+      c.font = enFont; c.fillText(name, bx + bw / 2, by + (deva ? bh * 0.72 : bh / 2 + 1 * k));
+      c.textAlign = "left";
     });
     // the edge of Wankhede, beside the line where it runs into Churchgate
     if (y0 + G > L.end - G * 0.9) {
@@ -851,6 +861,8 @@ export function mount() {
       else { c.fillStyle = linear(c, w * 0.4, 0, w * 0.6, 0, [[0, `rgba(${bg},0)`], [0.55, `rgba(${bg},.82)`], [1, `rgba(${bg},.94)`]]); c.fillRect(w * 0.4, 0, w * 0.6 + 1, h); }
       const at = clamp(tr.at, 0, NAMES.length - 1);
       if (at !== activeRole) { activeRole = at; roleEls.forEach((e, i) => e.toggleAttribute("data-on", i === at)); }
+      // on a phone the column is short, so the title steps aside once a station has its say
+      pathTitle.toggleAttribute("data-away", L.n && tr.at >= 0);
     },
   });
 
